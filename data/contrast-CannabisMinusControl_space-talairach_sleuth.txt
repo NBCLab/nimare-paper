@@ -1,0 +1,107 @@
+// Reference=Talairach					// (3) , Gruber, et al. (2009): Angry Faces, Cannabis > Controls				// Subjects=15					26	-32	-34			46	-66	20			58	12	32			-44	-20	-18			2	-36	46			8	-44	58			20	62	16								// (3) , Gruber, et al. (2009): Happy Faces, Cannabis > Controls				// Subjects=15					30	-38	-40								// (4) Schweinsburg, et al. (2008): Memory, Cannabis > Controls					// Subjects=15					8	-53	69								// (4) Schweinsburg, et al. (2008): Memory, Cannabis > Controls				// Subjects=15					2	-77	36			-14	-89	-13								// (5) Padula, et al. (2007): n-back, Cannabis > Controls					// Subjects=15					32	-17	12			8	-53	69			-11	-65	63								// (6) King, et al. (2011): 2 Hz Condition, Cannabis > Controls				 
+// Subjects=30
+.28	10.64	50.33
+
+// (6) King, et al. (2011): 4 Hz Condition, Cannabis > Controls				 
+// Subjects=30
+-58.39	-25.17	-4.5
+-36.68	3.9	43.66
+41.73	43.25	3.68
+27.73	-50.35	57.63
+23.5	58.13	-13.24
+
+// (6) King, et al. (2011): 2 Hz Condition (Male) Cannabis > Controls			 
+// Subjects=30
+.28	10.64	50.33
+-45.26	12.55	-6.11
+
+// (6) King, et al. (2011): 4 Hz Condition (Male) Cannabis > Controls			 
+// Subjects=30
+.25	14.02	54.26
+-51.82	-36.89	57.56
+
+// (6) King, et al. (2011): 4 Hz Condition (Female) Cannabis > Controls			 
+// Subjects=30
+-54.7	13.07	8.19
+43.55	46.62	7.63
+-34.37	38.35	18.14
+47.43	18.71	-14.77
+					// (7) Lopez-Larson, et al. (2012): Tapping, Controls > Cannabis				// Subjects=24					-23	-27	29			35	-87	16								// (9) Cousijn, et al. (2012): Wins > Losses, Cannabis > Controls				 
+// Subjects=32
+34.32	21.28	-2.13
+34.2	11.27	4.12
+-45.64	-35.94	9.11
+					// (10) Nestor, et al. (2010): Neutral Cue, Cannabis > Controls				// Subjects=14					2	-88	14								// (10) Nestor, et al. (2010): Win Cue, Cannabis > Controls					// Subjects=14					20	8	-4								// (10) Nestor, et al. (2010): Win Cue + Loss Cue, Cannabis > Controls			// Subjects=14					1	-77	-19								// (10) Nestor, et al. (2010): Neutral Lose Outcome, Cannabis > Controlss			// Subjects=14					-1	24	27			48	-45	13			-21	-18	63			-20	-84	35			17	47	44			52	24	7			-37	-48	-20			42	27	47			9	8	10			-49	-18	47			-28	-75	14			0	-19	-30								// (10) Nestor, et al. (2010): Neutral Win Outcome, Cannabis > Controls			// Subjects=14					-15	-39	2			17	-82	-17			14	-6	-21			29	-46	-8								// (10) Nestor, et al. (2010): Lose Outcome, Cannabis > Controls				// Subjects=14					-38	-55	54								// (10) Nestor, et al. (2010): Win Outcome, Controls > Cannabis				// Subjects=14					0	-24	45								// (11) Chang, et al. (2006): Tracking, THC- > Controls					// Subjects=24					-27	-6	30			30	-48	33			39	15	-27			-18	-78	-6								// (11) Chang, et al. (2006): Tracking, THC+ > Controls					// Subjects=24					-21	-75	36			-15	-75	-6			-21	0	-24								// (12) Van Hell, et al. (2012): Anticipation, Cannabis > Controls				// Subjects=14					-48	-68	20			40	-64	20			12	-76	24			24	-16	-24								// (12) Van Hell, et al. (2012): Evaluation, Cannabis > Controls				// Subjects=14					-51	-65	22			-55	-26	20			-27	-39	-8			-38	27	-4			-20	4	8			-8	-65	26			-14	-25	38			6	58	1			8	32	24			4	-18	29			12	4	7			19	8	-11			24	-72	30			22	-10	35			48	-6	34			48	10	32			43	78	15								// (13) Fibey, et al. (2013): Gain vs. Loss, Cannabis > Controls				 
+// Subjects=59
+5.45	-69.04	57.28
+-3.84	-63.75	61.23
+-42.2	9.69	42.32
+-40.63	-28.98	53.09
+-36.06	46.86	8.11
+					// (16) Tapert, et al. (2007): Go, Cannabis > Controls					// Subjects=16					54	13	14			23	52	31			30	-57	56			47	-43	49			5	-64	59								// (16) Tapert, et al. (2007): No-Go, Cannabis > Controls					// Subjects=16					37	48	14			44	3	42			-33	55	3			-2	3	52			40	-57	45			-40	-54	52			23	-89	3								// (17) Bolla, et al. (2005): Iowa Gambling, Cannabis > Controls				// Subjects=11					-53	-17	45								// (18) Yip, et al. (2014): Evaluation, Cannabis > Controls					 
+// Subjects=20
+-6.53	-21.54	-5.08
+-39.86	-26.95	-6.16
+-34.74	-60.34	17.79
+
+// (19) Kanayama, et al. (2004): Memory, Cannabis > Controls				 
+// Subjects=12						 
+30.78	11.51	-17.53
+13.47	1.31	29.85
+-18.04	10.26	35.57
+32.26	21.59	14.07
+37.88	27.49	11.13
+11.85	19.48	17.13
+-6.6	14.51	10.95
+-21.45	32.52	19.61
+13.97	34.25	.55
+15.89	42.05	-2.28
+48.75	2	21.51
+22.85	3.99	21.26
+
+// (20) Abdullaeva, et al. (2010): Attention, Cannabis > Controls				 
+// Subjects=14
+48.99	14.74	6.5
+3.83	-21.58	52.75
+44.63	-35.82	43.08
+-49.67	-52.92	29.05
+
+// (20) Abdullaeva, et al. (2010): Word Generation, Cannabis > Controls			 
+// Subjects=14
+28.62	25.68	10.8
+8.44	52.74	4.01
+
+// (20) Abdullaeva, et al. (2010): Hard Word Generation, Cannabis > Control			 
+// Subjects=14
+-.86	15.87	-3.24
+21.46	14.77	-11.98
+-13.63	44.76	-9.73
+-12.85	-50.96	46.08
+
+// (21) Smith, et al. (2010): Memory, Cannabis > Controls					 
+// Subjects=10
+29.72	32.48	-1.15
+24.25	41.33	-4.91
+32.81	18.31	-29.47
+9.71	-34.74	23.67
+					// (22) Block, et al. (2002): Memory, Cannabis > Controls					// Subjects=18					9	-83	-13			5	-75	-32			31	-48	-38			-17	-54	-27								// (23) Eldrith, et al. (2004): Stroop, Cannabis > Controls					// Subjects=11					12	-28	55			-38	-80	-13								// (24) Vaidya, et al. (2012): Reward, Cannabis > Controls					// Subjects=46					18	28	-10			32	-58	-36								// (24) Vaidya, et al. (2012): Reward, Cannabis > Controls					// Subjects=46					-34	-20	16								// (26) Hester, et al. (2009): No-Go, Cannabis > Controls					 
+// Subjects=16
+43.73	-43.86	38.7
+16.62	4.08	1.34
+1.14	-19.09	46.63
+
+// (27) Rosner, et al. (2012): ToM, Cannabis > Controls					 
+// Subjects=15
+-18.11	-77.95	14.6
+17.17	10.43	32.58
+					// (29) Acheson, et al. (2015): Wins, Cannabis > Controls				
+// Subjects=14					40	32	18			12	6	10			-36	42	8			-10	4	6			-24	24	0			26	16	-4			-32	42	-6								// (29) Acheson, et al. (2015): Losses, Cannabis > Controls				
+// Subjects=14					48	6	36			4	-32	24			6	30	14			30	12	4			-44	12	2			-24	18	-6			-40	-62	-18			32	-66	-18								// (31) Enzi, et al. (2015): Reward Feedback, Cannabis > Controls				 
+// Subjects=15
+-12.35	-4.3	20.78
+40.57	24.16	16.26
+
+// (34) Heitzeg et al. (2015): Emotion Elicitation, Cannabis > Controls			 
+// Subjects=20
+17.25	49.38	38.07
+
