@@ -1,3 +1,6 @@
+# Conda environment
+conda_env/
+
 # Don't track Neurosynth files
 data/database.txt
 data/features.txt

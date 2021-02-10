@@ -1,0 +1,7 @@
+module add miniconda3-4.5.11-gcc-8.2.0-oqs2mbg
+
+source activate /home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/
+export project_name="[NIMARE]"
+
+# Set Python path to project-specific folder
+PYTHONPATH="${PYTHONPATH}:/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper//"
