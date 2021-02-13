@@ -2,6 +2,7 @@
 conda_env/
 
 # Don't track Neurosynth files
+data/current_data.tar.gz
 data/database.txt
 data/features.txt
 
