@@ -14,6 +14,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from nilearn import datasets, image, input_data, plotting
 
+FIG_WIDTH = 10
 ROW_HEIGHT = 2.5  # good row height for width of 10
 
 
@@ -64,7 +65,7 @@ ale_ma_maps = ale_kernel.transform(sl_dset1, return_type="image")
 
 max_value = np.max(kda_ma_maps[0].get_fdata()) + 1
 
-fig, axes = plt.subplots(nrows=3, figsize=(10, ROW_HEIGHT*3))
+fig, axes = plt.subplots(nrows=3, figsize=(FIG_WIDTH, ROW_HEIGHT*3))
 plotting.plot_stat_map(
     mkda_ma_maps[2], cut_coords=[54, -46, 12],
     title="MKDA", vmax=max_value, axes=axes[0],
@@ -132,7 +133,7 @@ ale_results = meta.fit(sl_dset1)
 # Meta-analytic maps across estimators
 results = [mkdad_results, mkdac_results, kda_results, ale_results, scale_results]
 names = ["MKDADensity", "MKDAChi2", "KDA", "ALE", "SCALE"]
-fig, axes = plt.subplots(figsize=(10, ROW_HEIGHT*len(names)), nrows=len(names))
+fig, axes = plt.subplots(figsize=(FIG_WIDTH, ROW_HEIGHT*len(names)), nrows=len(names))
 for i, r in enumerate(results):
     name = names[i]
     if "z" in r.maps.keys():
@@ -233,7 +234,7 @@ names = [
     "Sample Size-Based Likelihood",
 ]
 
-fig, axes = plt.subplots(figsize=(10, ROW_HEIGHT*len(results)), nrows=len(results))
+fig, axes = plt.subplots(figsize=(FIG_WIDTH, ROW_HEIGHT*len(results)), nrows=len(results))
 for i, r in enumerate(results):
     img = r.get_map("z")
     plotting.plot_stat_map(
@@ -246,6 +247,14 @@ for i, r in enumerate(results):
     )
 
 fig.savefig("figures/figure_05.svg")
+
+
+# ### Save map for future use
+
+# In[ ]:
+
+
+dsl_results.get_map("est").to_filename("data/pain_map.nii.gz")
 
 
 # ## Listing 8
@@ -267,7 +276,7 @@ b_results = b_corrector.transform(mkdad_meta.results)
 # In[22]:
 
 
-fig, axes = plt.subplots(figsize=(10, ROW_HEIGHT*2), nrows=2)
+fig, axes = plt.subplots(figsize=(FIG_WIDTH, ROW_HEIGHT*2), nrows=2)
 plotting.plot_stat_map(
     mc_results.get_map("z_level-cluster_corr-FWE_method-montecarlo"),
     title="Cluster-level Monte Carlo",
@@ -303,7 +312,7 @@ subtraction_results = meta.fit(sl_dset1, sl_dset2)
 
 
 stat_img = subtraction_results.get_map("z_desc-group1MinusGroup2", return_type="image")
-fig, ax = plt.subplots(figsize=(10, ROW_HEIGHT))
+fig, ax = plt.subplots(figsize=(FIG_WIDTH, ROW_HEIGHT))
 plotting.plot_stat_map(
     stat_img,
     title="ALE Subtraction",
@@ -350,7 +359,7 @@ results_sphere = meta_sphere.fit(dset_sphere)
 
 # In[ ]:
 
-fig, axes = plt.subplots(figsize=(10, ROW_HEIGHT*2), nrows=2)
+fig, axes = plt.subplots(figsize=(FIG_WIDTH, ROW_HEIGHT*2), nrows=2)
 plotting.plot_stat_map(
     results_amyg.get_map("z"),
     cut_coords=[24, -2, -20],
@@ -377,7 +386,7 @@ results_amyg = meta_amyg.fit(dset_amygdala)
 meta_sphere = mkda.MKDADensity(null_method="analytic")
 results_sphere = meta_sphere.fit(dset_sphere)
 
-fig, axes = plt.subplots(figsize=(10, ROW_HEIGHT*2), nrows=2)
+fig, axes = plt.subplots(figsize=(FIG_WIDTH, ROW_HEIGHT*2), nrows=2)
 plotting.plot_stat_map(
     results_amyg.get_map("z"),
     cut_coords=[24, -2, -20],
@@ -404,7 +413,7 @@ results_amyg = meta_amyg.fit(dset_amygdala)
 meta_sphere = mkda.KDA()
 results_sphere = meta_sphere.fit(dset_sphere)
 
-fig, axes = plt.subplots(figsize=(10, ROW_HEIGHT*2), nrows=2)
+fig, axes = plt.subplots(figsize=(FIG_WIDTH, ROW_HEIGHT*2), nrows=2)
 plotting.plot_stat_map(
     results_amyg.get_map("z"),
     cut_coords=[24, -2, -20],
@@ -518,15 +527,15 @@ decoder = CorrelationDecoder(feature_group="Neurosynth_tfidf",
                              meta_estimator=mkda.MKDAChi2,
                              target_img="z_desc-specificity")
 decoder.fit(ns_dset)
-decoding_results = decoder.transform("pain_map.nii.gz")
+decoding_results = decoder.transform("data/pain_map.nii.gz")
 
 
 # ### Figure 11
 
 # In[ ]:
 
-fig, ax = plt.subplots(figsize=(10, ROW_HEIGHT))
-plotting.plot_stat_map("pain_map.nii.gz")
+fig, ax = plt.subplots(figsize=(FIG_WIDTH, ROW_HEIGHT))
+plotting.plot_stat_map("data/pain_map.nii.gz")
 
 
 # ### Table 3
@@ -549,7 +558,7 @@ decoder = CorrelationDistributionDecoder(
     frequency_threshold=0.001,
     target_img="z")
 decoder.fit(ns_dset)
-decoding_results = decoder.transform("pain_map.nii.gz")
+decoding_results = decoder.transform("data/pain_map.nii.gz")
 
 
 # ### Table 4
