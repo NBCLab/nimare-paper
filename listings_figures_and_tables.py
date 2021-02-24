@@ -38,14 +38,19 @@ sl_dset2 = nimare.io.convert_sleuth_to_dataset(
 # In[3]:
 
 
-if not os.path.isfile("data/neurosynth_dataset.pkl.gz"):
-    nimare.extract.fetch_neurosynth("data/", unpack=True)
+if os.path.isfile("data/neurosynth_dataset.pkl.gz"):
+    ns_dset = nimare.dataset.Dataset.load("data/neurosynth_dataset.pkl.gz")
+elif os.path.isfile("data/database.txt"):
     ns_dset = nimare.io.convert_neurosynth_to_dataset(
         "data/database.txt",
         "data/features.txt",
     )
 else:
-    ns_dset = nimare.dataset.Dataset.load("data/neurosynth_dataset.pkl.gz")
+    nimare.extract.fetch_neurosynth("data/", unpack=True)
+    ns_dset = nimare.io.convert_neurosynth_to_dataset(
+        "data/database.txt",
+        "data/features.txt",
+    )
 
 
 # ## Listing 3
