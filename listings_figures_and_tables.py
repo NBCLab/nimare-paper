@@ -368,7 +368,8 @@ fig.savefig("figures/figure_07.svg")
 
 # Create amygdala mask for MACMs
 atlas = datasets.fetch_atlas_harvard_oxford("sub-maxprob-thr25-2mm")
-amygdala_mask = image.math_img("img == 54", img=atlas["maps"])
+amyg_val = atlas["labels"].index("Right Amygdala")
+amygdala_mask = image.math_img(f"img == {amyg_val}", img=atlas["maps"])
 amygdala_mask.to_filename("data/amygdala_roi.nii.gz")
 
 amygdala_ids = ns_dset.get_studies_by_mask("data/amygdala_roi.nii.gz")
