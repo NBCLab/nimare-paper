@@ -15,7 +15,7 @@ import numpy as np
 from nilearn import datasets, image, input_data, plotting
 
 FIG_WIDTH = 10
-ROW_HEIGHT = 2.5  # good row height for width of 10
+ROW_HEIGHT = 2  # good row height for width of 10
 
 
 # ## Listing 1
