@@ -24,8 +24,13 @@ ROW_HEIGHT = 2.5  # good row height for width of 10
 
 
 import nimare
-sl_dset1 = nimare.io.convert_sleuth_to_dataset("data/contrast-CannabisMinusControl_space-talairach_sleuth.txt")
-sl_dset2 = nimare.io.convert_sleuth_to_dataset("data/contrast-ControlMinusCannabis_space-talairach_sleuth.txt")
+
+sl_dset1 = nimare.io.convert_sleuth_to_dataset(
+    "data/contrast-CannabisMinusControl_space-talairach_sleuth.txt"
+)
+sl_dset2 = nimare.io.convert_sleuth_to_dataset(
+    "data/contrast-ControlMinusCannabis_space-talairach_sleuth.txt"
+)
 
 
 # ## Listing 2
@@ -37,7 +42,7 @@ if not os.path.isfile("data/neurosynth_dataset.pkl.gz"):
     nimare.extract.fetch_neurosynth("data/", unpack=True)
     ns_dset = nimare.io.convert_neurosynth_to_dataset(
         "data/database.txt",
-        "data/features.txt"
+        "data/features.txt",
     )
 else:
     ns_dset = nimare.dataset.Dataset.load("data/neurosynth_dataset.pkl.gz")
@@ -65,21 +70,29 @@ ale_ma_maps = ale_kernel.transform(sl_dset1, return_type="image")
 
 max_value = np.max(kda_ma_maps[0].get_fdata()) + 1
 
-fig, axes = plt.subplots(nrows=3, figsize=(FIG_WIDTH, ROW_HEIGHT*3))
+fig, axes = plt.subplots(nrows=3, figsize=(FIG_WIDTH, ROW_HEIGHT * 3))
 plotting.plot_stat_map(
-    mkda_ma_maps[2], cut_coords=[54, -46, 12],
-    title="MKDA", vmax=max_value, axes=axes[0],
-    draw_cross=False
+    mkda_ma_maps[2],
+    cut_coords=[54, -46, 12],
+    title="MKDA",
+    vmax=max_value,
+    axes=axes[0],
+    draw_cross=False,
 )
 plotting.plot_stat_map(
-    kda_ma_maps[2], cut_coords=[54, -46, 12],
-    title="KDA", vmax=max_value, axes=axes[1],
-    draw_cross=False
+    kda_ma_maps[2],
+    cut_coords=[54, -46, 12],
+    title="KDA",
+    vmax=max_value,
+    axes=axes[1],
+    draw_cross=False,
 )
 plotting.plot_stat_map(
-    ale_ma_maps[2], cut_coords=[54, -46, 12],
-    title="ALE", axes=axes[2],
-    draw_cross=False
+    ale_ma_maps[2],
+    cut_coords=[54, -46, 12],
+    title="ALE",
+    axes=axes[2],
+    draw_cross=False,
 )
 fig.savefig("figures/figure_03.svg")
 
@@ -131,9 +144,17 @@ meta = ale.ALE(null_method="analytic")
 ale_results = meta.fit(sl_dset1)
 
 # Meta-analytic maps across estimators
-results = [mkdad_results, mkdac_results, kda_results, ale_results, scale_results]
+results = [
+    mkdad_results,
+    mkdac_results,
+    kda_results,
+    ale_results,
+    scale_results,
+]
 names = ["MKDADensity", "MKDAChi2", "KDA", "ALE", "SCALE"]
-fig, axes = plt.subplots(figsize=(FIG_WIDTH, ROW_HEIGHT*len(names)), nrows=len(names))
+fig, axes = plt.subplots(
+    figsize=(FIG_WIDTH, ROW_HEIGHT * len(names)), nrows=len(names)
+)
 for i, r in enumerate(results):
     name = names[i]
     if "z" in r.maps.keys():
@@ -146,7 +167,7 @@ for i, r in enumerate(results):
         cut_coords=[0, 0, 0],
         draw_cross=False,
         annotate=False,
-        axes=axes[i]
+        axes=axes[i],
     )
 fig.savefig("figures/figure_04.svg")
 
@@ -166,10 +187,16 @@ img_dset.update_path(dset_dir)
 
 # Calculate missing images
 img_dset.images = nimare.transforms.transform_images(
-    img_dset.images, target="z", masker=img_dset.masker, metadata_df=img_dset.metadata
+    img_dset.images,
+    target="z",
+    masker=img_dset.masker,
+    metadata_df=img_dset.metadata,
 )
 img_dset.images = nimare.transforms.transform_images(
-    img_dset.images, target="varcope", masker=img_dset.masker, metadata_df=img_dset.metadata
+    img_dset.images,
+    target="varcope",
+    masker=img_dset.masker,
+    metadata_df=img_dset.metadata,
 )
 
 meta = ibma.DerSimonianLaird()
@@ -220,7 +247,7 @@ results = [
     wls_results,
     hedges_results,
     vbl_results,
-    ssbl_results
+    ssbl_results,
 ]
 names = [
     "DerSimonian-Laird",
@@ -234,7 +261,9 @@ names = [
     "Sample Size-Based Likelihood",
 ]
 
-fig, axes = plt.subplots(figsize=(FIG_WIDTH, ROW_HEIGHT*len(results)), nrows=len(results))
+fig, axes = plt.subplots(
+    figsize=(FIG_WIDTH, ROW_HEIGHT * len(results)), nrows=len(results)
+)
 for i, r in enumerate(results):
     img = r.get_map("z")
     plotting.plot_stat_map(
@@ -276,7 +305,7 @@ b_results = b_corrector.transform(mkdad_meta.results)
 # In[22]:
 
 
-fig, axes = plt.subplots(figsize=(FIG_WIDTH, ROW_HEIGHT*2), nrows=2)
+fig, axes = plt.subplots(figsize=(FIG_WIDTH, ROW_HEIGHT * 2), nrows=2)
 plotting.plot_stat_map(
     mc_results.get_map("z_level-cluster_corr-FWE_method-montecarlo"),
     title="Cluster-level Monte Carlo",
@@ -311,7 +340,10 @@ subtraction_results = meta.fit(sl_dset1, sl_dset2)
 # In[ ]:
 
 
-stat_img = subtraction_results.get_map("z_desc-group1MinusGroup2", return_type="image")
+stat_img = subtraction_results.get_map(
+    "z_desc-group1MinusGroup2",
+    return_type="image",
+)
 fig, ax = plt.subplots(figsize=(FIG_WIDTH, ROW_HEIGHT))
 plotting.plot_stat_map(
     stat_img,
@@ -359,7 +391,7 @@ results_sphere = meta_sphere.fit(dset_sphere)
 
 # In[ ]:
 
-fig, axes = plt.subplots(figsize=(FIG_WIDTH, ROW_HEIGHT*2), nrows=2)
+fig, axes = plt.subplots(figsize=(FIG_WIDTH, ROW_HEIGHT * 2), nrows=2)
 plotting.plot_stat_map(
     results_amyg.get_map("z"),
     cut_coords=[24, -2, -20],
@@ -386,7 +418,7 @@ results_amyg = meta_amyg.fit(dset_amygdala)
 meta_sphere = mkda.MKDADensity(null_method="analytic")
 results_sphere = meta_sphere.fit(dset_sphere)
 
-fig, axes = plt.subplots(figsize=(FIG_WIDTH, ROW_HEIGHT*2), nrows=2)
+fig, axes = plt.subplots(figsize=(FIG_WIDTH, ROW_HEIGHT * 2), nrows=2)
 plotting.plot_stat_map(
     results_amyg.get_map("z"),
     cut_coords=[24, -2, -20],
@@ -413,7 +445,7 @@ results_amyg = meta_amyg.fit(dset_amygdala)
 meta_sphere = mkda.KDA()
 results_sphere = meta_sphere.fit(dset_sphere)
 
-fig, axes = plt.subplots(figsize=(FIG_WIDTH, ROW_HEIGHT*2), nrows=2)
+fig, axes = plt.subplots(figsize=(FIG_WIDTH, ROW_HEIGHT * 2), nrows=2)
 plotting.plot_stat_map(
     results_amyg.get_map("z"),
     cut_coords=[24, -2, -20],
@@ -464,8 +496,11 @@ dset_with_abstracts = nimare.extract.download_abstracts(
 
 
 model = nimare.annotate.lda.LDAModel(
-    dset_with_abstracts.texts, text_column="abstract",
-    n_topics=100, n_iters=10000)
+    dset_with_abstracts.texts,
+    text_column="abstract",
+    n_topics=100,
+    n_iters=10000,
+)
 model.fit()
 
 
@@ -474,7 +509,10 @@ model.fit()
 # In[ ]:
 
 
-model.p_word_g_topic_.to_csv("tables/table_01.tsv", sep="\t")
+model.p_word_g_topic_.to_csv(
+    "tables/table_01.tsv",
+    sep="\t",
+)
 
 
 # ## Listing 15
@@ -482,15 +520,22 @@ model.p_word_g_topic_.to_csv("tables/table_01.tsv", sep="\t")
 # In[ ]:
 
 
-dset_first1000 = dset_with_abstracts.slice(
-    dset_with_abstracts.ids[:1000])
+dset_first1000 = dset_with_abstracts.slice(dset_with_abstracts.ids[:1000])
 counts_df = nimare.annotate.text.generate_counts(
-    dset_first1000.texts, text_column="abstract",
-    tfidf=False, min_df=1, max_df=1.)
+    dset_first1000.texts,
+    text_column="abstract",
+    tfidf=False,
+    min_df=1,
+    max_df=1.0,
+)
 model = nimare.annotate.gclda.GCLDAModel(
-    counts_df, dset_first1000.coordinates,
-    n_regions=2, n_topics=100, symmetric=2,
-    mask=ns_dset.masker.mask_img)
+    counts_df,
+    dset_first1000.coordinates,
+    n_regions=2,
+    n_topics=100,
+    symmetric=2,
+    mask=ns_dset.masker.mask_img,
+)
 model.fit(n_iters=10000)
 
 
@@ -499,7 +544,10 @@ model.fit(n_iters=10000)
 # In[ ]:
 
 
-model.p_word_g_topic_.to_csv("tables/table_02.tsv", sep="\t")
+model.p_word_g_topic_.to_csv(
+    "tables/table_02.tsv",
+    sep="\t",
+)
 
 
 # ### Figure 10
@@ -522,10 +570,12 @@ for i in range(5):
 
 from nimare.decode.continuous import CorrelationDecoder
 
-decoder = CorrelationDecoder(feature_group="Neurosynth_tfidf",
-                             frequency_threshold=0.001,
-                             meta_estimator=mkda.MKDAChi2,
-                             target_img="z_desc-specificity")
+decoder = CorrelationDecoder(
+    feature_group="Neurosynth_tfidf",
+    frequency_threshold=0.001,
+    meta_estimator=mkda.MKDAChi2,
+    target_img="z_desc-specificity",
+)
 decoder.fit(ns_dset)
 decoding_results = decoder.transform("data/pain_map.nii.gz")
 
@@ -543,7 +593,10 @@ plotting.plot_stat_map("data/pain_map.nii.gz")
 # In[ ]:
 
 
-decoding_results.to_csv("tables/table_03.tsv", sep="\t")
+decoding_results.to_csv(
+    "tables/table_03.tsv",
+    sep="\t",
+)
 
 
 # ## Listing 17
@@ -556,7 +609,8 @@ from nimare.decode.continuous import CorrelationDistributionDecoder
 decoder = CorrelationDistributionDecoder(
     feature_group="Neurosynth_tfidf",
     frequency_threshold=0.001,
-    target_img="z")
+    target_img="z",
+)
 decoder.fit(ns_dset)
 decoding_results = decoder.transform("data/pain_map.nii.gz")
 
@@ -566,7 +620,10 @@ decoding_results = decoder.transform("data/pain_map.nii.gz")
 # In[ ]:
 
 
-decoding_results.to_csv("tables/table_04.tsv", sep="\t")
+decoding_results.to_csv(
+    "tables/table_04.tsv",
+    sep="\t",
+)
 
 
 # ## Listing 18
@@ -576,9 +633,12 @@ decoding_results.to_csv("tables/table_04.tsv", sep="\t")
 
 from nimare.decode.discrete import BrainMapDecoder
 
-decoder = BrainMapDecoder(feature_group="Neurosynth_tfidf",
-                          frequency_threshold=0.001,
-                          u=0.05, correction="fdr_bh")
+decoder = BrainMapDecoder(
+    feature_group="Neurosynth_tfidf",
+    frequency_threshold=0.001,
+    u=0.05,
+    correction="fdr_bh",
+)
 decoder.fit(ns_dset)
 decoding_results = decoder.transform(amygdala_ids)
 
@@ -588,7 +648,10 @@ decoding_results = decoder.transform(amygdala_ids)
 # In[ ]:
 
 
-decoding_results.sort_values(by="probReverse", ascending=False).to_csv("tables/table_05.tsv", sep="\t")
+decoding_results.sort_values(by="probReverse", ascending=False).to_csv(
+    "tables/table_05.tsv",
+    sep="\t",
+)
 
 
 # ## Listing 19
@@ -598,9 +661,12 @@ decoding_results.sort_values(by="probReverse", ascending=False).to_csv("tables/t
 
 from nimare.decode.discrete import NeurosynthDecoder
 
-decoder = NeurosynthDecoder(feature_group="Neurosynth_tfidf",
-                            frequency_threshold=0.001,
-                            u=0.05, correction="fdr_bh")
+decoder = NeurosynthDecoder(
+    feature_group="Neurosynth_tfidf",
+    frequency_threshold=0.001,
+    u=0.05,
+    correction="fdr_bh",
+)
 decoder.fit(ns_dset)
 decoding_results = decoder.transform(amygdala_ids)
 
@@ -610,5 +676,7 @@ decoding_results = decoder.transform(amygdala_ids)
 # In[ ]:
 
 
-decoding_results.sort_values(by="probReverse", ascending=False).to_csv("tables/table_06.tsv", sep="\t")
-
+decoding_results.sort_values(by="probReverse", ascending=False).to_csv(
+    "tables/table_06.tsv",
+    sep="\t",
+)
