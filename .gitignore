@@ -1,3 +1,6 @@
+# OSX files
+**/.DS_Store
+
 # Conda environment
 conda_env/
 
