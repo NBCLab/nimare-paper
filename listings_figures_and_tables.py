@@ -5,7 +5,7 @@
 
 # ### Plotting imports and notebook configuration
 
-# In[1]:
+# In[ ]:
 
 
 import os
@@ -20,7 +20,7 @@ ROW_HEIGHT = 2  # good row height for width of 10
 
 # ## Listing 1
 
-# In[2]:
+# In[ ]:
 
 
 import nimare
@@ -35,7 +35,7 @@ sl_dset2 = nimare.io.convert_sleuth_to_dataset(
 
 # ## Listing 2
 
-# In[3]:
+# In[ ]:
 
 
 if os.path.isfile("data/neurosynth_dataset.pkl.gz"):
@@ -55,7 +55,7 @@ else:
 
 # ## Listing 3
 
-# In[4]:
+# In[ ]:
 
 
 from nimare.meta import kernel
@@ -70,7 +70,7 @@ ale_ma_maps = ale_kernel.transform(sl_dset1, return_type="image")
 
 # ### Figure 3
 
-# In[7]:
+# In[ ]:
 
 
 max_value = np.max(kda_ma_maps[0].get_fdata()) + 1
@@ -104,7 +104,7 @@ fig.savefig("figures/figure_03.svg")
 
 # ## Listing 4
 
-# In[8]:
+# In[ ]:
 
 
 from nimare.meta.cbma import mkda
@@ -115,7 +115,7 @@ mkdad_results = mkdad_meta.fit(sl_dset1)
 
 # ## Listing 5
 
-# In[9]:
+# In[ ]:
 
 
 from nimare.meta.cbma import ale
@@ -127,7 +127,7 @@ scale_results = meta.fit(sl_dset1)
 
 # ## Listing 6
 
-# In[10]:
+# In[ ]:
 
 
 from nimare.meta.cbma import mkda
@@ -138,7 +138,7 @@ mkdac_results = meta.fit(sl_dset1, sl_dset2)
 
 # ### Figure 4
 
-# In[11]:
+# In[ ]:
 
 
 # Additional meta-analyses for figures
@@ -179,7 +179,7 @@ fig.savefig("figures/figure_04.svg")
 
 # ## Listing 7
 
-# In[12]:
+# In[ ]:
 
 
 from nimare.meta import ibma
@@ -210,7 +210,7 @@ dsl_results = meta.fit(img_dset)
 
 # ### Figure 5
 
-# In[15]:
+# In[ ]:
 
 
 # Additional meta-analyses for figures
@@ -293,7 +293,7 @@ dsl_results.get_map("est").to_filename("data/pain_map.nii.gz")
 
 # ## Listing 8
 
-# In[16]:
+# In[ ]:
 
 
 from nimare.correct import FWECorrector
@@ -307,7 +307,7 @@ b_results = b_corrector.transform(mkdad_meta.results)
 
 # ### Figure 6
 
-# In[22]:
+# In[ ]:
 
 
 fig, axes = plt.subplots(figsize=(FIG_WIDTH, ROW_HEIGHT * 2), nrows=2)
@@ -490,10 +490,16 @@ fig.savefig("figures/figure_08b.svg")
 # In[ ]:
 
 
-dset_with_abstracts = nimare.extract.download_abstracts(
-    ns_dset,
-    email="example@email.com",
-)
+if not os.path.isfile("data/neurosynth_dataset_with_abstracts.pkl.gz"):
+    dset_with_abstracts = nimare.extract.download_abstracts(
+        ns_dset,
+        email="example@email.com",
+    )
+    dset_with_abstracts.save("data/neurosynth_dataset_with_abstracts.pkl.gz")
+else:
+    dset_with_abstracts = nimare.dataset.Dataset.load(
+        "neurosynth_dataset_with_abstracts.pkl.gz"
+    )
 
 
 # ## Listing 14
