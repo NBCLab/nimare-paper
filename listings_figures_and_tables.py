@@ -121,7 +121,7 @@ mkdad_results = mkdad_meta.fit(sl_dset1)
 from nimare.meta.cbma import ale
 
 ijk = ns_dset.coordinates[["i", "j", "k"]].values
-meta = ale.SCALE(n_iters=250, ijk=ijk, kernel__sample_size=20)
+meta = ale.SCALE(n_iters=10000, ijk=ijk, kernel__sample_size=20)
 scale_results = meta.fit(sl_dset1)
 
 
@@ -298,7 +298,7 @@ dsl_results.get_map("est").to_filename("data/pain_map.nii.gz")
 
 from nimare.correct import FWECorrector
 
-mc_corrector = FWECorrector(method="montecarlo", n_iters=100, n_cores=1)
+mc_corrector = FWECorrector(method="montecarlo", n_iters=10000, n_cores=4)
 mc_results = mc_corrector.transform(mkdad_meta.results)
 
 b_corrector = FWECorrector(method="bonferroni")
@@ -498,7 +498,7 @@ if not os.path.isfile("data/neurosynth_dataset_with_abstracts.pkl.gz"):
     dset_with_abstracts.save("data/neurosynth_dataset_with_abstracts.pkl.gz")
 else:
     dset_with_abstracts = nimare.dataset.Dataset.load(
-        "neurosynth_dataset_with_abstracts.pkl.gz"
+        "data/neurosynth_dataset_with_abstracts.pkl.gz"
     )
 
 

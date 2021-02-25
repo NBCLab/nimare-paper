@@ -18,7 +18,7 @@
 #SBATCH -p 16C_48G
 ########################################################
 export NPROCS=`echo $LSB_HOSTS | wc -w`
-export OMP_NUM_THREADS=$NPROCS
+export OMP_NUM_THREADS=4
 . $MODULESHOME/../global/profile.modules
 source /home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/activate_environment
 
