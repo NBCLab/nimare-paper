@@ -233,8 +233,8 @@ meta = ibma.Hedges()
 hedges_results = meta.fit(img_dset)
 
 # Use atlas for likelihood-based estimators
-atlas = datasets.fetch_atlas_smith_2009()
-masker = input_data.NiftiMapsMasker(atlas["rsn70"])
+atlas = datasets.fetch_atlas_harvard_oxford("cort-maxprob-thr25-2mm")
+masker = input_data.NiftiLabelsMasker(atlas["maps"])
 
 meta = ibma.VarianceBasedLikelihood(method="reml", mask=masker)
 vbl_results = meta.fit(img_dset)
