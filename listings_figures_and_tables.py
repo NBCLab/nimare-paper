@@ -79,7 +79,7 @@ fig, axes = plt.subplots(nrows=3, figsize=(FIG_WIDTH, ROW_HEIGHT * 3))
 plotting.plot_stat_map(
     mkda_ma_maps[2],
     cut_coords=[54, -46, 12],
-    title="MKDA",
+    title="MKDA Kernel",
     vmax=max_value,
     axes=axes[0],
     draw_cross=False,
@@ -87,7 +87,7 @@ plotting.plot_stat_map(
 plotting.plot_stat_map(
     kda_ma_maps[2],
     cut_coords=[54, -46, 12],
-    title="KDA",
+    title="KDA Kernel",
     vmax=max_value,
     axes=axes[1],
     draw_cross=False,
@@ -95,7 +95,7 @@ plotting.plot_stat_map(
 plotting.plot_stat_map(
     ale_ma_maps[2],
     cut_coords=[54, -46, 12],
-    title="ALE",
+    title="ALE Kernel",
     axes=axes[2],
     draw_cross=False,
 )
@@ -142,7 +142,7 @@ mkdac_results = meta.fit(sl_dset1, sl_dset2)
 
 
 # Additional meta-analyses for figures
-meta = mkda.KDA(null_method="empirical", n_iters=10000)
+meta = mkda.KDA(null_method="analytic")
 kda_results = meta.fit(sl_dset1)
 
 meta = ale.ALE(null_method="analytic")
@@ -296,13 +296,13 @@ dsl_results.get_map("est").to_filename("data/pain_map.nii.gz")
 # In[ ]:
 
 
-from nimare.correct import FWECorrector
+from nimare.correct import FDRCorrector, FWECorrector
 
 mc_corrector = FWECorrector(method="montecarlo", n_iters=10000, n_cores=4)
 mc_results = mc_corrector.transform(mkdad_meta.results)
 
-b_corrector = FWECorrector(method="bonferroni")
-b_results = b_corrector.transform(mkdad_meta.results)
+fdr_corrector = FDRCorrector(method="indep")
+fdr_results = fdr_corrector.transform(mkdad_meta.results)
 
 
 # ### Figure 6
@@ -320,8 +320,8 @@ plotting.plot_stat_map(
     draw_cross=False,
 )
 plotting.plot_stat_map(
-    b_results.get_map("z_corr-FWE_method-bonferroni"),
-    title="Bonferroni (no significant results)",
+    fdr_results.get_map("z_corr-FDR_method-indep"),
+    title="Independent FDR",
     annotate=False,
     cut_coords=[0, 0, 0],
     axes=axes[1],
@@ -400,6 +400,7 @@ results_sphere = meta_sphere.fit(dset_sphere)
 fig, axes = plt.subplots(figsize=(FIG_WIDTH, ROW_HEIGHT * 2), nrows=2)
 plotting.plot_stat_map(
     results_amyg.get_map("z"),
+    title="Amygdala ALE MACM",
     cut_coords=[24, -2, -20],
     draw_cross=False,
     annotate=False,
@@ -407,6 +408,7 @@ plotting.plot_stat_map(
 )
 plotting.plot_stat_map(
     results_sphere.get_map("z"),
+    title="Sphere ALE MACM",
     cut_coords=[24, -2, -20],
     draw_cross=False,
     annotate=False,
@@ -427,6 +429,7 @@ results_sphere = meta_sphere.fit(dset_sphere)
 fig, axes = plt.subplots(figsize=(FIG_WIDTH, ROW_HEIGHT * 2), nrows=2)
 plotting.plot_stat_map(
     results_amyg.get_map("z"),
+    title="Amygdala MKDA MACM",
     cut_coords=[24, -2, -20],
     draw_cross=False,
     annotate=False,
@@ -434,6 +437,7 @@ plotting.plot_stat_map(
 )
 plotting.plot_stat_map(
     results_sphere.get_map("z"),
+    title="Sphere MKDA MACM",
     cut_coords=[24, -2, -20],
     draw_cross=False,
     annotate=False,
@@ -454,6 +458,7 @@ results_sphere = meta_sphere.fit(dset_sphere)
 fig, axes = plt.subplots(figsize=(FIG_WIDTH, ROW_HEIGHT * 2), nrows=2)
 plotting.plot_stat_map(
     results_amyg.get_map("z"),
+    title="Amygdala KDA MACM",
     cut_coords=[24, -2, -20],
     draw_cross=False,
     annotate=False,
@@ -461,6 +466,7 @@ plotting.plot_stat_map(
 )
 plotting.plot_stat_map(
     results_sphere.get_map("z"),
+    title="Sphere KDA MACM",
     cut_coords=[24, -2, -20],
     draw_cross=False,
     annotate=False,
