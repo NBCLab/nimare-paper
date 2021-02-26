@@ -157,9 +157,7 @@ results = [
     scale_results,
 ]
 names = ["MKDADensity", "MKDAChi2", "KDA", "ALE", "SCALE"]
-fig, axes = plt.subplots(
-    figsize=(FIG_WIDTH, ROW_HEIGHT * len(names)), nrows=len(names)
-)
+fig, axes = plt.subplots(figsize=(FIG_WIDTH, ROW_HEIGHT * len(names)), nrows=len(names))
 for i, r in enumerate(results):
     name = names[i]
     if "z" in r.maps.keys():
@@ -213,6 +211,8 @@ dsl_results = meta.fit(img_dset)
 # In[ ]:
 
 
+from nilearn import image
+
 # Additional meta-analyses for figures
 meta = ibma.Stouffers(use_sample_size=False)
 stouffers_results = meta.fit(img_dset)
@@ -234,7 +234,15 @@ hedges_results = meta.fit(img_dset)
 
 # Use atlas for likelihood-based estimators
 atlas = datasets.fetch_atlas_harvard_oxford("cort-maxprob-thr25-2mm")
-masker = input_data.NiftiLabelsMasker(atlas["maps"])
+
+# nilearn's NiftiLabelsMasker cannot handle NaNs at the moment,
+# and some of the NIDM-Results packs' beta images have NaNs at the edge of the brain.
+# So, we will create a reduced version of the atlas for this analysis.
+nan_mask = image.math_img(
+    "~np.any(np.isnan(img), axis=3)", img=img_dset.images["beta"].tolist()
+)
+nanmasked_atlas = image.math_img("mask * atlas", mask=nan_mask, atlas=atlas["maps"])
+masker = input_data.NiftiLabelsMasker(nanmasked_atlas)
 
 meta = ibma.VarianceBasedLikelihood(method="reml", mask=masker)
 vbl_results = meta.fit(img_dset)
@@ -572,8 +580,6 @@ model.p_word_g_topic_.to_csv(
 
 # In[ ]:
 
-
-from nilearn import image
 
 topic_img_4d = model.masker.unmask(model.p_voxel_g_topic_)
 for i in range(5):
