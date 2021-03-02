@@ -535,7 +535,7 @@ model.fit()
 # In[ ]:
 
 
-model.p_word_g_topic_.to_csv(
+model.p_word_g_topic_df_.to_csv(
     "tables/table_01.tsv",
     sep="\t",
 )
@@ -570,7 +570,13 @@ model.fit(n_iters=10000)
 # In[ ]:
 
 
-model.p_word_g_topic_.to_csv(
+import pandas as pd
+
+p_word_g_topic_df = pd.DataFrame(
+    data=model.p_word_g_topic_,
+    columns=model.vocabulary
+)
+p_word_g_topic_df.to_csv(
     "tables/table_02.tsv",
     sep="\t",
 )
