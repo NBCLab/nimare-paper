@@ -581,10 +581,14 @@ model.p_word_g_topic_.to_csv(
 # In[ ]:
 
 
+fig, axes = plt.subplots(nrows=5, figsize=(FIG_WIDTH, ROW_HEIGHT * 5))
+
 topic_img_4d = model.masker.unmask(model.p_voxel_g_topic_)
-for i in range(5):
-    topic_img = image.index_img(topic_img_4d, index=i)
-    plotting.plot_stat_map(topic_img)
+for i_topic in range(5):
+    topic_img = image.index_img(topic_img_4d, index=i_topic)
+    plotting.plot_stat_map(topic_img, axes=axes[i_topic])
+
+fig.savefig("figures/figure_10.svg")
 
 
 # ## Listing 16
@@ -608,8 +612,10 @@ decoding_results = decoder.transform("data/pain_map.nii.gz")
 
 # In[ ]:
 
+
 fig, ax = plt.subplots(figsize=(FIG_WIDTH, ROW_HEIGHT))
-plotting.plot_stat_map("data/pain_map.nii.gz")
+plotting.plot_stat_map("data/pain_map.nii.gz", axes=ax)
+fig.savefig("figures/figure_11.svg")
 
 
 # ### Table 3
