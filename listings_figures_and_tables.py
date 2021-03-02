@@ -535,7 +535,8 @@ model.fit()
 # In[ ]:
 
 
-model.p_word_g_topic_df_.to_csv(
+p_word_g_topic_df = model.p_word_g_topic_df_.iloc[:10]
+p_word_g_topic_df.to_csv(
     "tables/table_01.tsv",
     sep="\t",
 )
@@ -546,9 +547,9 @@ model.p_word_g_topic_df_.to_csv(
 # In[ ]:
 
 
-dset_first1000 = dset_with_abstracts.slice(dset_with_abstracts.ids[:1000])
+dset_first500 = dset_with_abstracts.slice(dset_with_abstracts.ids[:500])
 counts_df = nimare.annotate.text.generate_counts(
-    dset_first1000.texts,
+    dset_first500.texts,
     text_column="abstract",
     tfidf=False,
     min_df=1,
@@ -556,7 +557,7 @@ counts_df = nimare.annotate.text.generate_counts(
 )
 model = nimare.annotate.gclda.GCLDAModel(
     counts_df,
-    dset_first1000.coordinates,
+    dset_first500.coordinates,
     n_regions=2,
     n_topics=100,
     symmetric=2,
@@ -576,6 +577,7 @@ p_word_g_topic_df = pd.DataFrame(
     data=model.p_word_g_topic_,
     columns=model.vocabulary
 )
+p_word_g_topic_df = p_word_g_topic_df.iloc[:10]
 p_word_g_topic_df.to_csv(
     "tables/table_02.tsv",
     sep="\t",
