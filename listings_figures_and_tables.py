@@ -574,8 +574,8 @@ model.fit(n_iters=500)
 import pandas as pd
 
 p_word_g_topic_df = pd.DataFrame(
-    data=model.p_word_g_topic_,
-    columns=model.vocabulary
+    data=model.p_word_g_topic_.T,
+    columns=model.vocabulary,
 )
 p_word_g_topic_df = p_word_g_topic_df.iloc[:10]
 p_word_g_topic_df.to_csv(
@@ -591,7 +591,7 @@ p_word_g_topic_df.to_csv(
 
 fig, axes = plt.subplots(nrows=5, figsize=(FIG_WIDTH, ROW_HEIGHT * 5))
 
-topic_img_4d = model.masker.unmask(model.p_voxel_g_topic_)
+topic_img_4d = model.masker.unmask(model.p_voxel_g_topic_.T)
 for i_topic in range(5):
     topic_img = image.index_img(topic_img_4d, index=i_topic)
     plotting.plot_stat_map(topic_img, axes=axes[i_topic])
