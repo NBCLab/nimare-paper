@@ -563,7 +563,7 @@ model = nimare.annotate.gclda.GCLDAModel(
     symmetric=2,
     mask=ns_dset.masker.mask_img,
 )
-model.fit(n_iters=10000)
+model.fit(n_iters=500)
 
 
 # ### Table 2
