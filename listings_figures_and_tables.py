@@ -521,13 +521,14 @@ else:
 # In[ ]:
 
 
-model = nimare.annotate.lda.LDAModel(
-    dset_with_abstracts.texts,
-    text_column="abstract",
-    n_topics=100,
-    n_iters=10000,
-)
-model.fit()
+if not os.path.isfile("tables/table_01.tsv"):
+    model = nimare.annotate.lda.LDAModel(
+        dset_with_abstracts.texts,
+        text_column="abstract",
+        n_topics=100,
+        n_iters=10000,
+    )
+    model.fit()
 
 
 # ### Table 1
@@ -535,11 +536,12 @@ model.fit()
 # In[ ]:
 
 
-p_word_g_topic_df = model.p_word_g_topic_df_.iloc[:10]
-p_word_g_topic_df.to_csv(
-    "tables/table_01.tsv",
-    sep="\t",
-)
+if not os.path.isfile("tables/table_01.tsv"):
+    p_word_g_topic_df = model.p_word_g_topic_df_.iloc[:10]
+    p_word_g_topic_df.to_csv(
+        "tables/table_01.tsv",
+        sep="\t",
+    )
 
 
 # ## Listing 15
@@ -547,23 +549,24 @@ p_word_g_topic_df.to_csv(
 # In[ ]:
 
 
-dset_first500 = dset_with_abstracts.slice(dset_with_abstracts.ids[:500])
-counts_df = nimare.annotate.text.generate_counts(
-    dset_first500.texts,
-    text_column="abstract",
-    tfidf=False,
-    min_df=1,
-    max_df=1.0,
-)
-model = nimare.annotate.gclda.GCLDAModel(
-    counts_df,
-    dset_first500.coordinates,
-    n_regions=2,
-    n_topics=100,
-    symmetric=2,
-    mask=ns_dset.masker.mask_img,
-)
-model.fit(n_iters=500)
+if not os.path.isfile("tables/table_02.tsv"):
+    dset_first500 = dset_with_abstracts.slice(dset_with_abstracts.ids[:500])
+    counts_df = nimare.annotate.text.generate_counts(
+        dset_first500.texts,
+        text_column="abstract",
+        tfidf=False,
+        min_df=1,
+        max_df=1.0,
+    )
+    model = nimare.annotate.gclda.GCLDAModel(
+        counts_df,
+        dset_first500.coordinates,
+        n_regions=2,
+        n_topics=100,
+        symmetric=2,
+        mask=ns_dset.masker.mask_img,
+    )
+    model.fit(n_iters=500)
 
 
 # ### Table 2
@@ -573,15 +576,16 @@ model.fit(n_iters=500)
 
 import pandas as pd
 
-p_word_g_topic_df = pd.DataFrame(
-    data=model.p_word_g_topic_.T,
-    columns=model.vocabulary,
-)
-p_word_g_topic_df = p_word_g_topic_df.iloc[:10]
-p_word_g_topic_df.to_csv(
-    "tables/table_02.tsv",
-    sep="\t",
-)
+if not os.path.isfile("tables/table_02.tsv"):
+    p_word_g_topic_df = pd.DataFrame(
+        data=model.p_word_g_topic_.T,
+        columns=model.vocabulary,
+    )
+    p_word_g_topic_df = p_word_g_topic_df.iloc[:10]
+    p_word_g_topic_df.to_csv(
+        "tables/table_02.tsv",
+        sep="\t",
+    )
 
 
 # ### Figure 10
@@ -589,14 +593,15 @@ p_word_g_topic_df.to_csv(
 # In[ ]:
 
 
-fig, axes = plt.subplots(nrows=5, figsize=(FIG_WIDTH, ROW_HEIGHT * 5))
+if not os.path.isfile("tables/table_02.tsv"):
+    fig, axes = plt.subplots(nrows=5, figsize=(FIG_WIDTH, ROW_HEIGHT * 5))
 
-topic_img_4d = dset_first500.masker.inverse_transform(model.p_voxel_g_topic_.T)
-for i_topic in range(5):
-    topic_img = image.index_img(topic_img_4d, index=i_topic)
-    plotting.plot_stat_map(topic_img, axes=axes[i_topic])
+    topic_img_4d = dset_first500.masker.inverse_transform(model.p_voxel_g_topic_.T)
+    for i_topic in range(5):
+        topic_img = image.index_img(topic_img_4d, index=i_topic)
+        plotting.plot_stat_map(topic_img, axes=axes[i_topic])
 
-fig.savefig("figures/figure_10.svg")
+    fig.savefig("figures/figure_10.svg")
 
 
 # ## Listing 16
@@ -610,7 +615,7 @@ decoder = CorrelationDecoder(
     feature_group="Neurosynth_tfidf",
     frequency_threshold=0.001,
     meta_estimator=mkda.MKDAChi2,
-    target_img="z_desc-specificity",
+    target_image="z_desc-specificity",
 )
 decoder.fit(ns_dset)
 decoding_results = decoder.transform("data/pain_map.nii.gz")
@@ -647,7 +652,7 @@ from nimare.decode.continuous import CorrelationDistributionDecoder
 decoder = CorrelationDistributionDecoder(
     feature_group="Neurosynth_tfidf",
     frequency_threshold=0.001,
-    target_img="z",
+    target_image="z",
 )
 decoder.fit(ns_dset)
 decoding_results = decoder.transform("data/pain_map.nii.gz")
