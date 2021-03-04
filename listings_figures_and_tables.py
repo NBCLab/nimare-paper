@@ -591,7 +591,7 @@ p_word_g_topic_df.to_csv(
 
 fig, axes = plt.subplots(nrows=5, figsize=(FIG_WIDTH, ROW_HEIGHT * 5))
 
-topic_img_4d = dset_first500.masker.unmask(model.p_voxel_g_topic_.T)
+topic_img_4d = dset_first500.masker.inverse_transform(model.p_voxel_g_topic_.T)
 for i_topic in range(5):
     topic_img = image.index_img(topic_img_4d, index=i_topic)
     plotting.plot_stat_map(topic_img, axes=axes[i_topic])
