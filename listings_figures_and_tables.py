@@ -555,15 +555,15 @@ if not os.path.isfile("tables/table_02.tsv"):
         dset_first500.texts,
         text_column="abstract",
         tfidf=False,
-        min_df=1,
-        max_df=1.0,
+        min_df=10,
+        max_df=0.95,
     )
     model = nimare.annotate.gclda.GCLDAModel(
         counts_df,
         dset_first500.coordinates,
         n_regions=2,
         n_topics=100,
-        symmetric=2,
+        symmetric=True,
         mask=ns_dset.masker.mask_img,
     )
     model.fit(n_iters=500)
@@ -611,14 +611,14 @@ if not os.path.isfile("tables/table_02.tsv"):
 
 from nimare.decode.continuous import CorrelationDecoder
 
-decoder = CorrelationDecoder(
-    feature_group="Neurosynth_tfidf",
-    frequency_threshold=0.001,
-    meta_estimator=mkda.MKDAChi2,
-    target_image="z_desc-specificity",
-)
-decoder.fit(ns_dset)
-decoding_results = decoder.transform("data/pain_map.nii.gz")
+#ns_dset.update_path("data/ns_dset_maps/")
+#decoder = CorrelationDecoder(
+#    frequency_threshold=0.001,
+#    meta_estimator=mkda.MKDAChi2(),
+#    target_image="z_desc-specificity",
+#)
+#decoder.fit(ns_dset)
+#decoding_results = decoder.transform("data/pain_map.nii.gz")
 
 
 # ### Figure 11
@@ -636,10 +636,10 @@ fig.savefig("figures/figure_11.svg")
 # In[ ]:
 
 
-decoding_results.to_csv(
-    "tables/table_03.tsv",
-    sep="\t",
-)
+#decoding_results.to_csv(
+#    "tables/table_03.tsv",
+#    sep="\t",
+#)
 
 
 # ## Listing 17
@@ -650,7 +650,6 @@ decoding_results.to_csv(
 from nimare.decode.continuous import CorrelationDistributionDecoder
 
 decoder = CorrelationDistributionDecoder(
-    feature_group="Neurosynth_tfidf",
     frequency_threshold=0.001,
     target_image="z",
 )
@@ -677,7 +676,6 @@ decoding_results.to_csv(
 from nimare.decode.discrete import BrainMapDecoder
 
 decoder = BrainMapDecoder(
-    feature_group="Neurosynth_tfidf",
     frequency_threshold=0.001,
     u=0.05,
     correction="fdr_bh",
@@ -705,7 +703,6 @@ decoding_results.sort_values(by="probReverse", ascending=False).to_csv(
 from nimare.decode.discrete import NeurosynthDecoder
 
 decoder = NeurosynthDecoder(
-    feature_group="Neurosynth_tfidf",
     frequency_threshold=0.001,
     u=0.05,
     correction="fdr_bh",

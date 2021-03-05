@@ -1,6 +1,7 @@
 # OSX files
 **/.DS_Store
 data/neurosynth_dataset_with_abstracts.pkl.gz
+data/ns_dset_maps/
 
 # Conda environment
 conda_env/
