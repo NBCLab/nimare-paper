@@ -58,7 +58,7 @@ else:
 # In[ ]:
 
 
-from nimare.meta import kernel
+'''from nimare.meta import kernel
 
 mkda_kernel = kernel.MKDAKernel(r=10)
 mkda_ma_maps = mkda_kernel.transform(sl_dset1, return_type="image")
@@ -66,14 +66,14 @@ kda_kernel = kernel.KDAKernel(r=10)
 kda_ma_maps = kda_kernel.transform(sl_dset1, return_type="image")
 ale_kernel = kernel.ALEKernel(sample_size=20)
 ale_ma_maps = ale_kernel.transform(sl_dset1, return_type="image")
-
+'''
 
 # ### Figure 3
 
 # In[ ]:
 
 
-max_value = np.max(kda_ma_maps[0].get_fdata()) + 1
+'''max_value = np.max(kda_ma_maps[0].get_fdata()) + 1
 
 fig, axes = plt.subplots(nrows=3, figsize=(FIG_WIDTH, ROW_HEIGHT * 3))
 plotting.plot_stat_map(
@@ -481,7 +481,7 @@ plotting.plot_stat_map(
     axes=axes[1],
 )
 fig.savefig("figures/figure_08b.svg")
-
+'''
 
 # ## Listing 12
 
@@ -648,10 +648,16 @@ fig.savefig("figures/figure_11.svg")
 
 
 from nimare.decode.continuous import CorrelationDistributionDecoder
+from nimare.meta import kernel
+
+ns_dset.update_path("data/ns_dset_maps/")
+
+kern = kernel.MKDAKernel(r=10, value=1)
+ns_dset = kern.transform(ns_dset, return_type="dataset")
 
 decoder = CorrelationDistributionDecoder(
     frequency_threshold=0.001,
-    target_image="z",
+    target_image=kern.image_type,
 )
 decoder.fit(ns_dset)
 decoding_results = decoder.transform("data/pain_map.nii.gz")
