@@ -1,0 +1,4 @@
+  File "/tmp/slurmd/job2061560/slurm_script", line 380
+    amygdala_mask = image.math_img(f"img == {amyg_val}", img=atlas["maps"])
+                                                      ^
+SyntaxError: invalid syntax
