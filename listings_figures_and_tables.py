@@ -540,6 +540,7 @@ p_word_g_topic_df = model.p_word_g_topic_df_.iloc[:10]
 p_word_g_topic_df.to_csv(
     "tables/table_01.tsv",
     sep="\t",
+    index_label="topic",
 )
 
 
@@ -580,6 +581,7 @@ p_word_g_topic_df = p_word_g_topic_df.iloc[:10]
 p_word_g_topic_df.to_csv(
     "tables/table_02.tsv",
     sep="\t",
+    index_label="topic",
 )
 
 
@@ -633,6 +635,7 @@ fig.savefig("figures/figure_11.svg")
 decoding_results.to_csv(
     "tables/table_03.tsv",
     sep="\t",
+    index_label="feature",
 )
 
 
@@ -642,7 +645,6 @@ decoding_results.to_csv(
 
 
 from nimare.decode.continuous import CorrelationDistributionDecoder
-from nimare.meta import kernel
 
 ns_dset.update_path("data/ns_dset_maps/")
 
@@ -665,6 +667,7 @@ decoding_results = decoder.transform("data/pain_map.nii.gz")
 decoding_results.to_csv(
     "tables/table_04.tsv",
     sep="\t",
+    index_label="feature",
 )
 
 
@@ -692,6 +695,7 @@ decoding_results = decoder.transform(amygdala_ids)
 decoding_results.sort_values(by="probReverse", ascending=False).to_csv(
     "tables/table_05.tsv",
     sep="\t",
+    index_label="feature",
 )
 
 
@@ -719,4 +723,5 @@ decoding_results = decoder.transform(amygdala_ids)
 decoding_results.sort_values(by="probReverse", ascending=False).to_csv(
     "tables/table_06.tsv",
     sep="\t",
+    index_label="feature",
 )
