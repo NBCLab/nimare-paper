@@ -12,6 +12,7 @@ import os
 
 import matplotlib.pyplot as plt
 import numpy as np
+import pandas as pd
 from nilearn import datasets, image, input_data, plotting
 
 FIG_WIDTH = 10
@@ -58,7 +59,7 @@ else:
 # In[ ]:
 
 
-"""from nimare.meta import kernel
+from nimare.meta import kernel
 
 mkda_kernel = kernel.MKDAKernel(r=10)
 mkda_ma_maps = mkda_kernel.transform(sl_dset1, return_type="image")
@@ -173,7 +174,7 @@ for i, r in enumerate(results):
         axes=axes[i],
     )
 fig.savefig("figures/figure_04.svg")
-"""
+
 
 # ## Listing 7
 
@@ -521,14 +522,13 @@ else:
 # In[ ]:
 
 
-if not os.path.isfile("tables/table_01.tsv"):
-    model = nimare.annotate.lda.LDAModel(
-        dset_with_abstracts.texts,
-        text_column="abstract",
-        n_topics=100,
-        n_iters=10000,
-    )
-    model.fit()
+model = nimare.annotate.lda.LDAModel(
+    dset_with_abstracts.texts,
+    text_column="abstract",
+    n_topics=100,
+    n_iters=10000,
+)
+model.fit()
 
 
 # ### Table 1
@@ -536,12 +536,11 @@ if not os.path.isfile("tables/table_01.tsv"):
 # In[ ]:
 
 
-if not os.path.isfile("tables/table_01.tsv"):
-    p_word_g_topic_df = model.p_word_g_topic_df_.iloc[:10]
-    p_word_g_topic_df.to_csv(
-        "tables/table_01.tsv",
-        sep="\t",
-    )
+p_word_g_topic_df = model.p_word_g_topic_df_.iloc[:10]
+p_word_g_topic_df.to_csv(
+    "tables/table_01.tsv",
+    sep="\t",
+)
 
 
 # ## Listing 15
@@ -549,24 +548,23 @@ if not os.path.isfile("tables/table_01.tsv"):
 # In[ ]:
 
 
-if not os.path.isfile("tables/table_02.tsv"):
-    dset_first500 = dset_with_abstracts.slice(dset_with_abstracts.ids[:500])
-    counts_df = nimare.annotate.text.generate_counts(
-        dset_first500.texts,
-        text_column="abstract",
-        tfidf=False,
-        min_df=10,
-        max_df=0.95,
-    )
-    model = nimare.annotate.gclda.GCLDAModel(
-        counts_df,
-        dset_first500.coordinates,
-        n_regions=2,
-        n_topics=100,
-        symmetric=True,
-        mask=ns_dset.masker.mask_img,
-    )
-    model.fit(n_iters=500)
+dset_first500 = dset_with_abstracts.slice(dset_with_abstracts.ids[:500])
+counts_df = nimare.annotate.text.generate_counts(
+    dset_first500.texts,
+    text_column="abstract",
+    tfidf=False,
+    min_df=10,
+    max_df=0.95,
+)
+model = nimare.annotate.gclda.GCLDAModel(
+    counts_df,
+    dset_first500.coordinates,
+    n_regions=2,
+    n_topics=100,
+    symmetric=True,
+    mask=ns_dset.masker.mask_img,
+)
+model.fit(n_iters=500)
 
 
 # ### Table 2
@@ -574,18 +572,15 @@ if not os.path.isfile("tables/table_02.tsv"):
 # In[ ]:
 
 
-import pandas as pd
-
-if not os.path.isfile("tables/table_02.tsv"):
-    p_word_g_topic_df = pd.DataFrame(
-        data=model.p_word_g_topic_.T,
-        columns=model.vocabulary,
-    )
-    p_word_g_topic_df = p_word_g_topic_df.iloc[:10]
-    p_word_g_topic_df.to_csv(
-        "tables/table_02.tsv",
-        sep="\t",
-    )
+p_word_g_topic_df = pd.DataFrame(
+    data=model.p_word_g_topic_.T,
+    columns=model.vocabulary,
+)
+p_word_g_topic_df = p_word_g_topic_df.iloc[:10]
+p_word_g_topic_df.to_csv(
+    "tables/table_02.tsv",
+    sep="\t",
+)
 
 
 # ### Figure 10
@@ -593,15 +588,14 @@ if not os.path.isfile("tables/table_02.tsv"):
 # In[ ]:
 
 
-if not os.path.isfile("tables/table_02.tsv"):
-    fig, axes = plt.subplots(nrows=5, figsize=(FIG_WIDTH, ROW_HEIGHT * 5))
+fig, axes = plt.subplots(nrows=5, figsize=(FIG_WIDTH, ROW_HEIGHT * 5))
 
-    topic_img_4d = dset_first500.masker.inverse_transform(model.p_voxel_g_topic_.T)
-    for i_topic in range(5):
-        topic_img = image.index_img(topic_img_4d, index=i_topic)
-        plotting.plot_stat_map(topic_img, axes=axes[i_topic])
+topic_img_4d = dset_first500.masker.inverse_transform(model.p_voxel_g_topic_.T)
+for i_topic in range(5):
+    topic_img = image.index_img(topic_img_4d, index=i_topic)
+    plotting.plot_stat_map(topic_img, axes=axes[i_topic])
 
-    fig.savefig("figures/figure_10.svg")
+fig.savefig("figures/figure_10.svg")
 
 
 # ## Listing 16
