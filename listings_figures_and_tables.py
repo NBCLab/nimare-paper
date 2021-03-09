@@ -58,7 +58,7 @@ else:
 # In[ ]:
 
 
-from nimare.meta import kernel
+"""from nimare.meta import kernel
 
 mkda_kernel = kernel.MKDAKernel(r=10)
 mkda_ma_maps = mkda_kernel.transform(sl_dset1, return_type="image")
@@ -173,7 +173,7 @@ for i, r in enumerate(results):
         axes=axes[i],
     )
 fig.savefig("figures/figure_04.svg")
-
+"""
 
 # ## Listing 7
 
