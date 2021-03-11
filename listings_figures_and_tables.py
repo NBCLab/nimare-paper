@@ -8,6 +8,7 @@
 # In[ ]:
 
 
+import logging
 import os
 
 import matplotlib.pyplot as plt
@@ -17,7 +18,7 @@ from nilearn import datasets, image, input_data, plotting
 
 FIG_WIDTH = 10
 ROW_HEIGHT = 2  # good row height for width of 10
-
+LGR = logging.getLogger(__name__)
 
 # ## Listing 1
 
@@ -25,14 +26,15 @@ ROW_HEIGHT = 2  # good row height for width of 10
 
 
 import nimare
-
+LGR.info("NiMARE imported.")
+'''
 sl_dset1 = nimare.io.convert_sleuth_to_dataset(
     "data/contrast-CannabisMinusControl_space-talairach_sleuth.txt"
 )
 sl_dset2 = nimare.io.convert_sleuth_to_dataset(
     "data/contrast-ControlMinusCannabis_space-talairach_sleuth.txt"
 )
-
+'''
 
 # ## Listing 2
 
@@ -46,25 +48,35 @@ elif os.path.isfile("data/database.txt"):
         "data/database.txt",
         "data/features.txt",
     )
+    ns_dset.save("data/neurosynth_dataset.pkl.gz")
 else:
     nimare.extract.fetch_neurosynth("data/", unpack=True)
     ns_dset = nimare.io.convert_neurosynth_to_dataset(
         "data/database.txt",
         "data/features.txt",
     )
+    ns_dset.save("data/neurosynth_dataset.pkl.gz")
+
+LGR.info("Dataset loaded.")
 
 from nimare.meta.cbma import mkda
 from nimare.decode.continuous import CorrelationDecoder
 
+LGR.info("Modules imported.")
+
 ns_dset.update_path("data/ns_dset_maps/")
+LGR.info("Path updated.")
 decoder = CorrelationDecoder(
     frequency_threshold=0.001,
     meta_estimator=mkda.MKDAChi2(kernel__low_memory=True),
     target_image="z_desc-specificity",
 )
+LGR.info("Decoder initialized.")
 decoder.fit(ns_dset)
+LGR.info("Decoder fitted.")
 decoding_results = decoder.transform("data/pain_map.nii.gz")
-
+LGR.info("Map transformed.")
+raise Exception()
 
 # ## Listing 3
 
