@@ -1,40 +1,39 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Code for the paper
+# # Code for the paper- Part 1
+
+# This script handles the meta-analyses.
 
 # ### Plotting imports and notebook configuration
 
 # In[ ]:
 
 
-import logging
 import os
 
 import matplotlib.pyplot as plt
 import numpy as np
-import pandas as pd
 from nilearn import datasets, image, input_data, plotting
+
+import nimare
 
 FIG_WIDTH = 10
 ROW_HEIGHT = 2  # good row height for width of 10
-LGR = logging.getLogger(__name__)
+
 
 # ## Listing 1
 
 # In[ ]:
 
 
-import nimare
-LGR.info("NiMARE imported.")
-'''
 sl_dset1 = nimare.io.convert_sleuth_to_dataset(
     "data/contrast-CannabisMinusControl_space-talairach_sleuth.txt"
 )
 sl_dset2 = nimare.io.convert_sleuth_to_dataset(
     "data/contrast-ControlMinusCannabis_space-talairach_sleuth.txt"
 )
-'''
+
 
 # ## Listing 2
 
@@ -57,39 +56,17 @@ else:
     )
     ns_dset.save("data/neurosynth_dataset.pkl.gz")
 
-LGR.info("Dataset loaded.")
-
-from nimare.meta.cbma import mkda
-from nimare.decode.continuous import CorrelationDecoder
-
-LGR.info("Modules imported.")
-
-ns_dset.update_path("data/ns_dset_maps/")
-LGR.info("Path updated.")
-decoder = CorrelationDecoder(
-    frequency_threshold=0.001,
-    meta_estimator=mkda.MKDAChi2(kernel__low_memory=True),
-    target_image="z_desc-specificity",
-)
-LGR.info("Decoder initialized.")
-decoder.fit(ns_dset)
-LGR.info("Decoder fitted.")
-decoding_results = decoder.transform("data/pain_map.nii.gz")
-LGR.info("Map transformed.")
-raise Exception()
 
 # ## Listing 3
 
 # In[ ]:
 
 
-from nimare.meta import kernel
-
-mkda_kernel = kernel.MKDAKernel(r=10)
+mkda_kernel = nimare.meta.kernel.MKDAKernel(r=10)
 mkda_ma_maps = mkda_kernel.transform(sl_dset1, return_type="image")
-kda_kernel = kernel.KDAKernel(r=10)
+kda_kernel = nimare.meta.kernel.KDAKernel(r=10)
 kda_ma_maps = kda_kernel.transform(sl_dset1, return_type="image")
-ale_kernel = kernel.ALEKernel(sample_size=20)
+ale_kernel = nimare.meta.kernel.ALEKernel(sample_size=20)
 ale_ma_maps = ale_kernel.transform(sl_dset1, return_type="image")
 
 
@@ -132,9 +109,7 @@ fig.savefig("figures/figure_03.svg")
 # In[ ]:
 
 
-from nimare.meta.cbma import mkda
-
-mkdad_meta = mkda.MKDADensity(null_method="analytic")
+mkdad_meta = nimare.meta.cbma.mkda.MKDADensity(null_method="analytic")
 mkdad_results = mkdad_meta.fit(sl_dset1)
 
 
@@ -143,10 +118,12 @@ mkdad_results = mkdad_meta.fit(sl_dset1)
 # In[ ]:
 
 
-from nimare.meta.cbma import ale
-
 ijk = ns_dset.coordinates[["i", "j", "k"]].values
-meta = ale.SCALE(n_iters=10000, ijk=ijk, kernel__sample_size=20)
+meta = nimare.meta.cbma.ale.SCALE(
+    n_iters=10000,
+    ijk=ijk,
+    kernel__sample_size=20,
+)
 scale_results = meta.fit(sl_dset1)
 
 
@@ -155,9 +132,7 @@ scale_results = meta.fit(sl_dset1)
 # In[ ]:
 
 
-from nimare.meta.cbma import mkda
-
-meta = mkda.MKDAChi2()
+meta = nimare.meta.cbma.mkda.MKDAChi2()
 mkdac_results = meta.fit(sl_dset1, sl_dset2)
 
 
@@ -167,10 +142,10 @@ mkdac_results = meta.fit(sl_dset1, sl_dset2)
 
 
 # Additional meta-analyses for figures
-meta = mkda.KDA(null_method="analytic")
+meta = nimare.meta.cbma.mkda.KDA(null_method="analytic")
 kda_results = meta.fit(sl_dset1)
 
-meta = ale.ALE(null_method="analytic")
+meta = nimare.meta.cbma.ale.ALE(null_method="analytic")
 ale_results = meta.fit(sl_dset1)
 
 # Meta-analytic maps across estimators
@@ -182,7 +157,10 @@ results = [
     scale_results,
 ]
 names = ["MKDADensity", "MKDAChi2", "KDA", "ALE", "SCALE"]
-fig, axes = plt.subplots(figsize=(FIG_WIDTH, ROW_HEIGHT * len(names)), nrows=len(names))
+fig, axes = plt.subplots(
+    figsize=(FIG_WIDTH, ROW_HEIGHT * len(names)),
+    nrows=len(names),
+)
 for i, r in enumerate(results):
     name = names[i]
     if "z" in r.maps.keys():
@@ -205,7 +183,6 @@ fig.savefig("figures/figure_04.svg")
 # In[ ]:
 
 
-from nimare.meta import ibma
 from nimare.tests.utils import get_test_data_path
 
 dset_dir = nimare.extract.download_nidm_pain()
@@ -227,7 +204,7 @@ img_dset.images = nimare.transforms.transform_images(
     metadata_df=img_dset.metadata,
 )
 
-meta = ibma.DerSimonianLaird()
+meta = nimare.meta.ibma.DerSimonianLaird()
 dsl_results = meta.fit(img_dset)
 
 
@@ -236,43 +213,46 @@ dsl_results = meta.fit(img_dset)
 # In[ ]:
 
 
-from nilearn import image
-
 # Additional meta-analyses for figures
-meta = ibma.Stouffers(use_sample_size=False)
+meta = nimare.meta.ibma.Stouffers(use_sample_size=False)
 stouffers_results = meta.fit(img_dset)
 
-meta = ibma.Stouffers(use_sample_size=True)
+meta = nimare.meta.ibma.Stouffers(use_sample_size=True)
 weighted_stouffers_results = meta.fit(img_dset)
 
-meta = ibma.Fishers()
+meta = nimare.meta.ibma.Fishers()
 fishers_results = meta.fit(img_dset)
 
-meta = ibma.PermutedOLS()
+meta = nimare.meta.ibma.PermutedOLS()
 ols_results = meta.fit(img_dset)
 
-meta = ibma.WeightedLeastSquares()
+meta = nimare.meta.ibma.WeightedLeastSquares()
 wls_results = meta.fit(img_dset)
 
-meta = ibma.Hedges()
+meta = nimare.meta.ibma.Hedges()
 hedges_results = meta.fit(img_dset)
 
 # Use atlas for likelihood-based estimators
 atlas = datasets.fetch_atlas_harvard_oxford("cort-maxprob-thr25-2mm")
 
 # nilearn's NiftiLabelsMasker cannot handle NaNs at the moment,
-# and some of the NIDM-Results packs' beta images have NaNs at the edge of the brain.
+# and some of the NIDM-Results packs' beta images have NaNs at the edge of the
+# brain.
 # So, we will create a reduced version of the atlas for this analysis.
 nan_mask = image.math_img(
     "~np.any(np.isnan(img), axis=3)", img=img_dset.images["beta"].tolist()
 )
-nanmasked_atlas = image.math_img("mask * atlas", mask=nan_mask, atlas=atlas["maps"])
+nanmasked_atlas = image.math_img(
+    "mask * atlas",
+    mask=nan_mask,
+    atlas=atlas["maps"],
+)
 masker = input_data.NiftiLabelsMasker(nanmasked_atlas)
 
-meta = ibma.VarianceBasedLikelihood(method="reml", mask=masker)
+meta = nimare.meta.ibma.VarianceBasedLikelihood(method="reml", mask=masker)
 vbl_results = meta.fit(img_dset)
 
-meta = ibma.SampleSizeBasedLikelihood(method="reml", mask=masker)
+meta = nimare.meta.ibma.SampleSizeBasedLikelihood(method="reml", mask=masker)
 ssbl_results = meta.fit(img_dset)
 
 # Plot statistical maps from IBMAs
@@ -329,12 +309,12 @@ dsl_results.get_map("est").to_filename("data/pain_map.nii.gz")
 # In[ ]:
 
 
-from nimare.correct import FDRCorrector, FWECorrector
-
-mc_corrector = FWECorrector(method="montecarlo", n_iters=10000, n_cores=4)
+mc_corrector = nimare.correct.FWECorrector(
+    method="montecarlo", n_iters=10000, n_cores=4
+)
 mc_results = mc_corrector.transform(mkdad_meta.results)
 
-fdr_corrector = FDRCorrector(method="indep")
+fdr_corrector = nimare.correct.FDRCorrector(method="indep")
 fdr_results = fdr_corrector.transform(mkdad_meta.results)
 
 
@@ -368,8 +348,11 @@ fig.savefig("figures/figure_06.svg")
 # In[ ]:
 
 
-kern = kernel.ALEKernel()
-meta = ale.ALESubtraction(kernel_transformer=kern, n_iters=10000)
+kern = nimare.meta.kernel.ALEKernel()
+meta = nimare.meta.cbma.ale.ALESubtraction(
+    kernel_transformer=kern,
+    n_iters=10000,
+)
 subtraction_results = meta.fit(sl_dset1, sl_dset2)
 
 
@@ -417,12 +400,10 @@ dset_sphere = ns_dset.slice(sphere_ids)
 # In[ ]:
 
 
-from nimare.meta.cbma import ale
-
-meta_amyg = ale.ALE(kernel__sample_size=20)
+meta_amyg = nimare.meta.cbma.ale.ALE(kernel__sample_size=20)
 results_amyg = meta_amyg.fit(dset_amygdala)
 
-meta_sphere = ale.ALE(kernel__sample_size=20)
+meta_sphere = nimare.meta.cbma.ale.ALE(kernel__sample_size=20)
 results_sphere = meta_sphere.fit(dset_sphere)
 
 
@@ -453,10 +434,10 @@ fig.savefig("figures/figure_08.svg")
 # In[ ]:
 
 
-meta_amyg = mkda.MKDADensity(null_method="analytic")
+meta_amyg = nimare.meta.cbma.mkda.MKDADensity(null_method="analytic")
 results_amyg = meta_amyg.fit(dset_amygdala)
 
-meta_sphere = mkda.MKDADensity(null_method="analytic")
+meta_sphere = nimare.meta.cbma.mkda.MKDADensity(null_method="analytic")
 results_sphere = meta_sphere.fit(dset_sphere)
 
 fig, axes = plt.subplots(figsize=(FIG_WIDTH, ROW_HEIGHT * 2), nrows=2)
@@ -482,10 +463,10 @@ fig.savefig("figures/figure_08a.svg")
 # In[ ]:
 
 
-meta_amyg = mkda.KDA()
+meta_amyg = nimare.meta.cbma.mkda.KDA()
 results_amyg = meta_amyg.fit(dset_amygdala)
 
-meta_sphere = mkda.KDA()
+meta_sphere = nimare.meta.cbma.mkda.KDA()
 results_sphere = meta_sphere.fit(dset_sphere)
 
 fig, axes = plt.subplots(figsize=(FIG_WIDTH, ROW_HEIGHT * 2), nrows=2)
@@ -513,239 +494,6 @@ fig.savefig("figures/figure_08b.svg")
 # In[ ]:
 
 
-
-
-
 # ### Figure 9
 
 # In[ ]:
-
-
-
-
-
-# ## Listing 13
-
-# In[ ]:
-
-
-if not os.path.isfile("data/neurosynth_dataset_with_abstracts.pkl.gz"):
-    dset_with_abstracts = nimare.extract.download_abstracts(
-        ns_dset,
-        email="example@email.com",
-    )
-    dset_with_abstracts.save("data/neurosynth_dataset_with_abstracts.pkl.gz")
-else:
-    dset_with_abstracts = nimare.dataset.Dataset.load(
-        "data/neurosynth_dataset_with_abstracts.pkl.gz"
-    )
-
-
-# ## Listing 14
-
-# In[ ]:
-
-
-model = nimare.annotate.lda.LDAModel(
-    dset_with_abstracts.texts,
-    text_column="abstract",
-    n_topics=100,
-    n_iters=10000,
-)
-model.fit()
-
-
-# ### Table 1
-
-# In[ ]:
-
-
-p_word_g_topic_df = model.p_word_g_topic_df_.iloc[:10]
-p_word_g_topic_df.to_csv(
-    "tables/table_01.tsv",
-    sep="\t",
-    index_label="topic",
-)
-
-
-# ## Listing 15
-
-# In[ ]:
-
-
-dset_first500 = dset_with_abstracts.slice(dset_with_abstracts.ids[:500])
-counts_df = nimare.annotate.text.generate_counts(
-    dset_first500.texts,
-    text_column="abstract",
-    tfidf=False,
-    min_df=10,
-    max_df=0.95,
-)
-model = nimare.annotate.gclda.GCLDAModel(
-    counts_df,
-    dset_first500.coordinates,
-    n_regions=2,
-    n_topics=100,
-    symmetric=True,
-    mask=ns_dset.masker.mask_img,
-)
-model.fit(n_iters=500)
-
-
-# ### Table 2
-
-# In[ ]:
-
-
-p_word_g_topic_df = pd.DataFrame(
-    data=model.p_word_g_topic_.T,
-    columns=model.vocabulary,
-)
-p_word_g_topic_df = p_word_g_topic_df.iloc[:10]
-p_word_g_topic_df.to_csv(
-    "tables/table_02.tsv",
-    sep="\t",
-    index_label="topic",
-)
-
-
-# ### Figure 10
-
-# In[ ]:
-
-
-fig, axes = plt.subplots(nrows=5, figsize=(FIG_WIDTH, ROW_HEIGHT * 5))
-
-topic_img_4d = dset_first500.masker.inverse_transform(model.p_voxel_g_topic_.T)
-for i_topic in range(5):
-    topic_img = image.index_img(topic_img_4d, index=i_topic)
-    plotting.plot_stat_map(topic_img, axes=axes[i_topic])
-
-fig.savefig("figures/figure_10.svg")
-
-
-# ## Listing 16
-
-# In[ ]:
-
-
-from nimare.decode.continuous import CorrelationDecoder
-
-ns_dset.update_path("data/ns_dset_maps/")
-decoder = CorrelationDecoder(
-    frequency_threshold=0.001,
-    meta_estimator=mkda.MKDAChi2(kernel__low_memory=True),
-    target_image="z_desc-specificity",
-)
-decoder.fit(ns_dset)
-decoding_results = decoder.transform("data/pain_map.nii.gz")
-
-
-# ### Figure 11
-
-# In[ ]:
-
-
-fig, ax = plt.subplots(figsize=(FIG_WIDTH, ROW_HEIGHT))
-plotting.plot_stat_map("data/pain_map.nii.gz", axes=ax)
-fig.savefig("figures/figure_11.svg")
-
-
-# ### Table 3
-
-# In[ ]:
-
-
-decoding_results.to_csv(
-    "tables/table_03.tsv",
-    sep="\t",
-    index_label="feature",
-)
-
-
-# ## Listing 17
-
-# In[ ]:
-
-
-from nimare.decode.continuous import CorrelationDistributionDecoder
-
-ns_dset.update_path("data/ns_dset_maps/")
-
-kern = kernel.MKDAKernel(r=10, value=1, low_memory=True)
-ns_dset = kern.transform(ns_dset, return_type="dataset")
-
-decoder = CorrelationDistributionDecoder(
-    frequency_threshold=0.001,
-    target_image=kern.image_type,
-)
-decoder.fit(ns_dset)
-decoding_results = decoder.transform("data/pain_map.nii.gz")
-
-
-# ### Table 4
-
-# In[ ]:
-
-
-decoding_results.to_csv(
-    "tables/table_04.tsv",
-    sep="\t",
-    index_label="feature",
-)
-
-
-# ## Listing 18
-
-# In[ ]:
-
-
-from nimare.decode.discrete import BrainMapDecoder
-
-decoder = BrainMapDecoder(
-    frequency_threshold=0.001,
-    u=0.05,
-    correction="fdr_bh",
-)
-decoder.fit(ns_dset)
-decoding_results = decoder.transform(amygdala_ids)
-
-
-# ### Table 5
-
-# In[ ]:
-
-
-decoding_results.sort_values(by="probReverse", ascending=False).to_csv(
-    "tables/table_05.tsv",
-    sep="\t",
-    index_label="feature",
-)
-
-
-# ## Listing 19
-
-# In[ ]:
-
-
-from nimare.decode.discrete import NeurosynthDecoder
-
-decoder = NeurosynthDecoder(
-    frequency_threshold=0.001,
-    u=0.05,
-    correction="fdr_bh",
-)
-decoder.fit(ns_dset)
-decoding_results = decoder.transform(amygdala_ids)
-
-
-# ### Table 6
-
-# In[ ]:
-
-
-decoding_results.sort_values(by="probReverse", ascending=False).to_csv(
-    "tables/table_06.tsv",
-    sep="\t",
-    index_label="feature",
-)

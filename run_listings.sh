@@ -22,4 +22,6 @@ export OMP_NUM_THREADS=4
 . $MODULESHOME/../global/profile.modules
 source /home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/activate_environment
 
-python listings_figures_and_tables.py
+python listings_figures_and_tables_part1.py
+python listings_figures_and_tables_part2.py
+python listings_figures_and_tables_part3.py
