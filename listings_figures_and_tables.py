@@ -53,6 +53,18 @@ else:
         "data/features.txt",
     )
 
+from nimare.meta.cbma import mkda
+from nimare.decode.continuous import CorrelationDecoder
+
+ns_dset.update_path("data/ns_dset_maps/")
+decoder = CorrelationDecoder(
+    frequency_threshold=0.001,
+    meta_estimator=mkda.MKDAChi2(kernel__low_memory=True),
+    target_image="z_desc-specificity",
+)
+decoder.fit(ns_dset)
+decoding_results = decoder.transform("data/pain_map.nii.gz")
+
 
 # ## Listing 3
 
