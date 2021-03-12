@@ -4,6 +4,7 @@
 # Large datasets
 data/neurosynth_dataset.pkl.gz
 data/neurosynth_dataset_with_abstracts.pkl.gz
+data/neurosynth_dataset_with_mkda_ma.pkl.gz
 
 # MA maps for dataset
 data/ns_dset_maps/

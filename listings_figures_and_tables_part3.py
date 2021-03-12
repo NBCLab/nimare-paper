@@ -10,6 +10,8 @@
 # In[ ]:
 
 
+import os
+
 import matplotlib.pyplot as plt
 from nilearn import plotting
 
@@ -24,7 +26,14 @@ ROW_HEIGHT = 2  # good row height for width of 10
 # In[ ]:
 
 
-ns_dset = nimare.dataset.Dataset.load("data/neurosynth_dataset.pkl.gz")
+if os.path.isfile("data/neurosynth_dataset_with_mkda_ma.pkl.gz"):
+    ns_dset = nimare.dataset.Dataset.load("data/neurosynth_dataset_with_mkda_ma.pkl.gz")
+else:
+    ns_dset = nimare.dataset.Dataset.load("data/neurosynth_dataset.pkl.gz")
+    ns_dset.update_path("data/ns_dset_maps/")
+    kern = nimare.meta.kernel.MKDAKernel(low_memory=True)
+    ns_dset = kern.transform(ns_dset, return_type="dataset")
+    ns_dset.save("data/neurosynth_dataset_with_mkda_ma.pkl.gz")
 
 
 # ## Listing 16
@@ -32,7 +41,6 @@ ns_dset = nimare.dataset.Dataset.load("data/neurosynth_dataset.pkl.gz")
 # In[ ]:
 
 
-ns_dset.update_path("data/ns_dset_maps/")
 decoder = nimare.decode.continuous.CorrelationDecoder(
     frequency_threshold=0.001,
     meta_estimator=nimare.meta.cbma.mkda.MKDAChi2(kernel__low_memory=True),
