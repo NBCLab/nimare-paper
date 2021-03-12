@@ -1,13 +1,20 @@
 # OSX files
 **/.DS_Store
+
+# Large datasets
+data/neurosynth_dataset.pkl.gz
 data/neurosynth_dataset_with_abstracts.pkl.gz
+
+# MA maps for dataset
 data/ns_dset_maps/
+
+# Temporary directories for kernel transformer mat file
 tmp*/
 
 # Conda environment
 conda_env/
 
-# Don't track Neurosynth files
+# Neurosynth files
 data/current_data.tar.gz
 data/database.txt
 data/features.txt
