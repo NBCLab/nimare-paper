@@ -1,6 +1,8 @@
+WARNING: $MANPATH does not agree with $MANPATH_modshare counter. The following directories' usage counters were adjusted to match. Note that this may mean that module unloading may not work correctly.
+ /home/share/slurm/19.05.3/share/man
 ERROR:duecredit:Failed to import duecredit due to No module named 'duecredit'
-INFO:nimare.meta.utils:Temporary file written to /home/tsalo006/.nimare/temporary_files/MKDAKernel_20210312T123947.dat
-INFO:nimare.meta.utils:Temporary file written to /home/tsalo006/.nimare/temporary_files/MKDAKernel_20210312T140032.dat
-INFO:nimare.meta.utils:Temporary file written to /home/tsalo006/.nimare/temporary_files/MKDAKernel_20210312T152942.dat
-INFO:nimare.meta.utils:Temporary file written to /home/tsalo006/.nimare/temporary_files/MKDAKernel_20210312T153020.dat
-slurmstepd: error: *** JOB 2063447 ON n050 CANCELLED AT 2021-03-12T16:25:46 ***
+INFO:__main__:Loading existing Dataset.
+INFO:__main__:Initializing CorrelationDecoder.
+INFO:__main__:Fitting CorrelationDecoder.
+INFO:nimare.meta.kernel:Temporary file written to /home/tsalo006/.nimare/temporary_files/MKDAKernel_0dyxu0f20210314T163952
+slurmstepd: error: *** JOB 2069963 ON n046 CANCELLED AT 2021-03-14T17:09:03 ***

@@ -11,6 +11,7 @@
 
 
 import os
+import logging
 
 import matplotlib.pyplot as plt
 from nilearn import plotting
@@ -19,6 +20,7 @@ import nimare
 
 FIG_WIDTH = 10
 ROW_HEIGHT = 2  # good row height for width of 10
+LGR = logging.getLogger(__name__)
 
 
 # ## Top-level Preparation
@@ -27,10 +29,12 @@ ROW_HEIGHT = 2  # good row height for width of 10
 
 
 if os.path.isfile("data/neurosynth_dataset_with_mkda_ma.pkl.gz"):
+    LGR.info("Loading existing Dataset.")
     ns_dset = nimare.dataset.Dataset.load("data/neurosynth_dataset_with_mkda_ma.pkl.gz")
 else:
+    LGR.info("Generating new Dataset.")
     ns_dset = nimare.dataset.Dataset.load("data/neurosynth_dataset.pkl.gz")
-    ns_dset.update_path("data/ns_dset_maps/")
+    ns_dset.update_path(os.path.abspath("data/ns_dset_maps/"))
     kern = nimare.meta.kernel.MKDAKernel(low_memory=True)
     ns_dset = kern.transform(ns_dset, return_type="dataset")
     ns_dset.save("data/neurosynth_dataset_with_mkda_ma.pkl.gz")
@@ -41,12 +45,15 @@ else:
 # In[ ]:
 
 
+LGR.info("Initializing CorrelationDecoder.")
 decoder = nimare.decode.continuous.CorrelationDecoder(
     frequency_threshold=0.001,
     meta_estimator=nimare.meta.cbma.mkda.MKDAChi2(kernel__low_memory=True),
     target_image="z_desc-specificity",
 )
+LGR.info("Fitting CorrelationDecoder.")
 decoder.fit(ns_dset)
+LGR.info("Applying CorrelationDecoder.")
 decoding_results = decoder.transform("data/pain_map.nii.gz")
 
 
