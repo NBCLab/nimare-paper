@@ -1,8 +1,43 @@
-WARNING: $MANPATH does not agree with $MANPATH_modshare counter. The following directories' usage counters were adjusted to match. Note that this may mean that module unloading may not work correctly.
- /home/share/slurm/19.05.3/share/man
 ERROR:duecredit:Failed to import duecredit due to No module named 'duecredit'
-INFO:__main__:Loading existing Dataset.
+INFO:__main__:Generating new Dataset.
+INFO:nimare.meta.kernel:Temporary file written to /home/tsalo006/.nimare/temporary_files/MKDAKernelwqjuj9cd20210314T171107
+INFO:nimare.utils:Shared path detected: "/"
+INFO:nimare.meta.kernel:Removing temporary file: /home/tsalo006/.nimare/temporary_files/MKDAKernelwqjuj9cd20210314T171107
 INFO:__main__:Initializing CorrelationDecoder.
 INFO:__main__:Fitting CorrelationDecoder.
-INFO:nimare.meta.kernel:Temporary file written to /home/tsalo006/.nimare/temporary_files/MKDAKernel_0dyxu0f20210314T163952
-slurmstepd: error: *** JOB 2069963 ON n046 CANCELLED AT 2021-03-14T17:09:03 ***
+INFO:nimare.meta.kernel:Temporary file written to /home/tsalo006/.nimare/temporary_files/MKDAKernely76edzac20210314T182908
+INFO:nimare.meta.kernel:Removing temporary file: /home/tsalo006/.nimare/temporary_files/MKDAKernely76edzac20210314T182908
+INFO:nimare.utils:Shared path detected: "/"
+/home/data/nbc/misc-projects/Salo_NiMARE/NiMARE/nimare/utils.py:208: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  lambda x: x.split(shared_path)[1] if isinstance(x, str) else x
+INFO:nimare.utils:Shared path detected: "/"
+INFO:nimare.meta.cbma.mkda:Loading pre-generated MA maps for Dataset 1.
+INFO:nimare.meta.cbma.mkda:Loading pre-generated MA maps for Dataset 2.
+Traceback (most recent call last):
+  File "listings_figures_and_tables_part3.py", line 55, in <module>
+    decoder.fit(ns_dset)
+  File "/home/data/nbc/misc-projects/Salo_NiMARE/NiMARE/nimare/base.py", line 417, in fit
+    self._fit(dataset)
+  File "/home/data/nbc/misc-projects/Salo_NiMARE/NiMARE/nimare/decode/continuous.py", line 188, in _fit
+    self.meta_estimator.fit(feature_dset, nonfeature_dset)
+  File "/home/data/nbc/misc-projects/Salo_NiMARE/NiMARE/nimare/meta/cbma/base.py", line 671, in fit
+    maps = self._fit(dataset1, dataset2)
+  File "/home/data/nbc/misc-projects/Salo_NiMARE/NiMARE/nimare/meta/cbma/mkda.py", line 219, in _fit
+    ma_maps2 = self.masker.transform(self.inputs_["ma_maps2"])
+  File "/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/lib/python3.7/site-packages/nilearn/input_data/base_masker.py", line 176, in transform
+    return self.transform_single_imgs(imgs, confounds)
+  File "/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/lib/python3.7/site-packages/nilearn/input_data/nifti_masker.py", line 408, in transform_single_imgs
+    dtype=self.dtype
+  File "/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/lib/python3.7/site-packages/joblib/memory.py", line 352, in __call__
+    return self.func(*args, **kwargs)
+  File "/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/lib/python3.7/site-packages/nilearn/input_data/nifti_masker.py", line 40, in filter_and_mask
+    imgs = _utils.check_niimg(imgs, atleast_4d=True, ensure_ndim=4)
+  File "/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/lib/python3.7/site-packages/nilearn/_utils/niimg_conversions.py", line 260, in check_niimg
+    return concat_niimgs(niimg, ensure_ndim=ensure_ndim, dtype=dtype)
+  File "/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/lib/python3.7/site-packages/nilearn/_utils/niimg_conversions.py", line 455, in concat_niimgs
+    order="F", dtype=dtype)
+numpy.core._exceptions.MemoryError: Unable to allocate 95.7 GiB for an array with shape (91, 109, 91, 14224) and data type int64
