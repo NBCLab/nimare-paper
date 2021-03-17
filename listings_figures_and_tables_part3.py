@@ -48,16 +48,17 @@ ns_dset_first500 = ns_dset.slice(ns_dset.ids[:500])
 # In[ ]:
 
 
-LGR.info("Initializing CorrelationDecoder.")
-decoder = nimare.decode.continuous.CorrelationDecoder(
-    frequency_threshold=0.001,
-    meta_estimator=nimare.meta.cbma.mkda.MKDAChi2(kernel__low_memory=True),
-    target_image="z_desc-specificity",
-)
-LGR.info("Fitting CorrelationDecoder.")
-decoder.fit(ns_dset_first500)
-LGR.info("Applying CorrelationDecoder.")
-decoding_results = decoder.transform("data/pain_map.nii.gz")
+if not os.path.isfile("tables/table_03.tsv"):
+    LGR.info("Initializing CorrelationDecoder.")
+    decoder = nimare.decode.continuous.CorrelationDecoder(
+        frequency_threshold=0.001,
+        meta_estimator=nimare.meta.cbma.mkda.MKDAChi2(kernel__low_memory=True),
+        target_image="z_desc-specificity",
+    )
+    LGR.info("Fitting CorrelationDecoder.")
+    decoder.fit(ns_dset_first500)
+    LGR.info("Applying CorrelationDecoder.")
+    decoding_results = decoder.transform("data/pain_map.nii.gz")
 
 
 # ### Figure 11
@@ -82,11 +83,12 @@ fig.savefig("figures/figure_11.svg")
 # In[ ]:
 
 
-decoding_results.to_csv(
-    "tables/table_03.tsv",
-    sep="\t",
-    index_label="feature",
-)
+if not os.path.isfile("tables/table_03.tsv"):
+    decoding_results.to_csv(
+        "tables/table_03.tsv",
+        sep="\t",
+        index_label="feature",
+    )
 
 
 # ### Cleanup
@@ -94,8 +96,9 @@ decoding_results.to_csv(
 # In[ ]:
 
 
-decoder.save("data/correlation_decoder.pkl.gz")
-del decoder
+if not os.path.isfile("data/correlation_decoder.pkl.gz"):
+    decoder.save("data/correlation_decoder.pkl.gz")
+    del decoder
 
 
 # ## Listing 17
@@ -116,12 +119,13 @@ ns_dset = kern.transform(ns_dset, return_type="dataset")
 # In[ ]:
 
 
-decoder = nimare.decode.continuous.CorrelationDistributionDecoder(
-    frequency_threshold=0.001,
-    target_image=kern.image_type,
-)
-decoder.fit(ns_dset)
-decoding_results = decoder.transform("data/pain_map.nii.gz")
+if not os.path.isfile("tables/table_04.tsv"):
+    decoder = nimare.decode.continuous.CorrelationDistributionDecoder(
+        frequency_threshold=0.001,
+        target_image=kern.image_type,
+    )
+    decoder.fit(ns_dset)
+    decoding_results = decoder.transform("data/pain_map.nii.gz")
 
 
 # ### Table 4
@@ -129,11 +133,12 @@ decoding_results = decoder.transform("data/pain_map.nii.gz")
 # In[ ]:
 
 
-decoding_results.to_csv(
-    "tables/table_04.tsv",
-    sep="\t",
-    index_label="feature",
-)
+if not os.path.isfile("tables/table_04.tsv"):
+    decoding_results.to_csv(
+        "tables/table_04.tsv",
+        sep="\t",
+        index_label="feature",
+    )
 
 
 # ### Cleanup
@@ -141,8 +146,9 @@ decoding_results.to_csv(
 # In[ ]:
 
 
-decoder.save("data/correlation_distribution_decoder.pkl.gz")
-del decoder
+if not os.path.isfile("data/correlation_distribution_decoder.pkl.gz"):
+    decoder.save("data/correlation_distribution_decoder.pkl.gz")
+    del decoder
 
 
 # ## Listing 18
@@ -160,13 +166,14 @@ amygdala_ids = ns_dset.get_studies_by_mask("data/amygdala_roi.nii.gz")
 # In[ ]:
 
 
-decoder = nimare.decode.discrete.BrainMapDecoder(
-    frequency_threshold=0.001,
-    u=0.05,
-    correction="fdr_bh",
-)
-decoder.fit(ns_dset)
-decoding_results = decoder.transform(amygdala_ids)
+if not os.path.isfile("tables/table_05.tsv"):
+    decoder = nimare.decode.discrete.BrainMapDecoder(
+        frequency_threshold=0.001,
+        u=0.05,
+        correction="fdr_bh",
+    )
+    decoder.fit(ns_dset)
+    decoding_results = decoder.transform(amygdala_ids)
 
 
 # ### Table 5
@@ -174,11 +181,12 @@ decoding_results = decoder.transform(amygdala_ids)
 # In[ ]:
 
 
-decoding_results.sort_values(by="probReverse", ascending=False).to_csv(
-    "tables/table_05.tsv",
-    sep="\t",
-    index_label="feature",
-)
+if not os.path.isfile("tables/table_05.tsv"):
+    decoding_results.sort_values(by="probReverse", ascending=False).to_csv(
+        "tables/table_05.tsv",
+        sep="\t",
+        index_label="feature",
+    )
 
 
 # ### Cleanup
@@ -186,8 +194,9 @@ decoding_results.sort_values(by="probReverse", ascending=False).to_csv(
 # In[ ]:
 
 
-decoder.save("brainmap_decoder.pkl.gz")
-del decoder
+if not os.path.isfile("data/brainmap_decoder.pkl.gz"):
+    decoder.save("data/brainmap_decoder.pkl.gz")
+    del decoder
 
 
 # ## Listing 19
@@ -195,13 +204,14 @@ del decoder
 # In[ ]:
 
 
-decoder = nimare.decode.discrete.NeurosynthDecoder(
-    frequency_threshold=0.001,
-    u=0.05,
-    correction="fdr_bh",
-)
-decoder.fit(ns_dset)
-decoding_results = decoder.transform(amygdala_ids)
+if not os.path.isfile("tables/tables_06.tsv"):
+    decoder = nimare.decode.discrete.NeurosynthDecoder(
+        frequency_threshold=0.001,
+        u=0.05,
+        correction="fdr_bh",
+    )
+    decoder.fit(ns_dset)
+    decoding_results = decoder.transform(amygdala_ids)
 
 
 # ### Table 6
@@ -209,11 +219,12 @@ decoding_results = decoder.transform(amygdala_ids)
 # In[ ]:
 
 
-decoding_results.sort_values(by="probReverse", ascending=False).to_csv(
-    "tables/table_06.tsv",
-    sep="\t",
-    index_label="feature",
-)
+if not os.path.isfile("tables/tables_06.tsv"):
+    decoding_results.sort_values(by="probReverse", ascending=False).to_csv(
+        "tables/table_06.tsv",
+        sep="\t",
+        index_label="feature",
+    )
 
 
 # ### Cleanup
@@ -221,5 +232,6 @@ decoding_results.sort_values(by="probReverse", ascending=False).to_csv(
 # In[ ]:
 
 
-decoder.save("neurosynth_decoder.pkl.gz")
-del decoder
+if not os.path.isfile("data/neurosynth_decoder.pkl.gz"):
+    decoder.save("data/neurosynth_decoder.pkl.gz")
+    del decoder
