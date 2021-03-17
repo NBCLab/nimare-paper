@@ -131,6 +131,14 @@ topic_img_4d = ns_dset_first_500.masker.inverse_transform(
 )
 for i_topic in range(5):
     topic_img = image.index_img(topic_img_4d, index=i_topic)
-    plotting.plot_stat_map(topic_img, axes=axes[i_topic])
+    plotting.plot_stat_map(
+        topic_img,
+        annotate=False,
+        axes=axes[i_topic],
+        cmap="Reds",
+        draw_cross=False,
+        figure=fig,
+    )
+    axes[i_topic].set_title(f"Topic {i_topic + 1}")
 
 fig.savefig("figures/figure_10.svg")

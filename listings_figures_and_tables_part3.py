@@ -30,7 +30,9 @@ LGR = logging.getLogger(__name__)
 
 if os.path.isfile("data/neurosynth_dataset_with_mkda_ma.pkl.gz"):
     LGR.info("Loading existing Dataset.")
-    ns_dset = nimare.dataset.Dataset.load("data/neurosynth_dataset_with_mkda_ma.pkl.gz")
+    ns_dset = nimare.dataset.Dataset.load(
+        "data/neurosynth_dataset_with_mkda_ma.pkl.gz"
+    )
 else:
     LGR.info("Generating new Dataset.")
     ns_dset = nimare.dataset.Dataset.load("data/neurosynth_dataset.pkl.gz")
@@ -64,7 +66,14 @@ decoding_results = decoder.transform("data/pain_map.nii.gz")
 
 
 fig, ax = plt.subplots(figsize=(FIG_WIDTH, ROW_HEIGHT))
-plotting.plot_stat_map("data/pain_map.nii.gz", axes=ax)
+plotting.plot_stat_map(
+    "data/pain_map.nii.gz",
+    annotate=False,
+    axes=ax,
+    cmap="RdBu_r",
+    draw_cross=False,
+    figure=fig,
+)
 fig.savefig("figures/figure_11.svg")
 
 

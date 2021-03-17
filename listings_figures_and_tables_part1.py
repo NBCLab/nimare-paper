@@ -80,27 +80,38 @@ max_value = np.max(kda_ma_maps[0].get_fdata()) + 1
 fig, axes = plt.subplots(nrows=3, figsize=(FIG_WIDTH, ROW_HEIGHT * 3))
 plotting.plot_stat_map(
     mkda_ma_maps[2],
-    cut_coords=[54, -46, 12],
-    title="MKDA Kernel",
-    vmax=max_value,
+    annotate=False,
     axes=axes[0],
+    cmap="Reds",
+    cut_coords=[54, -46, 12],
     draw_cross=False,
+    figure=fig,
+    vmax=max_value,
 )
+axes[0].set_title("MKDA Kernel")
 plotting.plot_stat_map(
     kda_ma_maps[2],
-    cut_coords=[54, -46, 12],
-    title="KDA Kernel",
-    vmax=max_value,
+    annotate=False,
     axes=axes[1],
+    cmap="Reds",
+    cut_coords=[54, -46, 12],
     draw_cross=False,
+    figure=fig,
+    vmax=max_value,
 )
+axes[1].set_title("KDA Kernel")
 plotting.plot_stat_map(
     ale_ma_maps[2],
-    cut_coords=[54, -46, 12],
-    title="ALE Kernel",
+    annotate=False,
     axes=axes[2],
+    cmap="Reds",
+    cut_coords=[54, -46, 12],
     draw_cross=False,
+    figure=fig,
+    vmax=max_value,
 )
+axes[2].set_title("ALE Kernel")
+
 fig.savefig("figures/figure_03.svg")
 
 
@@ -165,16 +176,21 @@ for i, r in enumerate(results):
     name = names[i]
     if "z" in r.maps.keys():
         stat_img = r.get_map("z", return_type="image")
+        cmap = "Reds"
     else:
         stat_img = r.get_map("z_desc-consistency", return_type="image")
+        cmap = "RdBu_r"
     plotting.plot_stat_map(
         stat_img,
-        title=name,
-        cut_coords=[0, 0, 0],
-        draw_cross=False,
         annotate=False,
         axes=axes[i],
+        cmap=cmap,
+        cut_coords=[0, 0, 0],
+        draw_cross=False,
+        figure=fig,
     )
+    axes[i].set_title(name)
+
 fig.savefig("figures/figure_04.svg")
 
 
@@ -286,12 +302,14 @@ for i, r in enumerate(results):
     img = r.get_map("z")
     plotting.plot_stat_map(
         img,
-        title=names[i],
         annotate=False,
-        cut_coords=[5, -15, 10],
         axes=axes[i],
+        cmap="RdBu_r",
+        cut_coords=[5, -15, 10],
         draw_cross=False,
+        figure=fig,
     )
+    axes[i].set_title(names[i])
 
 fig.savefig("figures/figure_05.svg")
 
@@ -326,20 +344,25 @@ fdr_results = fdr_corrector.transform(mkdad_meta.results)
 fig, axes = plt.subplots(figsize=(FIG_WIDTH, ROW_HEIGHT * 2), nrows=2)
 plotting.plot_stat_map(
     mc_results.get_map("z_level-cluster_corr-FWE_method-montecarlo"),
-    title="Cluster-level Monte Carlo",
     annotate=False,
-    cut_coords=[0, 0, 0],
     axes=axes[0],
     draw_cross=False,
+    cmap="Reds",
+    cut_coords=[0, 0, 0],
+    figure=fig,
 )
+axes[0].set_title("Cluster-level Monte Carlo")
 plotting.plot_stat_map(
     fdr_results.get_map("z_corr-FDR_method-indep"),
-    title="Independent FDR",
     annotate=False,
-    cut_coords=[0, 0, 0],
     axes=axes[1],
     draw_cross=False,
+    cmap="Reds",
+    cut_coords=[0, 0, 0],
+    figure=fig,
 )
+axes[1].set_title("Independent FDR")
+
 fig.savefig("figures/figure_06.svg")
 
 
@@ -368,12 +391,15 @@ stat_img = subtraction_results.get_map(
 fig, ax = plt.subplots(figsize=(FIG_WIDTH, ROW_HEIGHT))
 plotting.plot_stat_map(
     stat_img,
-    title="ALE Subtraction",
-    cut_coords=[0, 0, 0],
-    draw_cross=False,
     annotate=False,
     axes=ax,
+    cmap="RdBu_r",
+    cut_coords=[0, 0, 0],
+    draw_cross=False,
+    figure=fig,
 )
+ax.set_title("ALE Subtraction")
+
 fig.savefig("figures/figure_07.svg")
 
 
@@ -414,20 +440,25 @@ results_sphere = meta_sphere.fit(dset_sphere)
 fig, axes = plt.subplots(figsize=(FIG_WIDTH, ROW_HEIGHT * 2), nrows=2)
 plotting.plot_stat_map(
     results_amyg.get_map("z"),
-    title="Amygdala ALE MACM",
-    cut_coords=[24, -2, -20],
-    draw_cross=False,
     annotate=False,
     axes=axes[0],
-)
-plotting.plot_stat_map(
-    results_sphere.get_map("z"),
-    title="Sphere ALE MACM",
+    cmap="Reds",
     cut_coords=[24, -2, -20],
     draw_cross=False,
+    figure=fig,
+)
+axes[0].set_title("Amygdala ALE MACM")
+plotting.plot_stat_map(
+    results_sphere.get_map("z"),
     annotate=False,
     axes=axes[1],
+    cmap="Reds",
+    cut_coords=[24, -2, -20],
+    draw_cross=False,
+    figure=fig,
 )
+axes[1].set_title("Sphere ALE MACM")
+
 fig.savefig("figures/figure_08.svg")
 
 
@@ -443,20 +474,25 @@ results_sphere = meta_sphere.fit(dset_sphere)
 fig, axes = plt.subplots(figsize=(FIG_WIDTH, ROW_HEIGHT * 2), nrows=2)
 plotting.plot_stat_map(
     results_amyg.get_map("z"),
-    title="Amygdala MKDA MACM",
-    cut_coords=[24, -2, -20],
-    draw_cross=False,
     annotate=False,
     axes=axes[0],
-)
-plotting.plot_stat_map(
-    results_sphere.get_map("z"),
-    title="Sphere MKDA MACM",
+    cmap="Reds",
     cut_coords=[24, -2, -20],
     draw_cross=False,
+    figure=fig,
+)
+axes[0].set_title("Amygdala MKDA MACM")
+plotting.plot_stat_map(
+    results_sphere.get_map("z"),
     annotate=False,
     axes=axes[1],
+    cmap="Reds",
+    cut_coords=[24, -2, -20],
+    draw_cross=False,
+    figure=fig,
 )
+axes[1].set_title("Sphere MKDA MACM")
+
 fig.savefig("figures/figure_08a.svg")
 
 
@@ -472,20 +508,25 @@ results_sphere = meta_sphere.fit(dset_sphere)
 fig, axes = plt.subplots(figsize=(FIG_WIDTH, ROW_HEIGHT * 2), nrows=2)
 plotting.plot_stat_map(
     results_amyg.get_map("z"),
-    title="Amygdala KDA MACM",
-    cut_coords=[24, -2, -20],
-    draw_cross=False,
     annotate=False,
     axes=axes[0],
-)
-plotting.plot_stat_map(
-    results_sphere.get_map("z"),
-    title="Sphere KDA MACM",
+    cmap="Reds",
     cut_coords=[24, -2, -20],
     draw_cross=False,
+    figure=fig,
+)
+axes[0].set_title("Amygdala KDA MACM")
+plotting.plot_stat_map(
+    results_sphere.get_map("z"),
     annotate=False,
     axes=axes[1],
+    cmap="Reds",
+    cut_coords=[24, -2, -20],
+    draw_cross=False,
+    figure=fig,
 )
+axes[1].set_title("Sphere KDA MACM")
+
 fig.savefig("figures/figure_08b.svg")
 
 
