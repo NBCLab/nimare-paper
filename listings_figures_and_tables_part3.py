@@ -38,7 +38,7 @@ else:
     kern = nimare.meta.kernel.MKDAKernel(low_memory=True)
     ns_dset = kern.transform(ns_dset, return_type="dataset")
     ns_dset.save("data/neurosynth_dataset_with_mkda_ma.pkl.gz")
-ns_dset_first5000 = ns_dset.slice(ns_dset.ids[:5000])
+ns_dset_first500 = ns_dset.slice(ns_dset.ids[:500])
 
 
 # ## Listing 16
@@ -53,7 +53,7 @@ decoder = nimare.decode.continuous.CorrelationDecoder(
     target_image="z_desc-specificity",
 )
 LGR.info("Fitting CorrelationDecoder.")
-decoder.fit(ns_dset_first5000)
+decoder.fit(ns_dset_first500)
 LGR.info("Applying CorrelationDecoder.")
 decoding_results = decoder.transform("data/pain_map.nii.gz")
 
