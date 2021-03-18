@@ -133,6 +133,7 @@ ijk = ns_dset.coordinates[["i", "j", "k"]].values
 meta = nimare.meta.cbma.ale.SCALE(
     n_iters=10000,
     ijk=ijk,
+    low_memory=True,
     kernel__sample_size=20,
 )
 scale_results = meta.fit(sl_dset1)
