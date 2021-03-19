@@ -84,7 +84,7 @@ fig.savefig("figures/figure_11.svg")
 
 
 if not os.path.isfile("tables/table_03.tsv"):
-    decoding_results.to_csv(
+    decoding_results.sort_values(by="r", ascending=False).to_csv(
         "tables/table_03.tsv",
         sep="\t",
         index_label="feature",
@@ -134,7 +134,7 @@ if not os.path.isfile("tables/table_04.tsv"):
 
 
 if not os.path.isfile("tables/table_04.tsv"):
-    decoding_results.to_csv(
+    decoding_results.sort_values(by="r", ascending=False).to_csv(
         "tables/table_04.tsv",
         sep="\t",
         index_label="feature",
