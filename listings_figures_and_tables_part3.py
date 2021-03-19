@@ -31,7 +31,7 @@ LGR = logging.getLogger(__name__)
 if os.path.isfile("data/neurosynth_dataset_with_mkda_ma.pkl.gz"):
     LGR.info("Loading existing Dataset.")
     ns_dset = nimare.dataset.Dataset.load(
-        "data/neurosynth_dataset_with_mkda_ma.pkl.gz"
+        "data/neurosynth_dataset_with_mkda_ma.pkl.gz",
     )
 else:
     LGR.info("Generating new Dataset.")

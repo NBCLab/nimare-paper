@@ -108,7 +108,6 @@ plotting.plot_stat_map(
     cut_coords=[54, -46, 12],
     draw_cross=False,
     figure=fig,
-    vmax=max_value,
 )
 axes[2].set_title("ALE Kernel")
 
