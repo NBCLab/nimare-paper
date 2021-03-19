@@ -108,7 +108,7 @@ if not os.path.isfile("data/correlation_decoder.pkl.gz"):
 # In[ ]:
 
 
-ns_dset.update_path("data/ns_dset_maps/")
+ns_dset.update_path(os.path.abspath("data/ns_dset_maps/"))
 
 kern = nimare.meta.kernel.MKDAKernel(r=10, value=1, low_memory=True)
 ns_dset = kern.transform(ns_dset, return_type="dataset")
