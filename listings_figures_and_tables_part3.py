@@ -103,19 +103,6 @@ if not os.path.isfile("data/correlation_decoder.pkl.gz"):
 
 # ## Listing 17
 
-# ### Preparation
-
-# In[ ]:
-
-
-ns_dset.update_path(os.path.abspath("data/ns_dset_maps/"))
-
-kern = nimare.meta.kernel.MKDAKernel(r=10, value=1, low_memory=True)
-ns_dset = kern.transform(ns_dset, return_type="dataset")
-
-
-# ### Listing 17
-
 # In[ ]:
 
 
@@ -124,7 +111,7 @@ if not os.path.isfile("tables/table_04.tsv"):
         frequency_threshold=0.001,
         target_image=kern.image_type,
     )
-    decoder.fit(ns_dset)
+    decoder.fit(ns_dset_first500)
     decoding_results = decoder.transform("data/pain_map.nii.gz")
 
 
