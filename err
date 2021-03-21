@@ -9,39 +9,11 @@ Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   lambda x: x.split(shared_path)[1] if isinstance(x, str) else x
-INFO:nimare.dataset:Overwriting images column affine-34d2ff913320e14f04a4746cfa875fcd_low_memory-True_r-10.0_value-1_MKDAKernel
-INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/data/ns_dset_maps/'
-INFO:nimare.meta.kernel:Temporary file written to /home/tsalo006/.nimare/temporary_files/MKDAKernel065ewrju20210319T165049
-INFO:nimare.meta.kernel:Removing temporary file: /home/tsalo006/.nimare/temporary_files/MKDAKernel065ewrju20210319T165049
 Traceback (most recent call last):
-  File "listings_figures_and_tables_part3.py", line 127, in <module>
-    decoder.fit(ns_dset)
-  File "/home/data/nbc/misc-projects/Salo_NiMARE/NiMARE/nimare/base.py", line 417, in fit
-    self._fit(dataset)
-  File "/home/data/nbc/misc-projects/Salo_NiMARE/NiMARE/nimare/decode/continuous.py", line 279, in _fit
-    feature_arr = self.masker.transform(test_imgs)
-  File "/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/lib/python3.7/site-packages/nilearn/input_data/base_masker.py", line 176, in transform
-    return self.transform_single_imgs(imgs, confounds)
-  File "/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/lib/python3.7/site-packages/nilearn/input_data/nifti_masker.py", line 408, in transform_single_imgs
-    dtype=self.dtype
-  File "/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/lib/python3.7/site-packages/joblib/memory.py", line 352, in __call__
-    return self.func(*args, **kwargs)
-  File "/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/lib/python3.7/site-packages/nilearn/input_data/nifti_masker.py", line 58, in filter_and_mask
-    dtype=dtype)
-  File "/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/lib/python3.7/site-packages/nilearn/input_data/base_masker.py", line 99, in filter_and_extract
-    memory_level=memory_level)(imgs)
-  File "/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/lib/python3.7/site-packages/joblib/memory.py", line 352, in __call__
-    return self.func(*args, **kwargs)
-  File "/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/lib/python3.7/site-packages/nilearn/input_data/nifti_masker.py", line 31, in __call__
-    dtype=img_data_dtype(imgs)), imgs.affine)
-  File "/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/lib/python3.7/site-packages/nilearn/masking.py", line 761, in apply_mask
-    ensure_finite=ensure_finite)
-  File "/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/lib/python3.7/site-packages/nilearn/masking.py", line 804, in _apply_mask_fmri
-    copy=True)
-  File "/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/lib/python3.7/site-packages/nilearn/_utils/numpy_conversions.py", line 110, in as_ndarray
-    ret = _asarray(arr, dtype=dtype, order=order)
-  File "/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/lib/python3.7/site-packages/nilearn/_utils/numpy_conversions.py", line 27, in _asarray
-    ret = np.asarray(arr, dtype=dtype, order=order)
-  File "/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/lib/python3.7/site-packages/numpy/core/_asarray.py", line 102, in asarray
-    return array(a, dtype, copy=False, order=order)
-numpy.core._exceptions.MemoryError: Unable to allocate 9.97 GiB for an array with shape (91, 109, 91, 1483) and data type int64
+  File "listings_figures_and_tables_part3.py", line 126, in <module>
+    decoding_results.sort_values(by="r", ascending=False).to_csv(
+  File "/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/lib/python3.7/site-packages/pandas/core/frame.py", line 5452, in sort_values
+    k = self._get_label_or_level_values(by, axis=axis)
+  File "/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/lib/python3.7/site-packages/pandas/core/generic.py", line 1683, in _get_label_or_level_values
+    raise KeyError(key)
+KeyError: 'r'
