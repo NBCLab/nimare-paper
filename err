@@ -9,11 +9,3 @@ Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   lambda x: x.split(shared_path)[1] if isinstance(x, str) else x
-Traceback (most recent call last):
-  File "listings_figures_and_tables_part3.py", line 126, in <module>
-    decoding_results.sort_values(by="r", ascending=False).to_csv(
-  File "/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/lib/python3.7/site-packages/pandas/core/frame.py", line 5452, in sort_values
-    k = self._get_label_or_level_values(by, axis=axis)
-  File "/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/lib/python3.7/site-packages/pandas/core/generic.py", line 1683, in _get_label_or_level_values
-    raise KeyError(key)
-KeyError: 'r'
