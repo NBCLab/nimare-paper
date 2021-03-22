@@ -123,7 +123,7 @@ if not os.path.isfile("tables/table_04.tsv"):
 
 
 if not os.path.isfile("tables/table_04.tsv"):
-    decoding_results.sort_values(by="r", ascending=False).to_csv(
+    decoding_results.sort_values(by="mean", ascending=False).to_csv(
         "tables/table_04.tsv",
         sep="\t",
         index_label="feature",
