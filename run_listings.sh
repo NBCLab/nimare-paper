@@ -6,10 +6,10 @@
 #SBATCH -J nimare-paper
 
 #---Error file
-#SBATCH -e /home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/err
+#SBATCH -e /home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/slurm_stderr
 
 #---Output file
-#SBATCH -o /home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/out
+#SBATCH -o /home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/slurm_stdout
 
 #---Queue name
 #SBATCH --account iacc_nbc
