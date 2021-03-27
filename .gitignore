@@ -2,9 +2,7 @@
 **/.DS_Store
 
 # Large datasets
-data/neurosynth_dataset.pkl.gz
-data/neurosynth_dataset_with_abstracts.pkl.gz
-data/neurosynth_dataset_with_mkda_ma.pkl.gz
+data/neurosynth_dataset*.pkl.gz
 data/*_decoder.pkl.gz
 
 # MA maps for dataset
