@@ -100,7 +100,7 @@ if not os.path.isfile("tables/table_03.tsv"):
 # In[ ]:
 
 
-if not os.path.isfile("data/correlation_decoder.pkl.gz"):
+if not os.path.isfile("tables/table_03.tsv"):
     decoder.save("data/correlation_decoder.pkl.gz")
     del decoder
 
@@ -137,7 +137,7 @@ if not os.path.isfile("tables/table_04.tsv"):
 # In[ ]:
 
 
-if not os.path.isfile("data/correlation_distribution_decoder.pkl.gz"):
+if not os.path.isfile("tables/table_04.tsv"):
     decoder.save("data/correlation_distribution_decoder.pkl.gz")
     del decoder
 
@@ -185,7 +185,7 @@ if not os.path.isfile("tables/table_05.tsv"):
 # In[ ]:
 
 
-if not os.path.isfile("data/brainmap_decoder.pkl.gz"):
+if not os.path.isfile("tables/table_05.tsv"):
     decoder.save("data/brainmap_decoder.pkl.gz")
     del decoder
 
@@ -223,6 +223,6 @@ if not os.path.isfile("tables/tables_06.tsv"):
 # In[ ]:
 
 
-if not os.path.isfile("data/neurosynth_decoder.pkl.gz"):
+if not os.path.isfile("tables/tables_06.tsv"):
     decoder.save("data/neurosynth_decoder.pkl.gz")
     del decoder
