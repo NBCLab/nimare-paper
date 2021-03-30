@@ -34,15 +34,17 @@ if os.path.isfile("data/neurosynth_dataset_with_mkda_ma.pkl.gz"):
     ns_dset = nimare.dataset.Dataset.load(
         "data/neurosynth_dataset_with_mkda_ma.pkl.gz",
     )
+    kern = nimare.meta.kernel.MKDAKernel(low_memory=True)
+    kern._infer_names(affine=md5(ns_dset.masker.mask_img.affine).hexdigest())
 else:
     LGR.info("Generating new Dataset.")
     ns_dset = nimare.dataset.Dataset.load("data/neurosynth_dataset.pkl.gz")
+    kern = nimare.meta.kernel.MKDAKernel(low_memory=True)
+    kern._infer_names(affine=md5(ns_dset.masker.mask_img.affine).hexdigest())
     ns_dset.update_path(os.path.abspath("data/ns_dset_maps/"))
     ns_dset = kern.transform(ns_dset, return_type="dataset")
     ns_dset.save("data/neurosynth_dataset_with_mkda_ma.pkl.gz")
 ns_dset_first500 = ns_dset.slice(ns_dset.ids[:500])
-kern = nimare.meta.kernel.MKDAKernel(low_memory=True)
-kern._infer_names(affine=md5(ns_dset_first500.masker.mask_img.affine).hexdigest())
 
 
 # ## Listing 16
