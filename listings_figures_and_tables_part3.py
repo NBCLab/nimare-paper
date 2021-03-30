@@ -60,7 +60,7 @@ if not os.path.isfile("tables/table_03.tsv"):
         target_image="z_desc-specificity",
     )
     LGR.info("Fitting CorrelationDecoder.")
-    decoder.fit(ns_dset_first500)
+    decoder.fit(ns_dset)
     LGR.info("Applying CorrelationDecoder.")
     decoding_results = decoder.transform("data/pain_map.nii.gz")
 
@@ -115,7 +115,7 @@ if not os.path.isfile("tables/table_04.tsv"):
         frequency_threshold=0.001,
         target_image=kern.image_type,
     )
-    decoder.fit(ns_dset_first500)
+    decoder.fit(ns_dset)
     decoding_results = decoder.transform("data/pain_map.nii.gz")
 
 
