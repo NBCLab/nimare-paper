@@ -56,7 +56,7 @@ if not os.path.isfile("tables/table_03.tsv"):
     LGR.info("Initializing CorrelationDecoder.")
     decoder = nimare.decode.continuous.CorrelationDecoder(
         frequency_threshold=0.001,
-        meta_estimator=kern,
+        meta_estimator=nimare.meta.MKDAChi2(kernel_transformer=kern, low_memory=True),
         target_image="z_desc-specificity",
     )
     LGR.info("Fitting CorrelationDecoder.")
