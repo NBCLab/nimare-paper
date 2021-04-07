@@ -46,6 +46,20 @@ else:
     ns_dset.save("data/neurosynth_dataset_with_mkda_ma.pkl.gz")
 ns_dset_first500 = ns_dset.slice(ns_dset.ids[:500])
 
+# Collect features for decoding
+# We use any features that appear in >5% of studies and <95%.
+id_cols = ["id", "study_id", "contrast_id"]
+frequency_threshold = 0.001
+cols = ns_dset.annotations.columns
+cols = [c for c in cols if c not in id_cols]
+df = ns_dset.annotations.copy()[cols]
+n_studies = df.shape[0]
+feature_counts = (df >= frequency_threshold).sum(axis=0)
+target_features = feature_counts.between(n_studies * 0.05, n_studies * 0.95)
+target_features = target_features[target_features]
+target_features = target_features.index.values
+target_features = [tf.split("__")[1] for tf in target_features]
+
 
 # ## Listing 16
 
@@ -56,8 +70,13 @@ if not os.path.isfile("tables/table_03.tsv"):
     LGR.info("Initializing CorrelationDecoder.")
     decoder = nimare.decode.continuous.CorrelationDecoder(
         frequency_threshold=0.001,
-        meta_estimator=nimare.meta.MKDAChi2(kernel_transformer=kern, low_memory=True),
+        meta_estimator=nimare.meta.MKDAChi2(
+            kernel_transformer=kern,
+            low_memory=True,
+        ),
         target_image="z_desc-specificity",
+        features=target_features,
+        feature_group="Neurosynth_TFIDF",
     )
     LGR.info("Fitting CorrelationDecoder.")
     decoder.fit(ns_dset)
@@ -114,6 +133,8 @@ if not os.path.isfile("tables/table_04.tsv"):
     decoder = nimare.decode.continuous.CorrelationDistributionDecoder(
         frequency_threshold=0.001,
         target_image=kern.image_type,
+        features=target_features,
+        feature_group="Neurosynth_TFIDF",
     )
     decoder.fit(ns_dset)
     decoding_results = decoder.transform("data/pain_map.nii.gz")
@@ -162,6 +183,8 @@ if not os.path.isfile("tables/table_05.tsv"):
         frequency_threshold=0.001,
         u=0.05,
         correction="fdr_bh",
+        features=target_features,
+        feature_group="Neurosynth_TFIDF",
     )
     decoder.fit(ns_dset)
     decoding_results = decoder.transform(amygdala_ids)
@@ -200,6 +223,8 @@ if not os.path.isfile("tables/tables_06.tsv"):
         frequency_threshold=0.001,
         u=0.05,
         correction="fdr_bh",
+        features=target_features,
+        feature_group="Neurosynth_TFIDF",
     )
     decoder.fit(ns_dset)
     decoding_results = decoder.transform(amygdala_ids)
