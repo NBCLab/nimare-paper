@@ -44,10 +44,9 @@ else:
     ns_dset.update_path(os.path.abspath("data/ns_dset_maps/"))
     ns_dset = kern.transform(ns_dset, return_type="dataset")
     ns_dset.save("data/neurosynth_dataset_with_mkda_ma.pkl.gz")
-ns_dset_first500 = ns_dset.slice(ns_dset.ids[:500])
 
 # Collect features for decoding
-# We use any features that appear in >5% of studies and <95%.
+# We use any features that appear in >1% of studies and <99%.
 id_cols = ["id", "study_id", "contrast_id"]
 frequency_threshold = 0.001
 cols = ns_dset.annotations.columns
@@ -55,7 +54,7 @@ cols = [c for c in cols if c not in id_cols]
 df = ns_dset.annotations.copy()[cols]
 n_studies = df.shape[0]
 feature_counts = (df >= frequency_threshold).sum(axis=0)
-target_features = feature_counts.between(n_studies * 0.05, n_studies * 0.95)
+target_features = feature_counts.between(n_studies * 0.01, n_studies * 0.99)
 target_features = target_features[target_features]
 target_features = target_features.index.values
 print(f"{len(target_features)} features selected.")
