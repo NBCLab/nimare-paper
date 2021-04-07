@@ -58,7 +58,7 @@ feature_counts = (df >= frequency_threshold).sum(axis=0)
 target_features = feature_counts.between(n_studies * 0.05, n_studies * 0.95)
 target_features = target_features[target_features]
 target_features = target_features.index.values
-target_features = [tf.split("__")[1] for tf in target_features]
+print(f"{len(target_features)} features selected.")
 
 
 # ## Listing 16
@@ -76,7 +76,6 @@ if not os.path.isfile("tables/table_03.tsv"):
         ),
         target_image="z_desc-specificity",
         features=target_features,
-        feature_group="Neurosynth_TFIDF",
     )
     LGR.info("Fitting CorrelationDecoder.")
     decoder.fit(ns_dset)
@@ -134,7 +133,6 @@ if not os.path.isfile("tables/table_04.tsv"):
         frequency_threshold=0.001,
         target_image=kern.image_type,
         features=target_features,
-        feature_group="Neurosynth_TFIDF",
     )
     decoder.fit(ns_dset)
     decoding_results = decoder.transform("data/pain_map.nii.gz")
@@ -184,7 +182,6 @@ if not os.path.isfile("tables/table_05.tsv"):
         u=0.05,
         correction="fdr_bh",
         features=target_features,
-        feature_group="Neurosynth_TFIDF",
     )
     decoder.fit(ns_dset)
     decoding_results = decoder.transform(amygdala_ids)
@@ -224,7 +221,6 @@ if not os.path.isfile("tables/tables_06.tsv"):
         u=0.05,
         correction="fdr_bh",
         features=target_features,
-        feature_group="Neurosynth_TFIDF",
     )
     decoder.fit(ns_dset)
     decoding_results = decoder.transform(amygdala_ids)
