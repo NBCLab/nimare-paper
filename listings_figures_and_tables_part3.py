@@ -57,7 +57,7 @@ feature_counts = (df >= frequency_threshold).sum(axis=0)
 target_features = feature_counts.between(n_studies * 0.01, n_studies * 0.99)
 target_features = target_features[target_features]
 target_features = target_features.index.values
-print(f"{len(target_features)} features selected.")
+print(f"{len(target_features)} features selected.", flush=True)
 
 
 # ## Listing 16

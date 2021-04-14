@@ -85,7 +85,7 @@ ns_dset_first_500 = ns_dset_with_abstracts.slice(
     ns_dset_with_abstracts.ids[:500],
 )
 counts_df = nimare.annotate.text.generate_counts(
-    ns_dset_first_500.texts,
+    ns_dset.texts,
     text_column="abstract",
     tfidf=False,
     min_df=10,
@@ -93,13 +93,13 @@ counts_df = nimare.annotate.text.generate_counts(
 )
 model = nimare.annotate.gclda.GCLDAModel(
     counts_df,
-    ns_dset_first_500.coordinates,
+    ns_dset.coordinates,
     n_regions=2,
     n_topics=100,
     symmetric=True,
     mask=ns_dset.masker.mask_img,
 )
-model.fit(n_iters=500, loglikely_freq=100)
+model.fit(n_iters=2500, loglikely_freq=100)
 
 
 # ### Table 2
