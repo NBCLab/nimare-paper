@@ -17,6 +17,7 @@ import numpy as np
 from nilearn import datasets, image, input_data, plotting
 
 import nimare
+from nimare.tests.utils import get_test_data_path
 
 FIG_WIDTH = 10
 ROW_HEIGHT = 2  # good row height for width of 10
@@ -198,8 +199,6 @@ fig.savefig("figures/figure_04.svg")
 
 # In[ ]:
 
-
-from nimare.tests.utils import get_test_data_path
 
 dset_dir = nimare.extract.download_nidm_pain()
 dset_file = os.path.join(get_test_data_path(), "nidm_pain_dset.json")
