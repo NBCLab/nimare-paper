@@ -60,7 +60,7 @@ target_features = target_features.index.values
 print(f"{len(target_features)} features selected.", flush=True)
 
 
-# ## Listing 16
+# ## Listing 15
 
 # In[ ]:
 
@@ -82,7 +82,7 @@ if not os.path.isfile("tables/table_03.tsv"):
     decoding_results = decoder.transform("data/pain_map.nii.gz")
 
 
-# ### Figure 11
+# ### Figure 10
 
 # In[ ]:
 
@@ -96,7 +96,7 @@ plotting.plot_stat_map(
     draw_cross=False,
     figure=fig,
 )
-fig.savefig("figures/figure_11.svg")
+fig.savefig("figures/figure_10.svg")
 
 
 # ### Table 3
@@ -122,7 +122,7 @@ if not os.path.isfile("tables/table_03.tsv"):
     del decoder
 
 
-# ## Listing 17
+# ## Listing 16
 
 # In[ ]:
 
@@ -160,7 +160,7 @@ if not os.path.isfile("tables/table_04.tsv"):
     del decoder
 
 
-# ## Listing 18
+# ## Listing 17
 
 # ### Preparation
 

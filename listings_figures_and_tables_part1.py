@@ -528,13 +528,3 @@ plotting.plot_stat_map(
 axes[1].set_title("Sphere KDA MACM")
 
 fig.savefig("figures/figure_08b.svg")
-
-
-# ## Listing 12
-
-# In[ ]:
-
-
-# ### Figure 9
-
-# In[ ]:

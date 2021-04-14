@@ -30,7 +30,7 @@ ROW_HEIGHT = 2  # good row height for width of 10
 ns_dset = nimare.dataset.Dataset.load("data/neurosynth_dataset.pkl.gz")
 
 
-# ## Listing 13
+# ## Listing 12
 
 # In[ ]:
 
@@ -49,7 +49,7 @@ else:
     )
 
 
-# ## Listing 14
+# ## Listing 13
 
 # In[ ]:
 
@@ -76,7 +76,7 @@ p_word_g_topic_df.to_csv(
 )
 
 
-# ## Listing 15
+# ## Listing 14
 
 # In[ ]:
 
@@ -119,7 +119,7 @@ p_word_g_topic_df.to_csv(
 )
 
 
-# ### Figure 10
+# ### Figure 9
 
 # In[ ]:
 
@@ -141,4 +141,4 @@ for i_topic in range(5):
     )
     axes[i_topic].set_title(f"Topic {i_topic + 1}")
 
-fig.savefig("figures/figure_10.svg")
+fig.savefig("figures/figure_09.svg")
