@@ -130,7 +130,10 @@ if not os.path.isfile("tables/table_03.tsv"):
 if not os.path.isfile("tables/table_04.tsv"):
     decoder = nimare.decode.continuous.CorrelationDistributionDecoder(
         frequency_threshold=0.001,
-        target_image=kern.image_type,
+        target_image=(
+            "affine-34d2ff913320e14f04a4746cfa875fcd_"
+            "low_memory-True_r-10.0_value-1_MKDAKernel"
+        ),
         features=target_features,
     )
     decoder.fit(ns_dset)
