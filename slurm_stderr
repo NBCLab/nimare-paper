@@ -1,13 +1,36 @@
 ERROR:duecredit:Failed to import duecredit due to No module named 'duecredit'
 INFO:__main__:Loading existing Dataset.
 Traceback (most recent call last):
-  File "listings_figures_and_tables_part3.py", line 136, in <module>
+  File "listings_figures_and_tables_part3.py", line 139, in <module>
     decoder.fit(ns_dset)
   File "/home/data/nbc/misc-projects/Salo_NiMARE/NiMARE/nimare/base.py", line 418, in fit
     self._fit(dataset)
-  File "/home/data/nbc/misc-projects/Salo_NiMARE/NiMARE/nimare/decode/continuous.py", line 280, in _fit
-    test_imgs = dataset.get_images(ids=feature_ids, imtype=self.target_image)
-  File "/home/data/nbc/misc-projects/Salo_NiMARE/NiMARE/nimare/dataset.py", line 487, in get_images
-    "{1}".format(value, ", ".join(available_types))
-ValueError: Image type "affine-34d2ff913320e14f04a4746cfa875fcd_low_memory-1gb_r-10.0_value-1_MKDAKernel" not found.
-Available types: affine-34d2ff913320e14f04a4746cfa875fcd_low_memory-True_r-10.0_value-1_MKDAKernel
+  File "/home/data/nbc/misc-projects/Salo_NiMARE/NiMARE/nimare/decode/continuous.py", line 286, in _fit
+    memory_limit=self.memory_limit,
+  File "/home/data/nbc/misc-projects/Salo_NiMARE/NiMARE/nimare/utils.py", line 544, in safe_transform
+    masked_data[idx:end_idx, :] = masker.transform(map_chunk)
+  File "/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/lib/python3.7/site-packages/nilearn/input_data/base_masker.py", line 176, in transform
+    return self.transform_single_imgs(imgs, confounds)
+  File "/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/lib/python3.7/site-packages/nilearn/input_data/nifti_masker.py", line 408, in transform_single_imgs
+    dtype=self.dtype
+  File "/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/lib/python3.7/site-packages/joblib/memory.py", line 352, in __call__
+    return self.func(*args, **kwargs)
+  File "/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/lib/python3.7/site-packages/nilearn/input_data/nifti_masker.py", line 58, in filter_and_mask
+    dtype=dtype)
+  File "/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/lib/python3.7/site-packages/nilearn/input_data/base_masker.py", line 99, in filter_and_extract
+    memory_level=memory_level)(imgs)
+  File "/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/lib/python3.7/site-packages/joblib/memory.py", line 352, in __call__
+    return self.func(*args, **kwargs)
+  File "/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/lib/python3.7/site-packages/nilearn/input_data/nifti_masker.py", line 31, in __call__
+    dtype=img_data_dtype(imgs)), imgs.affine)
+  File "/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/lib/python3.7/site-packages/nilearn/masking.py", line 761, in apply_mask
+    ensure_finite=ensure_finite)
+  File "/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/lib/python3.7/site-packages/nilearn/masking.py", line 804, in _apply_mask_fmri
+    copy=True)
+  File "/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/lib/python3.7/site-packages/nilearn/_utils/numpy_conversions.py", line 110, in as_ndarray
+    ret = _asarray(arr, dtype=dtype, order=order)
+  File "/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/lib/python3.7/site-packages/nilearn/_utils/numpy_conversions.py", line 27, in _asarray
+    ret = np.asarray(arr, dtype=dtype, order=order)
+  File "/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/lib/python3.7/site-packages/numpy/core/_asarray.py", line 102, in asarray
+    return array(a, dtype, copy=False, order=order)
+numpy.core._exceptions.MemoryError: Unable to allocate 5.53 GiB for an array with shape (91, 109, 91, 823) and data type int64
