@@ -135,7 +135,7 @@ if not os.path.isfile("tables/table_04.tsv"):
             "low_memory-True_r-10.0_value-1_MKDAKernel"
         ),
         features=target_features,
-        memory_limit="500mb",
+        memory_limit="50mb",
     )
     decoder.fit(ns_dset)
     decoding_results = decoder.transform("data/pain_map.nii.gz")
