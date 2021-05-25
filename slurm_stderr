@@ -7,26 +7,6 @@ Traceback (most recent call last):
     self._fit(dataset)
   File "/home/data/nbc/misc-projects/Salo_NiMARE/NiMARE/nimare/decode/continuous.py", line 286, in _fit
     memory_limit=self.memory_limit,
-  File "/home/data/nbc/misc-projects/Salo_NiMARE/NiMARE/nimare/utils.py", line 544, in safe_transform
-    masked_data[idx:end_idx, :] = masker.transform(map_chunk)
-  File "/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/lib/python3.7/site-packages/nilearn/input_data/base_masker.py", line 176, in transform
-    return self.transform_single_imgs(imgs, confounds)
-  File "/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/lib/python3.7/site-packages/nilearn/input_data/nifti_masker.py", line 408, in transform_single_imgs
-    dtype=self.dtype
-  File "/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/lib/python3.7/site-packages/joblib/memory.py", line 352, in __call__
-    return self.func(*args, **kwargs)
-  File "/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/lib/python3.7/site-packages/nilearn/input_data/nifti_masker.py", line 58, in filter_and_mask
-    dtype=dtype)
-  File "/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/lib/python3.7/site-packages/nilearn/input_data/base_masker.py", line 99, in filter_and_extract
-    memory_level=memory_level)(imgs)
-  File "/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/lib/python3.7/site-packages/joblib/memory.py", line 352, in __call__
-    return self.func(*args, **kwargs)
-  File "/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/lib/python3.7/site-packages/nilearn/input_data/nifti_masker.py", line 31, in __call__
-    dtype=img_data_dtype(imgs)), imgs.affine)
-  File "/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/lib/python3.7/site-packages/nilearn/masking.py", line 761, in apply_mask
-    ensure_finite=ensure_finite)
-  File "/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/lib/python3.7/site-packages/nilearn/masking.py", line 810, in _apply_mask_fmri
-    ensure_finite=ensure_finite, copy=False)
-  File "/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/lib/python3.7/site-packages/nilearn/image/image.py", line 225, in _smooth_array
-    arr[np.logical_not(np.isfinite(arr))] = 0
-numpy.core._exceptions.MemoryError: Unable to allocate 493. MiB for an array with shape (91, 109, 91, 573) and data type bool
+  File "/home/data/nbc/misc-projects/Salo_NiMARE/NiMARE/nimare/utils.py", line 535, in safe_transform
+    dtype=first_img_data.dtype if dtype == "auto" else dtype,
+numpy.core._exceptions.MemoryError: Unable to allocate 2.86 GiB for an array with shape (3361, 228453) and data type float32
