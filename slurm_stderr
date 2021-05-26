@@ -1,12 +1,2 @@
 ERROR:duecredit:Failed to import duecredit due to No module named 'duecredit'
 INFO:__main__:Loading existing Dataset.
-Traceback (most recent call last):
-  File "listings_figures_and_tables_part3.py", line 140, in <module>
-    decoder.fit(ns_dset)
-  File "/home/data/nbc/misc-projects/Salo_NiMARE/NiMARE/nimare/base.py", line 418, in fit
-    self._fit(dataset)
-  File "/home/data/nbc/misc-projects/Salo_NiMARE/NiMARE/nimare/decode/continuous.py", line 288, in _fit
-    memfile=self.memmap_filenames[0],
-  File "/home/data/nbc/misc-projects/Salo_NiMARE/NiMARE/nimare/utils.py", line 535, in safe_transform
-    dtype=first_img_data.dtype if dtype == "auto" else dtype,
-numpy.core._exceptions.MemoryError: Unable to allocate 2.86 GiB for an array with shape (3361, 228453) and data type float32
