@@ -124,21 +124,28 @@ if not os.path.isfile("tables/table_03.tsv"):
 
 # ## Listing 16
 
+# ### Preparation
+
+# In[ ]:
+
+
+amygdala_ids = ns_dset.get_studies_by_mask("data/amygdala_roi.nii.gz")
+
+
+# ### Listing 16
+
 # In[ ]:
 
 
 if not os.path.isfile("tables/table_04.tsv"):
-    decoder = nimare.decode.continuous.CorrelationDistributionDecoder(
+    decoder = nimare.decode.discrete.BrainMapDecoder(
         frequency_threshold=0.001,
-        target_image=(
-            "affine-34d2ff913320e14f04a4746cfa875fcd_"
-            "low_memory-True_r-10.0_value-1_MKDAKernel"
-        ),
+        u=0.05,
+        correction="fdr_bh",
         features=target_features,
-        memory_limit="50mb",
     )
     decoder.fit(ns_dset)
-    decoding_results = decoder.transform("data/pain_map.nii.gz")
+    decoding_results = decoder.transform(amygdala_ids)
 
 
 # ### Table 4
@@ -147,7 +154,7 @@ if not os.path.isfile("tables/table_04.tsv"):
 
 
 if not os.path.isfile("tables/table_04.tsv"):
-    decoding_results.sort_values(by="mean", ascending=False).to_csv(
+    decoding_results.sort_values(by="probReverse", ascending=False).to_csv(
         "tables/table_04.tsv",
         sep="\t",
         index_label="feature",
@@ -160,65 +167,16 @@ if not os.path.isfile("tables/table_04.tsv"):
 
 
 if not os.path.isfile("tables/table_04.tsv"):
-    decoder.save("data/correlation_distribution_decoder.pkl.gz")
+    decoder.save("data/brainmap_decoder.pkl.gz")
     del decoder
 
 
 # ## Listing 17
 
-# ### Preparation
-
 # In[ ]:
 
 
-amygdala_ids = ns_dset.get_studies_by_mask("data/amygdala_roi.nii.gz")
-
-
-# ### Listing 18
-
-# In[ ]:
-
-
-if not os.path.isfile("tables/table_05.tsv"):
-    decoder = nimare.decode.discrete.BrainMapDecoder(
-        frequency_threshold=0.001,
-        u=0.05,
-        correction="fdr_bh",
-        features=target_features,
-    )
-    decoder.fit(ns_dset)
-    decoding_results = decoder.transform(amygdala_ids)
-
-
-# ### Table 5
-
-# In[ ]:
-
-
-if not os.path.isfile("tables/table_05.tsv"):
-    decoding_results.sort_values(by="probReverse", ascending=False).to_csv(
-        "tables/table_05.tsv",
-        sep="\t",
-        index_label="feature",
-    )
-
-
-# ### Cleanup
-
-# In[ ]:
-
-
-if not os.path.isfile("tables/table_05.tsv"):
-    decoder.save("data/brainmap_decoder.pkl.gz")
-    del decoder
-
-
-# ## Listing 19
-
-# In[ ]:
-
-
-if not os.path.isfile("tables/tables_06.tsv"):
+if not os.path.isfile("tables/tables_05.tsv"):
     decoder = nimare.decode.discrete.NeurosynthDecoder(
         frequency_threshold=0.001,
         u=0.05,
@@ -234,9 +192,9 @@ if not os.path.isfile("tables/tables_06.tsv"):
 # In[ ]:
 
 
-if not os.path.isfile("tables/tables_06.tsv"):
+if not os.path.isfile("tables/tables_05.tsv"):
     decoding_results.sort_values(by="probReverse", ascending=False).to_csv(
-        "tables/table_06.tsv",
+        "tables/table_05.tsv",
         sep="\t",
         index_label="feature",
     )
@@ -247,6 +205,6 @@ if not os.path.isfile("tables/tables_06.tsv"):
 # In[ ]:
 
 
-if not os.path.isfile("tables/tables_06.tsv"):
+if not os.path.isfile("tables/tables_05.tsv"):
     decoder.save("data/neurosynth_decoder.pkl.gz")
     del decoder
