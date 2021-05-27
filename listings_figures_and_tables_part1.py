@@ -313,6 +313,7 @@ for i, r in enumerate(results):
     axes[i].set_title(names[i])
 
 fig.savefig("figures/figure_05.svg")
+fig.savefig("figures/figure_05_lowres.png")
 
 
 # ### Save map for future use
@@ -365,6 +366,7 @@ plotting.plot_stat_map(
 axes[1].set_title("Independent FDR")
 
 fig.savefig("figures/figure_06.svg")
+fig.savefig("figures/figure_06_lowres.png")
 
 
 # ## Listing 9
@@ -402,6 +404,7 @@ plotting.plot_stat_map(
 ax.set_title("ALE Subtraction")
 
 fig.savefig("figures/figure_07.svg")
+fig.savefig("figures/figure_07_lowres.png")
 
 
 # ## Listing 10
@@ -461,6 +464,7 @@ plotting.plot_stat_map(
 axes[1].set_title("Sphere ALE MACM")
 
 fig.savefig("figures/figure_08.svg")
+fig.savefig("figures/figure_08_lowres.png")
 
 
 # In[ ]:
@@ -495,6 +499,7 @@ plotting.plot_stat_map(
 axes[1].set_title("Sphere MKDA MACM")
 
 fig.savefig("figures/figure_08a.svg")
+fig.savefig("figures/figure_08a_lowres.png")
 
 
 # In[ ]:
@@ -529,3 +534,4 @@ plotting.plot_stat_map(
 axes[1].set_title("Sphere KDA MACM")
 
 fig.savefig("figures/figure_08b.svg")
+fig.savefig("figures/figure_08b_lowres.png")

@@ -65,21 +65,20 @@ print(f"{len(target_features)} features selected.", flush=True)
 # In[ ]:
 
 
-if not os.path.isfile("tables/table_03.tsv"):
-    LGR.info("Initializing CorrelationDecoder.")
-    decoder = nimare.decode.continuous.CorrelationDecoder(
-        frequency_threshold=0.001,
-        meta_estimator=nimare.meta.MKDAChi2(
-            kernel_transformer=kern,
-            low_memory=True,
-        ),
-        target_image="z_desc-specificity",
-        features=target_features,
-    )
-    LGR.info("Fitting CorrelationDecoder.")
-    decoder.fit(ns_dset)
-    LGR.info("Applying CorrelationDecoder.")
-    decoding_results = decoder.transform("data/pain_map.nii.gz")
+LGR.info("Initializing CorrelationDecoder.")
+decoder = nimare.decode.continuous.CorrelationDecoder(
+    frequency_threshold=0.001,
+    meta_estimator=nimare.meta.MKDAChi2(
+        kernel_transformer=kern,
+        low_memory=True,
+    ),
+    target_image="z_desc-specificity",
+    features=target_features,
+)
+LGR.info("Fitting CorrelationDecoder.")
+decoder.fit(ns_dset)
+LGR.info("Applying CorrelationDecoder.")
+decoding_results = decoder.transform("data/pain_map.nii.gz")
 
 
 # ### Figure 10
@@ -97,6 +96,7 @@ plotting.plot_stat_map(
     figure=fig,
 )
 fig.savefig("figures/figure_10.svg")
+fig.savefig("figures/figure_10_lowres.png")
 
 
 # ### Table 3
@@ -104,12 +104,11 @@ fig.savefig("figures/figure_10.svg")
 # In[ ]:
 
 
-if not os.path.isfile("tables/table_03.tsv"):
-    decoding_results.sort_values(by="r", ascending=False).to_csv(
-        "tables/table_03.tsv",
-        sep="\t",
-        index_label="feature",
-    )
+decoding_results.sort_values(by="r", ascending=False).to_csv(
+    "tables/table_03.tsv",
+    sep="\t",
+    index_label="feature",
+)
 
 
 # ### Cleanup
@@ -117,9 +116,8 @@ if not os.path.isfile("tables/table_03.tsv"):
 # In[ ]:
 
 
-if not os.path.isfile("tables/table_03.tsv"):
-    decoder.save("data/correlation_decoder.pkl.gz")
-    del decoder
+decoder.save("data/correlation_decoder.pkl.gz")
+del decoder
 
 
 # ## Listing 16
@@ -137,15 +135,14 @@ amygdala_ids = ns_dset.get_studies_by_mask("data/amygdala_roi.nii.gz")
 # In[ ]:
 
 
-if not os.path.isfile("tables/table_04.tsv"):
-    decoder = nimare.decode.discrete.BrainMapDecoder(
-        frequency_threshold=0.001,
-        u=0.05,
-        correction="fdr_bh",
-        features=target_features,
-    )
-    decoder.fit(ns_dset)
-    decoding_results = decoder.transform(amygdala_ids)
+decoder = nimare.decode.discrete.BrainMapDecoder(
+    frequency_threshold=0.001,
+    u=0.05,
+    correction="fdr_bh",
+    features=target_features,
+)
+decoder.fit(ns_dset)
+decoding_results = decoder.transform(amygdala_ids)
 
 
 # ### Table 4
@@ -153,12 +150,11 @@ if not os.path.isfile("tables/table_04.tsv"):
 # In[ ]:
 
 
-if not os.path.isfile("tables/table_04.tsv"):
-    decoding_results.sort_values(by="probReverse", ascending=False).to_csv(
-        "tables/table_04.tsv",
-        sep="\t",
-        index_label="feature",
-    )
+decoding_results.sort_values(by="probReverse", ascending=False).to_csv(
+    "tables/table_04.tsv",
+    sep="\t",
+    index_label="feature",
+)
 
 
 # ### Cleanup
@@ -166,9 +162,8 @@ if not os.path.isfile("tables/table_04.tsv"):
 # In[ ]:
 
 
-if not os.path.isfile("tables/table_04.tsv"):
-    decoder.save("data/brainmap_decoder.pkl.gz")
-    del decoder
+decoder.save("data/brainmap_decoder.pkl.gz")
+del decoder
 
 
 # ## Listing 17
@@ -176,15 +171,14 @@ if not os.path.isfile("tables/table_04.tsv"):
 # In[ ]:
 
 
-if not os.path.isfile("tables/tables_05.tsv"):
-    decoder = nimare.decode.discrete.NeurosynthDecoder(
-        frequency_threshold=0.001,
-        u=0.05,
-        correction="fdr_bh",
-        features=target_features,
-    )
-    decoder.fit(ns_dset)
-    decoding_results = decoder.transform(amygdala_ids)
+decoder = nimare.decode.discrete.NeurosynthDecoder(
+    frequency_threshold=0.001,
+    u=0.05,
+    correction="fdr_bh",
+    features=target_features,
+)
+decoder.fit(ns_dset)
+decoding_results = decoder.transform(amygdala_ids)
 
 
 # ### Table 6
@@ -192,12 +186,11 @@ if not os.path.isfile("tables/tables_05.tsv"):
 # In[ ]:
 
 
-if not os.path.isfile("tables/tables_05.tsv"):
-    decoding_results.sort_values(by="probReverse", ascending=False).to_csv(
-        "tables/table_05.tsv",
-        sep="\t",
-        index_label="feature",
-    )
+decoding_results.sort_values(by="probReverse", ascending=False).to_csv(
+    "tables/table_05.tsv",
+    sep="\t",
+    index_label="feature",
+)
 
 
 # ### Cleanup
@@ -205,6 +198,5 @@ if not os.path.isfile("tables/tables_05.tsv"):
 # In[ ]:
 
 
-if not os.path.isfile("tables/tables_05.tsv"):
-    decoder.save("data/neurosynth_decoder.pkl.gz")
-    del decoder
+decoder.save("data/neurosynth_decoder.pkl.gz")
+del decoder

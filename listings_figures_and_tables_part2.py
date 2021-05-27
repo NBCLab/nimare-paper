@@ -142,3 +142,4 @@ for i_topic in range(5):
     axes[i_topic].set_title(f"Topic {i_topic + 1}")
 
 fig.savefig("figures/figure_09.svg")
+fig.savefig("figures/figure_09_lowres.png")
