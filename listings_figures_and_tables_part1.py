@@ -113,6 +113,7 @@ plotting.plot_stat_map(
 axes[2].set_title("ALE Kernel")
 
 fig.savefig("figures/figure_03.svg")
+fig.savefig("figures/figure_03_lowres.png")
 
 
 # ## Listing 4
@@ -193,6 +194,7 @@ for i, r in enumerate(results):
     axes[i].set_title(name)
 
 fig.savefig("figures/figure_04.svg")
+fig.savefig("figures/figure_04_lowres.png")
 
 
 # ## Listing 7
