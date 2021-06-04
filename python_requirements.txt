@@ -60,8 +60,8 @@ nbformat                  5.1.2                    pypi_0    pypi
 ncurses                   6.2                  he6710b0_1  
 nest-asyncio              1.5.1                    pypi_0    pypi
 nibabel                   3.2.1                    pypi_0    pypi
-nilearn                   0.7.0                    pypi_0    pypi
-nimare                    0.0.5+5.g0c9667e           dev_0    <develop>
+nilearn                   0.7.1                    pypi_0    pypi
+nimare                    0.0.9rc2                 pypi_0    pypi
 notebook                  6.2.0                    pypi_0    pypi
 numpy                     1.20.1                   pypi_0    pypi
 openssl                   1.1.1i               h27cfd23_0  
