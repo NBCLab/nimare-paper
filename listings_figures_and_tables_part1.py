@@ -208,18 +208,11 @@ img_dset = nimare.dataset.Dataset(dset_file)
 img_dset.update_path(dset_dir)
 
 # Calculate missing images
-img_dset.images = nimare.transforms.transform_images(
-    img_dset.images,
-    target="z",
-    masker=img_dset.masker,
-    metadata_df=img_dset.metadata,
-)
-img_dset.images = nimare.transforms.transform_images(
-    img_dset.images,
-    target="varcope",
-    masker=img_dset.masker,
-    metadata_df=img_dset.metadata,
-)
+z_transformer = nimare.transforms.ImageTransformer(target="z")
+img_dset = z_transformer.transform(img_dset)
+
+varcope_transformer = nimare.transforms.ImageTransformer(target="varcope")
+img_dset = varcope_transformer.transform(img_dset)
 
 meta = nimare.meta.ibma.DerSimonianLaird()
 dsl_results = meta.fit(img_dset)

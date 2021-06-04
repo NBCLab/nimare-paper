@@ -5,5 +5,5 @@ source activate conda_env/
 conda install pip numpy scipy libgfortran sympy ply funcsigs cython matplotlib seaborn pandas numexpr scikit-learn tornado accelerate Biopython dateutil
 /home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/bin/pip install pip -U
 /home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/bin/pip install ipython jupyterlab ipywidgets nibabel nilearn duecredit
-/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/bin/pip install -e /home/data/nbc/misc-projects/Salo_NiMARE/NiMARE/
+/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/bin/pip install nimare==0.0.9rc2
 conda list > python_requirements.txt
