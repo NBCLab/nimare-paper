@@ -121,7 +121,7 @@ fig.savefig("figures/figure_03_lowres.png")
 # In[ ]:
 
 
-mkdad_meta = nimare.meta.cbma.mkda.MKDADensity(null_method="analytic")
+mkdad_meta = nimare.meta.cbma.mkda.MKDADensity(null_method="approximate")
 mkdad_results = mkdad_meta.fit(sl_dset1)
 
 
@@ -155,10 +155,10 @@ mkdac_results = meta.fit(sl_dset1, sl_dset2)
 
 
 # Additional meta-analyses for figures
-meta = nimare.meta.cbma.mkda.KDA(null_method="analytic")
+meta = nimare.meta.cbma.mkda.KDA(null_method="approximate")
 kda_results = meta.fit(sl_dset1)
 
-meta = nimare.meta.cbma.ale.ALE(null_method="analytic")
+meta = nimare.meta.cbma.ale.ALE(null_method="approximate")
 ale_results = meta.fit(sl_dset1)
 
 # Meta-analytic maps across estimators
@@ -463,10 +463,10 @@ fig.savefig("figures/figure_08_lowres.png")
 # In[ ]:
 
 
-meta_amyg = nimare.meta.cbma.mkda.MKDADensity(null_method="analytic")
+meta_amyg = nimare.meta.cbma.mkda.MKDADensity(null_method="approximate")
 results_amyg = meta_amyg.fit(dset_amygdala)
 
-meta_sphere = nimare.meta.cbma.mkda.MKDADensity(null_method="analytic")
+meta_sphere = nimare.meta.cbma.mkda.MKDADensity(null_method="approximate")
 results_sphere = meta_sphere.fit(dset_sphere)
 
 fig, axes = plt.subplots(figsize=(FIG_WIDTH, ROW_HEIGHT * 2), nrows=2)
