@@ -34,12 +34,12 @@ if os.path.isfile("data/neurosynth_dataset_with_mkda_ma.pkl.gz"):
     ns_dset = nimare.dataset.Dataset.load(
         "data/neurosynth_dataset_with_mkda_ma.pkl.gz",
     )
-    kern = nimare.meta.kernel.MKDAKernel(low_memory=True)
+    kern = nimare.meta.kernel.MKDAKernel(memory_limit="500mb")
     kern._infer_names(affine=md5(ns_dset.masker.mask_img.affine).hexdigest())
 else:
     LGR.info("Generating new Dataset.")
     ns_dset = nimare.dataset.Dataset.load("data/neurosynth_dataset.pkl.gz")
-    kern = nimare.meta.kernel.MKDAKernel(low_memory=True)
+    kern = nimare.meta.kernel.MKDAKernel(memory_limit="500mb")
     kern._infer_names(affine=md5(ns_dset.masker.mask_img.affine).hexdigest())
     ns_dset.update_path(os.path.abspath("data/ns_dset_maps/"))
     ns_dset = kern.transform(ns_dset, return_type="dataset")
@@ -70,7 +70,7 @@ decoder = nimare.decode.continuous.CorrelationDecoder(
     frequency_threshold=0.001,
     meta_estimator=nimare.meta.MKDAChi2(
         kernel_transformer=kern,
-        low_memory=True,
+        memory_limit="500mb",
     ),
     target_image="z_desc-specificity",
     features=target_features,
