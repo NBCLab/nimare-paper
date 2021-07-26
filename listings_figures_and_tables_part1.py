@@ -22,55 +22,55 @@ FIG_WIDTH = 10
 ROW_HEIGHT = 2  # good row height for width of 10
 
 
-# ## Listing 1
+# ## Listing 1: Converting Sleuth-format files to Datasets
 
 # In[ ]:
 
 
-sl_dset1 = nimare.io.convert_sleuth_to_dataset(
+sleuth_dset1 = nimare.io.convert_sleuth_to_dataset(
     "data/contrast-CannabisMinusControl_space-talairach_sleuth.txt"
 )
-sl_dset2 = nimare.io.convert_sleuth_to_dataset(
+sleuth_dset2 = nimare.io.convert_sleuth_to_dataset(
     "data/contrast-ControlMinusCannabis_space-talairach_sleuth.txt"
 )
 
 
-# ## Listing 2
+# ## Listing 2: Loading Datasets and converting Neurosynth-format files to Datasets
 
 # In[ ]:
 
 
 if os.path.isfile("data/neurosynth_dataset.pkl.gz"):
-    ns_dset = nimare.dataset.Dataset.load("data/neurosynth_dataset.pkl.gz")
+    neurosynth_dset = nimare.dataset.Dataset.load("data/neurosynth_dataset.pkl.gz")
 elif os.path.isfile("data/database.txt"):
-    ns_dset = nimare.io.convert_neurosynth_to_dataset(
+    neurosynth_dset = nimare.io.convert_neurosynth_to_dataset(
         "data/database.txt",
         "data/features.txt",
     )
-    ns_dset.save("data/neurosynth_dataset.pkl.gz")
+    neurosynth_dset.save("data/neurosynth_dataset.pkl.gz")
 else:
     nimare.extract.fetch_neurosynth("data/", unpack=True)
-    ns_dset = nimare.io.convert_neurosynth_to_dataset(
+    neurosynth_dset = nimare.io.convert_neurosynth_to_dataset(
         "data/database.txt",
         "data/features.txt",
     )
-    ns_dset.save("data/neurosynth_dataset.pkl.gz")
+    neurosynth_dset.save("data/neurosynth_dataset.pkl.gz")
 
 
-# ## Listing 3
+# ## Listing 3: Kernel Transformers
 
 # In[ ]:
 
 
 mkda_kernel = nimare.meta.kernel.MKDAKernel(r=10)
-mkda_ma_maps = mkda_kernel.transform(sl_dset1, return_type="image")
+mkda_ma_maps = mkda_kernel.transform(sleuth_dset1, return_type="image")
 kda_kernel = nimare.meta.kernel.KDAKernel(r=10)
-kda_ma_maps = kda_kernel.transform(sl_dset1, return_type="image")
+kda_ma_maps = kda_kernel.transform(sleuth_dset1, return_type="image")
 ale_kernel = nimare.meta.kernel.ALEKernel(sample_size=20)
-ale_ma_maps = ale_kernel.transform(sl_dset1, return_type="image")
+ale_ma_maps = ale_kernel.transform(sleuth_dset1, return_type="image")
 
 
-# ### Figure 3
+# ### Figure 3: Kernel-transformed modeled activation maps
 
 # In[ ]:
 
@@ -115,13 +115,13 @@ fig.savefig("figures/figure_03.svg")
 fig.savefig("figures/figure_03_lowres.png")
 
 
-# ## Listing 4
+# ## Listing 4: MKDA Density meta-analysis
 
 # In[ ]:
 
 
 mkdad_meta = nimare.meta.cbma.mkda.MKDADensity(null_method="approximate")
-mkdad_results = mkdad_meta.fit(sl_dset1)
+mkdad_results = mkdad_meta.fit(sleuth_dset1)
 
 
 # ### Save results
@@ -129,24 +129,21 @@ mkdad_results = mkdad_meta.fit(sl_dset1)
 # In[ ]:
 
 
-mkdad_results.save_maps(
-    output_dir="results/",
-    prefix="MKDADensity",
-)
+mkdad_results.save_maps(output_dir="results/", prefix="MKDADensity")
 
 
-# ## Listing 5
+# ## Listing 5: Specific coactivation likelihood estimation meta-analysis
 
 # In[ ]:
 
 
-ijk = ns_dset.coordinates[["i", "j", "k"]].values
+ijk = neurosynth_dset.coordinates[["i", "j", "k"]].values
 meta = nimare.meta.cbma.ale.SCALE(
     n_iters=2500,
     ijk=ijk,
     memory_limit="500mb",
 )
-scale_results = meta.fit(sl_dset1)
+scale_results = meta.fit(sleuth_dset1)
 
 
 # ### Save results
@@ -154,19 +151,16 @@ scale_results = meta.fit(sl_dset1)
 # In[ ]:
 
 
-scale_results.save_maps(
-    output_dir="results/",
-    prefix="SCALE",
-)
+scale_results.save_maps(output_dir="results/", prefix="SCALE")
 
 
-# ## Listing 6
+# ## Listing 6: MKDA Chi-squared meta-analysis
 
 # In[ ]:
 
 
 meta = nimare.meta.cbma.mkda.MKDAChi2()
-mkdac_results = meta.fit(sl_dset1, sl_dset2)
+mkdac_results = meta.fit(sleuth_dset1, sleuth_dset2)
 
 
 # ### Save results
@@ -174,24 +168,21 @@ mkdac_results = meta.fit(sl_dset1, sl_dset2)
 # In[ ]:
 
 
-mkdac_results.save_maps(
-    output_dir="results/",
-    prefix="MKDAChi2",
-)
+mkdac_results.save_maps(output_dir="results/", prefix="MKDAChi2")
 
 
-# ### Figure 4
+# ### Figure 4: Coordinate-based meta-analysis results
 
 # In[ ]:
 
 
 # Additional meta-analyses for figures
 meta = nimare.meta.cbma.mkda.KDA(null_method="approximate")
-kda_results = meta.fit(sl_dset1)
+kda_results = meta.fit(sleuth_dset1)
 kda_results.save_maps(output_dir="results/", prefix="KDA")
 
 meta = nimare.meta.cbma.ale.ALE(null_method="approximate")
-ale_results = meta.fit(sl_dset1)
+ale_results = meta.fit(sleuth_dset1)
 ale_results.save_maps(output_dir="results/", prefix="ALE")
 
 # Meta-analytic maps across estimators
@@ -230,7 +221,7 @@ fig.savefig("figures/figure_04.svg")
 fig.savefig("figures/figure_04_lowres.png")
 
 
-# ## Listing 7
+# ## Listing 7: Transforming images and image-based meta-analysis
 
 # In[ ]:
 
@@ -251,7 +242,7 @@ meta = nimare.meta.ibma.DerSimonianLaird()
 dsl_results = meta.fit(img_dset)
 
 
-# ### Save results
+# ### Save dataset
 
 # In[ ]:
 
@@ -259,7 +250,7 @@ dsl_results = meta.fit(img_dset)
 img_dset.save("data/nidm_dset.pkl.gz")
 
 
-# ### Figure 5
+# ### Figure 5: Image-based meta-analysis results
 
 # In[ ]:
 
@@ -374,13 +365,15 @@ ssbl_results.save_maps(output_dir="results/", prefix="SSBL")
 dsl_results.get_map("est").to_filename("data/pain_map.nii.gz")
 
 
-# ## Listing 8
+# ## Listing 8: Multiple comparisons correction
 
 # In[ ]:
 
 
 mc_corrector = nimare.correct.FWECorrector(
-    method="montecarlo", n_iters=10000, n_cores=4
+    method="montecarlo",
+    n_iters=10000,
+    n_cores=4,
 )
 mc_results = mc_corrector.transform(mkdad_meta.results)
 
@@ -397,7 +390,7 @@ mc_results.save_maps(output_dir="results/", prefix="MKDADensity_FWE")
 fdr_results.save_maps(output_dir="results/", prefix="MKDADensity_FDR")
 
 
-# ### Figure 6
+# ### Figure 6: Multiple comparisons corrected results
 
 # In[ ]:
 
@@ -428,7 +421,7 @@ fig.savefig("figures/figure_06.svg")
 fig.savefig("figures/figure_06_lowres.png")
 
 
-# ## Listing 9
+# ## Listing 9: Subtraction analysis
 
 # In[ ]:
 
@@ -438,7 +431,7 @@ meta = nimare.meta.cbma.ale.ALESubtraction(
     kernel_transformer=kern,
     n_iters=10000,
 )
-subtraction_results = meta.fit(sl_dset1, sl_dset2)
+subtraction_results = meta.fit(sleuth_dset1, sleuth_dset2)
 
 
 # ### Save results
@@ -449,7 +442,7 @@ subtraction_results = meta.fit(sl_dset1, sl_dset2)
 subtraction_results.save_maps(output_dir="results/", prefix="ALESubtraction")
 
 
-# ### Figure 7
+# ### Figure 7: Subtraction results
 
 # In[ ]:
 
@@ -474,7 +467,7 @@ fig.savefig("figures/figure_07.svg")
 fig.savefig("figures/figure_07_lowres.png")
 
 
-# ## Listing 10
+# ## Listing 10: Searching Datasets based on coordinates or masks
 
 # In[ ]:
 
@@ -485,14 +478,14 @@ amyg_val = atlas["labels"].index("Right Amygdala")
 amygdala_mask = image.math_img(f"img == {amyg_val}", img=atlas["maps"])
 amygdala_mask.to_filename("data/amygdala_roi.nii.gz")
 
-amygdala_ids = ns_dset.get_studies_by_mask("data/amygdala_roi.nii.gz")
-dset_amygdala = ns_dset.slice(amygdala_ids)
+amygdala_ids = neurosynth_dset.get_studies_by_mask("data/amygdala_roi.nii.gz")
+dset_amygdala = neurosynth_dset.slice(amygdala_ids)
 
-sphere_ids = ns_dset.get_studies_by_coordinate([[24, -2, -20]], r=6)
-dset_sphere = ns_dset.slice(sphere_ids)
+sphere_ids = neurosynth_dset.get_studies_by_coordinate([[24, -2, -20]], r=6)
+dset_sphere = neurosynth_dset.slice(sphere_ids)
 
 
-# ## Listing 11
+# ## Listing 11: Running MACMs
 
 # In[ ]:
 
@@ -513,7 +506,7 @@ results_amyg.save_maps(output_dir="results/", prefix="ALE_Amygdala")
 results_sphere.save_maps(output_dir="results/", prefix="ALE_Sphere")
 
 
-# ### Figure 8
+# ### Figure 8: MACM results
 
 # In[ ]:
 
@@ -543,7 +536,7 @@ fig.savefig("figures/figure_08.svg")
 fig.savefig("figures/figure_08_lowres.png")
 
 
-# ### Figure 8a
+# ### Figure 8a: MACM results with MKDADensity
 
 # In[ ]:
 
@@ -582,7 +575,7 @@ fig.savefig("figures/figure_08a.svg")
 fig.savefig("figures/figure_08a_lowres.png")
 
 
-# ### Figure 8b
+# ### Figure 8b: MACM results with KDA
 
 # In[ ]:
 

@@ -118,7 +118,7 @@ if False:
 
 
 if False:
-    decoder.save("data/correlation_decoder.pkl.gz")
+    decoder.save("models/correlation_decoder.pkl.gz")
     del decoder
 
 
@@ -165,7 +165,7 @@ decoding_results.sort_values(by="probReverse", ascending=False).to_csv(
 # In[ ]:
 
 
-decoder.save("data/brainmap_decoder.pkl.gz")
+decoder.save("models/brainmap_decoder.pkl.gz")
 del decoder
 
 
@@ -201,7 +201,7 @@ decoding_results.sort_values(by="probReverse", ascending=False).to_csv(
 # In[ ]:
 
 
-decoder.save("data/neurosynth_decoder.pkl.gz")
+decoder.save("models/neurosynth_decoder.pkl.gz")
 del decoder
 
 
@@ -224,7 +224,7 @@ decoding_results = decoder.transform(amygdala_roi)
 # In[ ]:
 
 
-decoding_results.sort_values(by="probReverse", ascending=False).to_csv(
+decoding_results.sort_values(by="r", ascending=False).to_csv(
     "tables/table_06.tsv",
     sep="\t",
     index_label="feature",
@@ -236,5 +236,5 @@ decoding_results.sort_values(by="probReverse", ascending=False).to_csv(
 # In[ ]:
 
 
-decoder.save("data/roi_association_decoder.pkl.gz")
+decoder.save("models/roi_association_decoder.pkl.gz")
 del decoder
