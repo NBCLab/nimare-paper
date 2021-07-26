@@ -6,7 +6,7 @@ models/
 results/
 
 # Large datasets
-data/neurosynth_dataset*.pkl.gz
+data/*.pkl.gz
 
 # MA maps for dataset
 data/ns_dset_maps/
