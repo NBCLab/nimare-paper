@@ -18,10 +18,6 @@ import numpy as np
 from nilearn import datasets, image, input_data, plotting
 from nimare.tests.utils import get_test_data_path
 
-FIG_WIDTH = 10
-ROW_HEIGHT = 2  # good row height for width of 10
-
-
 # ## Listing 1: Converting Sleuth-format files to Datasets
 
 # In[ ]:
@@ -75,44 +71,58 @@ ale_ma_maps = ale_kernel.transform(sleuth_dset1, return_type="image")
 # In[ ]:
 
 
-max_value = np.max(kda_ma_maps[0].get_fdata()) + 1
+study_idx = 10  # a study with overlapping kernels
+max_value = np.max(kda_ma_maps[study_idx].get_fdata()) + 1
 
-fig, axes = plt.subplots(nrows=3, figsize=(FIG_WIDTH, ROW_HEIGHT * 3))
-plotting.plot_stat_map(
-    mkda_ma_maps[2],
-    annotate=False,
-    axes=axes[0],
-    cmap="Reds",
-    cut_coords=[54, -46, 12],
-    draw_cross=False,
-    figure=fig,
-    vmax=max_value,
-)
-axes[0].set_title("MKDA Kernel")
-plotting.plot_stat_map(
-    kda_ma_maps[2],
-    annotate=False,
-    axes=axes[1],
-    cmap="Reds",
-    cut_coords=[54, -46, 12],
-    draw_cross=False,
-    figure=fig,
-    vmax=max_value,
-)
-axes[1].set_title("KDA Kernel")
-plotting.plot_stat_map(
-    ale_ma_maps[2],
-    annotate=False,
-    axes=axes[2],
-    cmap="Reds",
-    cut_coords=[54, -46, 12],
-    draw_cross=False,
-    figure=fig,
-)
-axes[2].set_title("ALE Kernel")
+ma_maps = {
+    "MKDA Kernel": mkda_ma_maps[study_idx],
+    "KDA Kernel": kda_ma_maps[study_idx],
+    "ALE Kernel": ale_ma_maps[study_idx],
+}
 
-fig.savefig("figures/figure_03.svg")
-fig.savefig("figures/figure_03_lowres.png")
+fig, axes = plt.subplots(
+    nrows=3,
+    figsize=(6, 6),
+)
+
+for i_meta, (name, img) in enumerate(ma_maps.items()):
+    if "ALE" in name:
+        vmax = None
+    else:
+        vmax = max_value
+
+    display = plotting.plot_stat_map(
+        img,
+        annotate=False,
+        axes=axes[i_meta],
+        cmap="Reds",
+        cut_coords=[5, 0, 29],
+        draw_cross=False,
+        figure=fig,
+        vmax=vmax,
+    )
+    axes[i_meta].set_title(name)
+
+    colorbar = display._cbar
+    colorbar_ticks = colorbar.get_ticks()
+    if colorbar_ticks[0] < 0:
+        new_ticks = [colorbar_ticks[0], 0, colorbar_ticks[-1]]
+    else:
+        new_ticks = [colorbar_ticks[0], colorbar_ticks[-1]]
+    colorbar.set_ticks(new_ticks, update_ticks=True)
+
+fig.savefig(
+    "figures/figure_03.svg",
+    transparent=True,
+    bbox_inches="tight",
+    pad_inches=0,
+)
+fig.savefig(
+    "figures/figure_03_lowres.png",
+    transparent=True,
+    bbox_inches="tight",
+    pad_inches=0,
+)
 
 
 # ## Listing 4: MKDA Density meta-analysis
@@ -184,41 +194,6 @@ kda_results.save_maps(output_dir="results/", prefix="KDA")
 meta = nimare.meta.cbma.ale.ALE(null_method="approximate")
 ale_results = meta.fit(sleuth_dset1)
 ale_results.save_maps(output_dir="results/", prefix="ALE")
-
-# Meta-analytic maps across estimators
-results = [
-    mkdad_results,
-    mkdac_results,
-    kda_results,
-    ale_results,
-    scale_results,
-]
-names = ["MKDADensity", "MKDAChi2", "KDA", "ALE", "SCALE"]
-fig, axes = plt.subplots(
-    figsize=(FIG_WIDTH, ROW_HEIGHT * len(names)),
-    nrows=len(names),
-)
-for i, r in enumerate(results):
-    name = names[i]
-    if "z" in r.maps.keys():
-        stat_img = r.get_map("z", return_type="image")
-        cmap = "Reds"
-    else:
-        stat_img = r.get_map("z_desc-consistency", return_type="image")
-        cmap = "RdBu_r"
-    plotting.plot_stat_map(
-        stat_img,
-        annotate=False,
-        axes=axes[i],
-        cmap=cmap,
-        cut_coords=[0, 0, 0],
-        draw_cross=False,
-        figure=fig,
-    )
-    axes[i].set_title(name)
-
-fig.savefig("figures/figure_04.svg")
-fig.savefig("figures/figure_04_lowres.png")
 
 
 # ## Listing 7: Transforming images and image-based meta-analysis
@@ -297,49 +272,6 @@ vbl_results = meta.fit(img_dset)
 meta = nimare.meta.ibma.SampleSizeBasedLikelihood(method="reml", mask=masker)
 ssbl_results = meta.fit(img_dset)
 
-# Plot statistical maps from IBMAs
-results = [
-    dsl_results,
-    stouffers_results,
-    weighted_stouffers_results,
-    fishers_results,
-    ols_results,
-    wls_results,
-    hedges_results,
-    vbl_results,
-    ssbl_results,
-]
-names = [
-    "DerSimonian-Laird",
-    "Stouffer's",
-    "Weighted Stouffer's",
-    "Fisher's",
-    "Ordinary Least Squares",
-    "Weighted Least Squares",
-    "Hedges'",
-    "Variance-Based Likelihood",
-    "Sample Size-Based Likelihood",
-]
-
-fig, axes = plt.subplots(
-    figsize=(FIG_WIDTH, ROW_HEIGHT * len(results)), nrows=len(results)
-)
-for i, r in enumerate(results):
-    img = r.get_map("z")
-    plotting.plot_stat_map(
-        img,
-        annotate=False,
-        axes=axes[i],
-        cmap="RdBu_r",
-        cut_coords=[5, -15, 10],
-        draw_cross=False,
-        figure=fig,
-    )
-    axes[i].set_title(names[i])
-
-fig.savefig("figures/figure_05.svg")
-fig.savefig("figures/figure_05_lowres.png")
-
 
 # ### Save results
 
@@ -390,37 +322,6 @@ mc_results.save_maps(output_dir="results/", prefix="MKDADensity_FWE")
 fdr_results.save_maps(output_dir="results/", prefix="MKDADensity_FDR")
 
 
-# ### Figure 6: Multiple comparisons corrected results
-
-# In[ ]:
-
-
-fig, axes = plt.subplots(figsize=(FIG_WIDTH, ROW_HEIGHT * 2), nrows=2)
-plotting.plot_stat_map(
-    mc_results.get_map("z_level-cluster_corr-FWE_method-montecarlo"),
-    annotate=False,
-    axes=axes[0],
-    draw_cross=False,
-    cmap="Reds",
-    cut_coords=[0, 0, 0],
-    figure=fig,
-)
-axes[0].set_title("Cluster-level Monte Carlo")
-plotting.plot_stat_map(
-    fdr_results.get_map("z_corr-FDR_method-indep"),
-    annotate=False,
-    axes=axes[1],
-    draw_cross=False,
-    cmap="Reds",
-    cut_coords=[0, 0, 0],
-    figure=fig,
-)
-axes[1].set_title("Independent FDR")
-
-fig.savefig("figures/figure_06.svg")
-fig.savefig("figures/figure_06_lowres.png")
-
-
 # ## Listing 9: Subtraction analysis
 
 # In[ ]:
@@ -440,31 +341,6 @@ subtraction_results = meta.fit(sleuth_dset1, sleuth_dset2)
 
 
 subtraction_results.save_maps(output_dir="results/", prefix="ALESubtraction")
-
-
-# ### Figure 7: Subtraction results
-
-# In[ ]:
-
-
-stat_img = subtraction_results.get_map(
-    "z_desc-group1MinusGroup2",
-    return_type="image",
-)
-fig, ax = plt.subplots(figsize=(FIG_WIDTH, ROW_HEIGHT))
-plotting.plot_stat_map(
-    stat_img,
-    annotate=False,
-    axes=ax,
-    cmap="RdBu_r",
-    cut_coords=[0, 0, 0],
-    draw_cross=False,
-    figure=fig,
-)
-ax.set_title("ALE Subtraction")
-
-fig.savefig("figures/figure_07.svg")
-fig.savefig("figures/figure_07_lowres.png")
 
 
 # ## Listing 10: Searching Datasets based on coordinates or masks
@@ -506,36 +382,6 @@ results_amyg.save_maps(output_dir="results/", prefix="ALE_Amygdala")
 results_sphere.save_maps(output_dir="results/", prefix="ALE_Sphere")
 
 
-# ### Figure 8: MACM results
-
-# In[ ]:
-
-fig, axes = plt.subplots(figsize=(FIG_WIDTH, ROW_HEIGHT * 2), nrows=2)
-plotting.plot_stat_map(
-    results_amyg.get_map("z"),
-    annotate=False,
-    axes=axes[0],
-    cmap="Reds",
-    cut_coords=[24, -2, -20],
-    draw_cross=False,
-    figure=fig,
-)
-axes[0].set_title("Amygdala ALE MACM")
-plotting.plot_stat_map(
-    results_sphere.get_map("z"),
-    annotate=False,
-    axes=axes[1],
-    cmap="Reds",
-    cut_coords=[24, -2, -20],
-    draw_cross=False,
-    figure=fig,
-)
-axes[1].set_title("Sphere ALE MACM")
-
-fig.savefig("figures/figure_08.svg")
-fig.savefig("figures/figure_08_lowres.png")
-
-
 # ### Figure 8a: MACM results with MKDADensity
 
 # In[ ]:
@@ -548,31 +394,6 @@ results_amyg.save_maps(output_dir="results/", prefix="MKDADensity_Amygdala")
 meta_sphere = nimare.meta.cbma.mkda.MKDADensity(null_method="approximate")
 results_sphere = meta_sphere.fit(dset_sphere)
 results_sphere.save_maps(output_dir="results/", prefix="MKDADensity_Sphere")
-
-fig, axes = plt.subplots(figsize=(FIG_WIDTH, ROW_HEIGHT * 2), nrows=2)
-plotting.plot_stat_map(
-    results_amyg.get_map("z"),
-    annotate=False,
-    axes=axes[0],
-    cmap="Reds",
-    cut_coords=[24, -2, -20],
-    draw_cross=False,
-    figure=fig,
-)
-axes[0].set_title("Amygdala MKDA MACM")
-plotting.plot_stat_map(
-    results_sphere.get_map("z"),
-    annotate=False,
-    axes=axes[1],
-    cmap="Reds",
-    cut_coords=[24, -2, -20],
-    draw_cross=False,
-    figure=fig,
-)
-axes[1].set_title("Sphere MKDA MACM")
-
-fig.savefig("figures/figure_08a.svg")
-fig.savefig("figures/figure_08a_lowres.png")
 
 
 # ### Figure 8b: MACM results with KDA
@@ -587,28 +408,3 @@ results_amyg.save_maps(output_dir="results/", prefix="KDA_Amygdala")
 meta_sphere = nimare.meta.cbma.mkda.KDA()
 results_sphere = meta_sphere.fit(dset_sphere)
 results_sphere.save_maps(output_dir="results/", prefix="KDA_Sphere")
-
-fig, axes = plt.subplots(figsize=(FIG_WIDTH, ROW_HEIGHT * 2), nrows=2)
-plotting.plot_stat_map(
-    results_amyg.get_map("z"),
-    annotate=False,
-    axes=axes[0],
-    cmap="Reds",
-    cut_coords=[24, -2, -20],
-    draw_cross=False,
-    figure=fig,
-)
-axes[0].set_title("Amygdala KDA MACM")
-plotting.plot_stat_map(
-    results_sphere.get_map("z"),
-    annotate=False,
-    axes=axes[1],
-    cmap="Reds",
-    cut_coords=[24, -2, -20],
-    draw_cross=False,
-    figure=fig,
-)
-axes[1].set_title("Sphere KDA MACM")
-
-fig.savefig("figures/figure_08b.svg")
-fig.savefig("figures/figure_08b_lowres.png")
