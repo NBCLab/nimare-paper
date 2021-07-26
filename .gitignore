@@ -1,9 +1,12 @@
 # OSX files
 **/.DS_Store
 
+# Don't upload models or statistical maps
+models/
+results/
+
 # Large datasets
 data/neurosynth_dataset*.pkl.gz
-data/*_decoder.pkl.gz
 
 # MA maps for dataset
 data/ns_dset_maps/
