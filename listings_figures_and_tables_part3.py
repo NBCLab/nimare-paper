@@ -10,14 +10,13 @@
 # In[ ]:
 
 
-import os
 import logging
+import os
 from hashlib import md5
 
 import matplotlib.pyplot as plt
-from nilearn import plotting
-
 import nimare
+from nilearn import plotting
 
 FIG_WIDTH = 10
 ROW_HEIGHT = 2  # good row height for width of 10
@@ -64,21 +63,21 @@ print(f"{len(target_features)} features selected.", flush=True)
 
 # In[ ]:
 
-
-LGR.info("Initializing CorrelationDecoder.")
-decoder = nimare.decode.continuous.CorrelationDecoder(
-    frequency_threshold=0.001,
-    meta_estimator=nimare.meta.MKDAChi2(
-        kernel_transformer=kern,
-        memory_limit="500mb",
-    ),
-    target_image="z_desc-specificity",
-    features=target_features,
-)
-LGR.info("Fitting CorrelationDecoder.")
-decoder.fit(ns_dset)
-LGR.info("Applying CorrelationDecoder.")
-decoding_results = decoder.transform("data/pain_map.nii.gz")
+if False:
+    LGR.info("Initializing CorrelationDecoder.")
+    decoder = nimare.decode.continuous.CorrelationDecoder(
+        frequency_threshold=0.001,
+        meta_estimator=nimare.meta.MKDAChi2(
+            kernel_transformer=kern,
+            memory_limit="500mb",
+        ),
+        target_image="z_desc-specificity",
+        features=target_features,
+    )
+    LGR.info("Fitting CorrelationDecoder.")
+    decoder.fit(ns_dset)
+    LGR.info("Applying CorrelationDecoder.")
+    decoding_results = decoder.transform("data/pain_map.nii.gz")
 
 
 # ### Figure 10
@@ -86,17 +85,18 @@ decoding_results = decoder.transform("data/pain_map.nii.gz")
 # In[ ]:
 
 
-fig, ax = plt.subplots(figsize=(FIG_WIDTH, ROW_HEIGHT))
-plotting.plot_stat_map(
-    "data/pain_map.nii.gz",
-    annotate=False,
-    axes=ax,
-    cmap="RdBu_r",
-    draw_cross=False,
-    figure=fig,
-)
-fig.savefig("figures/figure_10.svg")
-fig.savefig("figures/figure_10_lowres.png")
+if False:
+    fig, ax = plt.subplots(figsize=(FIG_WIDTH, ROW_HEIGHT))
+    plotting.plot_stat_map(
+        "data/pain_map.nii.gz",
+        annotate=False,
+        axes=ax,
+        cmap="RdBu_r",
+        draw_cross=False,
+        figure=fig,
+    )
+    fig.savefig("figures/figure_10.svg")
+    fig.savefig("figures/figure_10_lowres.png")
 
 
 # ### Table 3
@@ -104,11 +104,12 @@ fig.savefig("figures/figure_10_lowres.png")
 # In[ ]:
 
 
-decoding_results.sort_values(by="r", ascending=False).to_csv(
-    "tables/table_03.tsv",
-    sep="\t",
-    index_label="feature",
-)
+if False:
+    decoding_results.sort_values(by="r", ascending=False).to_csv(
+        "tables/table_03.tsv",
+        sep="\t",
+        index_label="feature",
+    )
 
 
 # ### Cleanup
@@ -116,8 +117,9 @@ decoding_results.sort_values(by="r", ascending=False).to_csv(
 # In[ ]:
 
 
-decoder.save("data/correlation_decoder.pkl.gz")
-del decoder
+if False:
+    decoder.save("data/correlation_decoder.pkl.gz")
+    del decoder
 
 
 # ## Listing 16
@@ -127,7 +129,8 @@ del decoder
 # In[ ]:
 
 
-amygdala_ids = ns_dset.get_studies_by_mask("data/amygdala_roi.nii.gz")
+amygdala_roi = "data/amygdala_roi.nii.gz"
+amygdala_ids = ns_dset.get_studies_by_mask(amygdala_roi)
 
 
 # ### Listing 16
@@ -181,7 +184,7 @@ decoder.fit(ns_dset)
 decoding_results = decoder.transform(amygdala_ids)
 
 
-# ### Table 6
+# ### Table 5
 
 # In[ ]:
 
@@ -199,4 +202,39 @@ decoding_results.sort_values(by="probReverse", ascending=False).to_csv(
 
 
 decoder.save("data/neurosynth_decoder.pkl.gz")
+del decoder
+
+
+# ## Listing 18
+
+# In[ ]:
+
+
+decoder = nimare.decode.discrete.ROIAssociationDecoder(
+    u=0.05,
+    correction="fdr_bh",
+    features=target_features,
+)
+decoder.fit(ns_dset)
+decoding_results = decoder.transform(amygdala_roi)
+
+
+# ### Table 6
+
+# In[ ]:
+
+
+decoding_results.sort_values(by="probReverse", ascending=False).to_csv(
+    "tables/table_06.tsv",
+    sep="\t",
+    index_label="feature",
+)
+
+
+# ### Cleanup
+
+# In[ ]:
+
+
+decoder.save("data/roi_association_decoder.pkl.gz")
 del decoder

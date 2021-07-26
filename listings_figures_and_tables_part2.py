@@ -13,10 +13,9 @@
 import os
 
 import matplotlib.pyplot as plt
+import nimare
 import pandas as pd
 from nilearn import image, plotting
-
-import nimare
 
 FIG_WIDTH = 10
 ROW_HEIGHT = 2  # good row height for width of 10
@@ -63,6 +62,14 @@ model = nimare.annotate.lda.LDAModel(
 model.fit()
 
 
+# ### Save model
+
+# In[ ]:
+
+
+model.save("models/LDAModel.pkl.gz")
+
+
 # ### Table 1
 
 # In[ ]:
@@ -100,6 +107,14 @@ model = nimare.annotate.gclda.GCLDAModel(
     mask=ns_dset.masker.mask_img,
 )
 model.fit(n_iters=2500, loglikely_freq=100)
+
+
+# ### Save model
+
+# In[ ]:
+
+
+model.save("models/GCLDAModel.pkl.gz")
 
 
 # ### Table 2

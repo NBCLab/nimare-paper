@@ -13,10 +13,9 @@
 import os
 
 import matplotlib.pyplot as plt
+import nimare
 import numpy as np
 from nilearn import datasets, image, input_data, plotting
-
-import nimare
 from nimare.tests.utils import get_test_data_path
 
 FIG_WIDTH = 10
@@ -125,6 +124,17 @@ mkdad_meta = nimare.meta.cbma.mkda.MKDADensity(null_method="approximate")
 mkdad_results = mkdad_meta.fit(sl_dset1)
 
 
+# ### Save results
+
+# In[ ]:
+
+
+mkdad_results.save_maps(
+    output_dir="results/",
+    prefix="MKDADensity",
+)
+
+
 # ## Listing 5
 
 # In[ ]:
@@ -139,6 +149,17 @@ meta = nimare.meta.cbma.ale.SCALE(
 scale_results = meta.fit(sl_dset1)
 
 
+# ### Save results
+
+# In[ ]:
+
+
+scale_results.save_maps(
+    output_dir="results/",
+    prefix="SCALE",
+)
+
+
 # ## Listing 6
 
 # In[ ]:
@@ -146,6 +167,17 @@ scale_results = meta.fit(sl_dset1)
 
 meta = nimare.meta.cbma.mkda.MKDAChi2()
 mkdac_results = meta.fit(sl_dset1, sl_dset2)
+
+
+# ### Save results
+
+# In[ ]:
+
+
+mkdac_results.save_maps(
+    output_dir="results/",
+    prefix="MKDAChi2",
+)
 
 
 # ### Figure 4
@@ -156,9 +188,11 @@ mkdac_results = meta.fit(sl_dset1, sl_dset2)
 # Additional meta-analyses for figures
 meta = nimare.meta.cbma.mkda.KDA(null_method="approximate")
 kda_results = meta.fit(sl_dset1)
+kda_results.save_maps(output_dir="results/", prefix="KDA")
 
 meta = nimare.meta.cbma.ale.ALE(null_method="approximate")
 ale_results = meta.fit(sl_dset1)
+ale_results.save_maps(output_dir="results/", prefix="ALE")
 
 # Meta-analytic maps across estimators
 results = [
@@ -215,6 +249,14 @@ img_dset = varcope_transformer.transform(img_dset)
 
 meta = nimare.meta.ibma.DerSimonianLaird()
 dsl_results = meta.fit(img_dset)
+
+
+# ### Save results
+
+# In[ ]:
+
+
+img_dset.save("data/nidm_dset.pkl.gz")
 
 
 # ### Figure 5
@@ -308,6 +350,22 @@ fig.savefig("figures/figure_05.svg")
 fig.savefig("figures/figure_05_lowres.png")
 
 
+# ### Save results
+
+# In[ ]:
+
+
+dsl_results.save_maps(output_dir="results/", prefix="DerSimonianLaird")
+stouffers_results.save_maps(output_dir="results/", prefix="Stouffers")
+weighted_stouffers_results.save_maps(output_dir="results/", prefix="WeightedStouffers")
+fishers_results.save_maps(output_dir="results/", prefix="Fishers")
+ols_results.save_maps(output_dir="results/", prefix="OLS")
+wls_results.save_maps(output_dir="results/", prefix="WLS")
+hedges_results.save_maps(output_dir="results/", prefix="Hedges")
+vbl_results.save_maps(output_dir="results/", prefix="VBL")
+ssbl_results.save_maps(output_dir="results/", prefix="SSBL")
+
+
 # ### Save map for future use
 
 # In[ ]:
@@ -328,6 +386,15 @@ mc_results = mc_corrector.transform(mkdad_meta.results)
 
 fdr_corrector = nimare.correct.FDRCorrector(method="indep")
 fdr_results = fdr_corrector.transform(mkdad_meta.results)
+
+
+# ### Save results
+
+# In[ ]:
+
+
+mc_results.save_maps(output_dir="results/", prefix="MKDADensity_FWE")
+fdr_results.save_maps(output_dir="results/", prefix="MKDADensity_FDR")
 
 
 # ### Figure 6
@@ -372,6 +439,14 @@ meta = nimare.meta.cbma.ale.ALESubtraction(
     n_iters=10000,
 )
 subtraction_results = meta.fit(sl_dset1, sl_dset2)
+
+
+# ### Save results
+
+# In[ ]:
+
+
+subtraction_results.save_maps(output_dir="results/", prefix="ALESubtraction")
 
 
 # ### Figure 7
@@ -429,6 +504,15 @@ meta_sphere = nimare.meta.cbma.ale.ALE(kernel__sample_size=20)
 results_sphere = meta_sphere.fit(dset_sphere)
 
 
+# ### Save results
+
+# In[ ]:
+
+
+results_amyg.save_maps(output_dir="results/", prefix="ALE_Amygdala")
+results_sphere.save_maps(output_dir="results/", prefix="ALE_Sphere")
+
+
 # ### Figure 8
 
 # In[ ]:
@@ -459,14 +543,18 @@ fig.savefig("figures/figure_08.svg")
 fig.savefig("figures/figure_08_lowres.png")
 
 
+# ### Figure 8a
+
 # In[ ]:
 
 
 meta_amyg = nimare.meta.cbma.mkda.MKDADensity(null_method="approximate")
 results_amyg = meta_amyg.fit(dset_amygdala)
+results_amyg.save_maps(output_dir="results/", prefix="MKDADensity_Amygdala")
 
 meta_sphere = nimare.meta.cbma.mkda.MKDADensity(null_method="approximate")
 results_sphere = meta_sphere.fit(dset_sphere)
+results_sphere.save_maps(output_dir="results/", prefix="MKDADensity_Sphere")
 
 fig, axes = plt.subplots(figsize=(FIG_WIDTH, ROW_HEIGHT * 2), nrows=2)
 plotting.plot_stat_map(
@@ -494,14 +582,18 @@ fig.savefig("figures/figure_08a.svg")
 fig.savefig("figures/figure_08a_lowres.png")
 
 
+# ### Figure 8b
+
 # In[ ]:
 
 
 meta_amyg = nimare.meta.cbma.mkda.KDA()
 results_amyg = meta_amyg.fit(dset_amygdala)
+results_amyg.save_maps(output_dir="results/", prefix="KDA_Amygdala")
 
 meta_sphere = nimare.meta.cbma.mkda.KDA()
 results_sphere = meta_sphere.fit(dset_sphere)
+results_sphere.save_maps(output_dir="results/", prefix="KDA_Sphere")
 
 fig, axes = plt.subplots(figsize=(FIG_WIDTH, ROW_HEIGHT * 2), nrows=2)
 plotting.plot_stat_map(
