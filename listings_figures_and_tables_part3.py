@@ -77,7 +77,7 @@ if False:
     LGR.info("Fitting CorrelationDecoder.")
     decoder.fit(ns_dset)
     LGR.info("Applying CorrelationDecoder.")
-    decoding_results = decoder.transform("data/pain_map.nii.gz")
+    decoding_results = decoder.transform("results/DerSimonianLaird_est.nii.gz")
 
 
 # ### Figure 10
@@ -88,7 +88,7 @@ if False:
 if False:
     fig, ax = plt.subplots(figsize=(FIG_WIDTH, ROW_HEIGHT))
     plotting.plot_stat_map(
-        "data/pain_map.nii.gz",
+        "results/DerSimonianLaird_est.nii.gz",
         annotate=False,
         axes=ax,
         cmap="RdBu_r",

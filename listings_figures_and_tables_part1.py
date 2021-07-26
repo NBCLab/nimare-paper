@@ -289,14 +289,6 @@ vbl_results.save_maps(output_dir="results/", prefix="VBL")
 ssbl_results.save_maps(output_dir="results/", prefix="SSBL")
 
 
-# ### Save map for future use
-
-# In[ ]:
-
-
-dsl_results.get_map("est").to_filename("data/pain_map.nii.gz")
-
-
 # ## Listing 8: Multiple comparisons correction
 
 # In[ ]:
