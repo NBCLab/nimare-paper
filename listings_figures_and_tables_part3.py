@@ -14,12 +14,8 @@ import logging
 import os
 from hashlib import md5
 
-import matplotlib.pyplot as plt
 import nimare
-from nilearn import plotting
 
-FIG_WIDTH = 10
-ROW_HEIGHT = 2  # good row height for width of 10
 LGR = logging.getLogger(__name__)
 
 
@@ -78,25 +74,6 @@ if False:
     decoder.fit(ns_dset)
     LGR.info("Applying CorrelationDecoder.")
     decoding_results = decoder.transform("results/DerSimonianLaird_est.nii.gz")
-
-
-# ### Figure 10
-
-# In[ ]:
-
-
-if False:
-    fig, ax = plt.subplots(figsize=(FIG_WIDTH, ROW_HEIGHT))
-    plotting.plot_stat_map(
-        "results/DerSimonianLaird_est.nii.gz",
-        annotate=False,
-        axes=ax,
-        cmap="RdBu_r",
-        draw_cross=False,
-        figure=fig,
-    )
-    fig.savefig("figures/figure_10.svg")
-    fig.savefig("figures/figure_10_lowres.png")
 
 
 # ### Table 3

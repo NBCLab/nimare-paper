@@ -12,14 +12,8 @@
 
 import os
 
-import matplotlib.pyplot as plt
 import nimare
 import pandas as pd
-from nilearn import image, plotting
-
-FIG_WIDTH = 10
-ROW_HEIGHT = 2  # good row height for width of 10
-
 
 # ## Top-level Preparation
 
@@ -132,29 +126,3 @@ p_word_g_topic_df.to_csv(
     sep="\t",
     index_label="topic",
 )
-
-
-# ### Figure 9
-
-# In[ ]:
-
-
-fig, axes = plt.subplots(nrows=5, figsize=(FIG_WIDTH, ROW_HEIGHT * 5))
-
-topic_img_4d = ns_dset_first_500.masker.inverse_transform(
-    model.p_voxel_g_topic_.T,
-)
-for i_topic in range(5):
-    topic_img = image.index_img(topic_img_4d, index=i_topic)
-    plotting.plot_stat_map(
-        topic_img,
-        annotate=False,
-        axes=axes[i_topic],
-        cmap="Reds",
-        draw_cross=False,
-        figure=fig,
-    )
-    axes[i_topic].set_title(f"Topic {i_topic + 1}")
-
-fig.savefig("figures/figure_09.svg")
-fig.savefig("figures/figure_09_lowres.png")
