@@ -1,0 +1,11 @@
+Feature	pForward	zForward	probForward	pReverse	zReverse	probReverse
+Neurosynth_TFIDF__amygdala	0.000	inf	0.239	0.000	inf	0.886
+Neurosynth_TFIDF__neutral	0.000	11.700	0.191	0.000	21.842	0.788
+Neurosynth_TFIDF__faces	0.000	8.769	0.183	0.000	19.224	0.773
+Neurosynth_TFIDF__emotional	0.000	23.400	0.160	0.000	22.191	0.765
+Neurosynth_TFIDF__emotion	0.000	10.857	0.171	0.000	18.582	0.760
+Neurosynth_TFIDF__affective	0.001	3.311	0.166	0.000	14.018	0.738
+Neurosynth_TFIDF__face	0.000	5.038	0.157	0.000	13.551	0.724
+Neurosynth_TFIDF__hippocampus	0.000	6.185	0.146	0.000	12.339	0.703
+Neurosynth_TFIDF__orbitofrontal	0.305	1.026	0.138	0.000	8.910	0.675
+Neurosynth_TFIDF__reward	0.395	0.851	0.130	0.000	7.530	0.652

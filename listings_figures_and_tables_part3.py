@@ -54,8 +54,11 @@ target_features = target_features[target_features]
 target_features = target_features.index.values
 print(f"{len(target_features)} features selected.", flush=True)
 
+amygdala_roi = "data/amygdala_roi.nii.gz"
+amygdala_ids = ns_dset.get_studies_by_mask(amygdala_roi)
 
-# ## Listing 15
+
+# ## Listing 15: Correlation Decoder
 
 # In[ ]:
 
@@ -99,22 +102,50 @@ if False:
     del decoder
 
 
-# ## Listing 16
-
-# ### Preparation
+# ## Listing 16: ROI Association Decoder
 
 # In[ ]:
 
 
-amygdala_roi = "data/amygdala_roi.nii.gz"
-amygdala_ids = ns_dset.get_studies_by_mask(amygdala_roi)
+print("Running ROIAssociationDecoder", flush=True)
+decoder = nimare.decode.discrete.ROIAssociationDecoder(
+    amygdala_roi,
+    u=0.05,
+    correction="fdr_bh",
+    features=target_features,
+)
+decoder.fit(ns_dset)
+decoding_results = decoder.transform()
 
 
-# ### Listing 16
+# ### Table 4
 
 # In[ ]:
 
 
+decoding_results.to_csv(
+    "tables/table_04.tsv",
+    sep="\t",
+    index_label="feature",
+)
+
+
+# ### Cleanup
+
+# In[ ]:
+
+
+decoder.save("models/roi_association_decoder.pkl.gz")
+del decoder
+
+
+# ## Listing 17: BrainMap Decoder
+
+
+# In[ ]:
+
+
+print("Running BrainMapDecoder", flush=True)
 decoder = nimare.decode.discrete.BrainMapDecoder(
     frequency_threshold=0.001,
     u=0.05,
@@ -125,13 +156,13 @@ decoder.fit(ns_dset)
 decoding_results = decoder.transform(amygdala_ids)
 
 
-# ### Table 4
+# ### Table 5
 
 # In[ ]:
 
 
-decoding_results.sort_values(by="probReverse", ascending=False).to_csv(
-    "tables/table_04.tsv",
+decoding_results.to_csv(
+    "tables/table_05.tsv",
     sep="\t",
     index_label="feature",
 )
@@ -146,11 +177,12 @@ decoder.save("models/brainmap_decoder.pkl.gz")
 del decoder
 
 
-# ## Listing 17
+# ## Listing 18: Neurosynth Decoder
 
 # In[ ]:
 
 
+print("Running NeurosynthDecoder", flush=True)
 decoder = nimare.decode.discrete.NeurosynthDecoder(
     frequency_threshold=0.001,
     u=0.05,
@@ -166,42 +198,7 @@ decoding_results = decoder.transform(amygdala_ids)
 # In[ ]:
 
 
-decoding_results.sort_values(by="probReverse", ascending=False).to_csv(
-    "tables/table_05.tsv",
-    sep="\t",
-    index_label="feature",
-)
-
-
-# ### Cleanup
-
-# In[ ]:
-
-
-decoder.save("models/neurosynth_decoder.pkl.gz")
-del decoder
-
-
-# ## Listing 18
-
-# In[ ]:
-
-
-decoder = nimare.decode.discrete.ROIAssociationDecoder(
-    u=0.05,
-    correction="fdr_bh",
-    features=target_features,
-)
-decoder.fit(ns_dset)
-decoding_results = decoder.transform(amygdala_roi)
-
-
-# ### Table 6
-
-# In[ ]:
-
-
-decoding_results.sort_values(by="r", ascending=False).to_csv(
+decoding_results.to_csv(
     "tables/table_06.tsv",
     sep="\t",
     index_label="feature",
@@ -213,5 +210,5 @@ decoding_results.sort_values(by="r", ascending=False).to_csv(
 # In[ ]:
 
 
-decoder.save("models/roi_association_decoder.pkl.gz")
+decoder.save("models/neurosynth_decoder.pkl.gz")
 del decoder

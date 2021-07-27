@@ -1,11 +1,11 @@
-Feature	pForward	zForward	likelihoodForward	pReverse	zReverse	probReverse
-Neurosynth_TFIDF__magnetic	0.139	1.481	1.072	0.374	0.890	0.015
-Neurosynth_TFIDF__amygdala	0.000	7.876	4.530	0.000	inf	0.015
-Neurosynth_TFIDF__resonance	0.118	1.561	1.077	0.273	1.096	0.015
-Neurosynth_TFIDF__magnetic resonance	0.109	1.602	1.080	0.259	1.130	0.015
-Neurosynth_TFIDF__functional magnetic	0.077	1.769	1.091	0.026	2.219	0.014
-Neurosynth_TFIDF__using	0.633	0.477	1.023	0.746	0.324	0.012
-Neurosynth_TFIDF__healthy	0.000	3.950	1.230	0.001	3.478	0.011
-Neurosynth_TFIDF__task	1.000	0.000	0.815	0.000	-4.237	0.010
-Neurosynth_TFIDF__prefrontal	0.295	1.047	1.060	0.112	1.591	0.010
-Neurosynth_TFIDF__suggest	0.470	0.723	1.043	0.397	0.848	0.010
+Feature	r
+Neurosynth_TFIDF__amygdala	0.366
+Neurosynth_TFIDF__emotional	0.192
+Neurosynth_TFIDF__neutral	0.176
+Neurosynth_TFIDF__faces	0.153
+Neurosynth_TFIDF__emotion	0.130
+Neurosynth_TFIDF__hippocampus	0.113
+Neurosynth_TFIDF__affective	0.104
+Neurosynth_TFIDF__face	0.091
+Neurosynth_TFIDF__parietal	-0.090
+Neurosynth_TFIDF__negative	0.088

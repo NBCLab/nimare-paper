@@ -30,8 +30,9 @@ if __name__ == "__main__":
 
     table_sort_columns = {
         "table_03": "r",
-        "table_04": "probReverse",
+        "table_04": "r",
         "table_05": "probReverse",
+        "table_06": "probReverse",
     }
     for name, sort_column in table_sort_columns.items():
         df = pd.read_table(f"tables/{name}.tsv", index_col="feature")
