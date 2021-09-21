@@ -42,15 +42,7 @@ parts:
     - caption: Meta-analytic functional decoding
       file: content/decoding
 - caption: Future directions
-  chapters:
-  - caption: Integration with external databases
-    file: content/database_integration
-  - caption: Seed-based D-Mapping
-    file: content/sdm
-  - caption: Model-based CBMA
-    file: content/model-based_cbma
-  - caption: Additional automated annotation methods
-    file: content/additional_annotation_methods
+  file: content/future_directions
 - caption: Conclusion
   file: content/conclusion
 - caption: Acknowledgements
@@ -60,8 +52,8 @@ parts:
   file: content/appendix
   sections:
   - caption: "Appendix I: Discrete decoding, BrainMap approach"
-    file: content/decoding/brainmap
+    file: content/appendix/brainmap_decoding
   - caption: "Appendix II: Discrete decoding, NeuroSynth approach"
-    file: content/decoding/neurosynth
+    file: content/appendix/neurosynth_decoding
 - caption: References
   file: content/references
