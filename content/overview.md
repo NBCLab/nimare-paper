@@ -1,3 +1,5 @@
+# NiMARE Overview
+
 NiMARE is designed to be modular and object-oriented, with an interface that mimics popular Python libraries, including scikit-learn and nilearn.
 This standardized interface allows users to employ a wide range of meta-analytic algorithms without having to familiarize themselves with the idiosyncrasies of algorithm-specific tools.
 This lets users use whatever method is most appropriate for a given research question with minimal mental overhead from switching methods.

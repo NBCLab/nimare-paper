@@ -1,3 +1,5 @@
+# Application Programming Interface
+
 One of the principal goals of NiMARE is to implement a range of methods with a set of shared interfaces, to enable users to employ the most appropriate algorithm for a given question without introducing a steep learning curve.
 This approach is modeled on the widely-used scikit-learn package (@scikit-learn, @sklearn_api), which implements a large number of machine learning algorithms - all with simple, consistent interfaces.
 Regardless of the algorithm employed, data should be in the same format and the same class methods should be called to fit and/or generate predictions from the model.

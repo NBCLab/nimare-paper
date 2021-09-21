@@ -5,55 +5,55 @@ format: jb-book
 root: content/abstract
 
 parts:
-- caption: Introduction
+- title: Introduction
   chapters:
-  - file: content/intro
-- caption: NiMARE Overview
+  - file: content/introduction
+- title: NiMARE Overview
   file: content/overview
   chapters:
-  - caption: Application Programming Interface
+  - title: Application Programming Interface
     file: content/api
-  - caption: Package Organization
+  - title: Package Organization
     file: content/organization
-  - caption: Dependencies
+  - title: Dependencies
     file: content/dependencies
-- caption: Meta-analytic methods
+- title: Meta-analytic methods
   chapters:
-  - caption: Meta-analytic Databases and Resources
+  - title: Meta-analytic Databases and Resources
     file: content/resources
-  - caption: Supported Neuroimaging Meta-Analysis Algorithms
+  - title: Supported Neuroimaging Meta-Analysis Algorithms
     file: content/meta
     sections:
-    - caption: CBMA methods
+    - title: CBMA methods
       file: content/cbma
-    - caption: IBMA methods
+    - title: IBMA methods
       file: content/ibma
-    - caption: Multiple comparisons correction
+    - title: Multiple comparisons correction
       file: content/correction
-  - caption: Other Meta-analytic Approaches
+  - title: Other Meta-analytic Approaches
     file: content/other_approaches
     sections:
-    - caption: Meta-analytic subtraction analysis
+    - title: Meta-analytic subtraction analysis
       file: content/subtraction
-    - caption: Meta-analytic coactivation modeling
+    - title: Meta-analytic coactivation modeling
       file: content/macm
-    - caption: Automated annotation
+    - title: Automated annotation
       file: content/annotation
-    - caption: Meta-analytic functional decoding
+    - title: Meta-analytic functional decoding
       file: content/decoding
-- caption: Future directions
-  file: content/future_directions
-- caption: Conclusion
-  file: content/conclusion
-- caption: Acknowledgements
-  file: content/acknowledgements
-- caption: Figures and Tables
-- caption: Appendix
+- title: Future directions
+  chapters:
+  - file: content/future_directions
+- title: Conclusion
+  chapters:
+  - file: content/conclusion
+- title: Acknowledgements
+  chapters:
+  - file: content/acknowledgements
+- title: Appendix
   file: content/appendix
-  sections:
-  - caption: "Appendix I: Discrete decoding, BrainMap approach"
+  chapters:
+  - title: "Appendix I: Discrete decoding, BrainMap approach"
     file: content/appendix/brainmap_decoding
-  - caption: "Appendix II: Discrete decoding, NeuroSynth approach"
+  - title: "Appendix II: Discrete decoding, NeuroSynth approach"
     file: content/appendix/neurosynth_decoding
-- caption: References
-  file: content/references

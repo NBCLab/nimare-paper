@@ -1,1 +1,1 @@
-## Appendix II: Discrete decoding, NeuroSynth approach
+# Appendix II: Discrete decoding, NeuroSynth approach

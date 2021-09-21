@@ -1,5 +1,5 @@
 title: "NiMARE: Neuroimaging Meta-Analysis Research Environment"
-logo: images/nimare_overview.png
+logo: figures/nimare_overview.png
 execute:
   execute_notebooks: "off"
 bibtex_bibfiles:

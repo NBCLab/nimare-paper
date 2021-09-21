@@ -1,3 +1,5 @@
+# Package Organization
+
 At present, the package is organized into 14 distinct modules.
 `nimare.dataset` defines the `Dataset` class.
 `nimare.meta` includes `Estimators` for coordinate- and image-based meta-analysis methods.

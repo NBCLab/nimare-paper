@@ -1,1 +1,1 @@
-## Appendix I: Discrete decoding, BrainMap approach
+# Appendix I: Discrete decoding, BrainMap approach
