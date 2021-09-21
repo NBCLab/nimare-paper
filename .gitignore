@@ -1,3 +1,6 @@
+# Jupyter Book HTML files (for now)
+_build/
+
 # OSX files
 **/.DS_Store
 
