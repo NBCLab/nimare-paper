@@ -1,0 +1,66 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: content/abstract
+
+parts:
+- caption: Introduction
+  chapters:
+  - file: content/intro
+- caption: NiMARE Overview
+  chapters:
+  - caption: Application Programming Interface
+    file: content/api
+  - caption: Package Organization
+    file: content/organization
+  - caption: Dependencies
+    file: content/dependencies
+- caption: Meta-analytic methods
+  chapters:
+  - caption: Meta-analytic Databases and Resources
+    file: content/resources
+  - caption: Supported Neuroimaging Meta-Analysis Algorithms
+    file: content/meta
+    sections:
+    - caption: CBMA methods
+      file: content/cbma
+    - caption: IBMA methods
+      file: content/ibma
+    - caption: Multiple comparisons correction
+      file: content/correction
+  - caption: Other Meta-analytic Approaches
+    file: content/other_approaches
+    sections:
+    - caption: Meta-analytic subtraction analysis
+      file: content/subtraction
+    - caption: Meta-analytic coactivation modeling
+      file: content/macm
+    - caption: Automated annotation
+      file: content/annotation
+    - caption: Meta-analytic functional decoding
+      file: content/decoding
+- caption: Future directions
+  chapters:
+  - caption: Integration with external databases
+    file: content/database_integration
+  - caption: Seed-based D-Mapping
+    file: content/sdm
+  - caption: Model-based CBMA
+    file: content/model-based_cbma
+  - caption: Additional automated annotation methods
+    file: content/additional_annotation_methods
+- caption: Conclusion
+  file: content/conclusion
+- caption: Acknowledgements
+  file: content/acknowledgements
+- caption: Figures and Tables
+- caption: Appendix
+  file: content/appendix
+  sections:
+  - caption: "Appendix I: Discrete decoding, BrainMap approach"
+    file: content/decoding/brainmap
+  - caption: "Appendix II: Discrete decoding, NeuroSynth approach"
+    file: content/decoding/neurosynth
+- caption: References
+  file: content/references
