@@ -39,9 +39,37 @@ NiMARE provides a function to import data from Sleuth text files into the NiMARE
 **Listing 1** displays an example code snippet illustrating how to convert a Sleuth text file to a NiMARE dataset.
 
 ```{code-cell} ipython3
+:tags: [hide-cell]
+# First, import the necessary modules and functions
+import os
+
+import matplotlib.pyplot as plt
+import numpy as np
+from nilearn import datasets, image, input_data, plotting
+
 import nimare
-sl_dset1 = nimare.io.convert_sleuth_to_dataset('data/CannabisMinusCtrl.txt')
-sl_dset2 = nimare.io.convert_sleuth_to_dataset('data/CtrlMinusCannabis.txt')
+from nimare.tests.utils import get_test_data_path
+
+# Define where data files will be located
+DATA_DIR = os.path.abspath("../data")
+```
+
+The function `nimare.io.convert_sleuth_to_dataset` can be used to convert text files exported from Sleuth into NiMARE `Dataset`s.
+Here, we convert two files from a previous publication by NiMARE contributors \cite{yanes2018}.
+
+```{code-cell} ipython3
+sleuth_dset1 = nimare.io.convert_sleuth_to_dataset(
+    os.path.join(DATA_DIR, "contrast-CannabisMinusControl_space-talairach_sleuth.txt")
+)
+sleuth_dset2 = nimare.io.convert_sleuth_to_dataset(
+    os.path.join(DATA_DIR, "contrast-ControlMinusCannabis_space-talairach_sleuth.txt")
+)
+print(sleuth_dset1)
+print(sleuth_dset2)
+
+# Save the Datasets to files for future use
+sleuth_dset1.save(os.path.join(DATA_DIR, "sleuth_dset1.pkl.gz"))
+sleuth_dset2.save(os.path.join(DATA_DIR, "sleuth_dset2.pkl.gz"))
 ```
 
 **Listing 1.** Example usage of the `convert_sleuth_to_dataset()` function.
@@ -61,11 +89,28 @@ As evidence of its utility, Neurosynth has been used to define a priori regions 
 **Listing 2** displays an example code snippet illustrating how to fetch the Neurosynth database and convert it to a NiMARE dataset.
 
 ```{code-cell} ipython3
-nimare.extract.fetch_neurosynth('.', unpack=True)
-ns_dset = nimare.io.convert_neurosynth_to_dataset(
-    'database.txt',
-    'features.txt',
+# Download the desired version of Neurosynth from GitHub.
+files = nimare.extract.fetch_neurosynth(
+    path=DATA_DIR,
+    version="7",
+    source="abstract",
+    vocab="terms",
+    overwrite=False,
 )
+pprint(files)
+neurosynth_db = files[0]
+
+# Convert the files to a Dataset.
+# This may take a while (~10 minutes)
+neurosynth_dset = nimare.io.convert_neurosynth_to_dataset(
+    coordinates_file=neurosynth_db["coordinates"],
+    metadata_file=neurosynth_db["metadata"],
+    annotations_files=neurosynth_db["features"],
+)
+print(neurosynth_dset)
+
+# Save the Dataset for later use.
+neurosynth_dset.save(os.path.join(DATA_DIR, "neurosynth_dataset.pkl.gz"))
 ```
 
 **Listing 2.** Example usage of the `fetch_neurosynth()` and `convert_neurosynth_to_dataset()` functions.
@@ -87,7 +132,36 @@ NeuroQuery is an online service for large-scale predictive meta-analysis.
 Unlike Neurosynth, which performs statistical inference and produces statistical maps, NeuroQuery is a supervised learning model and produces a prediction of the brain areas most likely to contain activations.
 These maps predict locations where studies investigating a given area (determined by the text prompt) are likely to produce activations, but they cannot be used in the same manner as statistical maps from a standard coordinate-based meta-analysis.
 In addition to this predictive meta-analytic tool, NeuroQuery also provides a new database of coordinates, text annotations, and metadata via an automated extraction approach that improves on Neurosynth's original methods.
+
 While NiMARE does not currently include an interface to NeuroQuery's predictive meta-analytic method, there are functions for downloading the NeuroQuery database and converting it to NiMARE format, much like Neurosynth.
+The functions for downloading the NeuroQuery database and converting it to a `Dataset` are `nimare.extract.fetch_neuroquery` and `nimare.io.convert_neurosynth_to_dataset`, respectively.
+We are able to use the same function for converting the database to a `Dataset` for NeuroQuery as Neurosynth because both databases store their data in the same structure.
+
+```{code-cell} ipython3
+# Download the desired version of NeuroQuery from GitHub.
+files = nimare.extract.fetch_neuroquery(
+    path=DATA_DIR,
+    version="1",
+    source="body",
+    vocab="neuroquery7547",
+    type="count",
+    overwrite=False,
+)
+pprint(files)
+neuroquery_db = files[0]
+
+# Convert the files to a Dataset.
+# This may take a while (~10 minutes)
+neuroquery_dset = nimare.io.convert_neurosynth_to_dataset(
+    coordinates_file=neuroquery_db["coordinates"],
+    metadata_file=neuroquery_db["metadata"],
+    annotations_files=neuroquery_db["features"],
+)
+print(neuroquery_dset)
+
+# Save the Dataset for later use.
+neuroquery_dset.save(os.path.join(DATA_DIR, "neuroquery_dataset.pkl.gz"))
+```
 
 +++
 

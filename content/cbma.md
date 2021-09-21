@@ -29,6 +29,33 @@ Additionally, for each of the following approaches, except for SCALE, voxel- or 
 **Figure 2.** A flowchart of the typical workflow for coordinate-based meta-analyses in NiMARE.
 
 ```{code-cell} ipython3
+:tags: [hide-cell]
+# First, import the necessary modules and functions
+import os
+
+import matplotlib.pyplot as plt
+import numpy as np
+from nilearn import datasets, image, input_data, plotting
+
+import nimare
+from nimare.tests.utils import get_test_data_path
+
+# Define where data files will be located
+DATA_DIR = os.path.abspath("../data")
+
+# Now, load the Datasets we will use in this chapter
+sleuth_dset1 = nimare.dataset.Dataset.load(
+    os.path.join(DATA_DIR, "sleuth_dset1.pkl.gz")
+)
+```
+
+CBMA kernels are available as `KernelTransformer`s in the `nimare.meta.kernel` module.
+There are three standard kernels that are currently available: `MKDAKernel`, `KDAKernel`, and `ALEKernel`.
+Each class may be configured with certain parameters when a new object is initialized.
+For example, `MKDAKernel` accepts an `r` parameter, which determines the radius of the spheres that will be created around each peak coordinate.
+`ALEKernel` automatically uses the sample size associated with each experiment in the `Dataset` to determine the appropriate full-width-at-half-maximum of its Gaussian distribution, as described in \cite{EICKHOFF20122349}; however, users may provide a constant `sample_size` or `fwhm` parameter when sample size information is not available within the `Dataset` metadata.
+
+```{code-cell} ipython3
 from nimare.meta import kernel
 
 mkda_kernel = kernel.MKDAKernel(r=10)
@@ -43,6 +70,64 @@ ale_res = ale_kernel.transform(sl_dset1)
 
 +++
 
+```{code-cell} ipython3
+:tags: [hide-input]
+# Generate figure
+study_idx = 10  # a study with overlapping kernels
+max_value = np.max(kda_ma_maps[study_idx].get_fdata()) + 1
+
+ma_maps = {
+    "MKDA Kernel": mkda_ma_maps[study_idx],
+    "KDA Kernel": kda_ma_maps[study_idx],
+    "ALE Kernel": ale_ma_maps[study_idx],
+}
+
+fig, axes = plt.subplots(
+    nrows=3,
+    figsize=(6, 6),
+)
+
+for i_meta, (name, img) in enumerate(ma_maps.items()):
+    if "ALE" in name:
+        vmax = None
+    else:
+        vmax = max_value
+
+    display = plotting.plot_stat_map(
+        img,
+        annotate=False,
+        axes=axes[i_meta],
+        cmap="Reds",
+        cut_coords=[5, 0, 29],
+        draw_cross=False,
+        figure=fig,
+        vmax=vmax,
+    )
+    axes[i_meta].set_title(name)
+
+    colorbar = display._cbar
+    colorbar_ticks = colorbar.get_ticks()
+    if colorbar_ticks[0] < 0:
+        new_ticks = [colorbar_ticks[0], 0, colorbar_ticks[-1]]
+    else:
+        new_ticks = [colorbar_ticks[0], colorbar_ticks[-1]]
+    colorbar.set_ticks(new_ticks, update_ticks=True)
+
+fig.savefig(
+    "figures/figure_03.svg",
+    transparent=True,
+    bbox_inches="tight",
+    pad_inches=0,
+)
+fig.savefig(
+    "figures/figure_03_lowres.png",
+    transparent=True,
+    bbox_inches="tight",
+    pad_inches=0,
+)
+fig.show()
+```
+
 **Figure 3.** Modeled activation maps produced by **Listing 3.**
 
 +++
@@ -53,28 +138,100 @@ Study-specific maps are then averaged across the meta-analytic sample.
 This averaging is generally weighted by studies’ sample sizes, although other covariates may be included, such as weights based on the type of inference (random or fixed effects) employed in the study’s analysis.
 An arbitrary threshold is generally employed to zero-out voxels with very low values, and then a Monte Carlo procedure is used to assess statistical significance, either at the voxel or cluster level.
 
+In NiMARE, the MKDA meta-analyses can be performed with the `nimare.meta.cbma.mkda.MKDADensity` class.
+This class, like most other CBMA classes in NiMARE, accepts a `null_method` parameter, which determines how voxel-wise (uncorrected) statistical significance is calculated.
+The `null_method` parameter allows two options: "approximate" or "montecarlo."
+The "approximate" option builds a histogram-based null distribution of summary-statistic values, which can then be used to determine the associated p-value for _observed_ summary-statistic values (i.e., the values in the meta-analytic map).
+The "montecarlo" option builds a null distribution of summary-statistic values by randomly shuffling the coordinates the `Dataset` many times, and computing the summary-statistic values for each permutation.
+In general, the "montecarlo" method is slightly more accurate when there are enough permutations, while the "approximate" method is much faster.
+
+```{warning}
+Fitting the CBMA `Estimator` to a `Dataset` will produce p-value, z-statistic, and summary-statistic maps, but these are not corrected for multiple comparisons.
+
+When performing a meta-analysis with the goal of statistical inference, you will want to perform multiple comparisons correction with NiMARE's `Corrector`
+classes.
+Please see the multiple comparisons correction chapter for more information.
+```
+
 ```{code-cell} ipython3
 from nimare.meta.cbma import mkda
 
-meta = mkda.MKDADensity()
-results = meta.fit(sl_dset1)
+mkdad_meta = mkda.MKDADensity(null_method="approximate")
+mkdad_results = mkdad_meta.fit(sleuth_dset1)
+print(mkdad_results)
+
+# Save the results for later use
+mkdad_results.save_maps(output_dir=DATA_DIR, prefix="MKDADensity")
 ```
 
 **Listing 4.** An example MKDA Density meta-analysis in NiMARE.
+
+```{code-cell} ipython3
+:tags: [hide-cell]
+# Here we delete the recent variables for the sake of reducing memory usage
+del mkdad_meta, mkdad_results
+```
 
 +++
 
 Since this is a kernel-based algorithm, the kernel transformer is an optional input to the meta-analytic estimator, and can be controlled in a more fine-grained manner.
 
+```{code-cell} ipython3
+# These two approaches (initializing the kernel ahead of time or
+# providing the arguments with the kernel__ prefix) are equivalent.
+mkda_kernel = kernel.MKDAKernel(r=2)
+mkdad_meta = mkda.MKDADensity(kernel_transformer=mkda_kernel)
+mkdad_meta = mkda.MKDADensity(
+    kernel_transformer=kernel.MKDAKernel,
+    kernel__r=2,
+)
+
+# A completely different kernel could even be provided, although this is not
+# recommended and should only be used for testing algorithms.
+mkdad_meta = mkda.MKDADensity(kernel_transformer=kernel.KDAKernel)
+```
+
 +++
 
 **Kernel density analysis** (KDA) \cite{Wager2003-no,Wager2004-ak} is a precursor algorithm that has been replaced in the field by MKDA.
 For the sake of completeness, NiMARE also includes a KDA estimator that implements the older KDA algorithm for comparison purposes.
-The interface is virtually identical, but since there are few if any legitimate uses of KDA (which models studies as fixed rather than random effects), we do not discuss it further here.
+The interface is virtually identical, but since there are few if any legitimate uses of KDA (which models studies as fixed rather than random effects), we do not discuss the algorithm further here.
+
+```{code-cell} ipython3
+kda_meta = mkda.KDA(null_method="approximate")
+kda_results = kda_meta.fit(sleuth_dset1)
+print(kda_results)
+
+# Save the results for later use
+kda_results.save_maps(output_dir=DATA_DIR, prefix="KDA")
+```
+
+```{code-cell} ipython3
+:tags: [hide-cell]
+# Here we delete the recent variables for the sake of reducing memory usage
+del kda_meta, kda_results
+```
 
 +++
 
 **Activation likelihood estimation** (ALE) \cite{Eickhoff2012-hk,Turkeltaub2012-no,Turkeltaub2002-dn} assesses convergence of peaks across studies by first generating a modeled activation map for each study, in which each of the experiment’s peaks is convolved with a 3D Gaussian distribution determined by the experiment’s sample size, and then by combining these modeled activation maps across studies into an ALE map, which is compared to an empirical null distribution to assess voxel-wise statistical significance.
+
+```{code-cell} ipython3
+from nimare.meta.cbma import ale
+
+ale_meta = ale.ALE()
+ale_results = ale_meta.fit(sleuth_dset1)
+print(ale_results)
+
+# Save the results for later use
+ale_results.save_maps(output_dir=DATA_DIR, prefix="ALE")
+```
+
+```{code-cell} ipython3
+:tags: [hide-cell]
+# Here we delete the recent variables for the sake of reducing memory usage
+del ale_meta, ale_results
+```
 
 +++
 
@@ -85,19 +242,31 @@ This approach allows for the generation of a statistical map for the sample, but
 While this method was developed to support analysis of joint activation or “coactivation” patterns, it is generic and can be applied to any CBMA; see Other Meta-analytic Approaches below.
 
 ```{code-cell} ipython3
-from nimare.meta.cbma import ale
-
-ijk = ns_dset.coordinates[["i", "j", "k"]].values
-meta = nimare.meta.cbma.ale.SCALE(
+# Here we use the coordinates from Neurosynth as our measure of coordinate
+# base-rates, because we do not have access to the full BrainMap database.
+# However, one assumption of SCALE is that the Dataset being analyzed comes
+# from the same source as the database you use for calculating base-rates.
+xyz = ns_dset.coordinates[["x", "y", "z"]].values
+scale_meta = ale.SCALE(
    n_iters=2500,
-   ijk=ijk,
+   xyz=xyz,
    memory_limit="500mb",
 )
-scale_results = meta.fit(sl_dset1)
+scale_results = scale_meta.fit(sleuth_dset1)
+print(scale_results)
+
+# Save the results for later use
+scale_results.save_maps(output_dir=DATA_DIR, prefix="SCALE")
 ```
 
 **Listing 5.** An example SCALE meta-analysis.
 In this example, we use a larger database, stored as a NiMARE Dataset, to estimate voxel-wise base rates.
+
+```{code-cell} ipython3
+:tags: [hide-cell]
+# Here we delete the recent variables for the sake of reducing memory usage
+del scale_meta, scale_results
+```
 
 +++
 
@@ -107,16 +276,94 @@ Such an analysis also requires access to a reference meta-analytic sample or dat
 For example, to perform a chi-squared analysis of working memory studies, the researcher will also need a comprehensive set of studies which did not manipulate working memory—ideally one that is matched with the working memory study set on all relevant attributes _except_ the involvement of working memory.
 
 ```{code-cell} ipython3
-from nimare.meta.cbma import mkda
+mkdac_meta = mkda.MKDAChi2()
+mkdac_results = mkdac_meta.fit(sleuth_dset1, sleuth_dset2)
 
-meta = mkda.MKDAChi2()
-res = meta.fit(sl_dset1, sl_dset2)
+# Save the results for later use
+mkdac_results.save_maps(output_dir="results/", prefix="MKDAChi2")
 ```
 
 **Listing 6.** An example MKDA Chi-squared meta-analysis.
 In this meta-analysis, two samples are compared using voxel-wise chi-squared tests.
 
+```{code-cell} ipython3
+:tags: [hide-cell]
+# Here we delete the recent variables for the sake of reducing memory usage
+del mkdac_meta, mkdac_results
+```
+
 +++
+
+```{code-cell} ipython3
+:tags: [hide-input]
+
+meta_results = {
+    "MKDA Density": op.join(DATA_DIR, "MKDADensity_z.nii.gz"),
+    "MKDA Chi-Squared": op.join(
+      DATA_DIR,
+      "MKDAChi2_z_desc-specificity.nii.gz",
+    ),
+    "KDA": op.join(DATA_DIR, "KDA_z.nii.gz"),
+    "ALE": op.join(DATA_DIR, "ALE_z.nii.gz"),
+    "SCALE": op.join(DATA_DIR, "SCALE_z.nii.gz"),
+}
+order = [
+    ["MKDA Density", "ALE"],
+    ["MKDA Chi-Squared", "SCALE"],
+    ["KDA", None]
+]
+
+fig, axes = plt.subplots(
+    figsize=(12, 6),
+    nrows=3,
+    ncols=2,
+)
+
+for i_row, row_names in enumerate(order):
+    for j_col, name in enumerate(row_names):
+        if not name:
+            axes[i_row, j_col].axis("off")
+            continue
+
+        file_ = meta_results[name]
+        if "desc-specificity" in file_:
+            cmap = "RdBu_r"
+        else:
+            cmap = "Reds"
+
+        display = plotting.plot_stat_map(
+            file_,
+            annotate=False,
+            axes=axes[i_row, j_col],
+            cmap=cmap,
+            cut_coords=[5, -15, 10],
+            draw_cross=False,
+            figure=fig,
+        )
+        axes[i_row, j_col].set_title(name)
+
+        colorbar = display._cbar
+        colorbar_ticks = colorbar.get_ticks()
+        if colorbar_ticks[0] < 0:
+            new_ticks = [colorbar_ticks[0], 0, colorbar_ticks[-1]]
+        else:
+            new_ticks = [colorbar_ticks[0], colorbar_ticks[-1]]
+        colorbar.set_ticks(new_ticks, update_ticks=True)
+
+fig.savefig(
+    "figures/figure_04.svg",
+    transparent=True,
+    bbox_inches="tight",
+    pad_inches=0,
+)
+fig.savefig(
+    "figures/figure_04_lowres.png",
+    transparent=True,
+    bbox_inches="tight",
+    pad_inches=0,
+)
+fig.show()
+```
 
 **Figure 4.** Thresholded results from MKDA Density, KDA, ALE, and SCALE meta-analyses.
 
