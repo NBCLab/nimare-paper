@@ -9,6 +9,7 @@ parts:
   chapters:
   - file: content/intro
 - caption: NiMARE Overview
+  file: content/overview
   chapters:
   - caption: Application Programming Interface
     file: content/api
