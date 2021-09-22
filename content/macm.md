@@ -13,14 +13,14 @@ kernelspec:
 
 # Meta-analytic coactivation modeling
 
-Meta-analytic coactivation modeling (MACM) \cite{Laird2009-gc,Robinson2010-iv,Eickhoff2010-vx}, also known as meta-analytic connectivity modeling, uses meta-analytic data to measure co-occurrence of activations between brain regions providing evidence of functional connectivity of brain regions across tasks.
+Meta-analytic coactivation modeling (MACM) {cite:p}`Laird2009-gc,Robinson2010-iv,Eickhoff2010-vx`, also known as meta-analytic connectivity modeling, uses meta-analytic data to measure co-occurrence of activations between brain regions providing evidence of functional connectivity of brain regions across tasks.
 In coordinate-based MACM, whole-brain studies within the database are selected based on whether or not they report at least one peak in a region of interest specified for the analysis.
 These studies are then subjected to a meta-analysis, often comparing the selected studies to those remaining in the database.
 In this way, the significance of each voxel in the analysis corresponds to whether there is greater convergence of foci at the voxel among studies which also report foci in the region of interest than those which do not.
 
-MACM results have historically been accorded a similar interpretation to task-related functional connectivity (e.g., \cite{Hok2015-lt,Kellermann2013-en}), although this approach is quite removed from functional connectivity analyses of task fMRI data (e.g., beta-series correlations, psychophysiological interactions, or even seed-to-voxel functional connectivity analyses on task data).
-Nevertheless, MACM analyses do show high correspondence with resting-state functional connectivity \cite{Reid2017-ez}.
-MACM has been used to characterize the task-based functional coactivation of the cerebellum \cite{Riedel2015-tx}, lateral prefrontal cortex \cite{Reid2016-ba}, fusiform gyrus \cite{Caspers2014-ja}, and several other brain regions.
+MACM results have historically been accorded a similar interpretation to task-related functional connectivity (e.g., {cite:p}`Hok2015-lt,Kellermann2013-en`), although this approach is quite removed from functional connectivity analyses of task fMRI data (e.g., beta-series correlations, psychophysiological interactions, or even seed-to-voxel functional connectivity analyses on task data).
+Nevertheless, MACM analyses do show high correspondence with resting-state functional connectivity {cite:p}`Reid2017-ez`.
+MACM has been used to characterize the task-based functional coactivation of the cerebellum {cite:p}`Riedel2015-tx`, lateral prefrontal cortex {cite:p}`Reid2016-ba`, fusiform gyrus {cite:p}`Caspers2014-ja`, and several other brain regions.
 
 Within NiMARE, MACMs can be performed by selecting studies in a Dataset based on the presence of activation within a target mask or coordinate-centered sphere.
 

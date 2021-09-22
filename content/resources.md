@@ -20,12 +20,12 @@ These databases combine results from neuroimaging studies, whether represented a
 The two most popular coordinate-based meta-analytic databases are BrainMap (http://www.brainmap.org) and Neurosynth (http://neurosynth.org), while the most popular image-based database is NeuroVault (https://neurovault.org).
 
 The studies archived in these databases may be either manually or automatically annotated—often with reference to a formal ontology or controlled vocabulary.
-Ontologies for cognitive neuroscience define what mental states or processes are postulated to be manipulated or measured in experiments, and may also include details of said experiments (e.g.,the cognitive tasks employed), relationships between concepts (e.g., verbal working memory is a kind of working memory), and various other metadata that can be standardized and represented in a machine-readable form \cite{Poldrack2016-ym,Poldrack2010-jz,Turner2012-ai}.
+Ontologies for cognitive neuroscience define what mental states or processes are postulated to be manipulated or measured in experiments, and may also include details of said experiments (e.g.,the cognitive tasks employed), relationships between concepts (e.g., verbal working memory is a kind of working memory), and various other metadata that can be standardized and represented in a machine-readable form {cite:p}`Poldrack2016-ym,Poldrack2010-jz,Turner2012-ai`.
 Some of these ontologies are very well-defined, such as expert-generated taxonomies designed specifically to describe only certain aspects of experiments and the relationships between elements within the taxonomy, while others are more loosely defined, in some cases simply building a vocabulary based on which terms are commonly used in cognitive neuroscience articles.
 
 +++
 
-**BrainMap** \cite{Fox2005-rt,Fox2002-nv,Laird2005-al} relies on expert annotators to label individual comparisons within studies according to its internally developed ontology, the BrainMap Taxonomy \cite{Fox2005-rt}.
+**BrainMap** {cite:p}`Fox2005-rt,Fox2002-nv,Laird2005-al` relies on expert annotators to label individual comparisons within studies according to its internally developed ontology, the BrainMap Taxonomy {cite:p}`Fox2005-rt`.
 While this approach is likely to be less noisy than an automated annotation method using article text or imaging results to predict content, it is also subject to a number of limitations.
 First, there are simply not enough annotators to keep up with the ever-expanding literature.
 Second, any development of the underlying ontology has the potential to leave the database outdated.
@@ -55,7 +55,7 @@ DATA_DIR = os.path.abspath("../data")
 ```
 
 The function `nimare.io.convert_sleuth_to_dataset` can be used to convert text files exported from Sleuth into NiMARE `Dataset`s.
-Here, we convert two files from a previous publication by NiMARE contributors \cite{yanes2018}.
+Here, we convert two files from a previous publication by NiMARE contributors {cite:p}`yanes2018`.
 
 ```{code-cell} ipython3
 sleuth_dset1 = nimare.io.convert_sleuth_to_dataset(
@@ -76,15 +76,15 @@ sleuth_dset2.save(os.path.join(DATA_DIR, "sleuth_dset2.pkl.gz"))
 
 +++
 
-**Neurosynth** \cite{Yarkoni2011-dk} uses a combination of web scraping and text mining to automatically harvest neuroimaging studies from the literature and to annotate them based on term frequency within article abstracts.
+**Neurosynth** {cite:p}`Yarkoni2011-dk` uses a combination of web scraping and text mining to automatically harvest neuroimaging studies from the literature and to annotate them based on term frequency within article abstracts.
 As a consequence of its relatively crude automated approach, Neurosynth has its own set of limitations.
 First, Neurosynth is unable to delineate individual comparisons within studies, and consequently uses the entire paper as its unit of measurement, unlike BrainMap.
 This risks conflating directly contrasted comparisons (e.g., A>B and B>A), as well as comparisons which have no relation to one another.
 Second, coordinate extraction and annotation are noisy.
 Third, annotations automatically performed by Neurosynth are also subject to error, although the reasons behind this are more nuanced and will be discussed later in this paper.
 Given Neurosynth’s limitations, we recommend that it be used for casual, exploratory meta-analyses rather than for publication-quality analyses.
-Nevertheless, while individual meta-analyses should not be published from Neurosynth, many derivative analyses have been performed and published (e.g., \cite{Chang2013-si,De_la_Vega2016-wg,De_la_Vega2018-jc,Poldrack2012-it}).
-As evidence of its utility, Neurosynth has been used to define a priori regions of interest (e.g., \cite{Josipovic2014-hx,Zeidman2012-fj,Wager2013-ab}) or perform meta-analytic functional decoding (e.g., \cite{Chen2018-of,Pantelis2015-bq,Tambini2017-iu}) in many first-order (rather than meta-analytic) fMRI studies.
+Nevertheless, while individual meta-analyses should not be published from Neurosynth, many derivative analyses have been performed and published (e.g., {cite:p}`Chang2013-si,De_la_Vega2016-wg,De_la_Vega2018-jc,Poldrack2012-it`).
+As evidence of its utility, Neurosynth has been used to define a priori regions of interest (e.g., {cite:p}`Josipovic2014-hx,Zeidman2012-fj,Wager2013-ab`) or perform meta-analytic functional decoding (e.g., {cite:p}`Chen2018-of,Pantelis2015-bq,Tambini2017-iu`) in many first-order (rather than meta-analytic) fMRI studies.
 
 **Listing 2** displays an example code snippet illustrating how to fetch the Neurosynth database and convert it to a NiMARE dataset.
 
@@ -123,11 +123,11 @@ In addition to a large corpus of coordinates, Neurosynth provides term frequenci
 
 One additional benefit to Neurosynth is that it has made available the coordinates for a large number of studies for which the study abstracts are also readily available.
 This has made the Neurosynth database a common resource upon which to build other automated ontologies.
-Data-driven ontologies which have been developed using the Neurosynth database include the generalized correspondence latent Dirichlet allocation (GCLDA) \cite{Rubin2017-rd} topic model and Deep Boltzmann machines \cite{Monti2016-aq}.
+Data-driven ontologies which have been developed using the Neurosynth database include the generalized correspondence latent Dirichlet allocation (GCLDA) {cite:p}`Rubin2017-rd` topic model and Deep Boltzmann machines {cite:p}`Monti2016-aq`.
 
 +++
 
-A related resource is **NeuroQuery** \cite{Dockes2020-uv}.
+A related resource is **NeuroQuery** {cite:p}`Dockes2020-uv`.
 NeuroQuery is an online service for large-scale predictive meta-analysis.
 Unlike Neurosynth, which performs statistical inference and produces statistical maps, NeuroQuery is a supervised learning model and produces a prediction of the brain areas most likely to contain activations.
 These maps predict locations where studies investigating a given area (determined by the text prompt) are likely to produce activations, but they cannot be used in the same manner as statistical maps from a standard coordinate-based meta-analysis.
@@ -165,6 +165,6 @@ neuroquery_dset.save(os.path.join(DATA_DIR, "neuroquery_dataset.pkl.gz"))
 
 +++
 
-**NeuroVault** \cite{Gorgolewski2015-sd} is a public repository of user-uploaded, whole-brain, unthresholded brain maps.
+**NeuroVault** {cite:p}`Gorgolewski2015-sd` is a public repository of user-uploaded, whole-brain, unthresholded brain maps.
 Users may associate their image collections with publications, and can annotate individual maps with labels from the Cognitive Atlas, which is the ontology of choice for NeuroVault.
 NiMARE includes a function, `convert_neurovault_to_dataset`, with which users can search for images in NeuroVault, download those images, and convert them into a `Dataset` object.
