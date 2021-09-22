@@ -3,7 +3,7 @@ logo: figures/nimare_overview.png
 execute:
   execute_notebooks: "off"
 bibtex_bibfiles:
-  - references.bib
+  - _bibliography/references.bib
 sphinx:
   config:
     bibtex_reference_style: author_year

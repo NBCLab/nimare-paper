@@ -4,56 +4,32 @@
 format: jb-book
 root: content/abstract
 
-parts:
-- title: Introduction
-  chapters:
-  - file: content/introduction
-- title: NiMARE Overview
-  file: content/overview
-  chapters:
-  - title: Application Programming Interface
-    file: content/api
-  - title: Package Organization
-    file: content/organization
-  - title: Dependencies
-    file: content/dependencies
-- title: Meta-analytic methods
-  chapters:
-  - title: Meta-analytic Databases and Resources
-    file: content/resources
-  - title: Supported Neuroimaging Meta-Analysis Algorithms
-    file: content/meta
+chapters:
+- file: content/introduction
+- file: content/overview
+  sections:
+  - file: content/api
+  - file: content/organization
+  - file: content/dependencies
+- file: content/meta_methods
+  sections:
+  - file: content/resources
+  - file: content/meta
     sections:
-    - title: CBMA methods
-      file: content/cbma
-    - title: IBMA methods
-      file: content/ibma
-    - title: Multiple comparisons correction
-      file: content/correction
-  - title: Other Meta-analytic Approaches
-    file: content/other_approaches
+    - file: content/cbma
+    - file: content/ibma
+    - file: content/correction
+  - file: content/other_approaches
     sections:
-    - title: Meta-analytic subtraction analysis
-      file: content/subtraction
-    - title: Meta-analytic coactivation modeling
-      file: content/macm
-    - title: Automated annotation
-      file: content/annotation
-    - title: Meta-analytic functional decoding
-      file: content/decoding
-- title: Future directions
-  chapters:
-  - file: content/future_directions
-- title: Conclusion
-  chapters:
-  - file: content/conclusion
-- title: Acknowledgements
-  chapters:
-  - file: content/acknowledgements
-- title: Appendix
-  file: content/appendix
-  chapters:
-  - title: "Appendix I: Discrete decoding, BrainMap approach"
-    file: content/appendix/brainmap_decoding
-  - title: "Appendix II: Discrete decoding, NeuroSynth approach"
-    file: content/appendix/neurosynth_decoding
+    - file: content/subtraction
+    - file: content/macm
+    - file: content/annotation
+    - file: content/decoding
+- file: content/future_directions
+- file: content/conclusion
+- file: content/acknowledgements
+- file: content/appendix.md
+  sections:
+  - file: content/appendices/brainmap_decoding
+  - file: content/appendices/neurosynth_decoding
+- file: content/bibliography.md

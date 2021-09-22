@@ -7,3 +7,6 @@ NiMARE is an open source, collaboratively-developed package that implements a ra
 By consolidating meta-analytic methods under a common library and syntax, NiMARE makes it straightforward for users to employ the appropriate approach for a given analysis.
 In this paper, we describe NiMARE's architecture and the methods implemented in the library.
 Additionally, we provide example code and results for each of the available tools in the library.
+
+```{tableofcontents}
+```
