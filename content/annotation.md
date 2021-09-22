@@ -71,7 +71,7 @@ This method produces both basic term counts and expanded term counts based on th
 
 +++
 
-**Latent Dirichlet allocation** (LDA) \{cite:p}`Blei2003-lh` was originally combined with meta-analytic neuroimaging data in {cite:t}`Poldrack2012-it`.
+**Latent Dirichlet allocation** (LDA) {cite:p}`Blei2003-lh` was originally combined with meta-analytic neuroimaging data in {cite:t}`Poldrack2012-it`.
 LDA is a generative topic model which, for a text corpus, builds probability distributions across documents and words.
 In LDA, each document is considered a mixture of topics.
 This works under the assumption that each document was constructed by first randomly selecting a topic based on the document's probability distribution across topics, and then randomly selecting a word from that topic based on the topic's probability distribution across words.
@@ -79,7 +79,7 @@ While this is not a useful generative model for producing documents, LDA is able
 {cite:t}`Poldrack2012-it` were able to apply LDA to full texts from neuroimaging articles in order to develop cognitive neuroscience-related topics and to run topic-wise meta-analyses.
 This method produces two sets of probability distributions: (1) the probability of a word given topic and (2) the probability of a topic given article.
 
-NiMARE uses a Python-based interface to the MALLET Java library (@mccallum2002mallet) to implement LDA.
+NiMARE uses a Python-based interface to the MALLET Java library {cite:p}`mccallum2002mallet` to implement LDA.
 
 ```{code-cell} ipython3
 from nimare import annotate
