@@ -28,6 +28,7 @@ import nimare
 
 # Define where data files will be located
 DATA_DIR = os.path.abspath("../data")
+FIG_DIR = os.path.abspath("../figures")
 
 # Now, load the Datasets we will use in this chapter
 sleuth_dset1 = nimare.dataset.Dataset.load(
@@ -60,11 +61,17 @@ For example, `MKDAKernel` accepts an `r` parameter, which determines the radius 
 from nimare.meta import kernel
 
 mkda_kernel = kernel.MKDAKernel(r=10)
-mkda_res = mkda_kernel.transform(sl_dset1)
+mkda_ma_maps = mkda_kernel.transform(sl_dset1)
 kda_kernel = kernel.KDAKernel(r=10)
-kda_res = kda_kernel.transform(sl_dset1)
+kda_ma_maps = kda_kernel.transform(sl_dset1)
 ale_kernel = kernel.ALEKernel(sample_size=20)
-ale_res = ale_kernel.transform(sl_dset1)
+ale_ma_maps = ale_kernel.transform(sl_dset1)
+```
+
+```{code-cell} ipython3
+:tags: [hide-cell]
+# Here we delete the recent variables for the sake of reducing memory usage
+del mkda_kernel, kda_kernel, ale_kernel
 ```
 
 **Listing 3.** Example usage of available kernel transformers in NiMARE.
@@ -115,18 +122,24 @@ for i_meta, (name, img) in enumerate(ma_maps.items()):
     colorbar.set_ticks(new_ticks, update_ticks=True)
 
 fig.savefig(
-    "figures/figure_03.svg",
+    os.path.join(FIG_DIR, "figure_03.svg"),
     transparent=True,
     bbox_inches="tight",
     pad_inches=0,
 )
 fig.savefig(
-    "figures/figure_03_lowres.png",
+    os.path.join(FIG_DIR, "figure_03_lowres.png"),
     transparent=True,
     bbox_inches="tight",
     pad_inches=0,
 )
 fig.show()
+```
+
+```{code-cell} ipython3
+:tags: [hide-cell]
+# Here we delete the recent variables for the sake of reducing memory usage
+del mkda_ma_maps, kda_ma_maps, ale_ma_maps
 ```
 
 **Figure 3.** Modeled activation maps produced by **Listing 3.**
@@ -163,6 +176,8 @@ print(mkdad_results)
 
 # Save the results for later use
 mkdad_results.save_maps(output_dir=DATA_DIR, prefix="MKDADensity")
+# Save the results *object* as well
+mkdad_results.save(os.path.join(DATA_DIR, "MKDADensity_results.pkl.gz"))
 ```
 
 **Listing 4.** An example MKDA Density meta-analysis in NiMARE.
@@ -190,6 +205,12 @@ mkdad_meta = mkda.MKDADensity(
 # A completely different kernel could even be provided, although this is not
 # recommended and should only be used for testing algorithms.
 mkdad_meta = mkda.MKDADensity(kernel_transformer=kernel.KDAKernel)
+```
+
+```{code-cell} ipython3
+:tags: [hide-cell]
+# Here we delete the recent variables for the sake of reducing memory usage
+del mkda_kernel, mkdad_meta, mkdad_results
 ```
 
 +++
@@ -266,7 +287,7 @@ In this example, we use a larger database, stored as a NiMARE Dataset, to estima
 ```{code-cell} ipython3
 :tags: [hide-cell]
 # Here we delete the recent variables for the sake of reducing memory usage
-del scale_meta, scale_results
+del xyz, scale_meta, scale_results
 ```
 
 +++
@@ -352,13 +373,13 @@ for i_row, row_names in enumerate(order):
         colorbar.set_ticks(new_ticks, update_ticks=True)
 
 fig.savefig(
-    "figures/figure_04.svg",
+    os.path.join(FIG_DIR, "figure_04.svg"),
     transparent=True,
     bbox_inches="tight",
     pad_inches=0,
 )
 fig.savefig(
-    "figures/figure_04_lowres.png",
+    os.path.join(FIG_DIR, "figure_04_lowres.png"),
     transparent=True,
     bbox_inches="tight",
     pad_inches=0,

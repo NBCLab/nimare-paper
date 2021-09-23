@@ -15,14 +15,6 @@ kernelspec:
 
 +++
 
-As mentioned in the discussion of BrainMap, manually annotating studies in a meta-analytic database can be a time-consuming and labor-intensive process.
-To facilitate more efficient (albeit lower-quality) annotation, NiMARE supports a number of automated annotation approaches.
-These include n-gram term extraction, Cognitive Atlas term extraction, latent Dirichlet allocation, and generalized correspondence latent Dirichlet allocation.
-
-NiMARE users may download abstracts from PubMed as long as study identifiers in the `Dataset` correspond to PubMed IDs.
-Abstracts are much more easily accessible than full article text, so most annotation methods in NiMARE rely on them.
-**Listing 12** illustrates how to do this.
-
 ```{code-cell} ipython3
 :tags: [hide-cell]
 # First, import the necessary modules and functions
@@ -30,19 +22,33 @@ import os
 
 import matplotlib.pyplot as plt
 import numpy as np
-from nilearn import datasets, image, input_data, plotting
+from nilearn import image, plotting
 
 import nimare
-from nimare.tests.utils import get_test_data_path
 
 # Define where data files will be located
 DATA_DIR = os.path.abspath("../data")
+FIG_DIR = os.path.abspath("../figures")
 
 # Now, load the Datasets we will use in this chapter
 neurosynth_dset = nimare.dataset.Dataset.load(
     os.path.join(DATA_DIR, "neurosynth_dataset.pkl.gz")
 )
+neurosynth_dset_first_500 = neurosynth_dset.slice(neurosynth_dset.ids[:500])
+neurosynth_dset_first_500.save(
+    os.path.join(DATA_DIR, "neurosynth_dataset_first500.pkl.gz")
+)
 ```
+
++++
+
+As mentioned in the discussion of BrainMap, manually annotating studies in a meta-analytic database can be a time-consuming and labor-intensive process.
+To facilitate more efficient (albeit lower-quality) annotation, NiMARE supports a number of automated annotation approaches.
+These include n-gram term extraction, Cognitive Atlas term extraction, latent Dirichlet allocation, and generalized correspondence latent Dirichlet allocation.
+
+NiMARE users may download abstracts from PubMed as long as study identifiers in the `Dataset` correspond to PubMed IDs.
+Abstracts are much more easily accessible than full article text, so most annotation methods in NiMARE rely on them.
+**Listing 12** illustrates how to do this.
 
 ```{code-cell} ipython3
 from nimare import extract
@@ -100,8 +106,7 @@ lda_model.save(op.join(DATA_DIR, "LDAModel.pkl.gz"))
 :tags: [hide-input]
 from IPython.display import display
 
-lda_df = lda_model.p_word_g_topic_df_
-lda_df = lda_df.T
+lda_df = lda_model.p_word_g_topic_df_.T
 column_names = {c: f"Topic {c}" for c in df.columns}
 lda_df = lda_df.rename(columns=column_names)
 temp_df = lda_df.copy()
@@ -134,7 +139,6 @@ These spatial distributions can also be restricted to pairs of Gaussians that ar
 This method produces three sets of probability distributions: (1) the probability of a word given topic, (2) the probability of a topic given article, and (3) the probability of a voxel given topic.
 
 ```{code-cell} ipython3
-neurosynth_dset_first_500 = neurosynth_dset.slice(neurosynth_dset.ids[:500])
 counts_df = annotate.text.generate_counts(
     neurosynth_dset_first_500.texts,
     text_column="abstract",
@@ -160,8 +164,7 @@ gclda_model.save(op.join(DATA_DIR, "GCLDAModel.pkl.gz"))
 ```{code-cell} ipython3
 :tags: [hide-input]
 
-gclda_df = gclda_model.p_word_g_topic_df_
-gclda_df = gclda_df.T
+gclda_df = gclda_model.p_word_g_topic_df_.T
 column_names = {c: f"Topic {c}" for c in gclda_df.columns}
 gclda_df = gclda_df.rename(columns=column_names)
 temp_df = gclda_df.copy()
@@ -208,13 +211,13 @@ for i_topic in range(5):
     colorbar.set_ticks(new_ticks, update_ticks=True)
 
 fig.savefig(
-    "figures/figure_09.svg",
+    os.path.join(FIG_DIR, "figure_09.svg"),
     transparent=True,
     bbox_inches="tight",
     pad_inches=0,
 )
 fig.savefig(
-    "figures/figure_09_lowres.png",
+    os.path.join(FIG_DIR, "figure_09_lowres.png"),
     transparent=True,
     bbox_inches="tight",
     pad_inches=0,

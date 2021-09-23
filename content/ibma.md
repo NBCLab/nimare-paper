@@ -28,6 +28,7 @@ import nimare
 
 # Define where data files will be located
 DATA_DIR = os.path.abspath("../data")
+FIG_DIR = os.path.abspath("../figures")
 
 # Now, load the Datasets we will use in this chapter
 sleuth_dset1 = nimare.dataset.Dataset.load(
@@ -70,13 +71,16 @@ img_dset = dataset.Dataset(dset_file)
 img_dset.update_path(dset_dir)
 
 # Calculate missing images
-z_transformer = transforms.ImageTransformer(target="z")
-img_dset = z_transformer.transform(img_dset)
-
-varcope_transformer = transforms.ImageTransformer(target="varcope")
-img_dset = varcope_transformer.transform(img_dset)
+img_transformer = transforms.ImageTransformer(target=["z", "varcope"])
+img_dset = img_transformer.transform(img_dset)
 
 img_dset.save(os.path.join(DATA_DIR, "nidm_dset.pkl.gz"))
+```
+
+```{code-cell} ipython3
+:tags: [hide-cell]
+# Here we delete the recent variables for the sake of reducing memory usage
+del img_transformer
 ```
 
 ```{code-cell} ipython3
@@ -89,12 +93,18 @@ dsl_results = dsl_meta.fit(img_dset)
 dsl_results.save_maps(output_dir=DATA_DIR, prefix="DerSimonianLaird")
 ```
 
+```{code-cell} ipython3
+:tags: [hide-cell]
+# Here we delete the recent variables for the sake of reducing memory usage
+del dsl_meta, dsl_results
+```
+
 **Listing 7.** Transforming images and image-based meta-analysis.
 
 +++
 
 ```{code-cell} ipython3
-
+:tags: [hide-cell]
 stouffers_meta = meta.ibma.Stouffers(use_sample_size=False)
 stouffers_results = stouffers_meta.fit(img_dset)
 stouffers_results.save_maps(output_dir=DATA_DIR, prefix="Stouffers")
@@ -160,6 +170,7 @@ del ssbl_meta, ssbl_results, masker
 +++
 
 ```{code-cell} ipython3
+:tags: [hide-input]
 meta_results = {
     "DerSimonian-Laird": op.join(DATA_DIR, "DerSimonianLaird_z.nii.gz"),
     "Stouffer's": op.join(DATA_DIR, "Stouffers_z.nii.gz"),
@@ -202,13 +213,13 @@ for i_row, row_names in enumerate(order):
         colorbar.set_ticks(new_ticks, update_ticks=True)
 
 fig.savefig(
-    "figures/figure_05.svg",
+    os.path.join(FIG_DIR, "figure_05.svg"),
     transparent=True,
     bbox_inches="tight",
     pad_inches=0,
 )
 fig.savefig(
-    "figures/figure_05_lowres.png",
+    os.path.join(FIG_DIR, "figure_05_lowres.png"),
     transparent=True,
     bbox_inches="tight",
     pad_inches=0,

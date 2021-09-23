@@ -21,14 +21,11 @@ kernelspec:
 import os
 
 import matplotlib.pyplot as plt
-import numpy as np
-from nilearn import datasets, image, input_data, plotting
-
-import nimare
-from nimare.tests.utils import get_test_data_path
+from nilearn import image
 
 # Define where data files will be located
 DATA_DIR = os.path.abspath("../data")
+FIG_DIR = os.path.abspath("../figures")
 ```
 
 +++
@@ -60,6 +57,8 @@ The function `nimare.io.convert_sleuth_to_dataset` can be used to convert text f
 Here, we convert two files from a previous publication by NiMARE contributors {cite:p}`yanes2018`.
 
 ```{code-cell} ipython3
+from nimare import io
+
 sleuth_dset1 = nimare.io.convert_sleuth_to_dataset(
     os.path.join(DATA_DIR, "contrast-CannabisMinusControl_space-talairach_sleuth.txt")
 )
@@ -91,8 +90,10 @@ As evidence of its utility, Neurosynth has been used to define a priori regions 
 **Listing 2** displays an example code snippet illustrating how to fetch the Neurosynth database and convert it to a NiMARE dataset.
 
 ```{code-cell} ipython3
+from nimare import extract
+
 # Download the desired version of Neurosynth from GitHub.
-files = nimare.extract.fetch_neurosynth(
+files = extract.fetch_neurosynth(
     path=DATA_DIR,
     version="7",
     source="abstract",
@@ -104,7 +105,7 @@ neurosynth_db = files[0]
 
 # Convert the files to a Dataset.
 # This may take a while (~10 minutes)
-neurosynth_dset = nimare.io.convert_neurosynth_to_dataset(
+neurosynth_dset = io.convert_neurosynth_to_dataset(
     coordinates_file=neurosynth_db["coordinates"],
     metadata_file=neurosynth_db["metadata"],
     annotations_files=neurosynth_db["features"],
@@ -141,7 +142,7 @@ We are able to use the same function for converting the database to a `Dataset` 
 
 ```{code-cell} ipython3
 # Download the desired version of NeuroQuery from GitHub.
-files = nimare.extract.fetch_neuroquery(
+files = extract.fetch_neuroquery(
     path=DATA_DIR,
     version="1",
     source="body",
@@ -154,7 +155,7 @@ neuroquery_db = files[0]
 
 # Convert the files to a Dataset.
 # This may take a while (~10 minutes)
-neuroquery_dset = nimare.io.convert_neurosynth_to_dataset(
+neuroquery_dset = io.convert_neurosynth_to_dataset(
     coordinates_file=neuroquery_db["coordinates"],
     metadata_file=neuroquery_db["metadata"],
     annotations_files=neuroquery_db["features"],

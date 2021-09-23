@@ -21,14 +21,13 @@ kernelspec:
 import os
 
 import matplotlib.pyplot as plt
-import numpy as np
-from nilearn import datasets, image, input_data, plotting
+from nilearn import datasets, image, plotting
 
 import nimare
-from nimare.tests.utils import get_test_data_path
 
 # Define where data files will be located
 DATA_DIR = os.path.abspath("../data")
+FIG_DIR = os.path.abspath("../figures")
 
 # Now, load the Datasets we will use in this chapter
 neurosynth_dset = nimare.dataset.Dataset.load(
@@ -56,10 +55,12 @@ Within NiMARE, MACMs can be performed by selecting studies in a Dataset based on
 atlas = datasets.fetch_atlas_harvard_oxford("sub-maxprob-thr25-2mm")
 amyg_val = atlas["labels"].index("Right Amygdala")
 amygdala_mask = image.math_img(f"img == {amyg_val}", img=atlas["maps"])
-amygdala_mask.to_filename("data/amygdala_roi.nii.gz")
+amygdala_mask.to_filename(os.path.join(DATA_DIR, "amygdala_roi.nii.gz"))
 
 # Create Dataset only containing studies with peaks within the amygdala mask
-amygdala_ids = neurosynth_dset.get_studies_by_mask("data/amygdala_roi.nii.gz")
+amygdala_ids = neurosynth_dset.get_studies_by_mask(
+    os.path.join(DATA_DIR, "amygdala_roi.nii.gz")
+)
 dset_amygdala = neurosynth_dset.slice(amygdala_ids)
 
 # Create Dataset only containing studies with peaks within the sphere ROI
@@ -75,6 +76,7 @@ Once the `Dataset` has been reduced to studies with coordinates within the mask 
 
 ```{code-cell} ipython3
 from nimare import meta
+
 meta_amyg = meta.cbma.ale.ALE(kernel__sample_size=20)
 results_amyg = meta_amyg.fit(dset_amygdala)
 results_amyg.save_maps(output_dir=DATA_DIR, prefix="ALE_Amygdala")
@@ -115,13 +117,13 @@ for i_meta, (name, file_) in enumerate(meta_results.items()):
     colorbar.set_ticks(new_ticks, update_ticks=True)
 
 fig.savefig(
-    "figures/figure_08.svg",
+    os.path.join(FIG_DIR, "figure_08.svg"),
     transparent=True,
     bbox_inches="tight",
     pad_inches=0,
 )
 fig.savefig(
-    "figures/figure_08_lowres.png",
+    os.path.join(FIG_DIR, "figure_08_lowres.png"),
     transparent=True,
     bbox_inches="tight",
     pad_inches=0,

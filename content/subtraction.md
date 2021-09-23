@@ -13,20 +13,21 @@ kernelspec:
 
 # Meta-analytic subtraction analysis
 
++++
+
 ```{code-cell} ipython3
 :tags: [hide-cell]
 # First, import the necessary modules and functions
 import os
 
 import matplotlib.pyplot as plt
-import numpy as np
-from nilearn import datasets, image, input_data, plotting
+from nilearn import image, plotting
 
 import nimare
-from nimare.tests.utils import get_test_data_path
 
 # Define where data files will be located
 DATA_DIR = os.path.abspath("../data")
+FIG_DIR = os.path.abspath("../figures")
 
 # Now, load the Datasets we will use in this chapter
 sleuth_dset1 = nimare.dataset.Dataset.load(
@@ -36,6 +37,8 @@ sleuth_dset2 = nimare.dataset.Dataset.load(
     os.path.join(DATA_DIR, "sleuth_dset2.pkl.gz")
 )
 ```
+
++++
 
 Subtraction analysis refers to the voxel-wise comparison of two meta-analytic samples.
 In image-based meta-analysis, comparisons between groups of maps can generally be accomplished within the standard meta-regression framework (i.e., by adding a covariate that codes for group membership).
@@ -53,9 +56,9 @@ Note that, unlike the original algorithm, the NiMARE implementation analyzes all
 from nimare import meta
 
 kern = meta.kernel.ALEKernel()
-meta = meta.cbma.ale.ALESubtraction(kernel_transformer=kern, n_iters=10000)
-subtraction_results = meta.fit(sleuth_dset1, sleuth_dset2)
-subtraction_results.save_maps(output_dir=DATA_DIR, prefix="ALESubtraction")
+sub_meta = meta.cbma.ale.ALESubtraction(kernel_transformer=kern, n_iters=10000)
+sub_results = sub_meta.fit(sleuth_dset1, sleuth_dset2)
+sub_results.save_maps(output_dir=DATA_DIR, prefix="ALESubtraction")
 ```
 
 **Listing 9.** Example application of an ALE subtraction analysis.
@@ -83,13 +86,13 @@ else:
 colorbar.set_ticks(new_ticks, update_ticks=True)
 
 fig.savefig(
-    "figures/figure_07.svg",
+    os.path.join(FIG_DIR, "figure_07.svg"),
     transparent=True,
     bbox_inches="tight",
     pad_inches=0,
 )
 fig.savefig(
-    "figures/figure_07_lowres.png",
+    os.path.join(FIG_DIR, "figure_07_lowres.png"),
     transparent=True,
     bbox_inches="tight",
     pad_inches=0,

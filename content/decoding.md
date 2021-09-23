@@ -13,6 +13,56 @@ kernelspec:
 
 # Meta-analytic functional decoding
 
++++
+
+```{code-cell} ipython3
+:tags: [hide-cell]
+# First, import the necessary modules and functions
+import os
+from hashlib import md5
+
+DATA_DIR = os.path.abspath("../data")
+FIG_DIR = os.path.abspath("../figures")
+```
+
+```{code-cell} ipython3
+:tags: [hide-cell]
+neurosynth_dset_first500 = nimare.dataset.Dataset.load(
+    os.path.join(DATA_DIR, "neurosynth_dataset_first500.pkl.gz")
+)
+kern = meta.kernel.MKDAKernel(memory_limit="500mb")
+kern._infer_names(
+    affine=md5(neurosynth_dset_first500.masker.mask_img.affine).hexdigest()
+)
+neurosynth_dset_first500.update_path(os.path.join(DATA_DIR, "ns_dset_maps"))
+neurosynth_dset_first500 = kern.transform(
+    neurosynth_dset_first500,
+    return_type="dataset",
+)
+neurosynth_dset_first500.save(
+    os.path.join(DATA_DIR, "neurosynth_dataset_first500_with_mkda_ma.pkl.gz")
+)
+
+# Collect features for decoding
+# We use any features that appear in >5% of studies and <95%.
+id_cols = ["id", "study_id", "contrast_id"]
+frequency_threshold = 0.001
+cols = neurosynth_dset_first500.annotations.columns
+cols = [c for c in cols if c not in id_cols]
+df = neurosynth_dset_first500.annotations.copy()[cols]
+n_studies = df.shape[0]
+feature_counts = (df >= frequency_threshold).sum(axis=0)
+target_features = feature_counts.between(n_studies * 0.05, n_studies * 0.95)
+target_features = target_features[target_features]
+target_features = target_features.index.values
+print(f"{len(target_features)} features selected.", flush=True)
+
+amygdala_roi = "data/amygdala_roi.nii.gz"
+amygdala_ids = neurosynth_dset_first500.get_studies_by_mask(amygdala_roi)
+```
+
++++
+
 Functional decoding performed with meta-analytic data, refers to methods which attempt to predict mental states from neuroimaging data using a large-scale meta-analytic database {cite:p}`Smith2009-wk`.
 Such analyses may also be referred to as “informal reverse inference” {cite:p}`Poldrack2011-zp`, “functional characterization analysis” {cite:p}`Bzdok2013-gc,Cieslik2013-kz,Rottschy2013-cd`, “open-ended decoding” {cite:p}`Rubin2017-rd`, or simply “functional decoding” {cite:p}`Amft2015-kw,Bzdok2013-jv,Nickl-Jockschat2015-rg`.
 While the terminology is far from standardized, we will refer to this method as **meta-analytic functional decoding** in order to distinguish it from alternative methods like multivariate decoding and model-based decoding {cite:p}`Poldrack2011-zp`.
@@ -35,7 +85,38 @@ This approach can also be applied to an image-based database like NeuroVault, ei
 Using these distributions, it is possible to statistically compare labels in order to assess label significance.
 NiMARE includes methods for both correlation-based decoding and correlation distribution-based decoding, although the correlation-based decoding is better established and should be preferred over the correlation distribution-based decoding.
 
-CODE
+```{code-cell} ipython3
+from nimare import decode, meta
+
+corr_decoder = decode.continuous.CorrelationDecoder(
+    frequency_threshold=0.001,
+    meta_estimator=meta.MKDAChi2(
+        kernel_transformer=kern,
+        memory_limit="500mb",
+    ),
+    target_image="z_desc-specificity",
+    features=target_features,
+)
+corr_decoder.fit(neurosynth_dset_first500)
+corr_df = corr_decoder.transform(
+    os.path.join(DATA_DIR, "DerSimonianLaird_est.nii.gz")
+)
+```
+
+```{code-cell} ipython3
+:tags: [hide-input]
+corr_df = corr_df.reindex(
+    corr_df["r"].abs().sort_values(ascending=False).index
+)
+corr_df = corr_df.iloc[:10]
+display(corr_df)
+```
+
+```{code-cell} ipython3
+:tags: [hide-cell]
+# Here we delete the recent variables for the sake of reducing memory usage
+del corr_decoder, corr_df
+```
 
 +++
 
@@ -50,7 +131,31 @@ The resulting modeled activation maps are then masked with a region of interest 
 These averaged modeled activation values are then correlated with the term weights for all labels in the dataset.
 This decoding method produces a single correlation coefficient for each of the dataset's labels.
 
-CODE
+```{code-cell} ipython3
+assoc_decoder = decode.discrete.ROIAssociationDecoder(
+    amygdala_roi,
+    u=0.05,
+    correction="fdr_bh",
+    features=target_features,
+)
+assoc_decoder.fit(neurosynth_dset_first500)
+assoc_df = assoc_decoder.transform()
+```
+
+```{code-cell} ipython3
+:tags: [hide-input]
+assoc_df = assoc_df.reindex(
+    assoc_df["r"].abs().sort_values(ascending=False).index
+)
+assoc_df = assoc_df.iloc[:10]
+display(assoc_df)
+```
+
+```{code-cell} ipython3
+:tags: [hide-cell]
+# Here we delete the recent variables for the sake of reducing memory usage
+del assoc_decoder, assoc_df
+```
 
 A more theoretically driven approach to ROI decoding is to use **chi-square-based** methods.
 The two methods which use chi-squared tests are the BrainMap decoding method and an adaptation of Neurosynth’s meta-analysis method.
@@ -77,7 +182,31 @@ Next, the studies in the sample are compared to the studies in the rest of the d
 This specificity analysis produces a p-value and an effect size measure of the posterior probability of having the label given selection into the sample.
 A detailed algorithm description is presented in **Appendix I**.
 
-CODE
+```{code-cell} ipython3
+brainmap_decoder = decode.discrete.BrainMapDecoder(
+    frequency_threshold=0.001,
+    u=0.05,
+    correction="fdr_bh",
+    features=target_features,
+)
+brainmap_decoder.fit(neurosynth_dset_first500)
+brainmap_df = brainmap_decoder.transform(amygdala_ids)
+```
+
+```{code-cell} ipython3
+:tags: [hide-input]
+brainmap_df = brainmap_df.reindex(
+    brainmap_df["probReverse"].abs().sort_values(ascending=False).index
+)
+brainmap_df = brainmap_df.iloc[:10]
+display(brainmap_df)
+```
+
+```{code-cell} ipython3
+:tags: [hide-cell]
+# Here we delete the recent variables for the sake of reducing memory usage
+del brainmap_decoder, brainmap_df
+```
 
 +++
 
@@ -95,7 +224,31 @@ For the consistency analysis, this method produces both a p-value and a conditio
 For the specificity analysis, the Neurosynth method produces both a p-value and a posterior probability of presence of the label given selection and the prior probability of having the label.
 A detailed algorithm description is presented in **Appendix II**.
 
-CODE
+```{code-cell} ipython3
+neurosynth_decoder = decode.discrete.NeurosynthDecoder(
+    frequency_threshold=0.001,
+    u=0.05,
+    correction="fdr_bh",
+    features=target_features,
+)
+neurosynth_decoder.fit(neurosynth_dset_first500)
+neurosynth_df = neurosynth_decoder.transform(amygdala_ids)
+```
+
+```{code-cell} ipython3
+:tags: [hide-input]
+neurosynth_df = neurosynth_df.reindex(
+    neurosynth_df["probReverse"].abs().sort_values(ascending=False).index
+)
+neurosynth_df = neurosynth_df.iloc[:10]
+display(neurosynth_df)
+```
+
+```{code-cell} ipython3
+:tags: [hide-cell]
+# Here we delete the recent variables for the sake of reducing memory usage
+del neurosynth_decoder, neurosynth_df
+```
 
 +++
 
