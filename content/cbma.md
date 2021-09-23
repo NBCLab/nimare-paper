@@ -15,6 +15,28 @@ kernelspec:
 
 +++
 
+```{code-cell} ipython3
+:tags: [hide-cell]
+# First, import the necessary modules and functions
+import os
+
+import matplotlib.pyplot as plt
+import numpy as np
+from nilearn import plotting
+
+import nimare
+
+# Define where data files will be located
+DATA_DIR = os.path.abspath("../data")
+
+# Now, load the Datasets we will use in this chapter
+sleuth_dset1 = nimare.dataset.Dataset.load(
+    os.path.join(DATA_DIR, "sleuth_dset1.pkl.gz")
+)
+```
+
++++
+
 Coordinate-based meta-analysis (CBMA) is currently the most popular method for neuroimaging meta-analysis, given that the majority of fMRI papers currently report their findings as peaks of statistically significant clusters in standard space and do not release unthresholded statistical maps.
 These peaks indicate where significant results were found in the brain, and thus do not reflect an effect size estimate for each hypothesis test (i.e., each voxel) as one would expect for a typical meta-analysis.
 As such, standard methods for effect size-based meta-analysis cannot be applied.
@@ -27,27 +49,6 @@ Additionally, for each of the following approaches, except for SCALE, voxel- or 
 +++
 
 **Figure 2.** A flowchart of the typical workflow for coordinate-based meta-analyses in NiMARE.
-
-```{code-cell} ipython3
-:tags: [hide-cell]
-# First, import the necessary modules and functions
-import os
-
-import matplotlib.pyplot as plt
-import numpy as np
-from nilearn import datasets, image, input_data, plotting
-
-import nimare
-from nimare.tests.utils import get_test_data_path
-
-# Define where data files will be located
-DATA_DIR = os.path.abspath("../data")
-
-# Now, load the Datasets we will use in this chapter
-sleuth_dset1 = nimare.dataset.Dataset.load(
-    os.path.join(DATA_DIR, "sleuth_dset1.pkl.gz")
-)
-```
 
 CBMA kernels are available as `KernelTransformer`s in the `nimare.meta.kernel` module.
 There are three standard kernels that are currently available: `MKDAKernel`, `KDAKernel`, and `ALEKernel`.

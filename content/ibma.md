@@ -15,6 +15,28 @@ kernelspec:
 
 +++
 
+```{code-cell} ipython3
+:tags: [hide-cell]
+# First, import the necessary modules and functions
+import os
+
+import matplotlib.pyplot as plt
+import numpy as np
+from nilearn import plotting
+
+import nimare
+
+# Define where data files will be located
+DATA_DIR = os.path.abspath("../data")
+
+# Now, load the Datasets we will use in this chapter
+sleuth_dset1 = nimare.dataset.Dataset.load(
+    os.path.join(DATA_DIR, "sleuth_dset1.pkl.gz")
+)
+```
+
++++
+
 Image-based meta-analysis (IBMA) methods perform a meta-analysis directly on brain images (either whole-brain or partial) rather than on extracted peaks.
 On paper, IBMA is superior to CBMA in virtually all respects, as the availability of analysis-level parameter and variance estimates at all analyzed voxels allows researchers to use the full complement of standard meta-analysis techniques, instead of having to resort to kernel-based or other methods that require additional spatial assumptions.
 In principle, given a set of maps that contains no missing values (i.e., where there are _k_ valid pairs of parameter and variance estimates at each voxel), one can simply conduct a voxel-wise version of any standard meta-analysis or meta-regression method commonly used in other biomedical or social science fields.
@@ -38,15 +60,161 @@ Finally, when users only have access to z-score maps, they can use either the **
 When sample size information is available, users may incorporate that information into the Stouffer's method, via the method described in {cite:t}`Zaykin2011-fs`.
 
 ```{code-cell} ipython3
-from nimare.meta import ibma
+from nimare import dataset, extract, transforms
 
-meta = ibma.DerSimonianLaird()
-results = meta.fit(img_dset)
+dset_dir = extract.download_nidm_pain()
+dset_file = os.path.join(get_test_data_path(), "nidm_pain_dset.json")
+img_dset = dataset.Dataset(dset_file)
+
+# Point the Dataset toward the images we've downloaded
+img_dset.update_path(dset_dir)
+
+# Calculate missing images
+z_transformer = transforms.ImageTransformer(target="z")
+img_dset = z_transformer.transform(img_dset)
+
+varcope_transformer = transforms.ImageTransformer(target="varcope")
+img_dset = varcope_transformer.transform(img_dset)
+
+img_dset.save(os.path.join(DATA_DIR, "nidm_dset.pkl.gz"))
 ```
 
-**Listing 7.** Example usage of an image-based meta-analytic estimator.
+```{code-cell} ipython3
+from nimare import meta
+
+dsl_meta = meta.ibma.DerSimonianLaird()
+dsl_results = dsl_meta.fit(img_dset)
+
+# Save the results for later use
+dsl_results.save_maps(output_dir=DATA_DIR, prefix="DerSimonianLaird")
+```
+
+**Listing 7.** Transforming images and image-based meta-analysis.
 
 +++
+
+```{code-cell} ipython3
+
+stouffers_meta = meta.ibma.Stouffers(use_sample_size=False)
+stouffers_results = stouffers_meta.fit(img_dset)
+stouffers_results.save_maps(output_dir=DATA_DIR, prefix="Stouffers")
+del stouffers_meta, stouffers_results
+
+weighted_stouffers_meta = meta.ibma.Stouffers(use_sample_size=True)
+weighted_stouffers_results = weighted_stouffers_meta.fit(img_dset)
+weighted_stouffers_results.save_maps(output_dir=DATA_DIR, prefix="WeightedStouffers")
+del weighted_stouffers_meta, weighted_stouffers_results
+
+fishers_meta = meta.ibma.Fishers()
+fishers_results = fishers_meta.fit(img_dset)
+fishers_results.save_maps(output_dir=DATA_DIR, prefix="Fishers")
+del fishers_meta, fishers_results
+
+ols_meta = meta.ibma.PermutedOLS()
+ols_results = ols_meta.fit(img_dset)
+ols_results.save_maps(output_dir=DATA_DIR, prefix="OLS")
+del ols_meta, ols_results
+
+wls_meta = meta.ibma.WeightedLeastSquares()
+wls_results = wls_meta.fit(img_dset)
+wls_results.save_maps(output_dir=DATA_DIR, prefix="WLS")
+del wls_meta, wls_results
+
+hedges_meta = meta.ibma.Hedges()
+hedges_results = hedges_meta.fit(img_dset)
+hedges_results.save_maps(output_dir=DATA_DIR, prefix="Hedges")
+del hedges_meta, hedges_results
+
+# Use atlas for likelihood-based estimators
+atlas = datasets.fetch_atlas_harvard_oxford("cort-maxprob-thr25-2mm")
+
+# nilearn's NiftiLabelsMasker cannot handle NaNs at the moment,
+# and some of the NIDM-Results packs' beta images have NaNs at the edge of the
+# brain.
+# So, we will create a reduced version of the atlas for this analysis.
+nan_mask = image.math_img(
+    "~np.any(np.isnan(img), axis=3)", img=img_dset.images["beta"].tolist()
+)
+nanmasked_atlas = image.math_img(
+    "mask * atlas",
+    mask=nan_mask,
+    atlas=atlas["maps"],
+)
+masker = input_data.NiftiLabelsMasker(nanmasked_atlas)
+del atlas, nan_mask, nanmasked_atlas
+
+vbl_meta = meta.ibma.VarianceBasedLikelihood(method="reml", mask=masker)
+vbl_results = vbl_meta.fit(img_dset)
+vbl_results.save_maps(output_dir=DATA_DIR, prefix="VBL")
+del vbl_meta, vbl_results
+
+ssbl_meta = nimare.meta.ibma.SampleSizeBasedLikelihood(
+    method="reml",
+    mask=masker,
+)
+ssbl_results = ssbl_meta.fit(img_dset)
+ssbl_results.save_maps(output_dir=DATA_DIR, prefix="SSBL")
+del ssbl_meta, ssbl_results, masker
+```
+
++++
+
+```{code-cell} ipython3
+meta_results = {
+    "DerSimonian-Laird": op.join(DATA_DIR, "DerSimonianLaird_z.nii.gz"),
+    "Stouffer's": op.join(DATA_DIR, "Stouffers_z.nii.gz"),
+    "Weighted Stouffer's": op.join(DATA_DIR, "WeightedStouffers_z.nii.gz"),
+    "Fisher's": op.join(DATA_DIR, "Fishers_z.nii.gz"),
+    "Ordinary Least Squares": op.join(DATA_DIR, "OLS_z.nii.gz"),
+    "Weighted Least Squares": op.join(DATA_DIR, "WLS_z.nii.gz"),
+    "Hedges'": op.join(DATA_DIR, "Hedges_z.nii.gz"),
+    "Variance-Based Likelihood": op.join(DATA_DIR, "VBL_z.nii.gz"),
+    "Sample Size-Based Likelihood": op.join(DATA_DIR, "SSBL_z.nii.gz"),
+}
+order = [
+    ["Fisher's", "Stouffer's", "Weighted Stouffer's"],
+    ["DerSimonian-Laird", "Hedges'", "Weighted Least Squares"],
+    ["Ordinary Least Squares", "Variance-Based Likelihood", "Sample Size-Based Likelihood"],
+]
+
+fig, axes = plt.subplots(figsize=(18, 6), nrows=3, ncols=3)
+
+for i_row, row_names in enumerate(order):
+    for j_col, name in enumerate(row_names):
+        file_ = meta_results[name]
+        display = plotting.plot_stat_map(
+            file_,
+            annotate=False,
+            axes=axes[i_row, j_col],
+            cmap="RdBu_r",
+            cut_coords=[5, -15, 10],
+            draw_cross=False,
+            figure=fig,
+        )
+        axes[i_row, j_col].set_title(name)
+
+        colorbar = display._cbar
+        colorbar_ticks = colorbar.get_ticks()
+        if colorbar_ticks[0] < 0:
+            new_ticks = [colorbar_ticks[0], 0, colorbar_ticks[-1]]
+        else:
+            new_ticks = [colorbar_ticks[0], colorbar_ticks[-1]]
+        colorbar.set_ticks(new_ticks, update_ticks=True)
+
+fig.savefig(
+    "figures/figure_05.svg",
+    transparent=True,
+    bbox_inches="tight",
+    pad_inches=0,
+)
+fig.savefig(
+    "figures/figure_05_lowres.png",
+    transparent=True,
+    bbox_inches="tight",
+    pad_inches=0,
+)
+fig.show()
+```
 
 **Figure 5.** An array of plots of the statistical maps produced by the image-based meta-analysis methods.
 The likelihood-based meta-analyses will be run on atlases instead of voxelwise, which will impact the code and figures.

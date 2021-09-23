@@ -15,6 +15,24 @@ kernelspec:
 
 +++
 
+```{code-cell} ipython3
+:tags: [hide-cell]
+# First, import the necessary modules and functions
+import os
+
+import matplotlib.pyplot as plt
+import numpy as np
+from nilearn import datasets, image, input_data, plotting
+
+import nimare
+from nimare.tests.utils import get_test_data_path
+
+# Define where data files will be located
+DATA_DIR = os.path.abspath("../data")
+```
+
++++
+
 Large-scale meta-analytic databases have made systematic meta-analyses of the neuroimaging literature possible.
 These databases combine results from neuroimaging studies, whether represented as coordinates of peak activations or unthresholded statistical images, with important study metadata, such as information about the samples acquired, stimuli used, analyses performed, and mental constructs putatively manipulated.
 The two most popular coordinate-based meta-analytic databases are BrainMap (http://www.brainmap.org) and Neurosynth (http://neurosynth.org), while the most popular image-based database is NeuroVault (https://neurovault.org).
@@ -37,22 +55,6 @@ While BrainMap is a semi-closed resource (i.e., a collaboration agreement is req
 Sleuth can export these study collections as text files with coordinates.
 NiMARE provides a function to import data from Sleuth text files into the NiMARE Dataset format.
 **Listing 1** displays an example code snippet illustrating how to convert a Sleuth text file to a NiMARE dataset.
-
-```{code-cell} ipython3
-:tags: [hide-cell]
-# First, import the necessary modules and functions
-import os
-
-import matplotlib.pyplot as plt
-import numpy as np
-from nilearn import datasets, image, input_data, plotting
-
-import nimare
-from nimare.tests.utils import get_test_data_path
-
-# Define where data files will be located
-DATA_DIR = os.path.abspath("../data")
-```
 
 The function `nimare.io.convert_sleuth_to_dataset` can be used to convert text files exported from Sleuth into NiMARE `Dataset`s.
 Here, we convert two files from a previous publication by NiMARE contributors {cite:p}`yanes2018`.
