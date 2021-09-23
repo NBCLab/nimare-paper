@@ -6,10 +6,10 @@
 #SBATCH -J nimare-paper
 
 #---Error file
-#SBATCH -e /home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/slurm_stderr
+#SBATCH -e /home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/jobs/slurm_stderr
 
 #---Output file
-#SBATCH -o /home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/slurm_stdout
+#SBATCH -o /home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/jobs/slurm_stdout
 
 #---Queue name
 #SBATCH --account iacc_nbc
@@ -22,6 +22,4 @@ export OMP_NUM_THREADS=4
 . $MODULESHOME/../global/profile.modules
 source /home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/activate_environment
 
-#python listings_figures_and_tables_part1.py
-#python listings_figures_and_tables_part2.py
-python listings_figures_and_tables_part3.py
+jupyter-book build /home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/
