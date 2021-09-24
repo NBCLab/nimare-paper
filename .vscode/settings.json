@@ -1,0 +1,9 @@
+{
+    "editor.inlineSuggest.enabled": false,
+    "[markdown]": {
+        "editor.wordWrap": "bounded",
+        "editor.wordWrapColumn": 79,
+        "editor.rulers": [80],
+        "editor.quickSuggestions": false
+    }
+}

@@ -1,0 +1,35 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: content/abstract
+
+chapters:
+- file: content/introduction
+- file: content/overview
+  sections:
+  - file: content/api
+  - file: content/organization
+  - file: content/dependencies
+- file: content/meta_methods
+  sections:
+  - file: content/resources
+  - file: content/meta
+    sections:
+    - file: content/cbma
+    - file: content/ibma
+    - file: content/correction
+  - file: content/other_approaches
+    sections:
+    - file: content/subtraction
+    - file: content/macm
+    - file: content/annotation
+    - file: content/decoding
+- file: content/future_directions
+- file: content/conclusion
+- file: content/acknowledgements
+- file: content/appendix.md
+  sections:
+  - file: content/appendices/brainmap_decoding
+  - file: content/appendices/neurosynth_decoding
+- file: content/bibliography.md

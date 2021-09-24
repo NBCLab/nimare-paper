@@ -1,2 +1,8 @@
 # nimare-paper
-Code for NiMARE software paper
+The NiMARE software paper, as a Jupyter Book.
+
+To build:
+
+```bash
+jupyter-book build .
+```
