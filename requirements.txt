@@ -1,6 +1,5 @@
 numpy
 scipy
-libgfortran
 sympy
 ply
 funcsigs
