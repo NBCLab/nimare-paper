@@ -22,6 +22,7 @@ import os
 
 import matplotlib.pyplot as plt
 import numpy as np
+from myst_nb import glue
 from nilearn import plotting
 
 import nimare
@@ -49,7 +50,13 @@ Additionally, for each of the following approaches, except for SCALE, voxel- or 
 
 +++
 
-**Figure 2.** A flowchart of the typical workflow for coordinate-based meta-analyses in NiMARE.
+```{figure} ../figures/figure_02.png
+---
+height: 150px
+name: meta_workflow_fig
+---
+A flowchart of the typical workflow for coordinate-based meta-analyses in NiMARE.
+```
 
 CBMA kernels are available as `KernelTransformer`s in the `nimare.meta.kernel` module.
 There are three standard kernels that are currently available: `MKDAKernel`, `KDAKernel`, and `ALEKernel`.
@@ -133,7 +140,7 @@ fig.savefig(
     bbox_inches="tight",
     pad_inches=0,
 )
-fig.show()
+glue("figure_ma_maps", fig, display=False)
 ```
 
 ```{code-cell} ipython3
@@ -142,7 +149,12 @@ fig.show()
 del mkda_ma_maps, kda_ma_maps, ale_ma_maps
 ```
 
-**Figure 3.** Modeled activation maps produced by **Listing 3.**
+```{glue:figure} figure_ma_maps
+:figwidth: 300px
+:name: "figure_ma_maps"
+
+Modeled activation maps produced by NiMARE's `KernelTransformer` classes.
+```
 
 +++
 
@@ -385,11 +397,17 @@ fig.savefig(
     pad_inches=0,
 )
 fig.show()
+glue("figure_cbma_uncorr", fig, display=False)
 ```
 
-**Figure 4.** Thresholded results from MKDA Density, KDA, ALE, and SCALE meta-analyses.
+```{glue:figure} figure_cbma_uncorr
+:figwidth: 300px
+:name: "figure_cbma_uncorr"
+
+Thresholded results from MKDA Density, KDA, ALE, and SCALE meta-analyses.
+```
 
 +++
 
 A number of other coordinate-based meta-analysis algorithms exist which are not yet implemented in NiMARE.
-We describe these algorithms briefly in the **Future Directions** section below.
+We describe these algorithms briefly in {doc}`future_directions.md`.

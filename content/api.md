@@ -10,3 +10,11 @@ There are two main types of tools that operate on a `Dataset` class.
 `Transformer` classes, as their name suggests, perform some transformation on a `Dataset—` i.e., they take a `Dataset` instance as input, and return a modified version of that `Dataset` instance as output (for example, with newly generated maps stored within the object).
 `Estimator` classes apply a meta-analytic algorithm to a `Dataset` and return a set of statistical images stored in a MetaResult container class.
 The key methods supported by each of these base classes, as well as the main arguments to those methods, are consistent throughout the hierarchy (e.g., all `Transformer` classes must implement a `transform()` method), minimizing the learning curve and ensuring a high degree of predictability for users.
+
+```{figure} ../figures/figure_01.png
+---
+height: 150px
+name: figure_schematic
+---
+A schematic figure of `Datasets`, `Estimators`, `Transformers`, and `MetaResults` in NiMARE.
+```
