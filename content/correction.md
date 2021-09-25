@@ -21,6 +21,7 @@ kernelspec:
 import os
 
 import matplotlib.pyplot as plt
+from myst_nb import glue
 from nilearn import plotting
 
 import nimare
@@ -111,13 +112,12 @@ fig.savefig(
     bbox_inches="tight",
     pad_inches=0,
 )
-fig.savefig(
-    os.path.join(FIG_DIR, "figure_06_lowres.png"),
-    transparent=True,
-    bbox_inches="tight",
-    pad_inches=0,
-)
-fig.show()
+glue("figure_corr_cbma", fig, display=False)
 ```
 
-**Figure 6.** An array of plots of the corrected statistical maps produced by the different multiple comparisons correction methods.
+```{glue:figure} figure_corr_cbma
+:figwidth: 150px
+:name: figure_corr_cbma
+
+An array of plots of the corrected statistical maps produced by the different multiple comparisons correction methods.
+```

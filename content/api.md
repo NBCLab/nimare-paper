@@ -12,9 +12,8 @@ There are two main types of tools that operate on a `Dataset` class.
 The key methods supported by each of these base classes, as well as the main arguments to those methods, are consistent throughout the hierarchy (e.g., all `Transformer` classes must implement a `transform()` method), minimizing the learning curve and ensuring a high degree of predictability for users.
 
 ```{figure} ../figures/figure_01.png
----
-height: 150px
-name: figure_schematic
----
+:figwidth: 150px
+:name: figure_schematic
+
 A schematic figure of `Datasets`, `Estimators`, `Transformers`, and `MetaResults` in NiMARE.
 ```

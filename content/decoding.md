@@ -21,6 +21,8 @@ kernelspec:
 import os
 from hashlib import md5
 
+from myst_nb import glue
+
 DATA_DIR = os.path.abspath("../data")
 FIG_DIR = os.path.abspath("../figures")
 ```
@@ -84,6 +86,7 @@ However, such results should be interpreted with great caution.
 This approach can also be applied to an image-based database like NeuroVault, either by correlating input data with meta-analyzed statistical maps, or by deriving distributions of correlation coefficients by grouping statistical maps in the database according to label.
 Using these distributions, it is possible to statistically compare labels in order to assess label significance.
 NiMARE includes methods for both correlation-based decoding and correlation distribution-based decoding, although the correlation-based decoding is better established and should be preferred over the correlation distribution-based decoding.
+As such, we will only show the `CorrelationDecoder` here.
 
 ```{code-cell} ipython3
 from nimare import decode, meta
@@ -109,7 +112,14 @@ corr_df = corr_df.reindex(
     corr_df["r"].abs().sort_values(ascending=False).index
 )
 corr_df = corr_df.iloc[:10]
-display(corr_df)
+glue("table_corr", corr_df)
+```
+
+```{glue:figure} table_corr
+:figwidth: 300px
+:name: "tbl:table_corr"
+
+The top ten terms, sorted by absolute correlation coefficient, from the correlation decoding method.
 ```
 
 ```{code-cell} ipython3
@@ -148,7 +158,14 @@ assoc_df = assoc_df.reindex(
     assoc_df["r"].abs().sort_values(ascending=False).index
 )
 assoc_df = assoc_df.iloc[:10]
-display(assoc_df)
+glue("table_assoc", assoc_df)
+```
+
+```{glue:figure} table_assoc
+:figwidth: 300px
+:name: "tbl:table_assoc"
+
+The top ten terms, sorted by absolute correlation coefficient, from the ROI association decoding method.
 ```
 
 ```{code-cell} ipython3
@@ -199,7 +216,14 @@ brainmap_df = brainmap_df.reindex(
     brainmap_df["probReverse"].abs().sort_values(ascending=False).index
 )
 brainmap_df = brainmap_df.iloc[:10]
-display(brainmap_df)
+glue("table_brainmap", brainmap_df)
+```
+
+```{glue:figure} table_brainmap
+:figwidth: 300px
+:name: "tbl:table_brainmap"
+
+The top ten terms, sorted by reverse-inference posterior probability, from the BrainMap chi-squared decoding method.
 ```
 
 ```{code-cell} ipython3
@@ -241,7 +265,14 @@ neurosynth_df = neurosynth_df.reindex(
     neurosynth_df["probReverse"].abs().sort_values(ascending=False).index
 )
 neurosynth_df = neurosynth_df.iloc[:10]
-display(neurosynth_df)
+glue("table_neurosynth", neurosynth_df)
+```
+
+```{glue:figure} table_neurosynth
+:figwidth: 300px
+:name: "tbl:table_neurosynth"
+
+The top ten terms, sorted by reverse-inference posterior probability, from the Neurosynth chi-squared decoding method.
 ```
 
 ```{code-cell} ipython3

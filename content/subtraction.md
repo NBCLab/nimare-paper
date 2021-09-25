@@ -21,6 +21,7 @@ kernelspec:
 import os
 
 import matplotlib.pyplot as plt
+from myst_nb import glue
 from nilearn import image, plotting
 
 import nimare
@@ -91,16 +92,15 @@ fig.savefig(
     bbox_inches="tight",
     pad_inches=0,
 )
-fig.savefig(
-    os.path.join(FIG_DIR, "figure_07_lowres.png"),
-    transparent=True,
-    bbox_inches="tight",
-    pad_inches=0,
-)
-fig.show()
+glue("figure_subtraction", fig, display=False)
 ```
 
-**Figure 7.** An array of plots of the statistical maps produced by the meta-analysis.
+```{glue:figure} figure_subtraction
+:figwidth: 150px
+:name: figure_subtraction
+
+An array of plots of the statistical maps produced by the meta-analysis.
+```
 
 Alternatively, MKDA Chi-squared analysis is inherently a subtraction analysis method, in that it compares foci from two groups of studies.
 Generally, one of these groups is a sample of interest, while the other is a meta-analytic database (minus the studies in the sample).

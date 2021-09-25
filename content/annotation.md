@@ -23,6 +23,7 @@ import os
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+from myst_nb import glue
 from nilearn import image, plotting
 
 import nimare
@@ -105,7 +106,6 @@ lda_model.save(op.join(DATA_DIR, "LDAModel.pkl.gz"))
 
 ```{code-cell} ipython3
 :tags: [hide-input]
-from IPython.display import display
 
 lda_df = lda_model.p_word_g_topic_df_.T
 column_names = {c: f"Topic {c}" for c in df.columns}
@@ -120,11 +120,15 @@ for col in lda_df.columns:
     ).index.tolist()[:10]
     lda_df.loc[:, col] = top_ten_terms
 
-display(lda_df)
+glue("table_lda", lda_df)
 ```
 
-**Table 2.** Weights for the different words by topic.
-Will need to be some subset (e.g., top ten words for first two topics).
+```{glue:figure} table_lda
+:figwidth: 300px
+:name: "tbl:table_lda"
+
+The top ten terms for each of the first ten topics in the trained LDA model.
+```
 
 ```{code-cell} ipython3
 :tags: [hide-cell]
@@ -178,10 +182,15 @@ for col in temp_df.columns:
     ).index.tolist()[:10]
     gclda_df.loc[:, col] = top_ten_terms
 
-display(gclda_df)
+glue("table_gclda", gclda_df)
 ```
 
-**Table 3.** Topic-term weights.
+```{glue:figure} table_gclda
+:figwidth: 300px
+:name: "tbl:table_gclda"
+
+The top ten terms for each of the first ten topics in the trained GCLDA model.
+```
 
 ```{code-cell} ipython3
 :tags: [hide-input]
@@ -217,16 +226,15 @@ fig.savefig(
     bbox_inches="tight",
     pad_inches=0,
 )
-fig.savefig(
-    os.path.join(FIG_DIR, "figure_09_lowres.png"),
-    transparent=True,
-    bbox_inches="tight",
-    pad_inches=0,
-)
-fig.show()
+glue("figure_gclda_topics", fig, display=False)
 ```
 
-**Figure 9.** An array of plots of the topic-specific Gaussian maps, generated with nilearn's plot_stat_map.
+```{glue:figure} figure_gclda_topics
+:figwidth: 150px
+:name: figure_gclda_topics
+
+Topic weight maps for the first five topics in the GCLDA model.
+```
 
 ```{code-cell} ipython3
 :tags: [hide-cell]

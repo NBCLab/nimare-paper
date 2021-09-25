@@ -51,10 +51,9 @@ Additionally, for each of the following approaches, except for SCALE, voxel- or 
 +++
 
 ```{figure} ../figures/figure_02.png
----
-height: 150px
-name: meta_workflow_fig
----
+:figwidth: 150px
+:name: meta_workflow_fig
+
 A flowchart of the typical workflow for coordinate-based meta-analyses in NiMARE.
 ```
 
@@ -130,12 +129,6 @@ for i_meta, (name, img) in enumerate(ma_maps.items()):
 
 fig.savefig(
     os.path.join(FIG_DIR, "figure_03.svg"),
-    transparent=True,
-    bbox_inches="tight",
-    pad_inches=0,
-)
-fig.savefig(
-    os.path.join(FIG_DIR, "figure_03_lowres.png"),
     transparent=True,
     bbox_inches="tight",
     pad_inches=0,
@@ -390,13 +383,6 @@ fig.savefig(
     bbox_inches="tight",
     pad_inches=0,
 )
-fig.savefig(
-    os.path.join(FIG_DIR, "figure_04_lowres.png"),
-    transparent=True,
-    bbox_inches="tight",
-    pad_inches=0,
-)
-fig.show()
 glue("figure_cbma_uncorr", fig, display=False)
 ```
 

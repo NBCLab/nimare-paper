@@ -21,6 +21,7 @@ kernelspec:
 import os
 
 import matplotlib.pyplot as plt
+from myst_nb import glue
 from nilearn import datasets, image, plotting
 
 import nimare
@@ -122,13 +123,12 @@ fig.savefig(
     bbox_inches="tight",
     pad_inches=0,
 )
-fig.savefig(
-    os.path.join(FIG_DIR, "figure_08_lowres.png"),
-    transparent=True,
-    bbox_inches="tight",
-    pad_inches=0,
-)
-fig.show()
+glue("figure_macm", fig, display=False)
 ```
 
-**Figure 8.** One statistical map plot for each of the MACMs, generated with nilearn's `plot_stat_map`.
+```{glue:figure} figure_macm
+:figwidth: 150px
+:name: figure_macm
+
+One statistical map plot for each of the MACMs, generated with nilearn's `plot_stat_map`.
+```

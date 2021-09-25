@@ -2,6 +2,7 @@ title: "NiMARE: Neuroimaging Meta-Analysis Research Environment"
 logo: figures/nimare_overview.png
 execute:
   execute_notebooks: "off"
+exclude_patterns: ["README.md", "misc-notebooks/*"]
 bibtex_bibfiles:
   - _bibliography/references.bib
 sphinx:

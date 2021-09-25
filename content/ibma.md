@@ -22,6 +22,7 @@ import os
 
 import matplotlib.pyplot as plt
 import numpy as np
+from myst_nb import glue
 from nilearn import plotting
 
 import nimare
@@ -57,7 +58,7 @@ However, these estimators also produce more biased estimates under typical condi
 Alternatively, when users only have access to contrast maps and associated sample sizes, they can use the supported **Sample Size-Based Likelihood** estimator, which assumes that within-study variance is constant across studies, and uses maximum-likelihood or restricted maximum-likelihood to estimate between-study variance, as described in {cite:t}`Sangnawakij2019-mq`.
 When users have access only to contrast maps, they can use the **Permuted OLS** estimator, which uses ordinary least squares and employs a max-type permutation scheme for family-wise error correction {cite:p}`Freedman1983-ld,Anderson2001-uc` that has been validated on neuroimaging data {cite:p}`Winkler2014-wh` and relies on the nilearn library.
 
-Finally, when users only have access to z-score maps, they can use either the **Fisher's** {cite:p}`Fisher1939-zh` or the **Stouffer's** {cite:p}`Riley1949-uz` estimators.
+Finally, when users only have access to z-score maps, they can use either the **Fisher's** {cite:p}`Fisher1925-zh` or the **Stouffer's** {cite:p}`Riley1949-uz` estimators.
 When sample size information is available, users may incorporate that information into the Stouffer's method, via the method described in {cite:t}`Zaykin2011-fs`.
 
 ```{code-cell} ipython3
@@ -218,14 +219,13 @@ fig.savefig(
     bbox_inches="tight",
     pad_inches=0,
 )
-fig.savefig(
-    os.path.join(FIG_DIR, "figure_05_lowres.png"),
-    transparent=True,
-    bbox_inches="tight",
-    pad_inches=0,
-)
-fig.show()
+glue("figure_uncorr_ibma", fig, display=False)
 ```
 
-**Figure 5.** An array of plots of the statistical maps produced by the image-based meta-analysis methods.
-The likelihood-based meta-analyses will be run on atlases instead of voxelwise, which will impact the code and figures.
+```{glue:figure} figure_uncorr_ibma
+:figwidth: 150px
+:name: figure_uncorr_ibma
+
+An array of plots of the statistical maps produced by the image-based meta-analysis methods.
+The likelihood-based meta-analyses are run on atlases instead of voxelwise.
+```
