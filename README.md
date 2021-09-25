@@ -6,3 +6,5 @@ To build:
 ```bash
 jupyter-book build .
 ```
+
+To view the built book, without any executed code or figures, see https://nbclab.github.io/nimare-paper/
