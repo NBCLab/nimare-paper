@@ -396,4 +396,4 @@ Thresholded results from MKDA Density, KDA, ALE, and SCALE meta-analyses.
 +++
 
 A number of other coordinate-based meta-analysis algorithms exist which are not yet implemented in NiMARE.
-We describe these algorithms briefly in {doc}`../future_directions.md`.
+We describe these algorithms briefly in [](future_directions.md).
