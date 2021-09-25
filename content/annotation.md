@@ -193,7 +193,7 @@ The top ten terms for each of the first ten topics in the trained GCLDA model.
 ```
 
 ```{code-cell} ipython3
-:tags: [hide-input]
+:tags: [hide-cell]
 from nilearn import image
 
 fig, axes = plt.subplots(nrows=5, figsize=(6, 10))

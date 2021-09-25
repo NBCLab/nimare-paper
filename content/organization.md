@@ -1,3 +1,16 @@
+---
+jupytext:
+  text_representation:
+    extension: .md
+    format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.10.3
+kernelspec:
+  display_name: Python 3
+  language: python
+  name: python3
+---
+
 # Package Organization
 
 At present, the package is organized into 14 distinct modules.
@@ -14,3 +27,19 @@ At present, the package is organized into 14 distinct modules.
 `nimare.base` defines a number of base classes used throughout the rest of the package.
 Finally, `nimare.stats` and `nimare.utils` are modules for statistical and generic utility functions, respectively.
 These modules are summarized in **Table 1**.
+
+```{code-cell} ipython3
+:tags: [hide-cell]
+import pandas as pd
+from myst_nb import glue
+
+modules_df = pd.read_table("../data/table_01.tsv")
+glue("table_modules", modules_df)
+```
+
+```{glue:figure} table_modules
+:figwidth: 300px
+:name: "tbl:table_modules"
+
+Summaries of modules in NiMARE.
+```

@@ -85,7 +85,7 @@ del mkda_kernel, kda_kernel, ale_kernel
 +++
 
 ```{code-cell} ipython3
-:tags: [hide-input]
+:tags: [hide-cell]
 # Generate figure
 study_idx = 10  # a study with overlapping kernels
 max_value = np.max(kda_ma_maps[study_idx].get_fdata()) + 1
@@ -322,7 +322,7 @@ del mkdac_meta, mkdac_results
 +++
 
 ```{code-cell} ipython3
-:tags: [hide-input]
+:tags: [hide-cell]
 
 meta_results = {
     "MKDA Density": op.join(DATA_DIR, "MKDADensity_z.nii.gz"),

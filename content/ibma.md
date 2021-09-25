@@ -171,7 +171,7 @@ del ssbl_meta, ssbl_results, masker
 +++
 
 ```{code-cell} ipython3
-:tags: [hide-input]
+:tags: [hide-cell]
 meta_results = {
     "DerSimonian-Laird": op.join(DATA_DIR, "DerSimonianLaird_z.nii.gz"),
     "Stouffer's": op.join(DATA_DIR, "Stouffers_z.nii.gz"),

@@ -90,7 +90,7 @@ results_sphere.save_maps(output_dir=DATA_DIR, prefix="ALE_Sphere")
 **Listing 11.** Example meta-analytic coactivation modeling analyses using the ALE algorithm.
 
 ```{code-cell} ipython3
-:tags: [hide-input]
+:tags: [hide-cell]
 meta_results = {
     "Amygdala ALE MACM": op.join(DATA_DIR, "ALE_Amygdala_z.nii.gz"),
     "Sphere ALE MACM": op.join(DATA_DIR, "ALE_Sphere_z.nii.gz"),

@@ -72,7 +72,7 @@ del mkdad_results, mc_corrector, mc_results, fdr_corrector, fdr_results
 +++
 
 ```{code-cell} ipython3
-:tags: [hide-input]
+:tags: [hide-cell]
 meta_results = {
     "Cluster-level Monte Carlo": op.join(
         DATA_DIR,

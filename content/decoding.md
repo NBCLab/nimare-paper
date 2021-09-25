@@ -107,7 +107,7 @@ corr_df = corr_decoder.transform(
 ```
 
 ```{code-cell} ipython3
-:tags: [hide-input]
+:tags: [hide-cell]
 corr_df = corr_df.reindex(
     corr_df["r"].abs().sort_values(ascending=False).index
 )
@@ -153,7 +153,7 @@ assoc_df = assoc_decoder.transform()
 ```
 
 ```{code-cell} ipython3
-:tags: [hide-input]
+:tags: [hide-cell]
 assoc_df = assoc_df.reindex(
     assoc_df["r"].abs().sort_values(ascending=False).index
 )
@@ -211,7 +211,7 @@ brainmap_df = brainmap_decoder.transform(amygdala_ids)
 ```
 
 ```{code-cell} ipython3
-:tags: [hide-input]
+:tags: [hide-cell]
 brainmap_df = brainmap_df.reindex(
     brainmap_df["probReverse"].abs().sort_values(ascending=False).index
 )
@@ -260,7 +260,7 @@ neurosynth_df = neurosynth_decoder.transform(amygdala_ids)
 ```
 
 ```{code-cell} ipython3
-:tags: [hide-input]
+:tags: [hide-cell]
 neurosynth_df = neurosynth_df.reindex(
     neurosynth_df["probReverse"].abs().sort_values(ascending=False).index
 )
