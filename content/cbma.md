@@ -58,7 +58,7 @@ name: meta_workflow_fig
 A flowchart of the typical workflow for coordinate-based meta-analyses in NiMARE.
 ```
 
-CBMA kernels are available as `KernelTransformer`s in the `nimare.meta.kernel` module.
+CBMA kernels are available as {py:class}`nimare.meta.kernel.KernelTransformer`s in the {py:mod}`nimare.meta.kernel` module.
 There are three standard kernels that are currently available: `MKDAKernel`, `KDAKernel`, and `ALEKernel`.
 Each class may be configured with certain parameters when a new object is initialized.
 For example, `MKDAKernel` accepts an `r` parameter, which determines the radius of the spheres that will be created around each peak coordinate.
@@ -410,4 +410,4 @@ Thresholded results from MKDA Density, KDA, ALE, and SCALE meta-analyses.
 +++
 
 A number of other coordinate-based meta-analysis algorithms exist which are not yet implemented in NiMARE.
-We describe these algorithms briefly in {doc}`future_directions.md`.
+We describe these algorithms briefly in {doc}`../future_directions.md`.
