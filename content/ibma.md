@@ -11,7 +11,7 @@ kernelspec:
   name: python3
 ---
 
-# IBMA methods
+# Image-Based Meta-Analysis
 
 +++
 

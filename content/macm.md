@@ -51,6 +51,10 @@ MACM has been used to characterize the task-based functional coactivation of the
 
 Within NiMARE, MACMs can be performed by selecting studies in a Dataset based on the presence of activation within a target mask or coordinate-centered sphere.
 
+In this section, we will perform two MACMs- one with a target mask and one with a coordinate-centered sphere.
+For the former, we use `Dataset.get_studies_by_mask`.
+For the latter, we use `Dataset.get_studies_by_coordinate`.
+
 ```{code-cell} ipython3
 # Create amygdala mask for MACMs
 atlas = datasets.fetch_atlas_harvard_oxford("sub-maxprob-thr25-2mm")
@@ -69,7 +73,47 @@ sphere_ids = neurosynth_dset.get_studies_by_coordinate([[24, -2, -20]], r=6)
 dset_sphere = neurosynth_dset.slice(sphere_ids)
 ```
 
-**Listing 10.** Selection of studies from a Dataset based on foci in a mask or sphere.
+```{code-cell} ipython3
+:tags: [hide-input]
+import numpy as np
+from nilearn import input_data, plotting
+
+# In order to plot a sphere with a precise radius around a coordinate with
+# nilearn, we need to use a NiftiSpheresMasker
+mask_img = dset.masker.mask_img
+sphere_masker = input_data.NiftiSpheresMasker(
+    [[24, -2, -20]],
+    radius=6,
+    mask_img=mask_img,
+)
+sphere_img = sphere_masker.inverse_transform(np.array([[1]]))
+
+fig, axes = plt.subplots(figsize=(6, 4), nrows=2)
+display = plotting.plot_roi(
+    amygdala_mask,
+    annotate=False,
+    draw_cross=False,
+    axes=axes[0],
+    figure=fig,
+)
+axes[0].set_title("Amygdala ROI")
+display = plotting.plot_roi(
+    sphere_img,
+    annotate=False,
+    draw_cross=False,
+    axes=axes[1],
+    figure=fig,
+)
+axes[1].set_title("Spherical ROI")
+glue("figure_macm_rois", fig, display=False)
+```
+
+```{glue:figure} figure_macm_rois
+:figwidth: 150px
+:name: figure_macm_rois
+
+Region of interest masks for (1) a target mask-based MACM and (2) a coordinate-based MACM.
+```
 
 +++
 

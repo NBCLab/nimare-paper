@@ -11,7 +11,7 @@ kernelspec:
   name: python3
 ---
 
-# CBMA methods
+# Coordinate-Based Meta-Analysis
 
 +++
 
