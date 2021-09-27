@@ -28,10 +28,10 @@ parts:
     - file: content/annotation
     - file: content/decoding
 
-  - caption: The End
+  - caption: Final Thoughts
     chapters:
     - file: content/future_directions
-    - file: content/conclusion
+    - file: content/conclusions
     - file: content/acknowledgements
     - file: content/bibliography.md
 
