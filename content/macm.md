@@ -131,8 +131,6 @@ results_sphere = meta_sphere.fit(dset_sphere)
 results_sphere.save_maps(output_dir=DATA_DIR, prefix="ALE_Sphere")
 ```
 
-**Listing 11.** Example meta-analytic coactivation modeling analyses using the ALE algorithm.
-
 ```{code-cell} ipython3
 :tags: [hide-cell]
 meta_results = {

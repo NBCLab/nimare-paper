@@ -54,9 +54,8 @@ While outside contributors can add and annotate studies to the database, the mai
 While BrainMap is a semi-closed resource (i.e., a collaboration agreement is required to access the full database), registered users may search the database using the Sleuth search tool, in order to collect samples for meta-analyses.
 Sleuth can export these study collections as text files with coordinates.
 NiMARE provides a function to import data from Sleuth text files into the NiMARE Dataset format.
-**Listing 1** displays an example code snippet illustrating how to convert a Sleuth text file to a NiMARE dataset.
 
-The function `nimare.io.convert_sleuth_to_dataset` can be used to convert text files exported from Sleuth into NiMARE `Dataset`s.
+The function {py:func}`nimare.io.convert_sleuth_to_dataset` can be used to convert text files exported from Sleuth into NiMARE `Dataset`s.
 Here, we convert two files from a previous publication by NiMARE contributors {cite:p}`yanes2018` into two separate `Dataset`s.
 
 ```{code-cell} ipython3
@@ -75,8 +74,6 @@ print(sleuth_dset2)
 sleuth_dset1.save(os.path.join(DATA_DIR, "sleuth_dset1.pkl.gz"))
 sleuth_dset2.save(os.path.join(DATA_DIR, "sleuth_dset2.pkl.gz"))
 ```
-
-**Listing 1.** Example usage of the `convert_sleuth_to_dataset()` function.
 
 +++
 

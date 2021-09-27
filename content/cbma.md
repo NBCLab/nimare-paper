@@ -307,7 +307,7 @@ del ale_meta, ale_results
 Rather than comparing convergence of foci within the sample to a null distribution derived under the assumption of spatial randomness within the brain, SCALE assesses whether the convergence at each voxel is greater than in the general literature.
 Each voxel in the brain is assigned a null distribution determined based on the base rate of activation for that voxel across an existing coordinate-based meta-analytic database.
 This approach allows for the generation of a statistical map for the sample, but no methods for multiple comparisons correction have yet been developed.
-While this method was developed to support analysis of joint activation or “coactivation” patterns, it is generic and can be applied to any CBMA; see Other Meta-analytic Approaches below.
+While this method was developed to support analysis of joint activation or “coactivation” patterns, it is generic and can be applied to any CBMA; see [](about_derivative_analyses.md)
 
 ```{code-cell} ipython3
 # Here we use the coordinates from Neurosynth as our measure of coordinate
@@ -325,9 +325,6 @@ scale_results = scale_meta.fit(sleuth_dset1)
 # Save the results for later use
 scale_results.save_maps(output_dir=DATA_DIR, prefix="SCALE")
 ```
-
-**Listing 5.** An example SCALE meta-analysis.
-In this example, we use a larger database, stored as a NiMARE Dataset, to estimate voxel-wise base rates.
 
 ```{code-cell} ipython3
 :tags: [hide-cell]
@@ -351,9 +348,6 @@ mkdac_results = mkdac_meta.fit(sleuth_dset1, sleuth_dset2)
 # Save the results for later use
 mkdac_results.save_maps(output_dir="results/", prefix="MKDAChi2")
 ```
-
-**Listing 6.** An example MKDA Chi-squared meta-analysis.
-In this meta-analysis, two samples are compared using voxel-wise chi-squared tests.
 
 ```{code-cell} ipython3
 :tags: [hide-cell]

@@ -48,6 +48,10 @@ However, the introduction and rapid adoption of NeuroVault {cite:p}`Gorgolewski2
 Although coverage of the literature remains limited, and IBMAs of maps drawn from the NeuroVault database are likely to omit at least some (and in some cases most) relevant studies due to limited metadata,  we believe the time is ripe for researchers to start including both CBMAs and IBMAs in published meta-analyses, with the aspirational goal of eventually transitioning exclusively to the latter.
 To this end, NiMARE supports a range of different IBMA methods, including a number of estimators of the gold standard mixed-effects meta-regression model, as well as several alternative estimators suitable for use when some of the traditional inputs are unavailable.
 
+```{note}
+NiMARE's IBMA `Estimator`s are light wrappers around classes from [PyMARE](https://pymare.readthedocs.io), a library for standard (i.e., non-neuroimaging) meta-analyses developed by the same team as NiMARE.
+```
+
 In the optimal situation, meta-analysts have access to both contrast (i.e., parameter estimate) maps and their associated standard error maps for a number of studies.
 With these data, researchers can fit the traditional random-effects meta-regression model using one of several methods that vary in the way they estimate the between-study variance ($\tau^{2}$).
 Currently supported estimators include the **DerSimonian-Laird** method {cite:p}`DerSimonian1986-hu`, the **Hedges** method {cite:p}`Hedges1985-ka`, and **maximum-likelihood** (ML) and **restricted maximum-likelihood** (REML) approaches.
@@ -70,11 +74,23 @@ img_dset = dataset.Dataset(dset_file)
 
 # Point the Dataset toward the images we've downloaded
 img_dset.update_path(dset_dir)
+```
 
-# Calculate missing images
+### Transforming images
+
+Researchers may share their statistical maps in many forms, some of which are direct transformations of one another.
+For example, researchers may share test statistic maps with z-statistics or t-statistics, and, as long as we know the degrees of freedom associated with the t-test, we can convert between the two easily. To that end, NiMARE includes a class, {py:class}`nimare.transforms.ImageTransformer`, which will calculate target image types from available ones, as long as the available images are compatible with said transformation.
+
+Here, we use `ImageTransformer` to calculate z-statistic and variance maps for all studies with compatible images.
+This allows us to apply more image-based meta-analysis algorithms to the `Dataset`.
+
+```{code-cell} ipython3
+from nimare import transforms
+
 img_transformer = transforms.ImageTransformer(target=["z", "varcope"])
 img_dset = img_transformer.transform(img_dset)
 
+# Save the Dataset to a Pickle file
 img_dset.save(os.path.join(DATA_DIR, "nidm_dset.pkl.gz"))
 ```
 
@@ -83,6 +99,9 @@ img_dset.save(os.path.join(DATA_DIR, "nidm_dset.pkl.gz"))
 # Here we delete the recent variables for the sake of reducing memory usage
 del img_transformer
 ```
+
+Now that we have filled in as many gaps in the `Dataset` as possible, we can start running meta-analyses.
+We will start with a DerSimonian-Laird meta-analysis ({py:class}`nimare.meta.ibma.DerSimonianLaird`).
 
 ```{code-cell} ipython3
 from nimare import meta
@@ -100,13 +119,11 @@ dsl_results.save_maps(output_dir=DATA_DIR, prefix="DerSimonianLaird")
 del dsl_meta, dsl_results
 ```
 
-**Listing 7.** Transforming images and image-based meta-analysis.
-
 +++
 
+Now we will apply other available IBMA `Estimator`s to the same `Dataset`, and save their results to files for comparison.
+
 ```{code-cell} ipython3
-:tags: [hide-cell]
-# Perform additional image-based meta-analyses for figures
 stouffers_meta = meta.ibma.Stouffers(use_sample_size=False)
 stouffers_results = stouffers_meta.fit(img_dset)
 stouffers_results.save_maps(output_dir=DATA_DIR, prefix="Stouffers")

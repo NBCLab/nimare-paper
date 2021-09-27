@@ -11,7 +11,7 @@ matplotlib
 myst_nb
 nibabel
 nilearn
-nimare
+nimare==0.0.10
 numexpr
 numpy
 pandas
