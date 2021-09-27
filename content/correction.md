@@ -29,11 +29,6 @@ import nimare
 # Define where data files will be located
 DATA_DIR = os.path.abspath("../data")
 FIG_DIR = os.path.abspath("../figures")
-
-# Now, load the Datasets we will use in this chapter
-neurosynth_dset = nimare.dataset.Dataset.load(
-    os.path.join(DATA_DIR, "neurosynth_dataset.pkl.gz")
-)
 ```
 
 +++
