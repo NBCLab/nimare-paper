@@ -5,13 +5,13 @@ In the future, we plan to incorporate a number of additional methods. Here we br
 
 ## Integration with external databases
 
-A resource which may ultimately be integrated with Neurosynth is Brainspell (https://github.com/OpenNeuroLab/brainspell-neo).
+A resource which may ultimately be integrated with Neurosynth is [Brainspell](https://github.com/OpenNeuroLab/brainspell-neo).
 Brainspell is a port of the Neurosynth database in which users may manually annotate the automatically extracted study information.
 The goal of Brainspell is to crowdsource annotation through both expert and nonexpert annotators, which would address the primary weaknesses of BrainMap (i.e., slow growth) and Neurosynth (i.e., noise in data extraction and annotation).
-Annotations in Brainspell may use labels from the Cognitive Paradigm Ontology (CogPO) {cite:p}`Turner2012-ai`, an ontology adapted from the BrainMap Taxonomy, or from the Cognitive Atlas {cite:p}`Poldrack2011-yh`, a collaboratively generated ontology built by contributions from experts across the field of cognitive science.
+Annotations in Brainspell may use labels from the [Cognitive Paradigm Ontology](http://www.cogpo.org) (CogPO) {cite:p}`Turner2012-ai`, an ontology adapted from the BrainMap Taxonomy, or from the [Cognitive Atlas](https://www.cognitiveatlas.org) {cite:p}`Poldrack2011-yh`, a collaboratively generated ontology built by contributions from experts across the field of cognitive science.
 Users may also correct the coordinates extracted by Neurosynth, which may suffer from extraction errors, and may add important metadata like the number of subjects associated with each comparison in each study.
 
-Brainspell has suffered from low growth, which is why its annotations have not been integrated back into Neurosynth, but a new frontend tool for Brainspell, geared toward meta-analysts, has been developed called metaCurious (https://metacurious.org).
+Brainspell has suffered from low growth, which is why its annotations have not been integrated back into Neurosynth, but a new frontend tool for Brainspell, geared toward meta-analysts, has been developed called [metaCurious](https://metacurious.org).
 MetaCurious facilitates neuroimaging meta-analyses by allowing users to iteratively perform literature searches and to annotate rejected articles with reasons for exclusion.
 In addition to these features, metaCurious users can annotate studies with the same labels and metadata as Brainspell, but with the features geared toward meta-analysts site usage is expected to exceed that of Brainspell proper.
 
@@ -19,7 +19,7 @@ While NiMARE does not natively include tools for interacting with Brainspell or 
 
 ## Seed-based D-Mapping
 
-Seed-based d-mapping (SDM) {cite:p}`Radua2012-dy`, previously known as signed differential mapping, is a relatively recently-developed approach designed to incorporate both peak-specific effect size estimates and unthresholded images, when available.
+[Seed-based d-mapping](https://www.sdmproject.com) (SDM) {cite:p}`Radua2012-dy`, previously known as signed differential mapping, is a relatively recently-developed approach designed to incorporate both peak-specific effect size estimates and unthresholded images, when available.
 In SDM, foci are convolved with an anisotropic kernel which, unlike the Gaussian and spherical kernels employed in ALE and MKDA, respectively, accounts for tissue type to provide more empirically realistic spatial models of the clusters from the original studies.
 The SDM algorithm is not yet supported in NiMARE, given the difficulty in implementing an algorithm without access to code.
 

@@ -1,6 +1,6 @@
 # Introduction
 
-We introduce NiMARE (Neuroimaging Meta-Analysis Research Environment), a Python package for analyzing meta-analytic neuroimaging data.
+We introduce **NiMARE** (Neuroimaging Meta-Analysis Research Environment), a Python package for analyzing meta-analytic neuroimaging data.
 NiMARE is a new library developed as a component in a burgeoning open-source meta-analytic ecosystem for neuroimaging data, which currently includes Neurosynth, NeuroVault, NeuroQuery, and PyMARE.
 
 While several libraries already exist for neuroimaging meta-analysis, these libraries are generally algorithm-specific, and are provided in a range of very different user interfaces, languages, and licenses.

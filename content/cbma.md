@@ -96,10 +96,7 @@ ma_maps = {
     "ALE Kernel": ale_ma_maps[study_idx],
 }
 
-fig, axes = plt.subplots(
-    nrows=3,
-    figsize=(6, 6),
-)
+fig, axes = plt.subplots(nrows=3, figsize=(6, 6))
 
 for i_meta, (name, img) in enumerate(ma_maps.items()):
     if "ALE" in name:
@@ -340,11 +337,7 @@ order = [
     ["KDA", None]
 ]
 
-fig, axes = plt.subplots(
-    figsize=(12, 6),
-    nrows=3,
-    ncols=2,
-)
+fig, axes = plt.subplots(figsize=(12, 6), nrows=3, ncols=2)
 
 for i_row, row_names in enumerate(order):
     for j_col, name in enumerate(row_names):

@@ -55,13 +55,20 @@ Abstracts are much more easily accessible than full article text, so most annota
 ```{code-cell} ipython3
 from nimare import extract
 
-neurosynth_dset = extract.download_abstracts(
-    neurosynth_dset,
-    email="example@email.com",
-)
-neurosynth_dset.save(
-    op.join(DATA_DIR, "neurosynth_dataset_with_abstracts.pkl.gz"),
-)
+# In order to run this code on nodes without internet access,
+# we need this if statement
+if not op.isfile(op.join(DATA_DIR, "neurosynth_dataset_with_abstracts.pkl.gz")):
+    neurosynth_dset = extract.download_abstracts(
+        neurosynth_dset,
+        email="example@email.com",
+    )
+    neurosynth_dset.save(
+        op.join(DATA_DIR, "neurosynth_dataset_with_abstracts.pkl.gz"),
+    )
+else:
+    neurosynth_dset = nimare.dataset.Dataset.load(
+        op.join(DATA_DIR, "neurosynth_dataset_with_abstracts.pkl.gz")
+    )
 ```
 
 **Listing 12.** Example usage of the `download_abstracts()` function to download article abstracts from PubMed.

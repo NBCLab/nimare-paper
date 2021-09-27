@@ -106,6 +106,7 @@ del dsl_meta, dsl_results
 
 ```{code-cell} ipython3
 :tags: [hide-cell]
+# Perform additional image-based meta-analyses for figures
 stouffers_meta = meta.ibma.Stouffers(use_sample_size=False)
 stouffers_results = stouffers_meta.fit(img_dset)
 stouffers_results.save_maps(output_dir=DATA_DIR, prefix="Stouffers")
@@ -113,7 +114,10 @@ del stouffers_meta, stouffers_results
 
 weighted_stouffers_meta = meta.ibma.Stouffers(use_sample_size=True)
 weighted_stouffers_results = weighted_stouffers_meta.fit(img_dset)
-weighted_stouffers_results.save_maps(output_dir=DATA_DIR, prefix="WeightedStouffers")
+weighted_stouffers_results.save_maps(
+    output_dir=DATA_DIR,
+    prefix="WeightedStouffers",
+)
 del weighted_stouffers_meta, weighted_stouffers_results
 
 fishers_meta = meta.ibma.Fishers()
@@ -147,9 +151,7 @@ nan_mask = image.math_img(
     "~np.any(np.isnan(img), axis=3)", img=img_dset.images["beta"].tolist()
 )
 nanmasked_atlas = image.math_img(
-    "mask * atlas",
-    mask=nan_mask,
-    atlas=atlas["maps"],
+    "mask * atlas", mask=nan_mask, atlas=atlas["maps"]
 )
 masker = input_data.NiftiLabelsMasker(nanmasked_atlas)
 del atlas, nan_mask, nanmasked_atlas

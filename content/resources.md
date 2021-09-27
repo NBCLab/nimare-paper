@@ -32,7 +32,7 @@ FIG_DIR = os.path.abspath("../figures")
 
 Large-scale meta-analytic databases have made systematic meta-analyses of the neuroimaging literature possible.
 These databases combine results from neuroimaging studies, whether represented as coordinates of peak activations or unthresholded statistical images, with important study metadata, such as information about the samples acquired, stimuli used, analyses performed, and mental constructs putatively manipulated.
-The two most popular coordinate-based meta-analytic databases are BrainMap (http://www.brainmap.org) and Neurosynth (http://neurosynth.org), while the most popular image-based database is NeuroVault (https://neurovault.org).
+The two most popular coordinate-based meta-analytic databases are [BrainMap](http://www.brainmap.org) and [Neurosynth](http://neurosynth.org), while the most popular image-based database is [NeuroVault](https://neurovault.org).
 
 The studies archived in these databases may be either manually or automatically annotated—often with reference to a formal ontology or controlled vocabulary.
 Ontologies for cognitive neuroscience define what mental states or processes are postulated to be manipulated or measured in experiments, and may also include details of said experiments (e.g.,the cognitive tasks employed), relationships between concepts (e.g., verbal working memory is a kind of working memory), and various other metadata that can be standardized and represented in a machine-readable form {cite:p}`Poldrack2016-ym,Poldrack2010-jz,Turner2012-ai`.
@@ -85,7 +85,7 @@ Second, coordinate extraction and annotation are noisy.
 Third, annotations automatically performed by Neurosynth are also subject to error, although the reasons behind this are more nuanced and will be discussed later in this paper.
 Given Neurosynth’s limitations, we recommend that it be used for casual, exploratory meta-analyses rather than for publication-quality analyses.
 Nevertheless, while individual meta-analyses should not be published from Neurosynth, many derivative analyses have been performed and published (e.g., {cite:p}`Chang2013-si,De_la_Vega2016-wg,De_la_Vega2018-jc,Poldrack2012-it`).
-As evidence of its utility, Neurosynth has been used to define a priori regions of interest (e.g., {cite:p}`Josipovic2014-hx,Zeidman2012-fj,Wager2013-ab`) or perform meta-analytic functional decoding (e.g., {cite:p}`Chen2018-of,Pantelis2015-bq,Tambini2017-iu`) in many first-order (rather than meta-analytic) fMRI studies.
+As evidence of its utility, Neurosynth has been used to define _a priori_ regions of interest (e.g., {cite:p}`Josipovic2014-hx,Zeidman2012-fj,Wager2013-ab`) or perform meta-analytic functional decoding (e.g., {cite:p}`Chen2018-of,Pantelis2015-bq,Tambini2017-iu`) in many first-order (rather than meta-analytic) fMRI studies.
 
 **Listing 2** displays an example code snippet illustrating how to fetch the Neurosynth database and convert it to a NiMARE dataset.
 
