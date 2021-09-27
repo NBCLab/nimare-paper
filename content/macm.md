@@ -136,8 +136,8 @@ results_sphere.save_maps(output_dir=DATA_DIR, prefix="ALE_Sphere")
 ```{code-cell} ipython3
 :tags: [hide-cell]
 meta_results = {
-    "Amygdala ALE MACM": op.join(DATA_DIR, "ALE_Amygdala_z.nii.gz"),
-    "Sphere ALE MACM": op.join(DATA_DIR, "ALE_Sphere_z.nii.gz"),
+    "Amygdala ALE MACM": os.path.join(DATA_DIR, "ALE_Amygdala_z.nii.gz"),
+    "Sphere ALE MACM": os.path.join(DATA_DIR, "ALE_Sphere_z.nii.gz"),
 }
 
 fig, axes = plt.subplots(figsize=(6, 4), nrows=2)

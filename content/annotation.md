@@ -55,10 +55,10 @@ from nimare import extract
 
 # In order to run this code on nodes without internet access,
 # we need this if statement
-dataset_file = op.join(
+dataset_file = os.path.join(
     DATA_DIR, "neurosynth_dataset_first500_with_abstracts.pkl.gz"
 )
-if not op.isfile(dataset_file):
+if not os.path.isfile(dataset_file):
     neurosynth_dset_first_500 = extract.download_abstracts(
         neurosynth_dset_first_500,
         email="example@email.com",
@@ -200,7 +200,7 @@ lda_model = annotate.lda.LDAModel(
     n_iters=10000,
 )
 lda_model.fit()
-lda_model.save(op.join(DATA_DIR, "LDAModel.pkl.gz"))
+lda_model.save(os.path.join(DATA_DIR, "LDAModel.pkl.gz"))
 ```
 
 The most important products of training the `LDAModel` object are its `p_word_g_topic_df_` and `p_topic_g_doc_df_` attributes.
@@ -266,7 +266,7 @@ gclda_model = annotate.gclda.GCLDAModel(
 )
 gclda_model.fit(n_iters=2500, loglikely_freq=500)
 
-gclda_model.save(op.join(DATA_DIR, "GCLDAModel.pkl.gz"))
+gclda_model.save(os.path.join(DATA_DIR, "GCLDAModel.pkl.gz"))
 ```
 
 ```{code-cell} ipython3

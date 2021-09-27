@@ -336,14 +336,14 @@ del mkdac_meta, mkdac_results
 :tags: [hide-cell]
 
 meta_results = {
-    "MKDA Density": op.join(DATA_DIR, "MKDADensity_z.nii.gz"),
-    "MKDA Chi-Squared": op.join(
+    "MKDA Density": os.path.join(DATA_DIR, "MKDADensity_z.nii.gz"),
+    "MKDA Chi-Squared": os.path.join(
       DATA_DIR,
       "MKDAChi2_z_desc-specificity.nii.gz",
     ),
-    "KDA": op.join(DATA_DIR, "KDA_z.nii.gz"),
-    "ALE": op.join(DATA_DIR, "ALE_z.nii.gz"),
-    "SCALE": op.join(DATA_DIR, "SCALE_z.nii.gz"),
+    "KDA": os.path.join(DATA_DIR, "KDA_z.nii.gz"),
+    "ALE": os.path.join(DATA_DIR, "ALE_z.nii.gz"),
+    "SCALE": os.path.join(DATA_DIR, "SCALE_z.nii.gz"),
 }
 order = [
     ["MKDA Density", "ALE"],

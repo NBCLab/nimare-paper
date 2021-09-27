@@ -68,7 +68,7 @@ sub_results.save_maps(output_dir=DATA_DIR, prefix="ALESubtraction")
 :tags: [hide-cell]
 fig, ax = plt.subplots(figsize=(6, 2))
 display = plotting.plot_stat_map(
-    op.join(DATA_DIR, "ALESubtraction_z_desc-group1MinusGroup2.nii.gz"),
+    os.path.join(DATA_DIR, "ALESubtraction_z_desc-group1MinusGroup2.nii.gz"),
     annotate=False,
     axes=ax,
     cmap="RdBu_r",

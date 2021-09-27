@@ -177,15 +177,15 @@ del ssbl_meta, ssbl_results, masker
 ```{code-cell} ipython3
 :tags: [hide-cell]
 meta_results = {
-    "DerSimonian-Laird": op.join(DATA_DIR, "DerSimonianLaird_z.nii.gz"),
-    "Stouffer's": op.join(DATA_DIR, "Stouffers_z.nii.gz"),
-    "Weighted Stouffer's": op.join(DATA_DIR, "WeightedStouffers_z.nii.gz"),
-    "Fisher's": op.join(DATA_DIR, "Fishers_z.nii.gz"),
-    "Ordinary Least Squares": op.join(DATA_DIR, "OLS_z.nii.gz"),
-    "Weighted Least Squares": op.join(DATA_DIR, "WLS_z.nii.gz"),
-    "Hedges'": op.join(DATA_DIR, "Hedges_z.nii.gz"),
-    "Variance-Based Likelihood": op.join(DATA_DIR, "VBL_z.nii.gz"),
-    "Sample Size-Based Likelihood": op.join(DATA_DIR, "SSBL_z.nii.gz"),
+    "DerSimonian-Laird": os.path.join(DATA_DIR, "DerSimonianLaird_z.nii.gz"),
+    "Stouffer's": os.path.join(DATA_DIR, "Stouffers_z.nii.gz"),
+    "Weighted Stouffer's": os.path.join(DATA_DIR, "WeightedStouffers_z.nii.gz"),
+    "Fisher's": os.path.join(DATA_DIR, "Fishers_z.nii.gz"),
+    "Ordinary Least Squares": os.path.join(DATA_DIR, "OLS_z.nii.gz"),
+    "Weighted Least Squares": os.path.join(DATA_DIR, "WLS_z.nii.gz"),
+    "Hedges'": os.path.join(DATA_DIR, "Hedges_z.nii.gz"),
+    "Variance-Based Likelihood": os.path.join(DATA_DIR, "VBL_z.nii.gz"),
+    "Sample Size-Based Likelihood": os.path.join(DATA_DIR, "SSBL_z.nii.gz"),
 }
 order = [
     ["Fisher's", "Stouffer's", "Weighted Stouffer's"],

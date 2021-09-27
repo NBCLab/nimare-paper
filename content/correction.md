@@ -74,11 +74,11 @@ del mkdad_results, mc_corrector, mc_results, fdr_corrector, fdr_results
 ```{code-cell} ipython3
 :tags: [hide-cell]
 meta_results = {
-    "Cluster-level Monte Carlo": op.join(
+    "Cluster-level Monte Carlo": os.path.join(
         DATA_DIR,
         "MKDADensity_FWE_z_level-cluster_corr-FWE_method-montecarlo.nii.gz"
     ),
-    "Independent FDR": op.join(
+    "Independent FDR": os.path.join(
         DATA_DIR,
         "MKDADensity_FDR_z_corr-FDR_method-indep.nii.gz",
     ),
