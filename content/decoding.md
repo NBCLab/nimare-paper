@@ -11,7 +11,7 @@ kernelspec:
   name: python3
 ---
 
-# Meta-analytic functional decoding
+# Meta-Analytic Functional Decoding
 
 +++
 
