@@ -40,6 +40,9 @@ Some of these ontologies are very well-defined, such as expert-generated taxonom
 
 +++
 
+(content:resources:brainmap)=
+## BrainMap
+
 **BrainMap** {cite:p}`Fox2005-rt,Fox2002-nv,Laird2005-al` relies on expert annotators to label individual comparisons within studies according to its internally developed ontology, the BrainMap Taxonomy {cite:p}`Fox2005-rt`.
 While this approach is likely to be less noisy than an automated annotation method using article text or imaging results to predict content, it is also subject to a number of limitations.
 First, there are simply not enough annotators to keep up with the ever-expanding literature.
@@ -76,6 +79,8 @@ sleuth_dset2.save(os.path.join(DATA_DIR, "sleuth_dset2.pkl.gz"))
 **Listing 1.** Example usage of the `convert_sleuth_to_dataset()` function.
 
 +++
+
+## Neurosynth
 
 **Neurosynth** {cite:p}`Yarkoni2011-dk` uses a combination of web scraping and text mining to automatically harvest neuroimaging studies from the literature and to annotate them based on term frequency within article abstracts.
 As a consequence of its relatively crude automated approach, Neurosynth has its own set of limitations.
@@ -130,6 +135,8 @@ Data-driven ontologies which have been developed using the Neurosynth database i
 
 +++
 
+## NeuroQuery
+
 A related resource is **NeuroQuery** {cite:p}`Dockes2020-uv`.
 NeuroQuery is an online service for large-scale predictive meta-analysis.
 Unlike Neurosynth, which performs statistical inference and produces statistical maps, NeuroQuery is a supervised learning model and produces a prediction of the brain areas most likely to contain activations.
@@ -167,6 +174,8 @@ neuroquery_dset.save(os.path.join(DATA_DIR, "neuroquery_dataset.pkl.gz"))
 ```
 
 +++
+
+## NeuroVault
 
 **NeuroVault** {cite:p}`Gorgolewski2015-sd` is a public repository of user-uploaded, whole-brain, unthresholded brain maps.
 Users may associate their image collections with publications, and can annotate individual maps with labels from the Cognitive Atlas, which is the ontology of choice for NeuroVault.

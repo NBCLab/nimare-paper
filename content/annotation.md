@@ -40,17 +40,20 @@ neurosynth_dset_first_500 = neurosynth_dset.slice(neurosynth_dset.ids[:500])
 neurosynth_dset_first_500.save(
     os.path.join(DATA_DIR, "neurosynth_dataset_first500.pkl.gz")
 )
+del neurosynth_dset
 ```
 
 +++
 
-As mentioned in the discussion of BrainMap, manually annotating studies in a meta-analytic database can be a time-consuming and labor-intensive process.
+As mentioned in the discussion of BrainMap ([](content:resources:brainmap)), manually annotating studies in a meta-analytic database can be a time-consuming and labor-intensive process.
 To facilitate more efficient (albeit lower-quality) annotation, NiMARE supports a number of automated annotation approaches.
 These include n-gram term extraction, Cognitive Atlas term extraction, latent Dirichlet allocation, and generalized correspondence latent Dirichlet allocation.
 
-NiMARE users may download abstracts from PubMed as long as study identifiers in the `Dataset` correspond to PubMed IDs.
+NiMARE users may download abstracts from PubMed as long as study identifiers in the `Dataset` correspond to PubMed IDs (as in Neurosynth and NeuroQuery).
 Abstracts are much more easily accessible than full article text, so most annotation methods in NiMARE rely on them.
-**Listing 12** illustrates how to do this.
+
+Below, we use the function `nimare.extract.download_abstract` to download abstracts for the Neurosynth `Dataset`.
+This will attempt to extract metadata about each study in the `Dataset` from PubMed, and then add the abstract available on Pubmed to the `Dataset`'s `texts` attribute, under a new column names "abstract".
 
 ```{code-cell} ipython3
 from nimare import extract
@@ -58,31 +61,117 @@ from nimare import extract
 # In order to run this code on nodes without internet access,
 # we need this if statement
 if not op.isfile(op.join(DATA_DIR, "neurosynth_dataset_with_abstracts.pkl.gz")):
-    neurosynth_dset = extract.download_abstracts(
-        neurosynth_dset,
+    neurosynth_dset_first_500 = extract.download_abstracts(
+        neurosynth_dset_first_500,
         email="example@email.com",
     )
-    neurosynth_dset.save(
+    neurosynth_dset_first_500.save(
         op.join(DATA_DIR, "neurosynth_dataset_with_abstracts.pkl.gz"),
     )
 else:
-    neurosynth_dset = nimare.dataset.Dataset.load(
+    neurosynth_dset_first_500 = nimare.dataset.Dataset.load(
         op.join(DATA_DIR, "neurosynth_dataset_with_abstracts.pkl.gz")
     )
 ```
-
-**Listing 12.** Example usage of the `download_abstracts()` function to download article abstracts from PubMed.
 
 +++
 
 **N-gram term extraction** refers to the vectorization of text into contiguous sets of words that can be counted as individual tokens.
 The upper limit on the number of words in these tokens is set by the user.
-This method produces either term counts or term frequency- inverse document frequency (tf-idf) values for each of the articles in a `Dataset`.
+
+NiMARE has the function `nimare.annotate.text.generate_counts` to extract n-grams from text.
+This method produces either term counts or term frequency- inverse document frequency (tf-idf) values for each of the studies in a `Dataset`.
+
+```{code-cell} ipython3
+counts_df = annotate.text.generate_counts(
+    neurosynth_dset_first_500.texts,
+    text_column="abstract",
+    tfidf=False,
+    min_df=10,
+    max_df=0.95,
+)
+```
 
 +++
 
 **Cognitive Atlas term extraction** leverages the structured nature of the Cognitive Atlas in order to extract counts for individual terms and their synonyms in the ontology, as well as to apply hierarchical expansion to these counts based on the relationships specified between terms.
 This method produces both basic term counts and expanded term counts based on the weights applied to different relationship types present in the ontology.
+
+First, we must use `nimare.extract.download_cognitive_atlas` to download the current version of the Cognitive Atlas ontology.
+This includes both information about individual terms in the ontology and asserted relationships between those terms.
+
+NiMARE will automatically attempt to extrapolate likely alternate forms of each term in the ontology, in order to make extraction easier.
+For example,
+
+```{code-cell} ipython3
+cogatlas = extract.download_cognitive_atlas(data_dir=DATA_DIR, overwrite=False)
+id_df = pd.read_csv(cogatlas["ids"])
+rel_df = pd.read_csv(cogatlas["relationships"])
+
+cogat_counts_df, rep_text_df = annotate.cogat.extract_cogat(
+    neurosynth_dset_first_500.texts, id_df, text_column="abstract"
+)
+```
+
+```{code-cell} ipython3
+# Define a weighting scheme.
+# In this scheme, observed terms will also count toward any
+# hypernyms (isKindOf), holonyms (isPartOf), and parent categories (inCategory)
+# as well.
+weights = {"isKindOf": 1, "isPartOf": 1, "inCategory": 1}
+expanded_df = annotate.cogat.expand_counts(cogat_counts_df, rel_df, weights)
+
+# Sort by total count and reduce for better visualization
+series = expanded_df.sum(axis=0)
+series = series.sort_values(ascending=False)
+series = series[series > 0]
+columns = series.index.tolist()
+```
+
+```{code-cell} ipython3
+# Raw counts
+fig, axes = plt.subplots(figsize=(16, 16), nrows=2, sharex=True)
+pos = axes[0].imshow(
+    cogat_counts_df[columns].values,
+    aspect="auto",
+    vmin=0,
+    vmax=np.max(expanded_df.values),
+)
+fig.colorbar(pos, ax=axes[0])
+axes[0].set_title("Counts Before Expansion", fontsize=20)
+axes[0].set_yticks(range(cogat_counts_df.shape[0]))
+axes[0].set_yticklabels(cogat_counts_df.index)
+axes[0].set_ylabel("Study", fontsize=16)
+axes[0].set_xticks(range(len(columns)))
+axes[0].set_xticklabels(columns, rotation=90)
+axes[0].set_xlabel("Cognitive Atlas Term", fontsize=16)
+
+# Expanded counts
+pos = axes[1].imshow(
+    expanded_df[columns].values,
+    aspect="auto",
+    vmin=0,
+    vmax=np.max(expanded_df.values),
+)
+fig.colorbar(pos, ax=axes[1])
+axes[1].set_title("Counts After Expansion", fontsize=20)
+axes[1].set_yticks(range(cogat_counts_df.shape[0]))
+axes[1].set_yticklabels(cogat_counts_df.index)
+axes[1].set_ylabel("Study", fontsize=16)
+axes[1].set_xticks(range(len(columns)))
+axes[1].set_xticklabels(columns, rotation=90)
+axes[1].set_xlabel("Cognitive Atlas Term", fontsize=16)
+
+fig.tight_layout()
+fig.show()
+```
+
+```{code-cell} ipython3
+:tags: [hide-cell]
+# Here we delete the recent variables for the sake of reducing memory usage
+del cogatlas, id_df, rel_df, cogat_counts_df, rep_text_df
+del weights, expanded_df, series, columns
+```
 
 +++
 
@@ -95,12 +184,15 @@ While this is not a useful generative model for producing documents, LDA is able
 This method produces two sets of probability distributions: (1) the probability of a word given topic and (2) the probability of a topic given article.
 
 NiMARE uses a Python-based interface to the MALLET Java library {cite:p}`mccallum2002mallet` to implement LDA.
+NiMARE will download MALLET automatically, when necessary.
+
+Here, we train an LDA model on the first 500 studies of the Neurosynth `Dataset`, with 100 topics in the model.
 
 ```{code-cell} ipython3
 from nimare import annotate
 
 lda_model = annotate.lda.LDAModel(
-    neurosynth_dset.texts,
+    neurosynth_dset_first_500.texts,
     text_column="abstract",
     n_topics=100,
     n_iters=10000,
@@ -109,7 +201,13 @@ lda_model.fit()
 lda_model.save(op.join(DATA_DIR, "LDAModel.pkl.gz"))
 ```
 
-**Listing 13.** Example training of an LDA topic model.
+The most important products of training the `LDAModel` object are its `p_word_g_topic_df_` and `p_topic_g_doc_df_` attributes.
+The `p_word_g_topic_df_` attribute is a `pandas` `DataFrame` in which each row corresponds to a topic and each column corresponds to a term (n-gram) extracted from the `Dataset`'s texts.
+The cells contain weights indicating the probability of selecting the term given that the topic was already selected.
+The `p_topic_g_doc_df_` attribute is also a `DataFrame`.
+In this one, each row corresponds to a study in the `Dataset` and each column is a topic.
+The cell values indicate the probability of selecting a topic when contructing the given study.
+Practically, this indicates the relative proportion with which the topic describes that study.
 
 ```{code-cell} ipython3
 :tags: [hide-input]
@@ -148,16 +246,9 @@ del lda_model, lda_df, temp_df
 **Generalized correspondence latent Dirichlet allocation** (GCLDA) is a recently-developed algorithm that trains topics on both article abstracts and coordinates {cite:p}`Rubin2017-rd`.
 GCLDA assumes that topics within the fMRI literature can also be localized to brain regions, in this case modeled as three-dimensional Gaussian distributions.
 These spatial distributions can also be restricted to pairs of Gaussians that are symmetric across brain hemispheres.
-This method produces three sets of probability distributions: (1) the probability of a word given topic, (2) the probability of a topic given article, and (3) the probability of a voxel given topic.
+This method produces three sets of probability distributions: (1) the probability of a word given topic (`GCLDAModel.p_word_g_topic_df_`), (2) the probability of a topic given article (`GCLDAModel.p_topic_g_doc_df_`), and (3) the probability of a voxel given topic (`GCLDAModel.p_voxel_g_topic_df_`).
 
 ```{code-cell} ipython3
-counts_df = annotate.text.generate_counts(
-    neurosynth_dset_first_500.texts,
-    text_column="abstract",
-    tfidf=False,
-    min_df=10,
-    max_df=0.95,
-)
 gclda_model = annotate.gclda.GCLDAModel(
     counts_df,
     neurosynth_dset_first_500.coordinates,
