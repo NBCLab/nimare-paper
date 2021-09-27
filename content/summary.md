@@ -1,4 +1,4 @@
-# Conclusions
+# Summary
 
 The advent of open, large-scale databases of neuroimaging results, whether full, unthresholded statistical maps or simple coordinates, has allowed for the development of a wide variety of methods for performing fMRI meta-analyses and related analyses.
 These methods are often (but not always) released as tools for the community to use, written in a range of languages and with highly variable interfaces.
