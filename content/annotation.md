@@ -47,7 +47,7 @@ These include n-gram term extraction, Cognitive Atlas term extraction, latent Di
 NiMARE users may download abstracts from PubMed as long as study identifiers in the `Dataset` correspond to PubMed IDs (as in Neurosynth and NeuroQuery).
 Abstracts are much more easily accessible than full article text, so most annotation methods in NiMARE rely on them.
 
-Below, we use the function {py:func}`nimare.extract.download_abstract` to download abstracts for the Neurosynth `Dataset`.
+Below, we use the function {py:func}`nimare.extract.download_abstracts` to download abstracts for the Neurosynth `Dataset`.
 This will attempt to extract metadata about each study in the `Dataset` from PubMed, and then add the abstract available on Pubmed to the `Dataset`'s `texts` attribute, under a new column names "abstract".
 
 ```{code-cell} ipython3
