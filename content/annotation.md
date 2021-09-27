@@ -11,7 +11,7 @@ kernelspec:
   name: python3
 ---
 
-# Automated Annotation
+# Automated annotation
 
 +++
 
@@ -32,15 +32,10 @@ import nimare
 DATA_DIR = os.path.abspath("../data")
 FIG_DIR = os.path.abspath("../figures")
 
-# Now, load the Datasets we will use in this chapter
-neurosynth_dset = nimare.dataset.Dataset.load(
-    os.path.join(DATA_DIR, "neurosynth_dataset.pkl.gz")
-)
-neurosynth_dset_first_500 = neurosynth_dset.slice(neurosynth_dset.ids[:500])
-neurosynth_dset_first_500.save(
+# Now, load the Dataset we will use in this chapter
+neurosynth_dset_first_500 = nimare.dataset.Dataset.load(
     os.path.join(DATA_DIR, "neurosynth_dataset_first500.pkl.gz")
 )
-del neurosynth_dset
 ```
 
 +++
@@ -60,21 +55,22 @@ from nimare import extract
 
 # In order to run this code on nodes without internet access,
 # we need this if statement
-if not op.isfile(op.join(DATA_DIR, "neurosynth_dataset_with_abstracts.pkl.gz")):
+dataset_file = op.join(
+    DATA_DIR, "neurosynth_dataset_first500_with_abstracts.pkl.gz"
+)
+if not op.isfile(dataset_file):
     neurosynth_dset_first_500 = extract.download_abstracts(
         neurosynth_dset_first_500,
         email="example@email.com",
     )
-    neurosynth_dset_first_500.save(
-        op.join(DATA_DIR, "neurosynth_dataset_with_abstracts.pkl.gz"),
-    )
+    neurosynth_dset_first_500.save(dataset_file)
 else:
-    neurosynth_dset_first_500 = nimare.dataset.Dataset.load(
-        op.join(DATA_DIR, "neurosynth_dataset_with_abstracts.pkl.gz")
-    )
+    neurosynth_dset_first_500 = nimare.dataset.Dataset.load(dataset_file)
 ```
 
 +++
+
+## N-gram term extraction
 
 **N-gram term extraction** refers to the vectorization of text into contiguous sets of words that can be counted as individual tokens.
 The upper limit on the number of words in these tokens is set by the user.
@@ -92,7 +88,11 @@ counts_df = annotate.text.generate_counts(
 )
 ```
 
+This term count `DataFrame` will be used later, to train a GCLDA model.
+
 +++
+
+## Cognitive Atlas term extraction and hierarchical expansion
 
 **Cognitive Atlas term extraction** leverages the structured nature of the Cognitive Atlas in order to extract counts for individual terms and their synonyms in the ontology, as well as to apply hierarchical expansion to these counts based on the relationships specified between terms.
 This method produces both basic term counts and expanded term counts based on the weights applied to different relationship types present in the ontology.
@@ -175,6 +175,8 @@ del weights, expanded_df, series, columns
 
 +++
 
+## Latent Dirichlet allocation
+
 **Latent Dirichlet allocation** (LDA) {cite:p}`Blei2003-lh` was originally combined with meta-analytic neuroimaging data in {cite:t}`Poldrack2012-it`.
 LDA is a generative topic model which, for a text corpus, builds probability distributions across documents and words.
 In LDA, each document is considered a mixture of topics.
@@ -243,10 +245,15 @@ del lda_model, lda_df, temp_df
 
 +++
 
+## Generalized correspondence latent Dirichlet allocation
+
 **Generalized correspondence latent Dirichlet allocation** (GCLDA) is a recently-developed algorithm that trains topics on both article abstracts and coordinates {cite:p}`Rubin2017-rd`.
 GCLDA assumes that topics within the fMRI literature can also be localized to brain regions, in this case modeled as three-dimensional Gaussian distributions.
 These spatial distributions can also be restricted to pairs of Gaussians that are symmetric across brain hemispheres.
-This method produces three sets of probability distributions: (1) the probability of a word given topic (`GCLDAModel.p_word_g_topic_df_`), (2) the probability of a topic given article (`GCLDAModel.p_topic_g_doc_df_`), and (3) the probability of a voxel given topic (`GCLDAModel.p_voxel_g_topic_df_`).
+This method produces two sets of probability distributions: the probability of a word given topic (`GCLDAModel.p_word_g_topic_`), and the probability of a voxel given topic (`GCLDAModel.p_voxel_g_topic_`).
+
+Here we train a GCLDA model on the first 500 studies of the Neurosynth Dataset.
+The model will include 100 topics, in which the spatial distribution for each topic will be defined as having two Gaussian distributions that are symmetrically localized across the longitudinal fissure.
 
 ```{code-cell} ipython3
 gclda_model = annotate.gclda.GCLDAModel(
@@ -261,8 +268,6 @@ gclda_model.fit(n_iters=2500, loglikely_freq=500)
 
 gclda_model.save(op.join(DATA_DIR, "GCLDAModel.pkl.gz"))
 ```
-
-**Listing 14.** Example training of a GCLDA topic model.
 
 ```{code-cell} ipython3
 :tags: [hide-input]

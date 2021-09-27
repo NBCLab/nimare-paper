@@ -57,7 +57,7 @@ NiMARE provides a function to import data from Sleuth text files into the NiMARE
 **Listing 1** displays an example code snippet illustrating how to convert a Sleuth text file to a NiMARE dataset.
 
 The function `nimare.io.convert_sleuth_to_dataset` can be used to convert text files exported from Sleuth into NiMARE `Dataset`s.
-Here, we convert two files from a previous publication by NiMARE contributors {cite:p}`yanes2018`.
+Here, we convert two files from a previous publication by NiMARE contributors {cite:p}`yanes2018` into two separate `Dataset`s.
 
 ```{code-cell} ipython3
 from nimare import io
@@ -92,7 +92,7 @@ Given Neurosynth’s limitations, we recommend that it be used for casual, explo
 Nevertheless, while individual meta-analyses should not be published from Neurosynth, many derivative analyses have been performed and published (e.g., {cite:p}`Chang2013-si,De_la_Vega2016-wg,De_la_Vega2018-jc,Poldrack2012-it`).
 As evidence of its utility, Neurosynth has been used to define _a priori_ regions of interest (e.g., {cite:p}`Josipovic2014-hx,Zeidman2012-fj,Wager2013-ab`) or perform meta-analytic functional decoding (e.g., {cite:p}`Chen2018-of,Pantelis2015-bq,Tambini2017-iu`) in many first-order (rather than meta-analytic) fMRI studies.
 
-**Listing 2** displays an example code snippet illustrating how to fetch the Neurosynth database and convert it to a NiMARE dataset.
+Here, we download the Neurosynth database from where it is stored (https://github.com/neurosynth/neurosynth-data) and convert it to a NiMARE `Dataset`.
 
 ```{code-cell} ipython3
 from nimare import extract
@@ -121,7 +121,19 @@ print(neurosynth_dset)
 neurosynth_dset.save(os.path.join(DATA_DIR, "neurosynth_dataset.pkl.gz"))
 ```
 
-**Listing 2.** Example usage of the `fetch_neurosynth()` and `convert_neurosynth_to_dataset()` functions.
+```{note}
+Many of the methods in NiMARE can be very time-consuming or memory-intensive.
+Therefore, for the sake of ensuring that the analyses in this article may be reproduced by as many people as possible, we will use a reduced version of the Neurosynth Dataset, only containing the first 500 studies, for those methods which may not run easily on the full database.
+```
+
+```{code-cell} ipython3
+neurosynth_dset_first_500 = neurosynth_dset.slice(neurosynth_dset.ids[:500])
+print(neurosynth_dset)
+
+neurosynth_dset_first_500.save(
+    os.path.join(DATA_DIR, "neurosynth_dataset_first500.pkl.gz")
+)
+```
 
 +++
 

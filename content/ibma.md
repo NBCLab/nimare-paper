@@ -172,6 +172,8 @@ del ssbl_meta, ssbl_results, masker
 
 +++
 
+## Comparing algorithms
+
 ```{code-cell} ipython3
 :tags: [hide-cell]
 meta_results = {

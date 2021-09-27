@@ -57,11 +57,15 @@ Additionally, for each of the following approaches, except for SCALE, voxel- or 
 A flowchart of the typical workflow for coordinate-based meta-analyses in NiMARE.
 ```
 
+## CBMA kernels
+
 CBMA kernels are available as {py:class}`nimare.meta.kernel.KernelTransformer`s in the {py:mod}`nimare.meta.kernel` module.
 There are three standard kernels that are currently available: `MKDAKernel`, `KDAKernel`, and `ALEKernel`.
 Each class may be configured with certain parameters when a new object is initialized.
 For example, `MKDAKernel` accepts an `r` parameter, which determines the radius of the spheres that will be created around each peak coordinate.
 `ALEKernel` automatically uses the sample size associated with each experiment in the `Dataset` to determine the appropriate full-width-at-half-maximum of its Gaussian distribution, as described in {cite:t}`EICKHOFF20122349`; however, users may provide a constant `sample_size` or `fwhm` parameter when sample size information is not available within the `Dataset` metadata.
+
+Here we show how these three kernels can be applied to the same `Dataset`.
 
 ```{code-cell} ipython3
 from nimare.meta import kernel
@@ -79,8 +83,6 @@ ale_ma_maps = ale_kernel.transform(sl_dset1)
 # Here we delete the recent variables for the sake of reducing memory usage
 del mkda_kernel, kda_kernel, ale_kernel
 ```
-
-**Listing 3.** Example usage of available kernel transformers in NiMARE.
 
 +++
 
@@ -147,6 +149,8 @@ Modeled activation maps produced by NiMARE's `KernelTransformer` classes.
 ```
 
 +++
+
+## Multilevel kernel density analysis
 
 **Multilevel kernel density analysis** (MKDA) {cite:p}`Wager2007-jc` is a kernel-based method that convolves each peak from each study with a binary sphere of a set radius.
 These peak-specific binary maps are then combined into study-specific maps by taking the maximum value for each voxel.
@@ -217,6 +221,8 @@ del mkda_kernel, mkdad_meta, mkdad_results
 
 +++
 
+## Kernel density analysis
+
 **Kernel density analysis** (KDA) {cite:p}`Wager2003-no,Wager2004-ak` is a precursor algorithm that has been replaced in the field by MKDA.
 For the sake of completeness, NiMARE also includes a KDA estimator that implements the older KDA algorithm for comparison purposes.
 The interface is virtually identical, but since there are few if any legitimate uses of KDA (which models studies as fixed rather than random effects), we do not discuss the algorithm further here.
@@ -238,6 +244,8 @@ del kda_meta, kda_results
 
 +++
 
+## Activation likelihood estimation
+
 **Activation likelihood estimation** (ALE) {cite:p}`Eickhoff2012-hk,Turkeltaub2012-no,Turkeltaub2002-dn` assesses convergence of peaks across studies by first generating a modeled activation map for each study, in which each of the experiment’s peaks is convolved with a 3D Gaussian distribution determined by the experiment’s sample size, and then by combining these modeled activation maps across studies into an ALE map, which is compared to an empirical null distribution to assess voxel-wise statistical significance.
 
 ```{code-cell} ipython3
@@ -258,6 +266,8 @@ del ale_meta, ale_results
 ```
 
 +++
+
+## Specific coactivation likelihood estimation
 
 **Specific coactivation likelihood estimation** (SCALE) {cite:p}`Langner2014-ei` is an extension of the ALE algorithm developed for meta-analytic coactivation modeling (MACM) analyses.
 Rather than comparing convergence of foci within the sample to a null distribution derived under the assumption of spatial randomness within the brain, SCALE assesses whether the convergence at each voxel is greater than in the general literature.
@@ -294,6 +304,8 @@ del xyz, scale_meta, scale_results
 
 +++
 
+## MKDA Chi-Squared Analysis
+
 An alternative to the density-based approaches (i.e., MKDA, KDA, ALE, and SCALE) is the **MKDA Chi-squared** extension {cite:p}`Wager2007-jc`.
 Though still a kernel-based method in which foci are convolved with a binary sphere and combined within studies, this approach uses voxel-wise chi-squared tests to assess both consistency (i.e., higher convergence of foci within the meta-analytic sample than expected by chance) and specificity (i.e., higher convergence of foci within the meta-analytic sample than detected in an unrelated dataset) of activation.
 Such an analysis also requires access to a reference meta-analytic sample or database of studies.
@@ -317,6 +329,8 @@ del mkdac_meta, mkdac_results
 ```
 
 +++
+
+## Comparing algorithms
 
 ```{code-cell} ipython3
 :tags: [hide-cell]
