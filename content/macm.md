@@ -11,7 +11,7 @@ kernelspec:
   name: python3
 ---
 
-# Meta-analytic coactivation modeling
+# Meta-Analytic Coactivation Modeling
 
 +++
 

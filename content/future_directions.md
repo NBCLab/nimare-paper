@@ -1,4 +1,4 @@
-# Future directions
+# Future Directions
 
 NiMARE's mission statement encompasses a range of tools that have not yet been implemented in the package.
 In the future, we plan to incorporate a number of additional methods. Here we briefly describe several of these tools.

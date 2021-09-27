@@ -1,4 +1,4 @@
-# Appendix II: Discrete decoding, NeuroSynth approach
+# Appendix II: Neurosynth Discrete Decoding
 
 The implementation of the MKDA Chi-squared meta-analysis method used by Neurosynth is quite similar to BrainMap’s method for decoding, if applied to annotations instead of modeled activation values.
 This method compares the distributions of studies with each label within the sample against those in a larger database, but, unlike the BrainMap method, does not take foci into account.

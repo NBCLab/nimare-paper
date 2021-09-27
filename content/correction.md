@@ -11,7 +11,7 @@ kernelspec:
   name: python3
 ---
 
-# Multiple comparisons correction
+# Multiple Comparisons Correction
 
 +++
 

@@ -1,4 +1,4 @@
-# Appendix I: Discrete decoding, BrainMap approach
+# Appendix I: BrainMap Discrete Decoding
 
 The BrainMap discrete decoding method compares the distributions of studies with each label within the sample against those in a larger database while accounting for the number of foci from each study.
 Broadly speaking, this method assumes that the selection criterion is associated with one peak per study, which means that it is likely only appropriate for selection criteria based around foci, such as regions of interest.

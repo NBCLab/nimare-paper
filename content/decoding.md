@@ -76,7 +76,8 @@ We will first discuss continuous decoding methods (i.e., correlation and dot-pro
 
 +++
 
-***Decoding continuous inputs***.
+## Decoding continuous inputs
+
 When decoding unthresholded statistical maps, the most common approaches are to simply correlate the input map with maps from the database, or to compute the dot product between the two maps.
 In Neurosynth, meta-analyses are performed for each label (i.e., term or topic) in the database and then the input image is correlated with the resulting unthresholded statistical map from each meta-analysis.
 Performing statistical inference on the resulting correlations is not straightforward, however, as voxels display strong spatial correlations, and the true degrees of freedom are consequently unknown (and likely far smaller than the nominal number of voxels).
@@ -130,7 +131,8 @@ del corr_decoder, corr_df
 
 +++
 
-***Decoding discrete inputs***.
+## Decoding discrete inputs
+
 Decoding regions of interest requires a different approach than decoding unthresholded statistical maps.
 One simple approach, used by GCLDA, simply sums the P(topic|voxel) distribution across all voxels in the ROI in order to produce a value associated with each topic for the ROI.
 These **weight sum** values are arbitrarily scaled and cannot be compared across ROIs.
@@ -185,7 +187,8 @@ Each method then compares these groups in order to evaluate both consistency and
 
 +++
 
-*BrainMap method*.
+### BrainMap method
+
 The BrainMap discrete decoding method compares the distributions of studies with each label within the sample against those in a larger database while accounting for the number of foci from each study.
 Broadly speaking, this method assumes that the selection criterion is associated with one peak per study, which means that it is likely only appropriate for selection criteria based around foci, such as regions of interest.
 One common analysis, meta-analytic clustering, involves dividing studies within a database into meta-analytic groupings based on the spatial similarity of their modeled activation maps (i.e., study-wise pseudo-statistical maps produced by convolving coordinates with a kernel).
@@ -234,7 +237,8 @@ del brainmap_decoder, brainmap_df
 
 +++
 
-*Neurosynth method*.
+### Neurosynth method
+
 The implementation of the MKDA Chi-squared meta-analysis method used by Neurosynth is quite similar to BrainMap’s method for decoding, if applied to annotations instead of modeled activation values.
 This method compares the distributions of studies with each label within the sample against those in a larger database, but, unlike the BrainMap method, does not take foci into account.
 For this reason, the Neurosynth method would likely be more appropriate for selection criteria not based on regions of interest (e.g., for characterizing meta-analytic groupings from a meta-analytic clustering analysis).

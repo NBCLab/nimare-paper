@@ -11,7 +11,7 @@ kernelspec:
   name: python3
 ---
 
-# Automated annotation
+# Automated Annotation
 
 +++
 
