@@ -46,7 +46,6 @@ Over the past two decades, a number of algorithms have been developed to determi
 
 Kernel-based methods evaluate convergence of coordinates across studies by first convolving foci with a spatial kernel to produce study-specific modeled activation maps, then combining those modeled activation maps into a sample-wise map, which is compared to a null distribution to evaluate voxel-wise statistical significance.
 Additionally, for each of the following approaches, except for SCALE, voxel- or cluster-level multiple comparisons correction may be performed using Monte Carlo simulations or false discovery rate (FDR) {cite:p}`Laird2005-qh` correction. Basic multiple-comparisons correction methods (e.g., Bonferroni correction) are also supported.
-**Listing 3** displays a sample code snippet illustrating how to create modeled activation maps for a Dataset using a range of kernel types.
 
 +++
 
@@ -60,7 +59,7 @@ A flowchart of the typical workflow for coordinate-based meta-analyses in NiMARE
 ## CBMA kernels
 
 CBMA kernels are available as {py:class}`nimare.meta.kernel.KernelTransformer`s in the {py:mod}`nimare.meta.kernel` module.
-There are three standard kernels that are currently available: `MKDAKernel`, `KDAKernel`, and `ALEKernel`.
+There are three standard kernels that are currently available: {py:class}`nimare.meta.kernel.MKDAKernel`, {py:class}`nimare.meta.kernel.KDAKernel`, and {py:class}`nimare.meta.kernel.ALEKernel`.
 Each class may be configured with certain parameters when a new object is initialized.
 For example, `MKDAKernel` accepts an `r` parameter, which determines the radius of the spheres that will be created around each peak coordinate.
 `ALEKernel` automatically uses the sample size associated with each experiment in the `Dataset` to determine the appropriate full-width-at-half-maximum of its Gaussian distribution, as described in {cite:t}`EICKHOFF20122349`; however, users may provide a constant `sample_size` or `fwhm` parameter when sample size information is not available within the `Dataset` metadata.
@@ -150,6 +149,7 @@ Modeled activation maps produced by NiMARE's `KernelTransformer` classes.
 
 +++
 
+(content:cbma:mkdad)=
 ## Multilevel kernel density analysis
 
 **Multilevel kernel density analysis** (MKDA) {cite:p}`Wager2007-jc` is a kernel-based method that convolves each peak from each study with a binary sphere of a set radius.
@@ -158,12 +158,16 @@ Study-specific maps are then averaged across the meta-analytic sample.
 This averaging is generally weighted by studies’ sample sizes, although other covariates may be included, such as weights based on the type of inference (random or fixed effects) employed in the study’s analysis.
 An arbitrary threshold is generally employed to zero-out voxels with very low values, and then a Monte Carlo procedure is used to assess statistical significance, either at the voxel or cluster level.
 
-In NiMARE, the MKDA meta-analyses can be performed with the `nimare.meta.cbma.mkda.MKDADensity` class.
+In NiMARE, the MKDA meta-analyses can be performed with the {py:class}`nimare.meta.cbma.mkda.MKDADensity` class.
 This class, like most other CBMA classes in NiMARE, accepts a `null_method` parameter, which determines how voxel-wise (uncorrected) statistical significance is calculated.
+
+```{admonition} On CBMA "null methods"
+:class: tip
 The `null_method` parameter allows two options: "approximate" or "montecarlo."
 The "approximate" option builds a histogram-based null distribution of summary-statistic values, which can then be used to determine the associated p-value for _observed_ summary-statistic values (i.e., the values in the meta-analytic map).
 The "montecarlo" option builds a null distribution of summary-statistic values by randomly shuffling the coordinates the `Dataset` many times, and computing the summary-statistic values for each permutation.
 In general, the "montecarlo" method is slightly more accurate when there are enough permutations, while the "approximate" method is much faster.
+```
 
 ```{warning}
 Fitting the CBMA `Estimator` to a `Dataset` will produce p-value, z-statistic, and summary-statistic maps, but these are not corrected for multiple comparisons.
@@ -173,20 +177,52 @@ classes.
 Please see the multiple comparisons correction chapter for more information.
 ```
 
+Here we perform an MKDADensity meta-analysis on one of the Sleuth-based Datasets.
+We will use the "approximate" null method for speed.
+
 ```{code-cell} ipython3
 from nimare.meta.cbma import mkda
 
 mkdad_meta = mkda.MKDADensity(null_method="approximate")
 mkdad_results = mkdad_meta.fit(sleuth_dset1)
-print(mkdad_results)
+```
 
-# Save the results for later use
-mkdad_results.save_maps(output_dir=DATA_DIR, prefix="MKDADensity")
-# Save the results *object* as well
+(content:cbma:metaresult)=
+### The `MetaResult` class
+
+Fitting an `Estimator` to a `Dataset` produces a {py:class}`nimare.results.MetaResult` object.
+The `MetaResult` class is a light container holding the different statistical maps produced by the `Estimator`.
+
+```{code-cell} ipython3
+print(mkdad_results)
+```
+
+The `maps` attribute is a dictionary containing statistical map names and associated numpy arrays.
+
+```{code-cell} ipython3
+print(mkdad_results.maps)
+```
+
+These arrays can be transformed into image-like objects using the `masker` attribute.
+We can also use the `get_map` method to get that image object.
+
+```{code-cell} ipython3
+img = mkdad_results.get_map("z", return_type="image")
+print(img)
+```
+
+We can save the `MetaResult` object as a Pickle file, much like other NiMARE objects.
+
+```{code-cell} ipython3
 mkdad_results.save(os.path.join(DATA_DIR, "MKDADensity_results.pkl.gz"))
 ```
 
-**Listing 4.** An example MKDA Density meta-analysis in NiMARE.
+We can _also_ save the statistical maps to an output directory as gzipped nifti files, with a prefix.
+Here, we will save all of the statistical maps with the MKDADensity prefix.
+
+```{code-cell} ipython3
+mkdad_results.save_maps(output_dir=DATA_DIR, prefix="MKDADensity")
+```
 
 ```{code-cell} ipython3
 :tags: [hide-cell]
@@ -230,7 +266,6 @@ The interface is virtually identical, but since there are few if any legitimate 
 ```{code-cell} ipython3
 kda_meta = mkda.KDA(null_method="approximate")
 kda_results = kda_meta.fit(sleuth_dset1)
-print(kda_results)
 
 # Save the results for later use
 kda_results.save_maps(output_dir=DATA_DIR, prefix="KDA")
@@ -253,7 +288,6 @@ from nimare.meta.cbma import ale
 
 ale_meta = ale.ALE()
 ale_results = ale_meta.fit(sleuth_dset1)
-print(ale_results)
 
 # Save the results for later use
 ale_results.save_maps(output_dir=DATA_DIR, prefix="ALE")
@@ -287,7 +321,6 @@ scale_meta = ale.SCALE(
    memory_limit="500mb",
 )
 scale_results = scale_meta.fit(sleuth_dset1)
-print(scale_results)
 
 # Save the results for later use
 scale_results.save_maps(output_dir=DATA_DIR, prefix="SCALE")
@@ -332,8 +365,10 @@ del mkdac_meta, mkdac_results
 
 ## Comparing algorithms
 
+Here we load the z-statistic map from each of the CBMA Estimators we've used throughout this chapter and plot them all side by side.
+
 ```{code-cell} ipython3
-:tags: [hide-cell]
+:tags: [hide-output]
 
 meta_results = {
     "MKDA Density": os.path.join(DATA_DIR, "MKDADensity_z.nii.gz"),

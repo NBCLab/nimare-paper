@@ -174,8 +174,10 @@ del ssbl_meta, ssbl_results, masker
 
 ## Comparing algorithms
 
+Here we load the z-statistic map from each of the IBMA Estimators we've used throughout this chapter and plot them all side by side.
+
 ```{code-cell} ipython3
-:tags: [hide-cell]
+:tags: [hide-output]
 meta_results = {
     "DerSimonian-Laird": os.path.join(DATA_DIR, "DerSimonianLaird_z.nii.gz"),
     "Stouffer's": os.path.join(DATA_DIR, "Stouffers_z.nii.gz"),

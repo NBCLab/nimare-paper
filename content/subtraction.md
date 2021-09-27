@@ -50,7 +50,7 @@ In this approach, two groups of experiments (A and B) are compared using a group
 Real ALE-difference scores (i.e., the ALE values for one group minus the ALE values for the other) are compared against these null distributions to determine voxel-wise significance.
 In the original implementation of the algorithm, this procedure is performed separately for a group A > B contrast and a group B > A contrast, where each contrast is limited to voxels that were significant in the first group's original meta-analysis.
 
-In NiMARE, we use an adapted version of the subtraction analysis method.
+In NiMARE, we use an adapted version of the subtraction analysis method in {py:class}`nimare.meta.cbma.ale.ALESubtraction`.
 Note that, unlike the original algorithm, the NiMARE implementation analyzes all voxels, rather than only those that show a significant effect of A alone or B alone.
 
 ```{code-cell} ipython3
@@ -61,8 +61,6 @@ sub_meta = meta.cbma.ale.ALESubtraction(kernel_transformer=kern, n_iters=10000)
 sub_results = sub_meta.fit(sleuth_dset1, sleuth_dset2)
 sub_results.save_maps(output_dir=DATA_DIR, prefix="ALESubtraction")
 ```
-
-**Listing 9.** Example application of an ALE subtraction analysis.
 
 ```{code-cell} ipython3
 :tags: [hide-cell]

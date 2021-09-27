@@ -87,7 +87,7 @@ However, such results should be interpreted with great caution.
 This approach can also be applied to an image-based database like NeuroVault, either by correlating input data with meta-analyzed statistical maps, or by deriving distributions of correlation coefficients by grouping statistical maps in the database according to label.
 Using these distributions, it is possible to statistically compare labels in order to assess label significance.
 NiMARE includes methods for both correlation-based decoding and correlation distribution-based decoding, although the correlation-based decoding is better established and should be preferred over the correlation distribution-based decoding.
-As such, we will only show the `CorrelationDecoder` here.
+As such, we will only show the {py:class}`nimare.decode.continuous.CorrelationDecoder` here.
 
 ```{code-cell} ipython3
 from nimare import decode, meta
@@ -134,10 +134,10 @@ del corr_decoder, corr_df
 ## Decoding discrete inputs
 
 Decoding regions of interest requires a different approach than decoding unthresholded statistical maps.
-One simple approach, used by GCLDA, simply sums the P(topic|voxel) distribution across all voxels in the ROI in order to produce a value associated with each topic for the ROI.
+One simple approach, used by GCLDA and implemented in the function {py:func}`nimare.decode.discrete.gclda_decode_roi`, simply sums the `P(topic|voxel)` distribution across all voxels in the ROI in order to produce a value associated with each topic for the ROI.
 These **weight sum** values are arbitrarily scaled and cannot be compared across ROIs.
 
-One method which relies on correlations, much like the continuous correlation decoder, is the **ROI association** decoding method, originally implemented in the Neurosynth Python library.
+One method which relies on correlations, much like the continuous correlation decoder, is the **ROI association** decoding method ({py:class}`nimare.decode.discete.ROIAssociationDecoder`), originally implemented in the Neurosynth Python library.
 In this method, each study with coordinates in the dataset is convolved with a kernel transformer to produce a modeled activation map.
 The resulting modeled activation maps are then masked with a region of interest (i.e., the target of the decoding), and the values are averaged within the ROI.
 These averaged modeled activation values are then correlated with the term weights for all labels in the dataset.
@@ -189,7 +189,7 @@ Each method then compares these groups in order to evaluate both consistency and
 
 ### BrainMap method
 
-The BrainMap discrete decoding method compares the distributions of studies with each label within the sample against those in a larger database while accounting for the number of foci from each study.
+The BrainMap discrete decoding method, implemented in {py:class}`nimare.decode.discrete.BrainMapDecoder`, compares the distributions of studies with each label within the sample against those in a larger database while accounting for the number of foci from each study.
 Broadly speaking, this method assumes that the selection criterion is associated with one peak per study, which means that it is likely only appropriate for selection criteria based around foci, such as regions of interest.
 One common analysis, meta-analytic clustering, involves dividing studies within a database into meta-analytic groupings based on the spatial similarity of their modeled activation maps (i.e., study-wise pseudo-statistical maps produced by convolving coordinates with a kernel).
 The resulting sets of studies are often functionally decoded in order to build a functional profile associated with each meta-analytic grouping.
@@ -240,7 +240,7 @@ del brainmap_decoder, brainmap_df
 ### Neurosynth method
 
 The implementation of the MKDA Chi-squared meta-analysis method used by Neurosynth is quite similar to BrainMap’s method for decoding, if applied to annotations instead of modeled activation values.
-This method compares the distributions of studies with each label within the sample against those in a larger database, but, unlike the BrainMap method, does not take foci into account.
+This method, implemented in {py:class}`nimare.decode.discrete.NeurosynthDecoder`, compares the distributions of studies with each label within the sample against those in a larger database, but, unlike the BrainMap method, does not take foci into account.
 For this reason, the Neurosynth method would likely be more appropriate for selection criteria not based on regions of interest (e.g., for characterizing meta-analytic groupings from a meta-analytic clustering analysis).
 However, the Neurosynth method requires user-provided information that BrainMap does not.
 Namely, in order to estimate probabilities for the consistency and specificity analyses with Bayes’ Theorem, the Neurosynth method requires a prior probability of a given label.

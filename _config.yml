@@ -9,4 +9,9 @@ sphinx:
   config:
     bibtex_reference_style: author_year
     intersphinx_mapping:
-      nimare: https://nimare.readthedocs.io/en/stable/objects.inv
+      nimare:
+        - "https://nimare.readthedocs.io/en/stable/"
+        - null
+      pymare:
+        - "https://pymare.readthedocs.io/en/latest/"
+        - null
