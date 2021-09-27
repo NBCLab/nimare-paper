@@ -4,32 +4,38 @@
 format: jb-book
 root: content/abstract
 
-chapters:
-- file: content/introduction
-- file: content/overview
-  sections:
-  - file: content/api
-  - file: content/organization
-  - file: content/dependencies
-- file: content/meta_methods
-  sections:
-  - file: content/resources
-  - file: content/meta
-    sections:
+parts:
+  - caption: About NiMARE
+    chapters:
+    - file: content/introduction
+    - file: content/overview
+
+  - caption: Meta-Analytic Databases and Resources
+    chapters:
+    - file: content/resources
+
+  - caption: Meta-Analyses in NiMARE
+    chapters:
     - file: content/cbma
     - file: content/ibma
     - file: content/correction
-  - file: content/other_approaches
-    sections:
+
+  - caption: Other Meta-Analytic Approaches
+    chapters:
+    - file: content/about_derivative_analyses
     - file: content/subtraction
     - file: content/macm
     - file: content/annotation
     - file: content/decoding
-- file: content/future_directions
-- file: content/conclusion
-- file: content/acknowledgements
-- file: content/appendix.md
-  sections:
-  - file: content/appendices/brainmap_decoding
-  - file: content/appendices/neurosynth_decoding
-- file: content/bibliography.md
+
+  - caption: The End
+    chapters:
+    - file: content/future_directions
+    - file: content/conclusion
+    - file: content/acknowledgements
+    - file: content/bibliography.md
+
+  - caption: Appendix
+    chapters:
+    - file: content/appendices/brainmap_decoding
+    - file: content/appendices/neurosynth_decoding

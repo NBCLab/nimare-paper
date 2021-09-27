@@ -11,7 +11,7 @@ kernelspec:
   name: python3
 ---
 
-# Meta-analytic Databases and Resources
+# External Meta-Analytic Resources
 
 +++
 
