@@ -56,12 +56,6 @@ For the former, we use {py:meth}`nimare.dataset.Dataset.get_studies_by_mask`.
 For the latter, we use {py:meth}`nimare.dataset.Dataset.get_studies_by_coordinate`.
 
 ```{code-cell} ipython3
-# Create amygdala mask for MACMs
-atlas = datasets.fetch_atlas_harvard_oxford("sub-maxprob-thr25-2mm")
-amyg_val = atlas["labels"].index("Right Amygdala")
-amygdala_mask = image.math_img(f"img == {amyg_val}", img=atlas["maps"])
-amygdala_mask.to_filename(os.path.join(DATA_DIR, "amygdala_roi.nii.gz"))
-
 # Create Dataset only containing studies with peaks within the amygdala mask
 amygdala_ids = neurosynth_dset.get_studies_by_mask(
     os.path.join(DATA_DIR, "amygdala_roi.nii.gz")
