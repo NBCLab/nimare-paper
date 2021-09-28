@@ -346,7 +346,7 @@ mkdac_meta = mkda.MKDAChi2()
 mkdac_results = mkdac_meta.fit(sleuth_dset1, sleuth_dset2)
 
 # Save the results for later use
-mkdac_results.save_maps(output_dir="results/", prefix="MKDAChi2")
+mkdac_results.save_maps(output_dir="results", prefix="MKDAChi2")
 ```
 
 ```{code-cell} ipython3

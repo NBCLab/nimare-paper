@@ -59,7 +59,7 @@ target_features = target_features[target_features]
 target_features = target_features.index.values
 print(f"{len(target_features)} features selected.", flush=True)
 
-amygdala_roi = "data/amygdala_roi.nii.gz"
+amygdala_roi = os.path.join(DATA_DIR, "amygdala_roi.nii.gz")
 amygdala_ids = neurosynth_dset_first500.get_studies_by_mask(amygdala_roi)
 ```
 
