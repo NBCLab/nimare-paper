@@ -65,15 +65,29 @@ When users have access only to contrast maps, they can use the **Permuted OLS** 
 Finally, when users only have access to z-score maps, they can use either the **Fisher's** {cite:p}`Fisher1925-zh` or the **Stouffer's** {cite:p}`Riley1949-uz` estimators.
 When sample size information is available, users may incorporate that information into the Stouffer's method, via the method described in {cite:t}`Zaykin2011-fs`.
 
++++
+
+Given the paucity of image-based meta-analytic datasets, we have included the tools to build a Dataset from a NeuroVault collection of 21 pain studies, originally described in {cite:t}`Maumet2016-rr`.
+
 ```{code-cell} ipython3
 from nimare import dataset, extract, transforms
+from nimare.tests.utils import get_test_data_path
 
-dset_dir = extract.download_nidm_pain()
-dset_file = os.path.join(get_test_data_path(), "nidm_pain_dset.json")
-img_dset = dataset.Dataset(dset_file)
+img_dset_file = os.path.join(DATA_DIR, "nidm_dset.pkl.gz")
 
-# Point the Dataset toward the images we've downloaded
-img_dset.update_path(dset_dir)
+if not os.path.isfile(ibma_dset_file):
+    dset_dir = extract.download_nidm_pain(
+        data_dir=os.path.join(DATA_DIR, "nidm-pain"),
+        overwrite=False,
+    )
+    dset_file = os.path.join(get_test_data_path(), "nidm_pain_dset.json")
+    img_dset = dataset.Dataset(dset_file)
+
+    # Point the Dataset toward the images we've downloaded
+    img_dset.update_path(dset_dir)
+    img_dset.save(img_dset_file)
+else:
+    img_dset = dataset.Dataset.load(img_dset_file)
 ```
 
 ### Transforming images
