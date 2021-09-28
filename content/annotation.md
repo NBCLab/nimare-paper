@@ -200,7 +200,6 @@ lda_model = annotate.lda.LDAModel(
     n_iters=10000,
 )
 lda_model.fit()
-lda_model.save(os.path.join(DATA_DIR, "LDAModel.pkl.gz"))
 ```
 
 The most important products of training the `LDAModel` object are its `p_word_g_topic_df_` and `p_topic_g_doc_df_` attributes.
@@ -250,7 +249,7 @@ del lda_model, lda_df, temp_df
 **Generalized correspondence latent Dirichlet allocation** (GCLDA) is a recently-developed algorithm that trains topics on both article abstracts and coordinates {cite:p}`Rubin2017-rd`.
 GCLDA assumes that topics within the fMRI literature can also be localized to brain regions, in this case modeled as three-dimensional Gaussian distributions.
 These spatial distributions can also be restricted to pairs of Gaussians that are symmetric across brain hemispheres.
-This method produces two sets of probability distributions: the probability of a word given topic (`GCLDAModel.p_word_g_topic_`), and the probability of a voxel given topic (`GCLDAModel.p_voxel_g_topic_`).
+This method produces two sets of probability distributions: the probability of a word given topic (`GCLDAModel.p_word_g_topic_`) and the probability of a voxel given topic (`GCLDAModel.p_voxel_g_topic_`).
 
 Here we train a GCLDA model ({py:class}`nimare.annotate.gclda.GCLDAModel`) on the first 500 studies of the Neurosynth Dataset.
 The model will include 100 topics, in which the spatial distribution for each topic will be defined as having two Gaussian distributions that are symmetrically localized across the longitudinal fissure.
@@ -265,8 +264,6 @@ gclda_model = annotate.gclda.GCLDAModel(
     mask=neurosynth_dset_first_500.masker.mask_img,
 )
 gclda_model.fit(n_iters=2500, loglikely_freq=500)
-
-gclda_model.save(os.path.join(DATA_DIR, "GCLDAModel.pkl.gz"))
 ```
 
 ```{code-cell} ipython3
