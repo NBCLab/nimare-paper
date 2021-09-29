@@ -2,40 +2,40 @@
 # Learn more at https://jupyterbook.org/customize/toc.html
 
 format: jb-book
-root: content/abstract
+root: abstract
 
 parts:
   - caption: About NiMARE
     chapters:
-    - file: content/introduction
-    - file: content/overview
+    - file: introduction
+    - file: overview
 
   - caption: Meta-Analytic Databases and Resources
     chapters:
-    - file: content/resources
+    - file: resources
 
   - caption: Meta-Analyses in NiMARE
     chapters:
-    - file: content/cbma
-    - file: content/ibma
-    - file: content/correction
+    - file: cbma
+    - file: ibma
+    - file: correction
 
   - caption: Other Meta-Analytic Approaches
     chapters:
-    - file: content/about_derivative_analyses
-    - file: content/subtraction
-    - file: content/macm
-    - file: content/annotation
-    - file: content/decoding
+    - file: about_derivative_analyses
+    - file: subtraction
+    - file: macm
+    - file: annotation
+    - file: decoding
 
   - caption: Concluding Thoughts
     chapters:
-    - file: content/future_directions
-    - file: content/summary
-    - file: content/acknowledgements
-    - file: content/bibliography.md
+    - file: future_directions
+    - file: summary
+    - file: acknowledgements
+    - file: bibliography.md
 
   - caption: Appendix
     chapters:
-    - file: content/appendices/brainmap_decoding
-    - file: content/appendices/neurosynth_decoding
+    - file: appendices/brainmap_decoding
+    - file: appendices/neurosynth_decoding
