@@ -1,3 +1,5 @@
+.vscode/
+
 # Jupyter Book HTML files (for now)
 _build/
 
