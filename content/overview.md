@@ -13,8 +13,9 @@ Our emphasis in this paper is thus primarily on reviewing the functionality impl
 
 Tools in NiMARE are organized into several modules, including `nimare.meta`, `nimare.correct`, `nimare.annotate`, `nimare.decode`, and `nimare.workflows`.
 In addition to these primary modules, there are several secondary modules for data wrangling and internal helper functions, including `nimare.io`, `nimare.dataset`, `nimare.extract`, `nimare.stats`, `nimare.utils`, and `nimare.base`.
-These modules are summarized in [](api.md), as well as in {numref}`table_modules`.
+These modules are summarized in [](overview:api), as well as in {numref}`table_modules`.
 
+(overview:api)=
 ## Application Programming Interface
 
 One of the principal goals of NiMARE is to implement a range of methods with a set of shared interfaces, to enable users to employ the most appropriate algorithm for a given question without introducing a steep learning curve.

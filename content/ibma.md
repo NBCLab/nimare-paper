@@ -90,7 +90,7 @@ else:
     img_dset = dataset.Dataset.load(img_dset_file)
 ```
 
-### Transforming images
+## Transforming images
 
 Researchers may share their statistical maps in many forms, some of which are direct transformations of one another.
 For example, researchers may share test statistic maps with z-statistics or t-statistics, and, as long as we know the degrees of freedom associated with the t-test, we can convert between the two easily. To that end, NiMARE includes a class, {py:class}`nimare.transforms.ImageTransformer`, which will calculate target image types from available ones, as long as the available images are compatible with said transformation.
