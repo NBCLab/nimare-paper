@@ -1,6 +1,0 @@
-Biopython
-jupyter-book
-jupytext
-matplotlib
-myst_nb
-nimare[duecredit]==0.0.10rc2
