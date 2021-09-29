@@ -46,7 +46,7 @@ repository:
 #######################################################################################
 # Additional configuration info
 bibtex_bibfiles:
-  - _bibliography/references.bib
+  - ../_bibliography/references.bib
 sphinx:
   config:
     bibtex_reference_style: author_year
