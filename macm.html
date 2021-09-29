@@ -1,0 +1,540 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meta-Analytic Coactivation Modeling &#8212; NiMARE: Neuroimaging Meta-Analysis Research Environment</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Automated Annotation" href="annotation.html" />
+    <link rel="prev" title="Meta-Analytic Subtraction Analysis" href="subtraction.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/nimare_overview.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">NiMARE: Neuroimaging Meta-Analysis Research Environment</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="abstract.html">
+   Abstract
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  About NiMARE
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="introduction.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="overview.html">
+   NiMARE Overview
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Meta-Analytic Databases and Resources
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="resources.html">
+   External Meta-Analytic Resources
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Meta-Analyses in NiMARE
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="cbma.html">
+   Coordinate-Based Meta-Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ibma.html">
+   Image-Based Meta-Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="correction.html">
+   Multiple Comparisons Correction
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Other Meta-Analytic Approaches
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="about_derivative_analyses.html">
+   Derivative Analyses
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="subtraction.html">
+   Meta-Analytic Subtraction Analysis
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Meta-Analytic Coactivation Modeling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="annotation.html">
+   Automated Annotation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="decoding.html">
+   Meta-Analytic Functional Decoding
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Concluding Thoughts
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="future_directions.html">
+   Future Directions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="summary.html">
+   Summary
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="acknowledgements.html">
+   Acknowledgements
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="bibliography.html">
+   References
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Appendix
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="appendices/brainmap_decoding.html">
+   Appendix I: BrainMap Discrete Decoding
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="appendices/neurosynth_decoding.html">
+   Appendix II: Neurosynth Discrete Decoding
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="_sources/macm.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/macm.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/NBCLab/nimare-paper/master?urlpath=tree/content/macm.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="meta-analytic-coactivation-modeling">
+<h1>Meta-Analytic Coactivation Modeling<a class="headerlink" href="#meta-analytic-coactivation-modeling" title="Permalink to this headline">¶</a></h1>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># First, import the necessary modules and functions</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
+<span class="kn">from</span> <span class="nn">nilearn</span> <span class="kn">import</span> <span class="n">datasets</span><span class="p">,</span> <span class="n">image</span><span class="p">,</span> <span class="n">plotting</span>
+
+<span class="kn">import</span> <span class="nn">nimare</span>
+
+<span class="c1"># Define where data files will be located</span>
+<span class="n">DATA_DIR</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;../data&quot;</span><span class="p">)</span>
+<span class="n">FIG_DIR</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;../images&quot;</span><span class="p">)</span>
+
+<span class="c1"># Now, load the Datasets we will use in this chapter</span>
+<span class="n">neurosynth_dset</span> <span class="o">=</span> <span class="n">nimare</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">load</span><span class="p">(</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;neurosynth_dataset.pkl.gz&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Meta-analytic coactivation modeling (MACM) <span id="id1">[<a class="reference internal" href="bibliography.html#id86">Eickhoff <em>et al.</em>, 2010</a>, <a class="reference internal" href="bibliography.html#id76">Laird <em>et al.</em>, 2009</a>, <a class="reference internal" href="bibliography.html#id60">Robinson <em>et al.</em>, 2010</a>]</span>, also known as meta-analytic connectivity modeling, uses meta-analytic data to measure co-occurrence of activations between brain regions providing evidence of functional connectivity of brain regions across tasks.
+In coordinate-based MACM, whole-brain studies within the database are selected based on whether or not they report at least one peak in a region of interest specified for the analysis.
+These studies are then subjected to a meta-analysis, often comparing the selected studies to those remaining in the database.
+In this way, the significance of each voxel in the analysis corresponds to whether there is greater convergence of foci at the voxel among studies which also report foci in the region of interest than those which do not.</p>
+<!-- TODO: Determine appropriate citation style here. -->
+<p>MACM results have historically been accorded a similar interpretation to task-related functional connectivity (e.g., <span id="id2">[<a class="reference internal" href="bibliography.html#id17">Hok <em>et al.</em>, 2015</a>, <a class="reference internal" href="bibliography.html#id14">Kellermann <em>et al.</em>, 2013</a>]</span>), although this approach is quite removed from functional connectivity analyses of task fMRI data (e.g., beta-series correlations, psychophysiological interactions, or even seed-to-voxel functional connectivity analyses on task data).
+Nevertheless, MACM analyses do show high correspondence with resting-state functional connectivity <span id="id3">[<a class="reference internal" href="bibliography.html#id88">Reid <em>et al.</em>, 2017</a>]</span>.
+MACM has been used to characterize the task-based functional coactivation of the cerebellum <span id="id4">[<a class="reference internal" href="bibliography.html#id90">Riedel <em>et al.</em>, 2015</a>]</span>, lateral prefrontal cortex <span id="id5">[<a class="reference internal" href="bibliography.html#id27">Reid <em>et al.</em>, 2016</a>]</span>, fusiform gyrus <span id="id6">[<a class="reference internal" href="bibliography.html#id56">Caspers <em>et al.</em>, 2014</a>]</span>, and several other brain regions.</p>
+<p>Within NiMARE, MACMs can be performed by selecting studies in a Dataset based on the presence of activation within a target mask or coordinate-centered sphere.</p>
+<p>In this section, we will perform two MACMs- one with a target mask and one with a coordinate-centered sphere.
+For the former, we use <a class="reference external" href="https://nimare.readthedocs.io/en/stable/generated/nimare.dataset.Dataset.html#nimare.dataset.Dataset.get_studies_by_mask" title="(in NiMARE v0.0.8+0.ged4abc4.dirty)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">nimare.dataset.Dataset.get_studies_by_mask()</span></code></a>.
+For the latter, we use <a class="reference external" href="https://nimare.readthedocs.io/en/stable/generated/nimare.dataset.Dataset.html#nimare.dataset.Dataset.get_studies_by_coordinate" title="(in NiMARE v0.0.8+0.ged4abc4.dirty)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">nimare.dataset.Dataset.get_studies_by_coordinate()</span></code></a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create Dataset only containing studies with peaks within the amygdala mask</span>
+<span class="n">amygdala_ids</span> <span class="o">=</span> <span class="n">neurosynth_dset</span><span class="o">.</span><span class="n">get_studies_by_mask</span><span class="p">(</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;amygdala_roi.nii.gz&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">dset_amygdala</span> <span class="o">=</span> <span class="n">neurosynth_dset</span><span class="o">.</span><span class="n">slice</span><span class="p">(</span><span class="n">amygdala_ids</span><span class="p">)</span>
+
+<span class="c1"># Create Dataset only containing studies with peaks within the sphere ROI</span>
+<span class="n">sphere_ids</span> <span class="o">=</span> <span class="n">neurosynth_dset</span><span class="o">.</span><span class="n">get_studies_by_coordinate</span><span class="p">([[</span><span class="mi">24</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">20</span><span class="p">]],</span> <span class="n">r</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">dset_sphere</span> <span class="o">=</span> <span class="n">neurosynth_dset</span><span class="o">.</span><span class="n">slice</span><span class="p">(</span><span class="n">sphere_ids</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">nilearn</span> <span class="kn">import</span> <span class="n">input_data</span><span class="p">,</span> <span class="n">plotting</span>
+
+<span class="c1"># In order to plot a sphere with a precise radius around a coordinate with</span>
+<span class="c1"># nilearn, we need to use a NiftiSpheresMasker</span>
+<span class="n">mask_img</span> <span class="o">=</span> <span class="n">dset</span><span class="o">.</span><span class="n">masker</span><span class="o">.</span><span class="n">mask_img</span>
+<span class="n">sphere_masker</span> <span class="o">=</span> <span class="n">input_data</span><span class="o">.</span><span class="n">NiftiSpheresMasker</span><span class="p">(</span>
+    <span class="p">[[</span><span class="mi">24</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">20</span><span class="p">]],</span>
+    <span class="n">radius</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span>
+    <span class="n">mask_img</span><span class="o">=</span><span class="n">mask_img</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">sphere_img</span> <span class="o">=</span> <span class="n">sphere_masker</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">]]))</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">display</span> <span class="o">=</span> <span class="n">plotting</span><span class="o">.</span><span class="n">plot_roi</span><span class="p">(</span>
+    <span class="n">amygdala_mask</span><span class="p">,</span>
+    <span class="n">annotate</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">draw_cross</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">axes</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="n">figure</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Amygdala ROI&quot;</span><span class="p">)</span>
+<span class="n">display</span> <span class="o">=</span> <span class="n">plotting</span><span class="o">.</span><span class="n">plot_roi</span><span class="p">(</span>
+    <span class="n">sphere_img</span><span class="p">,</span>
+    <span class="n">annotate</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">draw_cross</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">axes</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+    <span class="n">figure</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Spherical ROI&quot;</span><span class="p">)</span>
+<span class="n">glue</span><span class="p">(</span><span class="s2">&quot;figure_macm_rois&quot;</span><span class="p">,</span> <span class="n">fig</span><span class="p">,</span> <span class="n">display</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="figure align-default" id="figure-macm-rois" style="width: 150px">
+<p class="caption"><span class="caption-number">Fig. 8 </span><span class="caption-text">Region of interest masks for (1) a target mask-based MACM and (2) a coordinate-based MACM.</span><a class="headerlink" href="#figure-macm-rois" title="Permalink to this image">¶</a></p>
+</div>
+<p>Once the <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> has been reduced to studies with coordinates within the mask or sphere requested, any of the supported CBMA Estimators can be run.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nimare</span> <span class="kn">import</span> <span class="n">meta</span>
+
+<span class="n">meta_amyg</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">cbma</span><span class="o">.</span><span class="n">ale</span><span class="o">.</span><span class="n">ALE</span><span class="p">(</span><span class="n">kernel__sample_size</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">results_amyg</span> <span class="o">=</span> <span class="n">meta_amyg</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">dset_amygdala</span><span class="p">)</span>
+<span class="n">results_amyg</span><span class="o">.</span><span class="n">save_maps</span><span class="p">(</span><span class="n">output_dir</span><span class="o">=</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;ALE_Amygdala&quot;</span><span class="p">)</span>
+
+<span class="n">meta_sphere</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">cbma</span><span class="o">.</span><span class="n">ale</span><span class="o">.</span><span class="n">ALE</span><span class="p">(</span><span class="n">kernel__sample_size</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">results_sphere</span> <span class="o">=</span> <span class="n">meta_sphere</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">dset_sphere</span><span class="p">)</span>
+<span class="n">results_sphere</span><span class="o">.</span><span class="n">save_maps</span><span class="p">(</span><span class="n">output_dir</span><span class="o">=</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;ALE_Sphere&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">meta_results</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Amygdala ALE MACM&quot;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;ALE_Amygdala_z.nii.gz&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;Sphere ALE MACM&quot;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;ALE_Sphere_z.nii.gz&quot;</span><span class="p">),</span>
+<span class="p">}</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i_meta</span><span class="p">,</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">file_</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">meta_results</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+    <span class="n">display</span> <span class="o">=</span> <span class="n">plotting</span><span class="o">.</span><span class="n">plot_stat_map</span><span class="p">(</span>
+        <span class="n">file_</span><span class="p">,</span>
+        <span class="n">annotate</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">axes</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="n">i_meta</span><span class="p">],</span>
+        <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;Reds&quot;</span><span class="p">,</span>
+        <span class="n">cut_coords</span><span class="o">=</span><span class="p">[</span><span class="mi">24</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">20</span><span class="p">],</span>
+        <span class="n">draw_cross</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">figure</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="n">i_meta</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+    <span class="n">colorbar</span> <span class="o">=</span> <span class="n">display</span><span class="o">.</span><span class="n">_cbar</span>
+    <span class="n">colorbar_ticks</span> <span class="o">=</span> <span class="n">colorbar</span><span class="o">.</span><span class="n">get_ticks</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">colorbar_ticks</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">new_ticks</span> <span class="o">=</span> <span class="p">[</span><span class="n">colorbar_ticks</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="n">colorbar_ticks</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">new_ticks</span> <span class="o">=</span> <span class="p">[</span><span class="n">colorbar_ticks</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">colorbar_ticks</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+    <span class="n">colorbar</span><span class="o">.</span><span class="n">set_ticks</span><span class="p">(</span><span class="n">new_ticks</span><span class="p">,</span> <span class="n">update_ticks</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">FIG_DIR</span><span class="p">,</span> <span class="s2">&quot;figure_08.svg&quot;</span><span class="p">),</span>
+    <span class="n">transparent</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">bbox_inches</span><span class="o">=</span><span class="s2">&quot;tight&quot;</span><span class="p">,</span>
+    <span class="n">pad_inches</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">glue</span><span class="p">(</span><span class="s2">&quot;figure_macm&quot;</span><span class="p">,</span> <span class="n">fig</span><span class="p">,</span> <span class="n">display</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="figure align-default" id="figure-macm" style="width: 150px">
+<p class="caption"><span class="caption-number">Fig. 9 </span><span class="caption-text">One statistical map plot for each of the MACMs, generated with nilearn’s <code class="docutils literal notranslate"><span class="pre">plot_stat_map</span></code>.</span><a class="headerlink" href="#figure-macm" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="subtraction.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Meta-Analytic Subtraction Analysis</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="annotation.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Automated Annotation</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Taylor Salo, Tal Yarkoni, Thomas E. Nichols, Jean-Baptiste Poline, Murat Bilgel, Katherine L. Bottenhorn, Enrico Glerean, Dorota Jarecka, James D. Kent, Adam Kimbler, Dylan M. Nielson, Kendra M. Oudyk, Alexandre Pérez, Puck C. Reeders, Julio A. Yanes, and Angela R. Laird<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
