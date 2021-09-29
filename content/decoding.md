@@ -24,7 +24,7 @@ from hashlib import md5
 from myst_nb import glue
 
 DATA_DIR = os.path.abspath("../data")
-FIG_DIR = os.path.abspath("../figures")
+FIG_DIR = os.path.abspath("../images")
 ```
 
 ```{code-cell} ipython3

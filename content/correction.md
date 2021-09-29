@@ -28,7 +28,7 @@ import nimare
 
 # Define where data files will be located
 DATA_DIR = os.path.abspath("../data")
-FIG_DIR = os.path.abspath("../figures")
+FIG_DIR = os.path.abspath("../images")
 ```
 
 +++

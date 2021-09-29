@@ -29,7 +29,7 @@ import nimare
 
 # Define where data files will be located
 DATA_DIR = os.path.abspath("../data")
-FIG_DIR = os.path.abspath("../figures")
+FIG_DIR = os.path.abspath("../images")
 
 # Now, load the Datasets we will use in this chapter
 sleuth_dset1 = nimare.dataset.Dataset.load(
@@ -49,7 +49,7 @@ Additionally, for each of the following approaches, except for SCALE, voxel- or 
 
 +++
 
-```{figure} ../figures/figure_02.png
+```{figure} ../images/figure_02.png
 :figwidth: 150px
 :name: meta_workflow_fig
 
