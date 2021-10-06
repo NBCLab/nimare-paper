@@ -29,7 +29,7 @@ There are two main types of tools that operate on a `Dataset` class.
 `Estimator` classes apply a meta-analytic algorithm to a `Dataset` and return a set of statistical images stored in a MetaResult container class.
 The key methods supported by each of these base classes, as well as the main arguments to those methods, are consistent throughout the hierarchy (e.g., all `Transformer` classes must implement a `transform()` method), minimizing the learning curve and ensuring a high degree of predictability for users.
 
-```{figure} ../images/figure_01.png
+```{figure} images/figure_01.png
 :figwidth: 150px
 :name: figure_schematic
 
