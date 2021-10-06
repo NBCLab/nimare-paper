@@ -52,7 +52,7 @@ sphinx:
     bibtex_reference_style: author_year
     intersphinx_mapping:
       nimare:
-        - "https://nimare.readthedocs.io/en/stable/"
+        - "https://nimare.readthedocs.io/en/0.0.10/"
         - null
       pymare:
         - "https://pymare.readthedocs.io/en/latest/"
