@@ -19,7 +19,6 @@ kernelspec:
 :tags: [hide-cell]
 # First, import the necessary modules and functions
 import os
-from hashlib import md5
 
 from myst_nb import glue
 
@@ -29,17 +28,18 @@ FIG_DIR = os.path.abspath("../images")
 
 ```{code-cell} ipython3
 :tags: [hide-cell]
-dset_file = os.path.join(
-    DATA_DIR,
-    "neurosynth_dataset_first500_with_mkda_ma.pkl.gz",
-)
-if not os.path.isfile(dset_file)
+import nimare
+from nimare import meta
+
+dset_file = os.path.join(DATA_DIR, "neurosynth_dataset_first500_with_mkda_ma.pkl.gz")
+if not os.path.isfile(dset_file):
     neurosynth_dset_first500 = nimare.dataset.Dataset.load(
         os.path.join(DATA_DIR, "neurosynth_dataset_first500.pkl.gz")
     )
+    target_folder = os.path.join(DATA_DIR, "neurosynth_dataset_maps")
+    os.makedirs(target_folder, exist_ok=True)
     kern = meta.kernel.MKDAKernel(memory_limit=None)
-    kern._infer_names(affine=md5(neurosynth_dset_first500.masker.mask_img.affine).hexdigest())
-    neurosynth_dset_first500.update_path(os.path.join(DATA_DIR, "ns_dset_maps"))
+    neurosynth_dset_first500.update_path(target_folder)
     neurosynth_dset_first500 = kern.transform(neurosynth_dset_first500, return_type="dataset")
     neurosynth_dset_first500.save(dset_file)
 else:
@@ -97,6 +97,7 @@ corr_decoder = decode.continuous.CorrelationDecoder(
     meta_estimator=meta.MKDAChi2(kernel_transformer=kern, memory_limit=None),
     target_image="z_desc-specificity",
     features=target_features,
+    memory_limit=None,
 )
 corr_decoder.fit(neurosynth_dset_first500)
 corr_df = corr_decoder.transform(os.path.join(DATA_DIR, "map_to_decode.nii.gz"))
