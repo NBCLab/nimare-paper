@@ -47,8 +47,8 @@ Here we will apply both FWE and FDR correction to results from a MKDADensity met
 ```{code-cell} ipython3
 from nimare import meta, results
 
-mkdad_results = results.MetaResults.load(
-    os.path.join(DATA_DIR, "MKDADensity_results.pkl.gz")
+mkdad_meta = meta.cbma.mkda.MKDADensity.load(
+    os.path.join(DATA_DIR, "MKDADensity.pkl.gz")
 )
 
 mc_corrector = correct.FWECorrector(
@@ -56,12 +56,11 @@ mc_corrector = correct.FWECorrector(
     n_iters=10000,
     n_cores=4,
 )
-mc_results = mc_corrector.transform(mkdad_results)
+mc_results = mc_corrector.transform(mkdad_meta.results)
 mc_results.save_maps(output_dir=DATA_DIR, prefix="MKDADensity_FWE")
 
 fdr_corrector = correct.FDRCorrector(method="indep")
-fdr_results = fdr_corrector.transform(mkdad_results)
-fdr_results.save_maps(output_dir=DATA_DIR, prefix="MKDADensity_FDR")
+fdr_results = fdr_corrector.transform(mkdad_meta.results)
 ```
 
 Statistical maps saved by NiMARE `MetaResult`s automatically follow a naming convention based loosely on the Brain Imaging Data Standard (BIDS).
@@ -71,7 +70,7 @@ Let's take a look at the files created by the `FWECorrector`.
 ```{code-cell} ipython3
 from glob import glob
 
-fwe_maps = sorted(glob(os.path.join(DATA_DIR, "MKDADensity_FWE*")))
+fwe_maps = sorted(glob(os.path.join(DATA_DIR, "MKDADensity_FWE*.nii.gz")))
 fwe_maps = [os.path.basename(fwe_map) for fwe_map in fwe_maps]
 print("\n".join(fwe_maps))
 ```
@@ -85,24 +84,18 @@ The `method` key reflects the correction method employed, which was defined by t
 The `level` key simply indicates if the map was corrected at the voxel or cluster level.
 Finally, the `desc` key reflects any necessary description that goes beyond what is already covered by the other entities.
 
-```{code-cell} ipython3
-:tags: [hide-cell]
-# Here we delete the recent variables for the sake of reducing memory usage
-del mkdad_results, mc_corrector, mc_results, fdr_corrector, fdr_results
-```
-
 +++
 
 ```{code-cell} ipython3
 :tags: [hide-cell]
 meta_results = {
-    "Cluster-level Monte Carlo": os.path.join(
-        DATA_DIR,
-        "MKDADensity_FWE_z_level-cluster_corr-FWE_method-montecarlo.nii.gz"
+    "Cluster-level Monte Carlo": mc_results.get_map(
+        "z_level-cluster_corr-FWE_method-montecarlo",
+        return_type="image",
     ),
-    "Independent FDR": os.path.join(
-        DATA_DIR,
-        "MKDADensity_FDR_z_corr-FDR_method-indep.nii.gz",
+    "Independent FDR": fdr_results.get_map(
+        "z_corr-FDR_method-indep",
+        return_type="image",
     ),
 }
 
@@ -140,6 +133,7 @@ glue("figure_corr_cbma", fig, display=False)
 ```{glue:figure} figure_corr_cbma
 :figwidth: 150px
 :name: figure_corr_cbma
+:align: center
 
 An array of plots of the corrected statistical maps produced by the different multiple comparisons correction methods.
 ```

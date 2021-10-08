@@ -494,7 +494,7 @@ For example, <code class="docutils literal notranslate"><span class="pre">MKDAKe
 </div>
 </div>
 </div>
-<div class="figure align-default" id="figure-ma-maps" style="width: 300px">
+<div class="figure align-center" id="figure-ma-maps" style="width: 300px">
 <p class="caption"><span class="caption-number">Fig. 4 </span><span class="caption-text">Modeled activation maps produced by NiMARE’s <code class="docutils literal notranslate"><span class="pre">KernelTransformer</span></code> classes.</span><a class="headerlink" href="#figure-ma-maps" title="Permalink to this image">¶</a></p>
 </div>
 </div>
@@ -544,6 +544,14 @@ The <code class="docutils literal notranslate"><span class="pre">MetaResult</spa
 </div>
 </div>
 </div>
+<p>This result is also retained as an attribute in the <code class="docutils literal notranslate"><span class="pre">Estimator</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">mkdad_meta</span><span class="o">.</span><span class="n">results</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 <p>The <code class="docutils literal notranslate"><span class="pre">maps</span></code> attribute is a dictionary containing statistical map names and associated numpy arrays.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -556,25 +564,25 @@ The <code class="docutils literal notranslate"><span class="pre">MetaResult</spa
 We can also use the <code class="docutils literal notranslate"><span class="pre">get_map</span></code> method to get that image object.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">img</span> <span class="o">=</span> <span class="n">mkdad_results</span><span class="o">.</span><span class="n">get_map</span><span class="p">(</span><span class="s2">&quot;z&quot;</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s2">&quot;image&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdad_img</span> <span class="o">=</span> <span class="n">mkdad_results</span><span class="o">.</span><span class="n">get_map</span><span class="p">(</span><span class="s2">&quot;z&quot;</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s2">&quot;image&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mkdad_img</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>We can save the <code class="docutils literal notranslate"><span class="pre">MetaResult</span></code> object as a Pickle file, much like other NiMARE objects.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdad_results</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;MKDADensity_results.pkl.gz&quot;</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>We can <em>also</em> save the statistical maps to an output directory as gzipped nifti files, with a prefix.
+<p>We can save the statistical maps to an output directory as gzipped nifti files, with a prefix.
 Here, we will save all of the statistical maps with the MKDADensity prefix.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdad_results</span><span class="o">.</span><span class="n">save_maps</span><span class="p">(</span><span class="n">output_dir</span><span class="o">=</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;MKDADensity&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We will also save the <code class="docutils literal notranslate"><span class="pre">Estimator</span></code> itself, which we will reuse when we get to multiple comparisons correction.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdad_meta</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;MKDADensity.pkl.gz&quot;</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -626,8 +634,8 @@ The interface is virtually identical, but since there are few if any legitimate 
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">kda_meta</span> <span class="o">=</span> <span class="n">mkda</span><span class="o">.</span><span class="n">KDA</span><span class="p">(</span><span class="n">null_method</span><span class="o">=</span><span class="s2">&quot;approximate&quot;</span><span class="p">)</span>
 <span class="n">kda_results</span> <span class="o">=</span> <span class="n">kda_meta</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">sleuth_dset1</span><span class="p">)</span>
 
-<span class="c1"># Save the results for later use</span>
-<span class="n">kda_results</span><span class="o">.</span><span class="n">save_maps</span><span class="p">(</span><span class="n">output_dir</span><span class="o">=</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;KDA&quot;</span><span class="p">)</span>
+<span class="c1"># Retain the z-statistic map for later use</span>
+<span class="n">kda_img</span> <span class="o">=</span> <span class="n">kda_results</span><span class="o">.</span><span class="n">get_map</span><span class="p">(</span><span class="s2">&quot;z&quot;</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s2">&quot;image&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -651,8 +659,8 @@ The interface is virtually identical, but since there are few if any legitimate 
 <span class="n">ale_meta</span> <span class="o">=</span> <span class="n">ale</span><span class="o">.</span><span class="n">ALE</span><span class="p">()</span>
 <span class="n">ale_results</span> <span class="o">=</span> <span class="n">ale_meta</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">sleuth_dset1</span><span class="p">)</span>
 
-<span class="c1"># Save the results for later use</span>
-<span class="n">ale_results</span><span class="o">.</span><span class="n">save_maps</span><span class="p">(</span><span class="n">output_dir</span><span class="o">=</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;ALE&quot;</span><span class="p">)</span>
+<span class="c1"># Retain the z-statistic map for later use</span>
+<span class="n">ale_img</span> <span class="o">=</span> <span class="n">ale_results</span><span class="o">.</span><span class="n">get_map</span><span class="p">(</span><span class="s2">&quot;z&quot;</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s2">&quot;image&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -687,8 +695,8 @@ While this method was developed to support analysis of joint activation or “co
 <span class="p">)</span>
 <span class="n">scale_results</span> <span class="o">=</span> <span class="n">scale_meta</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">sleuth_dset1</span><span class="p">)</span>
 
-<span class="c1"># Save the results for later use</span>
-<span class="n">scale_results</span><span class="o">.</span><span class="n">save_maps</span><span class="p">(</span><span class="n">output_dir</span><span class="o">=</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;SCALE&quot;</span><span class="p">)</span>
+<span class="c1"># Retain the z-statistic map for later use</span>
+<span class="n">scale_img</span> <span class="o">=</span> <span class="n">scale_results</span><span class="o">.</span><span class="n">get_map</span><span class="p">(</span><span class="s2">&quot;z&quot;</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s2">&quot;image&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -713,8 +721,8 @@ For example, to perform a chi-squared analysis of working memory studies, the re
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdac_meta</span> <span class="o">=</span> <span class="n">mkda</span><span class="o">.</span><span class="n">MKDAChi2</span><span class="p">()</span>
 <span class="n">mkdac_results</span> <span class="o">=</span> <span class="n">mkdac_meta</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">sleuth_dset1</span><span class="p">,</span> <span class="n">sleuth_dset2</span><span class="p">)</span>
 
-<span class="c1"># Save the results for later use</span>
-<span class="n">mkdac_results</span><span class="o">.</span><span class="n">save_maps</span><span class="p">(</span><span class="n">output_dir</span><span class="o">=</span><span class="s2">&quot;results&quot;</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;MKDAChi2&quot;</span><span class="p">)</span>
+<span class="c1"># Retain the specificity analysis&#39;s z-statistic map for later use</span>
+<span class="n">mkdac_img</span> <span class="o">=</span> <span class="n">mkdac_results</span><span class="o">.</span><span class="n">get_map</span><span class="p">(</span><span class="s2">&quot;z_desc-specificity&quot;</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s2">&quot;image&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -734,14 +742,11 @@ For example, to perform a chi-squared analysis of working memory studies, the re
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">meta_results</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;MKDA Density&quot;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;MKDADensity_z.nii.gz&quot;</span><span class="p">),</span>
-    <span class="s2">&quot;MKDA Chi-Squared&quot;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
-      <span class="n">DATA_DIR</span><span class="p">,</span>
-      <span class="s2">&quot;MKDAChi2_z_desc-specificity.nii.gz&quot;</span><span class="p">,</span>
-    <span class="p">),</span>
-    <span class="s2">&quot;KDA&quot;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;KDA_z.nii.gz&quot;</span><span class="p">),</span>
-    <span class="s2">&quot;ALE&quot;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;ALE_z.nii.gz&quot;</span><span class="p">),</span>
-    <span class="s2">&quot;SCALE&quot;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;SCALE_z.nii.gz&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;MKDA Density&quot;</span><span class="p">:</span> <span class="n">mkdad_img</span><span class="p">,</span>
+    <span class="s2">&quot;MKDA Chi-Squared&quot;</span><span class="p">:</span> <span class="n">mkdac_img</span><span class="p">,</span>
+    <span class="s2">&quot;KDA&quot;</span><span class="p">:</span> <span class="n">kda_img</span><span class="p">,</span>
+    <span class="s2">&quot;ALE&quot;</span><span class="p">:</span> <span class="n">ale_img</span><span class="p">,</span>
+    <span class="s2">&quot;SCALE&quot;</span><span class="p">:</span> <span class="n">scale_img</span><span class="p">,</span>
 <span class="p">}</span>
 <span class="n">order</span> <span class="o">=</span> <span class="p">[</span>
     <span class="p">[</span><span class="s2">&quot;MKDA Density&quot;</span><span class="p">,</span> <span class="s2">&quot;ALE&quot;</span><span class="p">],</span>
@@ -757,14 +762,14 @@ For example, to perform a chi-squared analysis of working memory studies, the re
             <span class="n">axes</span><span class="p">[</span><span class="n">i_row</span><span class="p">,</span> <span class="n">j_col</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
             <span class="k">continue</span>
 
-        <span class="n">file_</span> <span class="o">=</span> <span class="n">meta_results</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
-        <span class="k">if</span> <span class="s2">&quot;desc-specificity&quot;</span> <span class="ow">in</span> <span class="n">file_</span><span class="p">:</span>
+        <span class="n">img</span> <span class="o">=</span> <span class="n">meta_results</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;MKDA Chi-Squared&quot;</span><span class="p">:</span>
             <span class="n">cmap</span> <span class="o">=</span> <span class="s2">&quot;RdBu_r&quot;</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">cmap</span> <span class="o">=</span> <span class="s2">&quot;Reds&quot;</span>
 
         <span class="n">display</span> <span class="o">=</span> <span class="n">plotting</span><span class="o">.</span><span class="n">plot_stat_map</span><span class="p">(</span>
-            <span class="n">file_</span><span class="p">,</span>
+            <span class="n">img</span><span class="p">,</span>
             <span class="n">annotate</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
             <span class="n">axes</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="n">i_row</span><span class="p">,</span> <span class="n">j_col</span><span class="p">],</span>
             <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span>
@@ -793,7 +798,7 @@ For example, to perform a chi-squared analysis of working memory studies, the re
 </div>
 </div>
 </div>
-<div class="figure align-default" id="figure-cbma-uncorr" style="width: 300px">
+<div class="figure align-center" id="figure-cbma-uncorr" style="width: 300px">
 <p class="caption"><span class="caption-number">Fig. 5 </span><span class="caption-text">Thresholded results from MKDA Density, KDA, ALE, and SCALE meta-analyses.</span><a class="headerlink" href="#figure-cbma-uncorr" title="Permalink to this image">¶</a></p>
 </div>
 <p>A number of other coordinate-based meta-analysis algorithms exist which are not yet implemented in NiMARE.

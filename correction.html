@@ -344,8 +344,8 @@ This will return an updated <code class="docutils literal notranslate"><span cla
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nimare</span> <span class="kn">import</span> <span class="n">meta</span><span class="p">,</span> <span class="n">results</span>
 
-<span class="n">mkdad_results</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">MetaResults</span><span class="o">.</span><span class="n">load</span><span class="p">(</span>
-    <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;MKDADensity_results.pkl.gz&quot;</span><span class="p">)</span>
+<span class="n">mkdad_meta</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">cbma</span><span class="o">.</span><span class="n">mkda</span><span class="o">.</span><span class="n">MKDADensity</span><span class="o">.</span><span class="n">load</span><span class="p">(</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;MKDADensity.pkl.gz&quot;</span><span class="p">)</span>
 <span class="p">)</span>
 
 <span class="n">mc_corrector</span> <span class="o">=</span> <span class="n">correct</span><span class="o">.</span><span class="n">FWECorrector</span><span class="p">(</span>
@@ -353,12 +353,11 @@ This will return an updated <code class="docutils literal notranslate"><span cla
     <span class="n">n_iters</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span>
     <span class="n">n_cores</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="n">mc_results</span> <span class="o">=</span> <span class="n">mc_corrector</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">mkdad_results</span><span class="p">)</span>
+<span class="n">mc_results</span> <span class="o">=</span> <span class="n">mc_corrector</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">mkdad_meta</span><span class="o">.</span><span class="n">results</span><span class="p">)</span>
 <span class="n">mc_results</span><span class="o">.</span><span class="n">save_maps</span><span class="p">(</span><span class="n">output_dir</span><span class="o">=</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;MKDADensity_FWE&quot;</span><span class="p">)</span>
 
 <span class="n">fdr_corrector</span> <span class="o">=</span> <span class="n">correct</span><span class="o">.</span><span class="n">FDRCorrector</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">&quot;indep&quot;</span><span class="p">)</span>
-<span class="n">fdr_results</span> <span class="o">=</span> <span class="n">fdr_corrector</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">mkdad_results</span><span class="p">)</span>
-<span class="n">fdr_results</span><span class="o">.</span><span class="n">save_maps</span><span class="p">(</span><span class="n">output_dir</span><span class="o">=</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;MKDADensity_FDR&quot;</span><span class="p">)</span>
+<span class="n">fdr_results</span> <span class="o">=</span> <span class="n">fdr_corrector</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">mkdad_meta</span><span class="o">.</span><span class="n">results</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -369,7 +368,7 @@ This will return an updated <code class="docutils literal notranslate"><span cla
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">glob</span> <span class="kn">import</span> <span class="n">glob</span>
 
-<span class="n">fwe_maps</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;MKDADensity_FWE*&quot;</span><span class="p">)))</span>
+<span class="n">fwe_maps</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;MKDADensity_FWE*.nii.gz&quot;</span><span class="p">)))</span>
 <span class="n">fwe_maps</span> <span class="o">=</span> <span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">fwe_map</span><span class="p">)</span> <span class="k">for</span> <span class="n">fwe_map</span> <span class="ow">in</span> <span class="n">fwe_maps</span><span class="p">]</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">fwe_maps</span><span class="p">))</span>
 </pre></div>
@@ -385,22 +384,14 @@ The <code class="docutils literal notranslate"><span class="pre">level</span></c
 Finally, the <code class="docutils literal notranslate"><span class="pre">desc</span></code> key reflects any necessary description that goes beyond what is already covered by the other entities.</p>
 <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here we delete the recent variables for the sake of reducing memory usage</span>
-<span class="k">del</span> <span class="n">mkdad_results</span><span class="p">,</span> <span class="n">mc_corrector</span><span class="p">,</span> <span class="n">mc_results</span><span class="p">,</span> <span class="n">fdr_corrector</span><span class="p">,</span> <span class="n">fdr_results</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell tag_hide-cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">meta_results</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;Cluster-level Monte Carlo&quot;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
-        <span class="n">DATA_DIR</span><span class="p">,</span>
-        <span class="s2">&quot;MKDADensity_FWE_z_level-cluster_corr-FWE_method-montecarlo.nii.gz&quot;</span>
+    <span class="s2">&quot;Cluster-level Monte Carlo&quot;</span><span class="p">:</span> <span class="n">mc_results</span><span class="o">.</span><span class="n">get_map</span><span class="p">(</span>
+        <span class="s2">&quot;z_level-cluster_corr-FWE_method-montecarlo&quot;</span><span class="p">,</span>
+        <span class="n">return_type</span><span class="o">=</span><span class="s2">&quot;image&quot;</span><span class="p">,</span>
     <span class="p">),</span>
-    <span class="s2">&quot;Independent FDR&quot;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
-        <span class="n">DATA_DIR</span><span class="p">,</span>
-        <span class="s2">&quot;MKDADensity_FDR_z_corr-FDR_method-indep.nii.gz&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Independent FDR&quot;</span><span class="p">:</span> <span class="n">fdr_results</span><span class="o">.</span><span class="n">get_map</span><span class="p">(</span>
+        <span class="s2">&quot;z_corr-FDR_method-indep&quot;</span><span class="p">,</span>
+        <span class="n">return_type</span><span class="o">=</span><span class="s2">&quot;image&quot;</span><span class="p">,</span>
     <span class="p">),</span>
 <span class="p">}</span>
 
@@ -437,7 +428,7 @@ Finally, the <code class="docutils literal notranslate"><span class="pre">desc</
 </div>
 </div>
 </div>
-<div class="figure align-default" id="figure-corr-cbma" style="width: 150px">
+<div class="figure align-center" id="figure-corr-cbma" style="width: 150px">
 <p class="caption"><span class="caption-number">Fig. 7 </span><span class="caption-text">An array of plots of the corrected statistical maps produced by the different multiple comparisons correction methods.</span><a class="headerlink" href="#figure-corr-cbma" title="Permalink to this image">¶</a></p>
 </div>
 </div>

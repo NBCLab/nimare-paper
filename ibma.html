@@ -415,7 +415,10 @@ This allows us to apply more image-based meta-analysis algorithms to the <code c
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nimare</span> <span class="kn">import</span> <span class="n">transforms</span>
 
-<span class="n">img_transformer</span> <span class="o">=</span> <span class="n">transforms</span><span class="o">.</span><span class="n">ImageTransformer</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;z&quot;</span><span class="p">,</span> <span class="s2">&quot;varcope&quot;</span><span class="p">])</span>
+<span class="n">img_transformer</span> <span class="o">=</span> <span class="n">transforms</span><span class="o">.</span><span class="n">ImageTransformer</span><span class="p">(</span>
+    <span class="n">target</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;z&quot;</span><span class="p">,</span> <span class="s2">&quot;varcope&quot;</span><span class="p">],</span>
+    <span class="n">overwrite</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="p">)</span>
 <span class="n">img_dset</span> <span class="o">=</span> <span class="n">img_transformer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">img_dset</span><span class="p">)</span>
 
 <span class="c1"># Save the Dataset to a Pickle file</span>
@@ -441,8 +444,8 @@ We will start with a DerSimonian-Laird meta-analysis (<a class="reference extern
 <span class="n">dsl_meta</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">ibma</span><span class="o">.</span><span class="n">DerSimonianLaird</span><span class="p">()</span>
 <span class="n">dsl_results</span> <span class="o">=</span> <span class="n">dsl_meta</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">img_dset</span><span class="p">)</span>
 
-<span class="c1"># Save the results for later use</span>
-<span class="n">dsl_results</span><span class="o">.</span><span class="n">save_maps</span><span class="p">(</span><span class="n">output_dir</span><span class="o">=</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;DerSimonianLaird&quot;</span><span class="p">)</span>
+<span class="c1"># Retain the z-statistic map for later use</span>
+<span class="n">dsl_img</span> <span class="o">=</span> <span class="n">dsl_results</span><span class="o">.</span><span class="n">get_map</span><span class="p">(</span><span class="s2">&quot;z&quot;</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s2">&quot;image&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -458,37 +461,40 @@ We will start with a DerSimonian-Laird meta-analysis (<a class="reference extern
 <p>Now we will apply other available IBMA <code class="docutils literal notranslate"><span class="pre">Estimator</span></code>s to the same <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>, and save their results to files for comparison.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">stouffers_meta</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">ibma</span><span class="o">.</span><span class="n">Stouffers</span><span class="p">(</span><span class="n">use_sample_size</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Stouffer&#39;s</span>
+<span class="n">stouffers_meta</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">ibma</span><span class="o">.</span><span class="n">Stouffers</span><span class="p">(</span><span class="n">use_sample_size</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">stouffers_results</span> <span class="o">=</span> <span class="n">stouffers_meta</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">img_dset</span><span class="p">)</span>
-<span class="n">stouffers_results</span><span class="o">.</span><span class="n">save_maps</span><span class="p">(</span><span class="n">output_dir</span><span class="o">=</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;Stouffers&quot;</span><span class="p">)</span>
+<span class="n">stouffers_img</span> <span class="o">=</span> <span class="n">stouffers_results</span><span class="o">.</span><span class="n">get_map</span><span class="p">(</span><span class="s2">&quot;z&quot;</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s2">&quot;image&quot;</span><span class="p">)</span>
 <span class="k">del</span> <span class="n">stouffers_meta</span><span class="p">,</span> <span class="n">stouffers_results</span>
 
-<span class="n">weighted_stouffers_meta</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">ibma</span><span class="o">.</span><span class="n">Stouffers</span><span class="p">(</span><span class="n">use_sample_size</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">weighted_stouffers_results</span> <span class="o">=</span> <span class="n">weighted_stouffers_meta</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">img_dset</span><span class="p">)</span>
-<span class="n">weighted_stouffers_results</span><span class="o">.</span><span class="n">save_maps</span><span class="p">(</span>
-    <span class="n">output_dir</span><span class="o">=</span><span class="n">DATA_DIR</span><span class="p">,</span>
-    <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;WeightedStouffers&quot;</span><span class="p">,</span>
-<span class="p">)</span>
-<span class="k">del</span> <span class="n">weighted_stouffers_meta</span><span class="p">,</span> <span class="n">weighted_stouffers_results</span>
+<span class="c1"># Stouffer&#39;s with weighting based on sample size</span>
+<span class="n">wstouffers_meta</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">ibma</span><span class="o">.</span><span class="n">Stouffers</span><span class="p">(</span><span class="n">use_sample_size</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">wstouffers_results</span> <span class="o">=</span> <span class="n">wstouffers_meta</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">img_dset</span><span class="p">)</span>
+<span class="n">wstouffers_img</span> <span class="o">=</span> <span class="n">wstouffers_results</span><span class="o">.</span><span class="n">get_map</span><span class="p">(</span><span class="s2">&quot;z&quot;</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s2">&quot;image&quot;</span><span class="p">)</span>
+<span class="k">del</span> <span class="n">wstouffers_meta</span><span class="p">,</span> <span class="n">wstouffers_results</span>
 
+<span class="c1"># Fisher&#39;s</span>
 <span class="n">fishers_meta</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">ibma</span><span class="o">.</span><span class="n">Fishers</span><span class="p">()</span>
 <span class="n">fishers_results</span> <span class="o">=</span> <span class="n">fishers_meta</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">img_dset</span><span class="p">)</span>
-<span class="n">fishers_results</span><span class="o">.</span><span class="n">save_maps</span><span class="p">(</span><span class="n">output_dir</span><span class="o">=</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;Fishers&quot;</span><span class="p">)</span>
+<span class="n">fishers_img</span> <span class="o">=</span> <span class="n">fishers_results</span><span class="o">.</span><span class="n">get_map</span><span class="p">(</span><span class="s2">&quot;z&quot;</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s2">&quot;image&quot;</span><span class="p">)</span>
 <span class="k">del</span> <span class="n">fishers_meta</span><span class="p">,</span> <span class="n">fishers_results</span>
 
+<span class="c1"># Permuted Ordinary Least Squares</span>
 <span class="n">ols_meta</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">ibma</span><span class="o">.</span><span class="n">PermutedOLS</span><span class="p">()</span>
 <span class="n">ols_results</span> <span class="o">=</span> <span class="n">ols_meta</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">img_dset</span><span class="p">)</span>
-<span class="n">ols_results</span><span class="o">.</span><span class="n">save_maps</span><span class="p">(</span><span class="n">output_dir</span><span class="o">=</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;OLS&quot;</span><span class="p">)</span>
+<span class="n">ols_img</span> <span class="o">=</span> <span class="n">ols_results</span><span class="o">.</span><span class="n">get_map</span><span class="p">(</span><span class="s2">&quot;z&quot;</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s2">&quot;image&quot;</span><span class="p">)</span>
 <span class="k">del</span> <span class="n">ols_meta</span><span class="p">,</span> <span class="n">ols_results</span>
 
+<span class="c1"># Weighted Least Squares</span>
 <span class="n">wls_meta</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">ibma</span><span class="o">.</span><span class="n">WeightedLeastSquares</span><span class="p">()</span>
 <span class="n">wls_results</span> <span class="o">=</span> <span class="n">wls_meta</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">img_dset</span><span class="p">)</span>
-<span class="n">wls_results</span><span class="o">.</span><span class="n">save_maps</span><span class="p">(</span><span class="n">output_dir</span><span class="o">=</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;WLS&quot;</span><span class="p">)</span>
+<span class="n">wls_img</span> <span class="o">=</span> <span class="n">wls_results</span><span class="o">.</span><span class="n">get_map</span><span class="p">(</span><span class="s2">&quot;z&quot;</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s2">&quot;image&quot;</span><span class="p">)</span>
 <span class="k">del</span> <span class="n">wls_meta</span><span class="p">,</span> <span class="n">wls_results</span>
 
+<span class="c1"># Hedges&#39;</span>
 <span class="n">hedges_meta</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">ibma</span><span class="o">.</span><span class="n">Hedges</span><span class="p">()</span>
 <span class="n">hedges_results</span> <span class="o">=</span> <span class="n">hedges_meta</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">img_dset</span><span class="p">)</span>
-<span class="n">hedges_results</span><span class="o">.</span><span class="n">save_maps</span><span class="p">(</span><span class="n">output_dir</span><span class="o">=</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;Hedges&quot;</span><span class="p">)</span>
+<span class="n">hedges_img</span> <span class="o">=</span> <span class="n">hedges_results</span><span class="o">.</span><span class="n">get_map</span><span class="p">(</span><span class="s2">&quot;z&quot;</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s2">&quot;image&quot;</span><span class="p">)</span>
 <span class="k">del</span> <span class="n">hedges_meta</span><span class="p">,</span> <span class="n">hedges_results</span>
 
 <span class="c1"># Use atlas for likelihood-based estimators</span>
@@ -507,17 +513,19 @@ We will start with a DerSimonian-Laird meta-analysis (<a class="reference extern
 <span class="n">masker</span> <span class="o">=</span> <span class="n">input_data</span><span class="o">.</span><span class="n">NiftiLabelsMasker</span><span class="p">(</span><span class="n">nanmasked_atlas</span><span class="p">)</span>
 <span class="k">del</span> <span class="n">atlas</span><span class="p">,</span> <span class="n">nan_mask</span><span class="p">,</span> <span class="n">nanmasked_atlas</span>
 
+<span class="c1"># Variance-Based Likelihood</span>
 <span class="n">vbl_meta</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">ibma</span><span class="o">.</span><span class="n">VarianceBasedLikelihood</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">&quot;reml&quot;</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">masker</span><span class="p">)</span>
 <span class="n">vbl_results</span> <span class="o">=</span> <span class="n">vbl_meta</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">img_dset</span><span class="p">)</span>
-<span class="n">vbl_results</span><span class="o">.</span><span class="n">save_maps</span><span class="p">(</span><span class="n">output_dir</span><span class="o">=</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;VBL&quot;</span><span class="p">)</span>
+<span class="n">vbl_img</span> <span class="o">=</span> <span class="n">vbl_results</span><span class="o">.</span><span class="n">get_map</span><span class="p">(</span><span class="s2">&quot;z&quot;</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s2">&quot;image&quot;</span><span class="p">)</span>
 <span class="k">del</span> <span class="n">vbl_meta</span><span class="p">,</span> <span class="n">vbl_results</span>
 
+<span class="c1"># Sample Size-Based Likelihood</span>
 <span class="n">ssbl_meta</span> <span class="o">=</span> <span class="n">nimare</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">ibma</span><span class="o">.</span><span class="n">SampleSizeBasedLikelihood</span><span class="p">(</span>
     <span class="n">method</span><span class="o">=</span><span class="s2">&quot;reml&quot;</span><span class="p">,</span>
     <span class="n">mask</span><span class="o">=</span><span class="n">masker</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="n">ssbl_results</span> <span class="o">=</span> <span class="n">ssbl_meta</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">img_dset</span><span class="p">)</span>
-<span class="n">ssbl_results</span><span class="o">.</span><span class="n">save_maps</span><span class="p">(</span><span class="n">output_dir</span><span class="o">=</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;SSBL&quot;</span><span class="p">)</span>
+<span class="n">ssbl_img</span> <span class="o">=</span> <span class="n">ssbl_results</span><span class="o">.</span><span class="n">get_map</span><span class="p">(</span><span class="s2">&quot;z&quot;</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s2">&quot;image&quot;</span><span class="p">)</span>
 <span class="k">del</span> <span class="n">ssbl_meta</span><span class="p">,</span> <span class="n">ssbl_results</span><span class="p">,</span> <span class="n">masker</span>
 </pre></div>
 </div>
@@ -530,15 +538,15 @@ We will start with a DerSimonian-Laird meta-analysis (<a class="reference extern
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">meta_results</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;DerSimonian-Laird&quot;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;DerSimonianLaird_z.nii.gz&quot;</span><span class="p">),</span>
-    <span class="s2">&quot;Stouffer&#39;s&quot;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;Stouffers_z.nii.gz&quot;</span><span class="p">),</span>
-    <span class="s2">&quot;Weighted Stouffer&#39;s&quot;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;WeightedStouffers_z.nii.gz&quot;</span><span class="p">),</span>
-    <span class="s2">&quot;Fisher&#39;s&quot;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;Fishers_z.nii.gz&quot;</span><span class="p">),</span>
-    <span class="s2">&quot;Ordinary Least Squares&quot;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;OLS_z.nii.gz&quot;</span><span class="p">),</span>
-    <span class="s2">&quot;Weighted Least Squares&quot;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;WLS_z.nii.gz&quot;</span><span class="p">),</span>
-    <span class="s2">&quot;Hedges&#39;&quot;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;Hedges_z.nii.gz&quot;</span><span class="p">),</span>
-    <span class="s2">&quot;Variance-Based Likelihood&quot;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;VBL_z.nii.gz&quot;</span><span class="p">),</span>
-    <span class="s2">&quot;Sample Size-Based Likelihood&quot;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;SSBL_z.nii.gz&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;DerSimonian-Laird&quot;</span><span class="p">:</span> <span class="n">dsl_img</span><span class="p">,</span>
+    <span class="s2">&quot;Stouffer&#39;s&quot;</span><span class="p">:</span> <span class="n">stouffers_img</span><span class="p">,</span>
+    <span class="s2">&quot;Weighted Stouffer&#39;s&quot;</span><span class="p">:</span> <span class="n">wstouffers_img</span><span class="p">,</span>
+    <span class="s2">&quot;Fisher&#39;s&quot;</span><span class="p">:</span> <span class="n">fishers_img</span><span class="p">,</span>
+    <span class="s2">&quot;Ordinary Least Squares&quot;</span><span class="p">:</span> <span class="n">ols_img</span><span class="p">,</span>
+    <span class="s2">&quot;Weighted Least Squares&quot;</span><span class="p">:</span> <span class="n">wls_img</span><span class="p">,</span>
+    <span class="s2">&quot;Hedges&#39;&quot;</span><span class="p">:</span> <span class="n">hedges_img</span><span class="p">,</span>
+    <span class="s2">&quot;Variance-Based Likelihood&quot;</span><span class="p">:</span> <span class="n">vbl_img</span><span class="p">,</span>
+    <span class="s2">&quot;Sample Size-Based Likelihood&quot;</span><span class="p">:</span> <span class="n">ssbl_img</span><span class="p">,</span>
 <span class="p">}</span>
 <span class="n">order</span> <span class="o">=</span> <span class="p">[</span>
     <span class="p">[</span><span class="s2">&quot;Fisher&#39;s&quot;</span><span class="p">,</span> <span class="s2">&quot;Stouffer&#39;s&quot;</span><span class="p">,</span> <span class="s2">&quot;Weighted Stouffer&#39;s&quot;</span><span class="p">],</span>
@@ -581,7 +589,7 @@ We will start with a DerSimonian-Laird meta-analysis (<a class="reference extern
 </div>
 </div>
 </div>
-<div class="figure align-default" id="figure-uncorr-ibma" style="width: 150px">
+<div class="figure align-center" id="figure-uncorr-ibma" style="width: 150px">
 <p class="caption"><span class="caption-number">Fig. 6 </span><span class="caption-text">An array of plots of the statistical maps produced by the image-based meta-analysis methods.
 The likelihood-based meta-analyses are run on atlases instead of voxelwise.</span><a class="headerlink" href="#figure-uncorr-ibma" title="Permalink to this image">¶</a></p>
 </div>

@@ -59,14 +59,13 @@ from nimare import meta
 kern = meta.kernel.ALEKernel()
 sub_meta = meta.cbma.ale.ALESubtraction(kernel_transformer=kern, n_iters=10000)
 sub_results = sub_meta.fit(sleuth_dset1, sleuth_dset2)
-sub_results.save_maps(output_dir=DATA_DIR, prefix="ALESubtraction")
 ```
 
 ```{code-cell} ipython3
 :tags: [hide-cell]
 fig, ax = plt.subplots(figsize=(6, 2))
 display = plotting.plot_stat_map(
-    os.path.join(DATA_DIR, "ALESubtraction_z_desc-group1MinusGroup2.nii.gz"),
+    sub_results.get_map("z_desc-group1MinusGroup2", return_type="image")
     annotate=False,
     axes=ax,
     cmap="RdBu_r",
@@ -96,6 +95,7 @@ glue("figure_subtraction", fig, display=False)
 ```{glue:figure} figure_subtraction
 :figwidth: 150px
 :name: figure_subtraction
+:align: center
 
 An array of plots of the statistical maps produced by the meta-analysis.
 ```

@@ -105,6 +105,7 @@ glue("figure_macm_rois", fig, display=False)
 ```{glue:figure} figure_macm_rois
 :figwidth: 150px
 :name: figure_macm_rois
+:align: center
 
 Region of interest masks for (1) a target mask-based MACM and (2) a coordinate-based MACM.
 ```
@@ -118,18 +119,16 @@ from nimare import meta
 
 meta_amyg = meta.cbma.ale.ALE(kernel__sample_size=20)
 results_amyg = meta_amyg.fit(dset_amygdala)
-results_amyg.save_maps(output_dir=DATA_DIR, prefix="ALE_Amygdala")
 
 meta_sphere = meta.cbma.ale.ALE(kernel__sample_size=20)
 results_sphere = meta_sphere.fit(dset_sphere)
-results_sphere.save_maps(output_dir=DATA_DIR, prefix="ALE_Sphere")
 ```
 
 ```{code-cell} ipython3
 :tags: [hide-cell]
 meta_results = {
-    "Amygdala ALE MACM": os.path.join(DATA_DIR, "ALE_Amygdala_z.nii.gz"),
-    "Sphere ALE MACM": os.path.join(DATA_DIR, "ALE_Sphere_z.nii.gz"),
+    "Amygdala ALE MACM": results_amyg.get_map("z", return_type="image"),
+    "Sphere ALE MACM": results_sphere.get_map("z", return_type="image"),
 }
 
 fig, axes = plt.subplots(figsize=(6, 4), nrows=2)
@@ -165,6 +164,7 @@ glue("figure_macm", fig, display=False)
 ```{glue:figure} figure_macm
 :figwidth: 150px
 :name: figure_macm
+:align: center
 
 One statistical map plot for each of the MACMs, generated with nilearn's `plot_stat_map`.
 ```

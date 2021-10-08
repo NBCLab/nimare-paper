@@ -357,7 +357,6 @@ Note that, unlike the original algorithm, the NiMARE implementation analyzes all
 <span class="n">kern</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">kernel</span><span class="o">.</span><span class="n">ALEKernel</span><span class="p">()</span>
 <span class="n">sub_meta</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">cbma</span><span class="o">.</span><span class="n">ale</span><span class="o">.</span><span class="n">ALESubtraction</span><span class="p">(</span><span class="n">kernel_transformer</span><span class="o">=</span><span class="n">kern</span><span class="p">,</span> <span class="n">n_iters</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
 <span class="n">sub_results</span> <span class="o">=</span> <span class="n">sub_meta</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">sleuth_dset1</span><span class="p">,</span> <span class="n">sleuth_dset2</span><span class="p">)</span>
-<span class="n">sub_results</span><span class="o">.</span><span class="n">save_maps</span><span class="p">(</span><span class="n">output_dir</span><span class="o">=</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;ALESubtraction&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -366,7 +365,7 @@ Note that, unlike the original algorithm, the NiMARE implementation analyzes all
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
 <span class="n">display</span> <span class="o">=</span> <span class="n">plotting</span><span class="o">.</span><span class="n">plot_stat_map</span><span class="p">(</span>
-    <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;ALESubtraction_z_desc-group1MinusGroup2.nii.gz&quot;</span><span class="p">),</span>
+    <span class="n">sub_results</span><span class="o">.</span><span class="n">get_map</span><span class="p">(</span><span class="s2">&quot;z_desc-group1MinusGroup2&quot;</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s2">&quot;image&quot;</span><span class="p">)</span>
     <span class="n">annotate</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="n">axes</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
     <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;RdBu_r&quot;</span><span class="p">,</span>
@@ -395,7 +394,7 @@ Note that, unlike the original algorithm, the NiMARE implementation analyzes all
 </div>
 </div>
 </div>
-<div class="figure align-default" id="figure-subtraction" style="width: 150px">
+<div class="figure align-center" id="figure-subtraction" style="width: 150px">
 <p class="caption"><span class="caption-number">Fig. 8 </span><span class="caption-text">An array of plots of the statistical maps produced by the meta-analysis.</span><a class="headerlink" href="#figure-subtraction" title="Permalink to this image">¶</a></p>
 </div>
 <p>Alternatively, MKDA Chi-squared analysis is inherently a subtraction analysis method, in that it compares foci from two groups of studies.

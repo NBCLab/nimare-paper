@@ -402,7 +402,7 @@ For the latter, we use <a class="reference external" href="https://nimare.readth
 </div>
 </div>
 </div>
-<div class="figure align-default" id="figure-macm-rois" style="width: 150px">
+<div class="figure align-center" id="figure-macm-rois" style="width: 150px">
 <p class="caption"><span class="caption-number">Fig. 9 </span><span class="caption-text">Region of interest masks for (1) a target mask-based MACM and (2) a coordinate-based MACM.</span><a class="headerlink" href="#figure-macm-rois" title="Permalink to this image">¶</a></p>
 </div>
 <p>Once the <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> has been reduced to studies with coordinates within the mask or sphere requested, any of the supported CBMA Estimators can be run.</p>
@@ -412,11 +412,9 @@ For the latter, we use <a class="reference external" href="https://nimare.readth
 
 <span class="n">meta_amyg</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">cbma</span><span class="o">.</span><span class="n">ale</span><span class="o">.</span><span class="n">ALE</span><span class="p">(</span><span class="n">kernel__sample_size</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 <span class="n">results_amyg</span> <span class="o">=</span> <span class="n">meta_amyg</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">dset_amygdala</span><span class="p">)</span>
-<span class="n">results_amyg</span><span class="o">.</span><span class="n">save_maps</span><span class="p">(</span><span class="n">output_dir</span><span class="o">=</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;ALE_Amygdala&quot;</span><span class="p">)</span>
 
 <span class="n">meta_sphere</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">cbma</span><span class="o">.</span><span class="n">ale</span><span class="o">.</span><span class="n">ALE</span><span class="p">(</span><span class="n">kernel__sample_size</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 <span class="n">results_sphere</span> <span class="o">=</span> <span class="n">meta_sphere</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">dset_sphere</span><span class="p">)</span>
-<span class="n">results_sphere</span><span class="o">.</span><span class="n">save_maps</span><span class="p">(</span><span class="n">output_dir</span><span class="o">=</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;ALE_Sphere&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -424,8 +422,8 @@ For the latter, we use <a class="reference external" href="https://nimare.readth
 <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">meta_results</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;Amygdala ALE MACM&quot;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;ALE_Amygdala_z.nii.gz&quot;</span><span class="p">),</span>
-    <span class="s2">&quot;Sphere ALE MACM&quot;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;ALE_Sphere_z.nii.gz&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;Amygdala ALE MACM&quot;</span><span class="p">:</span> <span class="n">results_amyg</span><span class="o">.</span><span class="n">get_map</span><span class="p">(</span><span class="s2">&quot;z&quot;</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s2">&quot;image&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;Sphere ALE MACM&quot;</span><span class="p">:</span> <span class="n">results_sphere</span><span class="o">.</span><span class="n">get_map</span><span class="p">(</span><span class="s2">&quot;z&quot;</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s2">&quot;image&quot;</span><span class="p">),</span>
 <span class="p">}</span>
 
 <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
@@ -460,7 +458,7 @@ For the latter, we use <a class="reference external" href="https://nimare.readth
 </div>
 </div>
 </div>
-<div class="figure align-default" id="figure-macm" style="width: 150px">
+<div class="figure align-center" id="figure-macm" style="width: 150px">
 <p class="caption"><span class="caption-number">Fig. 10 </span><span class="caption-text">One statistical map plot for each of the MACMs, generated with nilearn’s <code class="docutils literal notranslate"><span class="pre">plot_stat_map</span></code>.</span><a class="headerlink" href="#figure-macm" title="Permalink to this image">¶</a></p>
 </div>
 </div>
