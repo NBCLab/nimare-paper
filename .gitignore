@@ -2,6 +2,8 @@
 
 # Location of all data
 data/
+# Temporary zip folder to upload to HPC
+data.zip
 
 # Jupyter Book HTML files (for now)
 _build/
