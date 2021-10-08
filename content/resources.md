@@ -71,8 +71,11 @@ print(sleuth_dset1)
 print(sleuth_dset2)
 
 # Save the Datasets to files for future use
-sleuth_dset1.save(os.path.join(DATA_DIR, "sleuth_dset1.pkl.gz"))
-sleuth_dset2.save(os.path.join(DATA_DIR, "sleuth_dset2.pkl.gz"))
+if not os.path.isfile(os.path.join(DATA_DIR, "sleuth_dset1.pkl.gz")):
+    sleuth_dset1.save(os.path.join(DATA_DIR, "sleuth_dset1.pkl.gz"))
+
+if not os.path.isfile(os.path.join(DATA_DIR, "sleuth_dset2.pkl.gz")):
+    sleuth_dset2.save(os.path.join(DATA_DIR, "sleuth_dset2.pkl.gz"))
 ```
 
 +++
@@ -115,7 +118,8 @@ neurosynth_dset = io.convert_neurosynth_to_dataset(
 print(neurosynth_dset)
 
 # Save the Dataset for later use.
-neurosynth_dset.save(os.path.join(DATA_DIR, "neurosynth_dataset.pkl.gz"))
+if not os.path.isfile(os.path.join(DATA_DIR, "neurosynth_dataset.pkl.gz")):
+    neurosynth_dset.save(os.path.join(DATA_DIR, "neurosynth_dataset.pkl.gz"))
 ```
 
 ```{note}
@@ -127,9 +131,10 @@ Therefore, for the sake of ensuring that the analyses in this article may be rep
 neurosynth_dset_first_500 = neurosynth_dset.slice(neurosynth_dset.ids[:500])
 print(neurosynth_dset)
 
-neurosynth_dset_first_500.save(
-    os.path.join(DATA_DIR, "neurosynth_dataset_first500.pkl.gz")
-)
+if not os.path.isfile(os.path.join(DATA_DIR, "neurosynth_dataset_first500.pkl.gz")):
+    neurosynth_dset_first_500.save(
+        os.path.join(DATA_DIR, "neurosynth_dataset_first500.pkl.gz")
+    )
 ```
 
 +++
@@ -179,7 +184,8 @@ neuroquery_dset = io.convert_neurosynth_to_dataset(
 print(neuroquery_dset)
 
 # Save the Dataset for later use.
-neuroquery_dset.save(os.path.join(DATA_DIR, "neuroquery_dataset.pkl.gz"))
+if not os.path.isfile(os.path.join(DATA_DIR, "neuroquery_dataset.pkl.gz")):
+    neuroquery_dset.save(os.path.join(DATA_DIR, "neuroquery_dataset.pkl.gz"))
 ```
 
 +++

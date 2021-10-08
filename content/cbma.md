@@ -144,6 +144,7 @@ del mkda_ma_maps, kda_ma_maps, ale_ma_maps
 ```{glue:figure} figure_ma_maps
 :figwidth: 300px
 :name: "figure_ma_maps"
+:align: center
 
 Modeled activation maps produced by NiMARE's `KernelTransformer` classes.
 ```
@@ -198,6 +199,12 @@ The `MetaResult` class is a light container holding the different statistical ma
 print(mkdad_results)
 ```
 
+This result is also retained as an attribute in the `Estimator`.
+
+```{code-cell} ipython3
+print(mkdad_meta.results)
+```
+
 The `maps` attribute is a dictionary containing statistical map names and associated numpy arrays.
 
 ```{code-cell} ipython3
@@ -208,21 +215,21 @@ These arrays can be transformed into image-like objects using the `masker` attri
 We can also use the `get_map` method to get that image object.
 
 ```{code-cell} ipython3
-img = mkdad_results.get_map("z", return_type="image")
-print(img)
+mkdad_img = mkdad_results.get_map("z", return_type="image")
+print(mkdad_img)
 ```
 
-We can save the `MetaResult` object as a Pickle file, much like other NiMARE objects.
-
-```{code-cell} ipython3
-mkdad_results.save(os.path.join(DATA_DIR, "MKDADensity_results.pkl.gz"))
-```
-
-We can _also_ save the statistical maps to an output directory as gzipped nifti files, with a prefix.
+We can save the statistical maps to an output directory as gzipped nifti files, with a prefix.
 Here, we will save all of the statistical maps with the MKDADensity prefix.
 
 ```{code-cell} ipython3
 mkdad_results.save_maps(output_dir=DATA_DIR, prefix="MKDADensity")
+```
+
+We will also save the `Estimator` itself, which we will reuse when we get to multiple comparisons correction.
+
+```{code-cell} ipython3
+mkdad_meta.save(os.path.join(DATA_DIR, "MKDADensity.pkl.gz"))
 ```
 
 ```{code-cell} ipython3
@@ -268,8 +275,8 @@ The interface is virtually identical, but since there are few if any legitimate 
 kda_meta = mkda.KDA(null_method="approximate")
 kda_results = kda_meta.fit(sleuth_dset1)
 
-# Save the results for later use
-kda_results.save_maps(output_dir=DATA_DIR, prefix="KDA")
+# Retain the z-statistic map for later use
+kda_img = kda_results.get_map("z", return_type="image")
 ```
 
 ```{code-cell} ipython3
@@ -290,8 +297,8 @@ from nimare.meta.cbma import ale
 ale_meta = ale.ALE()
 ale_results = ale_meta.fit(sleuth_dset1)
 
-# Save the results for later use
-ale_results.save_maps(output_dir=DATA_DIR, prefix="ALE")
+# Retain the z-statistic map for later use
+ale_img = ale_results.get_map("z", return_type="image")
 ```
 
 ```{code-cell} ipython3
@@ -323,8 +330,8 @@ scale_meta = ale.SCALE(
 )
 scale_results = scale_meta.fit(sleuth_dset1)
 
-# Save the results for later use
-scale_results.save_maps(output_dir=DATA_DIR, prefix="SCALE")
+# Retain the z-statistic map for later use
+scale_img = scale_results.get_map("z", return_type="image")
 ```
 
 ```{code-cell} ipython3
@@ -346,8 +353,8 @@ For example, to perform a chi-squared analysis of working memory studies, the re
 mkdac_meta = mkda.MKDAChi2()
 mkdac_results = mkdac_meta.fit(sleuth_dset1, sleuth_dset2)
 
-# Save the results for later use
-mkdac_results.save_maps(output_dir="results", prefix="MKDAChi2")
+# Retain the specificity analysis's z-statistic map for later use
+mkdac_img = mkdac_results.get_map("z_desc-specificity", return_type="image")
 ```
 
 ```{code-cell} ipython3
@@ -366,14 +373,11 @@ Here we load the z-statistic map from each of the CBMA Estimators we've used thr
 :tags: [hide-output]
 
 meta_results = {
-    "MKDA Density": os.path.join(DATA_DIR, "MKDADensity_z.nii.gz"),
-    "MKDA Chi-Squared": os.path.join(
-      DATA_DIR,
-      "MKDAChi2_z_desc-specificity.nii.gz",
-    ),
-    "KDA": os.path.join(DATA_DIR, "KDA_z.nii.gz"),
-    "ALE": os.path.join(DATA_DIR, "ALE_z.nii.gz"),
-    "SCALE": os.path.join(DATA_DIR, "SCALE_z.nii.gz"),
+    "MKDA Density": mkdad_img,
+    "MKDA Chi-Squared": mkdac_img,
+    "KDA": kda_img,
+    "ALE": ale_img,
+    "SCALE": scale_img,
 }
 order = [
     ["MKDA Density", "ALE"],
@@ -389,14 +393,14 @@ for i_row, row_names in enumerate(order):
             axes[i_row, j_col].axis("off")
             continue
 
-        file_ = meta_results[name]
-        if "desc-specificity" in file_:
+        img = meta_results[name]
+        if name == "MKDA Chi-Squared":
             cmap = "RdBu_r"
         else:
             cmap = "Reds"
 
         display = plotting.plot_stat_map(
-            file_,
+            img,
             annotate=False,
             axes=axes[i_row, j_col],
             cmap=cmap,
@@ -426,6 +430,7 @@ glue("figure_cbma_uncorr", fig, display=False)
 ```{glue:figure} figure_cbma_uncorr
 :figwidth: 300px
 :name: "figure_cbma_uncorr"
+:align: center
 
 Thresholded results from MKDA Density, KDA, ALE, and SCALE meta-analyses.
 ```

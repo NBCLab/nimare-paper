@@ -232,6 +232,7 @@ glue("table_lda", lda_df)
 ```{glue:figure} table_lda
 :figwidth: 300px
 :name: "tbl:table_lda"
+:align: center
 
 The top ten terms for each of the first ten topics in the trained LDA model.
 ```
@@ -288,6 +289,7 @@ glue("table_gclda", gclda_df)
 ```{glue:figure} table_gclda
 :figwidth: 300px
 :name: "tbl:table_gclda"
+:align: center
 
 The top ten terms for each of the first ten topics in the trained GCLDA model.
 ```
@@ -332,6 +334,7 @@ glue("figure_gclda_topics", fig, display=False)
 ```{glue:figure} figure_gclda_topics
 :figwidth: 150px
 :name: figure_gclda_topics
+:align: center
 
 Topic weight maps for the first five topics in the GCLDA model.
 ```

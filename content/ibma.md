@@ -101,7 +101,10 @@ This allows us to apply more image-based meta-analysis algorithms to the `Datase
 ```{code-cell} ipython3
 from nimare import transforms
 
-img_transformer = transforms.ImageTransformer(target=["z", "varcope"])
+img_transformer = transforms.ImageTransformer(
+    target=["z", "varcope"],
+    overwrite=False,
+)
 img_dset = img_transformer.transform(img_dset)
 
 # Save the Dataset to a Pickle file
@@ -123,8 +126,8 @@ from nimare import meta
 dsl_meta = meta.ibma.DerSimonianLaird()
 dsl_results = dsl_meta.fit(img_dset)
 
-# Save the results for later use
-dsl_results.save_maps(output_dir=DATA_DIR, prefix="DerSimonianLaird")
+# Retain the z-statistic map for later use
+dsl_img = dsl_results.get_map("z", return_type="image")
 ```
 
 ```{code-cell} ipython3
@@ -138,37 +141,40 @@ del dsl_meta, dsl_results
 Now we will apply other available IBMA `Estimator`s to the same `Dataset`, and save their results to files for comparison.
 
 ```{code-cell} ipython3
+# Stouffer's
 stouffers_meta = meta.ibma.Stouffers(use_sample_size=False)
 stouffers_results = stouffers_meta.fit(img_dset)
-stouffers_results.save_maps(output_dir=DATA_DIR, prefix="Stouffers")
+stouffers_img = stouffers_results.get_map("z", return_type="image")
 del stouffers_meta, stouffers_results
 
-weighted_stouffers_meta = meta.ibma.Stouffers(use_sample_size=True)
-weighted_stouffers_results = weighted_stouffers_meta.fit(img_dset)
-weighted_stouffers_results.save_maps(
-    output_dir=DATA_DIR,
-    prefix="WeightedStouffers",
-)
-del weighted_stouffers_meta, weighted_stouffers_results
+# Stouffer's with weighting based on sample size
+wstouffers_meta = meta.ibma.Stouffers(use_sample_size=True)
+wstouffers_results = wstouffers_meta.fit(img_dset)
+wstouffers_img = wstouffers_results.get_map("z", return_type="image")
+del wstouffers_meta, wstouffers_results
 
+# Fisher's
 fishers_meta = meta.ibma.Fishers()
 fishers_results = fishers_meta.fit(img_dset)
-fishers_results.save_maps(output_dir=DATA_DIR, prefix="Fishers")
+fishers_img = fishers_results.get_map("z", return_type="image")
 del fishers_meta, fishers_results
 
+# Permuted Ordinary Least Squares
 ols_meta = meta.ibma.PermutedOLS()
 ols_results = ols_meta.fit(img_dset)
-ols_results.save_maps(output_dir=DATA_DIR, prefix="OLS")
+ols_img = ols_results.get_map("z", return_type="image")
 del ols_meta, ols_results
 
+# Weighted Least Squares
 wls_meta = meta.ibma.WeightedLeastSquares()
 wls_results = wls_meta.fit(img_dset)
-wls_results.save_maps(output_dir=DATA_DIR, prefix="WLS")
+wls_img = wls_results.get_map("z", return_type="image")
 del wls_meta, wls_results
 
+# Hedges'
 hedges_meta = meta.ibma.Hedges()
 hedges_results = hedges_meta.fit(img_dset)
-hedges_results.save_maps(output_dir=DATA_DIR, prefix="Hedges")
+hedges_img = hedges_results.get_map("z", return_type="image")
 del hedges_meta, hedges_results
 
 # Use atlas for likelihood-based estimators
@@ -187,17 +193,19 @@ nanmasked_atlas = image.math_img(
 masker = input_data.NiftiLabelsMasker(nanmasked_atlas)
 del atlas, nan_mask, nanmasked_atlas
 
+# Variance-Based Likelihood
 vbl_meta = meta.ibma.VarianceBasedLikelihood(method="reml", mask=masker)
 vbl_results = vbl_meta.fit(img_dset)
-vbl_results.save_maps(output_dir=DATA_DIR, prefix="VBL")
+vbl_img = vbl_results.get_map("z", return_type="image")
 del vbl_meta, vbl_results
 
+# Sample Size-Based Likelihood
 ssbl_meta = nimare.meta.ibma.SampleSizeBasedLikelihood(
     method="reml",
     mask=masker,
 )
 ssbl_results = ssbl_meta.fit(img_dset)
-ssbl_results.save_maps(output_dir=DATA_DIR, prefix="SSBL")
+ssbl_img = ssbl_results.get_map("z", return_type="image")
 del ssbl_meta, ssbl_results, masker
 ```
 
@@ -210,15 +218,15 @@ Here we load the z-statistic map from each of the IBMA Estimators we've used thr
 ```{code-cell} ipython3
 :tags: [hide-output]
 meta_results = {
-    "DerSimonian-Laird": os.path.join(DATA_DIR, "DerSimonianLaird_z.nii.gz"),
-    "Stouffer's": os.path.join(DATA_DIR, "Stouffers_z.nii.gz"),
-    "Weighted Stouffer's": os.path.join(DATA_DIR, "WeightedStouffers_z.nii.gz"),
-    "Fisher's": os.path.join(DATA_DIR, "Fishers_z.nii.gz"),
-    "Ordinary Least Squares": os.path.join(DATA_DIR, "OLS_z.nii.gz"),
-    "Weighted Least Squares": os.path.join(DATA_DIR, "WLS_z.nii.gz"),
-    "Hedges'": os.path.join(DATA_DIR, "Hedges_z.nii.gz"),
-    "Variance-Based Likelihood": os.path.join(DATA_DIR, "VBL_z.nii.gz"),
-    "Sample Size-Based Likelihood": os.path.join(DATA_DIR, "SSBL_z.nii.gz"),
+    "DerSimonian-Laird": dsl_img,
+    "Stouffer's": stouffers_img,
+    "Weighted Stouffer's": wstouffers_img,
+    "Fisher's": fishers_img,
+    "Ordinary Least Squares": ols_img,
+    "Weighted Least Squares": wls_img,
+    "Hedges'": hedges_img,
+    "Variance-Based Likelihood": vbl_img,
+    "Sample Size-Based Likelihood": ssbl_img,
 }
 order = [
     ["Fisher's", "Stouffer's", "Weighted Stouffer's"],
@@ -262,6 +270,7 @@ glue("figure_uncorr_ibma", fig, display=False)
 ```{glue:figure} figure_uncorr_ibma
 :figwidth: 150px
 :name: figure_uncorr_ibma
+:align: center
 
 An array of plots of the statistical maps produced by the image-based meta-analysis methods.
 The likelihood-based meta-analyses are run on atlases instead of voxelwise.

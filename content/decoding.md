@@ -29,21 +29,28 @@ FIG_DIR = os.path.abspath("../images")
 
 ```{code-cell} ipython3
 :tags: [hide-cell]
-neurosynth_dset_first500 = nimare.dataset.Dataset.load(
-    os.path.join(DATA_DIR, "neurosynth_dataset_first500.pkl.gz")
+dset_file = os.path.join(
+    DATA_DIR,
+    "neurosynth_dataset_first500_with_mkda_ma.pkl.gz",
 )
-kern = meta.kernel.MKDAKernel(memory_limit="500mb")
-kern._infer_names(
-    affine=md5(neurosynth_dset_first500.masker.mask_img.affine).hexdigest()
-)
-neurosynth_dset_first500.update_path(os.path.join(DATA_DIR, "ns_dset_maps"))
-neurosynth_dset_first500 = kern.transform(
-    neurosynth_dset_first500,
-    return_type="dataset",
-)
-neurosynth_dset_first500.save(
-    os.path.join(DATA_DIR, "neurosynth_dataset_first500_with_mkda_ma.pkl.gz")
-)
+if not os.path.isfile(dset_file)
+    neurosynth_dset_first500 = nimare.dataset.Dataset.load(
+        os.path.join(DATA_DIR, "neurosynth_dataset_first500.pkl.gz")
+    )
+    kern = meta.kernel.MKDAKernel(memory_limit="500mb")
+    kern._infer_names(
+        affine=md5(neurosynth_dset_first500.masker.mask_img.affine).hexdigest()
+    )
+    neurosynth_dset_first500.update_path(
+        os.path.join(DATA_DIR, "ns_dset_maps")
+    )
+    neurosynth_dset_first500 = kern.transform(
+        neurosynth_dset_first500,
+        return_type="dataset",
+    )
+    neurosynth_dset_first500.save(dset_file)
+else:
+    neurosynth_dset = nimare.dataset.Dataset.load(dset_file)
 
 # Collect features for decoding
 # We use any features that appear in >5% of studies and <95%.
@@ -96,7 +103,7 @@ corr_decoder = decode.continuous.CorrelationDecoder(
     frequency_threshold=0.001,
     meta_estimator=meta.MKDAChi2(
         kernel_transformer=kern,
-        memory_limit="500mb",
+        memory_limit=None,
     ),
     target_image="z_desc-specificity",
     features=target_features,
@@ -119,6 +126,7 @@ glue("table_corr", corr_df)
 ```{glue:figure} table_corr
 :figwidth: 300px
 :name: "tbl:table_corr"
+:align: center
 
 The top ten terms, sorted by absolute correlation coefficient, from the correlation decoding method.
 ```
@@ -166,6 +174,7 @@ glue("table_assoc", assoc_df)
 ```{glue:figure} table_assoc
 :figwidth: 300px
 :name: "tbl:table_assoc"
+:align: center
 
 The top ten terms, sorted by absolute correlation coefficient, from the ROI association decoding method.
 ```
@@ -225,6 +234,7 @@ glue("table_brainmap", brainmap_df)
 ```{glue:figure} table_brainmap
 :figwidth: 300px
 :name: "tbl:table_brainmap"
+:align: center
 
 The top ten terms, sorted by reverse-inference posterior probability, from the BrainMap chi-squared decoding method.
 ```
@@ -275,6 +285,7 @@ glue("table_neurosynth", neurosynth_df)
 ```{glue:figure} table_neurosynth
 :figwidth: 300px
 :name: "tbl:table_neurosynth"
+:align: center
 
 The top ten terms, sorted by reverse-inference posterior probability, from the Neurosynth chi-squared decoding method.
 ```
