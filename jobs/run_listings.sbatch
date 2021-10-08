@@ -15,7 +15,7 @@
 #SBATCH --account iacc_nbc
 
 #---Partition
-#SBATCH -p 16C_48G
+#SBATCH -p IB_16C_96G
 ########################################################
 export NPROCS=`echo $LSB_HOSTS | wc -w`
 export OMP_NUM_THREADS=4

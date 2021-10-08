@@ -1,0 +1,753 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Automated Annotation &#8212; NiMARE: Neuroimaging Meta-Analysis Research Environment</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Meta-Analytic Functional Decoding" href="decoding.html" />
+    <link rel="prev" title="Meta-Analytic Coactivation Modeling" href="macm.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/nimare_overview.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">NiMARE: Neuroimaging Meta-Analysis Research Environment</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="abstract.html">
+   Abstract
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  About NiMARE
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="introduction.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="overview.html">
+   NiMARE Overview
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Meta-Analytic Databases and Resources
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="resources.html">
+   External Meta-Analytic Resources
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Meta-Analyses in NiMARE
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="cbma.html">
+   Coordinate-Based Meta-Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ibma.html">
+   Image-Based Meta-Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="correction.html">
+   Multiple Comparisons Correction
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Other Meta-Analytic Approaches
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="about_derivative_analyses.html">
+   Derivative Analyses
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="subtraction.html">
+   Meta-Analytic Subtraction Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="macm.html">
+   Meta-Analytic Coactivation Modeling
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Automated Annotation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="decoding.html">
+   Meta-Analytic Functional Decoding
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Concluding Thoughts
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="future_directions.html">
+   Future Directions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="summary.html">
+   Summary
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="acknowledgements.html">
+   Acknowledgements
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="bibliography.html">
+   References
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Appendix
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="appendices/brainmap_decoding.html">
+   Appendix I: BrainMap Discrete Decoding
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="appendices/neurosynth_decoding.html">
+   Appendix II: Neurosynth Discrete Decoding
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="_sources/annotation.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/annotation.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/NBCLab/nimare-paper/master?urlpath=tree/content/annotation.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#n-gram-term-extraction">
+   N-gram term extraction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cognitive-atlas-term-extraction-and-hierarchical-expansion">
+   Cognitive Atlas term extraction and hierarchical expansion
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#latent-dirichlet-allocation">
+   Latent Dirichlet allocation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#generalized-correspondence-latent-dirichlet-allocation">
+   Generalized correspondence latent Dirichlet allocation
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="automated-annotation">
+<h1>Automated Annotation<a class="headerlink" href="#automated-annotation" title="Permalink to this headline">¶</a></h1>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># First, import the necessary modules and functions</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
+<span class="kn">from</span> <span class="nn">nilearn</span> <span class="kn">import</span> <span class="n">image</span><span class="p">,</span> <span class="n">plotting</span>
+
+<span class="kn">import</span> <span class="nn">nimare</span>
+
+<span class="c1"># Define where data files will be located</span>
+<span class="n">DATA_DIR</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;../data&quot;</span><span class="p">)</span>
+<span class="n">FIG_DIR</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;../images&quot;</span><span class="p">)</span>
+
+<span class="c1"># Now, load the Dataset we will use in this chapter</span>
+<span class="n">neurosynth_dset_first_500</span> <span class="o">=</span> <span class="n">nimare</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">load</span><span class="p">(</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;neurosynth_dataset_first500.pkl.gz&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/lib/python3.7/site-packages/nilearn/datasets/__init__.py:90: FutureWarning: Fetchers from the nilearn.datasets module will be updated in version 0.9 to return python strings instead of bytes and Pandas dataframes instead of Numpy arrays.
+  &quot;Numpy arrays.&quot;, FutureWarning)
+</pre></div>
+</div>
+</div>
+</div>
+<p>As mentioned in the discussion of BrainMap (<a class="reference internal" href="resources.html#content-resources-brainmap"><span class="std std-ref">BrainMap</span></a>), manually annotating studies in a meta-analytic database can be a time-consuming and labor-intensive process.
+To facilitate more efficient (albeit lower-quality) annotation, NiMARE supports a number of automated annotation approaches.
+These include n-gram term extraction, Cognitive Atlas term extraction, latent Dirichlet allocation, and generalized correspondence latent Dirichlet allocation.</p>
+<p>NiMARE users may download abstracts from PubMed as long as study identifiers in the <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> correspond to PubMed IDs (as in Neurosynth and NeuroQuery).
+Abstracts are much more easily accessible than full article text, so most annotation methods in NiMARE rely on them.</p>
+<p>Below, we use the function <code class="xref py py-func docutils literal notranslate"><span class="pre">nimare.extract.download_abstracts()</span></code> to download abstracts for the Neurosynth <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>.
+This will attempt to extract metadata about each study in the <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> from PubMed, and then add the abstract available on Pubmed to the <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>’s <code class="docutils literal notranslate"><span class="pre">texts</span></code> attribute, under a new column names “abstract”.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nimare</span> <span class="kn">import</span> <span class="n">extract</span>
+
+<span class="c1"># In order to run this code on nodes without internet access,</span>
+<span class="c1"># we need this if statement</span>
+<span class="n">dataset_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;neurosynth_dataset_first500_with_abstracts.pkl.gz&quot;</span><span class="p">)</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">dataset_file</span><span class="p">):</span>
+    <span class="n">neurosynth_dset_first_500</span> <span class="o">=</span> <span class="n">extract</span><span class="o">.</span><span class="n">download_abstracts</span><span class="p">(</span>
+        <span class="n">neurosynth_dset_first_500</span><span class="p">,</span>
+        <span class="n">email</span><span class="o">=</span><span class="s2">&quot;example@email.com&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">neurosynth_dset_first_500</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">dataset_file</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">neurosynth_dset_first_500</span> <span class="o">=</span> <span class="n">nimare</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">dataset_file</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="n-gram-term-extraction">
+<h2>N-gram term extraction<a class="headerlink" href="#n-gram-term-extraction" title="Permalink to this headline">¶</a></h2>
+<p><strong>N-gram term extraction</strong> refers to the vectorization of text into contiguous sets of words that can be counted as individual tokens.
+The upper limit on the number of words in these tokens is set by the user.</p>
+<p>NiMARE has the function <code class="xref py py-func docutils literal notranslate"><span class="pre">nimare.annotate.text.generate_counts()</span></code> to extract n-grams from text.
+This method produces either term counts or term frequency- inverse document frequency (tf-idf) values for each of the studies in a <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">counts_df</span> <span class="o">=</span> <span class="n">annotate</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">generate_counts</span><span class="p">(</span>
+    <span class="n">neurosynth_dset_first_500</span><span class="o">.</span><span class="n">texts</span><span class="p">,</span>
+    <span class="n">text_column</span><span class="o">=</span><span class="s2">&quot;abstract&quot;</span><span class="p">,</span>
+    <span class="n">tfidf</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">min_df</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">max_df</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_23841</span><span class="o">/</span><span class="mf">1218837965.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">counts_df</span> <span class="o">=</span> <span class="n">annotate</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">generate_counts</span><span class="p">(</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span>     <span class="n">neurosynth_dset_first_500</span><span class="o">.</span><span class="n">texts</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="n">text_column</span><span class="o">=</span><span class="s2">&quot;abstract&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="n">tfidf</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="n">min_df</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+
+<span class="ne">NameError</span>: name &#39;annotate&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<p>This term count <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> will be used later, to train a GCLDA model.</p>
+</div>
+<div class="section" id="cognitive-atlas-term-extraction-and-hierarchical-expansion">
+<h2>Cognitive Atlas term extraction and hierarchical expansion<a class="headerlink" href="#cognitive-atlas-term-extraction-and-hierarchical-expansion" title="Permalink to this headline">¶</a></h2>
+<p><strong>Cognitive Atlas term extraction</strong> leverages the structured nature of the Cognitive Atlas in order to extract counts for individual terms and their synonyms in the ontology, as well as to apply hierarchical expansion to these counts based on the relationships specified between terms.
+This method produces both basic term counts and expanded term counts based on the weights applied to different relationship types present in the ontology.</p>
+<p>First, we must use <code class="xref py py-func docutils literal notranslate"><span class="pre">nimare.extract.download_cognitive_atlas()</span></code> to download the current version of the Cognitive Atlas ontology.
+This includes both information about individual terms in the ontology and asserted relationships between those terms.</p>
+<p>NiMARE will automatically attempt to extrapolate likely alternate forms of each term in the ontology, in order to make extraction easier.
+For example,</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cogatlas</span> <span class="o">=</span> <span class="n">extract</span><span class="o">.</span><span class="n">download_cognitive_atlas</span><span class="p">(</span><span class="n">data_dir</span><span class="o">=</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">id_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">cogatlas</span><span class="p">[</span><span class="s2">&quot;ids&quot;</span><span class="p">])</span>
+<span class="n">rel_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">cogatlas</span><span class="p">[</span><span class="s2">&quot;relationships&quot;</span><span class="p">])</span>
+
+<span class="n">cogat_counts_df</span><span class="p">,</span> <span class="n">rep_text_df</span> <span class="o">=</span> <span class="n">annotate</span><span class="o">.</span><span class="n">cogat</span><span class="o">.</span><span class="n">extract_cogat</span><span class="p">(</span>
+    <span class="n">neurosynth_dset_first_500</span><span class="o">.</span><span class="n">texts</span><span class="p">,</span> <span class="n">id_df</span><span class="p">,</span> <span class="n">text_column</span><span class="o">=</span><span class="s2">&quot;abstract&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a weighting scheme.</span>
+<span class="c1"># In this scheme, observed terms will also count toward any</span>
+<span class="c1"># hypernyms (isKindOf), holonyms (isPartOf), and parent categories (inCategory)</span>
+<span class="c1"># as well.</span>
+<span class="n">weights</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;isKindOf&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;isPartOf&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;inCategory&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
+<span class="n">expanded_df</span> <span class="o">=</span> <span class="n">annotate</span><span class="o">.</span><span class="n">cogat</span><span class="o">.</span><span class="n">expand_counts</span><span class="p">(</span><span class="n">cogat_counts_df</span><span class="p">,</span> <span class="n">rel_df</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span>
+
+<span class="c1"># Sort by total count and reduce for better visualization</span>
+<span class="n">series</span> <span class="o">=</span> <span class="n">expanded_df</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">series</span> <span class="o">=</span> <span class="n">series</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">series</span> <span class="o">=</span> <span class="n">series</span><span class="p">[</span><span class="n">series</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">columns</span> <span class="o">=</span> <span class="n">series</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Raw counts</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">16</span><span class="p">),</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">pos</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span>
+    <span class="n">cogat_counts_df</span><span class="p">[</span><span class="n">columns</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+    <span class="n">aspect</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+    <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">vmax</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">expanded_df</span><span class="o">.</span><span class="n">values</span><span class="p">),</span>
+<span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Counts Before Expansion&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">cogat_counts_df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">(</span><span class="n">cogat_counts_df</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Study&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">columns</span><span class="p">)))</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">columns</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Cognitive Atlas Term&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+
+<span class="c1"># Expanded counts</span>
+<span class="n">pos</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span>
+    <span class="n">expanded_df</span><span class="p">[</span><span class="n">columns</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+    <span class="n">aspect</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+    <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">vmax</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">expanded_df</span><span class="o">.</span><span class="n">values</span><span class="p">),</span>
+<span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Counts After Expansion&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">cogat_counts_df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">(</span><span class="n">cogat_counts_df</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Study&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">columns</span><span class="p">)))</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">columns</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Cognitive Atlas Term&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here we delete the recent variables for the sake of reducing memory usage</span>
+<span class="k">del</span> <span class="n">cogatlas</span><span class="p">,</span> <span class="n">id_df</span><span class="p">,</span> <span class="n">rel_df</span><span class="p">,</span> <span class="n">cogat_counts_df</span><span class="p">,</span> <span class="n">rep_text_df</span>
+<span class="k">del</span> <span class="n">weights</span><span class="p">,</span> <span class="n">expanded_df</span><span class="p">,</span> <span class="n">series</span><span class="p">,</span> <span class="n">columns</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="latent-dirichlet-allocation">
+<h2>Latent Dirichlet allocation<a class="headerlink" href="#latent-dirichlet-allocation" title="Permalink to this headline">¶</a></h2>
+<p><strong>Latent Dirichlet allocation</strong> (LDA) <span id="id1">[<a class="reference internal" href="bibliography.html#id28">Blei <em>et al.</em>, 2003</a>]</span> was originally combined with meta-analytic neuroimaging data in <span id="id2">Poldrack <em>et al.</em> [<a class="reference internal" href="bibliography.html#id4">2012</a>]</span>.
+LDA is a generative topic model which, for a text corpus, builds probability distributions across documents and words.
+In LDA, each document is considered a mixture of topics.
+This works under the assumption that each document was constructed by first randomly selecting a topic based on the document’s probability distribution across topics, and then randomly selecting a word from that topic based on the topic’s probability distribution across words.
+While this is not a useful generative model for producing documents, LDA is able to discern cohesive topics of related words.
+<span id="id3">Poldrack <em>et al.</em> [<a class="reference internal" href="bibliography.html#id4">2012</a>]</span> were able to apply LDA to full texts from neuroimaging articles in order to develop cognitive neuroscience-related topics and to run topic-wise meta-analyses.
+This method produces two sets of probability distributions: (1) the probability of a word given topic and (2) the probability of a topic given article.</p>
+<p>NiMARE uses a Python-based interface to the MALLET Java library <span id="id4">[<a class="reference internal" href="bibliography.html#id96">McCallum, 2002</a>]</span> to implement LDA.
+NiMARE will download MALLET automatically, when necessary.</p>
+<p>Here, we train an LDA model (<code class="xref py py-class docutils literal notranslate"><span class="pre">nimare.annotate.lda.LDAModel</span></code>) on the first 500 studies of the Neurosynth <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>, with 100 topics in the model.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nimare</span> <span class="kn">import</span> <span class="n">annotate</span>
+
+<span class="n">lda_model</span> <span class="o">=</span> <span class="n">annotate</span><span class="o">.</span><span class="n">lda</span><span class="o">.</span><span class="n">LDAModel</span><span class="p">(</span>
+    <span class="n">neurosynth_dset_first_500</span><span class="o">.</span><span class="n">texts</span><span class="p">,</span>
+    <span class="n">text_column</span><span class="o">=</span><span class="s2">&quot;abstract&quot;</span><span class="p">,</span>
+    <span class="n">n_topics</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="n">n_iters</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">lda_model</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The most important products of training the <code class="docutils literal notranslate"><span class="pre">LDAModel</span></code> object are its <code class="docutils literal notranslate"><span class="pre">p_word_g_topic_df_</span></code> and <code class="docutils literal notranslate"><span class="pre">p_topic_g_doc_df_</span></code> attributes.
+The <code class="docutils literal notranslate"><span class="pre">p_word_g_topic_df_</span></code> attribute is a <code class="docutils literal notranslate"><span class="pre">pandas</span></code> <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> in which each row corresponds to a topic and each column corresponds to a term (n-gram) extracted from the <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>’s texts.
+The cells contain weights indicating the probability of selecting the term given that the topic was already selected.
+The <code class="docutils literal notranslate"><span class="pre">p_topic_g_doc_df_</span></code> attribute is also a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>.
+In this one, each row corresponds to a study in the <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> and each column is a topic.
+The cell values indicate the probability of selecting a topic when contructing the given study.
+Practically, this indicates the relative proportion with which the topic describes that study.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lda_df</span> <span class="o">=</span> <span class="n">lda_model</span><span class="o">.</span><span class="n">p_word_g_topic_df_</span><span class="o">.</span><span class="n">T</span>
+<span class="n">column_names</span> <span class="o">=</span> <span class="p">{</span><span class="n">c</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Topic </span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">}</span>
+<span class="n">lda_df</span> <span class="o">=</span> <span class="n">lda_df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">column_names</span><span class="p">)</span>
+<span class="n">temp_df</span> <span class="o">=</span> <span class="n">lda_df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">lda_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">lda_df</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">lda_df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Term&quot;</span>
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">lda_df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+    <span class="n">top_ten_terms</span> <span class="o">=</span> <span class="n">temp_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">()[:</span><span class="mi">10</span><span class="p">]</span>
+    <span class="n">lda_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">top_ten_terms</span>
+
+<span class="n">glue</span><span class="p">(</span><span class="s2">&quot;table_lda&quot;</span><span class="p">,</span> <span class="n">lda_df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="figure align-center" id="tbl-table-lda" style="width: 300px">
+<p class="caption"><span class="caption-number">Fig. 11 </span><span class="caption-text">The top ten terms for each of the first ten topics in the trained LDA model.</span><a class="headerlink" href="#tbl-table-lda" title="Permalink to this image">¶</a></p>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here we delete the recent variables for the sake of reducing memory usage</span>
+<span class="k">del</span> <span class="n">lda_model</span><span class="p">,</span> <span class="n">lda_df</span><span class="p">,</span> <span class="n">temp_df</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="generalized-correspondence-latent-dirichlet-allocation">
+<h2>Generalized correspondence latent Dirichlet allocation<a class="headerlink" href="#generalized-correspondence-latent-dirichlet-allocation" title="Permalink to this headline">¶</a></h2>
+<p><strong>Generalized correspondence latent Dirichlet allocation</strong> (GCLDA) is a recently-developed algorithm that trains topics on both article abstracts and coordinates <span id="id5">[<a class="reference internal" href="bibliography.html#id83">Rubin <em>et al.</em>, 2017</a>]</span>.
+GCLDA assumes that topics within the fMRI literature can also be localized to brain regions, in this case modeled as three-dimensional Gaussian distributions.
+These spatial distributions can also be restricted to pairs of Gaussians that are symmetric across brain hemispheres.
+This method produces two sets of probability distributions: the probability of a word given topic (<code class="docutils literal notranslate"><span class="pre">GCLDAModel.p_word_g_topic_</span></code>) and the probability of a voxel given topic (<code class="docutils literal notranslate"><span class="pre">GCLDAModel.p_voxel_g_topic_</span></code>).</p>
+<p>Here we train a GCLDA model (<code class="xref py py-class docutils literal notranslate"><span class="pre">nimare.annotate.gclda.GCLDAModel</span></code>) on the first 500 studies of the Neurosynth Dataset.
+The model will include 100 topics, in which the spatial distribution for each topic will be defined as having two Gaussian distributions that are symmetrically localized across the longitudinal fissure.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gclda_model</span> <span class="o">=</span> <span class="n">annotate</span><span class="o">.</span><span class="n">gclda</span><span class="o">.</span><span class="n">GCLDAModel</span><span class="p">(</span>
+    <span class="n">counts_df</span><span class="p">,</span>
+    <span class="n">neurosynth_dset_first_500</span><span class="o">.</span><span class="n">coordinates</span><span class="p">,</span>
+    <span class="n">n_regions</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">n_topics</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="n">symmetric</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">mask</span><span class="o">=</span><span class="n">neurosynth_dset_first_500</span><span class="o">.</span><span class="n">masker</span><span class="o">.</span><span class="n">mask_img</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">gclda_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">n_iters</span><span class="o">=</span><span class="mi">2500</span><span class="p">,</span> <span class="n">loglikely_freq</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gclda_df</span> <span class="o">=</span> <span class="n">gclda_model</span><span class="o">.</span><span class="n">p_word_g_topic_df_</span><span class="o">.</span><span class="n">T</span>
+<span class="n">column_names</span> <span class="o">=</span> <span class="p">{</span><span class="n">c</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Topic </span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">gclda_df</span><span class="o">.</span><span class="n">columns</span><span class="p">}</span>
+<span class="n">gclda_df</span> <span class="o">=</span> <span class="n">gclda_df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">column_names</span><span class="p">)</span>
+<span class="n">temp_df</span> <span class="o">=</span> <span class="n">gclda_df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">gclda_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">gclda_df</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">gclda_df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Term&quot;</span>
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">temp_df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+    <span class="n">top_ten_terms</span> <span class="o">=</span> <span class="n">temp_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">()[:</span><span class="mi">10</span><span class="p">]</span>
+    <span class="n">gclda_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">top_ten_terms</span>
+
+<span class="n">glue</span><span class="p">(</span><span class="s2">&quot;table_gclda&quot;</span><span class="p">,</span> <span class="n">gclda_df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="figure align-center" id="tbl-table-gclda" style="width: 300px">
+<p class="caption"><span class="caption-number">Fig. 12 </span><span class="caption-text">The top ten terms for each of the first ten topics in the trained GCLDA model.</span><a class="headerlink" href="#tbl-table-gclda" title="Permalink to this image">¶</a></p>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nilearn</span> <span class="kn">import</span> <span class="n">image</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+
+<span class="n">topic_img_4d</span> <span class="o">=</span> <span class="n">dset</span><span class="o">.</span><span class="n">masker</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">gclda_model</span><span class="o">.</span><span class="n">p_voxel_g_topic_</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+<span class="c1"># Plot first five topics</span>
+<span class="k">for</span> <span class="n">i_topic</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+    <span class="n">topic_img</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">index_img</span><span class="p">(</span><span class="n">topic_img_4d</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">i_topic</span><span class="p">)</span>
+    <span class="n">display</span> <span class="o">=</span> <span class="n">plotting</span><span class="o">.</span><span class="n">plot_stat_map</span><span class="p">(</span>
+        <span class="n">topic_img</span><span class="p">,</span>
+        <span class="n">annotate</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;Reds&quot;</span><span class="p">,</span>
+        <span class="n">draw_cross</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">figure</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span>
+        <span class="n">axes</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="n">i_topic</span><span class="p">],</span>
+    <span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="n">i_topic</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Topic </span><span class="si">{</span><span class="n">i_topic</span> <span class="o">+</span> <span class="mi">1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="n">colorbar</span> <span class="o">=</span> <span class="n">display</span><span class="o">.</span><span class="n">_cbar</span>
+    <span class="n">colorbar_ticks</span> <span class="o">=</span> <span class="n">colorbar</span><span class="o">.</span><span class="n">get_ticks</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">colorbar_ticks</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">new_ticks</span> <span class="o">=</span> <span class="p">[</span><span class="n">colorbar_ticks</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="n">colorbar_ticks</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">new_ticks</span> <span class="o">=</span> <span class="p">[</span><span class="n">colorbar_ticks</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">colorbar_ticks</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+    <span class="n">colorbar</span><span class="o">.</span><span class="n">set_ticks</span><span class="p">(</span><span class="n">new_ticks</span><span class="p">,</span> <span class="n">update_ticks</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">glue</span><span class="p">(</span><span class="s2">&quot;figure_gclda_topics&quot;</span><span class="p">,</span> <span class="n">fig</span><span class="p">,</span> <span class="n">display</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="figure align-center" id="figure-gclda-topics" style="width: 150px">
+<p class="caption"><span class="caption-number">Fig. 13 </span><span class="caption-text">Topic weight maps for the first five topics in the GCLDA model.</span><a class="headerlink" href="#figure-gclda-topics" title="Permalink to this image">¶</a></p>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here we delete the recent variables for the sake of reducing memory usage</span>
+<span class="k">del</span> <span class="n">gclda_model</span><span class="p">,</span> <span class="n">temp_df</span><span class="p">,</span> <span class="n">gclda_df</span><span class="p">,</span> <span class="n">counts_df</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="macm.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Meta-Analytic Coactivation Modeling</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="decoding.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Meta-Analytic Functional Decoding</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Taylor Salo, Tal Yarkoni, Thomas E. Nichols, Jean-Baptiste Poline, Murat Bilgel, Katherine L. Bottenhorn, Enrico Glerean, Dorota Jarecka, James D. Kent, Adam Kimbler, Dylan M. Nielson, Kendra M. Oudyk, Alexandre Pérez, Puck C. Reeders, Julio A. Yanes, Julio A. Peraza, and Angela R. Laird<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
