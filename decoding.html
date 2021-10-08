@@ -436,9 +436,7 @@ As such, we will only show the <a class="reference external" href="https://nimar
     <span class="n">features</span><span class="o">=</span><span class="n">target_features</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="n">corr_decoder</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">neurosynth_dset_first500</span><span class="p">)</span>
-<span class="n">corr_df</span> <span class="o">=</span> <span class="n">corr_decoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span>
-    <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;DerSimonianLaird_est.nii.gz&quot;</span><span class="p">)</span>
-<span class="p">)</span>
+<span class="n">corr_df</span> <span class="o">=</span> <span class="n">corr_decoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;map_to_decode.nii.gz&quot;</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>

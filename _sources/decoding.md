@@ -109,9 +109,7 @@ corr_decoder = decode.continuous.CorrelationDecoder(
     features=target_features,
 )
 corr_decoder.fit(neurosynth_dset_first500)
-corr_df = corr_decoder.transform(
-    os.path.join(DATA_DIR, "DerSimonianLaird_est.nii.gz")
-)
+corr_df = corr_decoder.transform(os.path.join(DATA_DIR, "map_to_decode.nii.gz"))
 ```
 
 ```{code-cell} ipython3
