@@ -24,6 +24,10 @@ amygdala_mask = image.math_img(f"img == {amyg_val}", img=atlas["maps"])
 amygdala_mask.to_filename(os.path.join(DATA_DIR, "amygdala_roi.nii.gz"))
 ```
 
+### `map_to_decode.nii.gz`
+
+This is just the parameter estimate map from the DerSimonianLaird meta-analysis.
+
 ### Figures
 
 While most of the figures in this manuscript are produced by the executed code, a few of them were manually created with Google Drawings.
