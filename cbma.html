@@ -475,12 +475,6 @@ For example, <code class="docutils literal notranslate"><span class="pre">MKDAKe
         <span class="n">new_ticks</span> <span class="o">=</span> <span class="p">[</span><span class="n">colorbar_ticks</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">colorbar_ticks</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
     <span class="n">colorbar</span><span class="o">.</span><span class="n">set_ticks</span><span class="p">(</span><span class="n">new_ticks</span><span class="p">,</span> <span class="n">update_ticks</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span>
-    <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">FIG_DIR</span><span class="p">,</span> <span class="s2">&quot;figure_03.svg&quot;</span><span class="p">),</span>
-    <span class="n">transparent</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">bbox_inches</span><span class="o">=</span><span class="s2">&quot;tight&quot;</span><span class="p">,</span>
-    <span class="n">pad_inches</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-<span class="p">)</span>
 <span class="n">glue</span><span class="p">(</span><span class="s2">&quot;figure_ma_maps&quot;</span><span class="p">,</span> <span class="n">fig</span><span class="p">,</span> <span class="n">display</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -787,12 +781,6 @@ For example, to perform a chi-squared analysis of working memory studies, the re
             <span class="n">new_ticks</span> <span class="o">=</span> <span class="p">[</span><span class="n">colorbar_ticks</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">colorbar_ticks</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
         <span class="n">colorbar</span><span class="o">.</span><span class="n">set_ticks</span><span class="p">(</span><span class="n">new_ticks</span><span class="p">,</span> <span class="n">update_ticks</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span>
-    <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">FIG_DIR</span><span class="p">,</span> <span class="s2">&quot;figure_04.svg&quot;</span><span class="p">),</span>
-    <span class="n">transparent</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">bbox_inches</span><span class="o">=</span><span class="s2">&quot;tight&quot;</span><span class="p">,</span>
-    <span class="n">pad_inches</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-<span class="p">)</span>
 <span class="n">glue</span><span class="p">(</span><span class="s2">&quot;figure_cbma_uncorr&quot;</span><span class="p">,</span> <span class="n">fig</span><span class="p">,</span> <span class="n">display</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>

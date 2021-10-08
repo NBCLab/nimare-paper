@@ -82,13 +82,6 @@ if colorbar_ticks[0] < 0:
 else:
     new_ticks = [colorbar_ticks[0], colorbar_ticks[-1]]
 colorbar.set_ticks(new_ticks, update_ticks=True)
-
-fig.savefig(
-    os.path.join(FIG_DIR, "figure_07.svg"),
-    transparent=True,
-    bbox_inches="tight",
-    pad_inches=0,
-)
 glue("figure_subtraction", fig, display=False)
 ```
 

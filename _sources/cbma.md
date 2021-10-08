@@ -126,12 +126,6 @@ for i_meta, (name, img) in enumerate(ma_maps.items()):
         new_ticks = [colorbar_ticks[0], colorbar_ticks[-1]]
     colorbar.set_ticks(new_ticks, update_ticks=True)
 
-fig.savefig(
-    os.path.join(FIG_DIR, "figure_03.svg"),
-    transparent=True,
-    bbox_inches="tight",
-    pad_inches=0,
-)
 glue("figure_ma_maps", fig, display=False)
 ```
 
@@ -418,12 +412,6 @@ for i_row, row_names in enumerate(order):
             new_ticks = [colorbar_ticks[0], colorbar_ticks[-1]]
         colorbar.set_ticks(new_ticks, update_ticks=True)
 
-fig.savefig(
-    os.path.join(FIG_DIR, "figure_04.svg"),
-    transparent=True,
-    bbox_inches="tight",
-    pad_inches=0,
-)
 glue("figure_cbma_uncorr", fig, display=False)
 ```
 
