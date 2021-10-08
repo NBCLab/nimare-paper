@@ -32,6 +32,7 @@ The key methods supported by each of these base classes, as well as the main arg
 ```{figure} images/figure_01.png
 :figwidth: 150px
 :name: figure_schematic
+:align: center
 
 A schematic figure of `Datasets`, `Estimators`, `Transformers`, and `MetaResults` in NiMARE.
 ```
