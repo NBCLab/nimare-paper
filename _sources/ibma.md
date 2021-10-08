@@ -70,24 +70,15 @@ When sample size information is available, users may incorporate that informatio
 Given the paucity of image-based meta-analytic datasets, we have included the tools to build a Dataset from a NeuroVault collection of 21 pain studies, originally described in {cite:t}`Maumet2016-rr`.
 
 ```{code-cell} ipython3
-from nimare import dataset, extract, transforms
+from nimare import dataset, extract
 from nimare.tests.utils import get_test_data_path
 
-img_dset_file = os.path.join(DATA_DIR, "nidm_dset.pkl.gz")
+dset_dir = extract.download_nidm_pain(data_dir=DATA_DIR, overwrite=False)
+dset_file = os.path.join(get_test_data_path(), "nidm_pain_dset.json")
+img_dset = dataset.Dataset(dset_file)
 
-if not os.path.isfile(ibma_dset_file):
-    dset_dir = extract.download_nidm_pain(
-        data_dir=os.path.join(DATA_DIR, "nidm-pain"),
-        overwrite=False,
-    )
-    dset_file = os.path.join(get_test_data_path(), "nidm_pain_dset.json")
-    img_dset = dataset.Dataset(dset_file)
-
-    # Point the Dataset toward the images we've downloaded
-    img_dset.update_path(dset_dir)
-    img_dset.save(img_dset_file)
-else:
-    img_dset = dataset.Dataset.load(img_dset_file)
+# Point the Dataset toward the images we've downloaded
+img_dset.update_path(dset_dir)
 ```
 
 ## Transforming images
@@ -106,9 +97,6 @@ img_transformer = transforms.ImageTransformer(
     overwrite=False,
 )
 img_dset = img_transformer.transform(img_dset)
-
-# Save the Dataset to a Pickle file
-img_dset.save(os.path.join(DATA_DIR, "nidm_dset.pkl.gz"))
 ```
 
 ```{code-cell} ipython3

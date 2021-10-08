@@ -383,24 +383,15 @@ When sample size information is available, users may incorporate that informatio
 <p>Given the paucity of image-based meta-analytic datasets, we have included the tools to build a Dataset from a NeuroVault collection of 21 pain studies, originally described in <span id="id10">Maumet and Nichols [<a class="reference internal" href="bibliography.html#id23">2016</a>]</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nimare</span> <span class="kn">import</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">extract</span><span class="p">,</span> <span class="n">transforms</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nimare</span> <span class="kn">import</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">extract</span>
 <span class="kn">from</span> <span class="nn">nimare.tests.utils</span> <span class="kn">import</span> <span class="n">get_test_data_path</span>
 
-<span class="n">img_dset_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;nidm_dset.pkl.gz&quot;</span><span class="p">)</span>
+<span class="n">dset_dir</span> <span class="o">=</span> <span class="n">extract</span><span class="o">.</span><span class="n">download_nidm_pain</span><span class="p">(</span><span class="n">data_dir</span><span class="o">=</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">dset_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">get_test_data_path</span><span class="p">(),</span> <span class="s2">&quot;nidm_pain_dset.json&quot;</span><span class="p">)</span>
+<span class="n">img_dset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">dset_file</span><span class="p">)</span>
 
-<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">ibma_dset_file</span><span class="p">):</span>
-    <span class="n">dset_dir</span> <span class="o">=</span> <span class="n">extract</span><span class="o">.</span><span class="n">download_nidm_pain</span><span class="p">(</span>
-        <span class="n">data_dir</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;nidm-pain&quot;</span><span class="p">),</span>
-        <span class="n">overwrite</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-    <span class="p">)</span>
-    <span class="n">dset_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">get_test_data_path</span><span class="p">(),</span> <span class="s2">&quot;nidm_pain_dset.json&quot;</span><span class="p">)</span>
-    <span class="n">img_dset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">dset_file</span><span class="p">)</span>
-
-    <span class="c1"># Point the Dataset toward the images we&#39;ve downloaded</span>
-    <span class="n">img_dset</span><span class="o">.</span><span class="n">update_path</span><span class="p">(</span><span class="n">dset_dir</span><span class="p">)</span>
-    <span class="n">img_dset</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">img_dset_file</span><span class="p">)</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="n">img_dset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">img_dset_file</span><span class="p">)</span>
+<span class="c1"># Point the Dataset toward the images we&#39;ve downloaded</span>
+<span class="n">img_dset</span><span class="o">.</span><span class="n">update_path</span><span class="p">(</span><span class="n">dset_dir</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -420,9 +411,6 @@ This allows us to apply more image-based meta-analysis algorithms to the <code c
     <span class="n">overwrite</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="n">img_dset</span> <span class="o">=</span> <span class="n">img_transformer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">img_dset</span><span class="p">)</span>
-
-<span class="c1"># Save the Dataset to a Pickle file</span>
-<span class="n">img_dset</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;nidm_dset.pkl.gz&quot;</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
