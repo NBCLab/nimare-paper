@@ -11,6 +11,10 @@ To view the built book, without any executed code or figures, see https://nbclab
 
 ## Notes
 
+### Data files
+
+The data are located at https://osf.io/t8h9c/.
+
 ### The amygdala mask
 
 To create the amygdala mask, I did:
