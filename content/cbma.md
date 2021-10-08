@@ -52,6 +52,7 @@ Additionally, for each of the following approaches, except for SCALE, voxel- or 
 ```{figure} images/figure_02.png
 :figwidth: 150px
 :name: meta_workflow_fig
+:align: center
 
 A flowchart of the typical workflow for coordinate-based meta-analyses in NiMARE.
 ```
