@@ -22,7 +22,6 @@ import os
 
 import matplotlib.pyplot as plt
 from myst_nb import glue
-from nilearn import datasets, image, plotting
 
 import nimare
 
@@ -55,7 +54,8 @@ For the latter, we use {py:meth}`nimare.dataset.Dataset.get_studies_by_coordinat
 
 ```{code-cell} ipython3
 # Create Dataset only containing studies with peaks within the amygdala mask
-amygdala_ids = neurosynth_dset.get_studies_by_mask(os.path.join(DATA_DIR, "amygdala_roi.nii.gz"))
+amygdala_mask = os.path.join(DATA_DIR, "amygdala_roi.nii.gz")
+amygdala_ids = neurosynth_dset.get_studies_by_mask(amygdala_mask)
 dset_amygdala = neurosynth_dset.slice(amygdala_ids)
 
 # Create Dataset only containing studies with peaks within the sphere ROI
@@ -70,7 +70,7 @@ from nilearn import input_data, plotting
 
 # In order to plot a sphere with a precise radius around a coordinate with
 # nilearn, we need to use a NiftiSpheresMasker
-mask_img = dset.masker.mask_img
+mask_img = neurosynth_dset.masker.mask_img
 sphere_masker = input_data.NiftiSpheresMasker([[24, -2, -20]], radius=6, mask_img=mask_img)
 sphere_img = sphere_masker.inverse_transform(np.array([[1]]))
 

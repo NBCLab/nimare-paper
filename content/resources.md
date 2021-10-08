@@ -19,9 +19,9 @@ kernelspec:
 :tags: [hide-cell]
 # First, import the necessary modules and functions
 import os
+from pprint import pprint
 
-import matplotlib.pyplot as plt
-from nilearn import image
+import nimare
 
 # Define where data files will be located
 DATA_DIR = os.path.abspath("../data")

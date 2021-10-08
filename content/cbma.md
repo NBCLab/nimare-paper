@@ -33,6 +33,8 @@ FIG_DIR = os.path.abspath("../images")
 
 # Now, load the Datasets we will use in this chapter
 sleuth_dset1 = nimare.dataset.Dataset.load(os.path.join(DATA_DIR, "sleuth_dset1.pkl.gz"))
+sleuth_dset2 = nimare.dataset.Dataset.load(os.path.join(DATA_DIR, "sleuth_dset2.pkl.gz"))
+neurosynth_dset = nimare.dataset.Dataset.load(os.path.join(DATA_DIR, "neurosynth_dataset.pkl.gz"))
 ```
 
 +++
@@ -69,11 +71,11 @@ Here we show how these three kernels can be applied to the same `Dataset`.
 from nimare.meta import kernel
 
 mkda_kernel = kernel.MKDAKernel(r=10)
-mkda_ma_maps = mkda_kernel.transform(sl_dset1)
+mkda_ma_maps = mkda_kernel.transform(sleuth_dset1)
 kda_kernel = kernel.KDAKernel(r=10)
-kda_ma_maps = kda_kernel.transform(sl_dset1)
+kda_ma_maps = kda_kernel.transform(sleuth_dset1)
 ale_kernel = kernel.ALEKernel(sample_size=20)
-ale_ma_maps = ale_kernel.transform(sl_dset1)
+ale_ma_maps = ale_kernel.transform(sleuth_dset1)
 ```
 
 ```{code-cell} ipython3
@@ -249,7 +251,7 @@ mkdad_meta = mkda.MKDADensity(kernel_transformer=kernel.KDAKernel)
 ```{code-cell} ipython3
 :tags: [hide-cell]
 # Here we delete the recent variables for the sake of reducing memory usage
-del mkda_kernel, mkdad_meta, mkdad_results
+del mkda_kernel, mkdad_meta
 ```
 
 +++
