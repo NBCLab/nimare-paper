@@ -152,12 +152,6 @@ for i_meta, (name, file_) in enumerate(meta_results.items()):
         new_ticks = [colorbar_ticks[0], colorbar_ticks[-1]]
     colorbar.set_ticks(new_ticks, update_ticks=True)
 
-fig.savefig(
-    os.path.join(FIG_DIR, "figure_08.svg"),
-    transparent=True,
-    bbox_inches="tight",
-    pad_inches=0,
-)
 glue("figure_macm", fig, display=False)
 ```
 
