@@ -32,9 +32,7 @@ DATA_DIR = os.path.abspath("../data")
 FIG_DIR = os.path.abspath("../images")
 
 # Now, load the Datasets we will use in this chapter
-sleuth_dset1 = nimare.dataset.Dataset.load(
-    os.path.join(DATA_DIR, "sleuth_dset1.pkl.gz")
-)
+sleuth_dset1 = nimare.dataset.Dataset.load(os.path.join(DATA_DIR, "sleuth_dset1.pkl.gz"))
 ```
 
 +++
@@ -92,10 +90,7 @@ This allows us to apply more image-based meta-analysis algorithms to the `Datase
 ```{code-cell} ipython3
 from nimare import transforms
 
-img_transformer = transforms.ImageTransformer(
-    target=["z", "varcope"],
-    overwrite=False,
-)
+img_transformer = transforms.ImageTransformer(target=["z", "varcope"], overwrite=False)
 img_dset = img_transformer.transform(img_dset)
 ```
 
@@ -172,12 +167,8 @@ atlas = datasets.fetch_atlas_harvard_oxford("cort-maxprob-thr25-2mm")
 # and some of the NIDM-Results packs' beta images have NaNs at the edge of the
 # brain.
 # So, we will create a reduced version of the atlas for this analysis.
-nan_mask = image.math_img(
-    "~np.any(np.isnan(img), axis=3)", img=img_dset.images["beta"].tolist()
-)
-nanmasked_atlas = image.math_img(
-    "mask * atlas", mask=nan_mask, atlas=atlas["maps"]
-)
+nan_mask = image.math_img("~np.any(np.isnan(img), axis=3)", img=img_dset.images["beta"].tolist())
+nanmasked_atlas = image.math_img("mask * atlas", mask=nan_mask, atlas=atlas["maps"])
 masker = input_data.NiftiLabelsMasker(nanmasked_atlas)
 del atlas, nan_mask, nanmasked_atlas
 
@@ -188,10 +179,7 @@ vbl_img = vbl_results.get_map("z", return_type="image")
 del vbl_meta, vbl_results
 
 # Sample Size-Based Likelihood
-ssbl_meta = nimare.meta.ibma.SampleSizeBasedLikelihood(
-    method="reml",
-    mask=masker,
-)
+ssbl_meta = nimare.meta.ibma.SampleSizeBasedLikelihood(method="reml", mask=masker)
 ssbl_results = ssbl_meta.fit(img_dset)
 ssbl_img = ssbl_results.get_map("z", return_type="image")
 del ssbl_meta, ssbl_results, masker

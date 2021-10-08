@@ -37,17 +37,10 @@ if not os.path.isfile(dset_file)
     neurosynth_dset_first500 = nimare.dataset.Dataset.load(
         os.path.join(DATA_DIR, "neurosynth_dataset_first500.pkl.gz")
     )
-    kern = meta.kernel.MKDAKernel(memory_limit="500mb")
-    kern._infer_names(
-        affine=md5(neurosynth_dset_first500.masker.mask_img.affine).hexdigest()
-    )
-    neurosynth_dset_first500.update_path(
-        os.path.join(DATA_DIR, "ns_dset_maps")
-    )
-    neurosynth_dset_first500 = kern.transform(
-        neurosynth_dset_first500,
-        return_type="dataset",
-    )
+    kern = meta.kernel.MKDAKernel(memory_limit=None)
+    kern._infer_names(affine=md5(neurosynth_dset_first500.masker.mask_img.affine).hexdigest())
+    neurosynth_dset_first500.update_path(os.path.join(DATA_DIR, "ns_dset_maps"))
+    neurosynth_dset_first500 = kern.transform(neurosynth_dset_first500, return_type="dataset")
     neurosynth_dset_first500.save(dset_file)
 else:
     neurosynth_dset = nimare.dataset.Dataset.load(dset_file)
@@ -101,10 +94,7 @@ from nimare import decode, meta
 
 corr_decoder = decode.continuous.CorrelationDecoder(
     frequency_threshold=0.001,
-    meta_estimator=meta.MKDAChi2(
-        kernel_transformer=kern,
-        memory_limit=None,
-    ),
+    meta_estimator=meta.MKDAChi2(kernel_transformer=kern, memory_limit=None),
     target_image="z_desc-specificity",
     features=target_features,
 )
@@ -162,9 +152,7 @@ assoc_df = assoc_decoder.transform()
 
 ```{code-cell} ipython3
 :tags: [hide-cell]
-assoc_df = assoc_df.reindex(
-    assoc_df["r"].abs().sort_values(ascending=False).index
-)
+assoc_df = assoc_df.reindex(assoc_df["r"].abs().sort_values(ascending=False).index)
 assoc_df = assoc_df.iloc[:10]
 glue("table_assoc", assoc_df)
 ```
