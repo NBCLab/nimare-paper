@@ -352,9 +352,7 @@
 <span class="n">FIG_DIR</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;../images&quot;</span><span class="p">)</span>
 
 <span class="c1"># Now, load the Datasets we will use in this chapter</span>
-<span class="n">sleuth_dset1</span> <span class="o">=</span> <span class="n">nimare</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">load</span><span class="p">(</span>
-    <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;sleuth_dset1.pkl.gz&quot;</span><span class="p">)</span>
-<span class="p">)</span>
+<span class="n">sleuth_dset1</span> <span class="o">=</span> <span class="n">nimare</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;sleuth_dset1.pkl.gz&quot;</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -406,10 +404,7 @@ This allows us to apply more image-based meta-analysis algorithms to the <code c
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nimare</span> <span class="kn">import</span> <span class="n">transforms</span>
 
-<span class="n">img_transformer</span> <span class="o">=</span> <span class="n">transforms</span><span class="o">.</span><span class="n">ImageTransformer</span><span class="p">(</span>
-    <span class="n">target</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;z&quot;</span><span class="p">,</span> <span class="s2">&quot;varcope&quot;</span><span class="p">],</span>
-    <span class="n">overwrite</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-<span class="p">)</span>
+<span class="n">img_transformer</span> <span class="o">=</span> <span class="n">transforms</span><span class="o">.</span><span class="n">ImageTransformer</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;z&quot;</span><span class="p">,</span> <span class="s2">&quot;varcope&quot;</span><span class="p">],</span> <span class="n">overwrite</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">img_dset</span> <span class="o">=</span> <span class="n">img_transformer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">img_dset</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -492,12 +487,8 @@ We will start with a DerSimonian-Laird meta-analysis (<a class="reference extern
 <span class="c1"># and some of the NIDM-Results packs&#39; beta images have NaNs at the edge of the</span>
 <span class="c1"># brain.</span>
 <span class="c1"># So, we will create a reduced version of the atlas for this analysis.</span>
-<span class="n">nan_mask</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">math_img</span><span class="p">(</span>
-    <span class="s2">&quot;~np.any(np.isnan(img), axis=3)&quot;</span><span class="p">,</span> <span class="n">img</span><span class="o">=</span><span class="n">img_dset</span><span class="o">.</span><span class="n">images</span><span class="p">[</span><span class="s2">&quot;beta&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
-<span class="p">)</span>
-<span class="n">nanmasked_atlas</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">math_img</span><span class="p">(</span>
-    <span class="s2">&quot;mask * atlas&quot;</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">nan_mask</span><span class="p">,</span> <span class="n">atlas</span><span class="o">=</span><span class="n">atlas</span><span class="p">[</span><span class="s2">&quot;maps&quot;</span><span class="p">]</span>
-<span class="p">)</span>
+<span class="n">nan_mask</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">math_img</span><span class="p">(</span><span class="s2">&quot;~np.any(np.isnan(img), axis=3)&quot;</span><span class="p">,</span> <span class="n">img</span><span class="o">=</span><span class="n">img_dset</span><span class="o">.</span><span class="n">images</span><span class="p">[</span><span class="s2">&quot;beta&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
+<span class="n">nanmasked_atlas</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">math_img</span><span class="p">(</span><span class="s2">&quot;mask * atlas&quot;</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">nan_mask</span><span class="p">,</span> <span class="n">atlas</span><span class="o">=</span><span class="n">atlas</span><span class="p">[</span><span class="s2">&quot;maps&quot;</span><span class="p">])</span>
 <span class="n">masker</span> <span class="o">=</span> <span class="n">input_data</span><span class="o">.</span><span class="n">NiftiLabelsMasker</span><span class="p">(</span><span class="n">nanmasked_atlas</span><span class="p">)</span>
 <span class="k">del</span> <span class="n">atlas</span><span class="p">,</span> <span class="n">nan_mask</span><span class="p">,</span> <span class="n">nanmasked_atlas</span>
 
@@ -508,10 +499,7 @@ We will start with a DerSimonian-Laird meta-analysis (<a class="reference extern
 <span class="k">del</span> <span class="n">vbl_meta</span><span class="p">,</span> <span class="n">vbl_results</span>
 
 <span class="c1"># Sample Size-Based Likelihood</span>
-<span class="n">ssbl_meta</span> <span class="o">=</span> <span class="n">nimare</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">ibma</span><span class="o">.</span><span class="n">SampleSizeBasedLikelihood</span><span class="p">(</span>
-    <span class="n">method</span><span class="o">=</span><span class="s2">&quot;reml&quot;</span><span class="p">,</span>
-    <span class="n">mask</span><span class="o">=</span><span class="n">masker</span><span class="p">,</span>
-<span class="p">)</span>
+<span class="n">ssbl_meta</span> <span class="o">=</span> <span class="n">nimare</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">ibma</span><span class="o">.</span><span class="n">SampleSizeBasedLikelihood</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">&quot;reml&quot;</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">masker</span><span class="p">)</span>
 <span class="n">ssbl_results</span> <span class="o">=</span> <span class="n">ssbl_meta</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">img_dset</span><span class="p">)</span>
 <span class="n">ssbl_img</span> <span class="o">=</span> <span class="n">ssbl_results</span><span class="o">.</span><span class="n">get_map</span><span class="p">(</span><span class="s2">&quot;z&quot;</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s2">&quot;image&quot;</span><span class="p">)</span>
 <span class="k">del</span> <span class="n">ssbl_meta</span><span class="p">,</span> <span class="n">ssbl_results</span><span class="p">,</span> <span class="n">masker</span>

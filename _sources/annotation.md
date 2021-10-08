@@ -55,9 +55,7 @@ from nimare import extract
 
 # In order to run this code on nodes without internet access,
 # we need this if statement
-dataset_file = os.path.join(
-    DATA_DIR, "neurosynth_dataset_first500_with_abstracts.pkl.gz"
-)
+dataset_file = os.path.join(DATA_DIR, "neurosynth_dataset_first500_with_abstracts.pkl.gz")
 if not os.path.isfile(dataset_file):
     neurosynth_dset_first_500 = extract.download_abstracts(
         neurosynth_dset_first_500,
@@ -220,10 +218,7 @@ temp_df = lda_df.copy()
 lda_df = pd.DataFrame(columns=lda_df.columns, index=np.arange(10))
 lda_df.index.name = "Term"
 for col in lda_df.columns:
-    top_ten_terms = temp_df.sort_values(
-        by=col,
-        ascending=False,
-    ).index.tolist()[:10]
+    top_ten_terms = temp_df.sort_values(by=col, ascending=False).index.tolist()[:10]
     lda_df.loc[:, col] = top_ten_terms
 
 glue("table_lda", lda_df)
@@ -277,10 +272,7 @@ temp_df = gclda_df.copy()
 gclda_df = pd.DataFrame(columns=gclda_df.columns, index=np.arange(10))
 gclda_df.index.name = "Term"
 for col in temp_df.columns:
-    top_ten_terms = temp_df.sort_values(
-        by=col,
-        ascending=False,
-    ).index.tolist()[:10]
+    top_ten_terms = temp_df.sort_values(by=col, ascending=False).index.tolist()[:10]
     gclda_df.loc[:, col] = top_ten_terms
 
 glue("table_gclda", gclda_df)

@@ -31,12 +31,8 @@ DATA_DIR = os.path.abspath("../data")
 FIG_DIR = os.path.abspath("../images")
 
 # Now, load the Datasets we will use in this chapter
-sleuth_dset1 = nimare.dataset.Dataset.load(
-    os.path.join(DATA_DIR, "sleuth_dset1.pkl.gz")
-)
-sleuth_dset2 = nimare.dataset.Dataset.load(
-    os.path.join(DATA_DIR, "sleuth_dset2.pkl.gz")
-)
+sleuth_dset1 = nimare.dataset.Dataset.load(os.path.join(DATA_DIR, "sleuth_dset1.pkl.gz"))
+sleuth_dset2 = nimare.dataset.Dataset.load(os.path.join(DATA_DIR, "sleuth_dset2.pkl.gz"))
 ```
 
 +++

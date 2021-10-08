@@ -132,9 +132,7 @@ neurosynth_dset_first_500 = neurosynth_dset.slice(neurosynth_dset.ids[:500])
 print(neurosynth_dset)
 
 if not os.path.isfile(os.path.join(DATA_DIR, "neurosynth_dataset_first500.pkl.gz")):
-    neurosynth_dset_first_500.save(
-        os.path.join(DATA_DIR, "neurosynth_dataset_first500.pkl.gz")
-    )
+    neurosynth_dset_first_500.save(os.path.join(DATA_DIR, "neurosynth_dataset_first500.pkl.gz"))
 ```
 
 +++

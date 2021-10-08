@@ -47,15 +47,9 @@ Here we will apply both FWE and FDR correction to results from a MKDADensity met
 ```{code-cell} ipython3
 from nimare import meta, results
 
-mkdad_meta = meta.cbma.mkda.MKDADensity.load(
-    os.path.join(DATA_DIR, "MKDADensity.pkl.gz")
-)
+mkdad_meta = meta.cbma.mkda.MKDADensity.load(os.path.join(DATA_DIR, "MKDADensity.pkl.gz"))
 
-mc_corrector = correct.FWECorrector(
-    method="montecarlo",
-    n_iters=10000,
-    n_cores=4,
-)
+mc_corrector = correct.FWECorrector(method="montecarlo", n_iters=10000, n_cores=4)
 mc_results = mc_corrector.transform(mkdad_meta.results)
 mc_results.save_maps(output_dir=DATA_DIR, prefix="MKDADensity_FWE")
 

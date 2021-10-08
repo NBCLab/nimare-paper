@@ -388,9 +388,7 @@
 <span class="n">FIG_DIR</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;../images&quot;</span><span class="p">)</span>
 
 <span class="c1"># Now, load the Datasets we will use in this chapter</span>
-<span class="n">sleuth_dset1</span> <span class="o">=</span> <span class="n">nimare</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">load</span><span class="p">(</span>
-    <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;sleuth_dset1.pkl.gz&quot;</span><span class="p">)</span>
-<span class="p">)</span>
+<span class="n">sleuth_dset1</span> <span class="o">=</span> <span class="n">nimare</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;sleuth_dset1.pkl.gz&quot;</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -596,10 +594,7 @@ Here, we will save all of the statistical maps with the MKDADensity prefix.</p>
 <span class="c1"># providing the arguments with the kernel__ prefix) are equivalent.</span>
 <span class="n">mkda_kernel</span> <span class="o">=</span> <span class="n">kernel</span><span class="o">.</span><span class="n">MKDAKernel</span><span class="p">(</span><span class="n">r</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">mkdad_meta</span> <span class="o">=</span> <span class="n">mkda</span><span class="o">.</span><span class="n">MKDADensity</span><span class="p">(</span><span class="n">kernel_transformer</span><span class="o">=</span><span class="n">mkda_kernel</span><span class="p">)</span>
-<span class="n">mkdad_meta</span> <span class="o">=</span> <span class="n">mkda</span><span class="o">.</span><span class="n">MKDADensity</span><span class="p">(</span>
-    <span class="n">kernel_transformer</span><span class="o">=</span><span class="n">kernel</span><span class="o">.</span><span class="n">MKDAKernel</span><span class="p">,</span>
-    <span class="n">kernel__r</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-<span class="p">)</span>
+<span class="n">mkdad_meta</span> <span class="o">=</span> <span class="n">mkda</span><span class="o">.</span><span class="n">MKDADensity</span><span class="p">(</span><span class="n">kernel_transformer</span><span class="o">=</span><span class="n">kernel</span><span class="o">.</span><span class="n">MKDAKernel</span><span class="p">,</span> <span class="n">kernel__r</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 
 <span class="c1"># A completely different kernel could even be provided, although this is not</span>
 <span class="c1"># recommended and should only be used for testing algorithms.</span>
@@ -682,11 +677,7 @@ While this method was developed to support analysis of joint activation or “co
 <span class="c1"># However, one assumption of SCALE is that the Dataset being analyzed comes</span>
 <span class="c1"># from the same source as the database you use for calculating base-rates.</span>
 <span class="n">xyz</span> <span class="o">=</span> <span class="n">ns_dset</span><span class="o">.</span><span class="n">coordinates</span><span class="p">[[</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;z&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span>
-<span class="n">scale_meta</span> <span class="o">=</span> <span class="n">ale</span><span class="o">.</span><span class="n">SCALE</span><span class="p">(</span>
-   <span class="n">n_iters</span><span class="o">=</span><span class="mi">2500</span><span class="p">,</span>
-   <span class="n">xyz</span><span class="o">=</span><span class="n">xyz</span><span class="p">,</span>
-   <span class="n">memory_limit</span><span class="o">=</span><span class="s2">&quot;500mb&quot;</span><span class="p">,</span>
-<span class="p">)</span>
+<span class="n">scale_meta</span> <span class="o">=</span> <span class="n">ale</span><span class="o">.</span><span class="n">SCALE</span><span class="p">(</span><span class="n">n_iters</span><span class="o">=</span><span class="mi">2500</span><span class="p">,</span> <span class="n">xyz</span><span class="o">=</span><span class="n">xyz</span><span class="p">,</span> <span class="n">memory_limit</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 <span class="n">scale_results</span> <span class="o">=</span> <span class="n">scale_meta</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">sleuth_dset1</span><span class="p">)</span>
 
 <span class="c1"># Retain the z-statistic map for later use</span>

@@ -32,9 +32,7 @@ DATA_DIR = os.path.abspath("../data")
 FIG_DIR = os.path.abspath("../images")
 
 # Now, load the Datasets we will use in this chapter
-sleuth_dset1 = nimare.dataset.Dataset.load(
-    os.path.join(DATA_DIR, "sleuth_dset1.pkl.gz")
-)
+sleuth_dset1 = nimare.dataset.Dataset.load(os.path.join(DATA_DIR, "sleuth_dset1.pkl.gz"))
 ```
 
 +++
@@ -241,10 +239,7 @@ Since this is a kernel-based algorithm, the kernel transformer is an optional in
 # providing the arguments with the kernel__ prefix) are equivalent.
 mkda_kernel = kernel.MKDAKernel(r=2)
 mkdad_meta = mkda.MKDADensity(kernel_transformer=mkda_kernel)
-mkdad_meta = mkda.MKDADensity(
-    kernel_transformer=kernel.MKDAKernel,
-    kernel__r=2,
-)
+mkdad_meta = mkda.MKDADensity(kernel_transformer=kernel.MKDAKernel, kernel__r=2)
 
 # A completely different kernel could even be provided, although this is not
 # recommended and should only be used for testing algorithms.
@@ -317,11 +312,7 @@ While this method was developed to support analysis of joint activation or “co
 # However, one assumption of SCALE is that the Dataset being analyzed comes
 # from the same source as the database you use for calculating base-rates.
 xyz = ns_dset.coordinates[["x", "y", "z"]].values
-scale_meta = ale.SCALE(
-   n_iters=2500,
-   xyz=xyz,
-   memory_limit="500mb",
-)
+scale_meta = ale.SCALE(n_iters=2500, xyz=xyz, memory_limit=None)
 scale_results = scale_meta.fit(sleuth_dset1)
 
 # Retain the z-statistic map for later use

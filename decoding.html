@@ -369,17 +369,10 @@
     <span class="n">neurosynth_dset_first500</span> <span class="o">=</span> <span class="n">nimare</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">load</span><span class="p">(</span>
         <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;neurosynth_dataset_first500.pkl.gz&quot;</span><span class="p">)</span>
     <span class="p">)</span>
-    <span class="n">kern</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">kernel</span><span class="o">.</span><span class="n">MKDAKernel</span><span class="p">(</span><span class="n">memory_limit</span><span class="o">=</span><span class="s2">&quot;500mb&quot;</span><span class="p">)</span>
-    <span class="n">kern</span><span class="o">.</span><span class="n">_infer_names</span><span class="p">(</span>
-        <span class="n">affine</span><span class="o">=</span><span class="n">md5</span><span class="p">(</span><span class="n">neurosynth_dset_first500</span><span class="o">.</span><span class="n">masker</span><span class="o">.</span><span class="n">mask_img</span><span class="o">.</span><span class="n">affine</span><span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
-    <span class="p">)</span>
-    <span class="n">neurosynth_dset_first500</span><span class="o">.</span><span class="n">update_path</span><span class="p">(</span>
-        <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;ns_dset_maps&quot;</span><span class="p">)</span>
-    <span class="p">)</span>
-    <span class="n">neurosynth_dset_first500</span> <span class="o">=</span> <span class="n">kern</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span>
-        <span class="n">neurosynth_dset_first500</span><span class="p">,</span>
-        <span class="n">return_type</span><span class="o">=</span><span class="s2">&quot;dataset&quot;</span><span class="p">,</span>
-    <span class="p">)</span>
+    <span class="n">kern</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">kernel</span><span class="o">.</span><span class="n">MKDAKernel</span><span class="p">(</span><span class="n">memory_limit</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+    <span class="n">kern</span><span class="o">.</span><span class="n">_infer_names</span><span class="p">(</span><span class="n">affine</span><span class="o">=</span><span class="n">md5</span><span class="p">(</span><span class="n">neurosynth_dset_first500</span><span class="o">.</span><span class="n">masker</span><span class="o">.</span><span class="n">mask_img</span><span class="o">.</span><span class="n">affine</span><span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">())</span>
+    <span class="n">neurosynth_dset_first500</span><span class="o">.</span><span class="n">update_path</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;ns_dset_maps&quot;</span><span class="p">))</span>
+    <span class="n">neurosynth_dset_first500</span> <span class="o">=</span> <span class="n">kern</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">neurosynth_dset_first500</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s2">&quot;dataset&quot;</span><span class="p">)</span>
     <span class="n">neurosynth_dset_first500</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">dset_file</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="n">neurosynth_dset</span> <span class="o">=</span> <span class="n">nimare</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">dset_file</span><span class="p">)</span>
@@ -428,10 +421,7 @@ As such, we will only show the <a class="reference external" href="https://nimar
 
 <span class="n">corr_decoder</span> <span class="o">=</span> <span class="n">decode</span><span class="o">.</span><span class="n">continuous</span><span class="o">.</span><span class="n">CorrelationDecoder</span><span class="p">(</span>
     <span class="n">frequency_threshold</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span>
-    <span class="n">meta_estimator</span><span class="o">=</span><span class="n">meta</span><span class="o">.</span><span class="n">MKDAChi2</span><span class="p">(</span>
-        <span class="n">kernel_transformer</span><span class="o">=</span><span class="n">kern</span><span class="p">,</span>
-        <span class="n">memory_limit</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="p">),</span>
+    <span class="n">meta_estimator</span><span class="o">=</span><span class="n">meta</span><span class="o">.</span><span class="n">MKDAChi2</span><span class="p">(</span><span class="n">kernel_transformer</span><span class="o">=</span><span class="n">kern</span><span class="p">,</span> <span class="n">memory_limit</span><span class="o">=</span><span class="kc">None</span><span class="p">),</span>
     <span class="n">target_image</span><span class="o">=</span><span class="s2">&quot;z_desc-specificity&quot;</span><span class="p">,</span>
     <span class="n">features</span><span class="o">=</span><span class="n">target_features</span><span class="p">,</span>
 <span class="p">)</span>
@@ -490,9 +480,7 @@ This decoding method produces a single correlation coefficient for each of the d
 </div>
 <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">assoc_df</span> <span class="o">=</span> <span class="n">assoc_df</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span>
-    <span class="n">assoc_df</span><span class="p">[</span><span class="s2">&quot;r&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">index</span>
-<span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">assoc_df</span> <span class="o">=</span> <span class="n">assoc_df</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">assoc_df</span><span class="p">[</span><span class="s2">&quot;r&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
 <span class="n">assoc_df</span> <span class="o">=</span> <span class="n">assoc_df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
 <span class="n">glue</span><span class="p">(</span><span class="s2">&quot;table_assoc&quot;</span><span class="p">,</span> <span class="n">assoc_df</span><span class="p">)</span>
 </pre></div>

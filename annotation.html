@@ -381,9 +381,7 @@ This will attempt to extract metadata about each study in the <code class="docut
 
 <span class="c1"># In order to run this code on nodes without internet access,</span>
 <span class="c1"># we need this if statement</span>
-<span class="n">dataset_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
-    <span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;neurosynth_dataset_first500_with_abstracts.pkl.gz&quot;</span>
-<span class="p">)</span>
+<span class="n">dataset_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;neurosynth_dataset_first500_with_abstracts.pkl.gz&quot;</span><span class="p">)</span>
 <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">dataset_file</span><span class="p">):</span>
     <span class="n">neurosynth_dset_first_500</span> <span class="o">=</span> <span class="n">extract</span><span class="o">.</span><span class="n">download_abstracts</span><span class="p">(</span>
         <span class="n">neurosynth_dset_first_500</span><span class="p">,</span>
@@ -550,10 +548,7 @@ Practically, this indicates the relative proportion with which the topic describ
 <span class="n">lda_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">lda_df</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
 <span class="n">lda_df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Term&quot;</span>
 <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">lda_df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
-    <span class="n">top_ten_terms</span> <span class="o">=</span> <span class="n">temp_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span>
-        <span class="n">by</span><span class="o">=</span><span class="n">col</span><span class="p">,</span>
-        <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-    <span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">()[:</span><span class="mi">10</span><span class="p">]</span>
+    <span class="n">top_ten_terms</span> <span class="o">=</span> <span class="n">temp_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">()[:</span><span class="mi">10</span><span class="p">]</span>
     <span class="n">lda_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">top_ten_terms</span>
 
 <span class="n">glue</span><span class="p">(</span><span class="s2">&quot;table_lda&quot;</span><span class="p">,</span> <span class="n">lda_df</span><span class="p">)</span>
@@ -605,10 +600,7 @@ The model will include 100 topics, in which the spatial distribution for each to
 <span class="n">gclda_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">gclda_df</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
 <span class="n">gclda_df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Term&quot;</span>
 <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">temp_df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
-    <span class="n">top_ten_terms</span> <span class="o">=</span> <span class="n">temp_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span>
-        <span class="n">by</span><span class="o">=</span><span class="n">col</span><span class="p">,</span>
-        <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-    <span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">()[:</span><span class="mi">10</span><span class="p">]</span>
+    <span class="n">top_ten_terms</span> <span class="o">=</span> <span class="n">temp_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">()[:</span><span class="mi">10</span><span class="p">]</span>
     <span class="n">gclda_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">top_ten_terms</span>
 
 <span class="n">glue</span><span class="p">(</span><span class="s2">&quot;table_gclda&quot;</span><span class="p">,</span> <span class="n">gclda_df</span><span class="p">)</span>

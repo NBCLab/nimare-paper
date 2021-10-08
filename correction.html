@@ -344,15 +344,9 @@ This will return an updated <code class="docutils literal notranslate"><span cla
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nimare</span> <span class="kn">import</span> <span class="n">meta</span><span class="p">,</span> <span class="n">results</span>
 
-<span class="n">mkdad_meta</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">cbma</span><span class="o">.</span><span class="n">mkda</span><span class="o">.</span><span class="n">MKDADensity</span><span class="o">.</span><span class="n">load</span><span class="p">(</span>
-    <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;MKDADensity.pkl.gz&quot;</span><span class="p">)</span>
-<span class="p">)</span>
+<span class="n">mkdad_meta</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">cbma</span><span class="o">.</span><span class="n">mkda</span><span class="o">.</span><span class="n">MKDADensity</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;MKDADensity.pkl.gz&quot;</span><span class="p">))</span>
 
-<span class="n">mc_corrector</span> <span class="o">=</span> <span class="n">correct</span><span class="o">.</span><span class="n">FWECorrector</span><span class="p">(</span>
-    <span class="n">method</span><span class="o">=</span><span class="s2">&quot;montecarlo&quot;</span><span class="p">,</span>
-    <span class="n">n_iters</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span>
-    <span class="n">n_cores</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
-<span class="p">)</span>
+<span class="n">mc_corrector</span> <span class="o">=</span> <span class="n">correct</span><span class="o">.</span><span class="n">FWECorrector</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">&quot;montecarlo&quot;</span><span class="p">,</span> <span class="n">n_iters</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">n_cores</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
 <span class="n">mc_results</span> <span class="o">=</span> <span class="n">mc_corrector</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">mkdad_meta</span><span class="o">.</span><span class="n">results</span><span class="p">)</span>
 <span class="n">mc_results</span><span class="o">.</span><span class="n">save_maps</span><span class="p">(</span><span class="n">output_dir</span><span class="o">=</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;MKDADensity_FWE&quot;</span><span class="p">)</span>
 
