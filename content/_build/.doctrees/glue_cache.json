@@ -1,1 +1,20 @@
-{}
+{
+  "subtraction": {
+    "figure_subtraction": {
+      "output_type": "display_data",
+      "metadata": {
+        "scrapbook": {
+          "name": "figure_subtraction",
+          "mime_prefix": "application/papermill.record/"
+        },
+        "filenames": {
+          "image/png": "/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/content/_build/jupyter_execute/subtraction_4_0.png"
+        }
+      },
+      "data": {
+        "application/papermill.record/text/plain": "<Figure size 432x144 with 5 Axes>",
+        "application/papermill.record/image/png": null
+      }
+    }
+  }
+}

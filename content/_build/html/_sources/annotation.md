@@ -51,7 +51,7 @@ Below, we use the function {py:func}`nimare.extract.download_abstracts` to downl
 This will attempt to extract metadata about each study in the `Dataset` from PubMed, and then add the abstract available on Pubmed to the `Dataset`'s `texts` attribute, under a new column names "abstract".
 
 ```{code-cell} ipython3
-from nimare import extract
+from nimare import dataset, extract
 
 # In order to run this code on nodes without internet access,
 # we need this if statement
@@ -63,7 +63,7 @@ if not os.path.isfile(dataset_file):
     )
     neurosynth_dset_first_500.save(dataset_file)
 else:
-    neurosynth_dset_first_500 = nimare.dataset.Dataset.load(dataset_file)
+    neurosynth_dset_first_500 = dataset.Dataset.load(dataset_file)
 ```
 
 +++
@@ -77,6 +77,8 @@ NiMARE has the function {py:func}`nimare.annotate.text.generate_counts` to extra
 This method produces either term counts or term frequency- inverse document frequency (tf-idf) values for each of the studies in a `Dataset`.
 
 ```{code-cell} ipython3
+from nimare import annotate
+
 counts_df = annotate.text.generate_counts(
     neurosynth_dset_first_500.texts,
     text_column="abstract",
@@ -212,7 +214,7 @@ Practically, this indicates the relative proportion with which the topic describ
 :tags: [hide-input]
 
 lda_df = lda_model.p_word_g_topic_df_.T
-column_names = {c: f"Topic {c}" for c in df.columns}
+column_names = {c: f"Topic {c}" for c in lda_df.columns}
 lda_df = lda_df.rename(columns=column_names)
 temp_df = lda_df.copy()
 lda_df = pd.DataFrame(columns=lda_df.columns, index=np.arange(10))
@@ -288,11 +290,9 @@ The top ten terms for each of the first ten topics in the trained GCLDA model.
 
 ```{code-cell} ipython3
 :tags: [hide-cell]
-from nilearn import image
-
 fig, axes = plt.subplots(nrows=5, figsize=(6, 10))
 
-topic_img_4d = dset.masker.inverse_transform(gclda_model.p_voxel_g_topic_.T)
+topic_img_4d = neurosynth_dset_first_500.masker.inverse_transform(gclda_model.p_voxel_g_topic_.T)
 # Plot first five topics
 for i_topic in range(5):
     topic_img = image.index_img(topic_img_4d, index=i_topic)

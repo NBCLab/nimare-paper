@@ -36,7 +36,7 @@ sleuth_dset2 = nimare.dataset.Dataset.load(os.path.join(DATA_DIR, "sleuth_dset2.
 # In NiMARE, we use an adapted version of the subtraction analysis method in {py:class}`nimare.meta.cbma.ale.ALESubtraction`.
 # Note that, unlike the original algorithm, the NiMARE implementation analyzes all voxels, rather than only those that show a significant effect of A alone or B alone.
 
-# In[ ]:
+# In[2]:
 
 
 from nimare import meta
@@ -46,12 +46,12 @@ sub_meta = meta.cbma.ale.ALESubtraction(kernel_transformer=kern, n_iters=10000)
 sub_results = sub_meta.fit(sleuth_dset1, sleuth_dset2)
 
 
-# In[ ]:
+# In[3]:
 
 
 fig, ax = plt.subplots(figsize=(6, 2))
 display = plotting.plot_stat_map(
-    sub_results.get_map("z_desc-group1MinusGroup2", return_type="image")
+    sub_results.get_map("z_desc-group1MinusGroup2", return_type="image"),
     annotate=False,
     axes=ax,
     cmap="RdBu_r",

@@ -40,7 +40,7 @@ neurosynth_dset_first_500 = nimare.dataset.Dataset.load(
 # In[2]:
 
 
-from nimare import extract
+from nimare import dataset, extract
 
 # In order to run this code on nodes without internet access,
 # we need this if statement
@@ -52,7 +52,7 @@ if not os.path.isfile(dataset_file):
     )
     neurosynth_dset_first_500.save(dataset_file)
 else:
-    neurosynth_dset_first_500 = nimare.dataset.Dataset.load(dataset_file)
+    neurosynth_dset_first_500 = dataset.Dataset.load(dataset_file)
 
 
 # ## N-gram term extraction
@@ -65,6 +65,8 @@ else:
 
 # In[3]:
 
+
+from nimare import annotate
 
 counts_df = annotate.text.generate_counts(
     neurosynth_dset_first_500.texts,
@@ -88,7 +90,7 @@ counts_df = annotate.text.generate_counts(
 # NiMARE will automatically attempt to extrapolate likely alternate forms of each term in the ontology, in order to make extraction easier.
 # For example,
 
-# In[ ]:
+# In[4]:
 
 
 cogatlas = extract.download_cognitive_atlas(data_dir=DATA_DIR, overwrite=False)
@@ -206,7 +208,7 @@ lda_model.fit()
 
 
 lda_df = lda_model.p_word_g_topic_df_.T
-column_names = {c: f"Topic {c}" for c in df.columns}
+column_names = {c: f"Topic {c}" for c in lda_df.columns}
 lda_df = lda_df.rename(columns=column_names)
 temp_df = lda_df.copy()
 lda_df = pd.DataFrame(columns=lda_df.columns, index=np.arange(10))
@@ -284,11 +286,9 @@ glue("table_gclda", gclda_df)
 # In[ ]:
 
 
-from nilearn import image
-
 fig, axes = plt.subplots(nrows=5, figsize=(6, 10))
 
-topic_img_4d = dset.masker.inverse_transform(gclda_model.p_voxel_g_topic_.T)
+topic_img_4d = neurosynth_dset_first_500.masker.inverse_transform(gclda_model.p_voxel_g_topic_.T)
 # Plot first five topics
 for i_topic in range(5):
     topic_img = image.index_img(topic_img_4d, index=i_topic)

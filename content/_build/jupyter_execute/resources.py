@@ -8,9 +8,9 @@
 
 # First, import the necessary modules and functions
 import os
+from pprint import pprint
 
-import matplotlib.pyplot as plt
-from nilearn import image
+import nimare
 
 # Define where data files will be located
 DATA_DIR = os.path.abspath("../data")
@@ -79,7 +79,7 @@ if not os.path.isfile(os.path.join(DATA_DIR, "sleuth_dset2.pkl.gz")):
 # 
 # Here, we download the Neurosynth database from where it is stored (https://github.com/neurosynth/neurosynth-data) and convert it to a NiMARE `Dataset` using {py:func}`nimare.extract.fetch_neurosynth`, for the first step, and {py:func}`nimare.io.convert_neurosynth_to_dataset`, for the second.
 
-# In[ ]:
+# In[3]:
 
 
 from nimare import extract

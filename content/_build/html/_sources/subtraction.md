@@ -61,7 +61,7 @@ sub_results = sub_meta.fit(sleuth_dset1, sleuth_dset2)
 :tags: [hide-cell]
 fig, ax = plt.subplots(figsize=(6, 2))
 display = plotting.plot_stat_map(
-    sub_results.get_map("z_desc-group1MinusGroup2", return_type="image")
+    sub_results.get_map("z_desc-group1MinusGroup2", return_type="image"),
     annotate=False,
     axes=ax,
     cmap="RdBu_r",

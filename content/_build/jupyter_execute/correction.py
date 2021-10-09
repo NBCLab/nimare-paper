@@ -13,8 +13,6 @@ import matplotlib.pyplot as plt
 from myst_nb import glue
 from nilearn import plotting
 
-import nimare
-
 # Define where data files will be located
 DATA_DIR = os.path.abspath("../data")
 FIG_DIR = os.path.abspath("../images")
@@ -34,7 +32,7 @@ FIG_DIR = os.path.abspath("../images")
 # In[2]:
 
 
-from nimare import meta, results
+from nimare import meta, correct
 
 mkdad_meta = meta.cbma.mkda.MKDADensity.load(os.path.join(DATA_DIR, "MKDADensity.pkl.gz"))
 

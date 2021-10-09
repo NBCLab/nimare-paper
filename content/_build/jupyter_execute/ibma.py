@@ -10,7 +10,6 @@
 import os
 
 import matplotlib.pyplot as plt
-import numpy as np
 from myst_nb import glue
 from nilearn import plotting
 
@@ -154,6 +153,8 @@ hedges_img = hedges_results.get_map("z", return_type="image")
 del hedges_meta, hedges_results
 
 # Use atlas for likelihood-based estimators
+from nilearn import datasets, image, input_data
+
 atlas = datasets.fetch_atlas_harvard_oxford("cort-maxprob-thr25-2mm")
 
 # nilearn's NiftiLabelsMasker cannot handle NaNs at the moment,
