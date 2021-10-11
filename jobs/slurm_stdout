@@ -10,29 +10,11 @@ done
 loading intersphinx inventory from https://nimare.readthedocs.io/en/0.0.10/objects.inv...
 loading intersphinx inventory from https://pymare.readthedocs.io/en/latest/objects.inv...
 [01mbuilding [mo]: [39;49;00mtargets for 0 po files that are out of date
-[01mbuilding [html]: [39;49;00mtargets for 7 source files that are out of date
-[01mupdating environment: [39;49;00m0 added, 7 changed, 0 removed
-[01mreading sources... [39;49;00m[ 14%] [35mannotation[39;49;00m                                           Executing: annotation in: /home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/content
-[01mreading sources... [39;49;00m[ 28%] [35mcbma[39;49;00m                                                 Executing: cbma in: /home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/content
-[01mreading sources... [39;49;00m[ 42%] [35mcorrection[39;49;00m                                           Executing: correction in: /home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/content
-[01mreading sources... [39;49;00m[ 57%] [35mibma[39;49;00m                                                 Executing: ibma in: /home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/content
-[01mreading sources... [39;49;00m[ 71%] [35mmacm[39;49;00m                                                 Executing: macm in: /home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/content
-[01mreading sources... [39;49;00m[ 85%] [35mresources[39;49;00m                                            Executing: resources in: /home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/content
-[01mreading sources... [39;49;00m[100%] [35msubtraction[39;49;00m                                          Executing: subtraction in: /home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/content
-
+[01mbuilding [html]: [39;49;00mtargets for 0 source files that are out of date
+[01mupdating environment: [39;49;00m0 added, 0 changed, 0 removed
 [01mlooking for now-outdated files... [39;49;00mnone found
-[01mpickling environment... [39;49;00mdone
-[01mchecking consistency... [39;49;00mdone
-[01mpreparing documents... [39;49;00mdone
-[01mwriting output... [39;49;00m[ 12%] [32mabstract[39;49;00m                                              [01mwriting output... [39;49;00m[ 25%] [32mannotation[39;49;00m                                            [01mwriting output... [39;49;00m[ 37%] [32mcbma[39;49;00m                                                  [01mwriting output... [39;49;00m[ 50%] [32mcorrection[39;49;00m                                            [01mwriting output... [39;49;00m[ 62%] [32mibma[39;49;00m                                                  [01mwriting output... [39;49;00m[ 75%] [32mmacm[39;49;00m                                                  [01mwriting output... [39;49;00m[ 87%] [32mresources[39;49;00m                                             [01mwriting output... [39;49;00m[100%] [32msubtraction[39;49;00m                                           
-[01mgenerating indices... [39;49;00mgenindex done
-[01mwriting additional pages... [39;49;00msearch done
-[01mcopying images... [39;49;00m[ 25%] [33mimages/figure_00.png[39;49;00m                                  [01mcopying images... [39;49;00m[ 50%] [33mimages/figure_02.png[39;49;00m                                  [01mcopying images... [39;49;00m[ 75%] [33m_build/jupyter_execute/subtraction_4_1.png[39;49;00m            [01mcopying images... [39;49;00m[100%] [33m_build/jupyter_execute/subtraction_4_0.png[39;49;00m            
-[01mcopying static files... [39;49;00mdone
-[01mcopying extra files... [39;49;00mdone
-[01mdumping search index in English (code: en)... [39;49;00mdone
-[01mdumping object inventory... [39;49;00mdone
-[01mbuild succeeded, 17 warnings.[39;49;00m
+[01mno targets are out of date.[39;49;00m
+[01mbuild succeeded, 2 warnings.[39;49;00m
 
 The HTML pages are in content/_build/html.
 
