@@ -102,7 +102,7 @@ cogat_counts_df, rep_text_df = annotate.cogat.extract_cogat(
 )
 
 
-# In[ ]:
+# In[5]:
 
 
 # Define a weighting scheme.
@@ -119,7 +119,7 @@ series = series[series > 0]
 columns = series.index.tolist()
 
 
-# In[ ]:
+# In[6]:
 
 
 # Raw counts
@@ -159,7 +159,7 @@ fig.tight_layout()
 fig.show()
 
 
-# In[ ]:
+# In[7]:
 
 
 # Here we delete the recent variables for the sake of reducing memory usage
@@ -182,7 +182,7 @@ del weights, expanded_df, series, columns
 # 
 # Here, we train an LDA model ({py:class}`nimare.annotate.lda.LDAModel`) on the first 500 studies of the Neurosynth `Dataset`, with 100 topics in the model.
 
-# In[ ]:
+# In[8]:
 
 
 from nimare import annotate

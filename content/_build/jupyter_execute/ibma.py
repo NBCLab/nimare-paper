@@ -51,7 +51,7 @@ sleuth_dset1 = nimare.dataset.Dataset.load(os.path.join(DATA_DIR, "sleuth_dset1.
 
 # Given the paucity of image-based meta-analytic datasets, we have included the tools to build a Dataset from a NeuroVault collection of 21 pain studies, originally described in {cite:t}`Maumet2016-rr`.
 
-# In[ ]:
+# In[2]:
 
 
 from nimare import dataset, extract

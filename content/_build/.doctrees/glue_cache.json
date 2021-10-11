@@ -1,4 +1,40 @@
 {
+  "cbma": {
+    "figure_ma_maps": {
+      "output_type": "display_data",
+      "metadata": {
+        "scrapbook": {
+          "name": "figure_ma_maps",
+          "mime_prefix": "application/papermill.record/"
+        },
+        "filenames": {
+          "image/png": "/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/content/_build/jupyter_execute/cbma_6_0.png"
+        }
+      },
+      "data": {
+        "application/papermill.record/text/plain": "<Figure size 432x432 with 15 Axes>",
+        "application/papermill.record/image/png": null
+      }
+    }
+  },
+  "correction": {
+    "figure_corr_cbma": {
+      "output_type": "display_data",
+      "metadata": {
+        "scrapbook": {
+          "name": "figure_corr_cbma",
+          "mime_prefix": "application/papermill.record/"
+        },
+        "filenames": {
+          "image/png": "/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/content/_build/jupyter_execute/correction_7_0.png"
+        }
+      },
+      "data": {
+        "application/papermill.record/text/plain": "<Figure size 432x288 with 10 Axes>",
+        "application/papermill.record/image/png": null
+      }
+    }
+  },
   "subtraction": {
     "figure_subtraction": {
       "output_type": "display_data",

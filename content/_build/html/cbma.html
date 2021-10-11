@@ -42,6 +42,8 @@
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -399,32 +401,6 @@
   &quot;Numpy arrays.&quot;, FutureWarning)
 </pre></div>
 </div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_25136</span><span class="o">/</span><span class="mf">1277644289.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">     </span><span class="mi">14</span> 
-<span class="g g-Whitespace">     </span><span class="mi">15</span> <span class="c1"># Now, load the Datasets we will use in this chapter</span>
-<span class="ne">---&gt; </span><span class="mi">16</span> <span class="n">sleuth_dset1</span> <span class="o">=</span> <span class="n">nimare</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;sleuth_dset1.pkl.gz&quot;</span><span class="p">))</span>
-<span class="g g-Whitespace">     </span><span class="mi">17</span> <span class="n">sleuth_dset2</span> <span class="o">=</span> <span class="n">nimare</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;sleuth_dset2.pkl.gz&quot;</span><span class="p">))</span>
-<span class="g g-Whitespace">     </span><span class="mi">18</span> <span class="n">neurosynth_dset</span> <span class="o">=</span> <span class="n">nimare</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;neurosynth_dataset.pkl.gz&quot;</span><span class="p">))</span>
-
-<span class="nn">/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/lib/python3.7/site-packages/nimare/base.py</span> in <span class="ni">load</span><span class="nt">(cls, filename, compressed)</span>
-<span class="g g-Whitespace">    </span><span class="mi">207</span>         <span class="k">if</span> <span class="n">compressed</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">208</span>             <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">209</span>                 <span class="k">with</span> <span class="n">gzip</span><span class="o">.</span><span class="n">GzipFile</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file_object</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">210</span>                     <span class="n">obj</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file_object</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">211</span>             <span class="k">except</span> <span class="ne">UnicodeDecodeError</span><span class="p">:</span>
-
-<span class="nn">/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/lib/python3.7/gzip.py</span> in <span class="ni">__init__</span><span class="nt">(self, filename, mode, compresslevel, fileobj, mtime)</span>
-<span class="g g-Whitespace">    </span><span class="mi">166</span>             <span class="n">mode</span> <span class="o">+=</span> <span class="s1">&#39;b&#39;</span>
-<span class="g g-Whitespace">    </span><span class="mi">167</span>         <span class="k">if</span> <span class="n">fileobj</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">168</span>             <span class="n">fileobj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">myfileobj</span> <span class="o">=</span> <span class="n">builtins</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">mode</span> <span class="ow">or</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">169</span>         <span class="k">if</span> <span class="n">filename</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">170</span>             <span class="n">filename</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">fileobj</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
-
-<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/data/sleuth_dset1.pkl.gz&#39;
-</pre></div>
-</div>
 </div>
 </div>
 <p>Coordinate-based meta-analysis (CBMA) is currently the most popular method for neuroimaging meta-analysis, given that the majority of fMRI papers currently report their findings as peaks of statistically significant clusters in standard space and do not release unthresholded statistical maps.
@@ -511,6 +487,9 @@ For example, <code class="docutils literal notranslate"><span class="pre">MKDAKe
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/cbma_6_1.png" src="_images/cbma_6_1.png" />
+</div>
 </div>
 <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
@@ -521,6 +500,9 @@ For example, <code class="docutils literal notranslate"><span class="pre">MKDAKe
 </div>
 </div>
 <div class="figure align-center" id="figure-ma-maps" style="width: 300px">
+<div class="cell_output docutils container">
+<img alt="_images/cbma_6_0.png" src="_images/cbma_6_0.png" />
+</div>
 <p class="caption"><span class="caption-number">Fig. 4 </span><span class="caption-text">Modeled activation maps produced by NiMARE’s <code class="docutils literal notranslate"><span class="pre">KernelTransformer</span></code> classes.</span><a class="headerlink" href="#figure-ma-maps" title="Permalink to this image">¶</a></p>
 </div>
 </div>
@@ -569,11 +551,21 @@ The <code class="docutils literal notranslate"><span class="pre">MetaResult</spa
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;nimare.results.MetaResult object at 0x7fa2fdd48ed0&gt;
+</pre></div>
+</div>
+</div>
 </div>
 <p>This result is also retained as an attribute in the <code class="docutils literal notranslate"><span class="pre">Estimator</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">mkdad_meta</span><span class="o">.</span><span class="n">results</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;nimare.results.MetaResult object at 0x7fa2fdd48ed0&gt;
 </pre></div>
 </div>
 </div>
@@ -585,6 +577,11 @@ The <code class="docutils literal notranslate"><span class="pre">MetaResult</spa
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;stat&#39;: array([0., 0., 0., ..., 0., 0., 0.]), &#39;p&#39;: array([1., 1., 1., ..., 1., 1., 1.]), &#39;z&#39;: array([0., 0., 0., ..., 0., 0., 0.])}
+</pre></div>
+</div>
+</div>
 </div>
 <p>These arrays can be transformed into image-like objects using the <code class="docutils literal notranslate"><span class="pre">masker</span></code> attribute.
 We can also use the <code class="docutils literal notranslate"><span class="pre">get_map</span></code> method to get that image object.</p>
@@ -592,6 +589,62 @@ We can also use the <code class="docutils literal notranslate"><span class="pre"
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mkdad_img</span> <span class="o">=</span> <span class="n">mkdad_results</span><span class="o">.</span><span class="n">get_map</span><span class="p">(</span><span class="s2">&quot;z&quot;</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s2">&quot;image&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">mkdad_img</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;nibabel.nifti1.Nifti1Image&#39;&gt;
+data shape (91, 109, 91)
+affine: 
+[[  -2.    0.    0.   90.]
+ [   0.    2.    0. -126.]
+ [   0.    0.    2.  -72.]
+ [   0.    0.    0.    1.]]
+metadata:
+&lt;class &#39;nibabel.nifti1.Nifti1Header&#39;&gt; object, endian=&#39;&lt;&#39;
+sizeof_hdr      : 348
+data_type       : b&#39;&#39;
+db_name         : b&#39;&#39;
+extents         : 0
+session_error   : 0
+regular         : b&#39;&#39;
+dim_info        : 0
+dim             : [  3  91 109  91   1   1   1   1]
+intent_p1       : 0.0
+intent_p2       : 0.0
+intent_p3       : 0.0
+intent_code     : none
+datatype        : float64
+bitpix          : 64
+slice_start     : 0
+pixdim          : [-1.  2.  2.  2.  1.  1.  1.  1.]
+vox_offset      : 0.0
+scl_slope       : nan
+scl_inter       : nan
+slice_end       : 0
+slice_code      : unknown
+xyzt_units      : 0
+cal_max         : 0.0
+cal_min         : 0.0
+slice_duration  : 0.0
+toffset         : 0.0
+glmax           : 0
+glmin           : 0
+descrip         : b&#39;&#39;
+aux_file        : b&#39;&#39;
+qform_code      : unknown
+sform_code      : aligned
+quatern_b       : 0.0
+quatern_c       : 1.0
+quatern_d       : 0.0
+qoffset_x       : 90.0
+qoffset_y       : -126.0
+qoffset_z       : -72.0
+srow_x          : [-2.  0.  0. 90.]
+srow_y          : [   0.    2.    0. -126.]
+srow_z          : [  0.   0.   2. -72.]
+intent_name     : b&#39;&#39;
+magic           : b&#39;n+1&#39;
 </pre></div>
 </div>
 </div>
@@ -636,6 +689,11 @@ Here, we will save all of the statistical maps with the MKDADensity prefix.</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:nimare.meta.cbma.mkda:The KernelTransformer being used (&lt;class &#39;nimare.meta.kernel.KDAKernel&#39;&gt;) is not optimized for the MKDADensity algorithm. Expect suboptimal performance and beware bugs.
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
@@ -659,6 +717,11 @@ The interface is virtually identical, but since there are few if any legitimate 
 
 <span class="c1"># Retain the z-statistic map for later use</span>
 <span class="n">kda_img</span> <span class="o">=</span> <span class="n">kda_results</span><span class="o">.</span><span class="n">get_map</span><span class="p">(</span><span class="s2">&quot;z&quot;</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s2">&quot;image&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:nimare.meta.cbma.mkda:The KDA algorithm has been replaced in the literature with the MKDA algorithm. As such, this estimator should almost never be used, outside of systematic comparisons between algorithms.
 </pre></div>
 </div>
 </div>
@@ -716,6 +779,20 @@ While this method was developed to support analysis of joint activation or “co
 
 <span class="c1"># Retain the z-statistic map for later use</span>
 <span class="n">scale_img</span> <span class="o">=</span> <span class="n">scale_results</span><span class="o">.</span><span class="n">get_map</span><span class="p">(</span><span class="s2">&quot;z&quot;</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s2">&quot;image&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_48919</span><span class="o">/</span><span class="mf">1295953545.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="c1"># However, one assumption of SCALE is that the Dataset being analyzed comes</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="c1"># from the same source as the database you use for calculating base-rates.</span>
+<span class="ne">----&gt; </span><span class="mi">5</span> <span class="n">xyz</span> <span class="o">=</span> <span class="n">ns_dset</span><span class="o">.</span><span class="n">coordinates</span><span class="p">[[</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;z&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">scale_meta</span> <span class="o">=</span> <span class="n">ale</span><span class="o">.</span><span class="n">SCALE</span><span class="p">(</span><span class="n">n_iters</span><span class="o">=</span><span class="mi">2500</span><span class="p">,</span> <span class="n">xyz</span><span class="o">=</span><span class="n">xyz</span><span class="p">,</span> <span class="n">memory_limit</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="n">scale_results</span> <span class="o">=</span> <span class="n">scale_meta</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">sleuth_dset1</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;ns_dset&#39; is not defined
 </pre></div>
 </div>
 </div>

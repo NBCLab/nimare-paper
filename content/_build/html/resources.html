@@ -42,6 +42,8 @@
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -451,13 +453,17 @@ As evidence of its utility, Neurosynth has been used to define <em>a priori</em>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.extract.utils:Dataset created in /home/tsalo006/.nimare/neurosynth
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.extract.utils:Dataset found in /home/tsalo006/.nimare/neurosynth
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.extract.extract:Searching for any feature files matching the following criteria: [(&#39;path-/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/data&#39;, &#39;source-abstract&#39;, &#39;vocab-terms&#39;, &#39;data-neurosynth&#39;, &#39;version-7&#39;)]
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading data-neurosynth_version-7_coordinates.tsv.gz
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File exists and overwrite is False. Skipping.
+Downloading data-neurosynth_version-7_metadata.tsv.gz
 </pre></div>
 </div>
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
@@ -517,7 +523,7 @@ As evidence of its utility, Neurosynth has been used to define <em>a priori</em>
 <span class="n">During</span> <span class="n">handling</span> <span class="n">of</span> <span class="n">the</span> <span class="n">above</span> <span class="n">exception</span><span class="p">,</span> <span class="n">another</span> <span class="n">exception</span> <span class="n">occurred</span><span class="p">:</span>
 
 <span class="ne">URLError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_25293</span><span class="o">/</span><span class="mf">723277305.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_1210</span><span class="o">/</span><span class="mf">723277305.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="g g-Whitespace">      </span><span class="mi">7</span>     <span class="n">source</span><span class="o">=</span><span class="s2">&quot;abstract&quot;</span><span class="p">,</span>
 <span class="g g-Whitespace">      </span><span class="mi">8</span>     <span class="n">vocab</span><span class="o">=</span><span class="s2">&quot;terms&quot;</span><span class="p">,</span>
 <span class="ne">----&gt; </span><span class="mi">9</span>     <span class="n">overwrite</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>

@@ -48,7 +48,7 @@ fdr_results = fdr_corrector.transform(mkdad_meta.results)
 # 
 # Let's take a look at the files created by the `FWECorrector`.
 
-# In[ ]:
+# In[3]:
 
 
 from glob import glob
@@ -67,7 +67,7 @@ print("\n".join(fwe_maps))
 # The `level` key simply indicates if the map was corrected at the voxel or cluster level.
 # Finally, the `desc` key reflects any necessary description that goes beyond what is already covered by the other entities.
 
-# In[ ]:
+# In[4]:
 
 
 meta_results = {
