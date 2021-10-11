@@ -401,23 +401,10 @@ When sample size information is available, users may incorporate that informatio
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_1130</span><span class="o">/</span><span class="mf">644900680.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">nimare</span> <span class="kn">import</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">extract</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">nimare.tests.utils</span> <span class="kn">import</span> <span class="n">get_test_data_path</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> 
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">dset_dir</span> <span class="o">=</span> <span class="n">extract</span><span class="o">.</span><span class="n">download_nidm_pain</span><span class="p">(</span><span class="n">data_dir</span><span class="o">=</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">dset_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">get_test_data_path</span><span class="p">(),</span> <span class="s2">&quot;nidm_pain_dset.json&quot;</span><span class="p">)</span>
-
-<span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">nbc</span><span class="o">/</span><span class="n">misc</span><span class="o">-</span><span class="n">projects</span><span class="o">/</span><span class="n">Salo_NiMARE</span><span class="o">/</span><span class="n">nimare</span><span class="o">-</span><span class="n">paper</span><span class="o">/</span><span class="n">conda_env</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">nimare</span><span class="o">/</span><span class="n">tests</span><span class="o">/</span><span class="n">utils</span><span class="o">.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">import</span> <span class="nn">nibabel</span> <span class="k">as</span> <span class="nn">nib</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="ne">----&gt; </span><span class="mi">7</span> <span class="kn">import</span> <span class="nn">pytest</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span> 
-<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="kn">from</span> <span class="nn">..meta.utils</span> <span class="kn">import</span> <span class="n">compute_kda_ma</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;pytest&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.extract.utils:Dataset found in /home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/data/nidm_21pain
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/data/nidm_21pain/&#39;
 </pre></div>
 </div>
 </div>
@@ -434,6 +421,11 @@ This allows us to apply more image-based meta-analysis algorithms to the <code c
 
 <span class="n">img_transformer</span> <span class="o">=</span> <span class="n">transforms</span><span class="o">.</span><span class="n">ImageTransformer</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;z&quot;</span><span class="p">,</span> <span class="s2">&quot;varcope&quot;</span><span class="p">],</span> <span class="n">overwrite</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">img_dset</span> <span class="o">=</span> <span class="n">img_transformer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">img_dset</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/data/nidm_21pain/&#39;
 </pre></div>
 </div>
 </div>
@@ -457,6 +449,11 @@ We will start with a DerSimonian-Laird meta-analysis (<code class="xref py py-cl
 
 <span class="c1"># Retain the z-statistic map for later use</span>
 <span class="n">dsl_img</span> <span class="o">=</span> <span class="n">dsl_results</span><span class="o">.</span><span class="n">get_map</span><span class="p">(</span><span class="s2">&quot;z&quot;</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s2">&quot;image&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:nimare.base:Masking out 39083 additional voxels. The updated masker is available in the Estimator.masker attribute.
 </pre></div>
 </div>
 </div>
@@ -536,6 +533,37 @@ We will start with a DerSimonian-Laird meta-analysis (<code class="xref py py-cl
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:nimare.base:Masking out 39083 additional voxels. The updated masker is available in the Estimator.masker attribute.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:nimare.base:Masking out 39083 additional voxels. The updated masker is available in the Estimator.masker attribute.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:nimare.base:Masking out 39083 additional voxels. The updated masker is available in the Estimator.masker attribute.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:nimare.base:Masking out 39083 additional voxels. The updated masker is available in the Estimator.masker attribute.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:nimare.base:Masking out 39083 additional voxels. The updated masker is available in the Estimator.masker attribute.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:nimare.base:Masking out 39083 additional voxels. The updated masker is available in the Estimator.masker attribute.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/lib/python3.7/site-packages/nilearn/_utils/niimg.py:62: UserWarning: Non-finite values detected. These values will be replaced with zeros.
+  &quot;Non-finite values detected. &quot;
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:nimare.meta.ibma:A &lt;class &#39;nilearn.input_data.nifti_labels_masker.NiftiLabelsMasker&#39;&gt; mask has been detected. Masks which average across voxels will likely produce biased results when used with this Estimator.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/lib/python3.7/site-packages/pymare/estimators/estimators.py:28: UserWarning: Input contains 48 parallel datasets (in 2nd dim of y and v). The selected estimator will loop over datasets naively, and this may be slow for large numbers of datasets. Consider using the DL, HE, or WLS estimators, which handle parallel datasets more efficiently.
+  .format(n_iter))
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="comparing-algorithms">
@@ -588,8 +616,14 @@ We will start with a DerSimonian-Laird meta-analysis (<code class="xref py py-cl
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/ibma_14_1.png" src="_images/ibma_14_1.png" />
+</div>
 </div>
 <div class="figure align-center" id="figure-uncorr-ibma" style="width: 150px">
+<div class="cell_output docutils container">
+<img alt="_images/ibma_14_0.png" src="_images/ibma_14_0.png" />
+</div>
 <p class="caption"><span class="caption-number">Fig. 6 </span><span class="caption-text">An array of plots of the statistical maps produced by the image-based meta-analysis methods.
 The likelihood-based meta-analyses are run on atlases instead of voxelwise.</span><a class="headerlink" href="#figure-uncorr-ibma" title="Permalink to this image">¶</a></p>
 </div>

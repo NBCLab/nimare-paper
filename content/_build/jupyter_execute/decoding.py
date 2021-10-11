@@ -33,7 +33,7 @@ if not os.path.isfile(dset_file):
     neurosynth_dset_first500 = kern.transform(neurosynth_dset_first500, return_type="dataset")
     neurosynth_dset_first500.save(dset_file)
 else:
-    neurosynth_dset = nimare.dataset.Dataset.load(dset_file)
+    neurosynth_dset_first500 = nimare.dataset.Dataset.load(dset_file)
 
 # Collect features for decoding
 # We use any features that appear in >5% of studies and <95%.
@@ -75,7 +75,7 @@ amygdala_ids = neurosynth_dset_first500.get_studies_by_mask(amygdala_roi)
 # NiMARE includes methods for both correlation-based decoding and correlation distribution-based decoding, although the correlation-based decoding is better established and should be preferred over the correlation distribution-based decoding.
 # As such, we will only show the {py:class}`nimare.decode.continuous.CorrelationDecoder` here.
 
-# In[ ]:
+# In[3]:
 
 
 from nimare import decode, meta

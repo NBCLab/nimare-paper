@@ -72,6 +72,7 @@ from nilearn import input_data, plotting
 # nilearn, we need to use a NiftiSpheresMasker
 mask_img = neurosynth_dset.masker.mask_img
 sphere_masker = input_data.NiftiSpheresMasker([[24, -2, -20]], radius=6, mask_img=mask_img)
+sphere_masker.fit(mask_img)
 sphere_img = sphere_masker.inverse_transform(np.array([[1]]))
 
 fig, axes = plt.subplots(figsize=(6, 4), nrows=2)

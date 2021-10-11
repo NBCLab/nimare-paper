@@ -73,7 +73,7 @@ img_dset.update_path(dset_dir)
 # Here, we use `ImageTransformer` to calculate z-statistic and variance maps for all studies with compatible images.
 # This allows us to apply more image-based meta-analysis algorithms to the `Dataset`.
 
-# In[ ]:
+# In[3]:
 
 
 from nimare import transforms
@@ -82,7 +82,7 @@ img_transformer = transforms.ImageTransformer(target=["z", "varcope"], overwrite
 img_dset = img_transformer.transform(img_dset)
 
 
-# In[ ]:
+# In[4]:
 
 
 # Here we delete the recent variables for the sake of reducing memory usage
@@ -92,7 +92,7 @@ del img_transformer
 # Now that we have filled in as many gaps in the `Dataset` as possible, we can start running meta-analyses.
 # We will start with a DerSimonian-Laird meta-analysis ({py:class}`nimare.meta.ibma.DerSimonianLaird`).
 
-# In[ ]:
+# In[5]:
 
 
 from nimare import meta
@@ -104,7 +104,7 @@ dsl_results = dsl_meta.fit(img_dset)
 dsl_img = dsl_results.get_map("z", return_type="image")
 
 
-# In[ ]:
+# In[6]:
 
 
 # Here we delete the recent variables for the sake of reducing memory usage
@@ -113,7 +113,7 @@ del dsl_meta, dsl_results
 
 # Now we will apply other available IBMA `Estimator`s to the same `Dataset`, and save their results to files for comparison.
 
-# In[ ]:
+# In[7]:
 
 
 # Stouffer's
@@ -183,7 +183,7 @@ del ssbl_meta, ssbl_results, masker
 # 
 # Here we load the z-statistic map from each of the IBMA Estimators we've used throughout this chapter and plot them all side by side.
 
-# In[ ]:
+# In[8]:
 
 
 meta_results = {

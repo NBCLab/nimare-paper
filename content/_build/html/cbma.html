@@ -552,7 +552,7 @@ The <code class="docutils literal notranslate"><span class="pre">MetaResult</spa
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;nimare.results.MetaResult object at 0x7fa2fdd48ed0&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;nimare.results.MetaResult object at 0x7f15c38a03d0&gt;
 </pre></div>
 </div>
 </div>
@@ -565,7 +565,7 @@ The <code class="docutils literal notranslate"><span class="pre">MetaResult</spa
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;nimare.results.MetaResult object at 0x7fa2fdd48ed0&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;nimare.results.MetaResult object at 0x7f15c38a03d0&gt;
 </pre></div>
 </div>
 </div>
@@ -773,7 +773,7 @@ While this method was developed to support analysis of joint activation or “co
 <span class="c1"># base-rates, because we do not have access to the full BrainMap database.</span>
 <span class="c1"># However, one assumption of SCALE is that the Dataset being analyzed comes</span>
 <span class="c1"># from the same source as the database you use for calculating base-rates.</span>
-<span class="n">xyz</span> <span class="o">=</span> <span class="n">ns_dset</span><span class="o">.</span><span class="n">coordinates</span><span class="p">[[</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;z&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">xyz</span> <span class="o">=</span> <span class="n">neurosynth_dset</span><span class="o">.</span><span class="n">coordinates</span><span class="p">[[</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;z&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span>
 <span class="n">scale_meta</span> <span class="o">=</span> <span class="n">ale</span><span class="o">.</span><span class="n">SCALE</span><span class="p">(</span><span class="n">n_iters</span><span class="o">=</span><span class="mi">2500</span><span class="p">,</span> <span class="n">xyz</span><span class="o">=</span><span class="n">xyz</span><span class="p">,</span> <span class="n">memory_limit</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 <span class="n">scale_results</span> <span class="o">=</span> <span class="n">scale_meta</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">sleuth_dset1</span><span class="p">)</span>
 
@@ -783,19 +783,9 @@ While this method was developed to support analysis of joint activation or “co
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_48919</span><span class="o">/</span><span class="mf">1295953545.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="c1"># However, one assumption of SCALE is that the Dataset being analyzed comes</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="c1"># from the same source as the database you use for calculating base-rates.</span>
-<span class="ne">----&gt; </span><span class="mi">5</span> <span class="n">xyz</span> <span class="o">=</span> <span class="n">ns_dset</span><span class="o">.</span><span class="n">coordinates</span><span class="p">[[</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;z&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">scale_meta</span> <span class="o">=</span> <span class="n">ale</span><span class="o">.</span><span class="n">SCALE</span><span class="p">(</span><span class="n">n_iters</span><span class="o">=</span><span class="mi">2500</span><span class="p">,</span> <span class="n">xyz</span><span class="o">=</span><span class="n">xyz</span><span class="p">,</span> <span class="n">memory_limit</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="n">scale_results</span> <span class="o">=</span> <span class="n">scale_meta</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">sleuth_dset1</span><span class="p">)</span>
-
-<span class="ne">NameError</span>: name &#39;ns_dset&#39; is not defined
-</pre></div>
-</div>
-</div>
+<script type="application/vnd.jupyter.widget-view+json">
+{"version_major": 2, "version_minor": 0, "model_id": "19d19f97407e4beba6bd7f2502229e21"}
+</script></div>
 </div>
 <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
@@ -819,6 +809,14 @@ For example, to perform a chi-squared analysis of working memory studies, the re
 
 <span class="c1"># Retain the specificity analysis&#39;s z-statistic map for later use</span>
 <span class="n">mkdac_img</span> <span class="o">=</span> <span class="n">mkdac_results</span><span class="o">.</span><span class="n">get_map</span><span class="p">(</span><span class="s2">&quot;z_desc-specificity&quot;</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s2">&quot;image&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/lib/python3.7/site-packages/nimare/meta/cbma/mkda.py:259: RuntimeWarning: invalid value encountered in true_divide
+  pFgA = pAgF * pF / pA
+/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/lib/python3.7/site-packages/nimare/meta/cbma/mkda.py:263: RuntimeWarning: invalid value encountered in true_divide
+  pFgA_prior = pAgF * self.prior / pAgF_prior
 </pre></div>
 </div>
 </div>
@@ -887,14 +885,26 @@ For example, to perform a chi-squared analysis of working memory studies, the re
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/cbma_40_1.png" src="_images/cbma_40_1.png" />
+</div>
 </div>
 <div class="figure align-center" id="figure-cbma-uncorr" style="width: 300px">
+<div class="cell_output docutils container">
+<img alt="_images/cbma_40_0.png" src="_images/cbma_40_0.png" />
+</div>
 <p class="caption"><span class="caption-number">Fig. 5 </span><span class="caption-text">Thresholded results from MKDA Density, KDA, ALE, and SCALE meta-analyses.</span><a class="headerlink" href="#figure-cbma-uncorr" title="Permalink to this image">¶</a></p>
 </div>
 <p>A number of other coordinate-based meta-analysis algorithms exist which are not yet implemented in NiMARE.
 We describe these algorithms briefly in <a class="reference internal" href="future_directions.html"><span class="doc std std-doc">Future Directions</span></a>.</p>
 </div>
 </div>
+
+
+<script type="application/vnd.jupyter.widget-state+json">
+{"state": {"a83d3592c05f4de6a67fc4d8c087ff92": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "c1391ff94896441ea15a8f39224279e8": {"model_name": "ProgressStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ProgressStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "bar_color": null, "description_width": ""}}, "3812d5ae9ea840d89fc89fd0ef67b7d1": {"model_name": "FloatProgressModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatProgressModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ProgressView", "bar_style": "success", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_a83d3592c05f4de6a67fc4d8c087ff92", "max": 2500.0, "min": 0.0, "orientation": "horizontal", "style": "IPY_MODEL_c1391ff94896441ea15a8f39224279e8", "value": 2500.0}}, "600ee23bd50946aba1d5693b83dc2e62": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "8d9528de6ba64202b22743cc3bb0ecde": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "663c5a011d204abc8cb052fa380332b6": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_600ee23bd50946aba1d5693b83dc2e62", "placeholder": "\u200b", "style": "IPY_MODEL_8d9528de6ba64202b22743cc3bb0ecde", "value": "100%"}}, "324a5f23cc194eb8abee0378ee01d752": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "4a5be9d4a059410a97d69c21675dd320": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "a6cca476a6df49739ac133339226714b": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_324a5f23cc194eb8abee0378ee01d752", "placeholder": "\u200b", "style": "IPY_MODEL_4a5be9d4a059410a97d69c21675dd320", "value": " 2500/2500 [03:44&lt;00:00, 14.73it/s]"}}, "dbf2611b931046e581adcc445f969c02": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "19d19f97407e4beba6bd7f2502229e21": {"model_name": "HBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_663c5a011d204abc8cb052fa380332b6", "IPY_MODEL_3812d5ae9ea840d89fc89fd0ef67b7d1", "IPY_MODEL_a6cca476a6df49739ac133339226714b"], "layout": "IPY_MODEL_dbf2611b931046e581adcc445f969c02"}}}, "version_major": 2, "version_minor": 0}
+</script>
+
 
     <script type="text/x-thebe-config">
     {

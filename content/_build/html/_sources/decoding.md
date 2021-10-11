@@ -43,7 +43,7 @@ if not os.path.isfile(dset_file):
     neurosynth_dset_first500 = kern.transform(neurosynth_dset_first500, return_type="dataset")
     neurosynth_dset_first500.save(dset_file)
 else:
-    neurosynth_dset = nimare.dataset.Dataset.load(dset_file)
+    neurosynth_dset_first500 = nimare.dataset.Dataset.load(dset_file)
 
 # Collect features for decoding
 # We use any features that appear in >5% of studies and <95%.

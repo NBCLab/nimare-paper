@@ -317,7 +317,7 @@ del ale_meta, ale_results
 # base-rates, because we do not have access to the full BrainMap database.
 # However, one assumption of SCALE is that the Dataset being analyzed comes
 # from the same source as the database you use for calculating base-rates.
-xyz = ns_dset.coordinates[["x", "y", "z"]].values
+xyz = neurosynth_dset.coordinates[["x", "y", "z"]].values
 scale_meta = ale.SCALE(n_iters=2500, xyz=xyz, memory_limit=None)
 scale_results = scale_meta.fit(sleuth_dset1)
 
@@ -325,7 +325,7 @@ scale_results = scale_meta.fit(sleuth_dset1)
 scale_img = scale_results.get_map("z", return_type="image")
 
 
-# In[ ]:
+# In[21]:
 
 
 # Here we delete the recent variables for the sake of reducing memory usage
@@ -339,7 +339,7 @@ del xyz, scale_meta, scale_results
 # Such an analysis also requires access to a reference meta-analytic sample or database of studies.
 # For example, to perform a chi-squared analysis of working memory studies, the researcher will also need a comprehensive set of studies which did not manipulate working memory—ideally one that is matched with the working memory study set on all relevant attributes _except_ the involvement of working memory.
 
-# In[ ]:
+# In[22]:
 
 
 mkdac_meta = mkda.MKDAChi2()
@@ -349,7 +349,7 @@ mkdac_results = mkdac_meta.fit(sleuth_dset1, sleuth_dset2)
 mkdac_img = mkdac_results.get_map("z_desc-specificity", return_type="image")
 
 
-# In[ ]:
+# In[23]:
 
 
 # Here we delete the recent variables for the sake of reducing memory usage
@@ -360,7 +360,7 @@ del mkdac_meta, mkdac_results
 # 
 # Here we load the z-statistic map from each of the CBMA Estimators we've used throughout this chapter and plot them all side by side.
 
-# In[ ]:
+# In[24]:
 
 
 meta_results = {

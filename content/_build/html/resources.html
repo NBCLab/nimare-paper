@@ -428,7 +428,7 @@ As evidence of its utility, Neurosynth has been used to define <em>a priori</em>
 
 <span class="c1"># Download the desired version of Neurosynth from GitHub.</span>
 <span class="n">files</span> <span class="o">=</span> <span class="n">extract</span><span class="o">.</span><span class="n">fetch_neurosynth</span><span class="p">(</span>
-    <span class="n">path</span><span class="o">=</span><span class="n">DATA_DIR</span><span class="p">,</span>
+    <span class="n">data_dir</span><span class="o">=</span><span class="n">DATA_DIR</span><span class="p">,</span>
     <span class="n">version</span><span class="o">=</span><span class="s2">&quot;7&quot;</span><span class="p">,</span>
     <span class="n">source</span><span class="o">=</span><span class="s2">&quot;abstract&quot;</span><span class="p">,</span>
     <span class="n">vocab</span><span class="o">=</span><span class="s2">&quot;terms&quot;</span><span class="p">,</span>
@@ -453,10 +453,10 @@ As evidence of its utility, Neurosynth has been used to define <em>a priori</em>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.extract.utils:Dataset found in /home/tsalo006/.nimare/neurosynth
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.extract.utils:Dataset found in /home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/data/neurosynth
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.extract.extract:Searching for any feature files matching the following criteria: [(&#39;path-/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/data&#39;, &#39;source-abstract&#39;, &#39;vocab-terms&#39;, &#39;data-neurosynth&#39;, &#39;version-7&#39;)]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.extract.extract:Searching for any feature files matching the following criteria: [(&#39;source-abstract&#39;, &#39;vocab-terms&#39;, &#39;data-neurosynth&#39;, &#39;version-7&#39;)]
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading data-neurosynth_version-7_coordinates.tsv.gz
@@ -464,6 +464,112 @@ As evidence of its utility, Neurosynth has been used to define <em>a priori</em>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File exists and overwrite is False. Skipping.
 Downloading data-neurosynth_version-7_metadata.tsv.gz
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File exists and overwrite is False. Skipping.
+Downloading data-neurosynth_version-7_vocab-terms_source-abstract_type-tfidf_features.npz
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File exists and overwrite is False. Skipping.
+Downloading data-neurosynth_version-7_vocab-terms_vocabulary.txt
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File exists and overwrite is False. Skipping.
+[{&#39;coordinates&#39;: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/data/neurosynth/data-neurosynth_version-7_coordinates.tsv.gz&#39;,
+  &#39;features&#39;: [{&#39;features&#39;: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/data/neurosynth/data-neurosynth_version-7_vocab-terms_source-abstract_type-tfidf_features.npz&#39;,
+                &#39;vocabulary&#39;: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/data/neurosynth/data-neurosynth_version-7_vocab-terms_vocabulary.txt&#39;}],
+  &#39;metadata&#39;: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/data/neurosynth/data-neurosynth_version-7_metadata.tsv.gz&#39;}]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:nimare.utils:Not applying transforms to coordinates in unrecognized space &#39;UNKNOWN&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Dataset(14371 experiments, space=&#39;mni152_2mm&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Many of the methods in NiMARE can be very time-consuming or memory-intensive.
+Therefore, for the sake of ensuring that the analyses in this article may be reproduced by as many people as possible, we will use a reduced version of the Neurosynth Dataset, only containing the first 500 studies, for those methods which may not run easily on the full database.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">neurosynth_dset_first_500</span> <span class="o">=</span> <span class="n">neurosynth_dset</span><span class="o">.</span><span class="n">slice</span><span class="p">(</span><span class="n">neurosynth_dset</span><span class="o">.</span><span class="n">ids</span><span class="p">[:</span><span class="mi">500</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">neurosynth_dset</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;neurosynth_dataset_first500.pkl.gz&quot;</span><span class="p">)):</span>
+    <span class="n">neurosynth_dset_first_500</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;neurosynth_dataset_first500.pkl.gz&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Dataset(14371 experiments, space=&#39;mni152_2mm&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>In addition to a large corpus of coordinates, Neurosynth provides term frequencies derived from article abstracts that can be used as annotations.</p>
+<p>One additional benefit to Neurosynth is that it has made available the coordinates for a large number of studies for which the study abstracts are also readily available.
+This has made the Neurosynth database a common resource upon which to build other automated ontologies.
+Data-driven ontologies which have been developed using the Neurosynth database include the generalized correspondence latent Dirichlet allocation (GCLDA) <span id="id9">[<a class="reference internal" href="bibliography.html#id83">Rubin <em>et al.</em>, 2017</a>]</span> topic model and Deep Boltzmann machines <span id="id10">[<a class="reference internal" href="bibliography.html#id77">Monti <em>et al.</em>, 2016</a>]</span>.</p>
+</div>
+<div class="section" id="neuroquery">
+<h2>NeuroQuery<a class="headerlink" href="#neuroquery" title="Permalink to this headline">¶</a></h2>
+<p>A related resource is <strong>NeuroQuery</strong> <span id="id11">[<a class="reference internal" href="bibliography.html#id38">Dockès <em>et al.</em>, 2020</a>]</span>.
+NeuroQuery is an online service for large-scale predictive meta-analysis.
+Unlike Neurosynth, which performs statistical inference and produces statistical maps, NeuroQuery is a supervised learning model and produces a prediction of the brain areas most likely to contain activations.
+These maps predict locations where studies investigating a given area (determined by the text prompt) are likely to produce activations, but they cannot be used in the same manner as statistical maps from a standard coordinate-based meta-analysis.
+In addition to this predictive meta-analytic tool, NeuroQuery also provides a new database of coordinates, text annotations, and metadata via an automated extraction approach that improves on Neurosynth’s original methods.</p>
+<p>While NiMARE does not currently include an interface to NeuroQuery’s predictive meta-analytic method, there are functions for downloading the NeuroQuery database and converting it to NiMARE format, much like Neurosynth.
+The functions for downloading the NeuroQuery database and converting it to a <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> are <code class="xref py py-func docutils literal notranslate"><span class="pre">nimare.extract.fetch_neuroquery()</span></code> and <code class="xref py py-func docutils literal notranslate"><span class="pre">nimare.io.convert_neurosynth_to_dataset()</span></code>, respectively.
+We are able to use the same function for converting the database to a <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> for NeuroQuery as Neurosynth because both databases store their data in the same structure.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download the desired version of NeuroQuery from GitHub.</span>
+<span class="n">files</span> <span class="o">=</span> <span class="n">extract</span><span class="o">.</span><span class="n">fetch_neuroquery</span><span class="p">(</span>
+    <span class="n">data_dir</span><span class="o">=</span><span class="n">DATA_DIR</span><span class="p">,</span>
+    <span class="n">version</span><span class="o">=</span><span class="s2">&quot;1&quot;</span><span class="p">,</span>
+    <span class="n">source</span><span class="o">=</span><span class="s2">&quot;body&quot;</span><span class="p">,</span>
+    <span class="n">vocab</span><span class="o">=</span><span class="s2">&quot;neuroquery7547&quot;</span><span class="p">,</span>
+    <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;count&quot;</span><span class="p">,</span>
+    <span class="n">overwrite</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">pprint</span><span class="p">(</span><span class="n">files</span><span class="p">)</span>
+<span class="n">neuroquery_db</span> <span class="o">=</span> <span class="n">files</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># Convert the files to a Dataset.</span>
+<span class="c1"># This may take a while (~10 minutes)</span>
+<span class="n">neuroquery_dset</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">convert_neurosynth_to_dataset</span><span class="p">(</span>
+    <span class="n">coordinates_file</span><span class="o">=</span><span class="n">neuroquery_db</span><span class="p">[</span><span class="s2">&quot;coordinates&quot;</span><span class="p">],</span>
+    <span class="n">metadata_file</span><span class="o">=</span><span class="n">neuroquery_db</span><span class="p">[</span><span class="s2">&quot;metadata&quot;</span><span class="p">],</span>
+    <span class="n">annotations_files</span><span class="o">=</span><span class="n">neuroquery_db</span><span class="p">[</span><span class="s2">&quot;features&quot;</span><span class="p">],</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">neuroquery_dset</span><span class="p">)</span>
+
+<span class="c1"># Save the Dataset for later use.</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;neuroquery_dataset.pkl.gz&quot;</span><span class="p">)):</span>
+    <span class="n">neuroquery_dset</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;neuroquery_dataset.pkl.gz&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.extract.utils:Dataset found in /home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/data/neuroquery
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.extract.extract:Searching for any feature files matching the following criteria: [(&#39;source-body&#39;, &#39;vocab-neuroquery7547&#39;, &#39;type-count&#39;, &#39;data-neuroquery&#39;, &#39;version-1&#39;)]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading data-neuroquery_version-1_coordinates.tsv.gz
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File exists and overwrite is False. Skipping.
+Downloading data-neuroquery_version-1_metadata.tsv.gz
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File exists and overwrite is False. Skipping.
+Downloading data-neuroquery_version-1_vocab-neuroquery7547_source-body_type-count_features.npz
 </pre></div>
 </div>
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
@@ -523,19 +629,19 @@ Downloading data-neurosynth_version-7_metadata.tsv.gz
 <span class="n">During</span> <span class="n">handling</span> <span class="n">of</span> <span class="n">the</span> <span class="n">above</span> <span class="n">exception</span><span class="p">,</span> <span class="n">another</span> <span class="n">exception</span> <span class="n">occurred</span><span class="p">:</span>
 
 <span class="ne">URLError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_1210</span><span class="o">/</span><span class="mf">723277305.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span>     <span class="n">source</span><span class="o">=</span><span class="s2">&quot;abstract&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span>     <span class="n">vocab</span><span class="o">=</span><span class="s2">&quot;terms&quot;</span><span class="p">,</span>
-<span class="ne">----&gt; </span><span class="mi">9</span>     <span class="n">overwrite</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="n">pprint</span><span class="p">(</span><span class="n">files</span><span class="p">)</span>
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_5995</span><span class="o">/</span><span class="mf">2025627163.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span>     <span class="n">vocab</span><span class="o">=</span><span class="s2">&quot;neuroquery7547&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span>     <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;count&quot;</span><span class="p">,</span>
+<span class="ne">----&gt; </span><span class="mi">8</span>     <span class="n">overwrite</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="n">pprint</span><span class="p">(</span><span class="n">files</span><span class="p">)</span>
 
-<span class="nn">/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/lib/python3.7/site-packages/nimare/extract/extract.py</span> in <span class="ni">fetch_neurosynth</span><span class="nt">(data_dir, version, overwrite, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">194</span>     <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;version&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">version</span>
-<span class="g g-Whitespace">    </span><span class="mi">195</span> 
-<span class="ne">--&gt; </span><span class="mi">196</span>     <span class="n">found_databases</span> <span class="o">=</span> <span class="n">_fetch_database</span><span class="p">(</span><span class="n">kwargs</span><span class="p">,</span> <span class="n">URL</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="n">overwrite</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">197</span> 
-<span class="g g-Whitespace">    </span><span class="mi">198</span>     <span class="k">return</span> <span class="n">found_databases</span>
+<span class="nn">/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/lib/python3.7/site-packages/nimare/extract/extract.py</span> in <span class="ni">fetch_neuroquery</span><span class="nt">(data_dir, version, overwrite, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">245</span>     <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;version&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">version</span>
+<span class="g g-Whitespace">    </span><span class="mi">246</span> 
+<span class="ne">--&gt; </span><span class="mi">247</span>     <span class="n">found_databases</span> <span class="o">=</span> <span class="n">_fetch_database</span><span class="p">(</span><span class="n">kwargs</span><span class="p">,</span> <span class="n">URL</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="n">overwrite</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">248</span> 
+<span class="g g-Whitespace">    </span><span class="mi">249</span>     <span class="k">return</span> <span class="n">found_databases</span>
 
 <span class="nn">/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/lib/python3.7/site-packages/nimare/extract/extract.py</span> in <span class="ni">_fetch_database</span><span class="nt">(search_pairs, database_url, out_dir, overwrite)</span>
 <span class="g g-Whitespace">    </span><span class="mi">126</span> 
@@ -587,67 +693,6 @@ Downloading data-neurosynth_version-7_metadata.tsv.gz
 <span class="g g-Whitespace">   </span><span class="mi">1354</span>         <span class="k">except</span><span class="p">:</span>
 
 <span class="ne">URLError</span>: &lt;urlopen error [Errno 101] Network is unreachable&gt;
-</pre></div>
-</div>
-</div>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Many of the methods in NiMARE can be very time-consuming or memory-intensive.
-Therefore, for the sake of ensuring that the analyses in this article may be reproduced by as many people as possible, we will use a reduced version of the Neurosynth Dataset, only containing the first 500 studies, for those methods which may not run easily on the full database.</p>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">neurosynth_dset_first_500</span> <span class="o">=</span> <span class="n">neurosynth_dset</span><span class="o">.</span><span class="n">slice</span><span class="p">(</span><span class="n">neurosynth_dset</span><span class="o">.</span><span class="n">ids</span><span class="p">[:</span><span class="mi">500</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">neurosynth_dset</span><span class="p">)</span>
-
-<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;neurosynth_dataset_first500.pkl.gz&quot;</span><span class="p">)):</span>
-    <span class="n">neurosynth_dset_first_500</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;neurosynth_dataset_first500.pkl.gz&quot;</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>In addition to a large corpus of coordinates, Neurosynth provides term frequencies derived from article abstracts that can be used as annotations.</p>
-<p>One additional benefit to Neurosynth is that it has made available the coordinates for a large number of studies for which the study abstracts are also readily available.
-This has made the Neurosynth database a common resource upon which to build other automated ontologies.
-Data-driven ontologies which have been developed using the Neurosynth database include the generalized correspondence latent Dirichlet allocation (GCLDA) <span id="id9">[<a class="reference internal" href="bibliography.html#id83">Rubin <em>et al.</em>, 2017</a>]</span> topic model and Deep Boltzmann machines <span id="id10">[<a class="reference internal" href="bibliography.html#id77">Monti <em>et al.</em>, 2016</a>]</span>.</p>
-</div>
-<div class="section" id="neuroquery">
-<h2>NeuroQuery<a class="headerlink" href="#neuroquery" title="Permalink to this headline">¶</a></h2>
-<p>A related resource is <strong>NeuroQuery</strong> <span id="id11">[<a class="reference internal" href="bibliography.html#id38">Dockès <em>et al.</em>, 2020</a>]</span>.
-NeuroQuery is an online service for large-scale predictive meta-analysis.
-Unlike Neurosynth, which performs statistical inference and produces statistical maps, NeuroQuery is a supervised learning model and produces a prediction of the brain areas most likely to contain activations.
-These maps predict locations where studies investigating a given area (determined by the text prompt) are likely to produce activations, but they cannot be used in the same manner as statistical maps from a standard coordinate-based meta-analysis.
-In addition to this predictive meta-analytic tool, NeuroQuery also provides a new database of coordinates, text annotations, and metadata via an automated extraction approach that improves on Neurosynth’s original methods.</p>
-<p>While NiMARE does not currently include an interface to NeuroQuery’s predictive meta-analytic method, there are functions for downloading the NeuroQuery database and converting it to NiMARE format, much like Neurosynth.
-The functions for downloading the NeuroQuery database and converting it to a <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> are <code class="xref py py-func docutils literal notranslate"><span class="pre">nimare.extract.fetch_neuroquery()</span></code> and <code class="xref py py-func docutils literal notranslate"><span class="pre">nimare.io.convert_neurosynth_to_dataset()</span></code>, respectively.
-We are able to use the same function for converting the database to a <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> for NeuroQuery as Neurosynth because both databases store their data in the same structure.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download the desired version of NeuroQuery from GitHub.</span>
-<span class="n">files</span> <span class="o">=</span> <span class="n">extract</span><span class="o">.</span><span class="n">fetch_neuroquery</span><span class="p">(</span>
-    <span class="n">path</span><span class="o">=</span><span class="n">DATA_DIR</span><span class="p">,</span>
-    <span class="n">version</span><span class="o">=</span><span class="s2">&quot;1&quot;</span><span class="p">,</span>
-    <span class="n">source</span><span class="o">=</span><span class="s2">&quot;body&quot;</span><span class="p">,</span>
-    <span class="n">vocab</span><span class="o">=</span><span class="s2">&quot;neuroquery7547&quot;</span><span class="p">,</span>
-    <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;count&quot;</span><span class="p">,</span>
-    <span class="n">overwrite</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-<span class="p">)</span>
-<span class="n">pprint</span><span class="p">(</span><span class="n">files</span><span class="p">)</span>
-<span class="n">neuroquery_db</span> <span class="o">=</span> <span class="n">files</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-
-<span class="c1"># Convert the files to a Dataset.</span>
-<span class="c1"># This may take a while (~10 minutes)</span>
-<span class="n">neuroquery_dset</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">convert_neurosynth_to_dataset</span><span class="p">(</span>
-    <span class="n">coordinates_file</span><span class="o">=</span><span class="n">neuroquery_db</span><span class="p">[</span><span class="s2">&quot;coordinates&quot;</span><span class="p">],</span>
-    <span class="n">metadata_file</span><span class="o">=</span><span class="n">neuroquery_db</span><span class="p">[</span><span class="s2">&quot;metadata&quot;</span><span class="p">],</span>
-    <span class="n">annotations_files</span><span class="o">=</span><span class="n">neuroquery_db</span><span class="p">[</span><span class="s2">&quot;features&quot;</span><span class="p">],</span>
-<span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">neuroquery_dset</span><span class="p">)</span>
-
-<span class="c1"># Save the Dataset for later use.</span>
-<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;neuroquery_dataset.pkl.gz&quot;</span><span class="p">)):</span>
-    <span class="n">neuroquery_dset</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;neuroquery_dataset.pkl.gz&quot;</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>

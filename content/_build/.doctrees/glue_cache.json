@@ -15,6 +15,22 @@
         "application/papermill.record/text/plain": "<Figure size 432x432 with 15 Axes>",
         "application/papermill.record/image/png": null
       }
+    },
+    "figure_cbma_uncorr": {
+      "output_type": "display_data",
+      "metadata": {
+        "scrapbook": {
+          "name": "figure_cbma_uncorr",
+          "mime_prefix": "application/papermill.record/"
+        },
+        "filenames": {
+          "image/png": "/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/content/_build/jupyter_execute/cbma_40_0.png"
+        }
+      },
+      "data": {
+        "application/papermill.record/text/plain": "<Figure size 864x432 with 26 Axes>",
+        "application/papermill.record/image/png": null
+      }
     }
   },
   "correction": {
@@ -27,6 +43,58 @@
         },
         "filenames": {
           "image/png": "/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/content/_build/jupyter_execute/correction_7_0.png"
+        }
+      },
+      "data": {
+        "application/papermill.record/text/plain": "<Figure size 432x288 with 10 Axes>",
+        "application/papermill.record/image/png": null
+      }
+    }
+  },
+  "ibma": {
+    "figure_uncorr_ibma": {
+      "output_type": "display_data",
+      "metadata": {
+        "scrapbook": {
+          "name": "figure_uncorr_ibma",
+          "mime_prefix": "application/papermill.record/"
+        },
+        "filenames": {
+          "image/png": "/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/content/_build/jupyter_execute/ibma_14_0.png"
+        }
+      },
+      "data": {
+        "application/papermill.record/text/plain": "<Figure size 1296x432 with 45 Axes>",
+        "application/papermill.record/image/png": null
+      }
+    }
+  },
+  "macm": {
+    "figure_macm_rois": {
+      "output_type": "display_data",
+      "metadata": {
+        "scrapbook": {
+          "name": "figure_macm_rois",
+          "mime_prefix": "application/papermill.record/"
+        },
+        "filenames": {
+          "image/png": "/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/content/_build/jupyter_execute/macm_4_0.png"
+        }
+      },
+      "data": {
+        "application/papermill.record/text/plain": "<Figure size 432x288 with 8 Axes>",
+        "application/papermill.record/image/png": null
+      }
+    },
+    "figure_macm": {
+      "output_type": "display_data",
+      "metadata": {
+        "scrapbook": {
+          "name": "figure_macm",
+          "mime_prefix": "application/papermill.record/"
+        },
+        "filenames": {
+          "image/png": "/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/content/_build/jupyter_execute/macm_8_0.png"
         }
       },
       "data": {

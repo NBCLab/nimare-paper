@@ -86,7 +86,7 @@ from nimare import extract
 
 # Download the desired version of Neurosynth from GitHub.
 files = extract.fetch_neurosynth(
-    path=DATA_DIR,
+    data_dir=DATA_DIR,
     version="7",
     source="abstract",
     vocab="terms",
@@ -114,7 +114,7 @@ if not os.path.isfile(os.path.join(DATA_DIR, "neurosynth_dataset.pkl.gz")):
 # Therefore, for the sake of ensuring that the analyses in this article may be reproduced by as many people as possible, we will use a reduced version of the Neurosynth Dataset, only containing the first 500 studies, for those methods which may not run easily on the full database.
 # ```
 
-# In[ ]:
+# In[4]:
 
 
 neurosynth_dset_first_500 = neurosynth_dset.slice(neurosynth_dset.ids[:500])
@@ -142,12 +142,12 @@ if not os.path.isfile(os.path.join(DATA_DIR, "neurosynth_dataset_first500.pkl.gz
 # The functions for downloading the NeuroQuery database and converting it to a `Dataset` are {py:func}`nimare.extract.fetch_neuroquery` and {py:func}`nimare.io.convert_neurosynth_to_dataset`, respectively.
 # We are able to use the same function for converting the database to a `Dataset` for NeuroQuery as Neurosynth because both databases store their data in the same structure.
 
-# In[ ]:
+# In[5]:
 
 
 # Download the desired version of NeuroQuery from GitHub.
 files = extract.fetch_neuroquery(
-    path=DATA_DIR,
+    data_dir=DATA_DIR,
     version="1",
     source="body",
     vocab="neuroquery7547",

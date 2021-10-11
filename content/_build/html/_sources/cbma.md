@@ -313,7 +313,7 @@ While this method was developed to support analysis of joint activation or “co
 # base-rates, because we do not have access to the full BrainMap database.
 # However, one assumption of SCALE is that the Dataset being analyzed comes
 # from the same source as the database you use for calculating base-rates.
-xyz = ns_dset.coordinates[["x", "y", "z"]].values
+xyz = neurosynth_dset.coordinates[["x", "y", "z"]].values
 scale_meta = ale.SCALE(n_iters=2500, xyz=xyz, memory_limit=None)
 scale_results = scale_meta.fit(sleuth_dset1)
 

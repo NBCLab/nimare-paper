@@ -62,6 +62,7 @@ from nilearn import input_data, plotting
 # nilearn, we need to use a NiftiSpheresMasker
 mask_img = neurosynth_dset.masker.mask_img
 sphere_masker = input_data.NiftiSpheresMasker([[24, -2, -20]], radius=6, mask_img=mask_img)
+sphere_masker.fit(mask_img)
 sphere_img = sphere_masker.inverse_transform(np.array([[1]]))
 
 fig, axes = plt.subplots(figsize=(6, 4), nrows=2)
@@ -94,7 +95,7 @@ glue("figure_macm_rois", fig, display=False)
 
 # Once the `Dataset` has been reduced to studies with coordinates within the mask or sphere requested, any of the supported CBMA Estimators can be run.
 
-# In[ ]:
+# In[4]:
 
 
 from nimare import meta
@@ -106,7 +107,7 @@ meta_sphere = meta.cbma.ale.ALE(kernel__sample_size=20)
 results_sphere = meta_sphere.fit(dset_sphere)
 
 
-# In[ ]:
+# In[5]:
 
 
 meta_results = {

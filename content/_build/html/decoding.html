@@ -377,7 +377,7 @@
     <span class="n">neurosynth_dset_first500</span> <span class="o">=</span> <span class="n">kern</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">neurosynth_dset_first500</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s2">&quot;dataset&quot;</span><span class="p">)</span>
     <span class="n">neurosynth_dset_first500</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">dset_file</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="n">neurosynth_dset</span> <span class="o">=</span> <span class="n">nimare</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">dset_file</span><span class="p">)</span>
+    <span class="n">neurosynth_dset_first500</span> <span class="o">=</span> <span class="n">nimare</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">dset_file</span><span class="p">)</span>
 
 <span class="c1"># Collect features for decoding</span>
 <span class="c1"># We use any features that appear in &gt;5% of studies and &lt;95%.</span>
@@ -399,16 +399,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_1092</span><span class="o">/</span><span class="mf">1708409440.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">     </span><span class="mi">20</span> <span class="n">id_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;study_id&quot;</span><span class="p">,</span> <span class="s2">&quot;contrast_id&quot;</span><span class="p">]</span>
-<span class="g g-Whitespace">     </span><span class="mi">21</span> <span class="n">frequency_threshold</span> <span class="o">=</span> <span class="mf">0.001</span>
-<span class="ne">---&gt; </span><span class="mi">22</span> <span class="n">cols</span> <span class="o">=</span> <span class="n">neurosynth_dset_first500</span><span class="o">.</span><span class="n">annotations</span><span class="o">.</span><span class="n">columns</span>
-<span class="g g-Whitespace">     </span><span class="mi">23</span> <span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">cols</span> <span class="k">if</span> <span class="n">c</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">id_cols</span><span class="p">]</span>
-<span class="g g-Whitespace">     </span><span class="mi">24</span> <span class="n">df</span> <span class="o">=</span> <span class="n">neurosynth_dset_first500</span><span class="o">.</span><span class="n">annotations</span><span class="o">.</span><span class="n">copy</span><span class="p">()[</span><span class="n">cols</span><span class="p">]</span>
-
-<span class="ne">NameError</span>: name &#39;neurosynth_dset_first500&#39; is not defined
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>283 features selected.
 </pre></div>
 </div>
 </div>
@@ -444,6 +435,20 @@ As such, we will only show the <code class="xref py py-class docutils literal no
 <span class="p">)</span>
 <span class="n">corr_decoder</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">neurosynth_dset_first500</span><span class="p">)</span>
 <span class="n">corr_df</span> <span class="o">=</span> <span class="n">corr_decoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;map_to_decode.nii.gz&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_5278</span><span class="o">/</span><span class="mf">2775975999.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">corr_decoder</span> <span class="o">=</span> <span class="n">decode</span><span class="o">.</span><span class="n">continuous</span><span class="o">.</span><span class="n">CorrelationDecoder</span><span class="p">(</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="n">frequency_threshold</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span>
+<span class="ne">----&gt; </span><span class="mi">5</span>     <span class="n">meta_estimator</span><span class="o">=</span><span class="n">meta</span><span class="o">.</span><span class="n">MKDAChi2</span><span class="p">(</span><span class="n">kernel_transformer</span><span class="o">=</span><span class="n">kern</span><span class="p">,</span> <span class="n">memory_limit</span><span class="o">=</span><span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span>     <span class="n">target_image</span><span class="o">=</span><span class="s2">&quot;z_desc-specificity&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span>     <span class="n">features</span><span class="o">=</span><span class="n">target_features</span><span class="p">,</span>
+
+<span class="ne">NameError</span>: name &#39;kern&#39; is not defined
 </pre></div>
 </div>
 </div>
