@@ -5,3 +5,4 @@ matplotlib==3.4.2
 myst_nb==0.12.3
 nimare[duecredit]==0.0.10
 osfclient==0.0.3
+pytest==6.2.5

@@ -99,7 +99,7 @@ from nimare import extract
 
 # Download the desired version of Neurosynth from GitHub.
 files = extract.fetch_neurosynth(
-    path=DATA_DIR,
+    data_dir=DATA_DIR,
     version="7",
     source="abstract",
     vocab="terms",
@@ -162,7 +162,7 @@ We are able to use the same function for converting the database to a `Dataset` 
 ```{code-cell} ipython3
 # Download the desired version of NeuroQuery from GitHub.
 files = extract.fetch_neuroquery(
-    path=DATA_DIR,
+    data_dir=DATA_DIR,
     version="1",
     source="body",
     vocab="neuroquery7547",
