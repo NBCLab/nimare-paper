@@ -149,9 +149,9 @@ if not os.path.isfile(os.path.join(DATA_DIR, "neurosynth_dataset_first500.pkl.gz
 files = extract.fetch_neuroquery(
     data_dir=DATA_DIR,
     version="1",
-    source="body",
-    vocab="neuroquery7547",
-    type="count",
+    source="combined",
+    vocab="neuroquery6308",
+    type="tfidf",
     overwrite=False,
 )
 pprint(files)

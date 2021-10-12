@@ -204,7 +204,7 @@ lda_model.fit()
 # The cell values indicate the probability of selecting a topic when contructing the given study.
 # Practically, this indicates the relative proportion with which the topic describes that study.
 
-# In[ ]:
+# In[9]:
 
 
 lda_df = lda_model.p_word_g_topic_df_.T
@@ -228,7 +228,7 @@ glue("table_lda", lda_df)
 # The top ten terms for each of the first ten topics in the trained LDA model.
 # ```
 
-# In[ ]:
+# In[10]:
 
 
 # Here we delete the recent variables for the sake of reducing memory usage
@@ -245,7 +245,7 @@ del lda_model, lda_df, temp_df
 # Here we train a GCLDA model ({py:class}`nimare.annotate.gclda.GCLDAModel`) on the first 500 studies of the Neurosynth Dataset.
 # The model will include 100 topics, in which the spatial distribution for each topic will be defined as having two Gaussian distributions that are symmetrically localized across the longitudinal fissure.
 
-# In[ ]:
+# In[11]:
 
 
 gclda_model = annotate.gclda.GCLDAModel(
@@ -259,7 +259,7 @@ gclda_model = annotate.gclda.GCLDAModel(
 gclda_model.fit(n_iters=2500, loglikely_freq=500)
 
 
-# In[ ]:
+# In[12]:
 
 
 gclda_df = gclda_model.p_word_g_topic_df_.T

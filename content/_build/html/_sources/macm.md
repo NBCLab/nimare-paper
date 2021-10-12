@@ -64,7 +64,7 @@ dset_sphere = neurosynth_dset.slice(sphere_ids)
 ```
 
 ```{code-cell} ipython3
-:tags: [hide-input]
+:tags: [hide-cell]
 import numpy as np
 from nilearn import input_data, plotting
 

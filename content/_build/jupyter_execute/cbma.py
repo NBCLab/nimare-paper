@@ -8,6 +8,7 @@
 
 # First, import the necessary modules and functions
 import os
+from pprint import pprint
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -196,7 +197,7 @@ print(mkdad_meta.results)
 # In[9]:
 
 
-print(mkdad_results.maps)
+pprint(mkdad_results.maps)
 
 
 # These arrays can be transformed into image-like objects using the `masker` attribute.

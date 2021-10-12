@@ -366,13 +366,13 @@
 <span class="kn">from</span> <span class="nn">nimare</span> <span class="kn">import</span> <span class="n">meta</span>
 
 <span class="n">dset_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;neurosynth_dataset_first500_with_mkda_ma.pkl.gz&quot;</span><span class="p">)</span>
+<span class="n">kern</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">kernel</span><span class="o">.</span><span class="n">MKDAKernel</span><span class="p">(</span><span class="n">memory_limit</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">dset_file</span><span class="p">):</span>
     <span class="n">neurosynth_dset_first500</span> <span class="o">=</span> <span class="n">nimare</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">load</span><span class="p">(</span>
         <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;neurosynth_dataset_first500.pkl.gz&quot;</span><span class="p">)</span>
     <span class="p">)</span>
     <span class="n">target_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;neurosynth_dataset_maps&quot;</span><span class="p">)</span>
     <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">target_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">kern</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">kernel</span><span class="o">.</span><span class="n">MKDAKernel</span><span class="p">(</span><span class="n">memory_limit</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
     <span class="n">neurosynth_dset_first500</span><span class="o">.</span><span class="n">update_path</span><span class="p">(</span><span class="n">target_folder</span><span class="p">)</span>
     <span class="n">neurosynth_dset_first500</span> <span class="o">=</span> <span class="n">kern</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">neurosynth_dset_first500</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s2">&quot;dataset&quot;</span><span class="p">)</span>
     <span class="n">neurosynth_dset_first500</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">dset_file</span><span class="p">)</span>
@@ -439,16 +439,121 @@ As such, we will only show the <code class="xref py py-class docutils literal no
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__10 (0/283): 45/500 studies
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/Users/taylor/Documents/nbc/nimare-paper/data/neurosynth_dataset_maps/&#39;
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/Users/taylor/Documents/nbc/nimare-paper/data/neurosynth_dataset_maps/&#39;
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ERROR:nimare.meta.cbma.mkda:_fit failed, removing None
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ERROR:nimare.meta.cbma.mkda:_fit failed, removing None
+</pre></div>
+</div>
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_5278</span><span class="o">/</span><span class="mf">2775975999.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">corr_decoder</span> <span class="o">=</span> <span class="n">decode</span><span class="o">.</span><span class="n">continuous</span><span class="o">.</span><span class="n">CorrelationDecoder</span><span class="p">(</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="n">frequency_threshold</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span>
-<span class="ne">----&gt; </span><span class="mi">5</span>     <span class="n">meta_estimator</span><span class="o">=</span><span class="n">meta</span><span class="o">.</span><span class="n">MKDAChi2</span><span class="p">(</span><span class="n">kernel_transformer</span><span class="o">=</span><span class="n">kern</span><span class="p">,</span> <span class="n">memory_limit</span><span class="o">=</span><span class="kc">None</span><span class="p">),</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span>     <span class="n">target_image</span><span class="o">=</span><span class="s2">&quot;z_desc-specificity&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span>     <span class="n">features</span><span class="o">=</span><span class="n">target_features</span><span class="p">,</span>
+<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_31935</span><span class="o">/</span><span class="mf">2775975999.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span>     <span class="n">memory_limit</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">10</span> <span class="n">corr_decoder</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">neurosynth_dset_first500</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="n">corr_df</span> <span class="o">=</span> <span class="n">corr_decoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;map_to_decode.nii.gz&quot;</span><span class="p">))</span>
 
-<span class="ne">NameError</span>: name &#39;kern&#39; is not defined
+<span class="nn">/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/lib/python3.7/site-packages/nimare/base.py</span> in <span class="ni">fit</span><span class="nt">(self, dataset, drop_invalid)</span>
+<span class="g g-Whitespace">    </span><span class="mi">546</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_validate_input</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">drop_invalid</span><span class="o">=</span><span class="n">drop_invalid</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">547</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_preprocess_input</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">548</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_fit</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">549</span> 
+<span class="g g-Whitespace">    </span><span class="mi">550</span>     <span class="nd">@abstractmethod</span>
+
+<span class="nn">/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/lib/python3.7/site-packages/nimare/decode/continuous.py</span> in <span class="ni">_fit</span><span class="nt">(self, dataset)</span>
+<span class="g g-Whitespace">    </span><span class="mi">201</span>                 <span class="n">nonfeature_ids</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">inputs_</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">])</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">feature_ids</span><span class="p">)))</span>
+<span class="g g-Whitespace">    </span><span class="mi">202</span>                 <span class="n">nonfeature_dset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">slice</span><span class="p">(</span><span class="n">nonfeature_ids</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">203</span>                 <span class="bp">self</span><span class="o">.</span><span class="n">meta_estimator</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">feature_dset</span><span class="p">,</span> <span class="n">nonfeature_dset</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">204</span>             <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">205</span>                 <span class="bp">self</span><span class="o">.</span><span class="n">meta_estimator</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">feature_dset</span><span class="p">)</span>
+
+<span class="nn">/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/lib/python3.7/site-packages/nimare/meta/cbma/base.py</span> in <span class="ni">fit</span><span class="nt">(self, dataset1, dataset2, drop_invalid)</span>
+<span class="g g-Whitespace">    </span><span class="mi">717</span>         <span class="bp">self</span><span class="o">.</span><span class="n">inputs_</span><span class="p">[</span><span class="s2">&quot;coordinates2&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">inputs_</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;coordinates&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">718</span> 
+<span class="ne">--&gt; </span><span class="mi">719</span>         <span class="n">maps</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fit</span><span class="p">(</span><span class="n">dataset1</span><span class="p">,</span> <span class="n">dataset2</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">720</span> 
+<span class="g g-Whitespace">    </span><span class="mi">721</span>         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;masker&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">masker</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+
+<span class="nn">/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/lib/python3.7/site-packages/nimare/utils.py</span> in <span class="ni">memmap_context</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">471</span> 
+<span class="g g-Whitespace">    </span><span class="mi">472</span>             <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">473</span>                 <span class="k">return</span> <span class="n">function</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">474</span>             <span class="k">except</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">475</span>                 <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">filenames</span><span class="p">:</span>
+
+<span class="nn">/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/lib/python3.7/site-packages/nimare/meta/cbma/mkda.py</span> in <span class="ni">_fit</span><span class="nt">(self, dataset1, dataset2)</span>
+<span class="g g-Whitespace">    </span><span class="mi">227</span>             <span class="n">maps_key</span><span class="o">=</span><span class="s2">&quot;ma_maps1&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">228</span>             <span class="n">coords_key</span><span class="o">=</span><span class="s2">&quot;coordinates1&quot;</span><span class="p">,</span>
+<span class="ne">--&gt; </span><span class="mi">229</span>             <span class="n">fname_idx</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">230</span>         <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">231</span>         <span class="n">ma_maps2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_collect_ma_maps</span><span class="p">(</span>
+
+<span class="nn">/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/lib/python3.7/site-packages/nimare/meta/cbma/base.py</span> in <span class="ni">_collect_ma_maps</span><span class="nt">(self, coords_key, maps_key, fname_idx)</span>
+<span class="g g-Whitespace">    </span><span class="mi">166</span>                 <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">167</span>             <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">168</span>                 <span class="n">ma_maps</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">masker</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">inputs_</span><span class="p">[</span><span class="n">maps_key</span><span class="p">])</span>
+<span class="g g-Whitespace">    </span><span class="mi">169</span>         <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">170</span>             <span class="n">LGR</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Generating MA maps from coordinates (</span><span class="si">{</span><span class="n">coords_key</span><span class="si">}</span><span class="s2">).&quot;</span><span class="p">)</span>
+
+<span class="nn">/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/lib/python3.7/site-packages/nilearn/input_data/base_masker.py</span> in <span class="ni">transform</span><span class="nt">(self, imgs, confounds)</span>
+<span class="g g-Whitespace">    </span><span class="mi">183</span> 
+<span class="g g-Whitespace">    </span><span class="mi">184</span>         <span class="k">if</span> <span class="n">confounds</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">high_variance_confounds</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">185</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform_single_imgs</span><span class="p">(</span><span class="n">imgs</span><span class="p">,</span> <span class="n">confounds</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">186</span> 
+<span class="g g-Whitespace">    </span><span class="mi">187</span>         <span class="c1"># Compute high variance confounds if requested</span>
+
+<span class="nn">/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/lib/python3.7/site-packages/nilearn/input_data/nifti_masker.py</span> in <span class="ni">transform_single_imgs</span><span class="nt">(self, imgs, confounds, copy)</span>
+<span class="g g-Whitespace">    </span><span class="mi">451</span>             <span class="n">confounds</span><span class="o">=</span><span class="n">confounds</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">452</span>             <span class="n">copy</span><span class="o">=</span><span class="n">copy</span><span class="p">,</span>
+<span class="ne">--&gt; </span><span class="mi">453</span>             <span class="n">dtype</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dtype</span>
+<span class="g g-Whitespace">    </span><span class="mi">454</span>         <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">455</span> 
+
+<span class="nn">/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/lib/python3.7/site-packages/joblib/memory.py</span> in <span class="ni">__call__</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">347</span> 
+<span class="g g-Whitespace">    </span><span class="mi">348</span>     <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">349</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">350</span> 
+<span class="g g-Whitespace">    </span><span class="mi">351</span>     <span class="k">def</span> <span class="nf">call_and_shelve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+
+<span class="nn">/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/lib/python3.7/site-packages/nilearn/input_data/nifti_masker.py</span> in <span class="ni">filter_and_mask</span><span class="nt">(imgs, mask_img_, parameters, memory_level, memory, verbose, confounds, copy, dtype)</span>
+<span class="g g-Whitespace">     </span><span class="mi">54</span> 
+<span class="g g-Whitespace">     </span><span class="mi">55</span>     <span class="s2">&quot;&quot;&quot;</span>
+<span class="ne">---&gt; </span><span class="mi">56</span><span class="s2">     imgs = _utils.check_niimg(imgs, atleast_4d=True, ensure_ndim=4)</span>
+<span class="g g-Whitespace">     </span><span class="mi">57</span><span class="s2"> </span>
+<span class="g g-Whitespace">     </span><span class="mi">58</span><span class="s2">     # Check whether resampling is truly necessary. If so, crop mask</span>
+
+<span class="nn">/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/lib/python3.7/site-packages/nilearn/_utils/niimg_conversions.py</span> in <span class="ni">check_niimg</span><span class="nt">(niimg, ensure_ndim, atleast_4d, dtype, return_iterator, wildcards)</span>
+<span class="g g-Whitespace">    </span><span class="mi">278</span><span class="s2">             return _iter_check_niimg(niimg, ensure_ndim=ensure_ndim,</span>
+<span class="g g-Whitespace">    </span><span class="mi">279</span><span class="s2">                                      dtype=dtype)</span>
+<span class="ne">--&gt; </span><span class="mi">280</span><span class="s2">         return concat_niimgs(niimg, ensure_ndim=ensure_ndim, dtype=dtype)</span>
+<span class="g g-Whitespace">    </span><span class="mi">281</span><span class="s2"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">282</span><span class="s2">     # Otherwise, it should be a filename or a SpatialImage, we load it</span>
+
+<span class="nn">/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/lib/python3.7/site-packages/nilearn/_utils/niimg_conversions.py</span> in <span class="ni">concat_niimgs</span><span class="nt">(niimgs, dtype, ensure_ndim, memory, memory_level, auto_resample, verbose)</span>
+<span class="g g-Whitespace">    </span><span class="mi">448</span><span class="s2">     iterator, literator = itertools.tee(iter(niimgs))</span>
+<span class="g g-Whitespace">    </span><span class="mi">449</span><span class="s2">     try:</span>
+<span class="ne">--&gt; </span><span class="mi">450</span><span class="s2">         first_niimg = check_niimg(next(literator), ensure_ndim=ndim)</span>
+<span class="g g-Whitespace">    </span><span class="mi">451</span><span class="s2">     except StopIteration:</span>
+<span class="g g-Whitespace">    </span><span class="mi">452</span><span class="s2">         raise TypeError(&#39;Cannot concatenate empty objects&#39;)</span>
+
+<span class="nn">/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/lib/python3.7/site-packages/nilearn/_utils/niimg_conversions.py</span> in <span class="ni">check_niimg</span><span class="nt">(niimg, ensure_ndim, atleast_4d, dtype, return_iterator, wildcards)</span>
+<span class="g g-Whitespace">    </span><span class="mi">269</span><span class="s2">                 raise ValueError(message)</span>
+<span class="g g-Whitespace">    </span><span class="mi">270</span><span class="s2">             else:</span>
+<span class="ne">--&gt; </span><span class="mi">271</span><span class="s2">                 raise ValueError(&quot;File not found: &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot; % niimg)</span>
+<span class="g g-Whitespace">    </span><span class="mi">272</span><span class="s2">         elif not os.path.exists(niimg):</span>
+<span class="g g-Whitespace">    </span><span class="mi">273</span><span class="s2">             raise ValueError(&quot;File not found: &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot; % niimg)</span>
+
+<span class="ne">ValueError</span>: File not found: &#39;/Users/taylor/Documents/nbc/nimare-paper/data/neurosynth_dataset_maps/study-10356062-1_affine-34d2ff913320e14f04a4746cfa875fcd_memory_limit-None_r-10.0_value-1_MKDAKernel.nii.gz&#39;
 </pre></div>
 </div>
 </div>

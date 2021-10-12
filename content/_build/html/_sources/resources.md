@@ -164,9 +164,9 @@ We are able to use the same function for converting the database to a `Dataset` 
 files = extract.fetch_neuroquery(
     data_dir=DATA_DIR,
     version="1",
-    source="body",
-    vocab="neuroquery7547",
-    type="count",
+    source="combined",
+    vocab="neuroquery6308",
+    type="tfidf",
     overwrite=False,
 )
 pprint(files)

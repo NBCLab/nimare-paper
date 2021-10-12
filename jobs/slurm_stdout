@@ -1,3 +1,10 @@
+
+[92m===============================================================================[0m
+
+Your _build directory has been emptied except for .jupyter_cache
+
+[92m===============================================================================[0m
+
 Running Jupyter-Book v0.11.3
 Source Folder: /home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/content
 Config Path: /home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/content/_config.yml
@@ -14,6 +21,7 @@ loading intersphinx inventory from https://pymare.readthedocs.io/en/latest/objec
 [01mbuilding [html]: [39;49;00mtargets for 18 source files that are out of date
 [01mupdating environment: [39;49;00m[new config] 18 added, 0 changed, 0 removed
 [01mreading sources... [39;49;00m[  5%] [35mabout_derivative_analyses[39;49;00m                            [01mreading sources... [39;49;00m[ 11%] [35mabstract[39;49;00m                                             [01mreading sources... [39;49;00m[ 16%] [35macknowledgements[39;49;00m                                     [01mreading sources... [39;49;00m[ 22%] [35mannotation[39;49;00m                                           Executing: annotation in: /home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/content
+Data loaded.
 [01mreading sources... [39;49;00m[ 27%] [35mappendices/brainmap_decoding[39;49;00m                         [01mreading sources... [39;49;00m[ 33%] [35mappendices/neurosynth_decoding[39;49;00m                       [01mreading sources... [39;49;00m[ 38%] [35mbibliography[39;49;00m                                         [01mreading sources... [39;49;00m[ 44%] [35mcbma[39;49;00m                                                 Executing: cbma in: /home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/content
 [01mreading sources... [39;49;00m[ 50%] [35mcorrection[39;49;00m                                           Executing: correction in: /home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/content
 [01mreading sources... [39;49;00m[ 55%] [35mdecoding[39;49;00m                                             Executing: decoding in: /home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/content
@@ -34,7 +42,7 @@ loading intersphinx inventory from https://pymare.readthedocs.io/en/latest/objec
 [01mcopying extra files... [39;49;00mdone
 [01mdumping search index in English (code: en)... [39;49;00mdone
 [01mdumping object inventory... [39;49;00mdone
-[01mbuild succeeded, 12 warnings.[39;49;00m
+[01mbuild succeeded, 10 warnings.[39;49;00m
 
 The HTML pages are in content/_build/html.
 [etoc] missing index.html written as redirect to 'abstract.html'
