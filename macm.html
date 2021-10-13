@@ -42,6 +42,8 @@
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -334,32 +336,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_2165</span><span class="o">/</span><span class="mf">4203447842.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">     </span><span class="mi">12</span> 
-<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="c1"># Now, load the Datasets we will use in this chapter</span>
-<span class="ne">---&gt; </span><span class="mi">14</span> <span class="n">neurosynth_dset</span> <span class="o">=</span> <span class="n">nimare</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;neurosynth_dataset.pkl.gz&quot;</span><span class="p">))</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/nimare/base.py</span> in <span class="ni">load</span><span class="nt">(cls, filename, compressed)</span>
-<span class="g g-Whitespace">    </span><span class="mi">207</span>         <span class="k">if</span> <span class="n">compressed</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">208</span>             <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">209</span>                 <span class="k">with</span> <span class="n">gzip</span><span class="o">.</span><span class="n">GzipFile</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file_object</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">210</span>                     <span class="n">obj</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file_object</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">211</span>             <span class="k">except</span> <span class="ne">UnicodeDecodeError</span><span class="p">:</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/gzip.py</span> in <span class="ni">__init__</span><span class="nt">(self, filename, mode, compresslevel, fileobj, mtime)</span>
-<span class="g g-Whitespace">    </span><span class="mi">166</span>             <span class="n">mode</span> <span class="o">+=</span> <span class="s1">&#39;b&#39;</span>
-<span class="g g-Whitespace">    </span><span class="mi">167</span>         <span class="k">if</span> <span class="n">fileobj</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">168</span>             <span class="n">fileobj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">myfileobj</span> <span class="o">=</span> <span class="n">builtins</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">mode</span> <span class="ow">or</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">169</span>         <span class="k">if</span> <span class="n">filename</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">170</span>             <span class="n">filename</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">fileobj</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
-
-<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;/home/runner/work/nimare-paper/nimare-paper/data/neurosynth_dataset.pkl.gz&#39;
-</pre></div>
-</div>
-</div>
 </div>
 <p>Meta-analytic coactivation modeling (MACM) <span id="id1">[<a class="reference internal" href="bibliography.html#id86">Eickhoff <em>et al.</em>, 2010</a>, <a class="reference internal" href="bibliography.html#id76">Laird <em>et al.</em>, 2009</a>, <a class="reference internal" href="bibliography.html#id60">Robinson <em>et al.</em>, 2010</a>]</span>, also known as meta-analytic connectivity modeling, uses meta-analytic data to measure co-occurrence of activations between brain regions providing evidence of functional connectivity of brain regions across tasks.
 In coordinate-based MACM, whole-brain studies within the database are selected based on whether or not they report at least one peak in a region of interest specified for the analysis.
@@ -371,8 +347,8 @@ Nevertheless, MACM analyses do show high correspondence with resting-state funct
 MACM has been used to characterize the task-based functional coactivation of the cerebellum <span id="id4">[<a class="reference internal" href="bibliography.html#id90">Riedel <em>et al.</em>, 2015</a>]</span>, lateral prefrontal cortex <span id="id5">[<a class="reference internal" href="bibliography.html#id27">Reid <em>et al.</em>, 2016</a>]</span>, fusiform gyrus <span id="id6">[<a class="reference internal" href="bibliography.html#id56">Caspers <em>et al.</em>, 2014</a>]</span>, and several other brain regions.</p>
 <p>Within NiMARE, MACMs can be performed by selecting studies in a Dataset based on the presence of activation within a target mask or coordinate-centered sphere.</p>
 <p>In this section, we will perform two MACMs- one with a target mask and one with a coordinate-centered sphere.
-For the former, we use <a class="reference external" href="https://nimare.readthedocs.io/en/0.0.10/generated/nimare.dataset.Dataset.html#nimare.dataset.Dataset.get_studies_by_mask" title="(in NiMARE v0.0.10+0.ge8814c2.dirty)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">nimare.dataset.Dataset.get_studies_by_mask()</span></code></a>.
-For the latter, we use <a class="reference external" href="https://nimare.readthedocs.io/en/0.0.10/generated/nimare.dataset.Dataset.html#nimare.dataset.Dataset.get_studies_by_coordinate" title="(in NiMARE v0.0.10+0.ge8814c2.dirty)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">nimare.dataset.Dataset.get_studies_by_coordinate()</span></code></a>.</p>
+For the former, we use <code class="xref py py-meth docutils literal notranslate"><span class="pre">nimare.dataset.Dataset.get_studies_by_mask()</span></code>.
+For the latter, we use <code class="xref py py-meth docutils literal notranslate"><span class="pre">nimare.dataset.Dataset.get_studies_by_coordinate()</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create Dataset only containing studies with peaks within the amygdala mask</span>
@@ -420,8 +396,14 @@ For the latter, we use <a class="reference external" href="https://nimare.readth
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/macm_4_1.png" src="_images/macm_4_1.png" />
+</div>
 </div>
 <div class="figure align-center" id="figure-macm-rois" style="width: 150px">
+<div class="cell_output docutils container">
+<img alt="_images/macm_4_0.png" src="_images/macm_4_0.png" />
+</div>
 <p class="caption"><span class="caption-number">Fig. 9 </span><span class="caption-text">Region of interest masks for (1) a target mask-based MACM and (2) a coordinate-based MACM.</span><a class="headerlink" href="#figure-macm-rois" title="Permalink to this image">¶</a></p>
 </div>
 <p>Once the <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> has been reduced to studies with coordinates within the mask or sphere requested, any of the supported CBMA Estimators can be run.</p>
@@ -434,6 +416,14 @@ For the latter, we use <a class="reference external" href="https://nimare.readth
 
 <span class="n">meta_sphere</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">cbma</span><span class="o">.</span><span class="n">ale</span><span class="o">.</span><span class="n">ALE</span><span class="p">(</span><span class="n">kernel__sample_size</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 <span class="n">results_sphere</span> <span class="o">=</span> <span class="n">meta_sphere</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">dset_sphere</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:nimare.utils:Metadata field &#39;sample_sizes&#39; not found. Set a constant value for this field as an argument, if possible.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:nimare.utils:Metadata field &#39;sample_sizes&#39; not found. Set a constant value for this field as an argument, if possible.
 </pre></div>
 </div>
 </div>
@@ -470,8 +460,14 @@ For the latter, we use <a class="reference external" href="https://nimare.readth
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/macm_8_1.png" src="_images/macm_8_1.png" />
+</div>
 </div>
 <div class="figure align-center" id="figure-macm" style="width: 150px">
+<div class="cell_output docutils container">
+<img alt="_images/macm_8_0.png" src="_images/macm_8_0.png" />
+</div>
 <p class="caption"><span class="caption-number">Fig. 10 </span><span class="caption-text">One statistical map plot for each of the MACMs, generated with nilearn’s <code class="docutils literal notranslate"><span class="pre">plot_stat_map</span></code>.</span><a class="headerlink" href="#figure-macm" title="Permalink to this image">¶</a></p>
 </div>
 </div>
