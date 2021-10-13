@@ -101,7 +101,7 @@ First, we must use {py:func}`nimare.extract.download_cognitive_atlas` to downloa
 This includes both information about individual terms in the ontology and asserted relationships between those terms.
 
 NiMARE will automatically attempt to extrapolate likely alternate forms of each term in the ontology, in order to make extraction easier.
-For example,
+For an example, see {numref}`tbl:table_cogat_forms`.
 
 ```{code-cell} ipython3
 cogatlas = extract.download_cognitive_atlas(data_dir=DATA_DIR, overwrite=False)
@@ -111,6 +111,20 @@ rel_df = pd.read_csv(cogatlas["relationships"])
 cogat_counts_df, rep_text_df = annotate.cogat.extract_cogat(
     neurosynth_dset_first_500.texts, id_df, text_column="abstract"
 )
+```
+
+```{code-cell} ipython3
+:tags: [hide-cell]
+example_forms = id_df.loc[id_df["name"] == "dot motion task"][["id", "name", "alias"]]
+glue("table_cogat_forms", example_forms)
+```
+
+```{glue:figure} table_cogat_forms
+:name: "tbl:table_cogat_forms"
+:align: center
+
+An example of alternate forms characterized by the Cognitive Atlas and extrapolated by NiMARE.
+Certain alternate forms (i.e., synonyms) are specified within the Cognitive Atlas, while others are inferred automatically by NiMARE according to certain rules (e.g., removing parentheses).
 ```
 
 ```{code-cell} ipython3
