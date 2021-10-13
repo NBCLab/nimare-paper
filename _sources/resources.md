@@ -19,9 +19,9 @@ kernelspec:
 :tags: [hide-cell]
 # First, import the necessary modules and functions
 import os
+from pprint import pprint
 
-import matplotlib.pyplot as plt
-from nilearn import image
+import nimare
 
 # Define where data files will be located
 DATA_DIR = os.path.abspath("../data")
@@ -99,7 +99,7 @@ from nimare import extract
 
 # Download the desired version of Neurosynth from GitHub.
 files = extract.fetch_neurosynth(
-    path=DATA_DIR,
+    data_dir=DATA_DIR,
     version="7",
     source="abstract",
     vocab="terms",
@@ -162,11 +162,11 @@ We are able to use the same function for converting the database to a `Dataset` 
 ```{code-cell} ipython3
 # Download the desired version of NeuroQuery from GitHub.
 files = extract.fetch_neuroquery(
-    path=DATA_DIR,
+    data_dir=DATA_DIR,
     version="1",
-    source="body",
-    vocab="neuroquery7547",
-    type="count",
+    source="combined",
+    vocab="neuroquery6308",
+    type="tfidf",
     overwrite=False,
 )
 pprint(files)

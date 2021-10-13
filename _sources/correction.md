@@ -24,8 +24,6 @@ import matplotlib.pyplot as plt
 from myst_nb import glue
 from nilearn import plotting
 
-import nimare
-
 # Define where data files will be located
 DATA_DIR = os.path.abspath("../data")
 FIG_DIR = os.path.abspath("../images")
@@ -45,7 +43,7 @@ This will return an updated `MetaResult` object, with both the statistical maps 
 Here we will apply both FWE and FDR correction to results from a MKDADensity meta-analysis, performed back in [](content:cbma:mkdad).
 
 ```{code-cell} ipython3
-from nimare import meta, results
+from nimare import meta, correct
 
 mkdad_meta = meta.cbma.mkda.MKDADensity.load(os.path.join(DATA_DIR, "MKDADensity.pkl.gz"))
 

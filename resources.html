@@ -345,11 +345,11 @@
 <h1>External Meta-Analytic Resources<a class="headerlink" href="#external-meta-analytic-resources" title="Permalink to this headline">¶</a></h1>
 <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># First, import the necessary modules and functions</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># First, import the necessary modules and functions</span>
 <span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>
 
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">nilearn</span> <span class="kn">import</span> <span class="n">image</span>
+<span class="kn">import</span> <span class="nn">nimare</span>
 
 <span class="c1"># Define where data files will be located</span>
 <span class="n">DATA_DIR</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;../data&quot;</span><span class="p">)</span>
@@ -380,7 +380,7 @@ NiMARE provides a function to import data from Sleuth text files into the NiMARE
 Here, we convert two files from a previous publication by NiMARE contributors <span id="id4">[<a class="reference internal" href="bibliography.html#id97">Yanes <em>et al.</em>, 2018</a>]</span> into two separate <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>s.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nimare</span> <span class="kn">import</span> <span class="n">io</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nimare</span> <span class="kn">import</span> <span class="n">io</span>
 
 <span class="n">sleuth_dset1</span> <span class="o">=</span> <span class="n">nimare</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">convert_sleuth_to_dataset</span><span class="p">(</span>
     <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;contrast-CannabisMinusControl_space-talairach_sleuth.txt&quot;</span><span class="p">)</span>
@@ -400,6 +400,34 @@ Here, we convert two files from a previous publication by NiMARE contributors <s
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_2188</span><span class="o">/</span><span class="mf">888267057.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> 
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">sleuth_dset1</span> <span class="o">=</span> <span class="n">nimare</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">convert_sleuth_to_dataset</span><span class="p">(</span>
+<span class="ne">----&gt; </span><span class="mi">4</span>     <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;contrast-CannabisMinusControl_space-talairach_sleuth.txt&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">sleuth_dset2</span> <span class="o">=</span> <span class="n">nimare</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">convert_sleuth_to_dataset</span><span class="p">(</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/nimare/io.py</span> in <span class="ni">convert_sleuth_to_dataset</span><span class="nt">(text_file, target)</span>
+<span class="g g-Whitespace">    </span><span class="mi">422</span>     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">text_file</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">text_file</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">423</span>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unsupported type for parameter &#39;text_file&#39;: </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">text_file</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">424</span>     <span class="n">dset_dict</span> <span class="o">=</span> <span class="n">convert_sleuth_to_dict</span><span class="p">(</span><span class="n">text_file</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">425</span>     <span class="k">return</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">dset_dict</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">target</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">426</span> 
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/nimare/io.py</span> in <span class="ni">convert_sleuth_to_dict</span><span class="nt">(text_file)</span>
+<span class="g g-Whitespace">    </span><span class="mi">307</span>         <span class="k">return</span> <span class="n">dset_dict</span>
+<span class="g g-Whitespace">    </span><span class="mi">308</span> 
+<span class="ne">--&gt; </span><span class="mi">309</span>     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">text_file</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file_object</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">310</span>         <span class="n">data</span> <span class="o">=</span> <span class="n">file_object</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">311</span> 
+
+<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;/home/runner/work/nimare-paper/nimare-paper/data/contrast-CannabisMinusControl_space-talairach_sleuth.txt&#39;
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="neurosynth">
@@ -416,11 +444,11 @@ As evidence of its utility, Neurosynth has been used to define <em>a priori</em>
 <p>Here, we download the Neurosynth database from where it is stored (<a class="reference external" href="https://github.com/neurosynth/neurosynth-data">https://github.com/neurosynth/neurosynth-data</a>) and convert it to a NiMARE <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> using <a class="reference external" href="https://nimare.readthedocs.io/en/0.0.10/generated/nimare.extract.fetch_neurosynth.html#nimare.extract.fetch_neurosynth" title="(in NiMARE v0.0.10+0.ge8814c2.dirty)"><code class="xref py py-func docutils literal notranslate"><span class="pre">nimare.extract.fetch_neurosynth()</span></code></a>, for the first step, and <a class="reference external" href="https://nimare.readthedocs.io/en/0.0.10/generated/nimare.io.convert_neurosynth_to_dataset.html#nimare.io.convert_neurosynth_to_dataset" title="(in NiMARE v0.0.10+0.ge8814c2.dirty)"><code class="xref py py-func docutils literal notranslate"><span class="pre">nimare.io.convert_neurosynth_to_dataset()</span></code></a>, for the second.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nimare</span> <span class="kn">import</span> <span class="n">extract</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nimare</span> <span class="kn">import</span> <span class="n">extract</span>
 
 <span class="c1"># Download the desired version of Neurosynth from GitHub.</span>
 <span class="n">files</span> <span class="o">=</span> <span class="n">extract</span><span class="o">.</span><span class="n">fetch_neurosynth</span><span class="p">(</span>
-    <span class="n">path</span><span class="o">=</span><span class="n">DATA_DIR</span><span class="p">,</span>
+    <span class="n">data_dir</span><span class="o">=</span><span class="n">DATA_DIR</span><span class="p">,</span>
     <span class="n">version</span><span class="o">=</span><span class="s2">&quot;7&quot;</span><span class="p">,</span>
     <span class="n">source</span><span class="o">=</span><span class="s2">&quot;abstract&quot;</span><span class="p">,</span>
     <span class="n">vocab</span><span class="o">=</span><span class="s2">&quot;terms&quot;</span><span class="p">,</span>
@@ -452,7 +480,7 @@ Therefore, for the sake of ensuring that the analyses in this article may be rep
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">neurosynth_dset_first_500</span> <span class="o">=</span> <span class="n">neurosynth_dset</span><span class="o">.</span><span class="n">slice</span><span class="p">(</span><span class="n">neurosynth_dset</span><span class="o">.</span><span class="n">ids</span><span class="p">[:</span><span class="mi">500</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">neurosynth_dset_first_500</span> <span class="o">=</span> <span class="n">neurosynth_dset</span><span class="o">.</span><span class="n">slice</span><span class="p">(</span><span class="n">neurosynth_dset</span><span class="o">.</span><span class="n">ids</span><span class="p">[:</span><span class="mi">500</span><span class="p">])</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">neurosynth_dset</span><span class="p">)</span>
 
 <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;neurosynth_dataset_first500.pkl.gz&quot;</span><span class="p">)):</span>
@@ -478,13 +506,13 @@ The functions for downloading the NeuroQuery database and converting it to a <co
 We are able to use the same function for converting the database to a <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> for NeuroQuery as Neurosynth because both databases store their data in the same structure.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download the desired version of NeuroQuery from GitHub.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download the desired version of NeuroQuery from GitHub.</span>
 <span class="n">files</span> <span class="o">=</span> <span class="n">extract</span><span class="o">.</span><span class="n">fetch_neuroquery</span><span class="p">(</span>
-    <span class="n">path</span><span class="o">=</span><span class="n">DATA_DIR</span><span class="p">,</span>
+    <span class="n">data_dir</span><span class="o">=</span><span class="n">DATA_DIR</span><span class="p">,</span>
     <span class="n">version</span><span class="o">=</span><span class="s2">&quot;1&quot;</span><span class="p">,</span>
-    <span class="n">source</span><span class="o">=</span><span class="s2">&quot;body&quot;</span><span class="p">,</span>
-    <span class="n">vocab</span><span class="o">=</span><span class="s2">&quot;neuroquery7547&quot;</span><span class="p">,</span>
-    <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;count&quot;</span><span class="p">,</span>
+    <span class="n">source</span><span class="o">=</span><span class="s2">&quot;combined&quot;</span><span class="p">,</span>
+    <span class="n">vocab</span><span class="o">=</span><span class="s2">&quot;neuroquery6308&quot;</span><span class="p">,</span>
+    <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;tfidf&quot;</span><span class="p">,</span>
     <span class="n">overwrite</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="n">pprint</span><span class="p">(</span><span class="n">files</span><span class="p">)</span>

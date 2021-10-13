@@ -337,11 +337,10 @@
 <h1>Image-Based Meta-Analysis<a class="headerlink" href="#image-based-meta-analysis" title="Permalink to this headline">¶</a></h1>
 <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># First, import the necessary modules and functions</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># First, import the necessary modules and functions</span>
 <span class="kn">import</span> <span class="nn">os</span>
 
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
 <span class="kn">from</span> <span class="nn">nilearn</span> <span class="kn">import</span> <span class="n">plotting</span>
 
@@ -353,6 +352,36 @@
 
 <span class="c1"># Now, load the Datasets we will use in this chapter</span>
 <span class="n">sleuth_dset1</span> <span class="o">=</span> <span class="n">nimare</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;sleuth_dset1.pkl.gz&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/nilearn/datasets/__init__.py:90: FutureWarning: Fetchers from the nilearn.datasets module will be updated in version 0.9 to return python strings instead of bytes and Pandas dataframes instead of Numpy arrays.
+  &quot;Numpy arrays.&quot;, FutureWarning)
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_2141</span><span class="o">/</span><span class="mf">2427347634.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">     </span><span class="mi">13</span> 
+<span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="c1"># Now, load the Datasets we will use in this chapter</span>
+<span class="ne">---&gt; </span><span class="mi">15</span> <span class="n">sleuth_dset1</span> <span class="o">=</span> <span class="n">nimare</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;sleuth_dset1.pkl.gz&quot;</span><span class="p">))</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/nimare/base.py</span> in <span class="ni">load</span><span class="nt">(cls, filename, compressed)</span>
+<span class="g g-Whitespace">    </span><span class="mi">207</span>         <span class="k">if</span> <span class="n">compressed</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">208</span>             <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">209</span>                 <span class="k">with</span> <span class="n">gzip</span><span class="o">.</span><span class="n">GzipFile</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file_object</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">210</span>                     <span class="n">obj</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file_object</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">211</span>             <span class="k">except</span> <span class="ne">UnicodeDecodeError</span><span class="p">:</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/gzip.py</span> in <span class="ni">__init__</span><span class="nt">(self, filename, mode, compresslevel, fileobj, mtime)</span>
+<span class="g g-Whitespace">    </span><span class="mi">166</span>             <span class="n">mode</span> <span class="o">+=</span> <span class="s1">&#39;b&#39;</span>
+<span class="g g-Whitespace">    </span><span class="mi">167</span>         <span class="k">if</span> <span class="n">fileobj</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">168</span>             <span class="n">fileobj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">myfileobj</span> <span class="o">=</span> <span class="n">builtins</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">mode</span> <span class="ow">or</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">169</span>         <span class="k">if</span> <span class="n">filename</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">170</span>             <span class="n">filename</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">fileobj</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;/home/runner/work/nimare-paper/nimare-paper/data/sleuth_dset1.pkl.gz&#39;
 </pre></div>
 </div>
 </div>
@@ -381,7 +410,7 @@ When sample size information is available, users may incorporate that informatio
 <p>Given the paucity of image-based meta-analytic datasets, we have included the tools to build a Dataset from a NeuroVault collection of 21 pain studies, originally described in <span id="id10">Maumet and Nichols [<a class="reference internal" href="bibliography.html#id23">2016</a>]</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nimare</span> <span class="kn">import</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">extract</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nimare</span> <span class="kn">import</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">extract</span>
 <span class="kn">from</span> <span class="nn">nimare.tests.utils</span> <span class="kn">import</span> <span class="n">get_test_data_path</span>
 
 <span class="n">dset_dir</span> <span class="o">=</span> <span class="n">extract</span><span class="o">.</span><span class="n">download_nidm_pain</span><span class="p">(</span><span class="n">data_dir</span><span class="o">=</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -402,7 +431,7 @@ For example, researchers may share test statistic maps with z-statistics or t-st
 This allows us to apply more image-based meta-analysis algorithms to the <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nimare</span> <span class="kn">import</span> <span class="n">transforms</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nimare</span> <span class="kn">import</span> <span class="n">transforms</span>
 
 <span class="n">img_transformer</span> <span class="o">=</span> <span class="n">transforms</span><span class="o">.</span><span class="n">ImageTransformer</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;z&quot;</span><span class="p">,</span> <span class="s2">&quot;varcope&quot;</span><span class="p">],</span> <span class="n">overwrite</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">img_dset</span> <span class="o">=</span> <span class="n">img_transformer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">img_dset</span><span class="p">)</span>
@@ -412,7 +441,7 @@ This allows us to apply more image-based meta-analysis algorithms to the <code c
 </div>
 <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here we delete the recent variables for the sake of reducing memory usage</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here we delete the recent variables for the sake of reducing memory usage</span>
 <span class="k">del</span> <span class="n">img_transformer</span>
 </pre></div>
 </div>
@@ -422,7 +451,7 @@ This allows us to apply more image-based meta-analysis algorithms to the <code c
 We will start with a DerSimonian-Laird meta-analysis (<a class="reference external" href="https://nimare.readthedocs.io/en/0.0.10/generated/nimare.meta.ibma.DerSimonianLaird.html#nimare.meta.ibma.DerSimonianLaird" title="(in NiMARE v0.0.10+0.ge8814c2.dirty)"><code class="xref py py-class docutils literal notranslate"><span class="pre">nimare.meta.ibma.DerSimonianLaird</span></code></a>).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nimare</span> <span class="kn">import</span> <span class="n">meta</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nimare</span> <span class="kn">import</span> <span class="n">meta</span>
 
 <span class="n">dsl_meta</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">ibma</span><span class="o">.</span><span class="n">DerSimonianLaird</span><span class="p">()</span>
 <span class="n">dsl_results</span> <span class="o">=</span> <span class="n">dsl_meta</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">img_dset</span><span class="p">)</span>
@@ -435,7 +464,7 @@ We will start with a DerSimonian-Laird meta-analysis (<a class="reference extern
 </div>
 <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here we delete the recent variables for the sake of reducing memory usage</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here we delete the recent variables for the sake of reducing memory usage</span>
 <span class="k">del</span> <span class="n">dsl_meta</span><span class="p">,</span> <span class="n">dsl_results</span>
 </pre></div>
 </div>
@@ -444,7 +473,7 @@ We will start with a DerSimonian-Laird meta-analysis (<a class="reference extern
 <p>Now we will apply other available IBMA <code class="docutils literal notranslate"><span class="pre">Estimator</span></code>s to the same <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>, and save their results to files for comparison.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Stouffer&#39;s</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Stouffer&#39;s</span>
 <span class="n">stouffers_meta</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">ibma</span><span class="o">.</span><span class="n">Stouffers</span><span class="p">(</span><span class="n">use_sample_size</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">stouffers_results</span> <span class="o">=</span> <span class="n">stouffers_meta</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">img_dset</span><span class="p">)</span>
 <span class="n">stouffers_img</span> <span class="o">=</span> <span class="n">stouffers_results</span><span class="o">.</span><span class="n">get_map</span><span class="p">(</span><span class="s2">&quot;z&quot;</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s2">&quot;image&quot;</span><span class="p">)</span>
@@ -481,6 +510,8 @@ We will start with a DerSimonian-Laird meta-analysis (<a class="reference extern
 <span class="k">del</span> <span class="n">hedges_meta</span><span class="p">,</span> <span class="n">hedges_results</span>
 
 <span class="c1"># Use atlas for likelihood-based estimators</span>
+<span class="kn">from</span> <span class="nn">nilearn</span> <span class="kn">import</span> <span class="n">datasets</span><span class="p">,</span> <span class="n">image</span><span class="p">,</span> <span class="n">input_data</span>
+
 <span class="n">atlas</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">fetch_atlas_harvard_oxford</span><span class="p">(</span><span class="s2">&quot;cort-maxprob-thr25-2mm&quot;</span><span class="p">)</span>
 
 <span class="c1"># nilearn&#39;s NiftiLabelsMasker cannot handle NaNs at the moment,</span>
@@ -513,7 +544,7 @@ We will start with a DerSimonian-Laird meta-analysis (<a class="reference extern
 <p>Here we load the z-statistic map from each of the IBMA Estimators we’ve used throughout this chapter and plot them all side by side.</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">meta_results</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">meta_results</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&quot;DerSimonian-Laird&quot;</span><span class="p">:</span> <span class="n">dsl_img</span><span class="p">,</span>
     <span class="s2">&quot;Stouffer&#39;s&quot;</span><span class="p">:</span> <span class="n">stouffers_img</span><span class="p">,</span>
     <span class="s2">&quot;Weighted Stouffer&#39;s&quot;</span><span class="p">:</span> <span class="n">wstouffers_img</span><span class="p">,</span>

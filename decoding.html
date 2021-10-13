@@ -347,7 +347,7 @@
 <h1>Meta-Analytic Functional Decoding<a class="headerlink" href="#meta-analytic-functional-decoding" title="Permalink to this headline">¶</a></h1>
 <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># First, import the necessary modules and functions</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># First, import the necessary modules and functions</span>
 <span class="kn">import</span> <span class="nn">os</span>
 
 <span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
@@ -360,22 +360,23 @@
 </div>
 <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">nimare</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">nimare</span>
 <span class="kn">from</span> <span class="nn">nimare</span> <span class="kn">import</span> <span class="n">meta</span>
 
 <span class="n">dset_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;neurosynth_dataset_first500_with_mkda_ma.pkl.gz&quot;</span><span class="p">)</span>
+<span class="n">kern</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">kernel</span><span class="o">.</span><span class="n">MKDAKernel</span><span class="p">(</span><span class="n">memory_limit</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">target_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;neurosynth_dataset_maps&quot;</span><span class="p">)</span>
 <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">dset_file</span><span class="p">):</span>
     <span class="n">neurosynth_dset_first500</span> <span class="o">=</span> <span class="n">nimare</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">load</span><span class="p">(</span>
         <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;neurosynth_dataset_first500.pkl.gz&quot;</span><span class="p">)</span>
     <span class="p">)</span>
-    <span class="n">target_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;neurosynth_dataset_maps&quot;</span><span class="p">)</span>
     <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">target_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">kern</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">kernel</span><span class="o">.</span><span class="n">MKDAKernel</span><span class="p">(</span><span class="n">memory_limit</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
     <span class="n">neurosynth_dset_first500</span><span class="o">.</span><span class="n">update_path</span><span class="p">(</span><span class="n">target_folder</span><span class="p">)</span>
     <span class="n">neurosynth_dset_first500</span> <span class="o">=</span> <span class="n">kern</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">neurosynth_dset_first500</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s2">&quot;dataset&quot;</span><span class="p">)</span>
     <span class="n">neurosynth_dset_first500</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">dset_file</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="n">neurosynth_dset</span> <span class="o">=</span> <span class="n">nimare</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">dset_file</span><span class="p">)</span>
+    <span class="n">neurosynth_dset_first500</span> <span class="o">=</span> <span class="n">nimare</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">dset_file</span><span class="p">)</span>
+    <span class="n">neurosynth_dset_first500</span><span class="o">.</span><span class="n">update_path</span><span class="p">(</span><span class="n">target_folder</span><span class="p">)</span>
 
 <span class="c1"># Collect features for decoding</span>
 <span class="c1"># We use any features that appear in &gt;5% of studies and &lt;95%.</span>
@@ -393,6 +394,34 @@
 
 <span class="n">amygdala_roi</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;amygdala_roi.nii.gz&quot;</span><span class="p">)</span>
 <span class="n">amygdala_ids</span> <span class="o">=</span> <span class="n">neurosynth_dset_first500</span><span class="o">.</span><span class="n">get_studies_by_mask</span><span class="p">(</span><span class="n">amygdala_roi</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_2119</span><span class="o">/</span><span class="mf">1593862858.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">dset_file</span><span class="p">):</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span>     <span class="n">neurosynth_dset_first500</span> <span class="o">=</span> <span class="n">nimare</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">load</span><span class="p">(</span>
+<span class="ne">----&gt; </span><span class="mi">9</span>         <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;neurosynth_dataset_first500.pkl.gz&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span>     <span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span>     <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">target_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/nimare/base.py</span> in <span class="ni">load</span><span class="nt">(cls, filename, compressed)</span>
+<span class="g g-Whitespace">    </span><span class="mi">207</span>         <span class="k">if</span> <span class="n">compressed</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">208</span>             <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">209</span>                 <span class="k">with</span> <span class="n">gzip</span><span class="o">.</span><span class="n">GzipFile</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file_object</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">210</span>                     <span class="n">obj</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file_object</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">211</span>             <span class="k">except</span> <span class="ne">UnicodeDecodeError</span><span class="p">:</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/gzip.py</span> in <span class="ni">__init__</span><span class="nt">(self, filename, mode, compresslevel, fileobj, mtime)</span>
+<span class="g g-Whitespace">    </span><span class="mi">166</span>             <span class="n">mode</span> <span class="o">+=</span> <span class="s1">&#39;b&#39;</span>
+<span class="g g-Whitespace">    </span><span class="mi">167</span>         <span class="k">if</span> <span class="n">fileobj</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">168</span>             <span class="n">fileobj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">myfileobj</span> <span class="o">=</span> <span class="n">builtins</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">mode</span> <span class="ow">or</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">169</span>         <span class="k">if</span> <span class="n">filename</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">170</span>             <span class="n">filename</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">fileobj</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;/home/runner/work/nimare-paper/nimare-paper/data/neurosynth_dataset_first500.pkl.gz&#39;
 </pre></div>
 </div>
 </div>
@@ -417,7 +446,7 @@ NiMARE includes methods for both correlation-based decoding and correlation dist
 As such, we will only show the <a class="reference external" href="https://nimare.readthedocs.io/en/0.0.10/generated/nimare.decode.continuous.CorrelationDecoder.html#nimare.decode.continuous.CorrelationDecoder" title="(in NiMARE v0.0.10+0.ge8814c2.dirty)"><code class="xref py py-class docutils literal notranslate"><span class="pre">nimare.decode.continuous.CorrelationDecoder</span></code></a> here.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nimare</span> <span class="kn">import</span> <span class="n">decode</span><span class="p">,</span> <span class="n">meta</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nimare</span> <span class="kn">import</span> <span class="n">decode</span><span class="p">,</span> <span class="n">meta</span>
 
 <span class="n">corr_decoder</span> <span class="o">=</span> <span class="n">decode</span><span class="o">.</span><span class="n">continuous</span><span class="o">.</span><span class="n">CorrelationDecoder</span><span class="p">(</span>
     <span class="n">frequency_threshold</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span>
@@ -434,7 +463,7 @@ As such, we will only show the <a class="reference external" href="https://nimar
 </div>
 <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">corr_df</span> <span class="o">=</span> <span class="n">corr_df</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">corr_df</span> <span class="o">=</span> <span class="n">corr_df</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span>
     <span class="n">corr_df</span><span class="p">[</span><span class="s2">&quot;r&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">index</span>
 <span class="p">)</span>
 <span class="n">corr_df</span> <span class="o">=</span> <span class="n">corr_df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
@@ -448,7 +477,7 @@ As such, we will only show the <a class="reference external" href="https://nimar
 </div>
 <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here we delete the recent variables for the sake of reducing memory usage</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here we delete the recent variables for the sake of reducing memory usage</span>
 <span class="k">del</span> <span class="n">corr_decoder</span><span class="p">,</span> <span class="n">corr_df</span>
 </pre></div>
 </div>
@@ -467,7 +496,7 @@ These averaged modeled activation values are then correlated with the term weigh
 This decoding method produces a single correlation coefficient for each of the dataset’s labels.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">assoc_decoder</span> <span class="o">=</span> <span class="n">decode</span><span class="o">.</span><span class="n">discrete</span><span class="o">.</span><span class="n">ROIAssociationDecoder</span><span class="p">(</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">assoc_decoder</span> <span class="o">=</span> <span class="n">decode</span><span class="o">.</span><span class="n">discrete</span><span class="o">.</span><span class="n">ROIAssociationDecoder</span><span class="p">(</span>
     <span class="n">amygdala_roi</span><span class="p">,</span>
     <span class="n">u</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
     <span class="n">correction</span><span class="o">=</span><span class="s2">&quot;fdr_bh&quot;</span><span class="p">,</span>
@@ -481,7 +510,7 @@ This decoding method produces a single correlation coefficient for each of the d
 </div>
 <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">assoc_df</span> <span class="o">=</span> <span class="n">assoc_df</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">assoc_df</span><span class="p">[</span><span class="s2">&quot;r&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">assoc_df</span> <span class="o">=</span> <span class="n">assoc_df</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">assoc_df</span><span class="p">[</span><span class="s2">&quot;r&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
 <span class="n">assoc_df</span> <span class="o">=</span> <span class="n">assoc_df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
 <span class="n">glue</span><span class="p">(</span><span class="s2">&quot;table_assoc&quot;</span><span class="p">,</span> <span class="n">assoc_df</span><span class="p">)</span>
 </pre></div>
@@ -493,7 +522,7 @@ This decoding method produces a single correlation coefficient for each of the d
 </div>
 <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here we delete the recent variables for the sake of reducing memory usage</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here we delete the recent variables for the sake of reducing memory usage</span>
 <span class="k">del</span> <span class="n">assoc_decoder</span><span class="p">,</span> <span class="n">assoc_df</span>
 </pre></div>
 </div>
@@ -521,7 +550,7 @@ This specificity analysis produces a p-value and an effect size measure of the p
 A detailed algorithm description is presented in <strong>Appendix I</strong>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">brainmap_decoder</span> <span class="o">=</span> <span class="n">decode</span><span class="o">.</span><span class="n">discrete</span><span class="o">.</span><span class="n">BrainMapDecoder</span><span class="p">(</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">brainmap_decoder</span> <span class="o">=</span> <span class="n">decode</span><span class="o">.</span><span class="n">discrete</span><span class="o">.</span><span class="n">BrainMapDecoder</span><span class="p">(</span>
     <span class="n">frequency_threshold</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span>
     <span class="n">u</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
     <span class="n">correction</span><span class="o">=</span><span class="s2">&quot;fdr_bh&quot;</span><span class="p">,</span>
@@ -535,7 +564,7 @@ A detailed algorithm description is presented in <strong>Appendix I</strong>.</p
 </div>
 <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">brainmap_df</span> <span class="o">=</span> <span class="n">brainmap_df</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">brainmap_df</span> <span class="o">=</span> <span class="n">brainmap_df</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span>
     <span class="n">brainmap_df</span><span class="p">[</span><span class="s2">&quot;probReverse&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">index</span>
 <span class="p">)</span>
 <span class="n">brainmap_df</span> <span class="o">=</span> <span class="n">brainmap_df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
@@ -549,7 +578,7 @@ A detailed algorithm description is presented in <strong>Appendix I</strong>.</p
 </div>
 <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here we delete the recent variables for the sake of reducing memory usage</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here we delete the recent variables for the sake of reducing memory usage</span>
 <span class="k">del</span> <span class="n">brainmap_decoder</span><span class="p">,</span> <span class="n">brainmap_df</span>
 </pre></div>
 </div>
@@ -571,7 +600,7 @@ For the specificity analysis, the Neurosynth method produces both a p-value and 
 A detailed algorithm description is presented in <strong>Appendix II</strong>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">neurosynth_decoder</span> <span class="o">=</span> <span class="n">decode</span><span class="o">.</span><span class="n">discrete</span><span class="o">.</span><span class="n">NeurosynthDecoder</span><span class="p">(</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">neurosynth_decoder</span> <span class="o">=</span> <span class="n">decode</span><span class="o">.</span><span class="n">discrete</span><span class="o">.</span><span class="n">NeurosynthDecoder</span><span class="p">(</span>
     <span class="n">frequency_threshold</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span>
     <span class="n">u</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
     <span class="n">correction</span><span class="o">=</span><span class="s2">&quot;fdr_bh&quot;</span><span class="p">,</span>
@@ -585,7 +614,7 @@ A detailed algorithm description is presented in <strong>Appendix II</strong>.</
 </div>
 <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">neurosynth_df</span> <span class="o">=</span> <span class="n">neurosynth_df</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">neurosynth_df</span> <span class="o">=</span> <span class="n">neurosynth_df</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span>
     <span class="n">neurosynth_df</span><span class="p">[</span><span class="s2">&quot;probReverse&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">index</span>
 <span class="p">)</span>
 <span class="n">neurosynth_df</span> <span class="o">=</span> <span class="n">neurosynth_df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
@@ -599,7 +628,7 @@ A detailed algorithm description is presented in <strong>Appendix II</strong>.</
 </div>
 <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here we delete the recent variables for the sake of reducing memory usage</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here we delete the recent variables for the sake of reducing memory usage</span>
 <span class="k">del</span> <span class="n">neurosynth_decoder</span><span class="p">,</span> <span class="n">neurosynth_df</span>
 </pre></div>
 </div>

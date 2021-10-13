@@ -373,8 +373,9 @@
 <h1>Coordinate-Based Meta-Analysis<a class="headerlink" href="#coordinate-based-meta-analysis" title="Permalink to this headline">¶</a></h1>
 <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># First, import the necessary modules and functions</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># First, import the necessary modules and functions</span>
 <span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>
 
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -389,6 +390,40 @@
 
 <span class="c1"># Now, load the Datasets we will use in this chapter</span>
 <span class="n">sleuth_dset1</span> <span class="o">=</span> <span class="n">nimare</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;sleuth_dset1.pkl.gz&quot;</span><span class="p">))</span>
+<span class="n">sleuth_dset2</span> <span class="o">=</span> <span class="n">nimare</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;sleuth_dset2.pkl.gz&quot;</span><span class="p">))</span>
+<span class="n">neurosynth_dset</span> <span class="o">=</span> <span class="n">nimare</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;neurosynth_dataset.pkl.gz&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/nilearn/datasets/__init__.py:90: FutureWarning: Fetchers from the nilearn.datasets module will be updated in version 0.9 to return python strings instead of bytes and Pandas dataframes instead of Numpy arrays.
+  &quot;Numpy arrays.&quot;, FutureWarning)
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_2070</span><span class="o">/</span><span class="mf">4166272374.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">     </span><span class="mi">15</span> 
+<span class="g g-Whitespace">     </span><span class="mi">16</span> <span class="c1"># Now, load the Datasets we will use in this chapter</span>
+<span class="ne">---&gt; </span><span class="mi">17</span> <span class="n">sleuth_dset1</span> <span class="o">=</span> <span class="n">nimare</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;sleuth_dset1.pkl.gz&quot;</span><span class="p">))</span>
+<span class="g g-Whitespace">     </span><span class="mi">18</span> <span class="n">sleuth_dset2</span> <span class="o">=</span> <span class="n">nimare</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;sleuth_dset2.pkl.gz&quot;</span><span class="p">))</span>
+<span class="g g-Whitespace">     </span><span class="mi">19</span> <span class="n">neurosynth_dset</span> <span class="o">=</span> <span class="n">nimare</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;neurosynth_dataset.pkl.gz&quot;</span><span class="p">))</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/nimare/base.py</span> in <span class="ni">load</span><span class="nt">(cls, filename, compressed)</span>
+<span class="g g-Whitespace">    </span><span class="mi">207</span>         <span class="k">if</span> <span class="n">compressed</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">208</span>             <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">209</span>                 <span class="k">with</span> <span class="n">gzip</span><span class="o">.</span><span class="n">GzipFile</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file_object</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">210</span>                     <span class="n">obj</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file_object</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">211</span>             <span class="k">except</span> <span class="ne">UnicodeDecodeError</span><span class="p">:</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/gzip.py</span> in <span class="ni">__init__</span><span class="nt">(self, filename, mode, compresslevel, fileobj, mtime)</span>
+<span class="g g-Whitespace">    </span><span class="mi">166</span>             <span class="n">mode</span> <span class="o">+=</span> <span class="s1">&#39;b&#39;</span>
+<span class="g g-Whitespace">    </span><span class="mi">167</span>         <span class="k">if</span> <span class="n">fileobj</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">168</span>             <span class="n">fileobj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">myfileobj</span> <span class="o">=</span> <span class="n">builtins</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">mode</span> <span class="ow">or</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">169</span>         <span class="k">if</span> <span class="n">filename</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">170</span>             <span class="n">filename</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">fileobj</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;/home/runner/work/nimare-paper/nimare-paper/data/sleuth_dset1.pkl.gz&#39;
 </pre></div>
 </div>
 </div>
@@ -413,21 +448,21 @@ For example, <code class="docutils literal notranslate"><span class="pre">MKDAKe
 <p>Here we show how these three kernels can be applied to the same <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nimare.meta</span> <span class="kn">import</span> <span class="n">kernel</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nimare.meta</span> <span class="kn">import</span> <span class="n">kernel</span>
 
 <span class="n">mkda_kernel</span> <span class="o">=</span> <span class="n">kernel</span><span class="o">.</span><span class="n">MKDAKernel</span><span class="p">(</span><span class="n">r</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-<span class="n">mkda_ma_maps</span> <span class="o">=</span> <span class="n">mkda_kernel</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">sl_dset1</span><span class="p">)</span>
+<span class="n">mkda_ma_maps</span> <span class="o">=</span> <span class="n">mkda_kernel</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">sleuth_dset1</span><span class="p">)</span>
 <span class="n">kda_kernel</span> <span class="o">=</span> <span class="n">kernel</span><span class="o">.</span><span class="n">KDAKernel</span><span class="p">(</span><span class="n">r</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-<span class="n">kda_ma_maps</span> <span class="o">=</span> <span class="n">kda_kernel</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">sl_dset1</span><span class="p">)</span>
+<span class="n">kda_ma_maps</span> <span class="o">=</span> <span class="n">kda_kernel</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">sleuth_dset1</span><span class="p">)</span>
 <span class="n">ale_kernel</span> <span class="o">=</span> <span class="n">kernel</span><span class="o">.</span><span class="n">ALEKernel</span><span class="p">(</span><span class="n">sample_size</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-<span class="n">ale_ma_maps</span> <span class="o">=</span> <span class="n">ale_kernel</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">sl_dset1</span><span class="p">)</span>
+<span class="n">ale_ma_maps</span> <span class="o">=</span> <span class="n">ale_kernel</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">sleuth_dset1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here we delete the recent variables for the sake of reducing memory usage</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here we delete the recent variables for the sake of reducing memory usage</span>
 <span class="k">del</span> <span class="n">mkda_kernel</span><span class="p">,</span> <span class="n">kda_kernel</span><span class="p">,</span> <span class="n">ale_kernel</span>
 </pre></div>
 </div>
@@ -435,7 +470,7 @@ For example, <code class="docutils literal notranslate"><span class="pre">MKDAKe
 </div>
 <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate figure</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate figure</span>
 <span class="n">study_idx</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># a study with overlapping kernels</span>
 <span class="n">max_value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">kda_ma_maps</span><span class="p">[</span><span class="n">study_idx</span><span class="p">]</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">())</span> <span class="o">+</span> <span class="mi">1</span>
 
@@ -480,7 +515,7 @@ For example, <code class="docutils literal notranslate"><span class="pre">MKDAKe
 </div>
 <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here we delete the recent variables for the sake of reducing memory usage</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here we delete the recent variables for the sake of reducing memory usage</span>
 <span class="k">del</span> <span class="n">mkda_ma_maps</span><span class="p">,</span> <span class="n">kda_ma_maps</span><span class="p">,</span> <span class="n">ale_ma_maps</span>
 </pre></div>
 </div>
@@ -517,7 +552,7 @@ Please see the multiple comparisons correction chapter for more information.</p>
 We will use the “approximate” null method for speed.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nimare.meta.cbma</span> <span class="kn">import</span> <span class="n">mkda</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nimare.meta.cbma</span> <span class="kn">import</span> <span class="n">mkda</span>
 
 <span class="n">mkdad_meta</span> <span class="o">=</span> <span class="n">mkda</span><span class="o">.</span><span class="n">MKDADensity</span><span class="p">(</span><span class="n">null_method</span><span class="o">=</span><span class="s2">&quot;approximate&quot;</span><span class="p">)</span>
 <span class="n">mkdad_results</span> <span class="o">=</span> <span class="n">mkdad_meta</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">sleuth_dset1</span><span class="p">)</span>
@@ -531,7 +566,7 @@ We will use the “approximate” null method for speed.</p>
 The <code class="docutils literal notranslate"><span class="pre">MetaResult</span></code> class is a light container holding the different statistical maps produced by the <code class="docutils literal notranslate"><span class="pre">Estimator</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">mkdad_results</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">mkdad_results</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -539,7 +574,7 @@ The <code class="docutils literal notranslate"><span class="pre">MetaResult</spa
 <p>This result is also retained as an attribute in the <code class="docutils literal notranslate"><span class="pre">Estimator</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">mkdad_meta</span><span class="o">.</span><span class="n">results</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">mkdad_meta</span><span class="o">.</span><span class="n">results</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -547,7 +582,7 @@ The <code class="docutils literal notranslate"><span class="pre">MetaResult</spa
 <p>The <code class="docutils literal notranslate"><span class="pre">maps</span></code> attribute is a dictionary containing statistical map names and associated numpy arrays.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">mkdad_results</span><span class="o">.</span><span class="n">maps</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pprint</span><span class="p">(</span><span class="n">mkdad_results</span><span class="o">.</span><span class="n">maps</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -556,7 +591,7 @@ The <code class="docutils literal notranslate"><span class="pre">MetaResult</spa
 We can also use the <code class="docutils literal notranslate"><span class="pre">get_map</span></code> method to get that image object.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdad_img</span> <span class="o">=</span> <span class="n">mkdad_results</span><span class="o">.</span><span class="n">get_map</span><span class="p">(</span><span class="s2">&quot;z&quot;</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s2">&quot;image&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mkdad_img</span> <span class="o">=</span> <span class="n">mkdad_results</span><span class="o">.</span><span class="n">get_map</span><span class="p">(</span><span class="s2">&quot;z&quot;</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s2">&quot;image&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">mkdad_img</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -566,7 +601,7 @@ We can also use the <code class="docutils literal notranslate"><span class="pre"
 Here, we will save all of the statistical maps with the MKDADensity prefix.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdad_results</span><span class="o">.</span><span class="n">save_maps</span><span class="p">(</span><span class="n">output_dir</span><span class="o">=</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;MKDADensity&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mkdad_results</span><span class="o">.</span><span class="n">save_maps</span><span class="p">(</span><span class="n">output_dir</span><span class="o">=</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;MKDADensity&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -574,14 +609,14 @@ Here, we will save all of the statistical maps with the MKDADensity prefix.</p>
 <p>We will also save the <code class="docutils literal notranslate"><span class="pre">Estimator</span></code> itself, which we will reuse when we get to multiple comparisons correction.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdad_meta</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;MKDADensity.pkl.gz&quot;</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mkdad_meta</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;MKDADensity.pkl.gz&quot;</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here we delete the recent variables for the sake of reducing memory usage</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here we delete the recent variables for the sake of reducing memory usage</span>
 <span class="k">del</span> <span class="n">mkdad_meta</span><span class="p">,</span> <span class="n">mkdad_results</span>
 </pre></div>
 </div>
@@ -590,7 +625,7 @@ Here, we will save all of the statistical maps with the MKDADensity prefix.</p>
 <p>Since this is a kernel-based algorithm, the kernel transformer is an optional input to the meta-analytic estimator, and can be controlled in a more fine-grained manner.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># These two approaches (initializing the kernel ahead of time or</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># These two approaches (initializing the kernel ahead of time or</span>
 <span class="c1"># providing the arguments with the kernel__ prefix) are equivalent.</span>
 <span class="n">mkda_kernel</span> <span class="o">=</span> <span class="n">kernel</span><span class="o">.</span><span class="n">MKDAKernel</span><span class="p">(</span><span class="n">r</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">mkdad_meta</span> <span class="o">=</span> <span class="n">mkda</span><span class="o">.</span><span class="n">MKDADensity</span><span class="p">(</span><span class="n">kernel_transformer</span><span class="o">=</span><span class="n">mkda_kernel</span><span class="p">)</span>
@@ -605,8 +640,8 @@ Here, we will save all of the statistical maps with the MKDADensity prefix.</p>
 </div>
 <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here we delete the recent variables for the sake of reducing memory usage</span>
-<span class="k">del</span> <span class="n">mkda_kernel</span><span class="p">,</span> <span class="n">mkdad_meta</span><span class="p">,</span> <span class="n">mkdad_results</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here we delete the recent variables for the sake of reducing memory usage</span>
+<span class="k">del</span> <span class="n">mkda_kernel</span><span class="p">,</span> <span class="n">mkdad_meta</span>
 </pre></div>
 </div>
 </div>
@@ -620,7 +655,7 @@ For the sake of completeness, NiMARE also includes a KDA estimator that implemen
 The interface is virtually identical, but since there are few if any legitimate uses of KDA (which models studies as fixed rather than random effects), we do not discuss the algorithm further here.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">kda_meta</span> <span class="o">=</span> <span class="n">mkda</span><span class="o">.</span><span class="n">KDA</span><span class="p">(</span><span class="n">null_method</span><span class="o">=</span><span class="s2">&quot;approximate&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kda_meta</span> <span class="o">=</span> <span class="n">mkda</span><span class="o">.</span><span class="n">KDA</span><span class="p">(</span><span class="n">null_method</span><span class="o">=</span><span class="s2">&quot;approximate&quot;</span><span class="p">)</span>
 <span class="n">kda_results</span> <span class="o">=</span> <span class="n">kda_meta</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">sleuth_dset1</span><span class="p">)</span>
 
 <span class="c1"># Retain the z-statistic map for later use</span>
@@ -631,7 +666,7 @@ The interface is virtually identical, but since there are few if any legitimate 
 </div>
 <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here we delete the recent variables for the sake of reducing memory usage</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here we delete the recent variables for the sake of reducing memory usage</span>
 <span class="k">del</span> <span class="n">kda_meta</span><span class="p">,</span> <span class="n">kda_results</span>
 </pre></div>
 </div>
@@ -643,7 +678,7 @@ The interface is virtually identical, but since there are few if any legitimate 
 <p><strong>Activation likelihood estimation</strong> (ALE) <span id="id6">[<a class="reference internal" href="bibliography.html#id65">Eickhoff <em>et al.</em>, 2012</a>, <a class="reference internal" href="bibliography.html#id7">Turkeltaub <em>et al.</em>, 2002</a>, <a class="reference internal" href="bibliography.html#id40">Turkeltaub <em>et al.</em>, 2012</a>]</span> assesses convergence of peaks across studies by first generating a modeled activation map for each study, in which each of the experiment’s peaks is convolved with a 3D Gaussian distribution determined by the experiment’s sample size, and then by combining these modeled activation maps across studies into an ALE map, which is compared to an empirical null distribution to assess voxel-wise statistical significance.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nimare.meta.cbma</span> <span class="kn">import</span> <span class="n">ale</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nimare.meta.cbma</span> <span class="kn">import</span> <span class="n">ale</span>
 
 <span class="n">ale_meta</span> <span class="o">=</span> <span class="n">ale</span><span class="o">.</span><span class="n">ALE</span><span class="p">()</span>
 <span class="n">ale_results</span> <span class="o">=</span> <span class="n">ale_meta</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">sleuth_dset1</span><span class="p">)</span>
@@ -656,7 +691,7 @@ The interface is virtually identical, but since there are few if any legitimate 
 </div>
 <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here we delete the recent variables for the sake of reducing memory usage</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here we delete the recent variables for the sake of reducing memory usage</span>
 <span class="k">del</span> <span class="n">ale_meta</span><span class="p">,</span> <span class="n">ale_results</span>
 </pre></div>
 </div>
@@ -672,11 +707,11 @@ This approach allows for the generation of a statistical map for the sample, but
 While this method was developed to support analysis of joint activation or “coactivation” patterns, it is generic and can be applied to any CBMA; see <a class="reference internal" href="about_derivative_analyses.html"><span class="doc std std-doc">Derivative Analyses</span></a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here we use the coordinates from Neurosynth as our measure of coordinate</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here we use the coordinates from Neurosynth as our measure of coordinate</span>
 <span class="c1"># base-rates, because we do not have access to the full BrainMap database.</span>
 <span class="c1"># However, one assumption of SCALE is that the Dataset being analyzed comes</span>
 <span class="c1"># from the same source as the database you use for calculating base-rates.</span>
-<span class="n">xyz</span> <span class="o">=</span> <span class="n">ns_dset</span><span class="o">.</span><span class="n">coordinates</span><span class="p">[[</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;z&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">xyz</span> <span class="o">=</span> <span class="n">neurosynth_dset</span><span class="o">.</span><span class="n">coordinates</span><span class="p">[[</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;z&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span>
 <span class="n">scale_meta</span> <span class="o">=</span> <span class="n">ale</span><span class="o">.</span><span class="n">SCALE</span><span class="p">(</span><span class="n">n_iters</span><span class="o">=</span><span class="mi">2500</span><span class="p">,</span> <span class="n">xyz</span><span class="o">=</span><span class="n">xyz</span><span class="p">,</span> <span class="n">memory_limit</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 <span class="n">scale_results</span> <span class="o">=</span> <span class="n">scale_meta</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">sleuth_dset1</span><span class="p">)</span>
 
@@ -688,7 +723,7 @@ While this method was developed to support analysis of joint activation or “co
 </div>
 <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here we delete the recent variables for the sake of reducing memory usage</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here we delete the recent variables for the sake of reducing memory usage</span>
 <span class="k">del</span> <span class="n">xyz</span><span class="p">,</span> <span class="n">scale_meta</span><span class="p">,</span> <span class="n">scale_results</span>
 </pre></div>
 </div>
@@ -703,7 +738,7 @@ Such an analysis also requires access to a reference meta-analytic sample or dat
 For example, to perform a chi-squared analysis of working memory studies, the researcher will also need a comprehensive set of studies which did not manipulate working memory—ideally one that is matched with the working memory study set on all relevant attributes <em>except</em> the involvement of working memory.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdac_meta</span> <span class="o">=</span> <span class="n">mkda</span><span class="o">.</span><span class="n">MKDAChi2</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mkdac_meta</span> <span class="o">=</span> <span class="n">mkda</span><span class="o">.</span><span class="n">MKDAChi2</span><span class="p">()</span>
 <span class="n">mkdac_results</span> <span class="o">=</span> <span class="n">mkdac_meta</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">sleuth_dset1</span><span class="p">,</span> <span class="n">sleuth_dset2</span><span class="p">)</span>
 
 <span class="c1"># Retain the specificity analysis&#39;s z-statistic map for later use</span>
@@ -714,7 +749,7 @@ For example, to perform a chi-squared analysis of working memory studies, the re
 </div>
 <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here we delete the recent variables for the sake of reducing memory usage</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here we delete the recent variables for the sake of reducing memory usage</span>
 <span class="k">del</span> <span class="n">mkdac_meta</span><span class="p">,</span> <span class="n">mkdac_results</span>
 </pre></div>
 </div>
@@ -726,7 +761,7 @@ For example, to perform a chi-squared analysis of working memory studies, the re
 <p>Here we load the z-statistic map from each of the CBMA Estimators we’ve used throughout this chapter and plot them all side by side.</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">meta_results</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">meta_results</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&quot;MKDA Density&quot;</span><span class="p">:</span> <span class="n">mkdad_img</span><span class="p">,</span>
     <span class="s2">&quot;MKDA Chi-Squared&quot;</span><span class="p">:</span> <span class="n">mkdac_img</span><span class="p">,</span>
     <span class="s2">&quot;KDA&quot;</span><span class="p">:</span> <span class="n">kda_img</span><span class="p">,</span>

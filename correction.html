@@ -317,18 +317,22 @@
 <h1>Multiple Comparisons Correction<a class="headerlink" href="#multiple-comparisons-correction" title="Permalink to this headline">¶</a></h1>
 <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># First, import the necessary modules and functions</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># First, import the necessary modules and functions</span>
 <span class="kn">import</span> <span class="nn">os</span>
 
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
 <span class="kn">from</span> <span class="nn">nilearn</span> <span class="kn">import</span> <span class="n">plotting</span>
 
-<span class="kn">import</span> <span class="nn">nimare</span>
-
 <span class="c1"># Define where data files will be located</span>
 <span class="n">DATA_DIR</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;../data&quot;</span><span class="p">)</span>
 <span class="n">FIG_DIR</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;../images&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/nilearn/datasets/__init__.py:90: FutureWarning: Fetchers from the nilearn.datasets module will be updated in version 0.9 to return python strings instead of bytes and Pandas dataframes instead of Numpy arrays.
+  &quot;Numpy arrays.&quot;, FutureWarning)
 </pre></div>
 </div>
 </div>
@@ -342,7 +346,7 @@ This will return an updated <code class="docutils literal notranslate"><span cla
 <p>Here we will apply both FWE and FDR correction to results from a MKDADensity meta-analysis, performed back in <a class="reference internal" href="cbma.html#content-cbma-mkdad"><span class="std std-ref">Multilevel kernel density analysis</span></a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nimare</span> <span class="kn">import</span> <span class="n">meta</span><span class="p">,</span> <span class="n">results</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nimare</span> <span class="kn">import</span> <span class="n">meta</span><span class="p">,</span> <span class="n">correct</span>
 
 <span class="n">mkdad_meta</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">cbma</span><span class="o">.</span><span class="n">mkda</span><span class="o">.</span><span class="n">MKDADensity</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;MKDADensity.pkl.gz&quot;</span><span class="p">))</span>
 
@@ -355,12 +359,40 @@ This will return an updated <code class="docutils literal notranslate"><span cla
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_2096</span><span class="o">/</span><span class="mf">3510473815.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">nimare</span> <span class="kn">import</span> <span class="n">meta</span><span class="p">,</span> <span class="n">correct</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> 
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">mkdad_meta</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">cbma</span><span class="o">.</span><span class="n">mkda</span><span class="o">.</span><span class="n">MKDADensity</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;MKDADensity.pkl.gz&quot;</span><span class="p">))</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> 
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">mc_corrector</span> <span class="o">=</span> <span class="n">correct</span><span class="o">.</span><span class="n">FWECorrector</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">&quot;montecarlo&quot;</span><span class="p">,</span> <span class="n">n_iters</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">n_cores</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/nimare/base.py</span> in <span class="ni">load</span><span class="nt">(cls, filename, compressed)</span>
+<span class="g g-Whitespace">    </span><span class="mi">207</span>         <span class="k">if</span> <span class="n">compressed</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">208</span>             <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">209</span>                 <span class="k">with</span> <span class="n">gzip</span><span class="o">.</span><span class="n">GzipFile</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file_object</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">210</span>                     <span class="n">obj</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file_object</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">211</span>             <span class="k">except</span> <span class="ne">UnicodeDecodeError</span><span class="p">:</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/gzip.py</span> in <span class="ni">__init__</span><span class="nt">(self, filename, mode, compresslevel, fileobj, mtime)</span>
+<span class="g g-Whitespace">    </span><span class="mi">166</span>             <span class="n">mode</span> <span class="o">+=</span> <span class="s1">&#39;b&#39;</span>
+<span class="g g-Whitespace">    </span><span class="mi">167</span>         <span class="k">if</span> <span class="n">fileobj</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">168</span>             <span class="n">fileobj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">myfileobj</span> <span class="o">=</span> <span class="n">builtins</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">mode</span> <span class="ow">or</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">169</span>         <span class="k">if</span> <span class="n">filename</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">170</span>             <span class="n">filename</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">fileobj</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;/home/runner/work/nimare-paper/nimare-paper/data/MKDADensity.pkl.gz&#39;
+</pre></div>
+</div>
+</div>
 </div>
 <p>Statistical maps saved by NiMARE <code class="docutils literal notranslate"><span class="pre">MetaResult</span></code>s automatically follow a naming convention based loosely on the Brain Imaging Data Standard (BIDS).</p>
 <p>Let’s take a look at the files created by the <code class="docutils literal notranslate"><span class="pre">FWECorrector</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">glob</span> <span class="kn">import</span> <span class="n">glob</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">glob</span> <span class="kn">import</span> <span class="n">glob</span>
 
 <span class="n">fwe_maps</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;MKDADensity_FWE*.nii.gz&quot;</span><span class="p">)))</span>
 <span class="n">fwe_maps</span> <span class="o">=</span> <span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">fwe_map</span><span class="p">)</span> <span class="k">for</span> <span class="n">fwe_map</span> <span class="ow">in</span> <span class="n">fwe_maps</span><span class="p">]</span>
@@ -378,7 +410,7 @@ The <code class="docutils literal notranslate"><span class="pre">level</span></c
 Finally, the <code class="docutils literal notranslate"><span class="pre">desc</span></code> key reflects any necessary description that goes beyond what is already covered by the other entities.</p>
 <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">meta_results</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">meta_results</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&quot;Cluster-level Monte Carlo&quot;</span><span class="p">:</span> <span class="n">mc_results</span><span class="o">.</span><span class="n">get_map</span><span class="p">(</span>
         <span class="s2">&quot;z_level-cluster_corr-FWE_method-montecarlo&quot;</span><span class="p">,</span>
         <span class="n">return_type</span><span class="o">=</span><span class="s2">&quot;image&quot;</span><span class="p">,</span>
