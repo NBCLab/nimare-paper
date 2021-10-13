@@ -228,7 +228,6 @@ glue("table_lda", lda_df)
 ```
 
 ```{glue:figure} table_lda
-:figwidth: 900px
 :name: "tbl:table_lda"
 :align: center
 
@@ -284,7 +283,6 @@ glue("table_gclda", gclda_df)
 ```
 
 ```{glue:figure} table_gclda
-:figwidth: 300px
 :name: "tbl:table_gclda"
 :align: center
 
@@ -321,7 +319,6 @@ glue("figure_gclda_topics", fig, display=False)
 ```
 
 ```{glue:figure} figure_gclda_topics
-:figwidth: 150px
 :name: figure_gclda_topics
 :align: center
 

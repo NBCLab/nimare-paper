@@ -114,7 +114,6 @@ glue("table_corr", corr_df)
 ```
 
 ```{glue:figure} table_corr
-:figwidth: 300px
 :name: "tbl:table_corr"
 :align: center
 
@@ -160,7 +159,6 @@ glue("table_assoc", assoc_df)
 ```
 
 ```{glue:figure} table_assoc
-:figwidth: 300px
 :name: "tbl:table_assoc"
 :align: center
 
@@ -220,7 +218,6 @@ glue("table_brainmap", brainmap_df)
 ```
 
 ```{glue:figure} table_brainmap
-:figwidth: 300px
 :name: "tbl:table_brainmap"
 :align: center
 
@@ -271,7 +268,6 @@ glue("table_neurosynth", neurosynth_df)
 ```
 
 ```{glue:figure} table_neurosynth
-:figwidth: 300px
 :name: "tbl:table_neurosynth"
 :align: center
 
