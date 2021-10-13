@@ -6,7 +6,7 @@ data/
 data.zip
 
 # Jupyter Book HTML files (for now)
-_build/
+# _build/
 
 # OSX files
 **/.DS_Store

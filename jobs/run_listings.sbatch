@@ -15,11 +15,13 @@
 #SBATCH --account iacc_nbc
 
 #---Partition
-#SBATCH -p 16C_48G
+#SBATCH -p IB_16C_96G
 ########################################################
 export NPROCS=`echo $LSB_HOSTS | wc -w`
 export OMP_NUM_THREADS=4
+export NIMARE_DATA="/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/data/"
 . $MODULESHOME/../global/profile.modules
 source /home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/activate_environment
 
+jupyter-book clean /home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/content/
 jupyter-book build /home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/content/

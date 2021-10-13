@@ -1,0 +1,638 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>References &#8212; NiMARE: Neuroimaging Meta-Analysis Research Environment</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Appendix I: BrainMap Discrete Decoding" href="appendices/brainmap_decoding.html" />
+    <link rel="prev" title="Acknowledgements" href="acknowledgements.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/nimare_overview.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">NiMARE: Neuroimaging Meta-Analysis Research Environment</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="abstract.html">
+   Abstract
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  About NiMARE
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="introduction.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="overview.html">
+   NiMARE Overview
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Meta-Analytic Databases and Resources
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="resources.html">
+   External Meta-Analytic Resources
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Meta-Analyses in NiMARE
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="cbma.html">
+   Coordinate-Based Meta-Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ibma.html">
+   Image-Based Meta-Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="correction.html">
+   Multiple Comparisons Correction
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Other Meta-Analytic Approaches
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="about_derivative_analyses.html">
+   Derivative Analyses
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="subtraction.html">
+   Meta-Analytic Subtraction Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="macm.html">
+   Meta-Analytic Coactivation Modeling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="annotation.html">
+   Automated Annotation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="decoding.html">
+   Meta-Analytic Functional Decoding
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Concluding Thoughts
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="future_directions.html">
+   Future Directions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="summary.html">
+   Summary
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="acknowledgements.html">
+   Acknowledgements
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   References
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Appendix
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="appendices/brainmap_decoding.html">
+   Appendix I: BrainMap Discrete Decoding
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="appendices/neurosynth_decoding.html">
+   Appendix II: Neurosynth Discrete Decoding
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/bibliography.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="references">
+<h1>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h1>
+<p id="id1"><dl class="citation">
+<dt class="label" id="id5"><span class="brackets">APE+14</span></dt>
+<dd><p>Alexandre Abraham, Fabian Pedregosa, Michael Eickenberg, Philippe Gervais, Andreas Mueller, Jean Kossaifi, Alexandre Gramfort, Bertrand Thirion, and Gaël Varoquaux. Machine learning for neuroimaging with scikit-learn. <em>Front. Neuroinform.</em>, 8:14, February 2014.</p>
+</dd>
+<dt class="label" id="id32"><span class="brackets">ABA18</span></dt>
+<dd><p>Fahd H Alhazmi, Derek Beaton, and Hervé Abdi. Semantically defined subdomains of functional neuroimaging literature and their corresponding brain regions. <em>Hum. Brain Mapp.</em>, 39(7):2764–2776, July 2018.</p>
+</dd>
+<dt class="label" id="id18"><span class="brackets">ABL+15</span></dt>
+<dd><p>Maren Amft, Danilo Bzdok, Angela R Laird, Peter T Fox, Leonhard Schilbach, and Simon B Eickhoff. Definition and characterization of an extended social-affective default network. <em>Brain Struct. Funct.</em>, 220(2):1031–1049, March 2015.</p>
+</dd>
+<dt class="label" id="id35"><span class="brackets">AR01</span></dt>
+<dd><p>Marti J Anderson and John Robinson. Permutation tests for linear models. 2001.</p>
+</dd>
+<dt class="label" id="id28"><span class="brackets">BNJ03</span></dt>
+<dd><p>David M Blei, Andrew Y Ng, and Michael I Jordan. Latent dirichlet allocation. <em>J. Mach. Learn. Res.</em>, 3(Jan):993–1022, January 2003.</p>
+</dd>
+<dt class="label" id="id34"><span class="brackets">BFB+19</span></dt>
+<dd><p>Katherine L Bottenhorn, Jessica S Flannery, Emily R Boeving, Michael C Riedel, Simon B Eickhoff, Matthew T Sutherland, and Angela R Laird. Cooperating yet distinct brain networks engaged during naturalistic paradigms: a meta-analysis of functional MRI results. <em>Netw Neurosci</em>, 3(1):27–48, 2019.</p>
+</dd>
+<dt class="label" id="id94"><span class="brackets">BMH+20</span></dt>
+<dd><p>Matthew Brett, Christopher J. Markiewicz, Michael Hanke, Marc-Alexandre Côté, Ben Cipollini, Paul McCarthy, Dorota Jarecka, Christopher P. Cheng, Yaroslav O. Halchenko, Michiel Cottaar, Satrajit Ghosh, Eric Larson, Demian Wassermann, Stephan Gerhard, Gregory R. Lee, Hao-Ting Wang, Erik Kastman, Jakub Kaczmarzyk, Roberto Guidotti, Or Duek, Ariel Rokem, Cindee Madison, Félix C. Morency, Brendan Moloney, Mathias Goncalves, Ross Markello, Cameron Riddell, Christopher Burns, Jarrod Millman, Alexandre Gramfort, Jaakko Leppäkangas, Anibal Sólon, Jasper J.F. van den Bosch, Robert D. Vincent, Henry Braun, Krish Subramaniam, Krzysztof J. Gorgolewski, Pradeep Reddy Raamana, B. Nolan Nichols, Eric M. Baker, Soichi Hayashi, Basile Pinsard, Christian Haselgrove, Mark Hymers, Oscar Esteban, Serge Koudoro, Nikolaas N. Oosterhof, Bago Amirbekian, Ian Nimmo-Smith, Ly Nguyen, Samir Reddigari, Samuel St-Jean, Egor Panfilov, Eleftherios Garyfallidis, Gael Varoquaux, Jon Haitz Legarreta, Kevin S. Hahn, Oliver P. Hinds, Bennet Fauber, Jean-Baptiste Poline, Jon Stutters, Kesshi Jordan, Matthew Cieslak, Miguel Estevan Moreno, Valentin Haenel, Yannick Schwartz, Zvi Baratz, Benjamin C Darwin, Bertrand Thirion, Dimitri Papadopoulos Orfanos, Fernando Pérez-García, Igor Solovey, Ivan Gonzalez, Jath Palasubramaniam, Justin Lecher, Katrin Leinweber, Konstantinos Raktivan, Peter Fischer, Philippe Gervais, Syam Gadde, Thomas Ballinger, Thomas Roos, Venkateswara Reddy Reddam, and freec84. Nipy/nibabel: 3.1.1. June 2020. URL: <a class="reference external" href="https://doi.org/10.5281/zenodo.3924343">https://doi.org/10.5281/zenodo.3924343</a>, <a class="reference external" href="https://doi.org/10.5281/zenodo.3924343">doi:10.5281/zenodo.3924343</a>.</p>
+</dd>
+<dt class="label" id="id93"><span class="brackets">BLB+13</span></dt>
+<dd><p>Lars Buitinck, Gilles Louppe, Mathieu Blondel, Fabian Pedregosa, Andreas Mueller, Olivier Grisel, Vlad Niculae, Peter Prettenhofer, Alexandre Gramfort, Jaques Grobler, Robert Layton, Jake VanderPlas, Arnaud Joly, Brian Holt, and Gaël Varoquaux. API design for machine learning software: experiences from the scikit-learn project. In <em>ECML PKDD Workshop: Languages for Data Mining and Machine Learning</em>, 108–122. 2013.</p>
+</dd>
+<dt class="label" id="id54"><span class="brackets">BLZ+13</span></dt>
+<dd><p>Danilo Bzdok, Angela R Laird, Karl Zilles, Peter T Fox, and Simon B Eickhoff. An investigation of the structural, connectional, and functional subspecialization in the human amygdala. <em>Hum. Brain Mapp.</em>, 34(12):3247–3266, December 2013.</p>
+</dd>
+<dt class="label" id="id72"><span class="brackets">BLS+13</span></dt>
+<dd><p>Danilo Bzdok, Robert Langner, Leonhard Schilbach, Oliver Jakobs, Christian Roski, Svenja Caspers, Angela R Laird, Peter T Fox, Karl Zilles, and Simon B Eickhoff. Characterization of the temporo-parietal junction by combining data-driven parcellation, complementary connectivity analyses, and functional decoding. <em>Neuroimage</em>, 81:381–392, November 2013.</p>
+</dd>
+<dt class="label" id="id56"><span class="brackets">CZA+14</span></dt>
+<dd><p>Julian Caspers, Karl Zilles, Katrin Amunts, Angela R Laird, Peter T Fox, and Simon B Eickhoff. Functional characterization and differential coactivation patterns of two cytoarchitectonic visual areas on the human posterior fusiform gyrus. <em>Hum. Brain Mapp.</em>, 35(6):2754–2767, June 2014.</p>
+</dd>
+<dt class="label" id="id85"><span class="brackets">CYKS13</span></dt>
+<dd><p>Luke J Chang, Tal Yarkoni, Mel Win Khaw, and Alan G Sanfey. Decoding the role of the insula in human cognition: functional parcellation and large-scale reverse inference. <em>Cereb. Cortex</em>, 23(3):739–749, March 2013.</p>
+</dd>
+<dt class="label" id="id19"><span class="brackets">CFP+18</span></dt>
+<dd><p>Yvonnes Chen, Carina H Fowler, Vlad B Papa, Rebecca J Lepping, Morgan G Brucks, Andrew T Fox, and Laura E Martin. Adolescents' behavioral and neural responses to e-cigarette advertising. <em>Addict. Biol.</em>, 23(2):761–771, March 2018.</p>
+</dd>
+<dt class="label" id="id41"><span class="brackets">CZC+13</span></dt>
+<dd><p>Edna C Cieslik, Karl Zilles, Svenja Caspers, Christian Roski, Tanja S Kellermann, Oliver Jakobs, Robert Langner, Angela R Laird, Peter T Fox, and Simon B Eickhoff. Is there “one” DLPFC in cognitive action control? evidence for heterogeneity from Co-Activation-Based parcellation. 2013.</p>
+</dd>
+<dt class="label" id="id95"><span class="brackets">dCLLA+20</span></dt>
+<dd><p>Casper da Costa-Luis, Stephen Karl Larroque, Kyle Altendorf, Hadrien Mary, Mikhail Korobov, Noam Yorav-Raphael, Ivan Ivanov, Marcel Bargull, Nishant Rodrigues, Guangshuo CHEN, Charles Newey, James, Martin Zugnoni, Matthew D. Pagel, mjstevens777, Mikhail Dektyarev, Alex Rothberg, Alexander, Daniel Panteleit, Fabian Dill, FichteFoll, HeoHeo, Hugo van Kemenade, Jack McCracken, Max Nordlund, Orivej Desh, RedBug312, richardsheridan, Socialery, and Staffan Malmgren. tqdm: A fast, Extensible Progress Bar for Python and CLI. September 2020. URL: <a class="reference external" href="https://doi.org/10.5281/zenodo.4026750">https://doi.org/10.5281/zenodo.4026750</a>, <a class="reference external" href="https://doi.org/10.5281/zenodo.4026750">doi:10.5281/zenodo.4026750</a>.</p>
+</dd>
+<dt class="label" id="id43"><span class="brackets">dlVCB+16</span></dt>
+<dd><p>Alejandro de la Vega, Luke J Chang, Marie T Banich, Tor D Wager, and Tal Yarkoni. Large-Scale Meta-Analysis of human medial frontal cortex reveals tripartite functional organization. <em>J. Neurosci.</em>, 36(24):6553–6562, June 2016.</p>
+</dd>
+<dt class="label" id="id39"><span class="brackets">dlVYWB18</span></dt>
+<dd><p>Alejandro de la Vega, Tal Yarkoni, Tor D Wager, and Marie T Banich. Large-scale meta-analysis suggests low regional modularity in lateral frontal cortex. <em>Cereb. Cortex</em>, 28(10):3414–3428, October 2018.</p>
+</dd>
+<dt class="label" id="id82"><span class="brackets">DL86</span></dt>
+<dd><p>Rebecca DerSimonian and Nan Laird. Meta-analysis in clinical trials. 1986.</p>
+</dd>
+<dt class="label" id="id38"><span class="brackets">DockesPP+20</span></dt>
+<dd><p>Jérôme Dockès, Russell A Poldrack, Romain Primet, Hande Gözükan, Tal Yarkoni, Fabian Suchanek, Bertrand Thirion, and Gaël Varoquaux. NeuroQuery, comprehensive meta-analysis of human brain mapping. <em>Elife</em>, March 2020.</p>
+</dd>
+<dt class="label" id="id3"><span class="brackets">DockesWP+18</span></dt>
+<dd><p>Jérôme Dockès, Demian Wassermann, Russell Poldrack, Fabian Suchanek, Bertrand Thirion, and Gaël Varoquaux. Text to brain: predicting the spatial distribution of neuroimaging observations from text reports. 2018.</p>
+</dd>
+<dt class="label" id="id65"><span class="brackets">EBL+12a</span></dt>
+<dd><p>Simon B Eickhoff, Danilo Bzdok, Angela R Laird, Florian Kurth, and Peter T Fox. Activation likelihood estimation meta-analysis revisited. <em>Neuroimage</em>, 59(3):2349–2361, February 2012.</p>
+</dd>
+<dt class="label" id="id86"><span class="brackets">EJC+10</span></dt>
+<dd><p>Simon B Eickhoff, Saad Jbabdi, Svenja Caspers, Angela R Laird, Peter T Fox, Karl Zilles, and Timothy E J Behrens. Anatomical and functional connectivity of cytoarchitectonic areas within the human parietal operculum. <em>J. Neurosci.</em>, 30(18):6409–6421, May 2010.</p>
+</dd>
+<dt class="label" id="id98"><span class="brackets">EBL+12b</span></dt>
+<dd><p>Simon B. Eickhoff, Danilo Bzdok, Angela R. Laird, Florian Kurth, and Peter T. Fox. Activation likelihood estimation meta-analysis revisited. <em>NeuroImage</em>, 59(3):2349–2361, 2012. URL: <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S1053811911010627">https://www.sciencedirect.com/science/article/pii/S1053811911010627</a>, <a class="reference external" href="https://doi.org/https://doi.org/10.1016/j.neuroimage.2011.09.017">doi:https://doi.org/10.1016/j.neuroimage.2011.09.017</a>.</p>
+</dd>
+<dt class="label" id="id9"><span class="brackets">Fis25</span></dt>
+<dd><p>R A Fisher. <em>Statistical Methods for Research Workers</em>. Volume 102. Oliver and Boyd, 1925.</p>
+</dd>
+<dt class="label" id="id51"><span class="brackets">FLF+05</span></dt>
+<dd><p>Peter T Fox, Angela R Laird, Sarabeth P Fox, P Mickle Fox, Angela M Uecker, Michelle Crank, Sandra F Koenig, and Jack L Lancaster. BrainMap taxonomy of experimental design: description and evaluation. <em>Hum. Brain Mapp.</em>, 25(1):185–198, May 2005.</p>
+</dd>
+<dt class="label" id="id50"><span class="brackets">FL02</span></dt>
+<dd><p>Peter T Fox and Jack L Lancaster. Opinion: mapping context and content: the BrainMap model. <em>Nat. Rev. Neurosci.</em>, 3(4):319–321, April 2002.</p>
+</dd>
+<dt class="label" id="id64"><span class="brackets">FL83</span></dt>
+<dd><p>David Freedman and David Lane. A nonstochastic interpretation of reported significance levels. 1983.</p>
+</dd>
+<dt class="label" id="id10"><span class="brackets">GVR+15</span></dt>
+<dd><p>Krzysztof J Gorgolewski, Gael Varoquaux, Gabriel Rivera, Yannick Schwarz, Satrajit S Ghosh, Camille Maumet, Vanessa V Sochat, Thomas E Nichols, Russell A Poldrack, Jean-Baptiste Poline, Tal Yarkoni, and Daniel S Margulies. NeuroVault.org: a web-based repository for collecting and sharing unthresholded statistical maps of the human brain. <em>Front. Neuroinform.</em>, 9:8, April 2015.</p>
+</dd>
+<dt class="label" id="id11"><span class="brackets">HMvdW+20</span></dt>
+<dd><p>Charles R Harris, K Jarrod Millman, Stéfan J van der Walt, Ralf Gommers, Pauli Virtanen, David Cournapeau, Eric Wieser, Julian Taylor, Sebastian Berg, Nathaniel J Smith, Robert Kern, Matti Picus, Stephan Hoyer, Marten H van Kerkwijk, Matthew Brett, Allan Haldane, Jaime Fernández Del Río, Mark Wiebe, Pearu Peterson, Pierre Gérard-Marchant, Kevin Sheppard, Tyler Reddy, Warren Weckesser, Hameer Abbasi, Christoph Gohlke, and Travis E Oliphant. Array programming with NumPy. <em>Nature</em>, 585(7825):357–362, September 2020.</p>
+</dd>
+<dt class="label" id="id89"><span class="brackets">HHO85</span></dt>
+<dd><p>Larry V Hedges, Larry Vernon Hedges, and Ingram Olkin. <em>Statistical Methods for Meta-Analysis</em>. Academic Press, August 1985.</p>
+</dd>
+<dt class="label" id="id17"><span class="brackets">HOpavskyHluvstikTudos15</span></dt>
+<dd><p>Pavel Hok, Robert Opavský, Petr Hluštík, and Zbyněk Tüdös. 29. meta-analytic and resting-state functional connectivity of the claustrum. 2015.</p>
+</dd>
+<dt class="label" id="id70"><span class="brackets">Jos14</span></dt>
+<dd><p>Zoran Josipovic. Neural correlates of nondual awareness in meditation. <em>Ann. N. Y. Acad. Sci.</em>, 1307:9–18, January 2014.</p>
+</dd>
+<dt class="label" id="id66"><span class="brackets">KJNW11</span></dt>
+<dd><p>Jian Kang, Timothy D Johnson, Thomas E Nichols, and Tor D Wager. Meta analysis of functional neuroimaging data via bayesian spatial point processes. <em>J. Am. Stat. Assoc.</em>, 106(493):124–134, March 2011.</p>
+</dd>
+<dt class="label" id="id42"><span class="brackets">KNWJ14</span></dt>
+<dd><p>Jian Kang, Thomas E Nichols, Tor D Wager, and Timothy D Johnson. A BAYESIAN HIERARCHICAL SPATIAL POINT PROCESS MODEL FOR MULTI-TYPE NEUROIMAGING META-ANALYSIS. <em>Ann. Appl. Stat.</em>, 8(3):1800–1824, September 2014.</p>
+</dd>
+<dt class="label" id="id14"><span class="brackets">KCF+13</span></dt>
+<dd><p>Tanja S Kellermann, Svenja Caspers, Peter T Fox, Karl Zilles, Christian Roski, Angela R Laird, Bruce I Turetsky, and Simon B Eickhoff. Task- and resting-state functional connectivity of brain regions related to affection and susceptible to concurrent cognitive demand. <em>Neuroimage</em>, 72:69–82, May 2013.</p>
+</dd>
+<dt class="label" id="id76"><span class="brackets">LEL+09</span></dt>
+<dd><p>Angela R Laird, Simon B Eickhoff, Karl Li, Donald A Robin, David C Glahn, and Peter T Fox. Investigating the functional heterogeneity of the default mode network using coordinate-based meta-analytic modeling. <em>J. Neurosci.</em>, 29(46):14496–14505, November 2009.</p>
+</dd>
+<dt class="label" id="id44"><span class="brackets">LFP+05</span></dt>
+<dd><p>Angela R Laird, P Mickle Fox, Cathy J Price, David C Glahn, Angela M Uecker, Jack L Lancaster, Peter E Turkeltaub, Peter Kochunov, and Peter T Fox. ALE meta-analysis: controlling the false discovery rate and performing statistical contrasts. <em>Hum. Brain Mapp.</em>, 25(1):155–164, May 2005.</p>
+</dd>
+<dt class="label" id="id33"><span class="brackets">LLF05</span></dt>
+<dd><p>Angela R Laird, Jack L Lancaster, and Peter T Fox. BrainMap: the social evolution of a human brain mapping database. <em>Neuroinformatics</em>, 3(1):65–78, 2005.</p>
+</dd>
+<dt class="label" id="id6"><span class="brackets">LRS+15</span></dt>
+<dd><p>Angela R Laird, Michael C Riedel, Matthew T Sutherland, Simon B Eickhoff, Kimberly L Ray, Angela M Uecker, P Mickle Fox, Jessica A Turner, and Peter T Fox. Neural architecture underlying classification of face perception paradigms. <em>Neuroimage</em>, 119:70–80, October 2015.</p>
+</dd>
+<dt class="label" id="id84"><span class="brackets">LRL+14</span></dt>
+<dd><p>Robert Langner, Claudia Rottschy, Angela R Laird, Peter T Fox, and Simon B Eickhoff. Meta-analytic connectivity modeling revisited: controlling for activation base rates. <em>Neuroimage</em>, 99:559–570, October 2014.</p>
+</dd>
+<dt class="label" id="id23"><span class="brackets">MN16</span></dt>
+<dd><p>Camille Maumet and Thomas E Nichols. Minimal data needed for valid &amp; accurate Image-Based fMRI Meta-Analysis. preprint, 2016.</p>
+</dd>
+<dt class="label" id="id96"><span class="brackets">McC02</span></dt>
+<dd><p>Andrew Kachites McCallum. Mallet: a machine learning for language toolkit (2002). 2002.</p>
+</dd>
+<dt class="label" id="id62"><span class="brackets">McK10</span></dt>
+<dd><p>Wes McKinney. Data structures for statistical computing in python. 2010.</p>
+</dd>
+<dt class="label" id="id67"><span class="brackets">MWB+18</span></dt>
+<dd><p>Silvia Montagna, Tor Wager, Lisa Feldman Barrett, Timothy D Johnson, and Thomas E Nichols. Spatial bayesian latent factor regression modeling of coordinate-based meta-analysis data. <em>Biometrics</em>, 74(1):342–353, March 2018.</p>
+</dd>
+<dt class="label" id="id77"><span class="brackets">MLL+16</span></dt>
+<dd><p>Ricardo Monti, Romy Lorenz, Robert Leech, Christoforos Anagnostopoulos, and Giovanni Montana. Text-mining the neurosynth corpus using deep boltzmann machines. 2016.</p>
+</dd>
+<dt class="label" id="id61"><span class="brackets">MullerCL+18</span></dt>
+<dd><p>Veronika I Müller, Edna C Cieslik, Angela R Laird, Peter T Fox, Joaquim Radua, David Mataix-Cols, Christopher R Tench, Tal Yarkoni, Thomas E Nichols, Peter E Turkeltaub, Tor D Wager, and Simon B Eickhoff. Ten simple rules for neuroimaging meta-analysis. <em>Neurosci. Biobehav. Rev.</em>, 84:151–161, January 2018.</p>
+</dd>
+<dt class="label" id="id71"><span class="brackets">NJRT+15</span></dt>
+<dd><p>Thomas Nickl-Jockschat, Claudia Rottschy, Johanna Thommes, Frank Schneider, Angela R Laird, Peter T Fox, and Simon B Eickhoff. Neural networks related to dysfunctional face processing in autism spectrum disorder. <em>Brain Struct. Funct.</em>, 220(4):2355–2371, July 2015.</p>
+</dd>
+<dt class="label" id="id24"><span class="brackets">Nun18</span></dt>
+<dd><p>Abraham Nunes. Word2brain. <em>bioRxiv</em>, 2018. URL: <a class="reference external" href="https://www.biorxiv.org/content/early/2018/04/11/299024">https://www.biorxiv.org/content/early/2018/04/11/299024</a>, <a class="reference external" href="https://arxiv.org/abs/https://www.biorxiv.org/content/early/2018/04/11/299024.full.pdf">arXiv:https://www.biorxiv.org/content/early/2018/04/11/299024.full.pdf</a>, <a class="reference external" href="https://doi.org/10.1101/299024">doi:10.1101/299024</a>.</p>
+</dd>
+<dt class="label" id="id69"><span class="brackets">PBT+15</span></dt>
+<dd><p>Peter C Pantelis, Lisa Byrge, J Michael Tyszka, Ralph Adolphs, and Daniel P Kennedy. A specific hypoactivation of right temporo-parietal junction/posterior superior temporal sulcus in response to socially awkward situations in autism. <em>Soc. Cogn. Affect. Neurosci.</em>, 10(10):1348–1356, October 2015.</p>
+</dd>
+<dt class="label" id="id92"><span class="brackets">PVG+11</span></dt>
+<dd><p>F. Pedregosa, G. Varoquaux, A. Gramfort, V. Michel, B. Thirion, O. Grisel, M. Blondel, P. Prettenhofer, R. Weiss, V. Dubourg, J. Vanderplas, A. Passos, D. Cournapeau, M. Brucher, M. Perrot, and E. Duchesnay. Scikit-learn: machine learning in Python. <em>Journal of Machine Learning Research</em>, 12:2825–2830, 2011.</p>
+</dd>
+<dt class="label" id="id81"><span class="brackets">Pol10</span></dt>
+<dd><p>Russell A Poldrack. Mapping mental function to brain structure: how can cognitive neuroimaging succeed? <em>Perspect. Psychol. Sci.</em>, 5(6):753–761, November 2010.</p>
+</dd>
+<dt class="label" id="id37"><span class="brackets">Pol11</span></dt>
+<dd><p>Russell A Poldrack. Inferring mental states from neuroimaging data: from reverse inference to large-scale decoding. <em>Neuron</em>, 72(5):692–697, December 2011.</p>
+</dd>
+<dt class="label" id="id87"><span class="brackets">PKK+11</span></dt>
+<dd><p>Russell A Poldrack, Aniket Kittur, Donald Kalar, Eric Miller, Christian Seppa, Yolanda Gil, D Stott Parker, Fred W Sabb, and Robert M Bilder. The cognitive atlas: toward a knowledge foundation for cognitive neuroscience. 2011.</p>
+</dd>
+<dt class="label" id="id4"><span class="brackets">PMS+12</span></dt>
+<dd><p>Russell A Poldrack, Jeanette A Mumford, Tom Schonberg, Donald Kalar, Bishal Barman, and Tal Yarkoni. Discovering relations between mind, brain, and mental disorders using topic mapping. <em>PLoS Comput. Biol.</em>, 8(10):e1002707, October 2012.</p>
+</dd>
+<dt class="label" id="id63"><span class="brackets">PY16</span></dt>
+<dd><p>Russell A Poldrack and Tal Yarkoni. From brain maps to cognitive ontologies: informatics and the search for mental structure. <em>Annu. Rev. Psychol.</em>, 67:587–612, 2016.</p>
+</dd>
+<dt class="label" id="id74"><span class="brackets">RMCP+12</span></dt>
+<dd><p>J Radua, D Mataix-Cols, M L Phillips, W El-Hage, D M Kronhaus, N Cardoner, and S Surguladze. A new meta-analytic method for neuroimaging studies that combines reported peak coordinates and statistical parametric maps. <em>Eur. Psychiatry</em>, 27(8):605–611, November 2012.</p>
+</dd>
+<dt class="label" id="id27"><span class="brackets">RBL+16</span></dt>
+<dd><p>Andrew T Reid, Danilo Bzdok, Robert Langner, Peter T Fox, Angela R Laird, Katrin Amunts, Simon B Eickhoff, and Claudia R Eickhoff. Multimodal connectivity mapping of the human left anterior and posterior lateral prefrontal cortex. <em>Brain Struct. Funct.</em>, 221(5):2589–2605, June 2016.</p>
+</dd>
+<dt class="label" id="id88"><span class="brackets">RHG+17</span></dt>
+<dd><p>Andrew T Reid, Felix Hoffstaedter, Gaolang Gong, Angela R Laird, Peter Fox, Alan C Evans, Katrin Amunts, and Simon B Eickhoff. A seed-based cross-modal comparison of brain connectivity measures. <em>Brain Struct. Funct.</em>, 222(3):1131–1151, April 2017.</p>
+</dd>
+<dt class="label" id="id90"><span class="brackets">RRD+15</span></dt>
+<dd><p>Michael C Riedel, Kimberly L Ray, Anthony S Dick, Matthew T Sutherland, Zachary Hernandez, P Mickle Fox, Simon B Eickhoff, Peter T Fox, and Angela R Laird. Meta-analytic connectivity and behavioral parcellation of the human cerebellum. <em>Neuroimage</em>, 117:327–342, August 2015.</p>
+</dd>
+<dt class="label" id="id36"><span class="brackets">RYR+18</span></dt>
+<dd><p>Michael C Riedel, Julio A Yanes, Kimberly L Ray, Simon B Eickhoff, Peter T Fox, Matthew T Sutherland, and Angela R Laird. Dissociable meta-analytic brain networks contribute to coordinated emotional processing. <em>Hum. Brain Mapp.</em>, 39(6):2514–2531, June 2018.</p>
+</dd>
+<dt class="label" id="id13"><span class="brackets">RSS+49</span></dt>
+<dd><p>John W Riley, Samuel A Stouffer, Edward A Suchman, Leland C Devinney, Shirley A Star, and Robin M Williams. The american soldier: adjustment during army life. 1949.</p>
+</dd>
+<dt class="label" id="id60"><span class="brackets">RLG+10</span></dt>
+<dd><p>Jennifer L Robinson, Angela R Laird, David C Glahn, William R Lovallo, and Peter T Fox. Metaanalytic connectivity modeling: delineating the functional connectivity of the human amygdala. <em>Hum. Brain Mapp.</em>, 31(2):173–184, February 2010.</p>
+</dd>
+<dt class="label" id="id20"><span class="brackets">RCR+13</span></dt>
+<dd><p>C Rottschy, S Caspers, C Roski, K Reetz, I Dogan, J B Schulz, K Zilles, A R Laird, P T Fox, and S B Eickhoff. Differentiated parietal connectivity of frontal regions for “what” and “where” memory. 2013.</p>
+</dd>
+<dt class="label" id="id83"><span class="brackets">RKG+17</span></dt>
+<dd><p>Timothy N Rubin, Oluwasanmi Koyejo, Krzysztof J Gorgolewski, Michael N Jones, Russell A Poldrack, and Tal Yarkoni. Decoding brain activity using a large-scale probabilistic functional-anatomical atlas of human cognition. <em>PLoS Comput. Biol.</em>, 13(10):e1005649, October 2017.</p>
+</dd>
+<dt class="label" id="id31"><span class="brackets">SEE+19</span></dt>
+<dd><p>Pantelis Samartsidis, Claudia R Eickhoff, Simon B Eickhoff, Tor D Wager, Lisa Feldman Barrett, Shir Atzil, Timothy D Johnson, and Thomas E Nichols. Bayesian log-gaussian cox process regression: with applications to meta-analysis of neuroimaging working memory studies. <em>J. R. Stat. Soc. Ser. C Appl. Stat.</em>, 68(1):217–234, January 2019.</p>
+</dd>
+<dt class="label" id="id79"><span class="brackets">SMJN17</span></dt>
+<dd><p>Pantelis Samartsidis, Silvia Montagna, Timothy D Johnson, and Thomas E Nichols. The Coordinate-Based Meta-Analysis of neuroimaging data. 2017.</p>
+</dd>
+<dt class="label" id="id49"><span class="brackets">SBohningN+19</span></dt>
+<dd><p>Patarawan Sangnawakij, Dankmar Böhning, Sa-Aat Niwitpong, Stephen Adams, Michael Stanton, and Heinz Holling. Meta-analysis without study-specific variance information: heterogeneity case. <em>Stat. Methods Med. Res.</em>, 28(1):196–210, January 2019.</p>
+</dd>
+<dt class="label" id="id47"><span class="brackets">SP10</span></dt>
+<dd><p>Skipper Seabold and Josef Perktold. Statsmodels: econometric and statistical modeling with python. 2010.</p>
+</dd>
+<dt class="label" id="id80"><span class="brackets">SFM+09</span></dt>
+<dd><p>S M Smith, P T Fox, K L Miller, D C Glahn, P M Fox, C E Mackay, N Filippini, K E Watkins, R Toro, A R Laird, and C F Beckmann. Correspondence of the brain's functional architecture during activation and rest. 2009.</p>
+</dd>
+<dt class="label" id="id52"><span class="brackets">TRPD17</span></dt>
+<dd><p>Arielle Tambini, Ulrike Rimmele, Elizabeth A Phelps, and Lila Davachi. Emotional brain states carry over and enhance future memory formation. <em>Nat. Neurosci.</em>, 20(2):271–278, February 2017.</p>
+</dd>
+<dt class="label" id="id7"><span class="brackets">TEJZ02</span></dt>
+<dd><p>Peter E Turkeltaub, Guinevere F Eden, Karen M Jones, and Thomas A Zeffiro. Meta-analysis of the functional neuroanatomy of single-word reading: method and validation. <em>Neuroimage</em>, 16(3 Pt 1):765–780, July 2002.</p>
+</dd>
+<dt class="label" id="id40"><span class="brackets">TEL+12</span></dt>
+<dd><p>Peter E Turkeltaub, Simon B Eickhoff, Angela R Laird, Mick Fox, Martin Wiener, and Peter Fox. Minimizing within-experiment and within-group effects in activation likelihood estimation meta-analyses. <em>Hum. Brain Mapp.</em>, 33(1):1–13, January 2012.</p>
+</dd>
+<dt class="label" id="id58"><span class="brackets">TL12</span></dt>
+<dd><p>Jessica A Turner and Angela R Laird. The cognitive paradigm ontology: design and application. <em>Neuroinformatics</em>, 10(1):57–66, January 2012.</p>
+</dd>
+<dt class="label" id="id55"><span class="brackets">VSP+18</span></dt>
+<dd><p>Gaël Varoquaux, Yannick Schwartz, Russell A Poldrack, Baptiste Gauthier, Danilo Bzdok, Jean-Baptiste Poline, and Bertrand Thirion. Atlases of cognition with large-scale human brain mapping. <em>PLoS Comput. Biol.</em>, 14(11):e1006565, November 2018.</p>
+</dd>
+<dt class="label" id="id68"><span class="brackets">VGO+20</span></dt>
+<dd><p>Pauli Virtanen, Ralf Gommers, Travis E Oliphant, Matt Haberland, Tyler Reddy, David Cournapeau, Evgeni Burovski, Pearu Peterson, Warren Weckesser, Jonathan Bright, Stéfan J van der Walt, Matthew Brett, Joshua Wilson, K Jarrod Millman, Nikolay Mayorov, Andrew R J Nelson, Eric Jones, Robert Kern, Eric Larson, C J Carey, İlhan Polat, Yu Feng, Eric W Moore, Jake VanderPlas, Denis Laxalde, Josef Perktold, Robert Cimrman, Ian Henriksen, E A Quintero, Charles R Harris, Anne M Archibald, Antônio H Ribeiro, Fabian Pedregosa, Paul van Mulbregt, and SciPy 1.0 Contributors. SciPy 1.0: fundamental algorithms for scientific computing in python. <em>Nat. Methods</em>, 17(3):261–272, March 2020.</p>
+</dd>
+<dt class="label" id="id12"><span class="brackets">WAL+13</span></dt>
+<dd><p>Tor D Wager, Lauren Y Atlas, Martin A Lindquist, Mathieu Roy, Choong-Wan Woo, and Ethan Kross. An fMRI-based neurologic signature of physical pain. <em>N. Engl. J. Med.</em>, 368(15):1388–1397, April 2013.</p>
+</dd>
+<dt class="label" id="id16"><span class="brackets">WJR04</span></dt>
+<dd><p>Tor D Wager, John Jonides, and Susan Reading. Neuroimaging studies of shifting attention: a meta-analysis. <em>Neuroimage</em>, 22(4):1679–1693, August 2004.</p>
+</dd>
+<dt class="label" id="id57"><span class="brackets">WLK07</span></dt>
+<dd><p>Tor D Wager, Martin Lindquist, and Lauren Kaplan. Meta-analysis of functional neuroimaging data: current and future directions. <em>Soc. Cogn. Affect. Neurosci.</em>, 2(2):150–158, June 2007.</p>
+</dd>
+<dt class="label" id="id59"><span class="brackets">WPLT03</span></dt>
+<dd><p>Tor D Wager, K Luan Phan, Israel Liberzon, and Stephan F Taylor. Valence, gender, and lateralization of functional brain anatomy in emotion: a meta-analysis of findings from neuroimaging. <em>Neuroimage</em>, 19(3):513–531, July 2003.</p>
+</dd>
+<dt class="label" id="id53"><span class="brackets">WvdWCCV11</span></dt>
+<dd><p>Stéfan van der Walt, Stéfan van der Walt, S Chris Colbert, and Gaël Varoquaux. The NumPy array: a structure for efficient numerical computation. 2011.</p>
+</dd>
+<dt class="label" id="id48"><span class="brackets">WRW+14</span></dt>
+<dd><p>Anderson M Winkler, Gerard R Ridgway, Matthew A Webster, Stephen M Smith, and Thomas E Nichols. Permutation inference for the general linear model. <em>Neuroimage</em>, 92:381–397, May 2014.</p>
+</dd>
+<dt class="label" id="id97"><span class="brackets">YRR+18</span></dt>
+<dd><p>Julio A Yanes, Michael C Riedel, Kimberly L Ray, Anna E Kirkland, Ryan T Bird, Emily R Boeving, Meredith A Reid, Raul Gonzalez, Jennifer L Robinson, Angela R Laird, and Matthew T Sutherland. Neuroimaging meta-analysis of cannabis use studies reveals convergent functional alterations in brain regions supporting cognitive control and reward processing. <em>Journal of Psychopharmacology</em>, 32(3):283–295, 2018. PMID: 29338547. URL: <a class="reference external" href="https://doi.org/10.1177/0269881117744995">https://doi.org/10.1177/0269881117744995</a>, <a class="reference external" href="https://arxiv.org/abs/https://doi.org/10.1177/0269881117744995">arXiv:https://doi.org/10.1177/0269881117744995</a>, <a class="reference external" href="https://doi.org/10.1177/0269881117744995">doi:10.1177/0269881117744995</a>.</p>
+</dd>
+<dt class="label" id="id26"><span class="brackets">YPN+11</span></dt>
+<dd><p>Tal Yarkoni, Russell A Poldrack, Thomas E Nichols, David C Van Essen, and Tor D Wager. Large-scale automated synthesis of human functional neuroimaging data. <em>Nat. Methods</em>, 8(8):665–670, June 2011.</p>
+</dd>
+<dt class="label" id="id30"><span class="brackets">YKE+16</span></dt>
+<dd><p>B T Thomas Yeo, Fenna M Krienen, Simon B Eickhoff, Siti N Yaakub, Peter T Fox, Randy L Buckner, Christopher L Asplund, and Michael W L Chee. Functional specialization and flexibility in human association cortex. <em>Cereb. Cortex</em>, 26(1):465, January 2016.</p>
+</dd>
+<dt class="label" id="id29"><span class="brackets">YLL12</span></dt>
+<dd><p>Yu Ryan Yue, Martin A Lindquist, and Ji Meng Loh. Meta-analysis of functional neuroimaging data using bayesian nonparametric binary regression. 2012.</p>
+</dd>
+<dt class="label" id="id75"><span class="brackets">Zay11</span></dt>
+<dd><p>D V Zaykin. Optimally weighted z-test is a powerful method for combining probabilities in meta-analysis. <em>J. Evol. Biol.</em>, 24(8):1836–1841, August 2011.</p>
+</dd>
+<dt class="label" id="id25"><span class="brackets">ZMSM12</span></dt>
+<dd><p>Peter Zeidman, Sinéad L Mullally, Dietrich Samuel Schwarzkopf, and Eleanor A Maguire. Exploring the parahippocampal cortex response to high and low spatial frequency spaces. <em>Neuroreport</em>, 23(8):503–507, May 2012.</p>
+</dd>
+</dl>
+</p>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="acknowledgements.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Acknowledgements</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="appendices/brainmap_decoding.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Appendix I: BrainMap Discrete Decoding</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Taylor Salo, Tal Yarkoni, Thomas E. Nichols, Jean-Baptiste Poline, Murat Bilgel, Katherine L. Bottenhorn, Enrico Glerean, Dorota Jarecka, James D. Kent, Adam Kimbler, Dylan M. Nielson, Kendra M. Oudyk, Alexandre Pérez, Puck C. Reeders, Julio A. Yanes, Julio A. Peraza, and Angela R. Laird<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
