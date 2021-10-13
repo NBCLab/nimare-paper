@@ -24,10 +24,10 @@ jobs:
         pip install -r binder/requirements.txt
         pip install jupyter-book
 
-    # Build the book
-    - name: Build the book
-      run: |
-        jupyter-book build content/
+    # Build the book -- DISABLED
+    # - name: Build the book
+    #   run: |
+    #     jupyter-book build content/
 
     # Push the book's HTML to github-pages
     - name: GitHub Pages action
