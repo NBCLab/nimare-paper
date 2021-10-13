@@ -221,7 +221,7 @@ glue("table_lda", lda_df)
 
 
 # ```{glue:figure} table_lda
-# :figwidth: 300px
+# :figwidth: 900px
 # :name: "tbl:table_lda"
 # :align: center
 # 
@@ -262,9 +262,11 @@ gclda_model.fit(n_iters=2500, loglikely_freq=500)
 # In[12]:
 
 
-gclda_df = gclda_model.p_word_g_topic_df_.T
-column_names = {c: f"Topic {c}" for c in gclda_df.columns}
-gclda_df = gclda_df.rename(columns=column_names)
+gclda_arr = gclda_model.p_word_g_topic_
+gclda_vocab = gclda_model.vocabulary
+topic_names = [f"Topic {str(i).zfill(3)}" for i in range(gclda_arr.shape[1])]
+gclda_df = pd.DataFrame(index=gclda_vocab, columns=topic_names, data=gclda_arr)
+
 temp_df = gclda_df.copy()
 gclda_df = pd.DataFrame(columns=gclda_df.columns, index=np.arange(10))
 gclda_df.index.name = "Term"
@@ -283,7 +285,7 @@ glue("table_gclda", gclda_df)
 # The top ten terms for each of the first ten topics in the trained GCLDA model.
 # ```
 
-# In[ ]:
+# In[13]:
 
 
 fig, axes = plt.subplots(nrows=5, figsize=(6, 10))
@@ -321,7 +323,7 @@ glue("figure_gclda_topics", fig, display=False)
 # Topic weight maps for the first five topics in the GCLDA model.
 # ```
 
-# In[ ]:
+# In[14]:
 
 
 # Here we delete the recent variables for the sake of reducing memory usage

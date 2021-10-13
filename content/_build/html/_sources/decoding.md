@@ -33,17 +33,18 @@ from nimare import meta
 
 dset_file = os.path.join(DATA_DIR, "neurosynth_dataset_first500_with_mkda_ma.pkl.gz")
 kern = meta.kernel.MKDAKernel(memory_limit=None)
+target_folder = os.path.join(DATA_DIR, "neurosynth_dataset_maps")
 if not os.path.isfile(dset_file):
     neurosynth_dset_first500 = nimare.dataset.Dataset.load(
         os.path.join(DATA_DIR, "neurosynth_dataset_first500.pkl.gz")
     )
-    target_folder = os.path.join(DATA_DIR, "neurosynth_dataset_maps")
     os.makedirs(target_folder, exist_ok=True)
     neurosynth_dset_first500.update_path(target_folder)
     neurosynth_dset_first500 = kern.transform(neurosynth_dset_first500, return_type="dataset")
     neurosynth_dset_first500.save(dset_file)
 else:
     neurosynth_dset_first500 = nimare.dataset.Dataset.load(dset_file)
+    neurosynth_dset_first500.update_path(target_folder)
 
 # Collect features for decoding
 # We use any features that appear in >5% of studies and <95%.
