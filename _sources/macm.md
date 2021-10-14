@@ -96,7 +96,6 @@ glue("figure_macm_rois", fig, display=False)
 ```
 
 ```{glue:figure} figure_macm_rois
-:figwidth: 150px
 :name: figure_macm_rois
 :align: center
 
@@ -149,7 +148,6 @@ glue("figure_macm", fig, display=False)
 ```
 
 ```{glue:figure} figure_macm
-:figwidth: 150px
 :name: figure_macm
 :align: center
 

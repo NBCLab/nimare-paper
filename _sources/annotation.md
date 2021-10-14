@@ -101,7 +101,7 @@ First, we must use {py:func}`nimare.extract.download_cognitive_atlas` to downloa
 This includes both information about individual terms in the ontology and asserted relationships between those terms.
 
 NiMARE will automatically attempt to extrapolate likely alternate forms of each term in the ontology, in order to make extraction easier.
-For example,
+For an example, see {numref}`tbl:table_cogat_forms`.
 
 ```{code-cell} ipython3
 cogatlas = extract.download_cognitive_atlas(data_dir=DATA_DIR, overwrite=False)
@@ -111,6 +111,20 @@ rel_df = pd.read_csv(cogatlas["relationships"])
 cogat_counts_df, rep_text_df = annotate.cogat.extract_cogat(
     neurosynth_dset_first_500.texts, id_df, text_column="abstract"
 )
+```
+
+```{code-cell} ipython3
+:tags: [hide-cell]
+example_forms = id_df.loc[id_df["name"] == "dot motion task"][["id", "name", "alias"]]
+glue("table_cogat_forms", example_forms)
+```
+
+```{glue:figure} table_cogat_forms
+:name: "tbl:table_cogat_forms"
+:align: center
+
+An example of alternate forms characterized by the Cognitive Atlas and extrapolated by NiMARE.
+Certain alternate forms (i.e., synonyms) are specified within the Cognitive Atlas, while others are inferred automatically by NiMARE according to certain rules (e.g., removing parentheses).
 ```
 
 ```{code-cell} ipython3
@@ -135,15 +149,13 @@ pos = axes[0].imshow(
     cogat_counts_df[columns].values,
     aspect="auto",
     vmin=0,
-    vmax=np.max(expanded_df.values),
+    vmax=10,
 )
 fig.colorbar(pos, ax=axes[0])
 axes[0].set_title("Counts Before Expansion", fontsize=20)
-axes[0].set_yticks(range(cogat_counts_df.shape[0]))
-axes[0].set_yticklabels(cogat_counts_df.index)
+axes[0].yaxis.set_visible(False)
+axes[0].xaxis.set_visible(False)
 axes[0].set_ylabel("Study", fontsize=16)
-axes[0].set_xticks(range(len(columns)))
-axes[0].set_xticklabels(columns, rotation=90)
 axes[0].set_xlabel("Cognitive Atlas Term", fontsize=16)
 
 # Expanded counts
@@ -151,19 +163,24 @@ pos = axes[1].imshow(
     expanded_df[columns].values,
     aspect="auto",
     vmin=0,
-    vmax=np.max(expanded_df.values),
+    vmax=10,
 )
 fig.colorbar(pos, ax=axes[1])
 axes[1].set_title("Counts After Expansion", fontsize=20)
-axes[1].set_yticks(range(cogat_counts_df.shape[0]))
-axes[1].set_yticklabels(cogat_counts_df.index)
+axes[1].yaxis.set_visible(False)
+axes[1].xaxis.set_visible(False)
 axes[1].set_ylabel("Study", fontsize=16)
-axes[1].set_xticks(range(len(columns)))
-axes[1].set_xticklabels(columns, rotation=90)
 axes[1].set_xlabel("Cognitive Atlas Term", fontsize=16)
 
 fig.tight_layout()
-fig.show()
+glue("figure_cogat_expansion", fig, display=False)
+```
+
+```{glue:figure} figure_cogat_expansion
+:name: "figure_cogat_expansion"
+:align: center
+
+The effect of hierarchical expansion on Cognitive Atlas term counts from abstracts in Neurosynth's first 500 papers. There are too many terms and studies to show individual labels.
 ```
 
 ```{code-cell} ipython3
@@ -211,8 +228,10 @@ In this one, each row corresponds to a study in the `Dataset` and each column is
 The cell values indicate the probability of selecting a topic when contructing the given study.
 Practically, this indicates the relative proportion with which the topic describes that study.
 
+First, we will reorganize the DataFrame a bit to show the top ten terms for each topic.
+
 ```{code-cell} ipython3
-:tags: [hide-input]
+:tags: [hide-output]
 
 lda_df = lda_model.p_word_g_topic_df_.T
 column_names = {c: f"Topic {c}" for c in lda_df.columns}
@@ -224,11 +243,11 @@ for col in lda_df.columns:
     top_ten_terms = temp_df.sort_values(by=col, ascending=False).index.tolist()[:10]
     lda_df.loc[:, col] = top_ten_terms
 
+lda_df = lda_df[lda_df.columns[:10]]
 glue("table_lda", lda_df)
 ```
 
 ```{glue:figure} table_lda
-:figwidth: 900px
 :name: "tbl:table_lda"
 :align: center
 
@@ -265,8 +284,12 @@ gclda_model = annotate.gclda.GCLDAModel(
 gclda_model.fit(n_iters=2500, loglikely_freq=500)
 ```
 
+The `GCLDAModel` retains the relevant probability distributions in the form of `numpy` arrays, rather than `pandas` DataFrames.
+However, for the topic-term weights (`p_word_g_topic_`), the data are more interpretable as a DataFrame, so we will create one.
+We will also reorganize the raw DataFrame to show the top ten terms for each topic.
+
 ```{code-cell} ipython3
-:tags: [hide-input]
+:tags: [hide-output]
 
 gclda_arr = gclda_model.p_word_g_topic_
 gclda_vocab = gclda_model.vocabulary
@@ -280,19 +303,21 @@ for col in temp_df.columns:
     top_ten_terms = temp_df.sort_values(by=col, ascending=False).index.tolist()[:10]
     gclda_df.loc[:, col] = top_ten_terms
 
+gclda_df = gclda_df[gclda_df.columns[:10]]
 glue("table_gclda", gclda_df)
 ```
 
 ```{glue:figure} table_gclda
-:figwidth: 300px
 :name: "tbl:table_gclda"
 :align: center
 
 The top ten terms for each of the first ten topics in the trained GCLDA model.
 ```
 
+We also want to see how the topic-voxel weights render on the brain, so we will simply unmask the `p_voxel_g_topic_` array with the `Dataset`'s masker.
+
 ```{code-cell} ipython3
-:tags: [hide-cell]
+:tags: [hide-output]
 fig, axes = plt.subplots(nrows=5, figsize=(6, 10))
 
 topic_img_4d = neurosynth_dset_first_500.masker.inverse_transform(gclda_model.p_voxel_g_topic_.T)
@@ -321,7 +346,6 @@ glue("figure_gclda_topics", fig, display=False)
 ```
 
 ```{glue:figure} figure_gclda_topics
-:figwidth: 150px
 :name: figure_gclda_topics
 :align: center
 
