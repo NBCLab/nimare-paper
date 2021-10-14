@@ -231,7 +231,6 @@ glue("figure_uncorr_ibma", fig, display=False)
 
 
 # ```{glue:figure} figure_uncorr_ibma
-# :figwidth: 150px
 # :name: figure_uncorr_ibma
 # :align: center
 # 

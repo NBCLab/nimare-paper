@@ -88,7 +88,7 @@ counts_df = annotate.text.generate_counts(
 # This includes both information about individual terms in the ontology and asserted relationships between those terms.
 # 
 # NiMARE will automatically attempt to extrapolate likely alternate forms of each term in the ontology, in order to make extraction easier.
-# For example,
+# For an example, see {numref}`tbl:table_cogat_forms`.
 
 # In[4]:
 
@@ -105,6 +105,21 @@ cogat_counts_df, rep_text_df = annotate.cogat.extract_cogat(
 # In[5]:
 
 
+example_forms = id_df.loc[id_df["name"] == "dot motion task"][["id", "name", "alias"]]
+glue("table_cogat_forms", example_forms)
+
+
+# ```{glue:figure} table_cogat_forms
+# :name: "tbl:table_cogat_forms"
+# :align: center
+# 
+# An example of alternate forms characterized by the Cognitive Atlas and extrapolated by NiMARE.
+# Certain alternate forms (i.e., synonyms) are specified within the Cognitive Atlas, while others are inferred automatically by NiMARE according to certain rules (e.g., removing parentheses).
+# ```
+
+# In[6]:
+
+
 # Define a weighting scheme.
 # In this scheme, observed terms will also count toward any
 # hypernyms (isKindOf), holonyms (isPartOf), and parent categories (inCategory)
@@ -119,7 +134,7 @@ series = series[series > 0]
 columns = series.index.tolist()
 
 
-# In[6]:
+# In[7]:
 
 
 # Raw counts
@@ -128,15 +143,13 @@ pos = axes[0].imshow(
     cogat_counts_df[columns].values,
     aspect="auto",
     vmin=0,
-    vmax=np.max(expanded_df.values),
+    vmax=10,
 )
 fig.colorbar(pos, ax=axes[0])
 axes[0].set_title("Counts Before Expansion", fontsize=20)
-axes[0].set_yticks(range(cogat_counts_df.shape[0]))
-axes[0].set_yticklabels(cogat_counts_df.index)
+axes[0].yaxis.set_visible(False)
+axes[0].xaxis.set_visible(False)
 axes[0].set_ylabel("Study", fontsize=16)
-axes[0].set_xticks(range(len(columns)))
-axes[0].set_xticklabels(columns, rotation=90)
 axes[0].set_xlabel("Cognitive Atlas Term", fontsize=16)
 
 # Expanded counts
@@ -144,22 +157,27 @@ pos = axes[1].imshow(
     expanded_df[columns].values,
     aspect="auto",
     vmin=0,
-    vmax=np.max(expanded_df.values),
+    vmax=10,
 )
 fig.colorbar(pos, ax=axes[1])
 axes[1].set_title("Counts After Expansion", fontsize=20)
-axes[1].set_yticks(range(cogat_counts_df.shape[0]))
-axes[1].set_yticklabels(cogat_counts_df.index)
+axes[1].yaxis.set_visible(False)
+axes[1].xaxis.set_visible(False)
 axes[1].set_ylabel("Study", fontsize=16)
-axes[1].set_xticks(range(len(columns)))
-axes[1].set_xticklabels(columns, rotation=90)
 axes[1].set_xlabel("Cognitive Atlas Term", fontsize=16)
 
 fig.tight_layout()
-fig.show()
+glue("figure_cogat_expansion", fig, display=False)
 
 
-# In[7]:
+# ```{glue:figure} figure_cogat_expansion
+# :name: "figure_cogat_expansion"
+# :align: center
+# 
+# The effect of hierarchical expansion on Cognitive Atlas term counts from abstracts in Neurosynth's first 500 papers. There are too many terms and studies to show individual labels.
+# ```
+
+# In[8]:
 
 
 # Here we delete the recent variables for the sake of reducing memory usage
@@ -182,7 +200,7 @@ del weights, expanded_df, series, columns
 # 
 # Here, we train an LDA model ({py:class}`nimare.annotate.lda.LDAModel`) on the first 500 studies of the Neurosynth `Dataset`, with 100 topics in the model.
 
-# In[8]:
+# In[9]:
 
 
 from nimare import annotate
@@ -203,8 +221,10 @@ lda_model.fit()
 # In this one, each row corresponds to a study in the `Dataset` and each column is a topic.
 # The cell values indicate the probability of selecting a topic when contructing the given study.
 # Practically, this indicates the relative proportion with which the topic describes that study.
+# 
+# First, we will reorganize the DataFrame a bit to show the top ten terms for each topic.
 
-# In[9]:
+# In[10]:
 
 
 lda_df = lda_model.p_word_g_topic_df_.T
@@ -217,18 +237,18 @@ for col in lda_df.columns:
     top_ten_terms = temp_df.sort_values(by=col, ascending=False).index.tolist()[:10]
     lda_df.loc[:, col] = top_ten_terms
 
+lda_df = lda_df[lda_df.columns[:10]]
 glue("table_lda", lda_df)
 
 
 # ```{glue:figure} table_lda
-# :figwidth: 900px
 # :name: "tbl:table_lda"
 # :align: center
 # 
 # The top ten terms for each of the first ten topics in the trained LDA model.
 # ```
 
-# In[10]:
+# In[11]:
 
 
 # Here we delete the recent variables for the sake of reducing memory usage
@@ -245,7 +265,7 @@ del lda_model, lda_df, temp_df
 # Here we train a GCLDA model ({py:class}`nimare.annotate.gclda.GCLDAModel`) on the first 500 studies of the Neurosynth Dataset.
 # The model will include 100 topics, in which the spatial distribution for each topic will be defined as having two Gaussian distributions that are symmetrically localized across the longitudinal fissure.
 
-# In[11]:
+# In[12]:
 
 
 gclda_model = annotate.gclda.GCLDAModel(
@@ -259,7 +279,11 @@ gclda_model = annotate.gclda.GCLDAModel(
 gclda_model.fit(n_iters=2500, loglikely_freq=500)
 
 
-# In[12]:
+# The `GCLDAModel` retains the relevant probability distributions in the form of `numpy` arrays, rather than `pandas` DataFrames.
+# However, for the topic-term weights (`p_word_g_topic_`), the data are more interpretable as a DataFrame, so we will create one.
+# We will also reorganize the raw DataFrame to show the top ten terms for each topic.
+
+# In[13]:
 
 
 gclda_arr = gclda_model.p_word_g_topic_
@@ -274,18 +298,20 @@ for col in temp_df.columns:
     top_ten_terms = temp_df.sort_values(by=col, ascending=False).index.tolist()[:10]
     gclda_df.loc[:, col] = top_ten_terms
 
+gclda_df = gclda_df[gclda_df.columns[:10]]
 glue("table_gclda", gclda_df)
 
 
 # ```{glue:figure} table_gclda
-# :figwidth: 300px
 # :name: "tbl:table_gclda"
 # :align: center
 # 
 # The top ten terms for each of the first ten topics in the trained GCLDA model.
 # ```
+# 
+# We also want to see how the topic-voxel weights render on the brain, so we will simply unmask the `p_voxel_g_topic_` array with the `Dataset`'s masker.
 
-# In[13]:
+# In[14]:
 
 
 fig, axes = plt.subplots(nrows=5, figsize=(6, 10))
@@ -316,14 +342,13 @@ glue("figure_gclda_topics", fig, display=False)
 
 
 # ```{glue:figure} figure_gclda_topics
-# :figwidth: 150px
 # :name: figure_gclda_topics
 # :align: center
 # 
 # Topic weight maps for the first five topics in the GCLDA model.
 # ```
 
-# In[14]:
+# In[15]:
 
 
 # Here we delete the recent variables for the sake of reducing memory usage

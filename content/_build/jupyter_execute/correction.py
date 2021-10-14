@@ -107,7 +107,6 @@ glue("figure_corr_cbma", fig, display=False)
 
 
 # ```{glue:figure} figure_corr_cbma
-# :figwidth: 150px
 # :name: figure_corr_cbma
 # :align: center
 # 

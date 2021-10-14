@@ -60,6 +60,7 @@ target_features = target_features[target_features]
 target_features = target_features.index.values
 print(f"{len(target_features)} features selected.", flush=True)
 
+continuous_map = os.path.join(DATA_DIR, "map_to_decode.nii.gz")
 amygdala_roi = os.path.join(DATA_DIR, "amygdala_roi.nii.gz")
 amygdala_ids = neurosynth_dset_first500.get_studies_by_mask(amygdala_roi)
 ```
@@ -79,11 +80,25 @@ We will first discuss continuous decoding methods (i.e., correlation and dot-pro
 
 ## Decoding continuous inputs
 
-When decoding unthresholded statistical maps, the most common approaches are to simply correlate the input map with maps from the database, or to compute the dot product between the two maps.
+When decoding unthresholded statistical maps (such as {numref}`figure_map_to_decode`), the most common approaches are to simply correlate the input map with maps from the database, or to compute the dot product between the two maps.
 In Neurosynth, meta-analyses are performed for each label (i.e., term or topic) in the database and then the input image is correlated with the resulting unthresholded statistical map from each meta-analysis.
 Performing statistical inference on the resulting correlations is not straightforward, however, as voxels display strong spatial correlations, and the true degrees of freedom are consequently unknown (and likely far smaller than the nominal number of voxels).
 In order to interpret the results of this decoding approach, users typically select some arbitrary number of top correlation coefficients ahead of time, and use the associated labels to describe the input map.
 However, such results should be interpreted with great caution.
+
+```{code-cell} ipython3
+:tags: [hide-cell]
+fig, ax = plt.subplots(figsize=(10, 6))
+plotting.plot_stat_map(continuous_map, axes=ax, figure=fig, annotate=False, draw_cross=False)
+glue("figure_map_to_decode", fig, display=False)
+```
+
+```{glue:figure} figure_map_to_decode
+:name: figure_map_to_decode
+:align: center
+
+The unthresholded statistical map that will be used for continuous decoding.
+```
 
 This approach can also be applied to an image-based database like NeuroVault, either by correlating input data with meta-analyzed statistical maps, or by deriving distributions of correlation coefficients by grouping statistical maps in the database according to label.
 Using these distributions, it is possible to statistically compare labels in order to assess label significance.
@@ -101,7 +116,7 @@ corr_decoder = decode.continuous.CorrelationDecoder(
     memory_limit=None,
 )
 corr_decoder.fit(neurosynth_dset_first500)
-corr_df = corr_decoder.transform(os.path.join(DATA_DIR, "map_to_decode.nii.gz"))
+corr_df = corr_decoder.transform(continuous_map)
 ```
 
 ```{code-cell} ipython3
@@ -114,7 +129,6 @@ glue("table_corr", corr_df)
 ```
 
 ```{glue:figure} table_corr
-:figwidth: 300px
 :name: "tbl:table_corr"
 :align: center
 
@@ -131,9 +145,26 @@ del corr_decoder, corr_df
 
 ## Decoding discrete inputs
 
-Decoding regions of interest requires a different approach than decoding unthresholded statistical maps.
+Decoding regions of interest (ROIs) requires a different approach than decoding unthresholded statistical maps.
 One simple approach, used by GCLDA and implemented in the function {py:func}`nimare.decode.discrete.gclda_decode_roi`, simply sums the `P(topic|voxel)` distribution across all voxels in the ROI in order to produce a value associated with each topic for the ROI.
 These **weight sum** values are arbitrarily scaled and cannot be compared across ROIs.
+We will not show this method because of its simplicity and the fact that it can only currently be applied to a GCLDA model.
+
+Before we dig into the other decoding methods are are available, let's take a look at the ROI we want to decode.
+
+```{code-cell} ipython3
+:tags: [hide-cell]
+fig, ax = plt.subplots(figsize=(10, 6))
+plotting.plot_roi(amygdala_roi, axes=ax, figure=fig, annotate=False, draw_cross=False)
+glue("figure_roi_to_decode", fig, display=False)
+```
+
+```{glue:figure} figure_roi_to_decode
+:name: figure_roi_to_decode
+:align: center
+
+The amygdala region of interest mask that will be used for discrete decoding.
+```
 
 One method which relies on correlations, much like the continuous correlation decoder, is the **ROI association** decoding method ({py:class}`nimare.decode.discete.ROIAssociationDecoder`), originally implemented in the Neurosynth Python library.
 In this method, each study with coordinates in the dataset is convolved with a kernel transformer to produce a modeled activation map.
@@ -160,7 +191,6 @@ glue("table_assoc", assoc_df)
 ```
 
 ```{glue:figure} table_assoc
-:figwidth: 300px
 :name: "tbl:table_assoc"
 :align: center
 
@@ -220,7 +250,6 @@ glue("table_brainmap", brainmap_df)
 ```
 
 ```{glue:figure} table_brainmap
-:figwidth: 300px
 :name: "tbl:table_brainmap"
 :align: center
 
@@ -271,7 +300,6 @@ glue("table_neurosynth", neurosynth_df)
 ```
 
 ```{glue:figure} table_neurosynth
-:figwidth: 300px
 :name: "tbl:table_neurosynth"
 :align: center
 

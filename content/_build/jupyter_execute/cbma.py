@@ -36,7 +36,6 @@ neurosynth_dset = nimare.dataset.Dataset.load(os.path.join(DATA_DIR, "neurosynth
 # Additionally, for each of the following approaches, except for SCALE, voxel- or cluster-level multiple comparisons correction may be performed using Monte Carlo simulations or false discovery rate (FDR) {cite:p}`Laird2005-qh` correction. Basic multiple-comparisons correction methods (e.g., Bonferroni correction) are also supported.
 
 # ```{figure} images/figure_02.png
-# :figwidth: 150px
 # :name: meta_workflow_fig
 # :align: center
 # 
@@ -125,7 +124,6 @@ del mkda_ma_maps, kda_ma_maps, ale_ma_maps
 
 
 # ```{glue:figure} figure_ma_maps
-# :figwidth: 300px
 # :name: "figure_ma_maps"
 # :align: center
 # 
@@ -414,7 +412,6 @@ glue("figure_cbma_uncorr", fig, display=False)
 
 
 # ```{glue:figure} figure_cbma_uncorr
-# :figwidth: 300px
 # :name: "figure_cbma_uncorr"
 # :align: center
 # 

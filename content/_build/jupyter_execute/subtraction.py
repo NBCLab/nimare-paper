@@ -72,7 +72,6 @@ glue("figure_subtraction", fig, display=False)
 
 
 # ```{glue:figure} figure_subtraction
-# :figwidth: 150px
 # :name: figure_subtraction
 # :align: center
 # 

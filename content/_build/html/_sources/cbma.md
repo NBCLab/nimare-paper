@@ -51,7 +51,6 @@ Additionally, for each of the following approaches, except for SCALE, voxel- or 
 +++
 
 ```{figure} images/figure_02.png
-:figwidth: 150px
 :name: meta_workflow_fig
 :align: center
 
@@ -137,7 +136,6 @@ del mkda_ma_maps, kda_ma_maps, ale_ma_maps
 ```
 
 ```{glue:figure} figure_ma_maps
-:figwidth: 300px
 :name: "figure_ma_maps"
 :align: center
 
@@ -410,7 +408,6 @@ glue("figure_cbma_uncorr", fig, display=False)
 ```
 
 ```{glue:figure} figure_cbma_uncorr
-:figwidth: 300px
 :name: "figure_cbma_uncorr"
 :align: center
 
