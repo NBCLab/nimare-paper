@@ -20,7 +20,9 @@ kernelspec:
 # First, import the necessary modules and functions
 import os
 
+import matplotlib.pyplot as plt
 from myst_nb import glue
+from nilearn import plotting
 
 DATA_DIR = os.path.abspath("../data")
 FIG_DIR = os.path.abspath("../images")

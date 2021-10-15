@@ -143,6 +143,7 @@ columns = series.index.tolist()
 ```
 
 ```{code-cell} ipython3
+:tags: [hide-output]
 # Raw counts
 fig, axes = plt.subplots(figsize=(16, 16), nrows=2, sharex=True)
 pos = axes[0].imshow(
