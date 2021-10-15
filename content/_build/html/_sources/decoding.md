@@ -108,6 +108,7 @@ NiMARE includes methods for both correlation-based decoding and correlation dist
 As such, we will only show the {py:class}`nimare.decode.continuous.CorrelationDecoder` here.
 
 ```{code-cell} ipython3
+:tags: [hide-output]
 from nimare import decode, meta
 
 corr_decoder = decode.continuous.CorrelationDecoder(
