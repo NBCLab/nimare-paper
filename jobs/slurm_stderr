@@ -1,7 +1,7 @@
 [91mWARNING: failed to reach any of the inventories with the following issues:
-intersphinx inventory 'https://nimare.readthedocs.io/en/0.0.10/objects.inv' not fetchable due to <class 'requests.exceptions.ConnectionError'>: HTTPSConnectionPool(host='nimare.readthedocs.io', port=443): Max retries exceeded with url: /en/0.0.10/objects.inv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f85a9120c50>: Failed to establish a new connection: [Errno 101] Network is unreachable'))[39;49;00m
+intersphinx inventory 'https://nimare.readthedocs.io/en/0.0.10/objects.inv' not fetchable due to <class 'requests.exceptions.ConnectionError'>: HTTPSConnectionPool(host='nimare.readthedocs.io', port=443): Max retries exceeded with url: /en/0.0.10/objects.inv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f0f11c9de10>: Failed to establish a new connection: [Errno 101] Network is unreachable'))[39;49;00m
 [91mWARNING: failed to reach any of the inventories with the following issues:
-intersphinx inventory 'https://pymare.readthedocs.io/en/latest/objects.inv' not fetchable due to <class 'requests.exceptions.ConnectionError'>: HTTPSConnectionPool(host='pymare.readthedocs.io', port=443): Max retries exceeded with url: /en/latest/objects.inv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f85a9120ed0>: Failed to establish a new connection: [Errno 101] Network is unreachable'))[39;49;00m
+intersphinx inventory 'https://pymare.readthedocs.io/en/latest/objects.inv' not fetchable due to <class 'requests.exceptions.ConnectionError'>: HTTPSConnectionPool(host='pymare.readthedocs.io', port=443): Max retries exceeded with url: /en/latest/objects.inv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f0f11c9db50>: Failed to establish a new connection: [Errno 101] Network is unreachable'))[39;49;00m
 Labels = 
    /home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/data/mallet_model/texts
 Coded LDA: 100 topics, 7 topic bits, 1111111 topic mask
@@ -21408,11 +21408,4 @@ total tokens: 59901
 
 <10000> LL/token: -7.4197
 
-Total time: 1 minutes 30 seconds
-[31mWARNING: Execution Failed with traceback saved in /home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/content/_build/html/reports/decoding.log[39;49;00m
-[91m/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/content/decoding.md.rst:96: WARNING: Couldn't find key `figure_map_to_decode` in keys defined across all pages.[39;49;00m
-[91m/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/content/decoding.md.rst:131: WARNING: Couldn't find key `table_corr` in keys defined across all pages.[39;49;00m
-[91m/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/content/decoding.md.rst:162: WARNING: Couldn't find key `figure_roi_to_decode` in keys defined across all pages.[39;49;00m
-[91m/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/content/decoding.md.rst:193: WARNING: Couldn't find key `table_assoc` in keys defined across all pages.[39;49;00m
-[91m/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/content/decoding.md.rst:252: WARNING: Couldn't find key `table_brainmap` in keys defined across all pages.[39;49;00m
-[91m/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/content/decoding.md.rst:302: WARNING: Couldn't find key `table_neurosynth` in keys defined across all pages.[39;49;00m
+Total time: 1 minutes 27 seconds
