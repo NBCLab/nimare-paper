@@ -1,8 +1,8 @@
 module add miniconda3-4.5.11-gcc-8.2.0-oqs2mbg
 module add jdk-11.0.1-gcc-8.2.0-ref6fpq
 
-source activate /home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/
+source activate /home/data/nbc/misc-projects/Salo_NiMARE/conda_env/
 export project_name="[NIMARE]"
 
 # Set Python path to project-specific folder
-PYTHONPATH="${PYTHONPATH}:/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper//"
+PYTHONPATH="${PYTHONPATH}:/home/data/nbc/misc-projects/Salo_NiMARE/"
