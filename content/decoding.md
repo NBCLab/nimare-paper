@@ -107,6 +107,11 @@ Using these distributions, it is possible to statistically compare labels in ord
 NiMARE includes methods for both correlation-based decoding and correlation distribution-based decoding, although the correlation-based decoding is better established and should be preferred over the correlation distribution-based decoding.
 As such, we will only show the {py:class}`nimare.decode.continuous.CorrelationDecoder` here.
 
+```{warning}
+{py:class}`nimare.decode.continuous.CorrelationDecoder` currently runs _very_ slowly.
+We strongly recommend running it on a subset of labels within the `Dataset`.
+```
+
 ```{code-cell} ipython3
 :tags: [hide-output]
 from nimare import decode, meta
@@ -124,9 +129,7 @@ corr_df = corr_decoder.transform(continuous_map)
 
 ```{code-cell} ipython3
 :tags: [hide-cell]
-corr_df = corr_df.reindex(
-    corr_df["r"].abs().sort_values(ascending=False).index
-)
+corr_df = corr_df.reindex(corr_df["r"].abs().sort_values(ascending=False).index)
 corr_df = corr_df.iloc[:10]
 glue("table_corr", corr_df)
 ```
