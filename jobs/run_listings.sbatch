@@ -6,10 +6,10 @@
 #SBATCH -J nimare-paper
 
 #---Error file
-#SBATCH -e /home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/jobs/slurm_stderr
+#SBATCH -e /home/data/nbc/misc-projects/Salo_NiMARE/jobs/slurm_stderr
 
 #---Output file
-#SBATCH -o /home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/jobs/slurm_stdout
+#SBATCH -o /home/data/nbc/misc-projects/Salo_NiMARE/jobs/slurm_stdout
 
 #---Queue name
 #SBATCH --account iacc_nbc
@@ -19,9 +19,9 @@
 ########################################################
 export NPROCS=`echo $LSB_HOSTS | wc -w`
 export OMP_NUM_THREADS=4
-export NIMARE_DATA="/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/data/"
+export NIMARE_DATA="/home/data/nbc/misc-projects/Salo_NiMARE/data/"
 . $MODULESHOME/../global/profile.modules
-source /home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/activate_environment
+source /home/data/nbc/misc-projects/Salo_NiMARE/activate_environment
 
-# jupyter-book clean /home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/content/
-jupyter-book build /home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/content/
+# jupyter-book clean /home/data/nbc/misc-projects/Salo_NiMARE/content/
+jupyter-book build /home/data/nbc/misc-projects/Salo_NiMARE/content/
