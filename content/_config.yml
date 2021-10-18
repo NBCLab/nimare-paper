@@ -54,7 +54,4 @@ sphinx:
     intersphinx_mapping:
       nimare:
         - "https://nimare.readthedocs.io/en/0.0.10/"
-        - null
-      pymare:
-        - "https://pymare.readthedocs.io/en/latest/"
-        - null
+        - "_static/nimare_v0_0_10_objects.inv"
