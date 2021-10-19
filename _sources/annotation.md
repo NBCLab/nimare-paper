@@ -206,7 +206,7 @@ This method produces two sets of probability distributions: (1) the probability 
 NiMARE uses a Python-based interface to the MALLET Java library {cite:p}`mccallum2002mallet` to implement LDA.
 NiMARE will download MALLET automatically, when necessary.
 
-Here, we train an LDA model ({py:class}`nimare.annotate.lda.LDAModel`) on the first 500 studies of the Neurosynth `Dataset`, with 100 topics in the model.
+Here, we train an LDA model ({py:class}`nimare.annotate.lda.LDAModel`) on the first 500 studies of the Neurosynth `Dataset`, with 50 topics in the model.
 
 ```{code-cell} ipython3
 :tags: [hide-output]
@@ -215,10 +215,15 @@ from nimare import annotate
 lda_model = annotate.lda.LDAModel(
     neurosynth_dset_first_500.texts,
     text_column="abstract",
-    n_topics=100,
+    n_topics=50,
     n_iters=10000,
 )
-lda_model.fit()
+
+# We will suppress MALLET's output when fitting the model, because MALLET logs a lot of information
+import contextlib
+
+with contextlib.redirect_stdout(None):
+    lda_model.fit()
 ```
 
 The most important products of training the `LDAModel` object are its `p_word_g_topic_df_` and `p_topic_g_doc_df_` attributes.
@@ -229,7 +234,7 @@ In this one, each row corresponds to a study in the `Dataset` and each column is
 The cell values indicate the probability of selecting a topic when contructing the given study.
 Practically, this indicates the relative proportion with which the topic describes that study.
 
-First, we will reorganize the DataFrame a bit to show the top ten terms for each topic.
+First, we will reorganize the DataFrame a bit to show the top ten terms for each of the first ten topics.
 
 ```{code-cell} ipython3
 :tags: [hide-output]
@@ -271,14 +276,14 @@ These spatial distributions can also be restricted to pairs of Gaussians that ar
 This method produces two sets of probability distributions: the probability of a word given topic (`GCLDAModel.p_word_g_topic_`) and the probability of a voxel given topic (`GCLDAModel.p_voxel_g_topic_`).
 
 Here we train a GCLDA model ({py:class}`nimare.annotate.gclda.GCLDAModel`) on the first 500 studies of the Neurosynth Dataset.
-The model will include 100 topics, in which the spatial distribution for each topic will be defined as having two Gaussian distributions that are symmetrically localized across the longitudinal fissure.
+The model will include 50 topics, in which the spatial distribution for each topic will be defined as having two Gaussian distributions that are symmetrically localized across the longitudinal fissure.
 
 ```{code-cell} ipython3
 gclda_model = annotate.gclda.GCLDAModel(
     counts_df,
     neurosynth_dset_first_500.coordinates,
     n_regions=2,
-    n_topics=100,
+    n_topics=50,
     symmetric=True,
     mask=neurosynth_dset_first_500.masker.mask_img,
 )
@@ -287,7 +292,7 @@ gclda_model.fit(n_iters=2500, loglikely_freq=500)
 
 The `GCLDAModel` retains the relevant probability distributions in the form of `numpy` arrays, rather than `pandas` DataFrames.
 However, for the topic-term weights (`p_word_g_topic_`), the data are more interpretable as a DataFrame, so we will create one.
-We will also reorganize the raw DataFrame to show the top ten terms for each topic.
+We will also reorganize the raw DataFrame to show the top ten terms for each of the first ten topics.
 
 ```{code-cell} ipython3
 :tags: [hide-output]
@@ -319,29 +324,31 @@ We also want to see how the topic-voxel weights render on the brain, so we will 
 
 ```{code-cell} ipython3
 :tags: [hide-output]
-fig, axes = plt.subplots(nrows=5, figsize=(6, 10))
+fig, axes = plt.subplots(nrows=5, ncols=2, figsize=(12, 10))
 
 topic_img_4d = neurosynth_dset_first_500.masker.inverse_transform(gclda_model.p_voxel_g_topic_.T)
-# Plot first five topics
-for i_topic in range(5):
-    topic_img = image.index_img(topic_img_4d, index=i_topic)
-    display = plotting.plot_stat_map(
-        topic_img,
-        annotate=False,
-        cmap="Reds",
-        draw_cross=False,
-        figure=fig,
-        axes=axes[i_topic],
-    )
-    axes[i_topic].set_title(f"Topic {i_topic + 1}")
+# Plot first ten topics
+topic_counter = 0
+for i_row in range(5):
+    for j_col in range(2):
+        topic_img = image.index_img(topic_img_4d, index=topic_counter)
+        display = plotting.plot_stat_map(
+            topic_img,
+            annotate=False,
+            cmap="Reds",
+            draw_cross=False,
+            figure=fig,
+            axes=axes[i_row, j_col],
+        )
+        axes[i_row, j_col].set_title(f"Topic {str(topic_counter).zfill(3)}")
 
-    colorbar = display._cbar
-    colorbar_ticks = colorbar.get_ticks()
-    if colorbar_ticks[0] < 0:
-        new_ticks = [colorbar_ticks[0], 0, colorbar_ticks[-1]]
-    else:
-        new_ticks = [colorbar_ticks[0], colorbar_ticks[-1]]
-    colorbar.set_ticks(new_ticks, update_ticks=True)
+        colorbar = display._cbar
+        colorbar_ticks = colorbar.get_ticks()
+        if colorbar_ticks[0] < 0:
+            new_ticks = [colorbar_ticks[0], 0, colorbar_ticks[-1]]
+        else:
+            new_ticks = [colorbar_ticks[0], colorbar_ticks[-1]]
+        colorbar.set_ticks(new_ticks, update_ticks=True)
 
 glue("figure_gclda_topics", fig, display=False)
 ```
@@ -350,7 +357,7 @@ glue("figure_gclda_topics", fig, display=False)
 :name: figure_gclda_topics
 :align: center
 
-Topic weight maps for the first five topics in the GCLDA model.
+Topic weight maps for the first ten topics in the GCLDA model.
 ```
 
 ```{code-cell} ipython3
