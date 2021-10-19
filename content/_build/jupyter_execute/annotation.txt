@@ -1,0 +1,191 @@
+# First, import the necessary modules and functions
+import os
+
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+from myst_nb import glue
+from nilearn import image, plotting
+
+import nimare
+
+# Define where data files will be located
+DATA_DIR = os.path.abspath("../data")
+FIG_DIR = os.path.abspath("../images")
+
+# Now, load the Dataset we will use in this chapter
+neurosynth_dset_first_500 = nimare.dataset.Dataset.load(
+    os.path.join(DATA_DIR, "neurosynth_dataset_first500.pkl.gz")
+)
+
+from nimare import dataset, extract
+
+# In order to run this code on nodes without internet access,
+# we need this if statement
+dataset_file = os.path.join(DATA_DIR, "neurosynth_dataset_first500_with_abstracts.pkl.gz")
+if not os.path.isfile(dataset_file):
+    neurosynth_dset_first_500 = extract.download_abstracts(
+        neurosynth_dset_first_500,
+        email="example@email.com",
+    )
+    neurosynth_dset_first_500.save(dataset_file)
+else:
+    neurosynth_dset_first_500 = dataset.Dataset.load(dataset_file)
+
+from nimare import annotate
+
+counts_df = annotate.text.generate_counts(
+    neurosynth_dset_first_500.texts,
+    text_column="abstract",
+    tfidf=False,
+    min_df=10,
+    max_df=0.95,
+)
+
+cogatlas = extract.download_cognitive_atlas(data_dir=DATA_DIR, overwrite=False)
+id_df = pd.read_csv(cogatlas["ids"])
+rel_df = pd.read_csv(cogatlas["relationships"])
+
+cogat_counts_df, rep_text_df = annotate.cogat.extract_cogat(
+    neurosynth_dset_first_500.texts, id_df, text_column="abstract"
+)
+
+example_forms = id_df.loc[id_df["name"] == "dot motion task"][["id", "name", "alias"]]
+glue("table_cogat_forms", example_forms)
+
+# Define a weighting scheme.
+# In this scheme, observed terms will also count toward any
+# hypernyms (isKindOf), holonyms (isPartOf), and parent categories (inCategory)
+# as well.
+weights = {"isKindOf": 1, "isPartOf": 1, "inCategory": 1}
+expanded_df = annotate.cogat.expand_counts(cogat_counts_df, rel_df, weights)
+
+# Sort by total count and reduce for better visualization
+series = expanded_df.sum(axis=0)
+series = series.sort_values(ascending=False)
+series = series[series > 0]
+columns = series.index.tolist()
+
+# Raw counts
+fig, axes = plt.subplots(figsize=(16, 16), nrows=2, sharex=True)
+pos = axes[0].imshow(
+    cogat_counts_df[columns].values,
+    aspect="auto",
+    vmin=0,
+    vmax=10,
+)
+fig.colorbar(pos, ax=axes[0])
+axes[0].set_title("Counts Before Expansion", fontsize=20)
+axes[0].yaxis.set_visible(False)
+axes[0].xaxis.set_visible(False)
+axes[0].set_ylabel("Study", fontsize=16)
+axes[0].set_xlabel("Cognitive Atlas Term", fontsize=16)
+
+# Expanded counts
+pos = axes[1].imshow(
+    expanded_df[columns].values,
+    aspect="auto",
+    vmin=0,
+    vmax=10,
+)
+fig.colorbar(pos, ax=axes[1])
+axes[1].set_title("Counts After Expansion", fontsize=20)
+axes[1].yaxis.set_visible(False)
+axes[1].xaxis.set_visible(False)
+axes[1].set_ylabel("Study", fontsize=16)
+axes[1].set_xlabel("Cognitive Atlas Term", fontsize=16)
+
+fig.tight_layout()
+glue("figure_cogat_expansion", fig, display=False)
+
+# Here we delete the recent variables for the sake of reducing memory usage
+del cogatlas, id_df, rel_df, cogat_counts_df, rep_text_df
+del weights, expanded_df, series, columns
+
+from nimare import annotate
+
+lda_model = annotate.lda.LDAModel(
+    neurosynth_dset_first_500.texts,
+    text_column="abstract",
+    n_topics=50,
+    n_iters=10000,
+)
+
+# We will suppress MALLET's output when fitting the model, because MALLET logs a lot of information
+import contextlib
+
+with contextlib.redirect_stderr(None):
+    lda_model.fit()
+
+lda_df = lda_model.p_word_g_topic_df_.T
+column_names = {c: f"Topic {c}" for c in lda_df.columns}
+lda_df = lda_df.rename(columns=column_names)
+temp_df = lda_df.copy()
+lda_df = pd.DataFrame(columns=lda_df.columns, index=np.arange(10))
+lda_df.index.name = "Term"
+for col in lda_df.columns:
+    top_ten_terms = temp_df.sort_values(by=col, ascending=False).index.tolist()[:10]
+    lda_df.loc[:, col] = top_ten_terms
+
+lda_df = lda_df[lda_df.columns[:10]]
+glue("table_lda", lda_df)
+
+# Here we delete the recent variables for the sake of reducing memory usage
+del lda_model, lda_df, temp_df
+
+gclda_model = annotate.gclda.GCLDAModel(
+    counts_df,
+    neurosynth_dset_first_500.coordinates,
+    n_regions=2,
+    n_topics=50,
+    symmetric=True,
+    mask=neurosynth_dset_first_500.masker.mask_img,
+)
+gclda_model.fit(n_iters=2500, loglikely_freq=500)
+
+gclda_arr = gclda_model.p_word_g_topic_
+gclda_vocab = gclda_model.vocabulary
+topic_names = [f"Topic {str(i).zfill(3)}" for i in range(gclda_arr.shape[1])]
+gclda_df = pd.DataFrame(index=gclda_vocab, columns=topic_names, data=gclda_arr)
+
+temp_df = gclda_df.copy()
+gclda_df = pd.DataFrame(columns=gclda_df.columns, index=np.arange(10))
+gclda_df.index.name = "Term"
+for col in temp_df.columns:
+    top_ten_terms = temp_df.sort_values(by=col, ascending=False).index.tolist()[:10]
+    gclda_df.loc[:, col] = top_ten_terms
+
+gclda_df = gclda_df[gclda_df.columns[:10]]
+glue("table_gclda", gclda_df)
+
+fig, axes = plt.subplots(nrows=5, ncols=2, figsize=(12, 10))
+
+topic_img_4d = neurosynth_dset_first_500.masker.inverse_transform(gclda_model.p_voxel_g_topic_.T)
+# Plot first ten topics
+topic_counter = 0
+for i_row in range(5):
+    for j_col in range(2):
+        topic_img = image.index_img(topic_img_4d, index=topic_counter)
+        display = plotting.plot_stat_map(
+            topic_img,
+            annotate=False,
+            cmap="Reds",
+            draw_cross=False,
+            figure=fig,
+            axes=axes[i_row, j_col],
+        )
+        axes[i_row, j_col].set_title(f"Topic {str(topic_counter).zfill(3)}")
+        topic_counter += 1
+
+        colorbar = display._cbar
+        colorbar_ticks = colorbar.get_ticks()
+        if colorbar_ticks[0] < 0:
+            new_ticks = [colorbar_ticks[0], 0, colorbar_ticks[-1]]
+        else:
+            new_ticks = [colorbar_ticks[0], colorbar_ticks[-1]]
+        colorbar.set_ticks(new_ticks, update_ticks=True)
+
+glue("figure_gclda_topics", fig, display=False)
+
+# Here we delete the recent variables for the sake of reducing memory usage
+del gclda_model, temp_df, gclda_df, counts_df

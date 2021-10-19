@@ -222,7 +222,7 @@ lda_model = annotate.lda.LDAModel(
 # We will suppress MALLET's output when fitting the model, because MALLET logs a lot of information
 import contextlib
 
-with contextlib.redirect_stdout(None):
+with contextlib.redirect_stderr(None):
     lda_model.fit()
 ```
 
@@ -341,6 +341,7 @@ for i_row in range(5):
             axes=axes[i_row, j_col],
         )
         axes[i_row, j_col].set_title(f"Topic {str(topic_counter).zfill(3)}")
+        topic_counter += 1
 
         colorbar = display._cbar
         colorbar_ticks = colorbar.get_ticks()

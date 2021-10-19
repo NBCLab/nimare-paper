@@ -1,77 +1,4 @@
 {
-  "annotation": {
-    "figure_cogat_expansion": {
-      "data": {
-        "application/papermill.record/image/png": null,
-        "application/papermill.record/text/plain": "<Figure size 1152x1152 with 4 Axes>"
-      },
-      "metadata": {
-        "scrapbook": {
-          "mime_prefix": "application/papermill.record/",
-          "name": "figure_cogat_expansion"
-        },
-        "filenames": {
-          "image/png": "/home/data/nbc/misc-projects/Salo_NiMARE/content/_build/jupyter_execute/annotation_12_0.png"
-        }
-      },
-      "output_type": "display_data"
-    },
-    "figure_gclda_topics": {
-      "data": {
-        "application/papermill.record/image/png": null,
-        "application/papermill.record/text/plain": "<Figure size 864x720 with 50 Axes>"
-      },
-      "metadata": {
-        "scrapbook": {
-          "mime_prefix": "application/papermill.record/",
-          "name": "figure_gclda_topics"
-        },
-        "filenames": {
-          "image/png": "/home/data/nbc/misc-projects/Salo_NiMARE/content/_build/jupyter_execute/annotation_26_0.png"
-        }
-      },
-      "output_type": "display_data"
-    },
-    "table_lda": {
-      "data": {
-        "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>topic</th>\n      <th>Topic 0</th>\n      <th>Topic 1</th>\n      <th>Topic 2</th>\n      <th>Topic 3</th>\n      <th>Topic 4</th>\n      <th>Topic 5</th>\n      <th>Topic 6</th>\n      <th>Topic 7</th>\n      <th>Topic 8</th>\n      <th>Topic 9</th>\n    </tr>\n    <tr>\n      <th>Term</th>\n      <th></th>\n      <th></th>\n      <th></th>\n      <th></th>\n      <th></th>\n      <th></th>\n      <th></th>\n      <th></th>\n      <th></th>\n      <th></th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>motor</td>\n      <td>modality</td>\n      <td>cortex</td>\n      <td>attention</td>\n      <td>human</td>\n      <td>reward</td>\n      <td>motion</td>\n      <td>condition</td>\n      <td>signal</td>\n      <td>cue</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>activation</td>\n      <td>sensory</td>\n      <td>functional</td>\n      <td>attentional</td>\n      <td>sulcus</td>\n      <td>activity</td>\n      <td>mt</td>\n      <td>grip</td>\n      <td>blood</td>\n      <td>effect</td>\n    </tr>\n    <tr>\n      <th>2</th>\n      <td>somatosensory</td>\n      <td>modalities</td>\n      <td>activation</td>\n      <td>spatial</td>\n      <td>area</td>\n      <td>connectivity</td>\n      <td>areas</td>\n      <td>object</td>\n      <td>bold</td>\n      <td>orienting</td>\n    </tr>\n    <tr>\n      <th>3</th>\n      <td>stimulation</td>\n      <td>cortices</td>\n      <td>regions</td>\n      <td>attended</td>\n      <td>posterior</td>\n      <td>goal</td>\n      <td>stimuli</td>\n      <td>hand</td>\n      <td>level</td>\n      <td>cues</td>\n    </tr>\n    <tr>\n      <th>4</th>\n      <td>hand</td>\n      <td>visual</td>\n      <td>brain</td>\n      <td>selection</td>\n      <td>object</td>\n      <td>actions</td>\n      <td>biological</td>\n      <td>subjects</td>\n      <td>dependent</td>\n      <td>signal</td>\n    </tr>\n    <tr>\n      <th>5</th>\n      <td>primary</td>\n      <td>tactile</td>\n      <td>fmri</td>\n      <td>target</td>\n      <td>visual</td>\n      <td>effective</td>\n      <td>processing</td>\n      <td>precision</td>\n      <td>change</td>\n      <td>parietal</td>\n    </tr>\n    <tr>\n      <th>6</th>\n      <td>cortex</td>\n      <td>integration</td>\n      <td>activity</td>\n      <td>selectively</td>\n      <td>information</td>\n      <td>mpfc</td>\n      <td>occipital</td>\n      <td>conditions</td>\n      <td>flow</td>\n      <td>left</td>\n    </tr>\n    <tr>\n      <th>7</th>\n      <td>sii</td>\n      <td>auditory</td>\n      <td>imaging</td>\n      <td>dimension</td>\n      <td>intraparietal</td>\n      <td>state</td>\n      <td>ic</td>\n      <td>force</td>\n      <td>cerebral</td>\n      <td>period</td>\n    </tr>\n    <tr>\n      <th>8</th>\n      <td>fmri</td>\n      <td>somatosensory</td>\n      <td>results</td>\n      <td>attending</td>\n      <td>humans</td>\n      <td>imitation</td>\n      <td>elicited</td>\n      <td>subject</td>\n      <td>oxygen</td>\n      <td>predictability</td>\n    </tr>\n    <tr>\n      <th>9</th>\n      <td>contralateral</td>\n      <td>cross</td>\n      <td>magnetic</td>\n      <td>shifts</td>\n      <td>region</td>\n      <td>monetary</td>\n      <td>depth</td>\n      <td>objects</td>\n      <td>state</td>\n      <td>generated</td>\n    </tr>\n  </tbody>\n</table>\n</div>",
-        "text/plain": "topic        Topic 0        Topic 1     Topic 2      Topic 3        Topic 4  \\\nTerm                                                                          \n0              motor       modality      cortex    attention          human   \n1         activation        sensory  functional  attentional         sulcus   \n2      somatosensory     modalities  activation      spatial           area   \n3        stimulation       cortices     regions     attended      posterior   \n4               hand         visual       brain    selection         object   \n5            primary        tactile        fmri       target         visual   \n6             cortex    integration    activity  selectively    information   \n7                sii       auditory     imaging    dimension  intraparietal   \n8               fmri  somatosensory     results    attending         humans   \n9      contralateral          cross    magnetic       shifts         region   \n\ntopic       Topic 5     Topic 6     Topic 7    Topic 8         Topic 9  \nTerm                                                                    \n0            reward      motion   condition     signal             cue  \n1          activity          mt        grip      blood          effect  \n2      connectivity       areas      object       bold       orienting  \n3              goal     stimuli        hand      level            cues  \n4           actions  biological    subjects  dependent          signal  \n5         effective  processing   precision     change        parietal  \n6              mpfc   occipital  conditions       flow            left  \n7             state          ic       force   cerebral          period  \n8         imitation    elicited     subject     oxygen  predictability  \n9          monetary       depth     objects      state       generated  "
-      },
-      "metadata": {
-        "scrapbook": {
-          "mime_prefix": "",
-          "name": "table_lda"
-        }
-      },
-      "output_type": "display_data"
-    },
-    "table_cogat_forms": {
-      "data": {
-        "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>id</th>\n      <th>name</th>\n      <th>alias</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>803</th>\n      <td>trm_4f244ad7dcde7</td>\n      <td>dot motion task</td>\n      <td>random-dot motion task</td>\n    </tr>\n    <tr>\n      <th>1563</th>\n      <td>trm_4f244ad7dcde7</td>\n      <td>dot motion task</td>\n      <td>dot motion task</td>\n    </tr>\n    <tr>\n      <th>1589</th>\n      <td>trm_4f244ad7dcde7</td>\n      <td>dot motion task</td>\n      <td>dot-motion task</td>\n    </tr>\n    <tr>\n      <th>1595</th>\n      <td>trm_4f244ad7dcde7</td>\n      <td>dot motion task</td>\n      <td>moving-dot task</td>\n    </tr>\n    <tr>\n      <th>2039</th>\n      <td>trm_4f244ad7dcde7</td>\n      <td>dot motion task</td>\n      <td>rdm task</td>\n    </tr>\n  </tbody>\n</table>\n</div>",
-        "text/plain": "                     id             name                   alias\n803   trm_4f244ad7dcde7  dot motion task  random-dot motion task\n1563  trm_4f244ad7dcde7  dot motion task         dot motion task\n1589  trm_4f244ad7dcde7  dot motion task         dot-motion task\n1595  trm_4f244ad7dcde7  dot motion task         moving-dot task\n2039  trm_4f244ad7dcde7  dot motion task                rdm task"
-      },
-      "metadata": {
-        "scrapbook": {
-          "mime_prefix": "",
-          "name": "table_cogat_forms"
-        }
-      },
-      "output_type": "display_data"
-    },
-    "table_gclda": {
-      "data": {
-        "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>Topic 000</th>\n      <th>Topic 001</th>\n      <th>Topic 002</th>\n      <th>Topic 003</th>\n      <th>Topic 004</th>\n      <th>Topic 005</th>\n      <th>Topic 006</th>\n      <th>Topic 007</th>\n      <th>Topic 008</th>\n      <th>Topic 009</th>\n    </tr>\n    <tr>\n      <th>Term</th>\n      <th></th>\n      <th></th>\n      <th></th>\n      <th></th>\n      <th></th>\n      <th></th>\n      <th></th>\n      <th></th>\n      <th></th>\n      <th></th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>amygdala</td>\n      <td>visual</td>\n      <td>motion</td>\n      <td>learning</td>\n      <td>visual</td>\n      <td>modality</td>\n      <td>age</td>\n      <td>temporal</td>\n      <td>prefrontal</td>\n      <td>eye</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>faces</td>\n      <td>cortex</td>\n      <td>temporal</td>\n      <td>task</td>\n      <td>network</td>\n      <td>spatial</td>\n      <td>adults</td>\n      <td>tomography</td>\n      <td>prefrontal cortex</td>\n      <td>movements</td>\n    </tr>\n    <tr>\n      <th>2</th>\n      <td>neutral</td>\n      <td>functional</td>\n      <td>mt</td>\n      <td>performance</td>\n      <td>greater</td>\n      <td>sensory</td>\n      <td>matter</td>\n      <td>emission</td>\n      <td>task</td>\n      <td>timing</td>\n    </tr>\n    <tr>\n      <th>3</th>\n      <td>emotional</td>\n      <td>cortical</td>\n      <td>visual</td>\n      <td>sequence</td>\n      <td>occipital</td>\n      <td>gyrus</td>\n      <td>children</td>\n      <td>emission tomography</td>\n      <td>cortex</td>\n      <td>motor</td>\n    </tr>\n    <tr>\n      <th>4</th>\n      <td>functional</td>\n      <td>magnetic resonance</td>\n      <td>sulcus</td>\n      <td>fronto</td>\n      <td>frontal</td>\n      <td>modalities</td>\n      <td>using</td>\n      <td>medial</td>\n      <td>control</td>\n      <td>activations</td>\n    </tr>\n    <tr>\n      <th>5</th>\n      <td>stimuli</td>\n      <td>visual cortex</td>\n      <td>occipital</td>\n      <td>practice</td>\n      <td>evidence</td>\n      <td>known</td>\n      <td>volume</td>\n      <td>positron</td>\n      <td>response</td>\n      <td>movement</td>\n    </tr>\n    <tr>\n      <th>6</th>\n      <td>emotion</td>\n      <td>magnetic</td>\n      <td>dorsal</td>\n      <td>learned</td>\n      <td>human</td>\n      <td>movements</td>\n      <td>mm</td>\n      <td>positron emission</td>\n      <td>dorsolateral prefrontal</td>\n      <td>evidence</td>\n    </tr>\n    <tr>\n      <th>7</th>\n      <td>response</td>\n      <td>stimulation</td>\n      <td>human</td>\n      <td>awareness</td>\n      <td>demonstrated</td>\n      <td>bilaterally</td>\n      <td>young</td>\n      <td>pet</td>\n      <td>dorsolateral</td>\n      <td>cortical</td>\n    </tr>\n    <tr>\n      <th>8</th>\n      <td>functional magnetic</td>\n      <td>resonance</td>\n      <td>sensitive</td>\n      <td>early</td>\n      <td>direction</td>\n      <td>angular</td>\n      <td>years</td>\n      <td>temporal lobe</td>\n      <td>cognitive</td>\n      <td>condition</td>\n    </tr>\n    <tr>\n      <th>9</th>\n      <td>responses</td>\n      <td>spatial</td>\n      <td>perception</td>\n      <td>parietal</td>\n      <td>pattern</td>\n      <td>goal</td>\n      <td>women</td>\n      <td>lobe</td>\n      <td>tasks</td>\n      <td>fields</td>\n    </tr>\n  </tbody>\n</table>\n</div>",
-        "text/plain": "                Topic 000           Topic 001   Topic 002    Topic 003  \\\nTerm                                                                     \n0                amygdala              visual      motion     learning   \n1                   faces              cortex    temporal         task   \n2                 neutral          functional          mt  performance   \n3               emotional            cortical      visual     sequence   \n4              functional  magnetic resonance      sulcus       fronto   \n5                 stimuli       visual cortex   occipital     practice   \n6                 emotion            magnetic      dorsal      learned   \n7                response         stimulation       human    awareness   \n8     functional magnetic           resonance   sensitive        early   \n9               responses             spatial  perception     parietal   \n\n         Topic 004    Topic 005 Topic 006            Topic 007  \\\nTerm                                                             \n0           visual     modality       age             temporal   \n1          network      spatial    adults           tomography   \n2          greater      sensory    matter             emission   \n3        occipital        gyrus  children  emission tomography   \n4          frontal   modalities     using               medial   \n5         evidence        known    volume             positron   \n6            human    movements        mm    positron emission   \n7     demonstrated  bilaterally     young                  pet   \n8        direction      angular     years        temporal lobe   \n9          pattern         goal     women                 lobe   \n\n                    Topic 008    Topic 009  \nTerm                                        \n0                  prefrontal          eye  \n1           prefrontal cortex    movements  \n2                        task       timing  \n3                      cortex        motor  \n4                     control  activations  \n5                    response     movement  \n6     dorsolateral prefrontal     evidence  \n7                dorsolateral     cortical  \n8                   cognitive    condition  \n9                       tasks       fields  "
-      },
-      "metadata": {
-        "scrapbook": {
-          "mime_prefix": "",
-          "name": "table_gclda"
-        }
-      },
-      "output_type": "display_data"
-    }
-  },
   "cbma": {
     "figure_cbma_uncorr": {
       "data": {
@@ -141,15 +68,15 @@
       },
       "output_type": "display_data"
     },
-    "table_corr": {
+    "table_neurosynth": {
       "data": {
-        "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>r</th>\n    </tr>\n    <tr>\n      <th>feature</th>\n      <th></th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>terms_abstract_tfidf__bold</th>\n      <td>0.296838</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__insula</th>\n      <td>0.282022</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__anterior</th>\n      <td>0.224806</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__thalamus</th>\n      <td>0.214200</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__ganglia</th>\n      <td>0.196132</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__basal ganglia</th>\n      <td>0.196132</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__basal</th>\n      <td>0.191116</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__occipital</th>\n      <td>-0.186436</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__information</th>\n      <td>0.181752</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__cingulate</th>\n      <td>0.174704</td>\n    </tr>\n  </tbody>\n</table>\n</div>",
-        "text/plain": "                                            r\nfeature                                      \nterms_abstract_tfidf__bold           0.296838\nterms_abstract_tfidf__insula         0.282022\nterms_abstract_tfidf__anterior       0.224806\nterms_abstract_tfidf__thalamus       0.214200\nterms_abstract_tfidf__ganglia        0.196132\nterms_abstract_tfidf__basal ganglia  0.196132\nterms_abstract_tfidf__basal          0.191116\nterms_abstract_tfidf__occipital     -0.186436\nterms_abstract_tfidf__information    0.181752\nterms_abstract_tfidf__cingulate      0.174704"
+        "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>pForward</th>\n      <th>zForward</th>\n      <th>probForward</th>\n      <th>pReverse</th>\n      <th>zReverse</th>\n      <th>probReverse</th>\n    </tr>\n    <tr>\n      <th>Term</th>\n      <th></th>\n      <th></th>\n      <th></th>\n      <th></th>\n      <th></th>\n      <th></th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>terms_abstract_tfidf__amygdala</th>\n      <td>6.209555e-20</td>\n      <td>9.140620</td>\n      <td>0.245500</td>\n      <td>1.128171e-31</td>\n      <td>11.710347</td>\n      <td>0.964733</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__neutral</th>\n      <td>2.021711e-03</td>\n      <td>3.087024</td>\n      <td>0.150593</td>\n      <td>1.017804e-06</td>\n      <td>4.888165</td>\n      <td>0.878877</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__faces</th>\n      <td>9.558240e-02</td>\n      <td>1.666658</td>\n      <td>0.160000</td>\n      <td>1.301763e-05</td>\n      <td>4.359808</td>\n      <td>0.875000</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__face</th>\n      <td>9.558240e-02</td>\n      <td>1.666658</td>\n      <td>0.136879</td>\n      <td>2.795870e-04</td>\n      <td>3.633514</td>\n      <td>0.852332</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__interaction</th>\n      <td>3.300767e-01</td>\n      <td>0.973959</td>\n      <td>0.128329</td>\n      <td>3.239943e-03</td>\n      <td>2.944005</td>\n      <td>0.834906</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__regional</th>\n      <td>9.558240e-02</td>\n      <td>1.666658</td>\n      <td>0.123327</td>\n      <td>1.605909e-03</td>\n      <td>3.154831</td>\n      <td>0.834698</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__emotional</th>\n      <td>3.300767e-01</td>\n      <td>0.973959</td>\n      <td>0.104885</td>\n      <td>4.587453e-02</td>\n      <td>1.996546</td>\n      <td>0.794521</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__behavior</th>\n      <td>6.411968e-01</td>\n      <td>0.466026</td>\n      <td>0.103158</td>\n      <td>2.739524e-01</td>\n      <td>1.094006</td>\n      <td>0.775510</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__thalamus</th>\n      <td>4.789070e-01</td>\n      <td>0.708062</td>\n      <td>0.094009</td>\n      <td>2.739524e-01</td>\n      <td>1.094006</td>\n      <td>0.759804</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__central</th>\n      <td>6.411968e-01</td>\n      <td>0.466026</td>\n      <td>0.092320</td>\n      <td>4.662989e-01</td>\n      <td>0.728514</td>\n      <td>0.747026</td>\n    </tr>\n  </tbody>\n</table>\n</div>",
+        "text/plain": "                                       pForward  zForward  probForward  \\\nTerm                                                                     \nterms_abstract_tfidf__amygdala     6.209555e-20  9.140620     0.245500   \nterms_abstract_tfidf__neutral      2.021711e-03  3.087024     0.150593   \nterms_abstract_tfidf__faces        9.558240e-02  1.666658     0.160000   \nterms_abstract_tfidf__face         9.558240e-02  1.666658     0.136879   \nterms_abstract_tfidf__interaction  3.300767e-01  0.973959     0.128329   \nterms_abstract_tfidf__regional     9.558240e-02  1.666658     0.123327   \nterms_abstract_tfidf__emotional    3.300767e-01  0.973959     0.104885   \nterms_abstract_tfidf__behavior     6.411968e-01  0.466026     0.103158   \nterms_abstract_tfidf__thalamus     4.789070e-01  0.708062     0.094009   \nterms_abstract_tfidf__central      6.411968e-01  0.466026     0.092320   \n\n                                       pReverse   zReverse  probReverse  \nTerm                                                                     \nterms_abstract_tfidf__amygdala     1.128171e-31  11.710347     0.964733  \nterms_abstract_tfidf__neutral      1.017804e-06   4.888165     0.878877  \nterms_abstract_tfidf__faces        1.301763e-05   4.359808     0.875000  \nterms_abstract_tfidf__face         2.795870e-04   3.633514     0.852332  \nterms_abstract_tfidf__interaction  3.239943e-03   2.944005     0.834906  \nterms_abstract_tfidf__regional     1.605909e-03   3.154831     0.834698  \nterms_abstract_tfidf__emotional    4.587453e-02   1.996546     0.794521  \nterms_abstract_tfidf__behavior     2.739524e-01   1.094006     0.775510  \nterms_abstract_tfidf__thalamus     2.739524e-01   1.094006     0.759804  \nterms_abstract_tfidf__central      4.662989e-01   0.728514     0.747026  "
       },
       "metadata": {
         "scrapbook": {
           "mime_prefix": "",
-          "name": "table_corr"
+          "name": "table_neurosynth"
         }
       },
       "output_type": "display_data"
@@ -167,6 +94,22 @@
       },
       "output_type": "display_data"
     },
+    "figure_map_to_decode": {
+      "data": {
+        "application/papermill.record/image/png": null,
+        "application/papermill.record/text/plain": "<Figure size 720x432 with 5 Axes>"
+      },
+      "metadata": {
+        "scrapbook": {
+          "mime_prefix": "application/papermill.record/",
+          "name": "figure_map_to_decode"
+        },
+        "filenames": {
+          "image/png": "/home/data/nbc/misc-projects/Salo_NiMARE/content/_build/jupyter_execute/decoding_5_1.png"
+        }
+      },
+      "output_type": "display_data"
+    },
     "table_assoc": {
       "data": {
         "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>r</th>\n    </tr>\n    <tr>\n      <th>feature</th>\n      <th></th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>terms_abstract_tfidf__amygdala</th>\n      <td>0.627186</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__neutral</th>\n      <td>0.272666</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__behavior</th>\n      <td>0.203604</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__faces</th>\n      <td>0.201561</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__emotional</th>\n      <td>0.178842</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__negative</th>\n      <td>0.154037</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__regional</th>\n      <td>0.147679</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__temporal lobe</th>\n      <td>0.141392</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__responses</th>\n      <td>0.139758</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__parietal</th>\n      <td>-0.135737</td>\n    </tr>\n  </tbody>\n</table>\n</div>",
@@ -180,31 +123,15 @@
       },
       "output_type": "display_data"
     },
-    "table_neurosynth": {
+    "table_corr": {
       "data": {
-        "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>pForward</th>\n      <th>zForward</th>\n      <th>probForward</th>\n      <th>pReverse</th>\n      <th>zReverse</th>\n      <th>probReverse</th>\n    </tr>\n    <tr>\n      <th>Term</th>\n      <th></th>\n      <th></th>\n      <th></th>\n      <th></th>\n      <th></th>\n      <th></th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>terms_abstract_tfidf__amygdala</th>\n      <td>6.209555e-20</td>\n      <td>9.140620</td>\n      <td>0.245500</td>\n      <td>1.128171e-31</td>\n      <td>11.710347</td>\n      <td>0.964733</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__neutral</th>\n      <td>2.021711e-03</td>\n      <td>3.087024</td>\n      <td>0.150593</td>\n      <td>1.017804e-06</td>\n      <td>4.888165</td>\n      <td>0.878877</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__faces</th>\n      <td>9.558240e-02</td>\n      <td>1.666658</td>\n      <td>0.160000</td>\n      <td>1.301763e-05</td>\n      <td>4.359808</td>\n      <td>0.875000</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__face</th>\n      <td>9.558240e-02</td>\n      <td>1.666658</td>\n      <td>0.136879</td>\n      <td>2.795870e-04</td>\n      <td>3.633514</td>\n      <td>0.852332</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__interaction</th>\n      <td>3.300767e-01</td>\n      <td>0.973959</td>\n      <td>0.128329</td>\n      <td>3.239943e-03</td>\n      <td>2.944005</td>\n      <td>0.834906</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__regional</th>\n      <td>9.558240e-02</td>\n      <td>1.666658</td>\n      <td>0.123327</td>\n      <td>1.605909e-03</td>\n      <td>3.154831</td>\n      <td>0.834698</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__emotional</th>\n      <td>3.300767e-01</td>\n      <td>0.973959</td>\n      <td>0.104885</td>\n      <td>4.587453e-02</td>\n      <td>1.996546</td>\n      <td>0.794521</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__behavior</th>\n      <td>6.411968e-01</td>\n      <td>0.466026</td>\n      <td>0.103158</td>\n      <td>2.739524e-01</td>\n      <td>1.094006</td>\n      <td>0.775510</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__thalamus</th>\n      <td>4.789070e-01</td>\n      <td>0.708062</td>\n      <td>0.094009</td>\n      <td>2.739524e-01</td>\n      <td>1.094006</td>\n      <td>0.759804</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__central</th>\n      <td>6.411968e-01</td>\n      <td>0.466026</td>\n      <td>0.092320</td>\n      <td>4.662989e-01</td>\n      <td>0.728514</td>\n      <td>0.747026</td>\n    </tr>\n  </tbody>\n</table>\n</div>",
-        "text/plain": "                                       pForward  zForward  probForward  \\\nTerm                                                                     \nterms_abstract_tfidf__amygdala     6.209555e-20  9.140620     0.245500   \nterms_abstract_tfidf__neutral      2.021711e-03  3.087024     0.150593   \nterms_abstract_tfidf__faces        9.558240e-02  1.666658     0.160000   \nterms_abstract_tfidf__face         9.558240e-02  1.666658     0.136879   \nterms_abstract_tfidf__interaction  3.300767e-01  0.973959     0.128329   \nterms_abstract_tfidf__regional     9.558240e-02  1.666658     0.123327   \nterms_abstract_tfidf__emotional    3.300767e-01  0.973959     0.104885   \nterms_abstract_tfidf__behavior     6.411968e-01  0.466026     0.103158   \nterms_abstract_tfidf__thalamus     4.789070e-01  0.708062     0.094009   \nterms_abstract_tfidf__central      6.411968e-01  0.466026     0.092320   \n\n                                       pReverse   zReverse  probReverse  \nTerm                                                                     \nterms_abstract_tfidf__amygdala     1.128171e-31  11.710347     0.964733  \nterms_abstract_tfidf__neutral      1.017804e-06   4.888165     0.878877  \nterms_abstract_tfidf__faces        1.301763e-05   4.359808     0.875000  \nterms_abstract_tfidf__face         2.795870e-04   3.633514     0.852332  \nterms_abstract_tfidf__interaction  3.239943e-03   2.944005     0.834906  \nterms_abstract_tfidf__regional     1.605909e-03   3.154831     0.834698  \nterms_abstract_tfidf__emotional    4.587453e-02   1.996546     0.794521  \nterms_abstract_tfidf__behavior     2.739524e-01   1.094006     0.775510  \nterms_abstract_tfidf__thalamus     2.739524e-01   1.094006     0.759804  \nterms_abstract_tfidf__central      4.662989e-01   0.728514     0.747026  "
+        "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>r</th>\n    </tr>\n    <tr>\n      <th>feature</th>\n      <th></th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>terms_abstract_tfidf__bold</th>\n      <td>0.296838</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__insula</th>\n      <td>0.282022</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__anterior</th>\n      <td>0.224806</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__thalamus</th>\n      <td>0.214200</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__ganglia</th>\n      <td>0.196132</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__basal ganglia</th>\n      <td>0.196132</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__basal</th>\n      <td>0.191116</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__occipital</th>\n      <td>-0.186436</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__information</th>\n      <td>0.181752</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__cingulate</th>\n      <td>0.174704</td>\n    </tr>\n  </tbody>\n</table>\n</div>",
+        "text/plain": "                                            r\nfeature                                      \nterms_abstract_tfidf__bold           0.296838\nterms_abstract_tfidf__insula         0.282022\nterms_abstract_tfidf__anterior       0.224806\nterms_abstract_tfidf__thalamus       0.214200\nterms_abstract_tfidf__ganglia        0.196132\nterms_abstract_tfidf__basal ganglia  0.196132\nterms_abstract_tfidf__basal          0.191116\nterms_abstract_tfidf__occipital     -0.186436\nterms_abstract_tfidf__information    0.181752\nterms_abstract_tfidf__cingulate      0.174704"
       },
       "metadata": {
         "scrapbook": {
           "mime_prefix": "",
-          "name": "table_neurosynth"
-        }
-      },
-      "output_type": "display_data"
-    },
-    "figure_map_to_decode": {
-      "data": {
-        "application/papermill.record/image/png": null,
-        "application/papermill.record/text/plain": "<Figure size 720x432 with 5 Axes>"
-      },
-      "metadata": {
-        "scrapbook": {
-          "mime_prefix": "application/papermill.record/",
-          "name": "figure_map_to_decode"
-        },
-        "filenames": {
-          "image/png": "/home/data/nbc/misc-projects/Salo_NiMARE/content/_build/jupyter_execute/decoding_5_1.png"
+          "name": "table_corr"
         }
       },
       "output_type": "display_data"
@@ -229,22 +156,6 @@
     }
   },
   "macm": {
-    "figure_macm": {
-      "data": {
-        "application/papermill.record/image/png": null,
-        "application/papermill.record/text/plain": "<Figure size 432x288 with 10 Axes>"
-      },
-      "metadata": {
-        "scrapbook": {
-          "mime_prefix": "application/papermill.record/",
-          "name": "figure_macm"
-        },
-        "filenames": {
-          "image/png": "/home/data/nbc/misc-projects/Salo_NiMARE/content/_build/jupyter_execute/macm_8_0.png"
-        }
-      },
-      "output_type": "display_data"
-    },
     "figure_macm_rois": {
       "data": {
         "application/papermill.record/image/png": null,
@@ -257,6 +168,22 @@
         },
         "filenames": {
           "image/png": "/home/data/nbc/misc-projects/Salo_NiMARE/content/_build/jupyter_execute/macm_4_0.png"
+        }
+      },
+      "output_type": "display_data"
+    },
+    "figure_macm": {
+      "data": {
+        "application/papermill.record/image/png": null,
+        "application/papermill.record/text/plain": "<Figure size 432x288 with 10 Axes>"
+      },
+      "metadata": {
+        "scrapbook": {
+          "mime_prefix": "application/papermill.record/",
+          "name": "figure_macm"
+        },
+        "filenames": {
+          "image/png": "/home/data/nbc/misc-projects/Salo_NiMARE/content/_build/jupyter_execute/macm_8_0.png"
         }
       },
       "output_type": "display_data"
