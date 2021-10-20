@@ -39,7 +39,7 @@ else:
     neurosynth_dset_first500.update_path(target_folder)
 
 # Collect features for decoding
-# We use any features that appear in >5% of studies and <95%.
+# We use any features that appear in >10% of studies and <90%.
 id_cols = ["id", "study_id", "contrast_id"]
 frequency_threshold = 0.001
 cols = neurosynth_dset_first500.annotations.columns
@@ -47,7 +47,7 @@ cols = [c for c in cols if c not in id_cols]
 df = neurosynth_dset_first500.annotations.copy()[cols]
 n_studies = df.shape[0]
 feature_counts = (df >= frequency_threshold).sum(axis=0)
-target_features = feature_counts.between(n_studies * 0.05, n_studies * 0.95)
+target_features = feature_counts.between(n_studies * 0.1, n_studies * 0.9)
 target_features = target_features[target_features]
 target_features = target_features.index.values
 print(f"{len(target_features)} features selected.", flush=True)

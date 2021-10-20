@@ -399,7 +399,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/lib/python3.7/site-packages/nilearn/datasets/__init__.py:90: FutureWarning: Fetchers from the nilearn.datasets module will be updated in version 0.9 to return python strings instead of bytes and Pandas dataframes instead of Numpy arrays.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/datasets/__init__.py:90: FutureWarning: Fetchers from the nilearn.datasets module will be updated in version 0.9 to return python strings instead of bytes and Pandas dataframes instead of Numpy arrays.
   &quot;Numpy arrays.&quot;, FutureWarning)
 </pre></div>
 </div>
@@ -433,6 +433,86 @@ For example, <code class="docutils literal notranslate"><span class="pre">MKDAKe
 <span class="n">kda_ma_maps</span> <span class="o">=</span> <span class="n">kda_kernel</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">sleuth_dset1</span><span class="p">)</span>
 <span class="n">ale_kernel</span> <span class="o">=</span> <span class="n">kernel</span><span class="o">.</span><span class="n">ALEKernel</span><span class="p">(</span><span class="n">sample_size</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 <span class="n">ale_ma_maps</span> <span class="o">=</span> <span class="n">ale_kernel</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">sleuth_dset1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ERROR:nimare.meta.kernel:transform failed, removing None
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>---------------------------------------------------------------------------
+FileNotFoundError                         Traceback (most recent call last)
+/tmp/ipykernel_13358/3276642501.py in &lt;module&gt;
+      2 
+      3 mkda_kernel = kernel.MKDAKernel(r=10)
+----&gt; 4 mkda_ma_maps = mkda_kernel.transform(sleuth_dset1)
+      5 kda_kernel = kernel.KDAKernel(r=10)
+      6 kda_ma_maps = kda_kernel.transform(sleuth_dset1)
+
+/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nimare/utils.py in memmap_context(self, *args, **kwargs)
+    471 
+    472             try:
+--&gt; 473                 return function(self, *args, **kwargs)
+    474             except:
+    475                 for filename in filenames:
+
+/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nimare/meta/kernel.py in transform(self, dataset, masker, return_type)
+    182         elif return_type == &quot;image&quot;:
+    183             dtype = type(self.value) if hasattr(self, &quot;value&quot;) else float
+--&gt; 184             mask_data = mask.get_fdata().astype(dtype)
+    185         elif return_type == &quot;dataset&quot;:
+    186             if dataset.basepath is None:
+
+/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nibabel/dataobj_images.py in get_fdata(self, caching, dtype)
+    353         # For array proxies, will attempt to confine data array to dtype
+    354         # during scaling
+--&gt; 355         data = np.asanyarray(self._dataobj, dtype=dtype)
+    356         if caching == &#39;fill&#39;:
+    357             self._fdata_cache = data
+
+/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nibabel/arrayproxy.py in __array__(self, dtype)
+    389             Scaled image data with type `dtype`.
+    390         &quot;&quot;&quot;
+--&gt; 391         arr = self._get_scaled(dtype=dtype, slicer=())
+    392         if dtype is not None:
+    393             arr = arr.astype(dtype, copy=False)
+
+/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nibabel/arrayproxy.py in _get_scaled(self, dtype, slicer)
+    356             scl_inter = scl_inter.astype(use_dtype)
+    357         # Read array and upcast as necessary for big slopes, intercepts
+--&gt; 358         scaled = apply_read_scaling(self._get_unscaled(slicer=slicer), scl_slope, scl_inter)
+    359         if dtype is not None:
+    360             scaled = scaled.astype(np.promote_types(scaled.dtype, dtype), copy=False)
+
+/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nibabel/arrayproxy.py in _get_unscaled(self, slicer)
+    329         if canonical_slicers(slicer, self._shape, False) == \
+    330                 canonical_slicers((), self._shape, False):
+--&gt; 331             with self._get_fileobj() as fileobj, self._lock:
+    332                 return array_from_file(self._shape,
+    333                                        self._dtype,
+
+/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/contextlib.py in __enter__(self)
+    110         del self.args, self.kwds, self.func
+    111         try:
+--&gt; 112             return next(self.gen)
+    113         except StopIteration:
+    114             raise RuntimeError(&quot;generator didn&#39;t yield&quot;) from None
+
+/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nibabel/arrayproxy.py in _get_fileobj(self)
+    323         else:
+    324             with openers.ImageOpener(
+--&gt; 325                     self.file_like, keep_open=False) as opener:
+    326                 yield opener
+    327 
+
+/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nibabel/openers.py in __init__(self, fileish, *args, **kwargs)
+    111         else:
+    112             kwargs.pop(&#39;keep_open&#39;, None)
+--&gt; 113         self.fobj = opener(fileish, *args, **kwargs)
+    114         self._name = fileish
+    115         self.me_opened = True
+
+FileNotFoundError: [Errno 2] No such file or directory: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/lib/python3.7/site-packages/nimare/resources/templates/MNI152_2x2x2_brainmask.nii&#39;
 </pre></div>
 </div>
 </div>
@@ -489,9 +569,6 @@ For example, <code class="docutils literal notranslate"><span class="pre">MKDAKe
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/cbma_6_1.png" src="_images/cbma_6_1.png" />
-</div>
 </div>
 <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
@@ -502,9 +579,6 @@ For example, <code class="docutils literal notranslate"><span class="pre">MKDAKe
 </div>
 </div>
 <div class="figure align-center" id="figure-ma-maps">
-<div class="cell_output docutils container">
-<img alt="_images/cbma_6_0.png" src="_images/cbma_6_0.png" />
-</div>
 <p class="caption"><span class="caption-number">Fig. 4 </span><span class="caption-text">Modeled activation maps produced by NiMARE’s <code class="docutils literal notranslate"><span class="pre">KernelTransformer</span></code> classes.</span><a class="headerlink" href="#figure-ma-maps" title="Permalink to this image">¶</a></p>
 </div>
 </div>
@@ -553,21 +627,11 @@ The <code class="docutils literal notranslate"><span class="pre">MetaResult</spa
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;nimare.results.MetaResult object at 0x7fadec7ed790&gt;
-</pre></div>
-</div>
-</div>
 </div>
 <p>This result is also retained as an attribute in the <code class="docutils literal notranslate"><span class="pre">Estimator</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">mkdad_meta</span><span class="o">.</span><span class="n">results</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;nimare.results.MetaResult object at 0x7fadec7ed790&gt;
 </pre></div>
 </div>
 </div>
@@ -579,13 +643,6 @@ The <code class="docutils literal notranslate"><span class="pre">MetaResult</spa
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;p&#39;: array([1., 1., 1., ..., 1., 1., 1.]),
- &#39;stat&#39;: array([0., 0., 0., ..., 0., 0., 0.]),
- &#39;z&#39;: array([0., 0., 0., ..., 0., 0., 0.])}
-</pre></div>
-</div>
-</div>
 </div>
 <p>These arrays can be transformed into image-like objects using the <code class="docutils literal notranslate"><span class="pre">masker</span></code> attribute.
 We can also use the <code class="docutils literal notranslate"><span class="pre">get_map</span></code> method to get that image object.</p>
@@ -593,62 +650,6 @@ We can also use the <code class="docutils literal notranslate"><span class="pre"
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mkdad_img</span> <span class="o">=</span> <span class="n">mkdad_results</span><span class="o">.</span><span class="n">get_map</span><span class="p">(</span><span class="s2">&quot;z&quot;</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s2">&quot;image&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">mkdad_img</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;nibabel.nifti1.Nifti1Image&#39;&gt;
-data shape (91, 109, 91)
-affine: 
-[[  -2.    0.    0.   90.]
- [   0.    2.    0. -126.]
- [   0.    0.    2.  -72.]
- [   0.    0.    0.    1.]]
-metadata:
-&lt;class &#39;nibabel.nifti1.Nifti1Header&#39;&gt; object, endian=&#39;&lt;&#39;
-sizeof_hdr      : 348
-data_type       : b&#39;&#39;
-db_name         : b&#39;&#39;
-extents         : 0
-session_error   : 0
-regular         : b&#39;&#39;
-dim_info        : 0
-dim             : [  3  91 109  91   1   1   1   1]
-intent_p1       : 0.0
-intent_p2       : 0.0
-intent_p3       : 0.0
-intent_code     : none
-datatype        : float64
-bitpix          : 64
-slice_start     : 0
-pixdim          : [-1.  2.  2.  2.  1.  1.  1.  1.]
-vox_offset      : 0.0
-scl_slope       : nan
-scl_inter       : nan
-slice_end       : 0
-slice_code      : unknown
-xyzt_units      : 0
-cal_max         : 0.0
-cal_min         : 0.0
-slice_duration  : 0.0
-toffset         : 0.0
-glmax           : 0
-glmin           : 0
-descrip         : b&#39;&#39;
-aux_file        : b&#39;&#39;
-qform_code      : unknown
-sform_code      : aligned
-quatern_b       : 0.0
-quatern_c       : 1.0
-quatern_d       : 0.0
-qoffset_x       : 90.0
-qoffset_y       : -126.0
-qoffset_z       : -72.0
-srow_x          : [-2.  0.  0. 90.]
-srow_y          : [   0.    2.    0. -126.]
-srow_z          : [  0.   0.   2. -72.]
-intent_name     : b&#39;&#39;
-magic           : b&#39;n+1&#39;
 </pre></div>
 </div>
 </div>
@@ -693,11 +694,6 @@ Here, we will save all of the statistical maps with the MKDADensity prefix.</p>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:nimare.meta.cbma.mkda:The KernelTransformer being used (&lt;class &#39;nimare.meta.kernel.KDAKernel&#39;&gt;) is not optimized for the MKDADensity algorithm. Expect suboptimal performance and beware bugs.
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
@@ -721,11 +717,6 @@ The interface is virtually identical, but since there are few if any legitimate 
 
 <span class="c1"># Retain the z-statistic map for later use</span>
 <span class="n">kda_img</span> <span class="o">=</span> <span class="n">kda_results</span><span class="o">.</span><span class="n">get_map</span><span class="p">(</span><span class="s2">&quot;z&quot;</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s2">&quot;image&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:nimare.meta.cbma.mkda:The KDA algorithm has been replaced in the literature with the MKDA algorithm. As such, this estimator should almost never be used, outside of systematic comparisons between algorithms.
 </pre></div>
 </div>
 </div>
@@ -786,10 +777,6 @@ While this method was developed to support analysis of joint activation or “co
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "00f5832242ed41178518df2834edc9e1", "version_major": 2, "version_minor": 0}
-</script></div>
 </div>
 <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
@@ -813,14 +800,6 @@ For example, to perform a chi-squared analysis of working memory studies, the re
 
 <span class="c1"># Retain the specificity analysis&#39;s z-statistic map for later use</span>
 <span class="n">mkdac_img</span> <span class="o">=</span> <span class="n">mkdac_results</span><span class="o">.</span><span class="n">get_map</span><span class="p">(</span><span class="s2">&quot;z_desc-specificity&quot;</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s2">&quot;image&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/lib/python3.7/site-packages/nimare/meta/cbma/mkda.py:259: RuntimeWarning: invalid value encountered in true_divide
-  pFgA = pAgF * pF / pA
-/home/data/nbc/misc-projects/Salo_NiMARE/nimare-paper/conda_env/lib/python3.7/site-packages/nimare/meta/cbma/mkda.py:263: RuntimeWarning: invalid value encountered in true_divide
-  pFgA_prior = pAgF * self.prior / pAgF_prior
 </pre></div>
 </div>
 </div>
@@ -889,26 +868,14 @@ For example, to perform a chi-squared analysis of working memory studies, the re
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/cbma_40_1.png" src="_images/cbma_40_1.png" />
-</div>
 </div>
 <div class="figure align-center" id="figure-cbma-uncorr">
-<div class="cell_output docutils container">
-<img alt="_images/cbma_40_0.png" src="_images/cbma_40_0.png" />
-</div>
 <p class="caption"><span class="caption-number">Fig. 5 </span><span class="caption-text">Thresholded results from MKDA Density, KDA, ALE, and SCALE meta-analyses.</span><a class="headerlink" href="#figure-cbma-uncorr" title="Permalink to this image">¶</a></p>
 </div>
 <p>A number of other coordinate-based meta-analysis algorithms exist which are not yet implemented in NiMARE.
 We describe these algorithms briefly in <a class="reference internal" href="future_directions.html"><span class="doc std std-doc">Future Directions</span></a>.</p>
 </div>
 </div>
-
-
-<script type="application/vnd.jupyter.widget-state+json">
-{"state": {"00f5832242ed41178518df2834edc9e1": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "HBoxModel", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_367a07a944e345fb899ac91194af896b", "IPY_MODEL_7a7b48f1345e4e7bb08ccd9617c49649", "IPY_MODEL_cbc05195f3d94d15a44632298ca3d9ed"], "layout": "IPY_MODEL_3183a3a5de99443889e4db96feb995a7"}}, "10a81c9d8f2d494ca6183ab1ad52ad17": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "3183a3a5de99443889e4db96feb995a7": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "367a07a944e345fb899ac91194af896b": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "HTMLModel", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_10a81c9d8f2d494ca6183ab1ad52ad17", "placeholder": "\u200b", "style": "IPY_MODEL_b4a435a08d3a4858bb8c5b03ec4d485b", "value": "100%"}}, "7342036c8ba94ec9a15e8bdfa47ef5d3": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "7a7b48f1345e4e7bb08ccd9617c49649": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "FloatProgressModel", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatProgressModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ProgressView", "bar_style": "success", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_f337e6454b4c4585b97caea32fb025ca", "max": 2500.0, "min": 0.0, "orientation": "horizontal", "style": "IPY_MODEL_ad0109472aca481a869f4cd124630e80", "value": 2500.0}}, "a2c83bc7798e43bfbbe751a13d11d8c4": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "ad0109472aca481a869f4cd124630e80": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ProgressStyleModel", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ProgressStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "bar_color": null, "description_width": ""}}, "b4a435a08d3a4858bb8c5b03ec4d485b": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "cbc05195f3d94d15a44632298ca3d9ed": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "HTMLModel", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_7342036c8ba94ec9a15e8bdfa47ef5d3", "placeholder": "\u200b", "style": "IPY_MODEL_a2c83bc7798e43bfbbe751a13d11d8c4", "value": " 2500/2500 [03:43&lt;00:00, 12.64it/s]"}}, "f337e6454b4c4585b97caea32fb025ca": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}}, "version_major": 2, "version_minor": 0}
-</script>
-
 
     <script type="text/x-thebe-config">
     {

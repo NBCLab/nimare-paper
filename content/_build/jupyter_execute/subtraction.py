@@ -46,7 +46,7 @@ sub_meta = meta.cbma.ale.ALESubtraction(kernel_transformer=kern, n_iters=10000)
 sub_results = sub_meta.fit(sleuth_dset1, sleuth_dset2)
 
 
-# In[3]:
+# In[ ]:
 
 
 fig, ax = plt.subplots(figsize=(6, 2))

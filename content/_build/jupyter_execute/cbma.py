@@ -65,14 +65,14 @@ ale_kernel = kernel.ALEKernel(sample_size=20)
 ale_ma_maps = ale_kernel.transform(sleuth_dset1)
 
 
-# In[3]:
+# In[ ]:
 
 
 # Here we delete the recent variables for the sake of reducing memory usage
 del mkda_kernel, kda_kernel, ale_kernel
 
 
-# In[4]:
+# In[ ]:
 
 
 # Generate figure
@@ -116,7 +116,7 @@ for i_meta, (name, img) in enumerate(ma_maps.items()):
 glue("figure_ma_maps", fig, display=False)
 
 
-# In[5]:
+# In[ ]:
 
 
 # Here we delete the recent variables for the sake of reducing memory usage
@@ -161,7 +161,7 @@ del mkda_ma_maps, kda_ma_maps, ale_ma_maps
 # Here we perform an MKDADensity meta-analysis on one of the Sleuth-based Datasets.
 # We will use the "approximate" null method for speed.
 
-# In[6]:
+# In[ ]:
 
 
 from nimare.meta.cbma import mkda
@@ -176,7 +176,7 @@ mkdad_results = mkdad_meta.fit(sleuth_dset1)
 # Fitting an `Estimator` to a `Dataset` produces a {py:class}`nimare.results.MetaResult` object.
 # The `MetaResult` class is a light container holding the different statistical maps produced by the `Estimator`.
 
-# In[7]:
+# In[ ]:
 
 
 print(mkdad_results)
@@ -184,7 +184,7 @@ print(mkdad_results)
 
 # This result is also retained as an attribute in the `Estimator`.
 
-# In[8]:
+# In[ ]:
 
 
 print(mkdad_meta.results)
@@ -192,7 +192,7 @@ print(mkdad_meta.results)
 
 # The `maps` attribute is a dictionary containing statistical map names and associated numpy arrays.
 
-# In[9]:
+# In[ ]:
 
 
 pprint(mkdad_results.maps)
@@ -201,7 +201,7 @@ pprint(mkdad_results.maps)
 # These arrays can be transformed into image-like objects using the `masker` attribute.
 # We can also use the `get_map` method to get that image object.
 
-# In[10]:
+# In[ ]:
 
 
 mkdad_img = mkdad_results.get_map("z", return_type="image")
@@ -211,7 +211,7 @@ print(mkdad_img)
 # We can save the statistical maps to an output directory as gzipped nifti files, with a prefix.
 # Here, we will save all of the statistical maps with the MKDADensity prefix.
 
-# In[11]:
+# In[ ]:
 
 
 mkdad_results.save_maps(output_dir=DATA_DIR, prefix="MKDADensity")
@@ -219,13 +219,13 @@ mkdad_results.save_maps(output_dir=DATA_DIR, prefix="MKDADensity")
 
 # We will also save the `Estimator` itself, which we will reuse when we get to multiple comparisons correction.
 
-# In[12]:
+# In[ ]:
 
 
 mkdad_meta.save(os.path.join(DATA_DIR, "MKDADensity.pkl.gz"))
 
 
-# In[13]:
+# In[ ]:
 
 
 # Here we delete the recent variables for the sake of reducing memory usage
@@ -234,7 +234,7 @@ del mkdad_meta, mkdad_results
 
 # Since this is a kernel-based algorithm, the kernel transformer is an optional input to the meta-analytic estimator, and can be controlled in a more fine-grained manner.
 
-# In[14]:
+# In[ ]:
 
 
 # These two approaches (initializing the kernel ahead of time or
@@ -248,7 +248,7 @@ mkdad_meta = mkda.MKDADensity(kernel_transformer=kernel.MKDAKernel, kernel__r=2)
 mkdad_meta = mkda.MKDADensity(kernel_transformer=kernel.KDAKernel)
 
 
-# In[15]:
+# In[ ]:
 
 
 # Here we delete the recent variables for the sake of reducing memory usage
@@ -261,7 +261,7 @@ del mkda_kernel, mkdad_meta
 # For the sake of completeness, NiMARE also includes a KDA estimator that implements the older KDA algorithm for comparison purposes.
 # The interface is virtually identical, but since there are few if any legitimate uses of KDA (which models studies as fixed rather than random effects), we do not discuss the algorithm further here.
 
-# In[16]:
+# In[ ]:
 
 
 kda_meta = mkda.KDA(null_method="approximate")
@@ -271,7 +271,7 @@ kda_results = kda_meta.fit(sleuth_dset1)
 kda_img = kda_results.get_map("z", return_type="image")
 
 
-# In[17]:
+# In[ ]:
 
 
 # Here we delete the recent variables for the sake of reducing memory usage
@@ -282,7 +282,7 @@ del kda_meta, kda_results
 # 
 # **Activation likelihood estimation** (ALE) {cite:p}`Eickhoff2012-hk,Turkeltaub2012-no,Turkeltaub2002-dn` assesses convergence of peaks across studies by first generating a modeled activation map for each study, in which each of the experiment’s peaks is convolved with a 3D Gaussian distribution determined by the experiment’s sample size, and then by combining these modeled activation maps across studies into an ALE map, which is compared to an empirical null distribution to assess voxel-wise statistical significance.
 
-# In[18]:
+# In[ ]:
 
 
 from nimare.meta.cbma import ale
@@ -294,7 +294,7 @@ ale_results = ale_meta.fit(sleuth_dset1)
 ale_img = ale_results.get_map("z", return_type="image")
 
 
-# In[19]:
+# In[ ]:
 
 
 # Here we delete the recent variables for the sake of reducing memory usage
@@ -309,7 +309,7 @@ del ale_meta, ale_results
 # This approach allows for the generation of a statistical map for the sample, but no methods for multiple comparisons correction have yet been developed.
 # While this method was developed to support analysis of joint activation or “coactivation” patterns, it is generic and can be applied to any CBMA; see [](about_derivative_analyses.md)
 
-# In[20]:
+# In[ ]:
 
 
 # Here we use the coordinates from Neurosynth as our measure of coordinate
@@ -324,7 +324,7 @@ scale_results = scale_meta.fit(sleuth_dset1)
 scale_img = scale_results.get_map("z", return_type="image")
 
 
-# In[21]:
+# In[ ]:
 
 
 # Here we delete the recent variables for the sake of reducing memory usage
@@ -338,7 +338,7 @@ del xyz, scale_meta, scale_results
 # Such an analysis also requires access to a reference meta-analytic sample or database of studies.
 # For example, to perform a chi-squared analysis of working memory studies, the researcher will also need a comprehensive set of studies which did not manipulate working memory—ideally one that is matched with the working memory study set on all relevant attributes _except_ the involvement of working memory.
 
-# In[22]:
+# In[ ]:
 
 
 mkdac_meta = mkda.MKDAChi2()
@@ -348,7 +348,7 @@ mkdac_results = mkdac_meta.fit(sleuth_dset1, sleuth_dset2)
 mkdac_img = mkdac_results.get_map("z_desc-specificity", return_type="image")
 
 
-# In[23]:
+# In[ ]:
 
 
 # Here we delete the recent variables for the sake of reducing memory usage
@@ -359,7 +359,7 @@ del mkdac_meta, mkdac_results
 # 
 # Here we load the z-statistic map from each of the CBMA Estimators we've used throughout this chapter and plot them all side by side.
 
-# In[24]:
+# In[ ]:
 
 
 meta_results = {
