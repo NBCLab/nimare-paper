@@ -6,11 +6,12 @@ By consolidating meta-analytic methods under a common library and syntax, NiMARE
 In this paper, we describe NiMARE's architecture and the methods implemented in the library.
 Additionally, we provide example code and results for each of the available tools in the library.
 
-```{figure} images/figure_00.png
+```{figure} images/figure_00.svg
 :name: top_level_fig
 :align: center
 
-A graphical representation of this manuscript.
+A graphical representation of tools and methods implemented in NiMARE.
+Each of these tools will be described and demonstrated throughout the course of this manuscript.
 ```
 
 ```{tableofcontents}
