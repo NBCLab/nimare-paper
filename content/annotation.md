@@ -42,7 +42,7 @@ neurosynth_dset_first_500 = nimare.dataset.Dataset.load(
 
 As mentioned in the discussion of BrainMap ([](content:resources:brainmap)), manually annotating studies in a meta-analytic database can be a time-consuming and labor-intensive process.
 To facilitate more efficient (albeit lower-quality) annotation, NiMARE supports a number of automated annotation approaches.
-These include n-gram term extraction, Cognitive Atlas term extraction, latent Dirichlet allocation, and generalized correspondence latent Dirichlet allocation.
+These include [](content:annotation:ngram), [](content:annotation:cogat), [](content:annotation:lda), and [](content:annotation:gclda).
 
 NiMARE users may download abstracts from PubMed as long as study identifiers in the `Dataset` correspond to PubMed IDs (as in Neurosynth and NeuroQuery).
 Abstracts are much more easily accessible than full article text, so most annotation methods in NiMARE rely on them.
@@ -68,6 +68,7 @@ else:
 
 +++
 
+(content:annotation:ngram)=
 ## N-gram term extraction
 
 **N-gram term extraction** refers to the vectorization of text into contiguous sets of words that can be counted as individual tokens.
@@ -92,6 +93,7 @@ This term count `DataFrame` will be used later, to train a GCLDA model.
 
 +++
 
+(content:annotation:cogat)=
 ## Cognitive Atlas term extraction and hierarchical expansion
 
 **Cognitive Atlas term extraction** leverages the structured nature of the Cognitive Atlas in order to extract counts for individual terms and their synonyms in the ontology, as well as to apply hierarchical expansion to these counts based on the relationships specified between terms.
@@ -193,6 +195,7 @@ del weights, expanded_df, series, columns
 
 +++
 
+(content:annotation:lda)=
 ## Latent Dirichlet allocation
 
 **Latent Dirichlet allocation** (LDA) {cite:p}`Blei2003-lh` was originally combined with meta-analytic neuroimaging data in {cite:t}`Poldrack2012-it`.
@@ -264,6 +267,7 @@ del lda_model, lda_df, temp_df
 
 +++
 
+(content:annotation:gclda)=
 ## Generalized correspondence latent Dirichlet allocation
 
 **Generalized correspondence latent Dirichlet allocation** (GCLDA) is a recently-developed algorithm that trains topics on both article abstracts and coordinates {cite:p}`Rubin2017-rd`.
