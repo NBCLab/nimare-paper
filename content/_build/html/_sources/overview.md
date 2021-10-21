@@ -11,8 +11,8 @@ Its source code is housed and version controlled in a GitHub repository at https
 NiMARE is under continued active development, and we anticipate that the user-facing API (application programming interface) may change over time.
 Our emphasis in this paper is thus primarily on reviewing the functionality implemented in the package and illustrating the general interface, and not on providing a detailed and static user guide that will be found within the package documentation.
 
-Tools in NiMARE are organized into several modules, including `nimare.meta`, `nimare.correct`, `nimare.annotate`, `nimare.decode`, and `nimare.workflows`.
-In addition to these primary modules, there are several secondary modules for data wrangling and internal helper functions, including `nimare.io`, `nimare.dataset`, `nimare.extract`, `nimare.stats`, `nimare.utils`, and `nimare.base`.
+Tools in NiMARE are organized into several modules, including {py:mod}`nimare.meta`, {py:mod}`nimare.correct`, {py:mod}`nimare.annotate`, {py:mod}`nimare.decode`, and {py:mod}`nimare.workflows`.
+In addition to these primary modules, there are several secondary modules for data wrangling and internal helper functions, including {py:mod}`nimare.io`, {py:mod}`nimare.dataset`, {py:mod}`nimare.extract`, {py:mod}`nimare.stats`, {py:mod}`nimare.utils`, and {py:mod}`nimare.base`.
 These modules are summarized in [](overview:api), as well as in {numref}`table_modules`.
 
 (overview:api)=
@@ -29,7 +29,7 @@ There are two main types of tools that operate on a `Dataset` class.
 `Estimator` classes apply a meta-analytic algorithm to a `Dataset` and return a set of statistical images stored in a MetaResult container class.
 The key methods supported by each of these base classes, as well as the main arguments to those methods, are consistent throughout the hierarchy (e.g., all `Transformer` classes must implement a `transform()` method), minimizing the learning curve and ensuring a high degree of predictability for users.
 
-```{figure} images/figure_01.png
+```{figure} images/figure_01.svg
 :name: figure_schematic
 :align: center
 
@@ -39,18 +39,18 @@ A schematic figure of `Datasets`, `Estimators`, `Transformers`, and `MetaResults
 ## Package Organization
 
 At present, the package is organized into 14 distinct modules.
-`nimare.dataset` defines the `Dataset` class.
-`nimare.meta` includes `Estimators` for coordinate- and image-based meta-analysis methods.
-`nimare.results` defines the `MetaResult` class, which stores statistical maps produced by meta-analyses.
-`nimare.correct` implements `Corrector` classes for family-wise error (FWE) and false discovery rate (FDR) multiple comparisons correction.
-`nimare.annotate` implements a range of automated annotation methods, including latent Dirichlet allocation (LDA) and generalized correspondence latent Dirichlet allocation (GCLDA).
-`nimare.decode` implements a number of meta-analytic functional decoding and encoding algorithms.
-`nimare.io` provides functions for converting alternative meta-analytic dataset structure, such as Sleuth text files or Neurosynth datasets, to NiMARE format.
-`nimare.transforms` implements a range of spatial and data type transformations, including a function to generate new images in the `Dataset` from existing image types.
-`nimare.extract` provides methods for fetching datasets and models across the internet.
-`nimare.generate` includes functions for generating data for internal testing and validation.
-`nimare.base` defines a number of base classes used throughout the rest of the package.
-Finally, `nimare.stats` and `nimare.utils` are modules for statistical and generic utility functions, respectively.
+{py:mod}`nimare.dataset` defines the `Dataset` class.
+{py:mod}`nimare.meta` includes `Estimators` for coordinate- and image-based meta-analysis methods.
+{py:mod}`nimare.results` defines the `MetaResult` class, which stores statistical maps produced by meta-analyses.
+{py:mod}`nimare.correct` implements `Corrector` classes for family-wise error (FWE) and false discovery rate (FDR) multiple comparisons correction.
+{py:mod}`nimare.annotate` implements a range of automated annotation methods, including latent Dirichlet allocation (LDA) and generalized correspondence latent Dirichlet allocation (GCLDA).
+{py:mod}`nimare.decode` implements a number of meta-analytic functional decoding and encoding algorithms.
+{py:mod}`nimare.io` provides functions for converting alternative meta-analytic dataset structure, such as Sleuth text files or Neurosynth datasets, to NiMARE format.
+{py:mod}`nimare.transforms` implements a range of spatial and data type transformations, including a function to generate new images in the `Dataset` from existing image types.
+{py:mod}`nimare.extract` provides methods for fetching datasets and models across the internet.
+{py:mod}`nimare.generate` includes functions for generating data for internal testing and validation.
+{py:mod}`nimare.base` defines a number of base classes used throughout the rest of the package.
+Finally, {py:mod}`nimare.stats` and {py:mod}`nimare.utils` are modules for statistical and generic utility functions, respectively.
 These modules are summarized in {numref}`table_modules`.
 
 +++

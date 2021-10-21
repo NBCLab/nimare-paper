@@ -429,7 +429,7 @@ Meta-analytic functional decoding models have also been extended for the purpose
 <p>Four common approaches are correlation-based decoding, dot-product decoding, weight-sum decoding, and chi-square decoding.
 We will first discuss continuous decoding methods (i.e., correlation and dot-product), followed by discrete decoding methods (weight-sum and chi-square).</p>
 <div class="section" id="decoding-continuous-inputs">
-<h2>Decoding continuous inputs<a class="headerlink" href="#decoding-continuous-inputs" title="Permalink to this headline">¶</a></h2>
+<span id="content-decoding-continuous"></span><h2>Decoding continuous inputs<a class="headerlink" href="#decoding-continuous-inputs" title="Permalink to this headline">¶</a></h2>
 <p>When decoding unthresholded statistical maps (such as <a class="reference internal" href="#figure-map-to-decode"><span class="std std-numref">Fig. 16</span></a>), the most common approaches are to simply correlate the input map with maps from the database, or to compute the dot product between the two maps.
 In Neurosynth, meta-analyses are performed for each label (i.e., term or topic) in the database and then the input image is correlated with the resulting unthresholded statistical map from each meta-analysis.
 Performing statistical inference on the resulting correlations is not straightforward, however, as voxels display strong spatial correlations, and the true degrees of freedom are consequently unknown (and likely far smaller than the nominal number of voxels).
@@ -1508,7 +1508,7 @@ We strongly recommend running it on a subset of labels within the <code class="d
 </div>
 </div>
 <div class="section" id="decoding-discrete-inputs">
-<h2>Decoding discrete inputs<a class="headerlink" href="#decoding-discrete-inputs" title="Permalink to this headline">¶</a></h2>
+<span id="content-decoding-discrete"></span><h2>Decoding discrete inputs<a class="headerlink" href="#decoding-discrete-inputs" title="Permalink to this headline">¶</a></h2>
 <p>Decoding regions of interest (ROIs) requires a different approach than decoding unthresholded statistical maps.
 One simple approach, used by GCLDA and implemented in the function <a class="reference external" href="https://nimare.readthedocs.io/en/0.0.10/generated/nimare.decode.discrete.gclda_decode_roi.html#nimare.decode.discrete.gclda_decode_roi" title="(in NiMARE v0.0.10+0.ge8814c2.dirty)"><code class="xref py py-func docutils literal notranslate"><span class="pre">nimare.decode.discrete.gclda_decode_roi()</span></code></a>, simply sums the <code class="docutils literal notranslate"><span class="pre">P(topic|voxel)</span></code> distribution across all voxels in the ROI in order to produce a value associated with each topic for the ROI.
 These <strong>weight sum</strong> values are arbitrarily scaled and cannot be compared across ROIs.
@@ -1532,7 +1532,7 @@ We will not show this method because of its simplicity and the fact that it can 
 </div>
 <p class="caption"><span class="caption-number">Fig. 18 </span><span class="caption-text">The amygdala region of interest mask that will be used for discrete decoding.</span><a class="headerlink" href="#figure-roi-to-decode" title="Permalink to this image">¶</a></p>
 </div>
-<p>One method which relies on correlations, much like the continuous correlation decoder, is the <strong>ROI association</strong> decoding method (<code class="xref py py-class docutils literal notranslate"><span class="pre">nimare.decode.discete.ROIAssociationDecoder</span></code>), originally implemented in the Neurosynth Python library.
+<p>One method which relies on correlations, much like the continuous correlation decoder, is the <strong>ROI association</strong> decoding method (<a class="reference external" href="https://nimare.readthedocs.io/en/0.0.10/generated/nimare.decode.discrete.ROIAssociationDecoder.html#nimare.decode.discrete.ROIAssociationDecoder" title="(in NiMARE v0.0.10+0.ge8814c2.dirty)"><code class="xref py py-class docutils literal notranslate"><span class="pre">nimare.decode.discrete.ROIAssociationDecoder</span></code></a>), originally implemented in the Neurosynth Python library.
 In this method, each study with coordinates in the dataset is convolved with a kernel transformer to produce a modeled activation map.
 The resulting modeled activation maps are then masked with a region of interest (i.e., the target of the decoding), and the values are averaged within the ROI.
 These averaged modeled activation values are then correlated with the term weights for all labels in the dataset.
@@ -1730,7 +1730,7 @@ First, the distribution of studies in the sample with the label are compared to 
 This consistency analysis produces both a measure of statistical significance (i.e., a p-value) and a measure of effect size (i.e., the likelihood of being selected given the presence of the label).
 Next, the studies in the sample are compared to the studies in the rest of the database.
 This specificity analysis produces a p-value and an effect size measure of the posterior probability of having the label given selection into the sample.
-A detailed algorithm description is presented in <strong>Appendix I</strong>.</p>
+A detailed algorithm description is presented in <a class="reference internal" href="appendices/brainmap_decoding.html"><span class="doc std std-doc">Appendix I: BrainMap Discrete Decoding</span></a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">brainmap_decoder</span> <span class="o">=</span> <span class="n">decode</span><span class="o">.</span><span class="n">discrete</span><span class="o">.</span><span class="n">BrainMapDecoder</span><span class="p">(</span>
@@ -2040,7 +2040,7 @@ This is, admittedly, a poor prediction, which means that probabilities estimated
 <p>Like the BrainMap method, this method produces four outputs for each label.
 For the consistency analysis, this method produces both a p-value and a conditional probability of selection given the presence of the label and the prior probability of having the label.
 For the specificity analysis, the Neurosynth method produces both a p-value and a posterior probability of presence of the label given selection and the prior probability of having the label.
-A detailed algorithm description is presented in <strong>Appendix II</strong>.</p>
+A detailed algorithm description is presented in <a class="reference internal" href="appendices/neurosynth_decoding.html"><span class="doc std std-doc">Appendix II: Neurosynth Discrete Decoding</span></a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">neurosynth_decoder</span> <span class="o">=</span> <span class="n">decode</span><span class="o">.</span><span class="n">discrete</span><span class="o">.</span><span class="n">NeurosynthDecoder</span><span class="p">(</span>
