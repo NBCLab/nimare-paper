@@ -23,15 +23,16 @@ This approach is modeled on the widely-used `scikit-learn` package {cite:p}`scik
 Regardless of the algorithm employed, data should be in the same format and the same class methods should be called to fit and/or generate predictions from the model.
 
 To this end, we have adopted an object-oriented approach to NiMARE’s core API that organizes tools based on the type of inputs and outputs they operate over.
-The key data structure is the `Dataset` class, which stores a range of neuroimaging data amenable to various forms of meta-analysis.
+The key data structure is the {py:class}`nimare.dataset.Dataset` class, which stores a range of neuroimaging data amenable to various forms of meta-analysis.
 There are two main types of tools that operate on a `Dataset` class.
-`Transformer` classes, as their name suggests, perform some transformation on a `Dataset—` i.e., they take a `Dataset` instance as input, and return a modified version of that `Dataset` instance as output (for example, with newly generated maps stored within the object).
-`Estimator` classes apply a meta-analytic algorithm to a `Dataset` and return a set of statistical images stored in a MetaResult container class.
+{py:class}`nimare.base.Transformer` classes, as their name suggests, perform some transformation on a `Dataset`- i.e., they take a `Dataset` instance as input, and return a modified version of that `Dataset` instance as output (for example, with newly generated maps stored within the object).
+{py:class}`nimare.base.Estimator` classes apply a meta-analytic algorithm to a `Dataset` and return a set of statistical images stored in a MetaResult container class.
 The key methods supported by each of these base classes, as well as the main arguments to those methods, are consistent throughout the hierarchy (e.g., all `Transformer` classes must implement a `transform()` method), minimizing the learning curve and ensuring a high degree of predictability for users.
 
 ```{figure} images/figure_01.svg
 :name: figure_schematic
 :align: center
+:width: 400px
 
 A schematic figure of `Datasets`, `Estimators`, `Transformers`, and `MetaResults` in NiMARE.
 ```

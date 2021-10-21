@@ -1,10 +1,10 @@
 # Appendix II: Neurosynth Discrete Decoding
 
-The implementation of the MKDA Chi-squared meta-analysis method used by Neurosynth is quite similar to BrainMap’s method for decoding, if applied to annotations instead of modeled activation values.
+The implementation of the MKDA Chi-squared meta-analysis method used by Neurosynth is quite similar to BrainMap's method for decoding, if applied to annotations instead of modeled activation values.
 This method compares the distributions of studies with each label within the sample against those in a larger database, but, unlike the BrainMap method, does not take foci into account.
 For this reason, the Neurosynth method would likely be more appropriate for selection criteria not based on regions of interest (e.g., for characterizing meta-analytic groupings from a meta-analytic clustering analysis).
 However, the Neurosynth method requires user-provided information that BrainMap does not.
-Namely, in order to estimate probabilities for the consistency and specificity analyses with Bayes’ Theorem, the Neurosynth method requires a prior probability of a given label.
+Namely, in order to estimate probabilities for the consistency and specificity analyses with Bayes' Theorem, the Neurosynth method requires a prior probability of a given label.
 Typically, a value of 0.5 is used (i.e., the estimated probability that an individual is undergoing a given mental process described by a label, barring any evidence from neuroimaging data, is predicted to be 50%).
 This is, admittedly, a poor prediction, which means that probabilities estimated based on this prior are not likely to be accurate, though they may still serve as useful estimates of effect size for the analysis.
 
