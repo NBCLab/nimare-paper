@@ -4,6 +4,9 @@ p {
 p.caption {
     text-align: left;
 }
+p.prevnext-title {
+    text-align: left;
+}
 code.docutils.literal.notranslate {
     font-family: Menlo, Consolas, "DejaVu Sans Mono", monospace;
 }
