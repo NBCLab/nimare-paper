@@ -1,5 +1,21 @@
 {
   "annotation": {
+    "figure_cogat_expansion": {
+      "output_type": "display_data",
+      "metadata": {
+        "scrapbook": {
+          "name": "figure_cogat_expansion",
+          "mime_prefix": "application/papermill.record/"
+        },
+        "filenames": {
+          "image/png": "/home/data/nbc/misc-projects/Salo_NiMARE/content/_build/jupyter_execute/annotation_12_0.png"
+        }
+      },
+      "data": {
+        "application/papermill.record/text/plain": "<Figure size 1152x1152 with 4 Axes>",
+        "application/papermill.record/image/png": null
+      }
+    },
     "table_gclda": {
       "output_type": "display_data",
       "metadata": {
@@ -54,22 +70,6 @@
         "text/plain": "topic        Topic 0        Topic 1     Topic 2      Topic 3        Topic 4  \\\nTerm                                                                          \n0              motor       modality      cortex    attention          human   \n1         activation        sensory  functional  attentional         sulcus   \n2      somatosensory     modalities  activation      spatial           area   \n3        stimulation       cortices     regions     attended      posterior   \n4               hand         visual       brain    selection         object   \n5            primary        tactile        fmri       target         visual   \n6             cortex    integration    activity  selectively    information   \n7                sii       auditory     imaging    dimension  intraparietal   \n8               fmri  somatosensory     results    attending         humans   \n9      contralateral          cross    magnetic       shifts         region   \n\ntopic       Topic 5     Topic 6     Topic 7    Topic 8         Topic 9  \nTerm                                                                    \n0            reward      motion   condition     signal             cue  \n1          activity          mt        grip      blood          effect  \n2      connectivity       areas      object       bold       orienting  \n3              goal     stimuli        hand      level            cues  \n4           actions  biological    subjects  dependent          signal  \n5         effective  processing   precision     change        parietal  \n6              mpfc   occipital  conditions       flow            left  \n7             state          ic       force   cerebral          period  \n8         imitation    elicited     subject     oxygen  predictability  \n9          monetary       depth     objects      state       generated  ",
         "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>topic</th>\n      <th>Topic 0</th>\n      <th>Topic 1</th>\n      <th>Topic 2</th>\n      <th>Topic 3</th>\n      <th>Topic 4</th>\n      <th>Topic 5</th>\n      <th>Topic 6</th>\n      <th>Topic 7</th>\n      <th>Topic 8</th>\n      <th>Topic 9</th>\n    </tr>\n    <tr>\n      <th>Term</th>\n      <th></th>\n      <th></th>\n      <th></th>\n      <th></th>\n      <th></th>\n      <th></th>\n      <th></th>\n      <th></th>\n      <th></th>\n      <th></th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>motor</td>\n      <td>modality</td>\n      <td>cortex</td>\n      <td>attention</td>\n      <td>human</td>\n      <td>reward</td>\n      <td>motion</td>\n      <td>condition</td>\n      <td>signal</td>\n      <td>cue</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>activation</td>\n      <td>sensory</td>\n      <td>functional</td>\n      <td>attentional</td>\n      <td>sulcus</td>\n      <td>activity</td>\n      <td>mt</td>\n      <td>grip</td>\n      <td>blood</td>\n      <td>effect</td>\n    </tr>\n    <tr>\n      <th>2</th>\n      <td>somatosensory</td>\n      <td>modalities</td>\n      <td>activation</td>\n      <td>spatial</td>\n      <td>area</td>\n      <td>connectivity</td>\n      <td>areas</td>\n      <td>object</td>\n      <td>bold</td>\n      <td>orienting</td>\n    </tr>\n    <tr>\n      <th>3</th>\n      <td>stimulation</td>\n      <td>cortices</td>\n      <td>regions</td>\n      <td>attended</td>\n      <td>posterior</td>\n      <td>goal</td>\n      <td>stimuli</td>\n      <td>hand</td>\n      <td>level</td>\n      <td>cues</td>\n    </tr>\n    <tr>\n      <th>4</th>\n      <td>hand</td>\n      <td>visual</td>\n      <td>brain</td>\n      <td>selection</td>\n      <td>object</td>\n      <td>actions</td>\n      <td>biological</td>\n      <td>subjects</td>\n      <td>dependent</td>\n      <td>signal</td>\n    </tr>\n    <tr>\n      <th>5</th>\n      <td>primary</td>\n      <td>tactile</td>\n      <td>fmri</td>\n      <td>target</td>\n      <td>visual</td>\n      <td>effective</td>\n      <td>processing</td>\n      <td>precision</td>\n      <td>change</td>\n      <td>parietal</td>\n    </tr>\n    <tr>\n      <th>6</th>\n      <td>cortex</td>\n      <td>integration</td>\n      <td>activity</td>\n      <td>selectively</td>\n      <td>information</td>\n      <td>mpfc</td>\n      <td>occipital</td>\n      <td>conditions</td>\n      <td>flow</td>\n      <td>left</td>\n    </tr>\n    <tr>\n      <th>7</th>\n      <td>sii</td>\n      <td>auditory</td>\n      <td>imaging</td>\n      <td>dimension</td>\n      <td>intraparietal</td>\n      <td>state</td>\n      <td>ic</td>\n      <td>force</td>\n      <td>cerebral</td>\n      <td>period</td>\n    </tr>\n    <tr>\n      <th>8</th>\n      <td>fmri</td>\n      <td>somatosensory</td>\n      <td>results</td>\n      <td>attending</td>\n      <td>humans</td>\n      <td>imitation</td>\n      <td>elicited</td>\n      <td>subject</td>\n      <td>oxygen</td>\n      <td>predictability</td>\n    </tr>\n    <tr>\n      <th>9</th>\n      <td>contralateral</td>\n      <td>cross</td>\n      <td>magnetic</td>\n      <td>shifts</td>\n      <td>region</td>\n      <td>monetary</td>\n      <td>depth</td>\n      <td>objects</td>\n      <td>state</td>\n      <td>generated</td>\n    </tr>\n  </tbody>\n</table>\n</div>"
       }
-    },
-    "figure_cogat_expansion": {
-      "output_type": "display_data",
-      "metadata": {
-        "scrapbook": {
-          "name": "figure_cogat_expansion",
-          "mime_prefix": "application/papermill.record/"
-        },
-        "filenames": {
-          "image/png": "/home/data/nbc/misc-projects/Salo_NiMARE/content/_build/jupyter_execute/annotation_12_0.png"
-        }
-      },
-      "data": {
-        "application/papermill.record/text/plain": "<Figure size 1152x1152 with 4 Axes>",
-        "application/papermill.record/image/png": null
-      }
     }
   },
   "correction": {
@@ -91,6 +91,35 @@
     }
   },
   "decoding": {
+    "figure_map_to_decode": {
+      "output_type": "display_data",
+      "metadata": {
+        "scrapbook": {
+          "name": "figure_map_to_decode",
+          "mime_prefix": "application/papermill.record/"
+        },
+        "filenames": {
+          "image/png": "/home/data/nbc/misc-projects/Salo_NiMARE/content/_build/jupyter_execute/decoding_5_1.png"
+        }
+      },
+      "data": {
+        "application/papermill.record/text/plain": "<Figure size 720x432 with 5 Axes>",
+        "application/papermill.record/image/png": null
+      }
+    },
+    "table_assoc": {
+      "output_type": "display_data",
+      "metadata": {
+        "scrapbook": {
+          "name": "table_assoc",
+          "mime_prefix": ""
+        }
+      },
+      "data": {
+        "text/plain": "                                                  r\nfeature                                            \nterms_abstract_tfidf__responses            0.139758\nterms_abstract_tfidf__parietal            -0.135737\nterms_abstract_tfidf__group                0.132898\nterms_abstract_tfidf__medial               0.127090\nterms_abstract_tfidf__functional magnetic  0.113273\nterms_abstract_tfidf__superior            -0.110504\nterms_abstract_tfidf__gyrus               -0.109145\nterms_abstract_tfidf__studied              0.105478\nterms_abstract_tfidf__frontal             -0.103911\nterms_abstract_tfidf__cortices             0.101922",
+        "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>r</th>\n    </tr>\n    <tr>\n      <th>feature</th>\n      <th></th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>terms_abstract_tfidf__responses</th>\n      <td>0.139758</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__parietal</th>\n      <td>-0.135737</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__group</th>\n      <td>0.132898</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__medial</th>\n      <td>0.127090</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__functional magnetic</th>\n      <td>0.113273</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__superior</th>\n      <td>-0.110504</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__gyrus</th>\n      <td>-0.109145</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__studied</th>\n      <td>0.105478</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__frontal</th>\n      <td>-0.103911</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__cortices</th>\n      <td>0.101922</td>\n    </tr>\n  </tbody>\n</table>\n</div>"
+      }
+    },
     "table_brainmap": {
       "output_type": "display_data",
       "metadata": {
@@ -145,35 +174,6 @@
         "text/plain": "                                                 r\nfeature                                           \nterms_abstract_tfidf__anterior            0.224806\nterms_abstract_tfidf__occipital          -0.186436\nterms_abstract_tfidf__information         0.181752\nterms_abstract_tfidf__cingulate           0.174704\nterms_abstract_tfidf__effects            -0.167735\nterms_abstract_tfidf__anterior cingulate  0.167603\nterms_abstract_tfidf__motor               0.141023\nterms_abstract_tfidf__medial             -0.139790\nterms_abstract_tfidf__involved            0.139713\nterms_abstract_tfidf__conditions          0.138777",
         "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>r</th>\n    </tr>\n    <tr>\n      <th>feature</th>\n      <th></th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>terms_abstract_tfidf__anterior</th>\n      <td>0.224806</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__occipital</th>\n      <td>-0.186436</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__information</th>\n      <td>0.181752</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__cingulate</th>\n      <td>0.174704</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__effects</th>\n      <td>-0.167735</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__anterior cingulate</th>\n      <td>0.167603</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__motor</th>\n      <td>0.141023</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__medial</th>\n      <td>-0.139790</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__involved</th>\n      <td>0.139713</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__conditions</th>\n      <td>0.138777</td>\n    </tr>\n  </tbody>\n</table>\n</div>"
       }
-    },
-    "table_assoc": {
-      "output_type": "display_data",
-      "metadata": {
-        "scrapbook": {
-          "name": "table_assoc",
-          "mime_prefix": ""
-        }
-      },
-      "data": {
-        "text/plain": "                                                  r\nfeature                                            \nterms_abstract_tfidf__responses            0.139758\nterms_abstract_tfidf__parietal            -0.135737\nterms_abstract_tfidf__group                0.132898\nterms_abstract_tfidf__medial               0.127090\nterms_abstract_tfidf__functional magnetic  0.113273\nterms_abstract_tfidf__superior            -0.110504\nterms_abstract_tfidf__gyrus               -0.109145\nterms_abstract_tfidf__studied              0.105478\nterms_abstract_tfidf__frontal             -0.103911\nterms_abstract_tfidf__cortices             0.101922",
-        "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>r</th>\n    </tr>\n    <tr>\n      <th>feature</th>\n      <th></th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>terms_abstract_tfidf__responses</th>\n      <td>0.139758</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__parietal</th>\n      <td>-0.135737</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__group</th>\n      <td>0.132898</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__medial</th>\n      <td>0.127090</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__functional magnetic</th>\n      <td>0.113273</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__superior</th>\n      <td>-0.110504</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__gyrus</th>\n      <td>-0.109145</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__studied</th>\n      <td>0.105478</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__frontal</th>\n      <td>-0.103911</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__cortices</th>\n      <td>0.101922</td>\n    </tr>\n  </tbody>\n</table>\n</div>"
-      }
-    },
-    "figure_map_to_decode": {
-      "output_type": "display_data",
-      "metadata": {
-        "scrapbook": {
-          "name": "figure_map_to_decode",
-          "mime_prefix": "application/papermill.record/"
-        },
-        "filenames": {
-          "image/png": "/home/data/nbc/misc-projects/Salo_NiMARE/content/_build/jupyter_execute/decoding_5_1.png"
-        }
-      },
-      "data": {
-        "application/papermill.record/text/plain": "<Figure size 720x432 with 5 Axes>",
-        "application/papermill.record/image/png": null
-      }
     }
   },
   "ibma": {
@@ -195,22 +195,6 @@
     }
   },
   "macm": {
-    "figure_macm": {
-      "output_type": "display_data",
-      "metadata": {
-        "scrapbook": {
-          "name": "figure_macm",
-          "mime_prefix": "application/papermill.record/"
-        },
-        "filenames": {
-          "image/png": "/home/data/nbc/misc-projects/Salo_NiMARE/content/_build/jupyter_execute/macm_8_0.png"
-        }
-      },
-      "data": {
-        "application/papermill.record/text/plain": "<Figure size 432x288 with 10 Axes>",
-        "application/papermill.record/image/png": null
-      }
-    },
     "figure_macm_rois": {
       "output_type": "display_data",
       "metadata": {
@@ -224,6 +208,22 @@
       },
       "data": {
         "application/papermill.record/text/plain": "<Figure size 432x288 with 8 Axes>",
+        "application/papermill.record/image/png": null
+      }
+    },
+    "figure_macm": {
+      "output_type": "display_data",
+      "metadata": {
+        "scrapbook": {
+          "name": "figure_macm",
+          "mime_prefix": "application/papermill.record/"
+        },
+        "filenames": {
+          "image/png": "/home/data/nbc/misc-projects/Salo_NiMARE/content/_build/jupyter_execute/macm_8_0.png"
+        }
+      },
+      "data": {
+        "application/papermill.record/text/plain": "<Figure size 432x288 with 10 Axes>",
         "application/papermill.record/image/png": null
       }
     }
