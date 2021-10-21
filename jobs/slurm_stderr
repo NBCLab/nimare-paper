@@ -11405,10 +11405,3 @@ total tokens: 59901
 <10000> LL/token: -7.47348
 
 Total time: 1 minutes 18 seconds
-[31mWARNING: Execution Failed with traceback saved in /home/data/nbc/misc-projects/Salo_NiMARE/content/_build/html/reports/cbma.log[39;49;00m
-[31mWARNING: Execution Failed with traceback saved in /home/data/nbc/misc-projects/Salo_NiMARE/content/_build/html/reports/subtraction.log[39;49;00m
-[91m/home/data/nbc/misc-projects/Salo_NiMARE/content/cbma.md.rst:138: WARNING: Couldn't find key `figure_ma_maps` in keys defined across all pages.[39;49;00m
-[91m/home/data/nbc/misc-projects/Salo_NiMARE/content/cbma.md.rst:410: WARNING: Couldn't find key `figure_cbma_uncorr` in keys defined across all pages.[39;49;00m
-[91m/home/data/nbc/misc-projects/Salo_NiMARE/content/cbma.md:72: WARNING: Could not lex literal_block as "ipythontb". Highlighting skipped.[39;49;00m
-[91m/home/data/nbc/misc-projects/Salo_NiMARE/content/subtraction.md.rst:84: WARNING: Couldn't find key `figure_subtraction` in keys defined across all pages.[39;49;00m
-[91m/home/data/nbc/misc-projects/Salo_NiMARE/content/subtraction.md:54: WARNING: Could not lex literal_block as "ipythontb". Highlighting skipped.[39;49;00m

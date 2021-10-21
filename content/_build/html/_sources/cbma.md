@@ -50,7 +50,7 @@ Additionally, for each of the following approaches, except for SCALE, voxel- or 
 
 +++
 
-```{figure} images/figure_02.png
+```{figure} images/figure_02.svg
 :name: meta_workflow_fig
 :align: center
 

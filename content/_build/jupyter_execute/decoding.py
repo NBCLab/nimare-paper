@@ -66,6 +66,7 @@ amygdala_ids = neurosynth_dset_first500.get_studies_by_mask(amygdala_roi)
 # Four common approaches are correlation-based decoding, dot-product decoding, weight-sum decoding, and chi-square decoding.
 # We will first discuss continuous decoding methods (i.e., correlation and dot-product), followed by discrete decoding methods (weight-sum and chi-square).
 
+# (content:decoding:continuous)=
 # ## Decoding continuous inputs
 # 
 # When decoding unthresholded statistical maps (such as {numref}`figure_map_to_decode`), the most common approaches are to simply correlate the input map with maps from the database, or to compute the dot product between the two maps.
@@ -137,6 +138,7 @@ glue("table_corr", corr_df)
 del corr_decoder, corr_df
 
 
+# (content:decoding:discrete)=
 # ## Decoding discrete inputs
 # 
 # Decoding regions of interest (ROIs) requires a different approach than decoding unthresholded statistical maps.
@@ -161,7 +163,7 @@ glue("figure_roi_to_decode", fig, display=False)
 # The amygdala region of interest mask that will be used for discrete decoding.
 # ```
 # 
-# One method which relies on correlations, much like the continuous correlation decoder, is the **ROI association** decoding method ({py:class}`nimare.decode.discete.ROIAssociationDecoder`), originally implemented in the Neurosynth Python library.
+# One method which relies on correlations, much like the continuous correlation decoder, is the **ROI association** decoding method ({py:class}`nimare.decode.discrete.ROIAssociationDecoder`), originally implemented in the Neurosynth Python library.
 # In this method, each study with coordinates in the dataset is convolved with a kernel transformer to produce a modeled activation map.
 # The resulting modeled activation maps are then masked with a region of interest (i.e., the target of the decoding), and the values are averaged within the ROI.
 # These averaged modeled activation values are then correlated with the term weights for all labels in the dataset.
@@ -224,7 +226,7 @@ del assoc_decoder, assoc_df
 # This consistency analysis produces both a measure of statistical significance (i.e., a p-value) and a measure of effect size (i.e., the likelihood of being selected given the presence of the label).
 # Next, the studies in the sample are compared to the studies in the rest of the database.
 # This specificity analysis produces a p-value and an effect size measure of the posterior probability of having the label given selection into the sample.
-# A detailed algorithm description is presented in **Appendix I**.
+# A detailed algorithm description is presented in [](appendices/brainmap_decoding).
 
 # In[11]:
 
@@ -276,7 +278,7 @@ del brainmap_decoder, brainmap_df
 # Like the BrainMap method, this method produces four outputs for each label.
 # For the consistency analysis, this method produces both a p-value and a conditional probability of selection given the presence of the label and the prior probability of having the label.
 # For the specificity analysis, the Neurosynth method produces both a p-value and a posterior probability of presence of the label given selection and the prior probability of having the label.
-# A detailed algorithm description is presented in **Appendix II**.
+# A detailed algorithm description is presented in [](appendices/neurosynth_decoding).
 
 # In[14]:
 
