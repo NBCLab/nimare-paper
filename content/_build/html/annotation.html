@@ -683,11 +683,7 @@ NiMARE will download MALLET automatically, when necessary.</p>
     <span class="n">n_iters</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span>
 <span class="p">)</span>
 
-<span class="c1"># We will suppress MALLET&#39;s output when fitting the model, because MALLET logs a lot of information</span>
-<span class="kn">import</span> <span class="nn">contextlib</span>
-
-<span class="k">with</span> <span class="n">contextlib</span><span class="o">.</span><span class="n">redirect_stderr</span><span class="p">(</span><span class="kc">None</span><span class="p">):</span>
-    <span class="n">lda_model</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="n">lda_model</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -773,15 +769,16 @@ total tokens: 59901
 47	0.02	responses acc processing intensity words unpleasant lower significantly braille frequency pleasant affective positive found activation coding system eyeblink cortices 
 48	0.02	activated information neural response role mri suggest subjects perception auditory performance gyrus regions important sustained frequencies behavior show transient 
 49	0.02	motor movements areas activation premotor bilateral fmri control cerebellum actions results contralateral sma functional pre magnetic anterior phase inferior 
+
+&lt;50&gt; LL/token: -8.24466
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;50&gt; LL/token: -8.24466
-&lt;60&gt; LL/token: -8.20697
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;60&gt; LL/token: -8.20697
 &lt;70&gt; LL/token: -8.15966
+&lt;80&gt; LL/token: -8.12487
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;80&gt; LL/token: -8.12487
-&lt;90&gt; LL/token: -8.10972
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;90&gt; LL/token: -8.10972
 
 0	0.02	cortex somatosensory stimulation cortical subjects fmri functional early primary activation tactile study individual evoked blind investigated found magnetic area 
 1	0.02	attention spatial regions priming sensory modulated observed stimulus attended passive stimulation vestibular rate duration touch found swallowing decreases early 
@@ -835,16 +832,15 @@ total tokens: 59901
 49	0.02	motor movements areas activation premotor control sma fmri cerebellum actions bilateral pre contralateral results primary magnetic single ganglia coordination 
 
 &lt;100&gt; LL/token: -8.08919
+&lt;110&gt; LL/token: -8.06538
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;110&gt; LL/token: -8.06538
-&lt;120&gt; LL/token: -8.04734
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;120&gt; LL/token: -8.04734
 &lt;130&gt; LL/token: -8.047
+&lt;140&gt; LL/token: -8.02452
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;140&gt; LL/token: -8.02452
-
-0	0.02	cortex fmri stimulation somatosensory activation subjects cortical functional early study individual primary observed magnetic tactile area blind subject evoked 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	cortex fmri stimulation somatosensory activation subjects cortical functional early study individual primary observed magnetic tactile area blind subject evoked 
 1	0.02	attention regions priming sensory modulated spatial attended passive repetition decreases modality found vestibular duration rate touch swallowing influences driven 
 2	0.02	activity brain left regions inferior imaging subjects functional frontal cortex temporal involved bilateral magnetic medial found area task resonance 
 3	0.02	attention response attentional visual interference anterior selection cortex regions gyrus activations control increased search selectively events induced inhibition contrast 
@@ -897,14 +893,13 @@ total tokens: 59901
 
 &lt;150&gt; LL/token: -8.01612
 &lt;160&gt; LL/token: -7.99928
+&lt;170&gt; LL/token: -7.99287
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;170&gt; LL/token: -7.99287
-&lt;180&gt; LL/token: -7.98215
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;180&gt; LL/token: -7.98215
 &lt;190&gt; LL/token: -7.97106
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	cortex fmri somatosensory stimulation subjects cortical activation early functional area study tactile primary observed found individual magnetic subject blind 
+
+0	0.02	cortex fmri somatosensory stimulation subjects cortical activation early functional area study tactile primary observed found individual magnetic subject blind 
 1	0.02	attention regions sensory priming spatial modulated attended modality repetition passive vestibular enhanced reductions event extrastriate duration multimodal touch stimulation 
 2	0.02	activity left bilateral imaging inferior magnetic functional regions frontal brain task resonance cortex found fmri temporal prefrontal medial involved 
 3	0.02	attention response attentional visual interference selection cortex regions anterior induced inhibition events recruited activations target gyrus required control increased 
@@ -956,12 +951,14 @@ total tokens: 59901
 49	0.02	motor movements movement area activation areas premotor sma finger control contralateral pre cerebellum actions fmri results primary bilateral sequence 
 
 &lt;200&gt; LL/token: -7.96207
-&lt;210&gt; LL/token: -7.95543
-&lt;220&gt; LL/token: -7.94974
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;230&gt; LL/token: -7.93207
-&lt;240&gt; LL/token: -7.93446
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;210&gt; LL/token: -7.95543
+&lt;220&gt; LL/token: -7.94974
+&lt;230&gt; LL/token: -7.93207
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;240&gt; LL/token: -7.93446
 
 0	0.02	cortex activation fmri somatosensory stimulation cortical functional subjects study primary early magnetic tactile individual area observed blind investigated subject 
 1	0.02	attention priming regions sensory spatial modality modulated attended found passive repetition selective extrastriate vestibular reductions enhanced stimulus duration touch 
@@ -1015,16 +1012,15 @@ total tokens: 59901
 49	0.02	motor movements movement premotor area areas control activation sma finger supplementary contralateral cerebellum pre actions primary tapping fmri bilateral 
 
 &lt;250&gt; LL/token: -7.92866
+&lt;260&gt; LL/token: -7.92816
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;260&gt; LL/token: -7.92816
-&lt;270&gt; LL/token: -7.92433
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;270&gt; LL/token: -7.92433
 &lt;280&gt; LL/token: -7.91451
+&lt;290&gt; LL/token: -7.90918
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;290&gt; LL/token: -7.90918
-
-0	0.02	cortex activation fmri functional cortical somatosensory stimulation primary subjects early found resonance tactile individual study magnetic area observed blind 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	cortex activation fmri functional cortical somatosensory stimulation primary subjects early found resonance tactile individual study magnetic area observed blind 
 1	0.02	attention spatial priming sensory regions attended repetition found modality passive modulated extrastriate high reductions duration modalities touch stimulation effects 
 2	0.02	regions activity cortex bilateral imaging functional temporal inferior frontal brain resonance magnetic left involved found subjects prefrontal area superior 
 3	0.02	attention response attentional visual interference anterior target cortex selection induced control events inhibition search gyrus significantly dimension increased current 
@@ -1077,14 +1073,13 @@ total tokens: 59901
 
 &lt;300&gt; LL/token: -7.90057
 &lt;310&gt; LL/token: -7.91289
+&lt;320&gt; LL/token: -7.90066
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;320&gt; LL/token: -7.90066
-&lt;330&gt; LL/token: -7.89594
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;330&gt; LL/token: -7.89594
 &lt;340&gt; LL/token: -7.90229
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	cortex fmri activation somatosensory stimulation functional primary cortical early study magnetic individual tactile found subjects blind observed stimulus investigated 
+
+0	0.02	cortex fmri activation somatosensory stimulation functional primary cortical early study magnetic individual tactile found subjects blind observed stimulus investigated 
 1	0.02	attention priming sensory regions spatial modality passive modulated attended repetition reductions modalities found anatomically modulation event touch swallowing influences 
 2	0.02	left activity regions inferior frontal bilateral temporal imaging cortex resonance magnetic functional fmri superior subjects involved brain found medial 
 3	0.02	attention response attentional cortex target selection visual anterior regions interference control events induced inhibition feature search including dimension types 
@@ -1136,12 +1131,14 @@ total tokens: 59901
 49	0.02	motor movements movement premotor hand areas area sma finger activation control supplementary contralateral cerebellum pre tapping actions sequence ganglia 
 
 &lt;350&gt; LL/token: -7.89414
-&lt;360&gt; LL/token: -7.88724
-&lt;370&gt; LL/token: -7.88793
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;380&gt; LL/token: -7.88501
-&lt;390&gt; LL/token: -7.87837
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;360&gt; LL/token: -7.88724
+&lt;370&gt; LL/token: -7.88793
+&lt;380&gt; LL/token: -7.88501
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;390&gt; LL/token: -7.87837
 
 0	0.02	cortex fmri somatosensory stimulation activation cortical primary magnetic functional individual resonance subjects early tactile found blind study evoked investigated 
 1	0.02	attention sensory priming regions modality attended passive modulated spatial repetition found modalities anatomically extrastriate reductions multimodal touch unimodal modulation 
@@ -1195,16 +1192,15 @@ total tokens: 59901
 49	0.02	motor movements areas premotor hand movement activation area sma control finger supplementary contralateral actions pre cerebellum tapping ipsilateral primary 
 
 &lt;400&gt; LL/token: -7.87695
+&lt;410&gt; LL/token: -7.87084
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;410&gt; LL/token: -7.87084
-&lt;420&gt; LL/token: -7.87385
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;420&gt; LL/token: -7.87385
 &lt;430&gt; LL/token: -7.86931
+&lt;440&gt; LL/token: -7.85843
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;440&gt; LL/token: -7.85843
-
-0	0.02	activation cortex fmri functional somatosensory stimulation cortical magnetic early primary study individual found resonance stimulus secondary tactile blind subject 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	activation cortex fmri functional somatosensory stimulation cortical magnetic early primary study individual found resonance stimulus secondary tactile blind subject 
 1	0.02	attention sensory priming regions modality repetition attended modulated modalities spatial passive tactile effects reductions anatomically found multimodal touch unimodal 
 2	0.02	left activity regions temporal inferior frontal imaging magnetic gyrus functional bilateral resonance superior fmri cortex brain found observed medial 
 3	0.02	attention response attentional selection target anterior visual interference cortex network control frontal search required inhibition relative general including dimension 
@@ -12716,7 +12712,7 @@ total tokens: 59901
 
 &lt;10000&gt; LL/token: -7.47348
 
-Total time: 1 minutes 17 seconds
+Total time: 1 minutes 18 seconds
 </pre></div>
 </div>
 </div>

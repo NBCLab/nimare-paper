@@ -212,11 +212,7 @@ lda_model = annotate.lda.LDAModel(
     n_iters=10000,
 )
 
-# We will suppress MALLET's output when fitting the model, because MALLET logs a lot of information
-import contextlib
-
-with contextlib.redirect_stderr(None):
-    lda_model.fit()
+lda_model.fit()
 
 
 # The most important products of training the `LDAModel` object are its `p_word_g_topic_df_` and `p_topic_g_doc_df_` attributes.
