@@ -17,8 +17,8 @@ This diagram outlines six of the most common use-cases for NiMARE.
 **(B)** [](ibma) (IBMA) operates similarly to CBMA, except that IBMA `Estimator`s use statistical maps stored in the `Dataset.images` attribute.
 **(C)** [](macm) (MACM) uses a region of interest to select coordinate-based studies within a `Dataset`, after which the standard CBMA workflow is performed.
 **(D)** [](annotation) infers labels from textual (and sometimes other) data associated with the `Dataset`, as stored in the `Dataset.texts` attribute. The annotation functions produce labels which may be integrated into the `Dataset` as the `Dataset.annotations` attribute.
-**(E)** [Functional decoding of discrete inputs](content:decoding:discrete) applies a selection criterion to a `Dataset` with both `coordinates` and `annotations` attributes, using a `Decoder` object. The decoding algorithm will output measures of similarity or associativeness with each label in the annotations.
-**(F)** [Functional decoding of continuous statistical maps](content:decoding:continuous) operates similarly to discrete decoding, in that the input `Dataset` must have both `coordinates` and `annotations` attributes. The `Dataset`, along with an unthresholded statistical map to decode, is provided to the `Decoder` object, which then outputs measures of similarity or associativeness with each label.
+**(E)** [Functional decoding of continuous statistical maps](content:decoding:continuous) operates similarly to discrete decoding, in that the input `Dataset` must have both `coordinates` and `annotations` attributes. The `Dataset`, along with an unthresholded statistical map to decode, is provided to the `Decoder` object, which then outputs measures of similarity or associativeness with each label.
+**(F)** [Functional decoding of discrete inputs](content:decoding:discrete) applies a selection criterion to a `Dataset` with both `coordinates` and `annotations` attributes, using a `Decoder` object. The decoding algorithm will output measures of similarity or associativeness with each label in the annotations.
 ```
 
 ```{tableofcontents}
