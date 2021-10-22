@@ -124,7 +124,7 @@ if not os.path.isfile(os.path.join(DATA_DIR, "neurosynth_dataset.pkl.gz")):
 
 ```{note}
 Many of the methods in NiMARE can be very time-consuming or memory-intensive.
-Therefore, for the sake of ensuring that the analyses in this article may be reproduced by as many people as possible, we will use a reduced version of the Neurosynth Dataset, only containing the first 500 studies, for those methods which may not run easily on the full database.
+Therefore, for the sake of ensuring that the analyses in this article may be reproduced by as many people as possible, we will use a reduced version of the Neurosynth `Dataset`, only containing the first 500 studies, for those methods which may not run easily on the full database.
 ```
 
 ```{code-cell} ipython3

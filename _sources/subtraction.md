@@ -46,8 +46,10 @@ In this approach, two groups of experiments (A and B) are compared using a group
 Real ALE-difference scores (i.e., the ALE values for one group minus the ALE values for the other) are compared against these null distributions to determine voxel-wise significance.
 In the original implementation of the algorithm, this procedure is performed separately for a group A > B contrast and a group B > A contrast, where each contrast is limited to voxels that were significant in the first group's original meta-analysis.
 
+```{important}
 In NiMARE, we use an adapted version of the subtraction analysis method in {py:class}`nimare.meta.cbma.ale.ALESubtraction`.
-Note that, unlike the original algorithm, the NiMARE implementation analyzes all voxels, rather than only those that show a significant effect of A alone or B alone.
+The NiMARE implementation analyzes all voxels, rather than only those that show a significant effect of A alone or B alone as in the original implementation.
+```
 
 ```{code-cell} ipython3
 from nimare import meta
@@ -85,7 +87,7 @@ glue("figure_subtraction", fig, display=False)
 :name: figure_subtraction
 :align: center
 
-An array of plots of the statistical maps produced by the meta-analysis.
+Unthresholded z-statistic map for the subtraction analysis of the two example Sleuth-based `Datasets`.
 ```
 
 Alternatively, MKDA Chi-squared analysis is inherently a subtraction analysis method, in that it compares foci from two groups of studies.

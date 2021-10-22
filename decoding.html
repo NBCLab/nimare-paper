@@ -52,6 +52,7 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="_static/nimare_favicon.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Future Directions" href="future_directions.html" />
@@ -277,6 +278,22 @@
 
             <!-- Source interaction buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/NBCLab/nimare-paper"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/NBCLab/nimare-paper/issues/new?title=Issue%20on%20page%20%2Fdecoding.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
             <!-- Full screen (wrap in <a> to have style consistency -->
 
 <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
@@ -389,6 +406,8 @@
     <span class="n">neurosynth_dset_first500</span> <span class="o">=</span> <span class="n">nimare</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">dset_file</span><span class="p">)</span>
     <span class="n">neurosynth_dset_first500</span><span class="o">.</span><span class="n">update_path</span><span class="p">(</span><span class="n">target_folder</span><span class="p">)</span>
 
+<span class="n">neurosynth_dset</span> <span class="o">=</span> <span class="n">nimare</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;neurosynth_dataset.pkl.gz&quot;</span><span class="p">))</span>
+
 <span class="c1"># Collect features for decoding</span>
 <span class="c1"># We use any features that appear in &gt;10% of studies and &lt;90%.</span>
 <span class="n">id_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;study_id&quot;</span><span class="p">,</span> <span class="s2">&quot;contrast_id&quot;</span><span class="p">]</span>
@@ -465,6 +484,7 @@ As such, we will only show the <a class="reference external" href="https://nimar
 <p class="admonition-title">Warning</p>
 <p><a class="reference external" href="https://nimare.readthedocs.io/en/0.0.10/generated/nimare.decode.continuous.CorrelationDecoder.html#nimare.decode.continuous.CorrelationDecoder" title="(in NiMARE v0.0.10+0.ge8814c2.dirty)"><code class="xref py py-class docutils literal notranslate"><span class="pre">nimare.decode.continuous.CorrelationDecoder</span></code></a> currently runs <em>very</em> slowly.
 We strongly recommend running it on a subset of labels within the <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>.</p>
+<p>In this example, we will only decode using features appearing in &gt;10% and &lt;90% of the first 500 studies in the <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>.</p>
 </div>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
@@ -1501,7 +1521,7 @@ We strongly recommend running it on a subset of labels within the <code class="d
 <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here we delete the recent variables for the sake of reducing memory usage</span>
-<span class="k">del</span> <span class="n">corr_decoder</span><span class="p">,</span> <span class="n">corr_df</span>
+<span class="k">del</span> <span class="n">neurosynth_dset_first500</span><span class="p">,</span> <span class="n">corr_decoder</span><span class="p">,</span> <span class="n">corr_df</span>
 </pre></div>
 </div>
 </div>
@@ -1543,10 +1563,67 @@ This decoding method produces a single correlation coefficient for each of the d
     <span class="n">amygdala_roi</span><span class="p">,</span>
     <span class="n">u</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
     <span class="n">correction</span><span class="o">=</span><span class="s2">&quot;fdr_bh&quot;</span><span class="p">,</span>
-    <span class="n">features</span><span class="o">=</span><span class="n">target_features</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="n">assoc_decoder</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">neurosynth_dset_first500</span><span class="p">)</span>
+<span class="n">assoc_decoder</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">neurosynth_dset</span><span class="p">)</span>
 <span class="n">assoc_df</span> <span class="o">=</span> <span class="n">assoc_decoder</span><span class="o">.</span><span class="n">transform</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ERROR:nimare.meta.kernel:transform failed, removing None
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">MemoryError</span><span class="g g-Whitespace">                               </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_5413</span><span class="o">/</span><span class="mf">726795045.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="n">correction</span><span class="o">=</span><span class="s2">&quot;fdr_bh&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">6</span> <span class="n">assoc_decoder</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">neurosynth_dset</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="n">assoc_df</span> <span class="o">=</span> <span class="n">assoc_decoder</span><span class="o">.</span><span class="n">transform</span><span class="p">()</span>
+
+<span class="nn">/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nimare/base.py</span> in <span class="ni">fit</span><span class="nt">(self, dataset, drop_invalid)</span>
+<span class="g g-Whitespace">    </span><span class="mi">546</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_validate_input</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">drop_invalid</span><span class="o">=</span><span class="n">drop_invalid</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">547</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_preprocess_input</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">548</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_fit</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">549</span> 
+<span class="g g-Whitespace">    </span><span class="mi">550</span>     <span class="nd">@abstractmethod</span>
+
+<span class="nn">/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nimare/decode/discrete.py</span> in <span class="ni">_fit</span><span class="nt">(self, dataset)</span>
+<span class="g g-Whitespace">    </span><span class="mi">740</span>             <span class="bp">self</span><span class="o">.</span><span class="n">inputs_</span><span class="p">[</span><span class="s2">&quot;coordinates&quot;</span><span class="p">],</span>
+<span class="g g-Whitespace">    </span><span class="mi">741</span>             <span class="bp">self</span><span class="o">.</span><span class="n">masker</span><span class="p">,</span>
+<span class="ne">--&gt; </span><span class="mi">742</span>             <span class="n">return_type</span><span class="o">=</span><span class="s2">&quot;array&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">743</span>         <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">744</span>         <span class="bp">self</span><span class="o">.</span><span class="n">roi_values_</span> <span class="o">=</span> <span class="n">roi_values</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="nn">/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nimare/utils.py</span> in <span class="ni">memmap_context</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">471</span> 
+<span class="g g-Whitespace">    </span><span class="mi">472</span>             <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">473</span>                 <span class="k">return</span> <span class="n">function</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">474</span>             <span class="k">except</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">475</span>                 <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">filenames</span><span class="p">:</span>
+
+<span class="nn">/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nimare/meta/kernel.py</span> in <span class="ni">transform</span><span class="nt">(self, dataset, masker, return_type)</span>
+<span class="g g-Whitespace">    </span><span class="mi">195</span>             <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">196</span> 
+<span class="ne">--&gt; </span><span class="mi">197</span>         <span class="n">transformed_maps</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_transform</span><span class="p">(</span><span class="n">mask</span><span class="p">,</span> <span class="n">coordinates</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">198</span> 
+<span class="g g-Whitespace">    </span><span class="mi">199</span>         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">transformed_maps</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
+
+<span class="nn">/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nimare/meta/kernel.py</span> in <span class="ni">_transform</span><span class="nt">(self, mask, coordinates)</span>
+<span class="g g-Whitespace">    </span><span class="mi">407</span>             <span class="n">sum_overlap</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_sum_overlap</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">408</span>             <span class="n">memory_limit</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">memory_limit</span><span class="p">,</span>
+<span class="ne">--&gt; </span><span class="mi">409</span>             <span class="n">memmap_filename</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">memmap_filenames</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+<span class="g g-Whitespace">    </span><span class="mi">410</span>         <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">411</span>         <span class="n">exp_ids</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">exp_idx</span><span class="p">)</span>
+
+<span class="nn">/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nimare/meta/utils.py</span> in <span class="ni">compute_kda_ma</span><span class="nt">(shape, vox_dims, ijks, r, value, exp_idx, sum_overlap, memory_limit, memmap_filename)</span>
+<span class="g g-Whitespace">    </span><span class="mi">336</span>         <span class="n">kernel_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">memmap</span><span class="p">(</span><span class="n">memmap_filename</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">type</span><span class="p">(</span><span class="n">value</span><span class="p">),</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;w+&quot;</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="n">kernel_shape</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">337</span>     <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">338</span>         <span class="n">kernel_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">kernel_shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">type</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
+<span class="g g-Whitespace">    </span><span class="mi">339</span> 
+<span class="g g-Whitespace">    </span><span class="mi">340</span>     <span class="n">n_dim</span> <span class="o">=</span> <span class="n">ijks</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="ne">MemoryError</span>: Unable to allocate 96.6 GiB for an array with shape (14371, 91, 109, 91) and data type int64
 </pre></div>
 </div>
 </div>
@@ -1559,148 +1636,8 @@ This decoding method produces a single correlation coefficient for each of the d
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>r</th>
-    </tr>
-    <tr>
-      <th>feature</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>terms_abstract_tfidf__responses</th>
-      <td>0.139758</td>
-    </tr>
-    <tr>
-      <th>terms_abstract_tfidf__parietal</th>
-      <td>-0.135737</td>
-    </tr>
-    <tr>
-      <th>terms_abstract_tfidf__group</th>
-      <td>0.132898</td>
-    </tr>
-    <tr>
-      <th>terms_abstract_tfidf__medial</th>
-      <td>0.127090</td>
-    </tr>
-    <tr>
-      <th>terms_abstract_tfidf__functional magnetic</th>
-      <td>0.113273</td>
-    </tr>
-    <tr>
-      <th>terms_abstract_tfidf__superior</th>
-      <td>-0.110504</td>
-    </tr>
-    <tr>
-      <th>terms_abstract_tfidf__gyrus</th>
-      <td>-0.109145</td>
-    </tr>
-    <tr>
-      <th>terms_abstract_tfidf__studied</th>
-      <td>0.105478</td>
-    </tr>
-    <tr>
-      <th>terms_abstract_tfidf__frontal</th>
-      <td>-0.103911</td>
-    </tr>
-    <tr>
-      <th>terms_abstract_tfidf__cortices</th>
-      <td>0.101922</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 <div class="figure align-center" id="tbl-table-assoc">
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>r</th>
-    </tr>
-    <tr>
-      <th>feature</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>terms_abstract_tfidf__responses</th>
-      <td>0.139758</td>
-    </tr>
-    <tr>
-      <th>terms_abstract_tfidf__parietal</th>
-      <td>-0.135737</td>
-    </tr>
-    <tr>
-      <th>terms_abstract_tfidf__group</th>
-      <td>0.132898</td>
-    </tr>
-    <tr>
-      <th>terms_abstract_tfidf__medial</th>
-      <td>0.127090</td>
-    </tr>
-    <tr>
-      <th>terms_abstract_tfidf__functional magnetic</th>
-      <td>0.113273</td>
-    </tr>
-    <tr>
-      <th>terms_abstract_tfidf__superior</th>
-      <td>-0.110504</td>
-    </tr>
-    <tr>
-      <th>terms_abstract_tfidf__gyrus</th>
-      <td>-0.109145</td>
-    </tr>
-    <tr>
-      <th>terms_abstract_tfidf__studied</th>
-      <td>0.105478</td>
-    </tr>
-    <tr>
-      <th>terms_abstract_tfidf__frontal</th>
-      <td>-0.103911</td>
-    </tr>
-    <tr>
-      <th>terms_abstract_tfidf__cortices</th>
-      <td>0.101922</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 <p class="caption"><span class="caption-number">Fig. 19 </span><span class="caption-text">The top ten terms, sorted by absolute correlation coefficient, from the ROI association decoding method.</span><a class="headerlink" href="#tbl-table-assoc" title="Permalink to this image">¶</a></p>
 </div>
 <div class="cell tag_hide-cell docutils container">
@@ -1737,9 +1674,8 @@ A detailed algorithm description is presented in <a class="reference internal" h
     <span class="n">frequency_threshold</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span>
     <span class="n">u</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
     <span class="n">correction</span><span class="o">=</span><span class="s2">&quot;fdr_bh&quot;</span><span class="p">,</span>
-    <span class="n">features</span><span class="o">=</span><span class="n">target_features</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="n">brainmap_decoder</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">neurosynth_dset_first500</span><span class="p">)</span>
+<span class="n">brainmap_decoder</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">neurosynth_dset</span><span class="p">)</span>
 <span class="n">brainmap_df</span> <span class="o">=</span> <span class="n">brainmap_decoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">amygdala_ids</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1755,268 +1691,8 @@ A detailed algorithm description is presented in <a class="reference internal" h
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>pForward</th>
-      <th>zForward</th>
-      <th>likelihoodForward</th>
-      <th>pReverse</th>
-      <th>zReverse</th>
-      <th>probReverse</th>
-    </tr>
-    <tr>
-      <th>Term</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>terms_abstract_tfidf__magnetic</th>
-      <td>0.742999</td>
-      <td>0.327884</td>
-      <td>1.304299</td>
-      <td>1.000000</td>
-      <td>0.000000</td>
-      <td>0.044836</td>
-    </tr>
-    <tr>
-      <th>terms_abstract_tfidf__magnetic resonance</th>
-      <td>0.742999</td>
-      <td>0.327884</td>
-      <td>1.259014</td>
-      <td>1.000000</td>
-      <td>0.000000</td>
-      <td>0.041626</td>
-    </tr>
-    <tr>
-      <th>terms_abstract_tfidf__resonance</th>
-      <td>0.742999</td>
-      <td>0.327884</td>
-      <td>1.253833</td>
-      <td>1.000000</td>
-      <td>0.000000</td>
-      <td>0.041605</td>
-    </tr>
-    <tr>
-      <th>terms_abstract_tfidf__functional magnetic</th>
-      <td>0.742999</td>
-      <td>0.327884</td>
-      <td>1.306109</td>
-      <td>1.000000</td>
-      <td>0.000000</td>
-      <td>0.041469</td>
-    </tr>
-    <tr>
-      <th>terms_abstract_tfidf__stimuli</th>
-      <td>0.312245</td>
-      <td>1.010524</td>
-      <td>2.151069</td>
-      <td>1.000000</td>
-      <td>0.000000</td>
-      <td>0.032607</td>
-    </tr>
-    <tr>
-      <th>terms_abstract_tfidf__response</th>
-      <td>0.399040</td>
-      <td>0.843338</td>
-      <td>1.776514</td>
-      <td>1.000000</td>
-      <td>0.000000</td>
-      <td>0.029686</td>
-    </tr>
-    <tr>
-      <th>terms_abstract_tfidf__using</th>
-      <td>1.000000</td>
-      <td>0.000000</td>
-      <td>1.163230</td>
-      <td>1.000000</td>
-      <td>0.000000</td>
-      <td>0.028324</td>
-    </tr>
-    <tr>
-      <th>terms_abstract_tfidf__human</th>
-      <td>0.545851</td>
-      <td>0.603989</td>
-      <td>1.773799</td>
-      <td>1.000000</td>
-      <td>0.000000</td>
-      <td>0.023501</td>
-    </tr>
-    <tr>
-      <th>terms_abstract_tfidf__primary</th>
-      <td>0.312245</td>
-      <td>1.010524</td>
-      <td>2.579048</td>
-      <td>1.000000</td>
-      <td>0.000000</td>
-      <td>0.021241</td>
-    </tr>
-    <tr>
-      <th>terms_abstract_tfidf__cortices</th>
-      <td>0.312245</td>
-      <td>1.010524</td>
-      <td>2.190939</td>
-      <td>0.503895</td>
-      <td>0.668373</td>
-      <td>0.020136</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 <div class="figure align-center" id="tbl-table-brainmap">
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>pForward</th>
-      <th>zForward</th>
-      <th>likelihoodForward</th>
-      <th>pReverse</th>
-      <th>zReverse</th>
-      <th>probReverse</th>
-    </tr>
-    <tr>
-      <th>Term</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>terms_abstract_tfidf__magnetic</th>
-      <td>0.742999</td>
-      <td>0.327884</td>
-      <td>1.304299</td>
-      <td>1.000000</td>
-      <td>0.000000</td>
-      <td>0.044836</td>
-    </tr>
-    <tr>
-      <th>terms_abstract_tfidf__magnetic resonance</th>
-      <td>0.742999</td>
-      <td>0.327884</td>
-      <td>1.259014</td>
-      <td>1.000000</td>
-      <td>0.000000</td>
-      <td>0.041626</td>
-    </tr>
-    <tr>
-      <th>terms_abstract_tfidf__resonance</th>
-      <td>0.742999</td>
-      <td>0.327884</td>
-      <td>1.253833</td>
-      <td>1.000000</td>
-      <td>0.000000</td>
-      <td>0.041605</td>
-    </tr>
-    <tr>
-      <th>terms_abstract_tfidf__functional magnetic</th>
-      <td>0.742999</td>
-      <td>0.327884</td>
-      <td>1.306109</td>
-      <td>1.000000</td>
-      <td>0.000000</td>
-      <td>0.041469</td>
-    </tr>
-    <tr>
-      <th>terms_abstract_tfidf__stimuli</th>
-      <td>0.312245</td>
-      <td>1.010524</td>
-      <td>2.151069</td>
-      <td>1.000000</td>
-      <td>0.000000</td>
-      <td>0.032607</td>
-    </tr>
-    <tr>
-      <th>terms_abstract_tfidf__response</th>
-      <td>0.399040</td>
-      <td>0.843338</td>
-      <td>1.776514</td>
-      <td>1.000000</td>
-      <td>0.000000</td>
-      <td>0.029686</td>
-    </tr>
-    <tr>
-      <th>terms_abstract_tfidf__using</th>
-      <td>1.000000</td>
-      <td>0.000000</td>
-      <td>1.163230</td>
-      <td>1.000000</td>
-      <td>0.000000</td>
-      <td>0.028324</td>
-    </tr>
-    <tr>
-      <th>terms_abstract_tfidf__human</th>
-      <td>0.545851</td>
-      <td>0.603989</td>
-      <td>1.773799</td>
-      <td>1.000000</td>
-      <td>0.000000</td>
-      <td>0.023501</td>
-    </tr>
-    <tr>
-      <th>terms_abstract_tfidf__primary</th>
-      <td>0.312245</td>
-      <td>1.010524</td>
-      <td>2.579048</td>
-      <td>1.000000</td>
-      <td>0.000000</td>
-      <td>0.021241</td>
-    </tr>
-    <tr>
-      <th>terms_abstract_tfidf__cortices</th>
-      <td>0.312245</td>
-      <td>1.010524</td>
-      <td>2.190939</td>
-      <td>0.503895</td>
-      <td>0.668373</td>
-      <td>0.020136</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 <p class="caption"><span class="caption-number">Fig. 20 </span><span class="caption-text">The top ten terms, sorted by reverse-inference posterior probability, from the BrainMap chi-squared decoding method.</span><a class="headerlink" href="#tbl-table-brainmap" title="Permalink to this image">¶</a></p>
 </div>
 <div class="cell tag_hide-cell docutils container">
@@ -2047,9 +1723,8 @@ A detailed algorithm description is presented in <a class="reference internal" h
     <span class="n">frequency_threshold</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span>
     <span class="n">u</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
     <span class="n">correction</span><span class="o">=</span><span class="s2">&quot;fdr_bh&quot;</span><span class="p">,</span>
-    <span class="n">features</span><span class="o">=</span><span class="n">target_features</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="n">neurosynth_decoder</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">neurosynth_dset_first500</span><span class="p">)</span>
+<span class="n">neurosynth_decoder</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">neurosynth_dset</span><span class="p">)</span>
 <span class="n">neurosynth_df</span> <span class="o">=</span> <span class="n">neurosynth_decoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">amygdala_ids</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -2065,268 +1740,8 @@ A detailed algorithm description is presented in <a class="reference internal" h
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>pForward</th>
-      <th>zForward</th>
-      <th>probForward</th>
-      <th>pReverse</th>
-      <th>zReverse</th>
-      <th>probReverse</th>
-    </tr>
-    <tr>
-      <th>Term</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>terms_abstract_tfidf__cortices</th>
-      <td>1.903210e-01</td>
-      <td>1.309630</td>
-      <td>0.078536</td>
-      <td>0.125974</td>
-      <td>1.530173</td>
-      <td>0.744136</td>
-    </tr>
-    <tr>
-      <th>terms_abstract_tfidf__response</th>
-      <td>5.445621e-03</td>
-      <td>2.779419</td>
-      <td>0.062302</td>
-      <td>0.314800</td>
-      <td>1.005202</td>
-      <td>0.687898</td>
-    </tr>
-    <tr>
-      <th>terms_abstract_tfidf__stimuli</th>
-      <td>2.419735e-02</td>
-      <td>2.253981</td>
-      <td>0.063414</td>
-      <td>0.314800</td>
-      <td>1.005202</td>
-      <td>0.682923</td>
-    </tr>
-    <tr>
-      <th>terms_abstract_tfidf__time</th>
-      <td>4.273143e-01</td>
-      <td>0.793796</td>
-      <td>0.069020</td>
-      <td>0.426405</td>
-      <td>0.795358</td>
-      <td>0.676136</td>
-    </tr>
-    <tr>
-      <th>terms_abstract_tfidf__magnetic</th>
-      <td>5.085880e-10</td>
-      <td>6.216432</td>
-      <td>0.049496</td>
-      <td>0.439868</td>
-      <td>0.772416</td>
-      <td>0.666446</td>
-    </tr>
-    <tr>
-      <th>terms_abstract_tfidf__functional magnetic</th>
-      <td>3.188012e-09</td>
-      <td>5.921612</td>
-      <td>0.050929</td>
-      <td>0.439231</td>
-      <td>0.773493</td>
-      <td>0.664353</td>
-    </tr>
-    <tr>
-      <th>terms_abstract_tfidf__role</th>
-      <td>4.273143e-01</td>
-      <td>0.793796</td>
-      <td>0.066369</td>
-      <td>0.469744</td>
-      <td>0.722895</td>
-      <td>0.659193</td>
-    </tr>
-    <tr>
-      <th>terms_abstract_tfidf__lateral</th>
-      <td>4.273143e-01</td>
-      <td>0.793796</td>
-      <td>0.065410</td>
-      <td>0.519320</td>
-      <td>0.644395</td>
-      <td>0.652542</td>
-    </tr>
-    <tr>
-      <th>terms_abstract_tfidf__primary</th>
-      <td>6.143170e-01</td>
-      <td>0.503921</td>
-      <td>0.066680</td>
-      <td>0.539288</td>
-      <td>0.613890</td>
-      <td>0.652042</td>
-    </tr>
-    <tr>
-      <th>terms_abstract_tfidf__human</th>
-      <td>1.903210e-01</td>
-      <td>1.309630</td>
-      <td>0.062391</td>
-      <td>0.469744</td>
-      <td>0.722895</td>
-      <td>0.649777</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 <div class="figure align-center" id="tbl-table-neurosynth">
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>pForward</th>
-      <th>zForward</th>
-      <th>probForward</th>
-      <th>pReverse</th>
-      <th>zReverse</th>
-      <th>probReverse</th>
-    </tr>
-    <tr>
-      <th>Term</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>terms_abstract_tfidf__cortices</th>
-      <td>1.903210e-01</td>
-      <td>1.309630</td>
-      <td>0.078536</td>
-      <td>0.125974</td>
-      <td>1.530173</td>
-      <td>0.744136</td>
-    </tr>
-    <tr>
-      <th>terms_abstract_tfidf__response</th>
-      <td>5.445621e-03</td>
-      <td>2.779419</td>
-      <td>0.062302</td>
-      <td>0.314800</td>
-      <td>1.005202</td>
-      <td>0.687898</td>
-    </tr>
-    <tr>
-      <th>terms_abstract_tfidf__stimuli</th>
-      <td>2.419735e-02</td>
-      <td>2.253981</td>
-      <td>0.063414</td>
-      <td>0.314800</td>
-      <td>1.005202</td>
-      <td>0.682923</td>
-    </tr>
-    <tr>
-      <th>terms_abstract_tfidf__time</th>
-      <td>4.273143e-01</td>
-      <td>0.793796</td>
-      <td>0.069020</td>
-      <td>0.426405</td>
-      <td>0.795358</td>
-      <td>0.676136</td>
-    </tr>
-    <tr>
-      <th>terms_abstract_tfidf__magnetic</th>
-      <td>5.085880e-10</td>
-      <td>6.216432</td>
-      <td>0.049496</td>
-      <td>0.439868</td>
-      <td>0.772416</td>
-      <td>0.666446</td>
-    </tr>
-    <tr>
-      <th>terms_abstract_tfidf__functional magnetic</th>
-      <td>3.188012e-09</td>
-      <td>5.921612</td>
-      <td>0.050929</td>
-      <td>0.439231</td>
-      <td>0.773493</td>
-      <td>0.664353</td>
-    </tr>
-    <tr>
-      <th>terms_abstract_tfidf__role</th>
-      <td>4.273143e-01</td>
-      <td>0.793796</td>
-      <td>0.066369</td>
-      <td>0.469744</td>
-      <td>0.722895</td>
-      <td>0.659193</td>
-    </tr>
-    <tr>
-      <th>terms_abstract_tfidf__lateral</th>
-      <td>4.273143e-01</td>
-      <td>0.793796</td>
-      <td>0.065410</td>
-      <td>0.519320</td>
-      <td>0.644395</td>
-      <td>0.652542</td>
-    </tr>
-    <tr>
-      <th>terms_abstract_tfidf__primary</th>
-      <td>6.143170e-01</td>
-      <td>0.503921</td>
-      <td>0.066680</td>
-      <td>0.539288</td>
-      <td>0.613890</td>
-      <td>0.652042</td>
-    </tr>
-    <tr>
-      <th>terms_abstract_tfidf__human</th>
-      <td>1.903210e-01</td>
-      <td>1.309630</td>
-      <td>0.062391</td>
-      <td>0.469744</td>
-      <td>0.722895</td>
-      <td>0.649777</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 <p class="caption"><span class="caption-number">Fig. 21 </span><span class="caption-text">The top ten terms, sorted by reverse-inference posterior probability, from the Neurosynth chi-squared decoding method.</span><a class="headerlink" href="#tbl-table-neurosynth" title="Permalink to this image">¶</a></p>
 </div>
 <div class="cell tag_hide-cell docutils container">
@@ -2402,7 +1817,7 @@ However, standard classification methods have also been applied to datasets from
     <div class="container">
       <p>
         
-          By Taylor Salo, Tal Yarkoni, Thomas E. Nichols, Jean-Baptiste Poline, Murat Bilgel, Katherine L. Bottenhorn, Enrico Glerean, Dorota Jarecka, James D. Kent, Adam Kimbler, Dylan M. Nielson, Kendra M. Oudyk, Alexandre Pérez, Puck C. Reeders, Julio A. Yanes, Julio A. Peraza, and Angela R. Laird<br/>
+          By Taylor Salo, Tal Yarkoni, Thomas E. Nichols, Jean-Baptiste Poline, Murat Bilgel, Katherine L. Bottenhorn, Enrico Glerean, Dorota Jarecka, James D. Kent, Adam Kimbler, Dylan M. Nielson, Kendra M. Oudyk, Julio A. Peraza, Alexandre Pérez, Puck C. Reeders, Julio A. Yanes, and Angela R. Laird<br/>
         
             &copy; Copyright 2021.<br/>
       </p>
