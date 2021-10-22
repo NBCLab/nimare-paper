@@ -88,7 +88,7 @@ First, Neurosynth is unable to delineate individual comparisons within studies, 
 This risks conflating directly contrasted comparisons (e.g., A>B and B>A), as well as comparisons which have no relation to one another.
 Second, coordinate extraction and annotation are noisy.
 Third, annotations automatically performed by Neurosynth are also subject to error, although the reasons behind this are more nuanced and will be discussed later in this paper.
-Given Neurosynth’s limitations, we recommend that it be used for casual, exploratory meta-analyses rather than for publication-quality analyses.
+Given Neurosynth's limitations, we recommend that it be used for casual, exploratory meta-analyses rather than for publication-quality analyses.
 Nevertheless, while individual meta-analyses should not be published from Neurosynth, many derivative analyses have been performed and published (e.g., {cite:p}`Chang2013-si,De_la_Vega2016-wg,De_la_Vega2018-jc,Poldrack2012-it`).
 As evidence of its utility, Neurosynth has been used to define _a priori_ regions of interest (e.g., {cite:p}`Josipovic2014-hx,Zeidman2012-fj,Wager2013-ab`) or perform meta-analytic functional decoding (e.g., {cite:p}`Chen2018-of,Pantelis2015-bq,Tambini2017-iu`) in many first-order (rather than meta-analytic) fMRI studies.
 

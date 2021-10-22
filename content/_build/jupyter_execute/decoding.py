@@ -58,7 +58,7 @@ amygdala_ids = neurosynth_dset_first500.get_studies_by_mask(amygdala_roi)
 
 
 # Functional decoding performed with meta-analytic data, refers to methods which attempt to predict mental states from neuroimaging data using a large-scale meta-analytic database {cite:p}`Smith2009-wk`.
-# Such analyses may also be referred to as “informal reverse inference” {cite:p}`Poldrack2011-zp`, “functional characterization analysis” {cite:p}`Bzdok2013-gc,Cieslik2013-kz,Rottschy2013-cd`, “open-ended decoding” {cite:p}`Rubin2017-rd`, or simply “functional decoding” {cite:p}`Amft2015-kw,Bzdok2013-jv,Nickl-Jockschat2015-rg`.
+# Such analyses may also be referred to as "informal reverse inference" {cite:p}`Poldrack2011-zp`, "functional characterization analysis" {cite:p}`Bzdok2013-gc,Cieslik2013-kz,Rottschy2013-cd`, "open-ended decoding" {cite:p}`Rubin2017-rd`, or simply "functional decoding" {cite:p}`Amft2015-kw,Bzdok2013-jv,Nickl-Jockschat2015-rg`.
 # While the terminology is far from standardized, we will refer to this method as **meta-analytic functional decoding** in order to distinguish it from alternative methods like multivariate decoding and model-based decoding {cite:p}`Poldrack2011-zp`.
 # Meta-analytic functional decoding is often used in conjunction with MACM, meta-analytic clustering, meta-analytic parcellation, and meta-ICA, in order to characterize resulting brain regions, clusters, or components.
 # Meta-analytic functional decoding models have also been extended for the purpose of **meta-analytic functional encoding**, wherein text is used to generate statistical images {cite:p}`Dockes2018-ug,Nunes2018-du,Rubin2017-rd`.
@@ -205,7 +205,7 @@ del assoc_decoder, assoc_df
 
 
 # A more theoretically driven approach to ROI decoding is to use **chi-square-based** methods.
-# The two methods which use chi-squared tests are the BrainMap decoding method and an adaptation of Neurosynth’s meta-analysis method.
+# The two methods which use chi-squared tests are the BrainMap decoding method and an adaptation of Neurosynth's meta-analysis method.
 # 
 # In both chi-square-based methods, studies are first selected from a coordinate-based database according to some criterion.
 # For example, if decoding a region of interest, users might select studies reporting at least one coordinate within 5 mm of the ROI.
@@ -267,11 +267,11 @@ del brainmap_decoder, brainmap_df
 
 # ### Neurosynth method
 # 
-# The implementation of the MKDA Chi-squared meta-analysis method used by Neurosynth is quite similar to BrainMap’s method for decoding, if applied to annotations instead of modeled activation values.
+# The implementation of the MKDA Chi-squared meta-analysis method used by Neurosynth is quite similar to BrainMap's method for decoding, if applied to annotations instead of modeled activation values.
 # This method, implemented in {py:class}`nimare.decode.discrete.NeurosynthDecoder`, compares the distributions of studies with each label within the sample against those in a larger database, but, unlike the BrainMap method, does not take foci into account.
 # For this reason, the Neurosynth method would likely be more appropriate for selection criteria not based on regions of interest (e.g., for characterizing meta-analytic groupings from a meta-analytic clustering analysis).
 # However, the Neurosynth method requires user-provided information that BrainMap does not.
-# Namely, in order to estimate probabilities for the consistency and specificity analyses with Bayes’ Theorem, the Neurosynth method requires a prior probability of a given label.
+# Namely, in order to estimate probabilities for the consistency and specificity analyses with Bayes' Theorem, the Neurosynth method requires a prior probability of a given label.
 # Typically, a value of 0.5 is used (i.e., the estimated probability that an individual is undergoing a given mental process described by a label, barring any evidence from neuroimaging data, is predicted to be 50%).
 # This is, admittedly, a poor prediction, which means that probabilities estimated based on this prior are not likely to be accurate, though they may still serve as useful estimates of effect size for the analysis.
 # 

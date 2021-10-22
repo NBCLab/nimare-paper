@@ -39,7 +39,7 @@ Several papers have used article text to automatically annotate meta-analytic da
 {cite:t}`Alhazmi2018-nj` used a combination of correspondence analysis and clustering to identify subdomains in the cognitive neuroscience literature from Neurosynth text.
 {cite:t}`Monti2016-aq` generated word and document embeddings in vector space from Neurosynth abstracts using deep Boltzmann machines, which allowed them to cluster words based on semantic similarity or to describe Neurosynth articles in terms of these word clusters.
 {cite:t}`Nunes2018-du` used article abstracts from Neurosynth to represent documents as dense vectors as well.
-These document vectors were then used in conjunction with corresponding coordinates to cluster words into categories, essentially annotating Neurosynth articles according to a new “ontology” based on both abstract text and coordinates.
+These document vectors were then used in conjunction with corresponding coordinates to cluster words into categories, essentially annotating Neurosynth articles according to a new "ontology" based on both abstract text and coordinates.
 
 Meta-analytic databases may also be used in conjunction with existing ontologies in order to redefine mental states or to refine the ontology.
 For example, {cite:t}`Yeo2016-vu` used the Author-Topic model to identify connections between Paradigm Classes (i.e., tasks) and Behavioral Domains (i.e., mental states) from the BrainMap Taxonomy using the BrainMap database.

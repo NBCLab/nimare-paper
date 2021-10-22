@@ -53,6 +53,7 @@ Additionally, for each of the following approaches, except for SCALE, voxel- or 
 ```{figure} images/figure_02.svg
 :name: meta_workflow_fig
 :align: center
+:width: 300px
 
 A flowchart of the typical workflow for coordinate-based meta-analyses in NiMARE.
 ```
@@ -305,7 +306,7 @@ del ale_meta, ale_results
 Rather than comparing convergence of foci within the sample to a null distribution derived under the assumption of spatial randomness within the brain, SCALE assesses whether the convergence at each voxel is greater than in the general literature.
 Each voxel in the brain is assigned a null distribution determined based on the base rate of activation for that voxel across an existing coordinate-based meta-analytic database.
 This approach allows for the generation of a statistical map for the sample, but no methods for multiple comparisons correction have yet been developed.
-While this method was developed to support analysis of joint activation or “coactivation” patterns, it is generic and can be applied to any CBMA; see [](about_derivative_analyses.md)
+While this method was developed to support analysis of joint activation or "coactivation" patterns, it is generic and can be applied to any CBMA; see [](about_derivative_analyses.md)
 
 ```{code-cell} ipython3
 # Here we use the coordinates from Neurosynth as our measure of coordinate
