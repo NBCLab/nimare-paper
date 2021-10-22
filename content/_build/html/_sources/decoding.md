@@ -48,6 +48,8 @@ else:
     neurosynth_dset_first500 = nimare.dataset.Dataset.load(dset_file)
     neurosynth_dset_first500.update_path(target_folder)
 
+neurosynth_dset = nimare.dataset.Dataset.load(os.path.join(DATA_DIR, "neurosynth_dataset.pkl.gz"))
+
 # Collect features for decoding
 # We use any features that appear in >10% of studies and <90%.
 id_cols = ["id", "study_id", "contrast_id"]
@@ -111,6 +113,8 @@ As such, we will only show the {py:class}`nimare.decode.continuous.CorrelationDe
 ```{warning}
 {py:class}`nimare.decode.continuous.CorrelationDecoder` currently runs _very_ slowly.
 We strongly recommend running it on a subset of labels within the `Dataset`.
+
+In this example, we will only decode using features appearing in >10% and <90% of the first 500 studies in the `Dataset`.
 ```
 
 ```{code-cell} ipython3
@@ -145,7 +149,7 @@ The top ten terms, sorted by absolute correlation coefficient, from the correlat
 ```{code-cell} ipython3
 :tags: [hide-cell]
 # Here we delete the recent variables for the sake of reducing memory usage
-del corr_decoder, corr_df
+del neurosynth_dset_first500, corr_decoder, corr_df
 ```
 
 +++
@@ -185,9 +189,8 @@ assoc_decoder = decode.discrete.ROIAssociationDecoder(
     amygdala_roi,
     u=0.05,
     correction="fdr_bh",
-    features=target_features,
 )
-assoc_decoder.fit(neurosynth_dset_first500)
+assoc_decoder.fit(neurosynth_dset)
 assoc_df = assoc_decoder.transform()
 ```
 
@@ -242,9 +245,8 @@ brainmap_decoder = decode.discrete.BrainMapDecoder(
     frequency_threshold=0.001,
     u=0.05,
     correction="fdr_bh",
-    features=target_features,
 )
-brainmap_decoder.fit(neurosynth_dset_first500)
+brainmap_decoder.fit(neurosynth_dset)
 brainmap_df = brainmap_decoder.transform(amygdala_ids)
 ```
 
@@ -292,9 +294,8 @@ neurosynth_decoder = decode.discrete.NeurosynthDecoder(
     frequency_threshold=0.001,
     u=0.05,
     correction="fdr_bh",
-    features=target_features,
 )
-neurosynth_decoder.fit(neurosynth_dset_first500)
+neurosynth_decoder.fit(neurosynth_dset)
 neurosynth_df = neurosynth_decoder.transform(amygdala_ids)
 ```
 

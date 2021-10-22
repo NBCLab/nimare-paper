@@ -151,5 +151,5 @@ glue("figure_macm", fig, display=False)
 :name: figure_macm
 :align: center
 
-One statistical map plot for each of the MACMs, generated with nilearn's `plot_stat_map`.
+Unthresholded z-statistic maps for (1) the target mask-based MACM and (2) the coordinate-based MACM.
 ```
