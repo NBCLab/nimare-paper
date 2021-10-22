@@ -40,6 +40,9 @@ authors:
   - name: Kendra M. Oudyk
     affiliation: 11
     orcid: 0000-0003-4087-5402
+  - name: Julio A. Peraza
+    affiliation: 13
+    orcid: 0000-0003-3816-5903
   - name: Alexandre Pérez
     affiliation: 11
     orcid: 0000-0003-0556-0763
@@ -49,9 +52,6 @@ authors:
   - name: Julio A. Yanes
     affiliation: 12
     orcid: 0000-0002-6620-4351
-  - name: Julio A. Peraza
-    affiliation: 13
-    orcid: 0000-0003-3816-5903
   - name: Angela R. Laird
     affiliation: 13
     orcid: 0000-0003-3379-8744
