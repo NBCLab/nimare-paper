@@ -110,7 +110,7 @@ Using these distributions, it is possible to statistically compare labels in ord
 NiMARE includes methods for both correlation-based decoding and correlation distribution-based decoding, although the correlation-based decoding is better established and should be preferred over the correlation distribution-based decoding.
 As such, we will only show the {py:class}`nimare.decode.continuous.CorrelationDecoder` here.
 
-```{warning}
+```{important}
 {py:class}`nimare.decode.continuous.CorrelationDecoder` currently runs _very_ slowly.
 We strongly recommend running it on a subset of labels within the `Dataset`.
 
@@ -184,14 +184,17 @@ The resulting modeled activation maps are then masked with a region of interest 
 These averaged modeled activation values are then correlated with the term weights for all labels in the dataset.
 This decoding method produces a single correlation coefficient for each of the dataset's labels.
 
+```{important}
+Because the `ROIAssociationDecoder` generates modeled activation maps for all of the experiments in the `Dataset`, we will only fit this decoder to the first 500 studies.
+```
+
 ```{code-cell} ipython3
 assoc_decoder = decode.discrete.ROIAssociationDecoder(
     amygdala_roi,
     u=0.05,
     correction="fdr_bh",
-    features=target_features,
 )
-assoc_decoder.fit(neurosynth_dset)
+assoc_decoder.fit(neurosynth_dset_first500)
 assoc_df = assoc_decoder.transform()
 ```
 

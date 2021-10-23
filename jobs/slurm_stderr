@@ -11404,8 +11404,8 @@ total tokens: 59901
 
 <10000> LL/token: -7.47348
 
-Total time: 1 minutes 17 seconds
+Total time: 1 minutes 18 seconds
 [31mWARNING: Execution Failed with traceback saved in /home/data/nbc/misc-projects/Salo_NiMARE/content/_build/html/reports/decoding.log[39;49;00m
-[91m/home/data/nbc/misc-projects/Salo_NiMARE/content/decoding.md.rst:204: WARNING: Couldn't find key `table_assoc` in keys defined across all pages.[39;49;00m
-[91m/home/data/nbc/misc-projects/Salo_NiMARE/content/decoding.md.rst:262: WARNING: Couldn't find key `table_brainmap` in keys defined across all pages.[39;49;00m
-[91m/home/data/nbc/misc-projects/Salo_NiMARE/content/decoding.md.rst:311: WARNING: Couldn't find key `table_neurosynth` in keys defined across all pages.[39;49;00m
+[91m/home/data/nbc/misc-projects/Salo_NiMARE/content/decoding.md.rst:208: WARNING: Couldn't find key `table_assoc` in keys defined across all pages.[39;49;00m
+[91m/home/data/nbc/misc-projects/Salo_NiMARE/content/decoding.md.rst:266: WARNING: Couldn't find key `table_brainmap` in keys defined across all pages.[39;49;00m
+[91m/home/data/nbc/misc-projects/Salo_NiMARE/content/decoding.md.rst:315: WARNING: Couldn't find key `table_neurosynth` in keys defined across all pages.[39;49;00m
