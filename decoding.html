@@ -480,8 +480,8 @@ However, such results should be interpreted with great caution.</p>
 Using these distributions, it is possible to statistically compare labels in order to assess label significance.
 NiMARE includes methods for both correlation-based decoding and correlation distribution-based decoding, although the correlation-based decoding is better established and should be preferred over the correlation distribution-based decoding.
 As such, we will only show the <a class="reference external" href="https://nimare.readthedocs.io/en/0.0.10/generated/nimare.decode.continuous.CorrelationDecoder.html#nimare.decode.continuous.CorrelationDecoder" title="(in NiMARE v0.0.10+0.ge8814c2.dirty)"><code class="xref py py-class docutils literal notranslate"><span class="pre">nimare.decode.continuous.CorrelationDecoder</span></code></a> here.</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
 <p><a class="reference external" href="https://nimare.readthedocs.io/en/0.0.10/generated/nimare.decode.continuous.CorrelationDecoder.html#nimare.decode.continuous.CorrelationDecoder" title="(in NiMARE v0.0.10+0.ge8814c2.dirty)"><code class="xref py py-class docutils literal notranslate"><span class="pre">nimare.decode.continuous.CorrelationDecoder</span></code></a> currently runs <em>very</em> slowly.
 We strongly recommend running it on a subset of labels within the <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>.</p>
 <p>In this example, we will only decode using features appearing in &gt;10% and &lt;90% of the first 500 studies in the <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>.</p>
@@ -1557,6 +1557,10 @@ In this method, each study with coordinates in the dataset is convolved with a k
 The resulting modeled activation maps are then masked with a region of interest (i.e., the target of the decoding), and the values are averaged within the ROI.
 These averaged modeled activation values are then correlated with the term weights for all labels in the dataset.
 This decoding method produces a single correlation coefficient for each of the dataset’s labels.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Because the <code class="docutils literal notranslate"><span class="pre">ROIAssociationDecoder</span></code> generates modeled activation maps for all of the experiments in the <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>, we will only fit this decoder to the first 500 studies.</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">assoc_decoder</span> <span class="o">=</span> <span class="n">decode</span><span class="o">.</span><span class="n">discrete</span><span class="o">.</span><span class="n">ROIAssociationDecoder</span><span class="p">(</span>
@@ -1564,66 +1568,21 @@ This decoding method produces a single correlation coefficient for each of the d
     <span class="n">u</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
     <span class="n">correction</span><span class="o">=</span><span class="s2">&quot;fdr_bh&quot;</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="n">assoc_decoder</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">neurosynth_dset</span><span class="p">)</span>
+<span class="n">assoc_decoder</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">neurosynth_dset_first500</span><span class="p">)</span>
 <span class="n">assoc_df</span> <span class="o">=</span> <span class="n">assoc_decoder</span><span class="o">.</span><span class="n">transform</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ERROR:nimare.meta.kernel:transform failed, removing None
-</pre></div>
-</div>
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">MemoryError</span><span class="g g-Whitespace">                               </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_5413</span><span class="o">/</span><span class="mf">726795045.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_40362</span><span class="o">/</span><span class="mf">1973747605.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="n">correction</span><span class="o">=</span><span class="s2">&quot;fdr_bh&quot;</span><span class="p">,</span>
 <span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="p">)</span>
-<span class="ne">----&gt; </span><span class="mi">6</span> <span class="n">assoc_decoder</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">neurosynth_dset</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">6</span> <span class="n">assoc_decoder</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">neurosynth_dset_first500</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="n">assoc_df</span> <span class="o">=</span> <span class="n">assoc_decoder</span><span class="o">.</span><span class="n">transform</span><span class="p">()</span>
 
-<span class="nn">/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nimare/base.py</span> in <span class="ni">fit</span><span class="nt">(self, dataset, drop_invalid)</span>
-<span class="g g-Whitespace">    </span><span class="mi">546</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_validate_input</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">drop_invalid</span><span class="o">=</span><span class="n">drop_invalid</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">547</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_preprocess_input</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">548</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_fit</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">549</span> 
-<span class="g g-Whitespace">    </span><span class="mi">550</span>     <span class="nd">@abstractmethod</span>
-
-<span class="nn">/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nimare/decode/discrete.py</span> in <span class="ni">_fit</span><span class="nt">(self, dataset)</span>
-<span class="g g-Whitespace">    </span><span class="mi">740</span>             <span class="bp">self</span><span class="o">.</span><span class="n">inputs_</span><span class="p">[</span><span class="s2">&quot;coordinates&quot;</span><span class="p">],</span>
-<span class="g g-Whitespace">    </span><span class="mi">741</span>             <span class="bp">self</span><span class="o">.</span><span class="n">masker</span><span class="p">,</span>
-<span class="ne">--&gt; </span><span class="mi">742</span>             <span class="n">return_type</span><span class="o">=</span><span class="s2">&quot;array&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">743</span>         <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">744</span>         <span class="bp">self</span><span class="o">.</span><span class="n">roi_values_</span> <span class="o">=</span> <span class="n">roi_values</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-
-<span class="nn">/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nimare/utils.py</span> in <span class="ni">memmap_context</span><span class="nt">(self, *args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">471</span> 
-<span class="g g-Whitespace">    </span><span class="mi">472</span>             <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">473</span>                 <span class="k">return</span> <span class="n">function</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">474</span>             <span class="k">except</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">475</span>                 <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">filenames</span><span class="p">:</span>
-
-<span class="nn">/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nimare/meta/kernel.py</span> in <span class="ni">transform</span><span class="nt">(self, dataset, masker, return_type)</span>
-<span class="g g-Whitespace">    </span><span class="mi">195</span>             <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">196</span> 
-<span class="ne">--&gt; </span><span class="mi">197</span>         <span class="n">transformed_maps</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_transform</span><span class="p">(</span><span class="n">mask</span><span class="p">,</span> <span class="n">coordinates</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">198</span> 
-<span class="g g-Whitespace">    </span><span class="mi">199</span>         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">transformed_maps</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
-
-<span class="nn">/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nimare/meta/kernel.py</span> in <span class="ni">_transform</span><span class="nt">(self, mask, coordinates)</span>
-<span class="g g-Whitespace">    </span><span class="mi">407</span>             <span class="n">sum_overlap</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_sum_overlap</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">408</span>             <span class="n">memory_limit</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">memory_limit</span><span class="p">,</span>
-<span class="ne">--&gt; </span><span class="mi">409</span>             <span class="n">memmap_filename</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">memmap_filenames</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-<span class="g g-Whitespace">    </span><span class="mi">410</span>         <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">411</span>         <span class="n">exp_ids</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">exp_idx</span><span class="p">)</span>
-
-<span class="nn">/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nimare/meta/utils.py</span> in <span class="ni">compute_kda_ma</span><span class="nt">(shape, vox_dims, ijks, r, value, exp_idx, sum_overlap, memory_limit, memmap_filename)</span>
-<span class="g g-Whitespace">    </span><span class="mi">336</span>         <span class="n">kernel_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">memmap</span><span class="p">(</span><span class="n">memmap_filename</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">type</span><span class="p">(</span><span class="n">value</span><span class="p">),</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;w+&quot;</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="n">kernel_shape</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">337</span>     <span class="k">else</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">338</span>         <span class="n">kernel_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">kernel_shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">type</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
-<span class="g g-Whitespace">    </span><span class="mi">339</span> 
-<span class="g g-Whitespace">    </span><span class="mi">340</span>     <span class="n">n_dim</span> <span class="o">=</span> <span class="n">ijks</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-
-<span class="ne">MemoryError</span>: Unable to allocate 96.6 GiB for an array with shape (14371, 91, 109, 91) and data type int64
+<span class="ne">NameError</span>: name &#39;neurosynth_dset_first500&#39; is not defined
 </pre></div>
 </div>
 </div>
