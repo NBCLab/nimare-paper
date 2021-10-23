@@ -189,6 +189,7 @@ assoc_decoder = decode.discrete.ROIAssociationDecoder(
     amygdala_roi,
     u=0.05,
     correction="fdr_bh",
+    features=target_features,
 )
 assoc_decoder.fit(neurosynth_dset)
 assoc_df = assoc_decoder.transform()
