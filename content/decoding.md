@@ -149,7 +149,7 @@ The top ten terms, sorted by absolute correlation coefficient, from the correlat
 ```{code-cell} ipython3
 :tags: [hide-cell]
 # Here we delete the recent variables for the sake of reducing memory usage
-del neurosynth_dset_first500, corr_decoder, corr_df
+del corr_decoder, corr_df
 ```
 
 +++

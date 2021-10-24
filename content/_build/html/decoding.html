@@ -1521,7 +1521,7 @@ We strongly recommend running it on a subset of labels within the <code class="d
 <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here we delete the recent variables for the sake of reducing memory usage</span>
-<span class="k">del</span> <span class="n">neurosynth_dset_first500</span><span class="p">,</span> <span class="n">corr_decoder</span><span class="p">,</span> <span class="n">corr_df</span>
+<span class="k">del</span> <span class="n">corr_decoder</span><span class="p">,</span> <span class="n">corr_df</span>
 </pre></div>
 </div>
 </div>
@@ -1574,15 +1574,7 @@ This decoding method produces a single correlation coefficient for each of the d
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_40362</span><span class="o">/</span><span class="mf">1973747605.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="n">correction</span><span class="o">=</span><span class="s2">&quot;fdr_bh&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="p">)</span>
-<span class="ne">----&gt; </span><span class="mi">6</span> <span class="n">assoc_decoder</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">neurosynth_dset_first500</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="n">assoc_df</span> <span class="o">=</span> <span class="n">assoc_decoder</span><span class="o">.</span><span class="n">transform</span><span class="p">()</span>
-
-<span class="ne">NameError</span>: name &#39;neurosynth_dset_first500&#39; is not defined
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.base:Retaining 2941/(3228 features.
 </pre></div>
 </div>
 </div>
@@ -1595,8 +1587,148 @@ This decoding method produces a single correlation coefficient for each of the d
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>r</th>
+    </tr>
+    <tr>
+      <th>feature</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>terms_abstract_tfidf__amygdala</th>
+      <td>0.627186</td>
+    </tr>
+    <tr>
+      <th>terms_abstract_tfidf__fear</th>
+      <td>0.334112</td>
+    </tr>
+    <tr>
+      <th>terms_abstract_tfidf__reinforcement</th>
+      <td>0.329516</td>
+    </tr>
+    <tr>
+      <th>terms_abstract_tfidf__neutral faces</th>
+      <td>0.320801</td>
+    </tr>
+    <tr>
+      <th>terms_abstract_tfidf__appraisal</th>
+      <td>0.317214</td>
+    </tr>
+    <tr>
+      <th>terms_abstract_tfidf__conditioning</th>
+      <td>0.286165</td>
+    </tr>
+    <tr>
+      <th>terms_abstract_tfidf__age sex</th>
+      <td>0.273753</td>
+    </tr>
+    <tr>
+      <th>terms_abstract_tfidf__neutral</th>
+      <td>0.272666</td>
+    </tr>
+    <tr>
+      <th>terms_abstract_tfidf__amygdala response</th>
+      <td>0.267777</td>
+    </tr>
+    <tr>
+      <th>terms_abstract_tfidf__olfactory</th>
+      <td>0.265687</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="figure align-center" id="tbl-table-assoc">
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>r</th>
+    </tr>
+    <tr>
+      <th>feature</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>terms_abstract_tfidf__amygdala</th>
+      <td>0.627186</td>
+    </tr>
+    <tr>
+      <th>terms_abstract_tfidf__fear</th>
+      <td>0.334112</td>
+    </tr>
+    <tr>
+      <th>terms_abstract_tfidf__reinforcement</th>
+      <td>0.329516</td>
+    </tr>
+    <tr>
+      <th>terms_abstract_tfidf__neutral faces</th>
+      <td>0.320801</td>
+    </tr>
+    <tr>
+      <th>terms_abstract_tfidf__appraisal</th>
+      <td>0.317214</td>
+    </tr>
+    <tr>
+      <th>terms_abstract_tfidf__conditioning</th>
+      <td>0.286165</td>
+    </tr>
+    <tr>
+      <th>terms_abstract_tfidf__age sex</th>
+      <td>0.273753</td>
+    </tr>
+    <tr>
+      <th>terms_abstract_tfidf__neutral</th>
+      <td>0.272666</td>
+    </tr>
+    <tr>
+      <th>terms_abstract_tfidf__amygdala response</th>
+      <td>0.267777</td>
+    </tr>
+    <tr>
+      <th>terms_abstract_tfidf__olfactory</th>
+      <td>0.265687</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 <p class="caption"><span class="caption-number">Fig. 19 </span><span class="caption-text">The top ten terms, sorted by absolute correlation coefficient, from the ROI association decoding method.</span><a class="headerlink" href="#tbl-table-assoc" title="Permalink to this image">¶</a></p>
 </div>
 <div class="cell tag_hide-cell docutils container">
@@ -1650,8 +1782,268 @@ A detailed algorithm description is presented in <a class="reference internal" h
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>pForward</th>
+      <th>zForward</th>
+      <th>likelihoodForward</th>
+      <th>pReverse</th>
+      <th>zReverse</th>
+      <th>probReverse</th>
+    </tr>
+    <tr>
+      <th>Term</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>terms_abstract_tfidf__magnetic</th>
+      <td>1.000000e+00</td>
+      <td>0.000000</td>
+      <td>1.627342</td>
+      <td>1.000000e+00</td>
+      <td>0.000000</td>
+      <td>0.011441</td>
+    </tr>
+    <tr>
+      <th>terms_abstract_tfidf__magnetic resonance</th>
+      <td>1.000000e+00</td>
+      <td>0.000000</td>
+      <td>1.569942</td>
+      <td>1.000000e+00</td>
+      <td>0.000000</td>
+      <td>0.010827</td>
+    </tr>
+    <tr>
+      <th>terms_abstract_tfidf__resonance</th>
+      <td>1.000000e+00</td>
+      <td>0.000000</td>
+      <td>1.560855</td>
+      <td>1.000000e+00</td>
+      <td>0.000000</td>
+      <td>0.010815</td>
+    </tr>
+    <tr>
+      <th>terms_abstract_tfidf__amygdala</th>
+      <td>6.176744e-07</td>
+      <td>4.985607</td>
+      <td>6.407830</td>
+      <td>2.152100e-18</td>
+      <td>8.749022</td>
+      <td>0.010609</td>
+    </tr>
+    <tr>
+      <th>terms_abstract_tfidf__functional magnetic</th>
+      <td>1.000000e+00</td>
+      <td>0.000000</td>
+      <td>1.664782</td>
+      <td>1.000000e+00</td>
+      <td>0.000000</td>
+      <td>0.010540</td>
+    </tr>
+    <tr>
+      <th>terms_abstract_tfidf__using</th>
+      <td>1.000000e+00</td>
+      <td>0.000000</td>
+      <td>1.205627</td>
+      <td>1.000000e+00</td>
+      <td>0.000000</td>
+      <td>0.007210</td>
+    </tr>
+    <tr>
+      <th>terms_abstract_tfidf__response</th>
+      <td>1.000000e+00</td>
+      <td>0.000000</td>
+      <td>1.902148</td>
+      <td>1.000000e+00</td>
+      <td>0.000000</td>
+      <td>0.007039</td>
+    </tr>
+    <tr>
+      <th>terms_abstract_tfidf__stimuli</th>
+      <td>1.000000e+00</td>
+      <td>0.000000</td>
+      <td>2.087218</td>
+      <td>1.000000e+00</td>
+      <td>0.000000</td>
+      <td>0.006286</td>
+    </tr>
+    <tr>
+      <th>terms_abstract_tfidf__human</th>
+      <td>1.000000e+00</td>
+      <td>0.000000</td>
+      <td>2.128483</td>
+      <td>1.000000e+00</td>
+      <td>0.000000</td>
+      <td>0.005356</td>
+    </tr>
+    <tr>
+      <th>terms_abstract_tfidf__neutral</th>
+      <td>5.556739e-03</td>
+      <td>2.772852</td>
+      <td>5.502956</td>
+      <td>2.753866e-06</td>
+      <td>4.688372</td>
+      <td>0.005320</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="figure align-center" id="tbl-table-brainmap">
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>pForward</th>
+      <th>zForward</th>
+      <th>likelihoodForward</th>
+      <th>pReverse</th>
+      <th>zReverse</th>
+      <th>probReverse</th>
+    </tr>
+    <tr>
+      <th>Term</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>terms_abstract_tfidf__magnetic</th>
+      <td>1.000000e+00</td>
+      <td>0.000000</td>
+      <td>1.627342</td>
+      <td>1.000000e+00</td>
+      <td>0.000000</td>
+      <td>0.011441</td>
+    </tr>
+    <tr>
+      <th>terms_abstract_tfidf__magnetic resonance</th>
+      <td>1.000000e+00</td>
+      <td>0.000000</td>
+      <td>1.569942</td>
+      <td>1.000000e+00</td>
+      <td>0.000000</td>
+      <td>0.010827</td>
+    </tr>
+    <tr>
+      <th>terms_abstract_tfidf__resonance</th>
+      <td>1.000000e+00</td>
+      <td>0.000000</td>
+      <td>1.560855</td>
+      <td>1.000000e+00</td>
+      <td>0.000000</td>
+      <td>0.010815</td>
+    </tr>
+    <tr>
+      <th>terms_abstract_tfidf__amygdala</th>
+      <td>6.176744e-07</td>
+      <td>4.985607</td>
+      <td>6.407830</td>
+      <td>2.152100e-18</td>
+      <td>8.749022</td>
+      <td>0.010609</td>
+    </tr>
+    <tr>
+      <th>terms_abstract_tfidf__functional magnetic</th>
+      <td>1.000000e+00</td>
+      <td>0.000000</td>
+      <td>1.664782</td>
+      <td>1.000000e+00</td>
+      <td>0.000000</td>
+      <td>0.010540</td>
+    </tr>
+    <tr>
+      <th>terms_abstract_tfidf__using</th>
+      <td>1.000000e+00</td>
+      <td>0.000000</td>
+      <td>1.205627</td>
+      <td>1.000000e+00</td>
+      <td>0.000000</td>
+      <td>0.007210</td>
+    </tr>
+    <tr>
+      <th>terms_abstract_tfidf__response</th>
+      <td>1.000000e+00</td>
+      <td>0.000000</td>
+      <td>1.902148</td>
+      <td>1.000000e+00</td>
+      <td>0.000000</td>
+      <td>0.007039</td>
+    </tr>
+    <tr>
+      <th>terms_abstract_tfidf__stimuli</th>
+      <td>1.000000e+00</td>
+      <td>0.000000</td>
+      <td>2.087218</td>
+      <td>1.000000e+00</td>
+      <td>0.000000</td>
+      <td>0.006286</td>
+    </tr>
+    <tr>
+      <th>terms_abstract_tfidf__human</th>
+      <td>1.000000e+00</td>
+      <td>0.000000</td>
+      <td>2.128483</td>
+      <td>1.000000e+00</td>
+      <td>0.000000</td>
+      <td>0.005356</td>
+    </tr>
+    <tr>
+      <th>terms_abstract_tfidf__neutral</th>
+      <td>5.556739e-03</td>
+      <td>2.772852</td>
+      <td>5.502956</td>
+      <td>2.753866e-06</td>
+      <td>4.688372</td>
+      <td>0.005320</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 <p class="caption"><span class="caption-number">Fig. 20 </span><span class="caption-text">The top ten terms, sorted by reverse-inference posterior probability, from the BrainMap chi-squared decoding method.</span><a class="headerlink" href="#tbl-table-brainmap" title="Permalink to this image">¶</a></p>
 </div>
 <div class="cell tag_hide-cell docutils container">
@@ -1699,8 +2091,268 @@ A detailed algorithm description is presented in <a class="reference internal" h
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>pForward</th>
+      <th>zForward</th>
+      <th>probForward</th>
+      <th>pReverse</th>
+      <th>zReverse</th>
+      <th>probReverse</th>
+    </tr>
+    <tr>
+      <th>Term</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>terms_abstract_tfidf__neutral faces</th>
+      <td>6.163179e-12</td>
+      <td>6.875826</td>
+      <td>0.024702</td>
+      <td>4.685748e-31</td>
+      <td>11.588999</td>
+      <td>0.971583</td>
+    </tr>
+    <tr>
+      <th>terms_abstract_tfidf__conditioning</th>
+      <td>1.026669e-16</td>
+      <td>8.301660</td>
+      <td>0.022543</td>
+      <td>1.221816e-32</td>
+      <td>11.897339</td>
+      <td>0.970346</td>
+    </tr>
+    <tr>
+      <th>terms_abstract_tfidf__olfactory</th>
+      <td>1.482800e-02</td>
+      <td>2.436553</td>
+      <td>0.021075</td>
+      <td>2.058612e-12</td>
+      <td>7.030455</td>
+      <td>0.961833</td>
+    </tr>
+    <tr>
+      <th>terms_abstract_tfidf__conditioned</th>
+      <td>7.813282e-05</td>
+      <td>3.950056</td>
+      <td>0.017439</td>
+      <td>2.697558e-13</td>
+      <td>7.308692</td>
+      <td>0.955737</td>
+    </tr>
+    <tr>
+      <th>terms_abstract_tfidf__reinforcement</th>
+      <td>7.813282e-05</td>
+      <td>3.950056</td>
+      <td>0.016397</td>
+      <td>2.058612e-12</td>
+      <td>7.030455</td>
+      <td>0.952900</td>
+    </tr>
+    <tr>
+      <th>terms_abstract_tfidf__unpleasant</th>
+      <td>7.813282e-05</td>
+      <td>3.950056</td>
+      <td>0.015924</td>
+      <td>4.616361e-12</td>
+      <td>6.916899</td>
+      <td>0.951487</td>
+    </tr>
+    <tr>
+      <th>terms_abstract_tfidf__amygdala</th>
+      <td>1.953150e-123</td>
+      <td>23.628732</td>
+      <td>0.006013</td>
+      <td>2.152100e-18</td>
+      <td>8.749022</td>
+      <td>0.947992</td>
+    </tr>
+    <tr>
+      <th>terms_abstract_tfidf__amygdala response</th>
+      <td>1.482800e-02</td>
+      <td>2.436553</td>
+      <td>0.014081</td>
+      <td>1.526484e-07</td>
+      <td>5.249336</td>
+      <td>0.942719</td>
+    </tr>
+    <tr>
+      <th>terms_abstract_tfidf__differentiated</th>
+      <td>1.482800e-02</td>
+      <td>2.436553</td>
+      <td>0.014081</td>
+      <td>1.526484e-07</td>
+      <td>5.249336</td>
+      <td>0.942719</td>
+    </tr>
+    <tr>
+      <th>terms_abstract_tfidf__pleasant</th>
+      <td>1.482800e-02</td>
+      <td>2.436553</td>
+      <td>0.013307</td>
+      <td>5.206710e-07</td>
+      <td>5.018535</td>
+      <td>0.939358</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="figure align-center" id="tbl-table-neurosynth">
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>pForward</th>
+      <th>zForward</th>
+      <th>probForward</th>
+      <th>pReverse</th>
+      <th>zReverse</th>
+      <th>probReverse</th>
+    </tr>
+    <tr>
+      <th>Term</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>terms_abstract_tfidf__neutral faces</th>
+      <td>6.163179e-12</td>
+      <td>6.875826</td>
+      <td>0.024702</td>
+      <td>4.685748e-31</td>
+      <td>11.588999</td>
+      <td>0.971583</td>
+    </tr>
+    <tr>
+      <th>terms_abstract_tfidf__conditioning</th>
+      <td>1.026669e-16</td>
+      <td>8.301660</td>
+      <td>0.022543</td>
+      <td>1.221816e-32</td>
+      <td>11.897339</td>
+      <td>0.970346</td>
+    </tr>
+    <tr>
+      <th>terms_abstract_tfidf__olfactory</th>
+      <td>1.482800e-02</td>
+      <td>2.436553</td>
+      <td>0.021075</td>
+      <td>2.058612e-12</td>
+      <td>7.030455</td>
+      <td>0.961833</td>
+    </tr>
+    <tr>
+      <th>terms_abstract_tfidf__conditioned</th>
+      <td>7.813282e-05</td>
+      <td>3.950056</td>
+      <td>0.017439</td>
+      <td>2.697558e-13</td>
+      <td>7.308692</td>
+      <td>0.955737</td>
+    </tr>
+    <tr>
+      <th>terms_abstract_tfidf__reinforcement</th>
+      <td>7.813282e-05</td>
+      <td>3.950056</td>
+      <td>0.016397</td>
+      <td>2.058612e-12</td>
+      <td>7.030455</td>
+      <td>0.952900</td>
+    </tr>
+    <tr>
+      <th>terms_abstract_tfidf__unpleasant</th>
+      <td>7.813282e-05</td>
+      <td>3.950056</td>
+      <td>0.015924</td>
+      <td>4.616361e-12</td>
+      <td>6.916899</td>
+      <td>0.951487</td>
+    </tr>
+    <tr>
+      <th>terms_abstract_tfidf__amygdala</th>
+      <td>1.953150e-123</td>
+      <td>23.628732</td>
+      <td>0.006013</td>
+      <td>2.152100e-18</td>
+      <td>8.749022</td>
+      <td>0.947992</td>
+    </tr>
+    <tr>
+      <th>terms_abstract_tfidf__amygdala response</th>
+      <td>1.482800e-02</td>
+      <td>2.436553</td>
+      <td>0.014081</td>
+      <td>1.526484e-07</td>
+      <td>5.249336</td>
+      <td>0.942719</td>
+    </tr>
+    <tr>
+      <th>terms_abstract_tfidf__differentiated</th>
+      <td>1.482800e-02</td>
+      <td>2.436553</td>
+      <td>0.014081</td>
+      <td>1.526484e-07</td>
+      <td>5.249336</td>
+      <td>0.942719</td>
+    </tr>
+    <tr>
+      <th>terms_abstract_tfidf__pleasant</th>
+      <td>1.482800e-02</td>
+      <td>2.436553</td>
+      <td>0.013307</td>
+      <td>5.206710e-07</td>
+      <td>5.018535</td>
+      <td>0.939358</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 <p class="caption"><span class="caption-number">Fig. 21 </span><span class="caption-text">The top ten terms, sorted by reverse-inference posterior probability, from the Neurosynth chi-squared decoding method.</span><a class="headerlink" href="#tbl-table-neurosynth" title="Permalink to this image">¶</a></p>
 </div>
 <div class="cell tag_hide-cell docutils container">

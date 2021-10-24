@@ -139,7 +139,7 @@ glue("table_corr", corr_df)
 
 
 # Here we delete the recent variables for the sake of reducing memory usage
-del neurosynth_dset_first500, corr_decoder, corr_df
+del corr_decoder, corr_df
 
 
 # (content:decoding:discrete)=
@@ -189,7 +189,7 @@ assoc_decoder.fit(neurosynth_dset_first500)
 assoc_df = assoc_decoder.transform()
 
 
-# In[ ]:
+# In[9]:
 
 
 assoc_df = assoc_df.reindex(assoc_df["r"].abs().sort_values(ascending=False).index)
@@ -204,7 +204,7 @@ glue("table_assoc", assoc_df)
 # The top ten terms, sorted by absolute correlation coefficient, from the ROI association decoding method.
 # ```
 
-# In[ ]:
+# In[10]:
 
 
 # Here we delete the recent variables for the sake of reducing memory usage
@@ -235,7 +235,7 @@ del assoc_decoder, assoc_df
 # This specificity analysis produces a p-value and an effect size measure of the posterior probability of having the label given selection into the sample.
 # A detailed algorithm description is presented in [](appendices/brainmap_decoding).
 
-# In[ ]:
+# In[11]:
 
 
 brainmap_decoder = decode.discrete.BrainMapDecoder(
@@ -247,7 +247,7 @@ brainmap_decoder.fit(neurosynth_dset)
 brainmap_df = brainmap_decoder.transform(amygdala_ids)
 
 
-# In[ ]:
+# In[12]:
 
 
 brainmap_df = brainmap_df.reindex(
@@ -264,7 +264,7 @@ glue("table_brainmap", brainmap_df)
 # The top ten terms, sorted by reverse-inference posterior probability, from the BrainMap chi-squared decoding method.
 # ```
 
-# In[ ]:
+# In[13]:
 
 
 # Here we delete the recent variables for the sake of reducing memory usage
@@ -286,7 +286,7 @@ del brainmap_decoder, brainmap_df
 # For the specificity analysis, the Neurosynth method produces both a p-value and a posterior probability of presence of the label given selection and the prior probability of having the label.
 # A detailed algorithm description is presented in [](appendices/neurosynth_decoding).
 
-# In[ ]:
+# In[14]:
 
 
 neurosynth_decoder = decode.discrete.NeurosynthDecoder(
@@ -298,7 +298,7 @@ neurosynth_decoder.fit(neurosynth_dset)
 neurosynth_df = neurosynth_decoder.transform(amygdala_ids)
 
 
-# In[ ]:
+# In[15]:
 
 
 neurosynth_df = neurosynth_df.reindex(
@@ -315,7 +315,7 @@ glue("table_neurosynth", neurosynth_df)
 # The top ten terms, sorted by reverse-inference posterior probability, from the Neurosynth chi-squared decoding method.
 # ```
 
-# In[ ]:
+# In[16]:
 
 
 # Here we delete the recent variables for the sake of reducing memory usage
