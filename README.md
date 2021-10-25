@@ -4,10 +4,13 @@ The NiMARE software paper, as a Jupyter Book.
 To build:
 
 ```bash
-jupyter-book build .
+jupyter-book build content/
 ```
 
-To view the built book, without any executed code or figures, see https://nbclab.github.io/nimare-paper/
+To view the built book, see https://nbclab.github.io/nimare-paper/
+
+The book is configured to re-run all executable code if outputs are missing (`execute_notebooks` is set to `"auto"`).
+If you want to build from scratch, then you can either change that setting in `content/_config.yml` or you can run `jupyter-book clean content/` before building.
 
 ## Notes
 
