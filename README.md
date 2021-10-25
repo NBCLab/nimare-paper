@@ -17,6 +17,7 @@ If you want to build from scratch, then you can either change that setting in `c
 ### Data files
 
 The data are located at https://osf.io/t8h9c/.
+When building the book, you will need to have a copy of these files in a `data` folder within the local repository clone.
 
 ### The amygdala mask
 
