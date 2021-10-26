@@ -1,23 +1,40 @@
 # nimare-paper
 The NiMARE software paper, as a Jupyter Book.
 
+To view the built book, see https://nbclab.github.io/nimare-paper/
+
+## Building the book locally
+
+### 1. Install dependencies
+
+In order to execute the book's code, you will need install all of the Python libraries that are required.
+The necessary requirements and associated versions are available in `binder/requirements.txt`.
+
+You can install them with the following:
+
+```
+pip install binder/requirements.txt
+```
+
+In addition to the Python requirements, the LDA topic model section requires Java, in order to use MALLET.
+
+### 2. Download data files
+
+The data files necessary to execute the code in this book are located at https://osf.io/t8h9c/.
+When building the book, you will need to have a copy of these files in a `data` folder within the local repository clone.
+
+### 3. Build the book
+
 To build:
 
 ```bash
 jupyter-book build content/
 ```
 
-To view the built book, see https://nbclab.github.io/nimare-paper/
-
 The book is configured to re-run all executable code if outputs are missing (`execute_notebooks` is set to `"auto"`).
 If you want to build from scratch, then you can either change that setting in `content/_config.yml` or you can run `jupyter-book clean content/` before building.
 
 ## Notes
-
-### Data files
-
-The data are located at https://osf.io/t8h9c/.
-When building the book, you will need to have a copy of these files in a `data` folder within the local repository clone.
 
 ### The amygdala mask
 
