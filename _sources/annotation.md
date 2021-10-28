@@ -19,6 +19,7 @@ kernelspec:
 :tags: [hide-cell]
 # First, import the necessary modules and functions
 import os
+import logging
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -222,7 +223,15 @@ lda_model = annotate.lda.LDAModel(
     n_iters=10000,
 )
 
+# We will fit the model, but disable logging during the fitting process,
+# because MALLET has a tendency to overload the logger with information.
+logging.disable(logging.INFO)
+
+# Fit the model
 lda_model.fit()
+
+# Re-enable logging
+logging.disable(logging.NOTSET)
 ```
 
 The most important products of training the `LDAModel` object are its `p_word_g_topic_df_` and `p_topic_g_doc_df_` attributes.
