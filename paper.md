@@ -22,38 +22,35 @@ authors:
   - name: Katherine L. Bottenhorn
     affiliation: 6
     orcid: 0000-0002-7796-8795
-  - name: Enrico Glerean
-    affiliation: 7
-    orcid: 0000-0003-0624-675X
   - name: Dorota Jarecka
-    affiliation: 8
+    affiliation: 7
     orcid: 0000-0001-8282-2988
   - name: James D. Kent
-    affiliation: 9
+    affiliation: 8
     orcid: 0000-0002-4892-2659
   - name: Adam Kimbler
     affiliation: 1
     orcid: 0000-0001-5885-9596
   - name: Dylan M. Nielson
-    affiliation: 10
+    affiliation: 9
     orcid: 0000-0003-4613-6643
   - name: Kendra M. Oudyk
-    affiliation: 11
+    affiliation: 10
     orcid: 0000-0003-4087-5402
   - name: Julio A. Peraza
-    affiliation: 13
+    affiliation: 12
     orcid: 0000-0003-3816-5903
   - name: Alexandre Pérez
-    affiliation: 11
+    affiliation: 10
     orcid: 0000-0003-0556-0763
   - name: Puck C. Reeders
     affiliation: 1
     orcid: 0000-0002-6401-3017
   - name: Julio A. Yanes
-    affiliation: 12
+    affiliation: 11
     orcid: 0000-0002-6620-4351
   - name: Angela R. Laird
-    affiliation: 13
+    affiliation: 12
     orcid: 0000-0003-3379-8744
 affiliations:
 - name: Department of Psychology, Florida International University
@@ -68,20 +65,18 @@ affiliations:
   index: 5
 - name: University of Southern California
   index: 6
-- name: Department of Neuroscience and Biomedical Engineering, Aalto University
-  index: 7
 - name: Massachusetts Institute of Technology
-  index: 8
+  index: 7
 - name: University of Texas, Austin
-  index: 9
+  index: 8
 - name: National Institute of Mental Health
-  index: 10
+  index: 9
 - name: Montreal Neurological Institute, McGill University
-  index: 11
+  index: 10
 - name: Auburn University
-  index: 12
+  index: 11
 - name: Department of Physics, Florida International University
-  index: 13
+  index: 12
 
 date: 05 October 2021
 bibliography: paper.bib
