@@ -81,3 +81,21 @@ affiliations:
 date: 05 October 2021
 bibliography: paper.bib
 ---
+
+# Summary
+
+We present NiMARE (Neuroimaging Meta-Analysis Research Environment), a Python library for neuroimaging meta-analyses and meta-analysis-related analyses.
+NiMARE is an open source, collaboratively-developed package that implements a range of meta-analytic algorithms, including coordinate- and image-based meta-analyses, automated annotation, functional decoding, and meta-analytic coactivation modeling.
+By consolidating meta-analytic methods under a common library and syntax, NiMARE makes it straightforward for users to employ the appropriate approach for a given analysis.
+In this paper, we describe NiMARE's architecture and the methods implemented in the library.
+Additionally, we provide example code and results for each of the available tools in the library.
+
+![A graphical representation of tools and methods implemented in NiMARE.\label{top_level_fig}](https://github.com/Notebook-Factory/myelin-meta-analysis/raw/master/content/images/figure_00.svg)
+
+# Acknowledgements
+
+We would like to thank Yifan Yu and Jérôme Dockès, who provided feedback on the manuscript.
+
+This work was partially funded by the National Institutes of Health (NIH) NIH-NIBIB P41 EB019936 (ReproNim), NIH-NIMH R01 MH083320 (CANDIShare), and NIH RF1 MH120021 (NIDM), the National Institute Of Mental Health under Award Number R01MH096906 (Neurosynth), as well as the Canada First Research Excellence Fund, awarded to McGill University for the Healthy Brains for Healthy Lives initiative and the Brain Canada Foundation with support from Health Canada.
+
+# References
