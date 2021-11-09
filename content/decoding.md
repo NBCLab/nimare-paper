@@ -24,7 +24,7 @@ import matplotlib.pyplot as plt
 from myst_nb import glue
 from nilearn import plotting
 
-DATA_DIR = os.path.abspath("../data")
+DATA_DIR = os.path.abspath("../data/nimare-paper/googledrive")
 FIG_DIR = os.path.abspath("../images")
 ```
 

@@ -27,7 +27,7 @@ from nilearn import image, plotting
 import nimare
 
 # Define where data files will be located
-DATA_DIR = os.path.abspath("../data")
+DATA_DIR = os.path.abspath("../data/nimare-paper/googledrive")
 FIG_DIR = os.path.abspath("../images")
 
 # Now, load the Datasets we will use in this chapter

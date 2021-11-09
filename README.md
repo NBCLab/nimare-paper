@@ -21,7 +21,7 @@ In addition to the Python requirements, the LDA topic model section requires Jav
 ### 2. Download data files
 
 The data files necessary to execute the code in this book are located at https://osf.io/t8h9c/.
-When building the book, you will need to have a copy of these files in a `data` folder within the local repository clone.
+When building the book, you will need to have a copy of these files in a `data/nimare-paper/googledrive` folder within the local repository clone.
 
 ### 3. Build the book
 

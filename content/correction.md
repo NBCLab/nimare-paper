@@ -25,7 +25,7 @@ from myst_nb import glue
 from nilearn import plotting
 
 # Define where data files will be located
-DATA_DIR = os.path.abspath("../data")
+DATA_DIR = os.path.abspath("../data/nimare-paper/googledrive")
 FIG_DIR = os.path.abspath("../images")
 ```
 
