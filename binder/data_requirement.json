@@ -1,5 +1,5 @@
 {
-    "dst": "./data",
+    "dst": "./../data",
     "src": "https://osf.io/t8h9c/",
     "projectName": "nimare-paper",
     "version": "1.0.0"
