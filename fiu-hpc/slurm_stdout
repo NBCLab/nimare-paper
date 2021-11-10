@@ -43,16 +43,16 @@ Data loaded.
 [01mdumping object inventory... [39;49;00mdone
 [01mbuild succeeded.[39;49;00m
 
-The HTML pages are in content/_build/html.
+The HTML pages are in ../content/_build/html.
 [etoc] missing index.html written as redirect to 'abstract.html'
 
 [92m===============================================================================[0m
 
 Finished generating HTML for book.
 Your book's HTML pages are here:
-    content/_build/html/
+    ../content/_build/html/
 You can look at your book by opening this file in a browser:
-    content/_build/html/index.html
+    ../content/_build/html/index.html
 Or paste this line directly into your browser bar:
     file:///home/data/nbc/misc-projects/Salo_NiMARE/content/_build/html/index.html            
 
