@@ -25,16 +25,21 @@ import numpy as np
 import pandas as pd
 from myst_nb import glue
 from nilearn import image, plotting
+from repo2data.repo2data import Repo2Data
 
 import nimare
 
-# Define where data files will be located
-DATA_DIR = os.path.abspath("../data/nimare-paper/googledrive")
+# Install the data if running locally, or points to cached data if running on neurolibre
+DATA_REQ_FILE = os.path.join("../binder/data_requirement.json")
 FIG_DIR = os.path.abspath("../images")
+
+# Download data
+repo2data = Repo2Data(DATA_REQ_FILE)
+data_path = repo2data.install()
 
 # Now, load the Dataset we will use in this chapter
 neurosynth_dset_first_500 = nimare.dataset.Dataset.load(
-    os.path.join(DATA_DIR, "neurosynth_dataset_first500.pkl.gz")
+    os.path.join(data_path, "neurosynth_dataset_first500.pkl.gz")
 )
 ```
 
@@ -55,7 +60,7 @@ from nimare import dataset, extract
 
 # In order to run this code on nodes without internet access,
 # we need this if statement
-dataset_file = os.path.join(DATA_DIR, "neurosynth_dataset_first500_with_abstracts.pkl.gz")
+dataset_file = os.path.join(data_path, "neurosynth_dataset_first500_with_abstracts.pkl.gz")
 if not os.path.isfile(dataset_file):
     neurosynth_dset_first_500 = extract.download_abstracts(
         neurosynth_dset_first_500,
@@ -106,7 +111,7 @@ NiMARE will automatically attempt to extrapolate likely alternate forms of each 
 For an example, see {numref}`tbl:table_cogat_forms`.
 
 ```{code-cell} ipython3
-cogatlas = extract.download_cognitive_atlas(data_dir=DATA_DIR, overwrite=False)
+cogatlas = extract.download_cognitive_atlas(data_dir=data_path, overwrite=False)
 id_df = pd.read_csv(cogatlas["ids"])
 rel_df = pd.read_csv(cogatlas["relationships"])
 

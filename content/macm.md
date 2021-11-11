@@ -22,15 +22,20 @@ import os
 
 import matplotlib.pyplot as plt
 from myst_nb import glue
+from repo2data.repo2data import Repo2Data
 
 import nimare
 
-# Define where data files will be located
-DATA_DIR = os.path.abspath("../data/nimare-paper/googledrive")
+# Install the data if running locally, or points to cached data if running on neurolibre
+DATA_REQ_FILE = os.path.join("../binder/data_requirement.json")
 FIG_DIR = os.path.abspath("../images")
 
+# Download data
+repo2data = Repo2Data(DATA_REQ_FILE)
+data_path = repo2data.install()
+
 # Now, load the Datasets we will use in this chapter
-neurosynth_dset = nimare.dataset.Dataset.load(os.path.join(DATA_DIR, "neurosynth_dataset.pkl.gz"))
+neurosynth_dset = nimare.dataset.Dataset.load(os.path.join(data_path, "neurosynth_dataset.pkl.gz"))
 ```
 
 +++
@@ -54,7 +59,7 @@ For the latter, we use {py:meth}`nimare.dataset.Dataset.get_studies_by_coordinat
 
 ```{code-cell} ipython3
 # Create Dataset only containing studies with peaks within the amygdala mask
-amygdala_mask = os.path.join(DATA_DIR, "amygdala_roi.nii.gz")
+amygdala_mask = os.path.join(data_path, "amygdala_roi.nii.gz")
 amygdala_ids = neurosynth_dset.get_studies_by_mask(amygdala_mask)
 dset_amygdala = neurosynth_dset.slice(amygdala_ids)
 
