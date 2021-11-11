@@ -34,6 +34,7 @@ FIG_DIR = os.path.abspath("../images")
 # Download data
 repo2data = Repo2Data(DATA_REQ_FILE)
 data_path = repo2data.install()
+data_path = os.path.join(data_path[0], "data")
 ```
 
 +++

@@ -33,6 +33,7 @@ FIG_DIR = os.path.abspath("../images")
 # Download data
 repo2data = Repo2Data(DATA_REQ_FILE)
 data_path = repo2data.install()
+data_path = os.path.join(data_path[0], "data")
 
 # Now, load the Datasets we will use in this chapter
 neurosynth_dset = nimare.dataset.Dataset.load(os.path.join(data_path, "neurosynth_dataset.pkl.gz"))

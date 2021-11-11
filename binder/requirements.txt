@@ -4,6 +4,5 @@ jupytext==1.10.3
 matplotlib==3.4.2
 myst_nb==0.12.3
 nimare[duecredit]==0.0.11rc1
-osfclient==0.0.3
 pytest==6.2.5
 repo2data==2.4.4
