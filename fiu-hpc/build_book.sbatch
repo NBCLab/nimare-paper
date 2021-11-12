@@ -23,5 +23,4 @@ export NIMARE_DATA="/home/data/nbc/misc-projects/Salo_NiMARE/data/"
 . $MODULESHOME/../global/profile.modules
 source /home/data/nbc/misc-projects/Salo_NiMARE/fiu-hpc/activate_environment
 
-jupyter-book clean /home/data/nbc/misc-projects/Salo_NiMARE/content/
 jupyter-book build /home/data/nbc/misc-projects/Salo_NiMARE/content/
