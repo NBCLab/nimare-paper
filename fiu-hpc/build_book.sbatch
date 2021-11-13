@@ -19,7 +19,7 @@
 ########################################################
 export NPROCS=`echo $LSB_HOSTS | wc -w`
 export OMP_NUM_THREADS=2
-export NIMARE_DATA="/home/data/nbc/misc-projects/Salo_NiMARE/data/"
+export NIMARE_DATA="/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data"
 . $MODULESHOME/../global/profile.modules
 source /home/data/nbc/misc-projects/Salo_NiMARE/fiu-hpc/activate_environment
 

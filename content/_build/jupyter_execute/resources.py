@@ -10,11 +10,18 @@
 import os
 from pprint import pprint
 
+from repo2data.repo2data import Repo2Data
+
 import nimare
 
-# Define where data files will be located
-DATA_DIR = os.path.abspath("../data")
+# Install the data if running locally, or points to cached data if running on neurolibre
+DATA_REQ_FILE = os.path.join("../binder/data_requirement.json")
 FIG_DIR = os.path.abspath("../images")
+
+# Download data
+repo2data = Repo2Data(DATA_REQ_FILE)
+data_path = repo2data.install()
+data_path = os.path.join(data_path[0], "data")
 
 
 # Large-scale meta-analytic databases have made systematic meta-analyses of the neuroimaging literature possible.
@@ -49,20 +56,20 @@ FIG_DIR = os.path.abspath("../images")
 from nimare import io
 
 sleuth_dset1 = nimare.io.convert_sleuth_to_dataset(
-    os.path.join(DATA_DIR, "contrast-CannabisMinusControl_space-talairach_sleuth.txt")
+    os.path.join(data_path, "contrast-CannabisMinusControl_space-talairach_sleuth.txt")
 )
 sleuth_dset2 = nimare.io.convert_sleuth_to_dataset(
-    os.path.join(DATA_DIR, "contrast-ControlMinusCannabis_space-talairach_sleuth.txt")
+    os.path.join(data_path, "contrast-ControlMinusCannabis_space-talairach_sleuth.txt")
 )
 print(sleuth_dset1)
 print(sleuth_dset2)
 
 # Save the Datasets to files for future use
-if not os.path.isfile(os.path.join(DATA_DIR, "sleuth_dset1.pkl.gz")):
-    sleuth_dset1.save(os.path.join(DATA_DIR, "sleuth_dset1.pkl.gz"))
+if not os.path.isfile(os.path.join(data_path, "sleuth_dset1.pkl.gz")):
+    sleuth_dset1.save(os.path.join(data_path, "sleuth_dset1.pkl.gz"))
 
-if not os.path.isfile(os.path.join(DATA_DIR, "sleuth_dset2.pkl.gz")):
-    sleuth_dset2.save(os.path.join(DATA_DIR, "sleuth_dset2.pkl.gz"))
+if not os.path.isfile(os.path.join(data_path, "sleuth_dset2.pkl.gz")):
+    sleuth_dset2.save(os.path.join(data_path, "sleuth_dset2.pkl.gz"))
 
 
 # ## Neurosynth
@@ -86,7 +93,7 @@ from nimare import extract
 
 # Download the desired version of Neurosynth from GitHub.
 files = extract.fetch_neurosynth(
-    data_dir=DATA_DIR,
+    data_dir=data_path,
     version="7",
     source="abstract",
     vocab="terms",
@@ -105,8 +112,8 @@ neurosynth_dset = io.convert_neurosynth_to_dataset(
 print(neurosynth_dset)
 
 # Save the Dataset for later use.
-if not os.path.isfile(os.path.join(DATA_DIR, "neurosynth_dataset.pkl.gz")):
-    neurosynth_dset.save(os.path.join(DATA_DIR, "neurosynth_dataset.pkl.gz"))
+if not os.path.isfile(os.path.join(data_path, "neurosynth_dataset.pkl.gz")):
+    neurosynth_dset.save(os.path.join(data_path, "neurosynth_dataset.pkl.gz"))
 
 
 # ```{note}
@@ -120,8 +127,8 @@ if not os.path.isfile(os.path.join(DATA_DIR, "neurosynth_dataset.pkl.gz")):
 neurosynth_dset_first_500 = neurosynth_dset.slice(neurosynth_dset.ids[:500])
 print(neurosynth_dset)
 
-if not os.path.isfile(os.path.join(DATA_DIR, "neurosynth_dataset_first500.pkl.gz")):
-    neurosynth_dset_first_500.save(os.path.join(DATA_DIR, "neurosynth_dataset_first500.pkl.gz"))
+if not os.path.isfile(os.path.join(data_path, "neurosynth_dataset_first500.pkl.gz")):
+    neurosynth_dset_first_500.save(os.path.join(data_path, "neurosynth_dataset_first500.pkl.gz"))
 
 
 # In addition to a large corpus of coordinates, Neurosynth provides term frequencies derived from article abstracts that can be used as annotations.
@@ -147,7 +154,7 @@ if not os.path.isfile(os.path.join(DATA_DIR, "neurosynth_dataset_first500.pkl.gz
 
 # Download the desired version of NeuroQuery from GitHub.
 files = extract.fetch_neuroquery(
-    data_dir=DATA_DIR,
+    data_dir=data_path,
     version="1",
     source="combined",
     vocab="neuroquery6308",
@@ -167,8 +174,8 @@ neuroquery_dset = io.convert_neurosynth_to_dataset(
 print(neuroquery_dset)
 
 # Save the Dataset for later use.
-if not os.path.isfile(os.path.join(DATA_DIR, "neuroquery_dataset.pkl.gz")):
-    neuroquery_dset.save(os.path.join(DATA_DIR, "neuroquery_dataset.pkl.gz"))
+if not os.path.isfile(os.path.join(data_path, "neuroquery_dataset.pkl.gz")):
+    neuroquery_dset.save(os.path.join(data_path, "neuroquery_dataset.pkl.gz"))
 
 
 # ## NeuroVault

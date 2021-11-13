@@ -14,17 +14,23 @@ import matplotlib.pyplot as plt
 import numpy as np
 from myst_nb import glue
 from nilearn import plotting
+from repo2data.repo2data import Repo2Data
 
 import nimare
 
-# Define where data files will be located
-DATA_DIR = os.path.abspath("../data")
+# Install the data if running locally, or points to cached data if running on neurolibre
+DATA_REQ_FILE = os.path.join("../binder/data_requirement.json")
 FIG_DIR = os.path.abspath("../images")
 
+# Download data
+repo2data = Repo2Data(DATA_REQ_FILE)
+data_path = repo2data.install()
+data_path = os.path.join(data_path[0], "data")
+
 # Now, load the Datasets we will use in this chapter
-sleuth_dset1 = nimare.dataset.Dataset.load(os.path.join(DATA_DIR, "sleuth_dset1.pkl.gz"))
-sleuth_dset2 = nimare.dataset.Dataset.load(os.path.join(DATA_DIR, "sleuth_dset2.pkl.gz"))
-neurosynth_dset = nimare.dataset.Dataset.load(os.path.join(DATA_DIR, "neurosynth_dataset.pkl.gz"))
+sleuth_dset1 = nimare.dataset.Dataset.load(os.path.join(data_path, "sleuth_dset1.pkl.gz"))
+sleuth_dset2 = nimare.dataset.Dataset.load(os.path.join(data_path, "sleuth_dset2.pkl.gz"))
+neurosynth_dset = nimare.dataset.Dataset.load(os.path.join(data_path, "neurosynth_dataset.pkl.gz"))
 
 
 # Coordinate-based meta-analysis (CBMA) is currently the most popular method for neuroimaging meta-analysis, given that the majority of fMRI papers currently report their findings as peaks of statistically significant clusters in standard space and do not release unthresholded statistical maps.
@@ -215,7 +221,7 @@ print(mkdad_img)
 # In[11]:
 
 
-mkdad_results.save_maps(output_dir=DATA_DIR, prefix="MKDADensity")
+mkdad_results.save_maps(output_dir=data_path, prefix="MKDADensity")
 
 
 # We will also save the `Estimator` itself, which we will reuse when we get to multiple comparisons correction.
@@ -223,7 +229,7 @@ mkdad_results.save_maps(output_dir=DATA_DIR, prefix="MKDADensity")
 # In[12]:
 
 
-mkdad_meta.save(os.path.join(DATA_DIR, "MKDADensity.pkl.gz"))
+mkdad_meta.save(os.path.join(data_path, "MKDADensity.pkl.gz"))
 
 
 # In[13]:

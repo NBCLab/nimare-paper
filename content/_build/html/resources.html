@@ -369,11 +369,30 @@
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>
 
+<span class="kn">from</span> <span class="nn">repo2data.repo2data</span> <span class="kn">import</span> <span class="n">Repo2Data</span>
+
 <span class="kn">import</span> <span class="nn">nimare</span>
 
-<span class="c1"># Define where data files will be located</span>
-<span class="n">DATA_DIR</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;../data&quot;</span><span class="p">)</span>
+<span class="c1"># Install the data if running locally, or points to cached data if running on neurolibre</span>
+<span class="n">DATA_REQ_FILE</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;../binder/data_requirement.json&quot;</span><span class="p">)</span>
 <span class="n">FIG_DIR</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;../images&quot;</span><span class="p">)</span>
+
+<span class="c1"># Download data</span>
+<span class="n">repo2data</span> <span class="o">=</span> <span class="n">Repo2Data</span><span class="p">(</span><span class="n">DATA_REQ_FILE</span><span class="p">)</span>
+<span class="n">data_path</span> <span class="o">=</span> <span class="n">repo2data</span><span class="o">.</span><span class="n">install</span><span class="p">()</span>
+<span class="n">data_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_path</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;data&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---- repo2data starting ----
+/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/repo2data
+Config from file :
+../binder/data_requirement.json
+Destination:
+./../data/nimare-paper
+
+Info : ./../data/nimare-paper already downloaded
 </pre></div>
 </div>
 </div>
@@ -403,20 +422,20 @@ Here, we convert two files from a previous publication by NiMARE contributors <s
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nimare</span> <span class="kn">import</span> <span class="n">io</span>
 
 <span class="n">sleuth_dset1</span> <span class="o">=</span> <span class="n">nimare</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">convert_sleuth_to_dataset</span><span class="p">(</span>
-    <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;contrast-CannabisMinusControl_space-talairach_sleuth.txt&quot;</span><span class="p">)</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_path</span><span class="p">,</span> <span class="s2">&quot;contrast-CannabisMinusControl_space-talairach_sleuth.txt&quot;</span><span class="p">)</span>
 <span class="p">)</span>
 <span class="n">sleuth_dset2</span> <span class="o">=</span> <span class="n">nimare</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">convert_sleuth_to_dataset</span><span class="p">(</span>
-    <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;contrast-ControlMinusCannabis_space-talairach_sleuth.txt&quot;</span><span class="p">)</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_path</span><span class="p">,</span> <span class="s2">&quot;contrast-ControlMinusCannabis_space-talairach_sleuth.txt&quot;</span><span class="p">)</span>
 <span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">sleuth_dset1</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">sleuth_dset2</span><span class="p">)</span>
 
 <span class="c1"># Save the Datasets to files for future use</span>
-<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;sleuth_dset1.pkl.gz&quot;</span><span class="p">)):</span>
-    <span class="n">sleuth_dset1</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;sleuth_dset1.pkl.gz&quot;</span><span class="p">))</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_path</span><span class="p">,</span> <span class="s2">&quot;sleuth_dset1.pkl.gz&quot;</span><span class="p">)):</span>
+    <span class="n">sleuth_dset1</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_path</span><span class="p">,</span> <span class="s2">&quot;sleuth_dset1.pkl.gz&quot;</span><span class="p">))</span>
 
-<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;sleuth_dset2.pkl.gz&quot;</span><span class="p">)):</span>
-    <span class="n">sleuth_dset2</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;sleuth_dset2.pkl.gz&quot;</span><span class="p">))</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_path</span><span class="p">,</span> <span class="s2">&quot;sleuth_dset2.pkl.gz&quot;</span><span class="p">)):</span>
+    <span class="n">sleuth_dset2</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_path</span><span class="p">,</span> <span class="s2">&quot;sleuth_dset2.pkl.gz&quot;</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -446,7 +465,7 @@ As evidence of its utility, Neurosynth has been used to define <em>a priori</em>
 
 <span class="c1"># Download the desired version of Neurosynth from GitHub.</span>
 <span class="n">files</span> <span class="o">=</span> <span class="n">extract</span><span class="o">.</span><span class="n">fetch_neurosynth</span><span class="p">(</span>
-    <span class="n">data_dir</span><span class="o">=</span><span class="n">DATA_DIR</span><span class="p">,</span>
+    <span class="n">data_dir</span><span class="o">=</span><span class="n">data_path</span><span class="p">,</span>
     <span class="n">version</span><span class="o">=</span><span class="s2">&quot;7&quot;</span><span class="p">,</span>
     <span class="n">source</span><span class="o">=</span><span class="s2">&quot;abstract&quot;</span><span class="p">,</span>
     <span class="n">vocab</span><span class="o">=</span><span class="s2">&quot;terms&quot;</span><span class="p">,</span>
@@ -465,13 +484,13 @@ As evidence of its utility, Neurosynth has been used to define <em>a priori</em>
 <span class="nb">print</span><span class="p">(</span><span class="n">neurosynth_dset</span><span class="p">)</span>
 
 <span class="c1"># Save the Dataset for later use.</span>
-<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;neurosynth_dataset.pkl.gz&quot;</span><span class="p">)):</span>
-    <span class="n">neurosynth_dset</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;neurosynth_dataset.pkl.gz&quot;</span><span class="p">))</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_path</span><span class="p">,</span> <span class="s2">&quot;neurosynth_dataset.pkl.gz&quot;</span><span class="p">)):</span>
+    <span class="n">neurosynth_dset</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_path</span><span class="p">,</span> <span class="s2">&quot;neurosynth_dataset.pkl.gz&quot;</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.extract.utils:Dataset found in /home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.extract.utils:Dataset found in ./../data/nimare-paper/data/neurosynth
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.extract.extract:Searching for any feature files matching the following criteria: [(&#39;source-abstract&#39;, &#39;vocab-terms&#39;, &#39;data-neurosynth&#39;, &#39;version-7&#39;)]
@@ -493,10 +512,10 @@ Downloading data-neurosynth_version-7_vocab-terms_vocabulary.txt
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File exists and overwrite is False. Skipping.
-[{&#39;coordinates&#39;: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth/data-neurosynth_version-7_coordinates.tsv.gz&#39;,
-  &#39;features&#39;: [{&#39;features&#39;: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth/data-neurosynth_version-7_vocab-terms_source-abstract_type-tfidf_features.npz&#39;,
-                &#39;vocabulary&#39;: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth/data-neurosynth_version-7_vocab-terms_vocabulary.txt&#39;}],
-  &#39;metadata&#39;: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth/data-neurosynth_version-7_metadata.tsv.gz&#39;}]
+[{&#39;coordinates&#39;: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth/data-neurosynth_version-7_coordinates.tsv.gz&#39;,
+  &#39;features&#39;: [{&#39;features&#39;: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth/data-neurosynth_version-7_vocab-terms_source-abstract_type-tfidf_features.npz&#39;,
+                &#39;vocabulary&#39;: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth/data-neurosynth_version-7_vocab-terms_vocabulary.txt&#39;}],
+  &#39;metadata&#39;: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth/data-neurosynth_version-7_metadata.tsv.gz&#39;}]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:nimare.utils:Not applying transforms to coordinates in unrecognized space &#39;UNKNOWN&#39;
@@ -517,8 +536,8 @@ Therefore, for the sake of ensuring that the analyses in this article may be rep
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">neurosynth_dset_first_500</span> <span class="o">=</span> <span class="n">neurosynth_dset</span><span class="o">.</span><span class="n">slice</span><span class="p">(</span><span class="n">neurosynth_dset</span><span class="o">.</span><span class="n">ids</span><span class="p">[:</span><span class="mi">500</span><span class="p">])</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">neurosynth_dset</span><span class="p">)</span>
 
-<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;neurosynth_dataset_first500.pkl.gz&quot;</span><span class="p">)):</span>
-    <span class="n">neurosynth_dset_first_500</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;neurosynth_dataset_first500.pkl.gz&quot;</span><span class="p">))</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_path</span><span class="p">,</span> <span class="s2">&quot;neurosynth_dataset_first500.pkl.gz&quot;</span><span class="p">)):</span>
+    <span class="n">neurosynth_dset_first_500</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_path</span><span class="p">,</span> <span class="s2">&quot;neurosynth_dataset_first500.pkl.gz&quot;</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -547,7 +566,7 @@ We are able to use the same function for converting the database to a <code clas
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download the desired version of NeuroQuery from GitHub.</span>
 <span class="n">files</span> <span class="o">=</span> <span class="n">extract</span><span class="o">.</span><span class="n">fetch_neuroquery</span><span class="p">(</span>
-    <span class="n">data_dir</span><span class="o">=</span><span class="n">DATA_DIR</span><span class="p">,</span>
+    <span class="n">data_dir</span><span class="o">=</span><span class="n">data_path</span><span class="p">,</span>
     <span class="n">version</span><span class="o">=</span><span class="s2">&quot;1&quot;</span><span class="p">,</span>
     <span class="n">source</span><span class="o">=</span><span class="s2">&quot;combined&quot;</span><span class="p">,</span>
     <span class="n">vocab</span><span class="o">=</span><span class="s2">&quot;neuroquery6308&quot;</span><span class="p">,</span>
@@ -567,13 +586,13 @@ We are able to use the same function for converting the database to a <code clas
 <span class="nb">print</span><span class="p">(</span><span class="n">neuroquery_dset</span><span class="p">)</span>
 
 <span class="c1"># Save the Dataset for later use.</span>
-<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;neuroquery_dataset.pkl.gz&quot;</span><span class="p">)):</span>
-    <span class="n">neuroquery_dset</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;neuroquery_dataset.pkl.gz&quot;</span><span class="p">))</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_path</span><span class="p">,</span> <span class="s2">&quot;neuroquery_dataset.pkl.gz&quot;</span><span class="p">)):</span>
+    <span class="n">neuroquery_dset</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_path</span><span class="p">,</span> <span class="s2">&quot;neuroquery_dataset.pkl.gz&quot;</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.extract.utils:Dataset found in /home/data/nbc/misc-projects/Salo_NiMARE/data/neuroquery
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.extract.utils:Dataset found in ./../data/nimare-paper/data/neuroquery
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.extract.extract:Searching for any feature files matching the following criteria: [(&#39;source-combined&#39;, &#39;vocab-neuroquery6308&#39;, &#39;type-tfidf&#39;, &#39;data-neuroquery&#39;, &#39;version-1&#39;)]
@@ -595,10 +614,10 @@ Downloading data-neuroquery_version-1_vocab-neuroquery6308_vocabulary.txt
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File exists and overwrite is False. Skipping.
-[{&#39;coordinates&#39;: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neuroquery/data-neuroquery_version-1_coordinates.tsv.gz&#39;,
-  &#39;features&#39;: [{&#39;features&#39;: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neuroquery/data-neuroquery_version-1_vocab-neuroquery6308_source-combined_type-tfidf_features.npz&#39;,
-                &#39;vocabulary&#39;: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neuroquery/data-neuroquery_version-1_vocab-neuroquery6308_vocabulary.txt&#39;}],
-  &#39;metadata&#39;: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neuroquery/data-neuroquery_version-1_metadata.tsv.gz&#39;}]
+[{&#39;coordinates&#39;: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neuroquery/data-neuroquery_version-1_coordinates.tsv.gz&#39;,
+  &#39;features&#39;: [{&#39;features&#39;: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neuroquery/data-neuroquery_version-1_vocab-neuroquery6308_source-combined_type-tfidf_features.npz&#39;,
+                &#39;vocabulary&#39;: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neuroquery/data-neuroquery_version-1_vocab-neuroquery6308_vocabulary.txt&#39;}],
+  &#39;metadata&#39;: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neuroquery/data-neuroquery_version-1_metadata.tsv.gz&#39;}]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:nimare.io:No &#39;space&#39; column detected. Defaulting to &#39;UNKNOWN&#39;.

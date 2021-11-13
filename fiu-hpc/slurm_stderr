@@ -1,5 +1,5 @@
 Labels = 
-   /home/data/nbc/misc-projects/Salo_NiMARE/data/mallet_model/texts
+   /home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/mallet_model/texts
 Coded LDA: 50 topics, 6 topic bits, 111111 topic mask
 max tokens: 244
 total tokens: 59901
@@ -11404,4 +11404,4 @@ total tokens: 59901
 
 <10000> LL/token: -7.47348
 
-Total time: 1 minutes 19 seconds
+Total time: 1 minutes 25 seconds

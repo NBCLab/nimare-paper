@@ -373,13 +373,30 @@
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
 <span class="kn">from</span> <span class="nn">nilearn</span> <span class="kn">import</span> <span class="n">plotting</span>
+<span class="kn">from</span> <span class="nn">repo2data.repo2data</span> <span class="kn">import</span> <span class="n">Repo2Data</span>
 
-<span class="n">DATA_DIR</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;../data&quot;</span><span class="p">)</span>
+<span class="c1"># Install the data if running locally, or points to cached data if running on neurolibre</span>
+<span class="n">DATA_REQ_FILE</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;../binder/data_requirement.json&quot;</span><span class="p">)</span>
 <span class="n">FIG_DIR</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;../images&quot;</span><span class="p">)</span>
+
+<span class="c1"># Download data</span>
+<span class="n">repo2data</span> <span class="o">=</span> <span class="n">Repo2Data</span><span class="p">(</span><span class="n">DATA_REQ_FILE</span><span class="p">)</span>
+<span class="n">data_path</span> <span class="o">=</span> <span class="n">repo2data</span><span class="o">.</span><span class="n">install</span><span class="p">()</span>
+<span class="n">data_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_path</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;data&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---- repo2data starting ----
+/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/repo2data
+Config from file :
+../binder/data_requirement.json
+Destination:
+./../data/nimare-paper
+
+Info : ./../data/nimare-paper already downloaded
+</pre></div>
+</div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/datasets/__init__.py:90: FutureWarning: Fetchers from the nilearn.datasets module will be updated in version 0.9 to return python strings instead of bytes and Pandas dataframes instead of Numpy arrays.
   &quot;Numpy arrays.&quot;, FutureWarning)
 </pre></div>
@@ -391,12 +408,12 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">nimare</span>
 <span class="kn">from</span> <span class="nn">nimare</span> <span class="kn">import</span> <span class="n">meta</span>
 
-<span class="n">dset_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;neurosynth_dataset_first500_with_mkda_ma.pkl.gz&quot;</span><span class="p">)</span>
+<span class="n">dset_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_path</span><span class="p">,</span> <span class="s2">&quot;neurosynth_dataset_first500_with_mkda_ma.pkl.gz&quot;</span><span class="p">)</span>
 <span class="n">kern</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">kernel</span><span class="o">.</span><span class="n">MKDAKernel</span><span class="p">(</span><span class="n">memory_limit</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
-<span class="n">target_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;neurosynth_dataset_maps&quot;</span><span class="p">)</span>
+<span class="n">target_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_path</span><span class="p">,</span> <span class="s2">&quot;neurosynth_dataset_maps&quot;</span><span class="p">)</span>
 <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">dset_file</span><span class="p">):</span>
     <span class="n">neurosynth_dset_first500</span> <span class="o">=</span> <span class="n">nimare</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">load</span><span class="p">(</span>
-        <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;neurosynth_dataset_first500.pkl.gz&quot;</span><span class="p">)</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_path</span><span class="p">,</span> <span class="s2">&quot;neurosynth_dataset_first500.pkl.gz&quot;</span><span class="p">)</span>
     <span class="p">)</span>
     <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">target_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">neurosynth_dset_first500</span><span class="o">.</span><span class="n">update_path</span><span class="p">(</span><span class="n">target_folder</span><span class="p">)</span>
@@ -406,7 +423,7 @@
     <span class="n">neurosynth_dset_first500</span> <span class="o">=</span> <span class="n">nimare</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">dset_file</span><span class="p">)</span>
     <span class="n">neurosynth_dset_first500</span><span class="o">.</span><span class="n">update_path</span><span class="p">(</span><span class="n">target_folder</span><span class="p">)</span>
 
-<span class="n">neurosynth_dset</span> <span class="o">=</span> <span class="n">nimare</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;neurosynth_dataset.pkl.gz&quot;</span><span class="p">))</span>
+<span class="n">neurosynth_dset</span> <span class="o">=</span> <span class="n">nimare</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_path</span><span class="p">,</span> <span class="s2">&quot;neurosynth_dataset.pkl.gz&quot;</span><span class="p">))</span>
 
 <span class="c1"># Collect features for decoding</span>
 <span class="c1"># We use any features that appear in &gt;10% of studies and &lt;90%.</span>
@@ -422,8 +439,8 @@
 <span class="n">target_features</span> <span class="o">=</span> <span class="n">target_features</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">target_features</span><span class="p">)</span><span class="si">}</span><span class="s2"> features selected.&quot;</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-<span class="n">continuous_map</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;map_to_decode.nii.gz&quot;</span><span class="p">)</span>
-<span class="n">amygdala_roi</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;amygdala_roi.nii.gz&quot;</span><span class="p">)</span>
+<span class="n">continuous_map</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_path</span><span class="p">,</span> <span class="s2">&quot;map_to_decode.nii.gz&quot;</span><span class="p">)</span>
+<span class="n">amygdala_roi</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_path</span><span class="p">,</span> <span class="s2">&quot;amygdala_roi.nii.gz&quot;</span><span class="p">)</span>
 <span class="n">amygdala_ids</span> <span class="o">=</span> <span class="n">neurosynth_dset_first500</span><span class="o">.</span><span class="n">get_studies_by_mask</span><span class="p">(</span><span class="n">amygdala_roi</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -432,7 +449,7 @@
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.dataset:Overwriting images column affine-34d2ff913320e14f04a4746cfa875fcd_memory_limit-None_r-10.0_value-1_MKDAKernel
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>95 features selected.
@@ -506,10 +523,10 @@ We strongly recommend running it on a subset of labels within the <code class="d
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__activations (0/95): 81/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nimare/meta/cbma/mkda.py:259: RuntimeWarning: invalid value encountered in true_divide
@@ -521,847 +538,847 @@ We strongly recommend running it on a subset of labels within the <code class="d
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__anterior (1/95): 156/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__anterior cingulate (2/95): 59/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__attention (3/95): 63/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__auditory (4/95): 61/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__cerebral (5/95): 62/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__cingulate (6/95): 107/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__cognitive (7/95): 82/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__common (8/95): 51/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__condition (9/95): 50/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__conditions (10/95): 65/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__contrast (11/95): 74/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__control (12/95): 117/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__cortical (13/95): 126/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__cortices (14/95): 77/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__demonstrated (15/95): 60/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__did (16/95): 61/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__dorsal (17/95): 63/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__dorsolateral (18/95): 52/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__effect (19/95): 64/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__effects (20/95): 69/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__event (21/95): 107/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__event functional (22/95): 59/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__evidence (23/95): 86/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__frontal (24/95): 174/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__function (25/95): 61/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__functional magnetic (26/95): 266/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__greater (27/95): 64/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__group (28/95): 68/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__gyrus (29/95): 133/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__healthy (30/95): 96/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__hemisphere (31/95): 75/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__higher (32/95): 50/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__human (33/95): 111/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__indicate (34/95): 50/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__inferior (35/95): 145/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__inferior frontal (36/95): 65/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__information (37/95): 107/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__involved (38/95): 140/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__lateral (39/95): 82/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__level (40/95): 68/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__lobe (41/95): 59/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__magnetic (42/95): 288/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__magnetic resonance (43/95): 277/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__mechanisms (44/95): 50/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__medial (45/95): 85/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__memory (46/95): 113/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__middle (47/95): 61/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__motor (48/95): 116/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__network (49/95): 92/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__non (50/95): 63/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__normal (51/95): 72/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__occipital (52/95): 68/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__parietal (53/95): 197/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__parietal cortex (54/95): 70/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__pattern (55/95): 55/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__patterns (56/95): 56/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__performance (57/95): 95/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__posterior (58/95): 159/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__prefrontal (59/95): 176/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__prefrontal cortex (60/95): 120/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__premotor (61/95): 78/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__presented (62/95): 74/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__previous (63/95): 59/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__primary (64/95): 69/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__processes (65/95): 91/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__provide (66/95): 53/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__resonance (67/95): 278/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__response (68/95): 140/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__responses (69/95): 100/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__role (70/95): 80/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__semantic (71/95): 52/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__sensory (72/95): 53/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__signal (73/95): 57/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__single (74/95): 57/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__spatial (75/95): 77/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__stimulation (76/95): 53/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__stimuli (77/95): 127/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__stimulus (78/95): 98/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__studied (79/95): 61/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__suggest (80/95): 138/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__suggests (81/95): 52/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__sulcus (82/95): 74/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__superior (83/95): 119/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__supplementary (84/95): 52/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__task (85/95): 216/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__tasks (86/95): 114/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__temporal (87/95): 178/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__test (88/95): 54/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__time (89/95): 75/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__using (90/95): 204/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__using functional (91/95): 75/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__ventral (92/95): 75/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__visual (93/95): 148/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__volunteers (94/95): 58/500 studies
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 </div>

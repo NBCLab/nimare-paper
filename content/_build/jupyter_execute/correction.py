@@ -12,10 +12,16 @@ import os
 import matplotlib.pyplot as plt
 from myst_nb import glue
 from nilearn import plotting
+from repo2data.repo2data import Repo2Data
 
-# Define where data files will be located
-DATA_DIR = os.path.abspath("../data")
+# Install the data if running locally, or points to cached data if running on neurolibre
+DATA_REQ_FILE = os.path.join("../binder/data_requirement.json")
 FIG_DIR = os.path.abspath("../images")
+
+# Download data
+repo2data = Repo2Data(DATA_REQ_FILE)
+data_path = repo2data.install()
+data_path = os.path.join(data_path[0], "data")
 
 
 # In NiMARE, multiple comparisons correction is separated from each CBMA and IBMA `Estimator`, so that any number of relevant correction methods can be applied after the `Estimator` has been fit to the `Dataset`.
@@ -34,11 +40,11 @@ FIG_DIR = os.path.abspath("../images")
 
 from nimare import meta, correct
 
-mkdad_meta = meta.cbma.mkda.MKDADensity.load(os.path.join(DATA_DIR, "MKDADensity.pkl.gz"))
+mkdad_meta = meta.cbma.mkda.MKDADensity.load(os.path.join(data_path, "MKDADensity.pkl.gz"))
 
 mc_corrector = correct.FWECorrector(method="montecarlo", n_iters=10000, n_cores=4)
 mc_results = mc_corrector.transform(mkdad_meta.results)
-mc_results.save_maps(output_dir=DATA_DIR, prefix="MKDADensity_FWE")
+mc_results.save_maps(output_dir=data_path, prefix="MKDADensity_FWE")
 
 fdr_corrector = correct.FDRCorrector(method="indep")
 fdr_results = fdr_corrector.transform(mkdad_meta.results)
@@ -53,7 +59,7 @@ fdr_results = fdr_corrector.transform(mkdad_meta.results)
 
 from glob import glob
 
-fwe_maps = sorted(glob(os.path.join(DATA_DIR, "MKDADensity_FWE*.nii.gz")))
+fwe_maps = sorted(glob(os.path.join(data_path, "MKDADensity_FWE*.nii.gz")))
 fwe_maps = [os.path.basename(fwe_map) for fwe_map in fwe_maps]
 print("\n".join(fwe_maps))
 

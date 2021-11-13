@@ -11,15 +11,21 @@ import os
 
 import matplotlib.pyplot as plt
 from myst_nb import glue
+from repo2data.repo2data import Repo2Data
 
 import nimare
 
-# Define where data files will be located
-DATA_DIR = os.path.abspath("../data")
+# Install the data if running locally, or points to cached data if running on neurolibre
+DATA_REQ_FILE = os.path.join("../binder/data_requirement.json")
 FIG_DIR = os.path.abspath("../images")
 
+# Download data
+repo2data = Repo2Data(DATA_REQ_FILE)
+data_path = repo2data.install()
+data_path = os.path.join(data_path[0], "data")
+
 # Now, load the Datasets we will use in this chapter
-neurosynth_dset = nimare.dataset.Dataset.load(os.path.join(DATA_DIR, "neurosynth_dataset.pkl.gz"))
+neurosynth_dset = nimare.dataset.Dataset.load(os.path.join(data_path, "neurosynth_dataset.pkl.gz"))
 
 
 # Meta-analytic coactivation modeling (MACM) {cite:p}`Laird2009-gc,Robinson2010-iv,Eickhoff2010-vx`, also known as meta-analytic connectivity modeling, uses meta-analytic data to measure co-occurrence of activations between brain regions providing evidence of functional connectivity of brain regions across tasks.
@@ -43,7 +49,7 @@ neurosynth_dset = nimare.dataset.Dataset.load(os.path.join(DATA_DIR, "neurosynth
 
 
 # Create Dataset only containing studies with peaks within the amygdala mask
-amygdala_mask = os.path.join(DATA_DIR, "amygdala_roi.nii.gz")
+amygdala_mask = os.path.join(data_path, "amygdala_roi.nii.gz")
 amygdala_ids = neurosynth_dset.get_studies_by_mask(amygdala_mask)
 dset_amygdala = neurosynth_dset.slice(amygdala_ids)
 

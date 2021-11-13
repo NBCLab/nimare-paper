@@ -373,16 +373,22 @@
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
 <span class="kn">from</span> <span class="nn">nilearn</span> <span class="kn">import</span> <span class="n">image</span><span class="p">,</span> <span class="n">plotting</span>
+<span class="kn">from</span> <span class="nn">repo2data.repo2data</span> <span class="kn">import</span> <span class="n">Repo2Data</span>
 
 <span class="kn">import</span> <span class="nn">nimare</span>
 
-<span class="c1"># Define where data files will be located</span>
-<span class="n">DATA_DIR</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;../data&quot;</span><span class="p">)</span>
+<span class="c1"># Install the data if running locally, or points to cached data if running on neurolibre</span>
+<span class="n">DATA_REQ_FILE</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;../binder/data_requirement.json&quot;</span><span class="p">)</span>
 <span class="n">FIG_DIR</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;../images&quot;</span><span class="p">)</span>
+
+<span class="c1"># Download data</span>
+<span class="n">repo2data</span> <span class="o">=</span> <span class="n">Repo2Data</span><span class="p">(</span><span class="n">DATA_REQ_FILE</span><span class="p">)</span>
+<span class="n">data_path</span> <span class="o">=</span> <span class="n">repo2data</span><span class="o">.</span><span class="n">install</span><span class="p">()</span>
+<span class="n">data_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_path</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;data&quot;</span><span class="p">)</span>
 
 <span class="c1"># Now, load the Dataset we will use in this chapter</span>
 <span class="n">neurosynth_dset_first_500</span> <span class="o">=</span> <span class="n">nimare</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">load</span><span class="p">(</span>
-    <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;neurosynth_dataset_first500.pkl.gz&quot;</span><span class="p">)</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_path</span><span class="p">,</span> <span class="s2">&quot;neurosynth_dataset_first500.pkl.gz&quot;</span><span class="p">)</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -390,6 +396,16 @@
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/datasets/__init__.py:90: FutureWarning: Fetchers from the nilearn.datasets module will be updated in version 0.9 to return python strings instead of bytes and Pandas dataframes instead of Numpy arrays.
   &quot;Numpy arrays.&quot;, FutureWarning)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---- repo2data starting ----
+/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/repo2data
+Config from file :
+../binder/data_requirement.json
+Destination:
+./../data/nimare-paper
+
+Info : ./../data/nimare-paper already downloaded
 </pre></div>
 </div>
 </div>
@@ -407,7 +423,7 @@ This will attempt to extract metadata about each study in the <code class="docut
 
 <span class="c1"># In order to run this code on nodes without internet access,</span>
 <span class="c1"># we need this if statement</span>
-<span class="n">dataset_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;neurosynth_dataset_first500_with_abstracts.pkl.gz&quot;</span><span class="p">)</span>
+<span class="n">dataset_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_path</span><span class="p">,</span> <span class="s2">&quot;neurosynth_dataset_first500_with_abstracts.pkl.gz&quot;</span><span class="p">)</span>
 <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">dataset_file</span><span class="p">):</span>
     <span class="n">neurosynth_dset_first_500</span> <span class="o">=</span> <span class="n">extract</span><span class="o">.</span><span class="n">download_abstracts</span><span class="p">(</span>
         <span class="n">neurosynth_dset_first_500</span><span class="p">,</span>
@@ -459,7 +475,7 @@ This includes both information about individual terms in the ontology and assert
 For an example, see <a class="reference internal" href="#tbl-table-cogat-forms"><span class="std std-numref">Fig. 11</span></a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cogatlas</span> <span class="o">=</span> <span class="n">extract</span><span class="o">.</span><span class="n">download_cognitive_atlas</span><span class="p">(</span><span class="n">data_dir</span><span class="o">=</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cogatlas</span> <span class="o">=</span> <span class="n">extract</span><span class="o">.</span><span class="n">download_cognitive_atlas</span><span class="p">(</span><span class="n">data_dir</span><span class="o">=</span><span class="n">data_path</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">id_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">cogatlas</span><span class="p">[</span><span class="s2">&quot;ids&quot;</span><span class="p">])</span>
 <span class="n">rel_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">cogatlas</span><span class="p">[</span><span class="s2">&quot;relationships&quot;</span><span class="p">])</span>
 
@@ -470,7 +486,7 @@ For an example, see <a class="reference internal" href="#tbl-table-cogat-forms">
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.extract.utils:Dataset found in /home/data/nbc/misc-projects/Salo_NiMARE/data/cognitive_atlas
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.extract.utils:Dataset found in ./../data/nimare-paper/data/cognitive_atlas
 </pre></div>
 </div>
 </div>
@@ -706,10 +722,10 @@ NiMARE will download MALLET automatically, when necessary.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.extract.utils:Dataset created in /home/data/nbc/misc-projects/Salo_NiMARE/data/mallet__temp
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.extract.utils:Dataset created in /home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/mallet__temp
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.extract.utils:Dataset created in /home/data/nbc/misc-projects/Salo_NiMARE/data/mallet_model
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.extract.utils:Dataset created in /home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/mallet_model
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.annotate.lda:Texts folder not found. Creating text files...
@@ -719,7 +735,7 @@ NiMARE will download MALLET automatically, when necessary.</p>
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Labels = 
-   /home/data/nbc/misc-projects/Salo_NiMARE/data/mallet_model/texts
+   /home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/mallet_model/texts
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Data loaded.
@@ -731,13 +747,16 @@ total tokens: 59901
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;10&gt; LL/token: -8.72054
-&lt;20&gt; LL/token: -8.4684
-&lt;30&gt; LL/token: -8.36595
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;40&gt; LL/token: -8.29643
-
-0	0.02	subjects cortex somatosensory stimulation fmri cortical study primary individual tactile evoked magnetic early blind investigated central mpfc found area 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;20&gt; LL/token: -8.4684
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;30&gt; LL/token: -8.36595
+&lt;40&gt; LL/token: -8.29643
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	subjects cortex somatosensory stimulation fmri cortical study primary individual tactile evoked magnetic early blind investigated central mpfc found area 
 1	0.02	priming attention faces stimulation early spatial passive observed vestibular modulated decreases regions multimodal touch swallowing greater simple lexical potential 
 2	0.02	activity inferior regions subjects bilateral left temporal imaging resonance magnetic brain functional medial significant found superior gyri recognition comparison 
 3	0.02	response visual regions attention cortex temporal events gyrus interference patterns activation anterior increased inhibition search contrast selectively resolution required 
@@ -5530,13 +5549,14 @@ total tokens: 59901
 
 &lt;4000&gt; LL/token: -7.57557
 &lt;4010&gt; LL/token: -7.57098
-&lt;4020&gt; LL/token: -7.56359
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;4030&gt; LL/token: -7.5604
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;4020&gt; LL/token: -7.56359
+&lt;4030&gt; LL/token: -7.5604
 &lt;4040&gt; LL/token: -7.56459
-
-0	0.02	activation motor somatosensory fmri stimulation cortical hand primary si cortex sii ipsilateral contralateral sensory tms tactile body secondary limb 
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	activation motor somatosensory fmri stimulation cortical hand primary si cortex sii ipsilateral contralateral sensory tms tactile body secondary limb 
 1	0.02	modality sensory visual regions integration auditory modalities cortices tactile found familiar effects specific cross modulation multimodal touch unimodal mri 
 2	0.02	cortex functional brain activation fmri regions imaging left results subjects areas frontal parietal resonance magnetic activity activated study neural 
 3	0.02	attention attentional interference response selection attended stroop target dimension selectively shifts search attending parietal factors levels shift targets dimensions 
@@ -5588,14 +5608,12 @@ total tokens: 59901
 49	0.02	motor movements premotor areas movement area hand sma cortex supplementary finger control pre tapping action task active lateral contralateral 
 
 &lt;4050&gt; LL/token: -7.56243
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;4060&gt; LL/token: -7.55824
+&lt;4060&gt; LL/token: -7.55824
 &lt;4070&gt; LL/token: -7.55644
-&lt;4080&gt; LL/token: -7.55655
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;4090&gt; LL/token: -7.55339
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;4080&gt; LL/token: -7.55655
+&lt;4090&gt; LL/token: -7.55339
 
 0	0.02	activation motor somatosensory cortex stimulation hand si contralateral fmri sii primary ipsilateral cortical tms sensory secondary body tactile limb 
 1	0.02	modality regions sensory visual integration auditory modalities tactile specific cortices familiar cross found multimodal somatosensory respond speed unimodal modulation 
@@ -5649,15 +5667,16 @@ total tokens: 59901
 49	0.02	motor movements premotor movement areas area hand sma supplementary cortex finger control pre tapping sequence primary task action contralateral 
 
 &lt;4100&gt; LL/token: -7.55256
-&lt;4110&gt; LL/token: -7.55356
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;4120&gt; LL/token: -7.55684
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;4110&gt; LL/token: -7.55356
+&lt;4120&gt; LL/token: -7.55684
 &lt;4130&gt; LL/token: -7.54484
-&lt;4140&gt; LL/token: -7.54472
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	activation motor somatosensory cortex fmri stimulation primary hand contralateral sensory sii si secondary tactile tms cortical ipsilateral body limb 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;4140&gt; LL/token: -7.54472
+
+0	0.02	activation motor somatosensory cortex fmri stimulation primary hand contralateral sensory sii si secondary tactile tms cortical ipsilateral body limb 
 1	0.02	modality regions visual sensory cortices integration auditory modalities tactile familiar cross modulation specific respond multimodal touch unimodal mri interactions 
 2	0.02	cortex functional activation brain imaging subjects results fmri magnetic parietal areas resonance frontal activity left activated regions study anterior 
 3	0.02	attention attentional interference selection attended response stroop motor spatial target dimension color selective time top effect shifts selectively search 
@@ -5710,13 +5729,14 @@ total tokens: 59901
 
 &lt;4150&gt; LL/token: -7.54784
 &lt;4160&gt; LL/token: -7.54302
-&lt;4170&gt; LL/token: -7.54734
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;4180&gt; LL/token: -7.5404
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;4170&gt; LL/token: -7.54734
+&lt;4180&gt; LL/token: -7.5404
 &lt;4190&gt; LL/token: -7.54361
-
-0	0.02	activation somatosensory motor cortex stimulation fmri hand contralateral primary sii si sensory secondary tactile cortical tms ipsilateral representation body 
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	activation somatosensory motor cortex stimulation fmri hand contralateral primary sii si sensory secondary tactile cortical tms ipsilateral representation body 
 1	0.02	modality visual sensory integration regions modalities cortices auditory specific tactile familiar anatomically cross multimodal touch respond unimodal modulation interactions 
 2	0.02	cortex functional activation brain imaging fmri results magnetic left frontal subjects resonance parietal activity areas regions activated neural study 
 3	0.02	attention attentional response interference selection spatial attended stroop motor parietal target dimension color selectively selective shifts targets top search 
@@ -5768,14 +5788,12 @@ total tokens: 59901
 49	0.02	motor movements areas premotor movement area hand supplementary sma finger control cortex sequence pre primary tapping performed action cerebellum 
 
 &lt;4200&gt; LL/token: -7.54559
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;4210&gt; LL/token: -7.54598
+&lt;4210&gt; LL/token: -7.54598
 &lt;4220&gt; LL/token: -7.54753
-&lt;4230&gt; LL/token: -7.54172
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;4240&gt; LL/token: -7.53933
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;4230&gt; LL/token: -7.54172
+&lt;4240&gt; LL/token: -7.53933
 
 0	0.02	motor somatosensory activation fmri cortex stimulation hand contralateral cortical sii primary ipsilateral si sensory secondary tms body tactile limb 
 1	0.02	modality visual sensory regions specific integration modalities auditory cortices tactile familiar anatomically multimodal touch effects cross unimodal modulation interactions 
@@ -5829,15 +5847,16 @@ total tokens: 59901
 49	0.02	motor movements premotor areas movement cortex hand supplementary sma area finger control primary action tapping task contralateral condition sequential 
 
 &lt;4250&gt; LL/token: -7.54702
-&lt;4260&gt; LL/token: -7.54229
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;4270&gt; LL/token: -7.54582
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;4260&gt; LL/token: -7.54229
+&lt;4270&gt; LL/token: -7.54582
 &lt;4280&gt; LL/token: -7.54389
-&lt;4290&gt; LL/token: -7.54566
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	motor activation somatosensory stimulation fmri cortex hand contralateral primary sii si secondary sensory ipsilateral tms cortical body limb tactile 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;4290&gt; LL/token: -7.54566
+
+0	0.02	motor activation somatosensory stimulation fmri cortex hand contralateral primary sii si secondary sensory ipsilateral tms cortical body limb tactile 
 1	0.02	modality visual sensory specific integration modalities regions tactile auditory cortices effects familiar cross multimodal touch unimodal modulation anatomically interactions 
 2	0.02	cortex functional activation brain imaging regions results fmri frontal subjects activity left magnetic resonance areas parietal activated neural study 
 3	0.02	attention attentional response spatial interference selection parietal attended stroop time motor dimension enhanced selectively top sensory shifts target color 
@@ -5890,13 +5909,14 @@ total tokens: 59901
 
 &lt;4300&gt; LL/token: -7.54543
 &lt;4310&gt; LL/token: -7.54632
-&lt;4320&gt; LL/token: -7.54117
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;4330&gt; LL/token: -7.5466
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;4320&gt; LL/token: -7.54117
+&lt;4330&gt; LL/token: -7.5466
 &lt;4340&gt; LL/token: -7.54391
-
-0	0.02	motor activation somatosensory stimulation fmri cortex hand primary contralateral sii sensory si ipsilateral representation tms secondary input limb body 
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	motor activation somatosensory stimulation fmri cortex hand primary contralateral sii sensory si ipsilateral representation tms secondary input limb body 
 1	0.02	modality visual sensory integration modalities tactile auditory specific familiar regions cortices cross multimodal touch unimodal anatomically interactions modal crossmodal 
 2	0.02	cortex functional activation imaging brain areas regions results magnetic fmri subjects left parietal resonance frontal neural activated activity study 
 3	0.02	attention attentional response interference selection spatial attended stroop parietal selectively search top dimension time motor selective shifts enhanced resolution 
@@ -5948,14 +5968,12 @@ total tokens: 59901
 49	0.02	motor movements premotor movement cortex areas hand area supplementary sma finger control primary tapping task sensorimotor contralateral action condition 
 
 &lt;4350&gt; LL/token: -7.5405
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;4360&gt; LL/token: -7.53861
+&lt;4360&gt; LL/token: -7.53861
 &lt;4370&gt; LL/token: -7.53832
-&lt;4380&gt; LL/token: -7.54275
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;4390&gt; LL/token: -7.53927
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;4380&gt; LL/token: -7.54275
+&lt;4390&gt; LL/token: -7.53927
 
 0	0.02	motor activation somatosensory stimulation cortex hand primary si contralateral sii cortical fmri sensory ipsilateral tms secondary representation limb tactile 
 1	0.02	modality sensory visual regions integration modalities tactile auditory specific somatosensory cortices familiar multimodal touch unimodal modulation effects mri modal 
@@ -6009,15 +6027,16 @@ total tokens: 59901
 49	0.02	motor movements premotor areas movement area hand sma supplementary finger cortex control task tapping primary sensorimotor performed condition visually 
 
 &lt;4400&gt; LL/token: -7.5371
-&lt;4410&gt; LL/token: -7.53645
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;4420&gt; LL/token: -7.53664
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;4410&gt; LL/token: -7.53645
+&lt;4420&gt; LL/token: -7.53664
 &lt;4430&gt; LL/token: -7.53824
-&lt;4440&gt; LL/token: -7.53838
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	activation motor somatosensory stimulation fmri cortex hand primary contralateral ipsilateral sii cortical sensory si secondary representation tms system tactile 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;4440&gt; LL/token: -7.53838
+
+0	0.02	activation motor somatosensory stimulation fmri cortex hand primary contralateral ipsilateral sii cortical sensory si secondary representation tms system tactile 
 1	0.02	modality visual sensory integration modalities regions auditory tactile specific cortices familiar anatomically multimodal touch effects unimodal somatosensory cross modal 
 2	0.02	cortex functional brain activation imaging results fmri subjects magnetic areas regions resonance activity frontal parietal activated neural left study 
 3	0.02	attention attentional interference parietal selection spatial time response attended stroop search selectively top dimension motor sensory shifts selective shift 
@@ -6070,13 +6089,14 @@ total tokens: 59901
 
 &lt;4450&gt; LL/token: -7.53428
 &lt;4460&gt; LL/token: -7.53576
-&lt;4470&gt; LL/token: -7.54055
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;4480&gt; LL/token: -7.53923
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;4470&gt; LL/token: -7.54055
+&lt;4480&gt; LL/token: -7.53923
 &lt;4490&gt; LL/token: -7.53716
-
-0	0.02	activation motor somatosensory fmri stimulation primary contralateral sensory sii si cortical ipsilateral hand cortex tms secondary representation tactile body 
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	activation motor somatosensory fmri stimulation primary contralateral sensory sii si cortical ipsilateral hand cortex tms secondary representation tactile body 
 1	0.02	visual modality auditory sensory integration modalities tactile cortices regions specific familiar multimodal touch unimodal mri effects cross modulation modal 
 2	0.02	cortex functional activation imaging brain regions results magnetic fmri frontal areas subjects resonance parietal activated activity study left neural 
 3	0.02	attention attentional interference parietal selection spatial attended stroop response time motor sensory top dimension target search selectively shifts shift 
@@ -6128,14 +6148,12 @@ total tokens: 59901
 49	0.02	motor movements areas movement premotor area hand sma supplementary finger cortex task primary tapping control condition sequence cerebellum contralateral 
 
 &lt;4500&gt; LL/token: -7.53691
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;4510&gt; LL/token: -7.53276
+&lt;4510&gt; LL/token: -7.53276
 &lt;4520&gt; LL/token: -7.53112
-&lt;4530&gt; LL/token: -7.53764
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;4540&gt; LL/token: -7.53716
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;4530&gt; LL/token: -7.53764
+&lt;4540&gt; LL/token: -7.53716
 
 0	0.02	motor activation somatosensory primary stimulation fmri cortex sii sensory si contralateral secondary cortical ipsilateral tactile tms representation hand body 
 1	0.02	modality visual auditory sensory regions integration modalities specific cortices tactile effects familiar multimodal touch anatomically unimodal mri activity cross 
@@ -6189,15 +6207,16 @@ total tokens: 59901
 49	0.02	motor movements premotor areas movement hand area cortex sma supplementary finger control tapping cerebellum contralateral primary action pre sequence 
 
 &lt;4550&gt; LL/token: -7.53626
-&lt;4560&gt; LL/token: -7.53134
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;4570&gt; LL/token: -7.5282
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;4560&gt; LL/token: -7.53134
+&lt;4570&gt; LL/token: -7.5282
 &lt;4580&gt; LL/token: -7.52663
-&lt;4590&gt; LL/token: -7.52508
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	activation motor somatosensory stimulation fmri primary cortex cortical contralateral sii si sensory hand ipsilateral secondary tms representation tactile body 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;4590&gt; LL/token: -7.52508
+
+0	0.02	activation motor somatosensory stimulation fmri primary cortex cortical contralateral sii si sensory hand ipsilateral secondary tms representation tactile body 
 1	0.02	modality auditory sensory visual integration modalities specific regions cortices tactile effects mri multimodal touch familiar unimodal interactions somatosensory crossmodal 
 2	0.02	cortex functional activation imaging brain fmri subjects areas results magnetic resonance activity frontal regions parietal activated study left temporal 
 3	0.02	attention attentional spatial selection parietal attended stroop response target motor search top selective dimension interference selectively shifts enhanced color 
@@ -6250,13 +6269,14 @@ total tokens: 59901
 
 &lt;4600&gt; LL/token: -7.5257
 &lt;4610&gt; LL/token: -7.52815
-&lt;4620&gt; LL/token: -7.52788
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;4630&gt; LL/token: -7.5283
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;4620&gt; LL/token: -7.52788
+&lt;4630&gt; LL/token: -7.5283
 &lt;4640&gt; LL/token: -7.53055
-
-0	0.02	activation motor somatosensory stimulation cortex fmri primary sensory cortical sii contralateral si tms ipsilateral hand secondary representation tactile input 
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	activation motor somatosensory stimulation cortex fmri primary sensory cortical sii contralateral si tms ipsilateral hand secondary representation tactile input 
 1	0.02	modality visual sensory regions auditory integration modalities specific tactile cortices effects familiar modulation selective multimodal touch unimodal anatomically cross 
 2	0.02	cortex functional activation imaging brain fmri subjects regions magnetic results activity resonance frontal areas parietal activated left study neural 
 3	0.02	attention attentional spatial parietal selection target attended interference stroop response motor selectively top dimension time shifts sensory color search 
@@ -6308,14 +6328,12 @@ total tokens: 59901
 49	0.02	motor movements premotor areas movement area hand cortex sma finger supplementary action contralateral performed tapping primary condition cerebellum sensorimotor 
 
 &lt;4650&gt; LL/token: -7.52453
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;4660&gt; LL/token: -7.5247
+&lt;4660&gt; LL/token: -7.5247
 &lt;4670&gt; LL/token: -7.52947
-&lt;4680&gt; LL/token: -7.52328
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;4690&gt; LL/token: -7.52713
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;4680&gt; LL/token: -7.52328
+&lt;4690&gt; LL/token: -7.52713
 
 0	0.02	activation motor somatosensory stimulation fmri contralateral cortex primary sii sensory ipsilateral si tactile tms hand secondary input representation projections 
 1	0.02	modality visual sensory specific auditory integration modalities cortices regions tactile familiar effects cross anatomically multimodal touch unimodal somatosensory modulation 
@@ -6369,15 +6387,16 @@ total tokens: 59901
 49	0.02	motor movements areas premotor movement cortex hand area sma finger supplementary control primary action tapping performed sensorimotor condition visually 
 
 &lt;4700&gt; LL/token: -7.5253
-&lt;4710&gt; LL/token: -7.52355
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;4720&gt; LL/token: -7.52677
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;4710&gt; LL/token: -7.52355
+&lt;4720&gt; LL/token: -7.52677
 &lt;4730&gt; LL/token: -7.52361
-&lt;4740&gt; LL/token: -7.5248
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	activation motor somatosensory stimulation primary contralateral fmri si sensory cortex sii ipsilateral hand tms representation secondary tactile cortical studied 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;4740&gt; LL/token: -7.5248
+
+0	0.02	activation motor somatosensory stimulation primary contralateral fmri si sensory cortex sii ipsilateral hand tms representation secondary tactile cortical studied 
 1	0.02	modality sensory visual regions specific integration modalities cortices auditory tactile familiar modulation multimodal touch effects unimodal modal crossmodal body 
 2	0.02	cortex functional activation brain imaging regions subjects results fmri magnetic frontal resonance areas activated activity parietal left neural study 
 3	0.02	attention attentional parietal spatial response selection attended time target interference stroop motor levels top dimension selectively shifts color search 
@@ -6430,13 +6449,14 @@ total tokens: 59901
 
 &lt;4750&gt; LL/token: -7.5295
 &lt;4760&gt; LL/token: -7.52897
-&lt;4770&gt; LL/token: -7.52389
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;4780&gt; LL/token: -7.52233
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;4770&gt; LL/token: -7.52389
+&lt;4780&gt; LL/token: -7.52233
 &lt;4790&gt; LL/token: -7.5255
-
-0	0.02	activation motor somatosensory fmri stimulation cortex si primary cortical contralateral sii hand ipsilateral representation sensory tms secondary tactile projections 
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	activation motor somatosensory fmri stimulation cortex si primary cortical contralateral sii hand ipsilateral representation sensory tms secondary tactile projections 
 1	0.02	modality sensory visual regions auditory modalities integration tactile cortices somatosensory specific multimodal touch familiar unimodal anatomically effects modal crossmodal 
 2	0.02	cortex functional activation brain imaging subjects regions results fmri magnetic frontal areas resonance parietal activity activated left study neural 
 3	0.02	attention attentional spatial response selection target attended parietal stroop selectively motor dimension sensory time search top interference multiple shifts 
@@ -6488,14 +6508,12 @@ total tokens: 59901
 49	0.02	motor movements areas premotor movement area hand sma supplementary control finger lateral cortex primary tapping action sensorimotor pre contralateral 
 
 &lt;4800&gt; LL/token: -7.51961
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;4810&gt; LL/token: -7.52142
+&lt;4810&gt; LL/token: -7.52142
 &lt;4820&gt; LL/token: -7.52332
-&lt;4830&gt; LL/token: -7.52017
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;4840&gt; LL/token: -7.52057
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;4830&gt; LL/token: -7.52017
+&lt;4840&gt; LL/token: -7.52057
 
 0	0.02	activation motor somatosensory stimulation contralateral primary fmri si hand ipsilateral cortical sii cortex tms secondary representation sensory input tactile 
 1	0.02	visual modality sensory auditory regions modalities integration cortices tactile specific effects multimodal touch anatomically unimodal cross modal crossmodal familiar 
@@ -6549,15 +6567,16 @@ total tokens: 59901
 49	0.02	motor movements premotor movement areas area sma cortex supplementary hand finger control action lateral tapping preparation sensorimotor primary performed 
 
 &lt;4850&gt; LL/token: -7.52137
-&lt;4860&gt; LL/token: -7.5166
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;4870&gt; LL/token: -7.51917
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;4860&gt; LL/token: -7.5166
+&lt;4870&gt; LL/token: -7.51917
 &lt;4880&gt; LL/token: -7.51669
-&lt;4890&gt; LL/token: -7.51716
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	motor activation somatosensory stimulation fmri primary contralateral hand si cortex sii ipsilateral cortical sensory tms representation secondary tactile limb 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;4890&gt; LL/token: -7.51716
+
+0	0.02	motor activation somatosensory stimulation fmri primary contralateral hand si cortex sii ipsilateral cortical sensory tms representation secondary tactile limb 
 1	0.02	visual modality sensory regions auditory modalities integration tactile specific cortices somatosensory effects multimodal touch anatomically unimodal areas modal crossmodal 
 2	0.02	cortex functional activation subjects brain imaging results fmri magnetic regions activity frontal resonance areas parietal study activated left neural 
 3	0.02	attention attentional spatial parietal selection attended time target stroop response selectively top dimension motor visual levels shifts targets search 
@@ -6610,13 +6629,14 @@ total tokens: 59901
 
 &lt;4900&gt; LL/token: -7.51802
 &lt;4910&gt; LL/token: -7.51961
-&lt;4920&gt; LL/token: -7.52257
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;4930&gt; LL/token: -7.51346
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;4920&gt; LL/token: -7.52257
+&lt;4930&gt; LL/token: -7.51346
 &lt;4940&gt; LL/token: -7.51176
-
-0	0.02	activation motor somatosensory stimulation cortex fmri contralateral si primary sii cortical hand ipsilateral tms sensory tactile limb secondary representation 
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	activation motor somatosensory stimulation cortex fmri contralateral si primary sii cortical hand ipsilateral tms sensory tactile limb secondary representation 
 1	0.02	modality sensory auditory visual regions modalities cortices integration tactile effects parietal selective multimodal touch unimodal anatomically interactions somatosensory modal 
 2	0.02	cortex functional activation brain imaging subjects fmri regions activity magnetic results frontal parietal areas resonance study left activated neural 
 3	0.02	attention attentional spatial selection attended stroop visual motor time target top dimension selectively search levels shifts color attending multiple 
@@ -6668,14 +6688,12 @@ total tokens: 59901
 49	0.02	motor movements areas premotor movement hand sma area supplementary cortex finger control primary tapping lateral sensorimotor actions activated contralateral 
 
 &lt;4950&gt; LL/token: -7.51371
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;4960&gt; LL/token: -7.5163
+&lt;4960&gt; LL/token: -7.5163
 &lt;4970&gt; LL/token: -7.51983
-&lt;4980&gt; LL/token: -7.51898
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;4990&gt; LL/token: -7.51825
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;4980&gt; LL/token: -7.51898
+&lt;4990&gt; LL/token: -7.51825
 
 0	0.02	activation motor somatosensory stimulation hand fmri cortex contralateral primary si sii cortical ipsilateral sensory tms tactile representation limb secondary 
 1	0.02	modality sensory auditory visual modalities cortices regions integration tactile specific anatomically flow multimodal touch unimodal selective familiar interactions somatosensory 
@@ -6729,15 +6747,16 @@ total tokens: 59901
 49	0.02	motor movements premotor areas movement cortex area sma control hand supplementary finger primary condition lateral tapping action sensorimotor sequential 
 
 &lt;5000&gt; LL/token: -7.52402
-&lt;5010&gt; LL/token: -7.51838
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;5020&gt; LL/token: -7.51365
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;5010&gt; LL/token: -7.51838
+&lt;5020&gt; LL/token: -7.51365
 &lt;5030&gt; LL/token: -7.51723
-&lt;5040&gt; LL/token: -7.51735
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	activation motor somatosensory stimulation fmri cortex contralateral si hand primary sii ipsilateral sensory cortical representation tms secondary tactile limb 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;5040&gt; LL/token: -7.51735
+
+0	0.02	activation motor somatosensory stimulation fmri cortex contralateral si hand primary sii ipsilateral sensory cortical representation tms secondary tactile limb 
 1	0.02	modality sensory visual regions auditory modalities integration tactile cortices effects multimodal touch anatomically unimodal selective familiar cross flow modal 
 2	0.02	cortex functional activation brain imaging regions subjects areas fmri results parietal magnetic activity resonance frontal study left activated neural 
 3	0.02	attention attentional selection visual target spatial stroop response attended motor time selectively search dimension top shifts color enhanced multiple 
@@ -6790,13 +6809,14 @@ total tokens: 59901
 
 &lt;5050&gt; LL/token: -7.51413
 &lt;5060&gt; LL/token: -7.51328
-&lt;5070&gt; LL/token: -7.51116
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;5080&gt; LL/token: -7.51976
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;5070&gt; LL/token: -7.51116
+&lt;5080&gt; LL/token: -7.51976
 &lt;5090&gt; LL/token: -7.51446
-
-0	0.02	activation motor somatosensory stimulation cortex hand primary contralateral si fmri sii ipsilateral sensory tms tactile cortical representation secondary input 
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	activation motor somatosensory stimulation cortex hand primary contralateral si fmri sii ipsilateral sensory tms tactile cortical representation secondary input 
 1	0.02	modality sensory cortices visual modalities regions integration auditory tactile found selective multimodal touch unimodal anatomically modal crossmodal cross interactions 
 2	0.02	cortex functional brain activation imaging subjects regions activity parietal results fmri magnetic areas frontal resonance left study activated neural 
 3	0.02	attention attentional visual spatial selection target attended stroop time levels dimension selectively top shifts motor color search multiple sensory 
@@ -6848,16 +6868,15 @@ total tokens: 59901
 49	0.02	motor movements premotor areas movement area supplementary sma hand finger cortex control performed primary tapping preparation action lateral cerebellum 
 
 &lt;5100&gt; LL/token: -7.5185
+&lt;5110&gt; LL/token: -7.51525
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;5110&gt; LL/token: -7.51525
-&lt;5120&gt; LL/token: -7.51379
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;5120&gt; LL/token: -7.51379
 &lt;5130&gt; LL/token: -7.51175
+&lt;5140&gt; LL/token: -7.52003
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;5140&gt; LL/token: -7.52003
-
-0	0.02	activation motor somatosensory fmri cortex stimulation primary si hand sii contralateral ipsilateral cortical tms sensory representation secondary tactile input 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	activation motor somatosensory fmri cortex stimulation primary si hand sii contralateral ipsilateral cortical tms sensory representation secondary tactile input 
 1	0.02	modality sensory auditory visual regions modalities integration tactile cortices effects anatomically multimodal touch unimodal modal crossmodal speed cross selective 
 2	0.02	cortex functional activation brain imaging subjects parietal results regions magnetic fmri activity areas frontal resonance study activated left neural 
 3	0.02	attention attentional visual spatial target selection time attended stroop search motor dimension selectively levels multiple shifts color enhanced top 
@@ -6910,14 +6929,13 @@ total tokens: 59901
 
 &lt;5150&gt; LL/token: -7.51716
 &lt;5160&gt; LL/token: -7.51891
+&lt;5170&gt; LL/token: -7.51583
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;5170&gt; LL/token: -7.51583
-&lt;5180&gt; LL/token: -7.51223
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;5180&gt; LL/token: -7.51223
 &lt;5190&gt; LL/token: -7.51466
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	activation motor somatosensory stimulation cortex primary hand fmri si sii contralateral ipsilateral tms representation tactile sensory limb cortical projections 
+
+0	0.02	activation motor somatosensory stimulation cortex primary hand fmri si sii contralateral ipsilateral tms representation tactile sensory limb cortical projections 
 1	0.02	modality visual sensory modalities integration tactile auditory cortices effects regions multimodal unimodal touch selective anatomically modal crossmodal speed cross 
 2	0.02	cortex functional activation brain regions imaging fmri subjects parietal results magnetic frontal resonance areas activity activated left neural study 
 3	0.02	attention attentional spatial selection target visual stroop attended selectively multiple dimension search shifts motor top time shift color targets 
@@ -6969,12 +6987,14 @@ total tokens: 59901
 49	0.02	motor movements premotor areas movement area sma supplementary hand finger cortex control lateral tapping preparation activated action primary sensorimotor 
 
 &lt;5200&gt; LL/token: -7.51682
-&lt;5210&gt; LL/token: -7.5127
-&lt;5220&gt; LL/token: -7.51311
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;5230&gt; LL/token: -7.51264
-&lt;5240&gt; LL/token: -7.5116
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;5210&gt; LL/token: -7.5127
+&lt;5220&gt; LL/token: -7.51311
+&lt;5230&gt; LL/token: -7.51264
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;5240&gt; LL/token: -7.5116
 
 0	0.02	activation motor somatosensory cortex fmri stimulation primary contralateral si sii hand representation tms tactile cortical ipsilateral sensory limb input 
 1	0.02	modality sensory auditory visual modalities cortices integration tactile effects regions anatomically flow multimodal touch unimodal modulation modal crossmodal selective 
@@ -7028,16 +7048,15 @@ total tokens: 59901
 49	0.02	motor movements areas premotor movement area cortex supplementary hand sma finger control lateral primary sensorimotor tapping cerebellum condition action 
 
 &lt;5250&gt; LL/token: -7.51324
+&lt;5260&gt; LL/token: -7.51397
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;5260&gt; LL/token: -7.51397
-&lt;5270&gt; LL/token: -7.51274
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;5270&gt; LL/token: -7.51274
 &lt;5280&gt; LL/token: -7.5073
+&lt;5290&gt; LL/token: -7.51636
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;5290&gt; LL/token: -7.51636
-
-0	0.02	activation motor somatosensory stimulation primary hand contralateral cortex si sii fmri ipsilateral representation tms secondary sensory tactile cortical limb 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	activation motor somatosensory stimulation primary hand contralateral cortex si sii fmri ipsilateral representation tms secondary sensory tactile cortical limb 
 1	0.02	modality sensory visual regions cortices modalities integration tactile auditory anatomically multimodal touch speed unimodal somatosensory effects body modal crossmodal 
 2	0.02	cortex functional activation regions brain imaging fmri subjects parietal activity results magnetic frontal areas activated resonance left neural study 
 3	0.02	attention attentional spatial attended selection stroop target time visual dimension selectively shifts levels targets color search top interference attending 
@@ -7090,14 +7109,13 @@ total tokens: 59901
 
 &lt;5300&gt; LL/token: -7.51448
 &lt;5310&gt; LL/token: -7.50835
+&lt;5320&gt; LL/token: -7.51103
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;5320&gt; LL/token: -7.51103
-&lt;5330&gt; LL/token: -7.51394
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;5330&gt; LL/token: -7.51394
 &lt;5340&gt; LL/token: -7.51592
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	activation somatosensory motor stimulation cortex fmri primary hand contralateral si sii ipsilateral representation tms cortical sensory tactile limb secondary 
+
+0	0.02	activation somatosensory motor stimulation cortex fmri primary hand contralateral si sii ipsilateral representation tms cortical sensory tactile limb secondary 
 1	0.02	modality visual regions sensory auditory modalities integration tactile cortices effects anatomically multimodal touch speed unimodal modal crossmodal body cross 
 2	0.02	cortex functional activation regions brain subjects imaging left parietal fmri results magnetic activity resonance areas activated frontal neural study 
 3	0.02	attention attentional spatial selection attended target time stroop multiple selectively visual dimension color motor shifts shift search top attending 
@@ -7149,12 +7167,14 @@ total tokens: 59901
 49	0.02	motor movements premotor movement areas cortex area sma supplementary finger hand control lateral tapping cerebellum sequence primary action sensorimotor 
 
 &lt;5350&gt; LL/token: -7.5104
-&lt;5360&gt; LL/token: -7.51576
-&lt;5370&gt; LL/token: -7.51136
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;5380&gt; LL/token: -7.51572
-&lt;5390&gt; LL/token: -7.51333
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;5360&gt; LL/token: -7.51576
+&lt;5370&gt; LL/token: -7.51136
+&lt;5380&gt; LL/token: -7.51572
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;5390&gt; LL/token: -7.51333
 
 0	0.02	activation motor somatosensory stimulation cortex primary hand fmri contralateral si sii tms ipsilateral sensory tactile cortical limb input representation 
 1	0.02	modality visual sensory auditory modalities integration tactile cortices somatosensory effects anatomically multimodal touch unimodal selective regions cross flow modal 
@@ -7208,16 +7228,15 @@ total tokens: 59901
 49	0.02	motor movements premotor areas movement cortex area sma hand supplementary control finger cerebellum tapping action lateral contralateral primary sequence 
 
 &lt;5400&gt; LL/token: -7.50729
+&lt;5410&gt; LL/token: -7.51145
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;5410&gt; LL/token: -7.51145
-&lt;5420&gt; LL/token: -7.50774
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;5420&gt; LL/token: -7.50774
 &lt;5430&gt; LL/token: -7.51034
+&lt;5440&gt; LL/token: -7.5183
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;5440&gt; LL/token: -7.5183
-
-0	0.02	motor activation somatosensory cortex fmri stimulation hand primary si contralateral sii tms ipsilateral tactile sensory cortical limb secondary input 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	motor activation somatosensory cortex fmri stimulation hand primary si contralateral sii tms ipsilateral tactile sensory cortical limb secondary input 
 1	0.02	modality visual sensory auditory modalities integration regions tactile cortices multimodal somatosensory touch anatomically unimodal effects modal crossmodal cross flow 
 2	0.02	cortex functional activation regions brain imaging parietal subjects activity results magnetic frontal resonance fmri activated areas left neural study 
 3	0.02	attention attentional spatial visual response attended selection stroop multiple target time selectively dimension color top shifts levels shift search 
@@ -7270,14 +7289,13 @@ total tokens: 59901
 
 &lt;5450&gt; LL/token: -7.51237
 &lt;5460&gt; LL/token: -7.50544
+&lt;5470&gt; LL/token: -7.5097
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;5470&gt; LL/token: -7.5097
-&lt;5480&gt; LL/token: -7.50759
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;5480&gt; LL/token: -7.50759
 &lt;5490&gt; LL/token: -7.50817
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	activation motor somatosensory stimulation fmri hand primary contralateral si cortex sii ipsilateral cortical tms sensory tactile limb input representation 
+
+0	0.02	activation motor somatosensory stimulation fmri hand primary contralateral si cortex sii ipsilateral cortical tms sensory tactile limb input representation 
 1	0.02	modality sensory auditory visual modalities integration regions cortices tactile anatomically cross selective multimodal touch unimodal independent effects interactions modal 
 2	0.02	cortex functional activation regions brain subjects imaging activity results fmri areas frontal magnetic left parietal activated resonance neural study 
 3	0.02	attention attentional spatial response attended selection target stroop color visual time levels selectively dimension shifts top shift targets search 
@@ -7329,12 +7347,14 @@ total tokens: 59901
 49	0.02	motor movements premotor movement cortex areas area supplementary sma hand finger task control lateral tapping involved action cerebellum contralateral 
 
 &lt;5500&gt; LL/token: -7.50938
-&lt;5510&gt; LL/token: -7.50316
-&lt;5520&gt; LL/token: -7.51125
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;5530&gt; LL/token: -7.50214
-&lt;5540&gt; LL/token: -7.50426
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;5510&gt; LL/token: -7.50316
+&lt;5520&gt; LL/token: -7.51125
+&lt;5530&gt; LL/token: -7.50214
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;5540&gt; LL/token: -7.50426
 
 0	0.02	activation motor somatosensory cortex stimulation fmri hand contralateral si primary sii ipsilateral sensory tms representation tactile secondary limb system 
 1	0.02	modality regions visual auditory sensory modalities integration tactile cortices speed anatomically cross effects selective multimodal touch unimodal somatosensory modulation 
@@ -7388,16 +7408,15 @@ total tokens: 59901
 49	0.02	motor movements areas premotor movement area cortex sma hand finger supplementary control lateral primary task cerebellum tapping action sensorimotor 
 
 &lt;5550&gt; LL/token: -7.50311
+&lt;5560&gt; LL/token: -7.50577
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;5560&gt; LL/token: -7.50577
-&lt;5570&gt; LL/token: -7.50294
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;5570&gt; LL/token: -7.50294
 &lt;5580&gt; LL/token: -7.50296
+&lt;5590&gt; LL/token: -7.5029
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;5590&gt; LL/token: -7.5029
-
-0	0.02	activation motor somatosensory fmri stimulation cortex hand contralateral si primary sii ipsilateral tms sensory tactile input limb secondary system 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	activation motor somatosensory fmri stimulation cortex hand contralateral si primary sii ipsilateral tms sensory tactile input limb secondary system 
 1	0.02	visual modality regions sensory auditory modalities integration tactile cortices cross selective anatomically multimodal touch unimodal modulation somatosensory modal crossmodal 
 2	0.02	cortex functional activation regions brain activity subjects imaging parietal areas fmri left results magnetic frontal activated resonance neural study 
 3	0.02	attention attentional spatial attended selection time target visual stroop response selectively stimuli dimension levels color multiple sensory top shifts 
@@ -7450,14 +7469,13 @@ total tokens: 59901
 
 &lt;5600&gt; LL/token: -7.50539
 &lt;5610&gt; LL/token: -7.5016
+&lt;5620&gt; LL/token: -7.50119
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;5620&gt; LL/token: -7.50119
-&lt;5630&gt; LL/token: -7.50151
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;5630&gt; LL/token: -7.50151
 &lt;5640&gt; LL/token: -7.50691
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	activation motor somatosensory stimulation fmri hand primary si cortex sii contralateral secondary sensory tms tactile ipsilateral limb input representation 
+
+0	0.02	activation motor somatosensory stimulation fmri hand primary si cortex sii contralateral secondary sensory tms tactile ipsilateral limb input representation 
 1	0.02	visual modality sensory regions integration modalities cortices auditory tactile cross effects multimodal touch selective unimodal anatomically interactions modal crossmodal 
 2	0.02	cortex functional activation regions brain imaging parietal activity subjects fmri areas left results magnetic activated resonance frontal neural study 
 3	0.02	attention attentional spatial response attended visual time target selection stroop multiple dimension search top levels selectively shifts event attending 
@@ -7509,12 +7527,14 @@ total tokens: 59901
 49	0.02	motor movements premotor movement areas area cortex hand sma supplementary finger task control cerebellum lateral pre tapping primary contralateral 
 
 &lt;5650&gt; LL/token: -7.49868
-&lt;5660&gt; LL/token: -7.5009
-&lt;5670&gt; LL/token: -7.50099
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;5680&gt; LL/token: -7.50398
-&lt;5690&gt; LL/token: -7.50499
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;5660&gt; LL/token: -7.5009
+&lt;5670&gt; LL/token: -7.50099
+&lt;5680&gt; LL/token: -7.50398
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;5690&gt; LL/token: -7.50499
 
 0	0.02	activation motor somatosensory stimulation fmri hand primary si contralateral cortex sii ipsilateral sensory tms secondary tactile cortical input representation 
 1	0.02	visual modality sensory integration modalities cortices regions auditory tactile somatosensory cross multimodal touch effects speed anatomically unimodal selective modal 
@@ -7568,16 +7588,15 @@ total tokens: 59901
 49	0.02	motor movements areas premotor movement cortex sma area supplementary control hand task finger cerebellum tapping action primary sequence preparation 
 
 &lt;5700&gt; LL/token: -7.50386
+&lt;5710&gt; LL/token: -7.49684
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;5710&gt; LL/token: -7.49684
-&lt;5720&gt; LL/token: -7.50371
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;5720&gt; LL/token: -7.50371
 &lt;5730&gt; LL/token: -7.50047
+&lt;5740&gt; LL/token: -7.49815
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;5740&gt; LL/token: -7.49815
-
-0	0.02	activation motor fmri somatosensory stimulation cortex primary hand si contralateral sensory sii cortical secondary tms ipsilateral representation body limb 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	activation motor fmri somatosensory stimulation cortex primary hand si contralateral sensory sii cortical secondary tms ipsilateral representation body limb 
 1	0.02	visual modality regions sensory modalities integration auditory tactile cortices cross effects selective multimodal touch unimodal anatomically somatosensory modal crossmodal 
 2	0.02	cortex functional activation regions brain imaging subjects activity results parietal fmri areas magnetic activated resonance frontal left neural study 
 3	0.02	attention attentional selection response spatial time stroop target attended multiple visual dimension selectively search shifts top levels shift color 
@@ -7630,14 +7649,13 @@ total tokens: 59901
 
 &lt;5750&gt; LL/token: -7.50513
 &lt;5760&gt; LL/token: -7.5099
+&lt;5770&gt; LL/token: -7.50322
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;5770&gt; LL/token: -7.50322
-&lt;5780&gt; LL/token: -7.50062
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;5780&gt; LL/token: -7.50062
 &lt;5790&gt; LL/token: -7.50382
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	activation motor somatosensory stimulation fmri cortex primary si hand contralateral sii ipsilateral tms sensory secondary cortical body limb representation 
+
+0	0.02	activation motor somatosensory stimulation fmri cortex primary si hand contralateral sii ipsilateral tms sensory secondary cortical body limb representation 
 1	0.02	visual modality sensory regions auditory integration modalities tactile cortices effects anatomically cross multimodal touch selective unimodal modulation somatosensory modal 
 2	0.02	cortex functional activation regions brain imaging subjects fmri activity parietal results left magnetic areas resonance frontal activated neural study 
 3	0.02	attention attentional response target attended selection visual stroop spatial time selectively dimension interference top shifts multiple levels search event 
@@ -7689,12 +7707,14 @@ total tokens: 59901
 49	0.02	motor movements premotor movement areas area hand sma finger supplementary control task cortex tapping cerebellum contralateral primary lateral actions 
 
 &lt;5800&gt; LL/token: -7.50171
-&lt;5810&gt; LL/token: -7.4946
-&lt;5820&gt; LL/token: -7.50065
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;5830&gt; LL/token: -7.49759
-&lt;5840&gt; LL/token: -7.49338
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;5810&gt; LL/token: -7.4946
+&lt;5820&gt; LL/token: -7.50065
+&lt;5830&gt; LL/token: -7.49759
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;5840&gt; LL/token: -7.49338
 
 0	0.02	motor activation somatosensory stimulation fmri hand primary si contralateral cortex sii sensory tms ipsilateral secondary representation body tactile limb 
 1	0.02	visual modality sensory modalities integration cortices tactile auditory regions selective cross anatomically multimodal touch effects unimodal modal crossmodal interactions 
@@ -7748,16 +7768,15 @@ total tokens: 59901
 49	0.02	motor movements premotor movement areas area cortex sma supplementary hand finger control cerebellum condition tapping action lateral primary task 
 
 &lt;5850&gt; LL/token: -7.49883
+&lt;5860&gt; LL/token: -7.50587
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;5860&gt; LL/token: -7.50587
-&lt;5870&gt; LL/token: -7.50007
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;5870&gt; LL/token: -7.50007
 &lt;5880&gt; LL/token: -7.50016
+&lt;5890&gt; LL/token: -7.50468
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;5890&gt; LL/token: -7.50468
-
-0	0.02	activation motor somatosensory fmri stimulation hand cortex primary si contralateral sii sensory ipsilateral tms secondary tactile input limb cortical 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	activation motor somatosensory fmri stimulation hand cortex primary si contralateral sii sensory ipsilateral tms secondary tactile input limb cortical 
 1	0.02	visual modality regions sensory modalities auditory integration tactile cortices cross selective anatomically multimodal touch unimodal somatosensory modal crossmodal effects 
 2	0.02	cortex functional activation regions brain activity imaging fmri subjects results parietal magnetic frontal resonance left areas activated neural study 
 3	0.02	attention attentional spatial response attended time stroop selection target visual dimension color selectively levels shifts interference attending search top 
@@ -7810,14 +7829,13 @@ total tokens: 59901
 
 &lt;5900&gt; LL/token: -7.49909
 &lt;5910&gt; LL/token: -7.50098
+&lt;5920&gt; LL/token: -7.49654
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;5920&gt; LL/token: -7.49654
-&lt;5930&gt; LL/token: -7.49691
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;5930&gt; LL/token: -7.49691
 &lt;5940&gt; LL/token: -7.49682
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	activation motor somatosensory stimulation fmri hand contralateral cortex sii si primary sensory cortical tms ipsilateral secondary tactile limb input 
+
+0	0.02	activation motor somatosensory stimulation fmri hand contralateral cortex sii si primary sensory cortical tms ipsilateral secondary tactile limb input 
 1	0.02	modality visual regions sensory cortices modalities tactile integration cross effects multimodal touch selective unimodal auditory somatosensory found modal crossmodal 
 2	0.02	cortex functional activation regions brain imaging fmri activity left subjects areas results parietal magnetic frontal resonance activated neural study 
 3	0.02	attention attentional spatial response attended selection time stroop target color dimension selectively shifts search levels shift top event multiple 
@@ -7869,12 +7887,14 @@ total tokens: 59901
 49	0.02	motor movements premotor areas movement cortex area supplementary hand sma finger task control performed lateral cerebellum primary tapping involved 
 
 &lt;5950&gt; LL/token: -7.50313
-&lt;5960&gt; LL/token: -7.49538
-&lt;5970&gt; LL/token: -7.49608
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;5980&gt; LL/token: -7.49989
-&lt;5990&gt; LL/token: -7.49787
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;5960&gt; LL/token: -7.49538
+&lt;5970&gt; LL/token: -7.49608
+&lt;5980&gt; LL/token: -7.49989
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;5990&gt; LL/token: -7.49787
 
 0	0.02	motor activation somatosensory fmri stimulation primary hand contralateral si sii sensory cortex tms sensorimotor input ipsilateral secondary tactile limb 
 1	0.02	modality sensory visual cortices auditory modalities regions tactile integration found selective touch unimodal multimodal anatomically modal crossmodal cross speed 
@@ -7928,16 +7948,15 @@ total tokens: 59901
 49	0.02	motor movements areas premotor cortex movement area supplementary sma hand finger control cerebellum task activated tapping pre lateral action 
 
 &lt;6000&gt; LL/token: -7.49984
+&lt;6010&gt; LL/token: -7.49814
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;6010&gt; LL/token: -7.49814
-&lt;6020&gt; LL/token: -7.49561
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;6020&gt; LL/token: -7.49561
 &lt;6030&gt; LL/token: -7.49251
+&lt;6040&gt; LL/token: -7.49714
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;6040&gt; LL/token: -7.49714
-
-0	0.02	activation motor somatosensory fmri stimulation hand primary contralateral si sensory sii cortex cortical ipsilateral tms secondary tactile limb sensorimotor 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	activation motor somatosensory fmri stimulation hand primary contralateral si sensory sii cortex cortical ipsilateral tms secondary tactile limb sensorimotor 
 1	0.02	modality visual sensory auditory cortices modalities regions tactile integration effects found cross touch unimodal multimodal anatomically modal crossmodal somatosensory 
 2	0.02	cortex functional activation brain regions activity subjects imaging fmri left results parietal magnetic areas frontal resonance neural activated study 
 3	0.02	attention attentional response spatial selection attended time stroop target selectively event dimension shifts interference color search top conflict multiple 
@@ -7990,14 +8009,13 @@ total tokens: 59901
 
 &lt;6050&gt; LL/token: -7.49158
 &lt;6060&gt; LL/token: -7.48946
+&lt;6070&gt; LL/token: -7.49005
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;6070&gt; LL/token: -7.49005
-&lt;6080&gt; LL/token: -7.48657
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;6080&gt; LL/token: -7.48657
 &lt;6090&gt; LL/token: -7.49506
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	activation motor somatosensory fmri stimulation cortex hand primary si contralateral sensory sii ipsilateral tms tactile representation secondary movements cortical 
+
+0	0.02	activation motor somatosensory fmri stimulation cortex hand primary si contralateral sensory sii ipsilateral tms tactile representation secondary movements cortical 
 1	0.02	modality visual sensory cortices auditory modalities integration tactile regions effects selective cross multimodal touch anatomically unimodal interactions modal crossmodal 
 2	0.02	cortex functional activation regions brain activity imaging fmri left subjects areas results parietal magnetic frontal resonance neural activated study 
 3	0.02	attention attentional spatial response selection stroop target attended time dimension search levels selectively top shifts conflict event shift enhanced 
@@ -8049,12 +8067,14 @@ total tokens: 59901
 49	0.02	motor premotor movements movement areas area cortex supplementary sma hand finger task control tapping cerebellum condition action primary contralateral 
 
 &lt;6100&gt; LL/token: -7.49163
-&lt;6110&gt; LL/token: -7.49666
-&lt;6120&gt; LL/token: -7.48871
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;6130&gt; LL/token: -7.49036
-&lt;6140&gt; LL/token: -7.49233
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;6110&gt; LL/token: -7.49666
+&lt;6120&gt; LL/token: -7.48871
+&lt;6130&gt; LL/token: -7.49036
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;6140&gt; LL/token: -7.49233
 
 0	0.02	motor activation somatosensory primary cortex stimulation hand fmri si contralateral sii sensory ipsilateral tms cortical secondary limb tactile representation 
 1	0.02	modality auditory sensory cortices modalities integration tactile visual regions cross multimodal touch anatomically unimodal effects modal crossmodal speed somatosensory 
@@ -8108,16 +8128,15 @@ total tokens: 59901
 49	0.02	motor movements premotor area movement areas supplementary sma hand task finger control cortex tapping cerebellum performed contralateral sensorimotor subjects 
 
 &lt;6150&gt; LL/token: -7.48945
+&lt;6160&gt; LL/token: -7.49575
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;6160&gt; LL/token: -7.49575
-&lt;6170&gt; LL/token: -7.49085
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;6170&gt; LL/token: -7.49085
 &lt;6180&gt; LL/token: -7.48804
+&lt;6190&gt; LL/token: -7.49645
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;6190&gt; LL/token: -7.49645
-
-0	0.02	activation motor somatosensory stimulation cortex primary fmri hand contralateral si sii ipsilateral sensory tms secondary movements tactile limb input 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	activation motor somatosensory stimulation cortex primary fmri hand contralateral si sii ipsilateral sensory tms secondary movements tactile limb input 
 1	0.02	modality visual sensory auditory regions modalities integration tactile cortices selective cross effects touch anatomically unimodal multimodal signals modal crossmodal 
 2	0.02	cortex functional activation regions brain activity fmri imaging left results subjects areas magnetic parietal resonance frontal activated neural study 
 3	0.02	attention attentional spatial response attended selection target stroop event stimuli dimension selectively levels time top shifts search attending shift 
@@ -8170,14 +8189,13 @@ total tokens: 59901
 
 &lt;6200&gt; LL/token: -7.49121
 &lt;6210&gt; LL/token: -7.49346
+&lt;6220&gt; LL/token: -7.49275
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;6220&gt; LL/token: -7.49275
-&lt;6230&gt; LL/token: -7.49407
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;6230&gt; LL/token: -7.49407
 &lt;6240&gt; LL/token: -7.48657
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	motor activation somatosensory stimulation hand cortex fmri si primary contralateral sii sensory ipsilateral tactile tms movements limb input secondary 
+
+0	0.02	motor activation somatosensory stimulation hand cortex fmri si primary contralateral sii sensory ipsilateral tactile tms movements limb input secondary 
 1	0.02	modality visual regions sensory auditory modalities integration tactile effects selective cross signals cortices multimodal touch unimodal respond speed anatomically 
 2	0.02	cortex functional activation regions activity brain fmri imaging subjects left results areas parietal magnetic frontal resonance neural activated study 
 3	0.02	attention attentional spatial response selection target attended stroop levels search selectively dimension stimuli shifts top event conflict enhanced attending 
@@ -8229,12 +8247,14 @@ total tokens: 59901
 49	0.02	motor movements premotor areas area movement hand sma cortex supplementary finger task control cerebellum tapping lateral sensorimotor actions performance 
 
 &lt;6250&gt; LL/token: -7.48463
-&lt;6260&gt; LL/token: -7.48203
-&lt;6270&gt; LL/token: -7.49014
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;6280&gt; LL/token: -7.49019
-&lt;6290&gt; LL/token: -7.48727
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;6260&gt; LL/token: -7.48203
+&lt;6270&gt; LL/token: -7.49014
+&lt;6280&gt; LL/token: -7.49019
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;6290&gt; LL/token: -7.48727
 
 0	0.02	activation motor somatosensory fmri stimulation cortex hand primary si contralateral sii ipsilateral tms sensory tactile movements limb sensorimotor representation 
 1	0.02	visual modality sensory modalities auditory integration tactile selective cortices effects regions cross multimodal anatomically unimodal touch activated modal crossmodal 
@@ -8288,16 +8308,15 @@ total tokens: 59901
 49	0.02	motor movements premotor areas movement area cortex sma supplementary finger control hand task cerebellum tapping action condition pre preparation 
 
 &lt;6300&gt; LL/token: -7.48626
+&lt;6310&gt; LL/token: -7.49004
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;6310&gt; LL/token: -7.49004
-&lt;6320&gt; LL/token: -7.48649
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;6320&gt; LL/token: -7.48649
 &lt;6330&gt; LL/token: -7.48976
+&lt;6340&gt; LL/token: -7.49162
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;6340&gt; LL/token: -7.49162
-
-0	0.02	activation motor somatosensory stimulation hand cortex si contralateral primary fmri sii sensory representation tms ipsilateral tactile limb input secondary 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	activation motor somatosensory stimulation hand cortex si contralateral primary fmri sii sensory representation tms ipsilateral tactile limb input secondary 
 1	0.02	visual modality sensory modalities regions integration tactile cortices cross effects anatomically multimodal touch unimodal interactions auditory selective modal crossmodal 
 2	0.02	cortex functional activation regions brain imaging fmri activity results subjects parietal magnetic areas resonance neural activated left frontal study 
 3	0.02	attention attentional spatial selection attended target stroop response stimuli event levels dimension color search top attending shifts selectively multiple 
@@ -8350,14 +8369,13 @@ total tokens: 59901
 
 &lt;6350&gt; LL/token: -7.48793
 &lt;6360&gt; LL/token: -7.49532
+&lt;6370&gt; LL/token: -7.4953
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;6370&gt; LL/token: -7.4953
-&lt;6380&gt; LL/token: -7.49052
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;6380&gt; LL/token: -7.49052
 &lt;6390&gt; LL/token: -7.49142
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	motor activation somatosensory stimulation fmri hand cortex primary si contralateral sii sensory tms ipsilateral tactile body limb secondary sensorimotor 
+
+0	0.02	motor activation somatosensory stimulation fmri hand cortex primary si contralateral sii sensory tms ipsilateral tactile body limb secondary sensorimotor 
 1	0.02	visual modality sensory integration modalities cortices tactile auditory regions anatomically cross selective multimodal touch unimodal modal crossmodal signals influences 
 2	0.02	cortex functional activation regions brain activity fmri imaging subjects results magnetic parietal areas resonance frontal neural left activated study 
 3	0.02	attention attentional spatial stimuli selection attended stroop target response selectively multiple dimension levels shifts search reaction top conflict modulation 
@@ -8409,12 +8427,14 @@ total tokens: 59901
 49	0.02	motor premotor movement movements areas area cortex supplementary sma hand finger task control cerebellum action tapping primary contralateral actions 
 
 &lt;6400&gt; LL/token: -7.49134
-&lt;6410&gt; LL/token: -7.49099
-&lt;6420&gt; LL/token: -7.48931
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;6430&gt; LL/token: -7.49264
-&lt;6440&gt; LL/token: -7.48536
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;6410&gt; LL/token: -7.49099
+&lt;6420&gt; LL/token: -7.48931
+&lt;6430&gt; LL/token: -7.49264
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;6440&gt; LL/token: -7.48536
 
 0	0.02	motor activation somatosensory stimulation cortex hand fmri si primary contralateral sii sensory tms ipsilateral tactile secondary movements limb body 
 1	0.02	visual modality sensory regions integration modalities auditory tactile cortices selective anatomically cross multimodal touch unimodal somatosensory effects modal crossmodal 
@@ -8468,16 +8488,15 @@ total tokens: 59901
 49	0.02	motor premotor areas movement movements area supplementary sma cortex task hand finger control cerebellum tapping action contralateral sequential primary 
 
 &lt;6450&gt; LL/token: -7.48557
+&lt;6460&gt; LL/token: -7.48406
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;6460&gt; LL/token: -7.48406
-&lt;6470&gt; LL/token: -7.48969
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;6470&gt; LL/token: -7.48969
 &lt;6480&gt; LL/token: -7.49039
+&lt;6490&gt; LL/token: -7.48589
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;6490&gt; LL/token: -7.48589
-
-0	0.02	activation motor somatosensory fmri stimulation hand contralateral primary si sii sensory cortex ipsilateral movements tms tactile secondary limb input 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	activation motor somatosensory fmri stimulation hand contralateral primary si sii sensory cortex ipsilateral movements tms tactile secondary limb input 
 1	0.02	modality visual sensory auditory regions modalities tactile integration effects cross anatomically cortices multimodal touch unimodal somatosensory selective modal crossmodal 
 2	0.02	cortex functional activation regions brain activity fmri imaging subjects results areas parietal magnetic resonance neural left activated frontal study 
 3	0.02	attention attentional spatial response target attended stimuli selection stroop selectively dimension color shifts search attending shift conflict reaction top 
@@ -8530,14 +8549,13 @@ total tokens: 59901
 
 &lt;6500&gt; LL/token: -7.48129
 &lt;6510&gt; LL/token: -7.4846
+&lt;6520&gt; LL/token: -7.48277
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;6520&gt; LL/token: -7.48277
-&lt;6530&gt; LL/token: -7.48685
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;6530&gt; LL/token: -7.48685
 &lt;6540&gt; LL/token: -7.48182
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	motor activation somatosensory cortex stimulation hand primary fmri contralateral sii sensory tms ipsilateral si secondary movements tactile limb input 
+
+0	0.02	motor activation somatosensory cortex stimulation hand primary fmri contralateral sii sensory tms ipsilateral si secondary movements tactile limb input 
 1	0.02	visual modality sensory modalities regions integration tactile auditory cortices somatosensory selective cross multimodal effects anatomically unimodal touch modal crossmodal 
 2	0.02	cortex functional activation regions activity brain fmri imaging subjects areas results magnetic parietal resonance neural activated left frontal study 
 3	0.02	attention attentional spatial response attended stroop stimuli target selection selectively dimension search attending shifts multiple shift change levels conflict 
@@ -8589,12 +8607,14 @@ total tokens: 59901
 49	0.02	motor premotor areas movement movements area cortex supplementary sma task hand finger action control tapping cerebellum contralateral pre sensorimotor 
 
 &lt;6550&gt; LL/token: -7.48287
-&lt;6560&gt; LL/token: -7.48295
-&lt;6570&gt; LL/token: -7.48649
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;6580&gt; LL/token: -7.47761
-&lt;6590&gt; LL/token: -7.48444
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;6560&gt; LL/token: -7.48295
+&lt;6570&gt; LL/token: -7.48649
+&lt;6580&gt; LL/token: -7.47761
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;6590&gt; LL/token: -7.48444
 
 0	0.02	motor activation somatosensory stimulation hand fmri primary contralateral cortex sii sensory ipsilateral tms si tactile secondary representation limb input 
 1	0.02	modality sensory visual regions modalities auditory integration cortices tactile cross multimodal touch selective anatomically unimodal activity interactions modal crossmodal 
@@ -8648,16 +8668,15 @@ total tokens: 59901
 49	0.02	motor premotor movements movement areas area sma supplementary finger control cortex hand task tapping contralateral action cerebellum primary performance 
 
 &lt;6600&gt; LL/token: -7.48632
+&lt;6610&gt; LL/token: -7.48558
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;6610&gt; LL/token: -7.48558
-&lt;6620&gt; LL/token: -7.4875
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;6620&gt; LL/token: -7.4875
 &lt;6630&gt; LL/token: -7.48698
+&lt;6640&gt; LL/token: -7.48907
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;6640&gt; LL/token: -7.48907
-
-0	0.02	motor activation somatosensory stimulation hand cortex primary contralateral fmri sii sensory ipsilateral movements tms tactile representation si secondary limb 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	motor activation somatosensory stimulation hand cortex primary contralateral fmri sii sensory ipsilateral movements tms tactile representation si secondary limb 
 1	0.02	modality visual sensory modalities regions integration auditory tactile cross cortices somatosensory multimodal touch selective unimodal anatomically modal crossmodal respond 
 2	0.02	cortex functional activation regions brain activity fmri imaging results magnetic areas subjects resonance frontal neural activated parietal left study 
 3	0.02	attention attentional spatial attended response selection parietal stimuli target multiple selectively dimension search effects shift attending shifts top levels 
@@ -8710,14 +8729,13 @@ total tokens: 59901
 
 &lt;6650&gt; LL/token: -7.48622
 &lt;6660&gt; LL/token: -7.48379
+&lt;6670&gt; LL/token: -7.49144
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;6670&gt; LL/token: -7.49144
-&lt;6680&gt; LL/token: -7.48028
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;6680&gt; LL/token: -7.48028
 &lt;6690&gt; LL/token: -7.484
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	motor activation somatosensory fmri hand cortex stimulation contralateral primary sii ipsilateral movements sensory tms secondary tactile limb si projections 
+
+0	0.02	motor activation somatosensory fmri hand cortex stimulation contralateral primary sii ipsilateral movements sensory tms secondary tactile limb si projections 
 1	0.02	modality sensory regions visual integration modalities auditory tactile cortices cross multimodal somatosensory touch unimodal selective body modal crossmodal speed 
 2	0.02	cortex functional activation activity brain regions fmri imaging subjects results areas magnetic parietal left neural resonance activated frontal study 
 3	0.02	attention attentional spatial selection stimuli attended target response selectively dimension search top attending shifts shift multiple levels conflict behavioural 
@@ -8769,12 +8787,14 @@ total tokens: 59901
 49	0.02	motor premotor movement areas movements area sma supplementary task finger cortex control hand cerebellum tapping primary action condition actions 
 
 &lt;6700&gt; LL/token: -7.48113
-&lt;6710&gt; LL/token: -7.48295
-&lt;6720&gt; LL/token: -7.48882
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;6730&gt; LL/token: -7.48409
-&lt;6740&gt; LL/token: -7.48206
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;6710&gt; LL/token: -7.48295
+&lt;6720&gt; LL/token: -7.48882
+&lt;6730&gt; LL/token: -7.48409
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;6740&gt; LL/token: -7.48206
 
 0	0.02	activation motor somatosensory cortex stimulation hand fmri contralateral primary sii sensory movements tms ipsilateral si tactile secondary limb representation 
 1	0.02	modality visual sensory auditory regions modalities integration cortices tactile somatosensory cross multimodal touch anatomically unimodal signals selective modal crossmodal 
@@ -8828,16 +8848,15 @@ total tokens: 59901
 49	0.02	motor premotor areas movement area movements sma task supplementary cortex hand finger control cerebellum tapping preparation action sequential performance 
 
 &lt;6750&gt; LL/token: -7.48313
+&lt;6760&gt; LL/token: -7.47814
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;6760&gt; LL/token: -7.47814
-&lt;6770&gt; LL/token: -7.48332
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;6770&gt; LL/token: -7.48332
 &lt;6780&gt; LL/token: -7.48263
+&lt;6790&gt; LL/token: -7.48652
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;6790&gt; LL/token: -7.48652
-
-0	0.02	motor activation somatosensory cortex hand stimulation primary fmri contralateral sii ipsilateral sensory tms movements si tactile limb secondary sensorimotor 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	motor activation somatosensory cortex hand stimulation primary fmri contralateral sii ipsilateral sensory tms movements si tactile limb secondary sensorimotor 
 1	0.02	modality sensory regions visual integration modalities tactile auditory cross cortices multimodal somatosensory touch anatomically unimodal selective respond areas modal 
 2	0.02	cortex functional activation brain regions fmri activity imaging subjects results parietal magnetic resonance neural areas activated frontal left study 
 3	0.02	attention attentional spatial response attended selection target stimuli effects dimension required multiple attending shifts selectively search levels top conflict 
@@ -8890,14 +8909,13 @@ total tokens: 59901
 
 &lt;6800&gt; LL/token: -7.48277
 &lt;6810&gt; LL/token: -7.48679
+&lt;6820&gt; LL/token: -7.47998
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;6820&gt; LL/token: -7.47998
-&lt;6830&gt; LL/token: -7.47997
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;6830&gt; LL/token: -7.47997
 &lt;6840&gt; LL/token: -7.48445
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	motor activation somatosensory stimulation hand fmri cortex contralateral primary sii ipsilateral tms sensory secondary si movements tactile limb input 
+
+0	0.02	motor activation somatosensory stimulation hand fmri cortex contralateral primary sii ipsilateral tms sensory secondary si movements tactile limb input 
 1	0.02	modality sensory visual regions modalities auditory integration tactile cortices multimodal touch selective cross unimodal anatomically modal crossmodal body selectively 
 2	0.02	cortex functional activation brain activity regions imaging fmri parietal subjects results magnetic neural resonance left areas frontal activated study 
 3	0.02	attention attentional spatial response attended target stimuli selection top dimension search reaction attending levels shifts selectively shift factors conflict 
@@ -8949,12 +8967,14 @@ total tokens: 59901
 49	0.02	motor premotor movement movements area areas sma supplementary finger cortex hand task control cerebellum tapping sensorimotor pre sequential action 
 
 &lt;6850&gt; LL/token: -7.47927
-&lt;6860&gt; LL/token: -7.48454
-&lt;6870&gt; LL/token: -7.48449
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;6880&gt; LL/token: -7.4856
-&lt;6890&gt; LL/token: -7.48583
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;6860&gt; LL/token: -7.48454
+&lt;6870&gt; LL/token: -7.48449
+&lt;6880&gt; LL/token: -7.4856
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;6890&gt; LL/token: -7.48583
 
 0	0.02	activation motor somatosensory cortex stimulation fmri hand primary contralateral sii sensory tms ipsilateral si movements secondary limb tactile representation 
 1	0.02	modality visual sensory regions auditory modalities integration tactile cortices selective cross multimodal somatosensory touch signals unimodal interactions anatomically modal 
@@ -9008,16 +9028,15 @@ total tokens: 59901
 49	0.02	motor premotor movement areas movements sma cortex supplementary finger area hand task control cerebellum tapping contralateral performed action pre 
 
 &lt;6900&gt; LL/token: -7.48236
+&lt;6910&gt; LL/token: -7.48819
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;6910&gt; LL/token: -7.48819
-&lt;6920&gt; LL/token: -7.48655
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;6920&gt; LL/token: -7.48655
 &lt;6930&gt; LL/token: -7.4837
+&lt;6940&gt; LL/token: -7.47914
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;6940&gt; LL/token: -7.47914
-
-0	0.02	motor activation cortex somatosensory stimulation fmri primary hand sii contralateral sensory tms ipsilateral secondary movements si tactile limb input 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	motor activation cortex somatosensory stimulation fmri primary hand sii contralateral sensory tms ipsilateral secondary movements si tactile limb input 
 1	0.02	modality visual sensory regions integration modalities tactile auditory cortices somatosensory cross anatomically unimodal multimodal touch modal crossmodal body interactions 
 2	0.02	cortex functional activation brain activity regions fmri imaging subjects magnetic results left resonance parietal neural areas frontal study activated 
 3	0.02	attention attentional spatial response selection target stimuli attended dimension search top attending shifts selectively sensory locations effects factors levels 
@@ -9070,14 +9089,13 @@ total tokens: 59901
 
 &lt;6950&gt; LL/token: -7.48431
 &lt;6960&gt; LL/token: -7.48598
+&lt;6970&gt; LL/token: -7.48481
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;6970&gt; LL/token: -7.48481
-&lt;6980&gt; LL/token: -7.48263
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;6980&gt; LL/token: -7.48263
 &lt;6990&gt; LL/token: -7.48327
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	motor activation somatosensory stimulation primary hand contralateral fmri sii cortex sensory tms ipsilateral si movements secondary tactile representation limb 
+
+0	0.02	motor activation somatosensory stimulation primary hand contralateral fmri sii cortex sensory tms ipsilateral si movements secondary tactile representation limb 
 1	0.02	modality sensory visual regions modalities tactile integration auditory cortices cross multimodal somatosensory touch anatomically unimodal speed signals vision modal 
 2	0.02	cortex functional activation activity brain regions fmri imaging subjects results left magnetic parietal resonance neural frontal areas activated study 
 3	0.02	attention attentional spatial response attended selection stimuli target dimension attending effects shifts selectively top shift conflict reaction locations levels 
@@ -9129,12 +9147,14 @@ total tokens: 59901
 49	0.02	motor premotor movement areas movements area sma finger task cortex hand control supplementary cerebellum tapping action sensorimotor contralateral preparation 
 
 &lt;7000&gt; LL/token: -7.48312
-&lt;7010&gt; LL/token: -7.48551
-&lt;7020&gt; LL/token: -7.49104
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;7030&gt; LL/token: -7.48399
-&lt;7040&gt; LL/token: -7.48735
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;7010&gt; LL/token: -7.48551
+&lt;7020&gt; LL/token: -7.49104
+&lt;7030&gt; LL/token: -7.48399
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;7040&gt; LL/token: -7.48735
 
 0	0.02	activation motor somatosensory fmri stimulation hand contralateral primary sensory sii cortex ipsilateral secondary tms si functional movements body sensorimotor 
 1	0.02	modality visual regions sensory integration modalities tactile cortices anatomically cross auditory multimodal unimodal somatosensory touch selective modal crossmodal distinguish 
@@ -9188,16 +9208,15 @@ total tokens: 59901
 49	0.02	motor premotor areas movement movements task area sma finger hand supplementary cortex control cerebellum performed tapping primary action contralateral 
 
 &lt;7050&gt; LL/token: -7.48639
+&lt;7060&gt; LL/token: -7.48473
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;7060&gt; LL/token: -7.48473
-&lt;7070&gt; LL/token: -7.48281
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;7070&gt; LL/token: -7.48281
 &lt;7080&gt; LL/token: -7.4869
+&lt;7090&gt; LL/token: -7.48
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;7090&gt; LL/token: -7.48
-
-0	0.02	activation motor somatosensory cortex stimulation hand contralateral primary fmri sii sensory ipsilateral tms movements si functional representation body secondary 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	activation motor somatosensory cortex stimulation hand contralateral primary fmri sii sensory ipsilateral tms movements si functional representation body secondary 
 1	0.02	modality sensory visual integration modalities regions tactile cortices auditory cross somatosensory multimodal touch unimodal selective anatomically signals modal crossmodal 
 2	0.02	cortex functional activation brain regions activity imaging fmri subjects results areas left parietal magnetic activated resonance frontal neural study 
 3	0.02	attention attentional spatial response attended selection target stimuli effects dimension selectively top attending shifts reaction factors levels event conflict 
@@ -9250,14 +9269,13 @@ total tokens: 59901
 
 &lt;7100&gt; LL/token: -7.48125
 &lt;7110&gt; LL/token: -7.48427
+&lt;7120&gt; LL/token: -7.48957
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;7120&gt; LL/token: -7.48957
-&lt;7130&gt; LL/token: -7.48902
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;7130&gt; LL/token: -7.48902
 &lt;7140&gt; LL/token: -7.49007
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	motor activation somatosensory stimulation hand primary contralateral sii fmri sensory cortex tms ipsilateral si sensorimotor movements tactile cortical limb 
+
+0	0.02	motor activation somatosensory stimulation hand primary contralateral sii fmri sensory cortex tms ipsilateral si sensorimotor movements tactile cortical limb 
 1	0.02	modality regions visual sensory integration auditory modalities tactile cortices cross multimodal touch selective anatomically unimodal modulation interactions modal crossmodal 
 2	0.02	cortex functional activation brain activity imaging fmri regions subjects results magnetic activated parietal resonance neural frontal left areas study 
 3	0.02	attention attentional spatial target response selection stimuli attended dimension selectively event attending shifts top levels conflict shift enhanced reaction 
@@ -9309,12 +9327,14 @@ total tokens: 59901
 49	0.02	motor premotor areas movement movements area sma task finger supplementary control hand cerebellum cortex pre tapping contralateral action condition 
 
 &lt;7150&gt; LL/token: -7.48788
-&lt;7160&gt; LL/token: -7.48364
-&lt;7170&gt; LL/token: -7.48817
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;7180&gt; LL/token: -7.48312
-&lt;7190&gt; LL/token: -7.48843
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;7160&gt; LL/token: -7.48364
+&lt;7170&gt; LL/token: -7.48817
+&lt;7180&gt; LL/token: -7.48312
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;7190&gt; LL/token: -7.48843
 
 0	0.02	motor activation cortex somatosensory fmri hand stimulation primary contralateral sii ipsilateral sensory movements representation tms cortical si tactile limb 
 1	0.02	modality regions visual sensory modalities integration tactile cortices somatosensory auditory cross multimodal touch unimodal selective activity modal anatomically signals 
@@ -9368,16 +9388,15 @@ total tokens: 59901
 49	0.02	motor premotor movement areas movements area sma task supplementary finger hand cortex control tapping action pre cerebellum activations contralateral 
 
 &lt;7200&gt; LL/token: -7.48815
+&lt;7210&gt; LL/token: -7.48528
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;7210&gt; LL/token: -7.48528
-&lt;7220&gt; LL/token: -7.49455
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;7220&gt; LL/token: -7.49455
 &lt;7230&gt; LL/token: -7.48839
+&lt;7240&gt; LL/token: -7.49326
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;7240&gt; LL/token: -7.49326
-
-0	0.02	motor activation somatosensory stimulation hand fmri primary contralateral cortex sii ipsilateral si tms movements sensory representation secondary cortical tactile 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	motor activation somatosensory stimulation hand fmri primary contralateral cortex sii ipsilateral si tms movements sensory representation secondary cortical tactile 
 1	0.02	visual modality sensory regions modalities integration auditory tactile cortices anatomically cross touch selective unimodal multimodal modal crossmodal interactions distinguish 
 2	0.02	cortex functional activation brain activity regions imaging fmri parietal results magnetic activated resonance subjects frontal left neural areas study 
 3	0.02	attention attentional spatial response attended selection stimuli target dimension required attending shifts selectively top conflict reaction event relevant shift 
@@ -9430,14 +9449,13 @@ total tokens: 59901
 
 &lt;7250&gt; LL/token: -7.4889
 &lt;7260&gt; LL/token: -7.48518
+&lt;7270&gt; LL/token: -7.48258
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;7270&gt; LL/token: -7.48258
-&lt;7280&gt; LL/token: -7.49068
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;7280&gt; LL/token: -7.49068
 &lt;7290&gt; LL/token: -7.48175
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	motor activation somatosensory cortex stimulation hand primary fmri contralateral sii ipsilateral tms secondary representation cortical movements sensory si limb 
+
+0	0.02	motor activation somatosensory cortex stimulation hand primary fmri contralateral sii ipsilateral tms secondary representation cortical movements sensory si limb 
 1	0.02	modality regions visual sensory integration auditory modalities tactile cortices cross somatosensory multimodal touch selective anatomically unimodal modal crossmodal interactions 
 2	0.02	cortex functional activation brain regions activity imaging fmri results parietal magnetic areas subjects resonance activated frontal left neural study 
 3	0.02	attention attentional spatial response attended stimuli selection target dimension multiple attending shifts factors levels conflict shift event required selectively 
@@ -9489,12 +9507,14 @@ total tokens: 59901
 49	0.02	motor premotor movement movements areas area sma finger hand supplementary control cortex task action tapping pre contralateral cerebellum primary 
 
 &lt;7300&gt; LL/token: -7.48783
-&lt;7310&gt; LL/token: -7.48719
-&lt;7320&gt; LL/token: -7.48126
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;7330&gt; LL/token: -7.4832
-&lt;7340&gt; LL/token: -7.48398
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;7310&gt; LL/token: -7.48719
+&lt;7320&gt; LL/token: -7.48126
+&lt;7330&gt; LL/token: -7.4832
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;7340&gt; LL/token: -7.48398
 
 0	0.02	activation motor somatosensory cortex hand stimulation primary contralateral cortical sii ipsilateral fmri sensory tms secondary tactile movements representation limb 
 1	0.02	modality regions visual sensory modalities auditory integration cortices tactile somatosensory anatomically cross multimodal touch unimodal interactions selective modal crossmodal 
@@ -9548,16 +9568,15 @@ total tokens: 59901
 49	0.02	motor premotor movement areas movements sma task area finger control supplementary hand cortex tapping action cerebellum primary pre performed 
 
 &lt;7350&gt; LL/token: -7.48598
+&lt;7360&gt; LL/token: -7.48054
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;7360&gt; LL/token: -7.48054
-&lt;7370&gt; LL/token: -7.48179
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;7370&gt; LL/token: -7.48179
 &lt;7380&gt; LL/token: -7.48019
+&lt;7390&gt; LL/token: -7.48498
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;7390&gt; LL/token: -7.48498
-
-0	0.02	activation motor somatosensory cortex stimulation fmri hand primary contralateral sii ipsilateral si sensory tms secondary movements tactile cortical input 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	activation motor somatosensory cortex stimulation fmri hand primary contralateral sii ipsilateral si sensory tms secondary movements tactile cortical input 
 1	0.02	modality visual regions sensory modalities areas integration auditory tactile cortices somatosensory cross multimodal touch anatomically unimodal selective modal crossmodal 
 2	0.02	cortex functional activation regions brain activity imaging fmri subjects parietal results magnetic areas activated resonance neural left frontal study 
 3	0.02	attention attentional spatial response target selection attended stimuli selectively dimension shifts required attending levels task sensory conflict shift top 
@@ -9610,14 +9629,13 @@ total tokens: 59901
 
 &lt;7400&gt; LL/token: -7.48235
 &lt;7410&gt; LL/token: -7.48408
+&lt;7420&gt; LL/token: -7.48521
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;7420&gt; LL/token: -7.48521
-&lt;7430&gt; LL/token: -7.4851
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;7430&gt; LL/token: -7.4851
 &lt;7440&gt; LL/token: -7.48212
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	motor activation somatosensory stimulation fmri hand primary contralateral sii ipsilateral si cortex tms tactile secondary representation movements sensory limb 
+
+0	0.02	motor activation somatosensory stimulation fmri hand primary contralateral sii ipsilateral si cortex tms tactile secondary representation movements sensory limb 
 1	0.02	modality sensory regions visual modalities integration auditory tactile cortices anatomically cross selective multimodal somatosensory touch unimodal interactions areas modal 
 2	0.02	cortex functional activation brain activity regions imaging fmri parietal subjects results magnetic activated resonance frontal neural areas left study 
 3	0.02	attention attentional spatial response attended selection target stimuli task selectively dimension levels sensory shifts top attending conflict reaction factors 
@@ -9669,12 +9687,14 @@ total tokens: 59901
 49	0.02	motor premotor areas movement movements area sma finger task control supplementary hand primary cerebellum tapping contralateral action sequential condition 
 
 &lt;7450&gt; LL/token: -7.48029
-&lt;7460&gt; LL/token: -7.48268
-&lt;7470&gt; LL/token: -7.48464
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;7480&gt; LL/token: -7.48346
-&lt;7490&gt; LL/token: -7.48381
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;7460&gt; LL/token: -7.48268
+&lt;7470&gt; LL/token: -7.48464
+&lt;7480&gt; LL/token: -7.48346
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;7490&gt; LL/token: -7.48381
 
 0	0.02	motor activation somatosensory stimulation cortex contralateral fmri hand sii primary ipsilateral sensory cortical tms movements tactile secondary limb input 
 1	0.02	modality regions visual modalities cortices sensory auditory areas integration tactile somatosensory cross multimodal touch selective anatomically unimodal interactions modal 
@@ -9728,16 +9748,15 @@ total tokens: 59901
 49	0.02	motor premotor areas movement movements cortex area sma task finger hand supplementary control action cerebellum tapping sensorimotor primary preparation 
 
 &lt;7500&gt; LL/token: -7.48503
+&lt;7510&gt; LL/token: -7.48128
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;7510&gt; LL/token: -7.48128
-&lt;7520&gt; LL/token: -7.48942
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;7520&gt; LL/token: -7.48942
 &lt;7530&gt; LL/token: -7.48267
+&lt;7540&gt; LL/token: -7.4807
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;7540&gt; LL/token: -7.4807
-
-0	0.02	activation motor somatosensory fmri stimulation primary cortex contralateral representation sii hand sensory ipsilateral tms si secondary movements tactile limb 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	activation motor somatosensory fmri stimulation primary cortex contralateral representation sii hand sensory ipsilateral tms si secondary movements tactile limb 
 1	0.02	modality visual sensory modalities auditory cortices integration tactile areas regions cortical somatosensory selective cross multimodal touch anatomically unimodal respond 
 2	0.02	cortex functional activation regions activity brain fmri imaging subjects parietal results magnetic activated resonance neural left areas study frontal 
 3	0.02	attention attentional spatial response attended selection stimuli levels target dimension selectively shifts top shift conflict attending factors reaction task 
@@ -9790,14 +9809,13 @@ total tokens: 59901
 
 &lt;7550&gt; LL/token: -7.47937
 &lt;7560&gt; LL/token: -7.48151
+&lt;7570&gt; LL/token: -7.48042
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;7570&gt; LL/token: -7.48042
-&lt;7580&gt; LL/token: -7.48479
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;7580&gt; LL/token: -7.48479
 &lt;7590&gt; LL/token: -7.48452
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	activation motor somatosensory cortex stimulation fmri primary hand contralateral cortical sii sensory ipsilateral si tms body movements representation limb 
+
+0	0.02	activation motor somatosensory cortex stimulation fmri primary hand contralateral cortical sii sensory ipsilateral si tms body movements representation limb 
 1	0.02	regions modality visual sensory integration auditory cortices tactile modalities cross multimodal somatosensory touch unimodal selective anatomically areas modal crossmodal 
 2	0.02	cortex functional activation activity brain regions fmri parietal imaging subjects results magnetic activated resonance neural areas study frontal left 
 3	0.02	attention attentional spatial response attended selection stimuli target dimension task shift selectively shifts attending sensory conflict levels required change 
@@ -9849,12 +9867,14 @@ total tokens: 59901
 49	0.02	motor movement premotor movements areas area sma finger hand supplementary control cortex cerebellum performed tapping task action sensorimotor contralateral 
 
 &lt;7600&gt; LL/token: -7.48838
-&lt;7610&gt; LL/token: -7.48652
-&lt;7620&gt; LL/token: -7.48086
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;7630&gt; LL/token: -7.47507
-&lt;7640&gt; LL/token: -7.47935
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;7610&gt; LL/token: -7.48652
+&lt;7620&gt; LL/token: -7.48086
+&lt;7630&gt; LL/token: -7.47507
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;7640&gt; LL/token: -7.47935
 
 0	0.02	activation motor somatosensory stimulation hand contralateral primary fmri sii cortex sensory si tms ipsilateral body movements cortical representation projections 
 1	0.02	modality visual sensory regions integration modalities tactile auditory areas cortices somatosensory cross selective multimodal touch unimodal speed anatomically modal 
@@ -9908,16 +9928,15 @@ total tokens: 59901
 49	0.02	motor premotor movement areas movements sma task finger area supplementary cortex hand cerebellum control tapping action primary sensorimotor pre 
 
 &lt;7650&gt; LL/token: -7.47874
+&lt;7660&gt; LL/token: -7.48067
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;7660&gt; LL/token: -7.48067
-&lt;7670&gt; LL/token: -7.47613
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;7670&gt; LL/token: -7.47613
 &lt;7680&gt; LL/token: -7.48055
+&lt;7690&gt; LL/token: -7.48282
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;7690&gt; LL/token: -7.48282
-
-0	0.02	motor activation somatosensory fmri cortex hand stimulation contralateral primary sii ipsilateral cortical tms sensory movements secondary tactile si body 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	motor activation somatosensory fmri cortex hand stimulation contralateral primary sii ipsilateral cortical tms sensory movements secondary tactile si body 
 1	0.02	modality visual sensory integration modalities regions auditory cortices tactile cross multimodal touch unimodal somatosensory selective speed modal crossmodal modulation 
 2	0.02	cortex functional activation regions brain activity fmri imaging subjects results parietal magnetic activated resonance areas neural frontal left study 
 3	0.02	attention attentional spatial response attended selection target stimuli selectively dimension required levels shifts top conflict shift attending change types 
@@ -9970,14 +9989,13 @@ total tokens: 59901
 
 &lt;7700&gt; LL/token: -7.4792
 &lt;7710&gt; LL/token: -7.47925
+&lt;7720&gt; LL/token: -7.4781
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;7720&gt; LL/token: -7.4781
-&lt;7730&gt; LL/token: -7.47996
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;7730&gt; LL/token: -7.47996
 &lt;7740&gt; LL/token: -7.48008
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	activation motor somatosensory hand stimulation fmri primary contralateral cortex sii ipsilateral sensory cortical secondary tms si tactile movements input 
+
+0	0.02	activation motor somatosensory hand stimulation fmri primary contralateral cortex sii ipsilateral sensory cortical secondary tms si tactile movements input 
 1	0.02	modality visual regions sensory integration areas modalities tactile auditory cortices found cross multimodal touch unimodal somatosensory anatomically selective modal 
 2	0.02	cortex functional activation brain regions activity fmri imaging subjects results magnetic activated resonance parietal neural left areas frontal study 
 3	0.02	attention attentional spatial response target attended selection selectively dimension sensory shifts stimuli factors shift top conflict targets effects change 
@@ -10029,12 +10047,14 @@ total tokens: 59901
 49	0.02	motor premotor movement movements area areas sma cortex supplementary finger control hand cerebellum task tapping primary action contralateral pre 
 
 &lt;7750&gt; LL/token: -7.48107
-&lt;7760&gt; LL/token: -7.48773
-&lt;7770&gt; LL/token: -7.48121
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;7780&gt; LL/token: -7.47673
-&lt;7790&gt; LL/token: -7.47662
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;7760&gt; LL/token: -7.48773
+&lt;7770&gt; LL/token: -7.48121
+&lt;7780&gt; LL/token: -7.47673
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;7790&gt; LL/token: -7.47662
 
 0	0.02	activation motor somatosensory cortex fmri primary stimulation contralateral sii hand sensory cortical secondary movements tms input ipsilateral tactile body 
 1	0.02	modality visual regions sensory integration cortices modalities tactile auditory areas cross multimodal touch unimodal anatomically signals interactions somatosensory modal 
@@ -10088,16 +10108,15 @@ total tokens: 59901
 49	0.02	motor premotor movement movements area sma areas hand finger supplementary control task cerebellum tapping action pre lateral contralateral condition 
 
 &lt;7800&gt; LL/token: -7.4772
+&lt;7810&gt; LL/token: -7.48052
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;7810&gt; LL/token: -7.48052
-&lt;7820&gt; LL/token: -7.48193
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;7820&gt; LL/token: -7.48193
 &lt;7830&gt; LL/token: -7.47841
+&lt;7840&gt; LL/token: -7.47641
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;7840&gt; LL/token: -7.47641
-
-0	0.02	activation motor somatosensory hand stimulation cortex contralateral primary fmri sii sensory tms ipsilateral movements si tactile body secondary limb 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	activation motor somatosensory hand stimulation cortex contralateral primary fmri sii sensory tms ipsilateral movements si tactile body secondary limb 
 1	0.02	modality visual sensory cortices regions modalities tactile integration auditory cross multimodal touch unimodal independent somatosensory selective modal crossmodal anatomically 
 2	0.02	cortex functional activation regions brain fmri activity imaging subjects parietal magnetic results resonance neural activated areas frontal study left 
 3	0.02	attention attentional spatial response attended selection target selectively dimension stimuli levels attending effects shifts shift conflict required multiple factors 
@@ -10150,14 +10169,13 @@ total tokens: 59901
 
 &lt;7850&gt; LL/token: -7.4799
 &lt;7860&gt; LL/token: -7.4855
+&lt;7870&gt; LL/token: -7.48389
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;7870&gt; LL/token: -7.48389
-&lt;7880&gt; LL/token: -7.47913
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;7880&gt; LL/token: -7.47913
 &lt;7890&gt; LL/token: -7.483
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	motor activation somatosensory hand contralateral fmri stimulation cortex sii movements ipsilateral primary tms secondary cortical input sensory body representation 
+
+0	0.02	motor activation somatosensory hand contralateral fmri stimulation cortex sii movements ipsilateral primary tms secondary cortical input sensory body representation 
 1	0.02	visual modality sensory regions modalities auditory cortices tactile integration somatosensory multimodal touch selective unimodal cross modal crossmodal anatomically inputs 
 2	0.02	cortex functional activation brain regions fmri imaging activity subjects magnetic parietal activated results resonance neural areas frontal left study 
 3	0.02	attention attentional spatial response attended target selection selectively stimuli levels shifts event reaction conflict top dimensions shift required effects 
@@ -10209,12 +10227,14 @@ total tokens: 59901
 49	0.02	motor premotor areas movement area movements sma supplementary finger task hand cortex control primary cerebellum pre condition tapping action 
 
 &lt;7900&gt; LL/token: -7.48796
-&lt;7910&gt; LL/token: -7.48563
-&lt;7920&gt; LL/token: -7.48306
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;7930&gt; LL/token: -7.48529
-&lt;7940&gt; LL/token: -7.4819
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;7910&gt; LL/token: -7.48563
+&lt;7920&gt; LL/token: -7.48306
+&lt;7930&gt; LL/token: -7.48529
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;7940&gt; LL/token: -7.4819
 
 0	0.02	motor activation somatosensory hand stimulation primary contralateral cortex fmri sii sensory ipsilateral secondary movements tms tactile input body limb 
 1	0.02	modality visual cortices regions sensory auditory modalities tactile integration somatosensory multimodal touch selective unimodal cross modal crossmodal anatomically inputs 
@@ -10268,16 +10288,15 @@ total tokens: 59901
 49	0.02	motor premotor areas movement movements area task sma supplementary finger hand control cerebellum tapping action pre primary subjects cortex 
 
 &lt;7950&gt; LL/token: -7.47901
+&lt;7960&gt; LL/token: -7.48876
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;7960&gt; LL/token: -7.48876
-&lt;7970&gt; LL/token: -7.47763
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;7970&gt; LL/token: -7.47763
 &lt;7980&gt; LL/token: -7.48772
+&lt;7990&gt; LL/token: -7.48486
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;7990&gt; LL/token: -7.48486
-
-0	0.02	motor activation somatosensory cortex hand stimulation primary contralateral ipsilateral sii sensory fmri cortical tms secondary si representation limb body 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	motor activation somatosensory cortex hand stimulation primary contralateral ipsilateral sii sensory fmri cortical tms secondary si representation limb body 
 1	0.02	visual modality sensory modalities tactile auditory regions cortices integration cross multimodal touch anatomically unimodal selective somatosensory modal crossmodal respond 
 2	0.02	cortex functional activation brain regions fmri imaging activity subjects parietal magnetic results resonance neural areas activated frontal left study 
 3	0.02	attention attentional spatial response attended selectively stimuli selection dimension target sensory attending shifts shift conflict top dimensions required levels 
@@ -10330,14 +10349,13 @@ total tokens: 59901
 
 &lt;8000&gt; LL/token: -7.48155
 &lt;8010&gt; LL/token: -7.48078
+&lt;8020&gt; LL/token: -7.48065
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;8020&gt; LL/token: -7.48065
-&lt;8030&gt; LL/token: -7.47978
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;8030&gt; LL/token: -7.47978
 &lt;8040&gt; LL/token: -7.48653
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	activation motor somatosensory stimulation hand primary fmri cortical cortex contralateral sii sensory ipsilateral tms si secondary tactile movements limb 
+
+0	0.02	activation motor somatosensory stimulation hand primary fmri cortical cortex contralateral sii sensory ipsilateral tms si secondary tactile movements limb 
 1	0.02	modality visual regions cortices sensory modalities integration tactile auditory cross multimodal touch anatomically unimodal selective somatosensory modal crossmodal respond 
 2	0.02	cortex functional activation brain fmri activity imaging regions parietal results magnetic areas activated resonance neural subjects left frontal study 
 3	0.02	attention attentional spatial response attended selection selectively stimuli dimension shifts attending levels shift conflict target reaction top dimensions sensory 
@@ -10389,12 +10407,14 @@ total tokens: 59901
 49	0.02	motor premotor movement areas area movements sma task finger control supplementary cortex hand action cerebellum tapping pre condition primary 
 
 &lt;8050&gt; LL/token: -7.48389
-&lt;8060&gt; LL/token: -7.48293
-&lt;8070&gt; LL/token: -7.48552
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;8080&gt; LL/token: -7.48261
-&lt;8090&gt; LL/token: -7.48032
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;8060&gt; LL/token: -7.48293
+&lt;8070&gt; LL/token: -7.48552
+&lt;8080&gt; LL/token: -7.48261
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;8090&gt; LL/token: -7.48032
 
 0	0.02	activation motor somatosensory stimulation cortex hand primary fmri contralateral sii ipsilateral sensory tms secondary movements tactile representation limb si 
 1	0.02	modality visual sensory modalities cortices auditory integration tactile regions cross multimodal touch unimodal respond interactions somatosensory modal crossmodal selective 
@@ -10448,16 +10468,15 @@ total tokens: 59901
 49	0.02	motor premotor movement areas movements area task sma cortex finger supplementary control hand action tapping cerebellum pre contralateral actions 
 
 &lt;8100&gt; LL/token: -7.48783
+&lt;8110&gt; LL/token: -7.48229
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;8110&gt; LL/token: -7.48229
-&lt;8120&gt; LL/token: -7.48774
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;8120&gt; LL/token: -7.48774
 &lt;8130&gt; LL/token: -7.48386
+&lt;8140&gt; LL/token: -7.48502
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;8140&gt; LL/token: -7.48502
-
-0	0.02	motor activation somatosensory stimulation cortex fmri hand primary contralateral sensory sii movements ipsilateral tms cortical representation body secondary tactile 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	motor activation somatosensory stimulation cortex fmri hand primary contralateral sensory sii movements ipsilateral tms cortical representation body secondary tactile 
 1	0.02	modality visual sensory regions modalities cortices auditory tactile integration cross somatosensory touch anatomically unimodal multimodal selective modal crossmodal respond 
 2	0.02	cortex functional activation brain activity imaging regions fmri subjects results magnetic resonance areas parietal neural activated frontal left study 
 3	0.02	attention attentional spatial response attended parietal target selection stimuli selectively dimension top shifts sensory factors conflict required dimensions levels 
@@ -10510,14 +10529,13 @@ total tokens: 59901
 
 &lt;8150&gt; LL/token: -7.48527
 &lt;8160&gt; LL/token: -7.48557
+&lt;8170&gt; LL/token: -7.48809
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;8170&gt; LL/token: -7.48809
-&lt;8180&gt; LL/token: -7.48051
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;8180&gt; LL/token: -7.48051
 &lt;8190&gt; LL/token: -7.48125
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	activation motor somatosensory stimulation hand cortex primary fmri contralateral sii sensory cortical ipsilateral tms si secondary tactile body limb 
+
+0	0.02	activation motor somatosensory stimulation hand cortex primary fmri contralateral sii sensory cortical ipsilateral tms si secondary tactile body limb 
 1	0.02	modality visual sensory regions modalities integration tactile cortices auditory cross anatomically touch areas unimodal multimodal somatosensory selective modal crossmodal 
 2	0.02	cortex functional activation brain imaging activity regions fmri results magnetic subjects parietal resonance frontal areas activated neural study anterior 
 3	0.02	attention attentional spatial response attended selection parietal dimension stimuli top attending shifts required levels selectively conflict shift dimensions factors 
@@ -10569,12 +10587,14 @@ total tokens: 59901
 49	0.02	motor premotor movement movements areas cortex area sma finger hand supplementary task control cerebellum tapping pre action primary preparation 
 
 &lt;8200&gt; LL/token: -7.48786
-&lt;8210&gt; LL/token: -7.4864
-&lt;8220&gt; LL/token: -7.4817
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;8230&gt; LL/token: -7.48236
-&lt;8240&gt; LL/token: -7.48033
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;8210&gt; LL/token: -7.4864
+&lt;8220&gt; LL/token: -7.4817
+&lt;8230&gt; LL/token: -7.48236
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;8240&gt; LL/token: -7.48033
 
 0	0.02	activation motor somatosensory stimulation hand primary fmri contralateral cortical sii sensory cortex ipsilateral tms representation si body secondary movements 
 1	0.02	modality visual regions sensory cortices areas auditory modalities tactile integration cross multimodal touch selective unimodal anatomically modal crossmodal early 
@@ -10628,16 +10648,15 @@ total tokens: 59901
 49	0.02	motor premotor areas movement movements area sma finger cortex task supplementary hand control cerebellum action tapping pre contralateral primary 
 
 &lt;8250&gt; LL/token: -7.48138
+&lt;8260&gt; LL/token: -7.48285
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;8260&gt; LL/token: -7.48285
-&lt;8270&gt; LL/token: -7.47682
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;8270&gt; LL/token: -7.47682
 &lt;8280&gt; LL/token: -7.47612
+&lt;8290&gt; LL/token: -7.47662
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;8290&gt; LL/token: -7.47662
-
-0	0.02	motor activation somatosensory primary stimulation cortex hand contralateral sii fmri sensory ipsilateral tms si secondary movements body tactile limb 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	motor activation somatosensory primary stimulation cortex hand contralateral sii fmri sensory ipsilateral tms si secondary movements body tactile limb 
 1	0.02	modality visual regions sensory areas modalities cortices tactile integration auditory selectively cross multimodal touch anatomically unimodal selective modal crossmodal 
 2	0.02	cortex functional activation brain regions activity imaging fmri parietal magnetic results activated subjects resonance neural frontal areas study studies 
 3	0.02	attention attentional spatial response attended target selection stimuli dimension levels attending shifts sensory factors top conflict shift selectively required 
@@ -10690,14 +10709,13 @@ total tokens: 59901
 
 &lt;8300&gt; LL/token: -7.47451
 &lt;8310&gt; LL/token: -7.48114
+&lt;8320&gt; LL/token: -7.47543
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;8320&gt; LL/token: -7.47543
-&lt;8330&gt; LL/token: -7.474
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;8330&gt; LL/token: -7.474
 &lt;8340&gt; LL/token: -7.47641
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	motor activation somatosensory stimulation cortex primary hand contralateral sensory cortical sii fmri ipsilateral representation secondary tms movements si body 
+
+0	0.02	motor activation somatosensory stimulation cortex primary hand contralateral sensory cortical sii fmri ipsilateral representation secondary tms movements si body 
 1	0.02	modality regions sensory visual cortices modalities auditory tactile areas integration cross multimodal touch anatomically unimodal interactions selective modal crossmodal 
 2	0.02	cortex functional activation brain regions activity imaging fmri results magnetic parietal activated resonance subjects frontal areas neural left study 
 3	0.02	attention attentional spatial response attended selection stimuli target dimension top attending shifts selectively factors sensory conflict dimensions reaction required 
@@ -10749,12 +10767,14 @@ total tokens: 59901
 49	0.02	motor premotor areas movement movements area sma cortex hand supplementary finger task control action primary tapping cerebellum preparation contralateral 
 
 &lt;8350&gt; LL/token: -7.48172
-&lt;8360&gt; LL/token: -7.48563
-&lt;8370&gt; LL/token: -7.48188
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;8380&gt; LL/token: -7.48016
-&lt;8390&gt; LL/token: -7.47879
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;8360&gt; LL/token: -7.48563
+&lt;8370&gt; LL/token: -7.48188
+&lt;8380&gt; LL/token: -7.48016
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;8390&gt; LL/token: -7.47879
 
 0	0.02	motor activation somatosensory stimulation fmri cortex primary contralateral hand sensory sii ipsilateral cortical si tms secondary representation tactile body 
 1	0.02	modality visual sensory regions integration modalities tactile cortices auditory somatosensory cross multimodal touch unimodal selective areas modal crossmodal anatomically 
@@ -10808,16 +10828,15 @@ total tokens: 59901
 49	0.02	motor premotor areas movement movements task area sma supplementary finger hand cortex control cerebellum pre tapping action primary performed 
 
 &lt;8400&gt; LL/token: -7.47922
+&lt;8410&gt; LL/token: -7.47859
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;8410&gt; LL/token: -7.47859
-&lt;8420&gt; LL/token: -7.48416
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;8420&gt; LL/token: -7.48416
 &lt;8430&gt; LL/token: -7.48479
+&lt;8440&gt; LL/token: -7.48661
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;8440&gt; LL/token: -7.48661
-
-0	0.02	activation motor somatosensory cortex hand stimulation fmri cortical contralateral primary sii ipsilateral representation tms secondary sensory si body tactile 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	activation motor somatosensory cortex hand stimulation fmri cortical contralateral primary sii ipsilateral representation tms secondary sensory si body tactile 
 1	0.02	visual modality sensory modalities auditory integration tactile cortices regions cross anatomically unimodal multimodal touch modal crossmodal speed inputs driving 
 2	0.02	cortex functional activation regions activity brain imaging fmri subjects areas parietal results magnetic activated resonance frontal neural study related 
 3	0.02	attention attentional spatial response attended selection target dimension required attending shifts selectively top conflict shift visuospatial dimensions factors stimuli 
@@ -10870,14 +10889,13 @@ total tokens: 59901
 
 &lt;8450&gt; LL/token: -7.48388
 &lt;8460&gt; LL/token: -7.48307
+&lt;8470&gt; LL/token: -7.48109
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;8470&gt; LL/token: -7.48109
-&lt;8480&gt; LL/token: -7.47478
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;8480&gt; LL/token: -7.47478
 &lt;8490&gt; LL/token: -7.4802
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	motor activation somatosensory hand stimulation cortex fmri contralateral primary sii ipsilateral si secondary movements tms sensory tactile representation body 
+
+0	0.02	motor activation somatosensory hand stimulation cortex fmri contralateral primary sii ipsilateral si secondary movements tms sensory tactile representation body 
 1	0.02	modality sensory visual cortices modalities integration tactile auditory regions somatosensory cross multimodal touch selective unimodal modal crossmodal anatomically speed 
 2	0.02	cortex functional activation regions brain activity fmri imaging results magnetic areas subjects activated neural resonance parietal frontal study left 
 3	0.02	attention attentional spatial target attended stimuli selection sensory dimension response shifts selectively factors shift top required conflict attending levels 
@@ -10929,12 +10947,14 @@ total tokens: 59901
 49	0.02	motor premotor movement movements areas area sma supplementary finger hand task cerebellum control tapping cortex pre primary preparation sequential 
 
 &lt;8500&gt; LL/token: -7.48359
-&lt;8510&gt; LL/token: -7.4743
-&lt;8520&gt; LL/token: -7.47296
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;8530&gt; LL/token: -7.47699
-&lt;8540&gt; LL/token: -7.4749
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;8510&gt; LL/token: -7.4743
+&lt;8520&gt; LL/token: -7.47296
+&lt;8530&gt; LL/token: -7.47699
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;8540&gt; LL/token: -7.4749
 
 0	0.02	activation motor somatosensory stimulation fmri hand cortex cortical primary sii contralateral tms ipsilateral si secondary tactile body sensory limb 
 1	0.02	visual modality sensory regions modalities cortices integration tactile auditory cross effects multimodal touch unimodal somatosensory selective modal crossmodal anatomically 
@@ -10988,16 +11008,15 @@ total tokens: 59901
 49	0.02	motor premotor movement movements areas sma area finger hand supplementary cortex task control pre cerebellum tapping contralateral primary action 
 
 &lt;8550&gt; LL/token: -7.47816
+&lt;8560&gt; LL/token: -7.48689
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;8560&gt; LL/token: -7.48689
-&lt;8570&gt; LL/token: -7.47856
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;8570&gt; LL/token: -7.47856
 &lt;8580&gt; LL/token: -7.47538
+&lt;8590&gt; LL/token: -7.48134
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;8590&gt; LL/token: -7.48134
-
-0	0.02	activation motor somatosensory stimulation hand primary fmri contralateral cortex sii cortical ipsilateral tms si body limb tactile sensory representation 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	activation motor somatosensory stimulation hand primary fmri contralateral cortex sii cortical ipsilateral tms si body limb tactile sensory representation 
 1	0.02	modality visual sensory cortices modalities integration tactile regions auditory cross multimodal touch selective unimodal anatomically independent somatosensory modal crossmodal 
 2	0.02	cortex functional activation regions activity brain imaging fmri magnetic results activated resonance parietal neural subjects frontal areas study studies 
 3	0.02	attention attentional spatial selection attended target response dimension levels selectively shifts factors attending conflict shift top required visuospatial selective 
@@ -11050,14 +11069,13 @@ total tokens: 59901
 
 &lt;8600&gt; LL/token: -7.47988
 &lt;8610&gt; LL/token: -7.47746
+&lt;8620&gt; LL/token: -7.47634
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;8620&gt; LL/token: -7.47634
-&lt;8630&gt; LL/token: -7.47662
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;8630&gt; LL/token: -7.47662
 &lt;8640&gt; LL/token: -7.48179
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	activation motor somatosensory stimulation cortex hand fmri primary contralateral sii cortical ipsilateral movements tms si representation body limb tactile 
+
+0	0.02	activation motor somatosensory stimulation cortex hand fmri primary contralateral sii cortical ipsilateral movements tms si representation body limb tactile 
 1	0.02	modality sensory visual modalities tactile regions integration cortices auditory selective cross touch anatomically unimodal multimodal somatosensory modal crossmodal speed 
 2	0.02	cortex functional activation brain regions imaging activity fmri results magnetic parietal subjects activated resonance neural areas frontal study studies 
 3	0.02	attention attentional spatial response target attended selection dimension stimuli shifts levels selectively required conflict shift attending top factors visuospatial 
@@ -11109,12 +11127,14 @@ total tokens: 59901
 49	0.02	motor movement premotor movements areas area cortex sma finger supplementary task hand control action cerebellum pre tapping contralateral actions 
 
 &lt;8650&gt; LL/token: -7.4767
-&lt;8660&gt; LL/token: -7.4759
-&lt;8670&gt; LL/token: -7.47565
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;8680&gt; LL/token: -7.47894
-&lt;8690&gt; LL/token: -7.48214
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;8660&gt; LL/token: -7.4759
+&lt;8670&gt; LL/token: -7.47565
+&lt;8680&gt; LL/token: -7.47894
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;8690&gt; LL/token: -7.48214
 
 0	0.02	motor activation somatosensory fmri hand stimulation cortex primary sii contralateral ipsilateral tms representation secondary body limb si tactile movements 
 1	0.02	modality sensory regions visual modalities tactile integration auditory cortices cross somatosensory multimodal touch effects selective anatomically unimodal modal crossmodal 
@@ -11168,16 +11188,15 @@ total tokens: 59901
 49	0.02	motor premotor movement areas movements area sma finger task supplementary hand cortex action primary control pre tapping cerebellum contralateral 
 
 &lt;8700&gt; LL/token: -7.47747
+&lt;8710&gt; LL/token: -7.47681
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;8710&gt; LL/token: -7.47681
-&lt;8720&gt; LL/token: -7.48655
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;8720&gt; LL/token: -7.48655
 &lt;8730&gt; LL/token: -7.48203
+&lt;8740&gt; LL/token: -7.4884
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;8740&gt; LL/token: -7.4884
-
-0	0.02	activation motor somatosensory hand stimulation contralateral cortex primary sii fmri sensory cortical ipsilateral secondary tms movements si representation body 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	activation motor somatosensory hand stimulation contralateral cortex primary sii fmri sensory cortical ipsilateral secondary tms movements si representation body 
 1	0.02	modality visual sensory integration modalities tactile auditory cortices somatosensory selective touch regions anatomically unimodal influences multimodal cross effects modal 
 2	0.02	cortex functional activation activity brain regions imaging fmri subjects results magnetic parietal activated neural resonance frontal areas study anterior 
 3	0.02	attention attentional spatial response target attended selection stimuli dimension shifts top factors levels shift conflict selectively required locations targets 
@@ -11230,14 +11249,13 @@ total tokens: 59901
 
 &lt;8750&gt; LL/token: -7.48247
 &lt;8760&gt; LL/token: -7.4844
+&lt;8770&gt; LL/token: -7.4766
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;8770&gt; LL/token: -7.4766
-&lt;8780&gt; LL/token: -7.4816
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;8780&gt; LL/token: -7.4816
 &lt;8790&gt; LL/token: -7.48266
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	activation motor somatosensory hand fmri stimulation primary sii contralateral cortex ipsilateral tms sensory secondary tactile si cortical representation body 
+
+0	0.02	activation motor somatosensory hand fmri stimulation primary sii contralateral cortex ipsilateral tms sensory secondary tactile si cortical representation body 
 1	0.02	modality visual sensory auditory modalities integration tactile somatosensory selective regions anatomically cross effects cortices touch unimodal multimodal selectively modal 
 2	0.02	cortex functional activation brain regions activity imaging fmri results subjects parietal magnetic areas activated resonance neural frontal study anterior 
 3	0.02	attention attentional spatial response attended selection target stimuli dimension levels attending shifts top conflict selectively factors shift targets reaction 
@@ -11289,12 +11307,14 @@ total tokens: 59901
 49	0.02	motor premotor areas movement movements cortex area sma finger supplementary control hand cerebellum task involved tapping pre contralateral action 
 
 &lt;8800&gt; LL/token: -7.48063
-&lt;8810&gt; LL/token: -7.48084
-&lt;8820&gt; LL/token: -7.47728
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;8830&gt; LL/token: -7.47889
-&lt;8840&gt; LL/token: -7.4753
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;8810&gt; LL/token: -7.48084
+&lt;8820&gt; LL/token: -7.47728
+&lt;8830&gt; LL/token: -7.47889
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;8840&gt; LL/token: -7.4753
 
 0	0.02	motor activation somatosensory stimulation fmri cortex hand contralateral primary sii cortical sensory tms ipsilateral secondary si body tactile limb 
 1	0.02	visual modality sensory auditory integration cortices regions modalities tactile cross selective multimodal touch anatomically unimodal selectively modal crossmodal speed 
@@ -11348,16 +11368,15 @@ total tokens: 59901
 49	0.02	motor premotor movement movements areas area sma hand supplementary finger cortex control task primary tapping action pre cerebellum preparation 
 
 &lt;8850&gt; LL/token: -7.48164
+&lt;8860&gt; LL/token: -7.47699
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;8860&gt; LL/token: -7.47699
-&lt;8870&gt; LL/token: -7.47435
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;8870&gt; LL/token: -7.47435
 &lt;8880&gt; LL/token: -7.47375
+&lt;8890&gt; LL/token: -7.47835
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;8890&gt; LL/token: -7.47835
-
-0	0.02	activation motor somatosensory hand fmri stimulation primary cortex contralateral sii cortical ipsilateral tms tactile secondary body sensory limb representation 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	activation motor somatosensory hand fmri stimulation primary cortex contralateral sii cortical ipsilateral tms tactile secondary body sensory limb representation 
 1	0.02	modality visual sensory integration modalities auditory tactile cortices selective cross multimodal touch unimodal somatosensory effects speed modal crossmodal anatomically 
 2	0.02	cortex functional activation brain regions activity imaging subjects fmri results magnetic parietal activated areas resonance neural left study frontal 
 3	0.02	attention attentional spatial response selection target attended stimuli visuospatial dimension attending shifts selectively top conflict shift required reaction locations 
@@ -11410,14 +11429,13 @@ total tokens: 59901
 
 &lt;8900&gt; LL/token: -7.47854
 &lt;8910&gt; LL/token: -7.47549
+&lt;8920&gt; LL/token: -7.47704
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;8920&gt; LL/token: -7.47704
-&lt;8930&gt; LL/token: -7.47759
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;8930&gt; LL/token: -7.47759
 &lt;8940&gt; LL/token: -7.48087
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	motor activation somatosensory hand stimulation cortex fmri sii primary contralateral sensory representation ipsilateral tms secondary tactile input si body 
+
+0	0.02	motor activation somatosensory hand stimulation cortex fmri sii primary contralateral sensory representation ipsilateral tms secondary tactile input si body 
 1	0.02	visual modality sensory integration modalities auditory tactile cortices cross selective multimodal touch unimodal cortical speed influences modal crossmodal selectively 
 2	0.02	cortex functional activation regions brain activity imaging subjects fmri parietal magnetic areas results resonance left neural activated frontal study 
 3	0.02	attention attentional spatial response selection target attended stimuli dimension levels shifts peripheral attending selectively factors conflict shift top reaction 
@@ -11469,12 +11487,14 @@ total tokens: 59901
 49	0.02	motor premotor movement areas movements area sma finger supplementary task cortex control cerebellum hand tapping contralateral pre primary action 
 
 &lt;8950&gt; LL/token: -7.47891
-&lt;8960&gt; LL/token: -7.47672
-&lt;8970&gt; LL/token: -7.47383
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;8980&gt; LL/token: -7.47221
-&lt;8990&gt; LL/token: -7.47391
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;8960&gt; LL/token: -7.47672
+&lt;8970&gt; LL/token: -7.47383
+&lt;8980&gt; LL/token: -7.47221
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;8990&gt; LL/token: -7.47391
 
 0	0.02	activation motor somatosensory stimulation cortex hand fmri primary contralateral sii ipsilateral tms sensory secondary cortical si body representation tactile 
 1	0.02	modality visual sensory integration modalities tactile auditory cortices cross multimodal touch unimodal somatosensory stimulation effects modal crossmodal selectively anatomically 
@@ -11528,16 +11548,15 @@ total tokens: 59901
 49	0.02	motor premotor areas movement movements area sma cortex supplementary finger control hand cerebellum task pre primary tapping action contralateral 
 
 &lt;9000&gt; LL/token: -7.4771
+&lt;9010&gt; LL/token: -7.4782
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;9010&gt; LL/token: -7.4782
-&lt;9020&gt; LL/token: -7.47256
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;9020&gt; LL/token: -7.47256
 &lt;9030&gt; LL/token: -7.47817
+&lt;9040&gt; LL/token: -7.48183
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;9040&gt; LL/token: -7.48183
-
-0	0.02	motor activation somatosensory hand stimulation fmri primary sii cortex contralateral ipsilateral sensory tms si movements body secondary training limb 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	motor activation somatosensory hand stimulation fmri primary sii cortex contralateral ipsilateral sensory tms si movements body secondary training limb 
 1	0.02	modality visual sensory integration modalities tactile auditory cortices anatomically cross multimodal touch unimodal modal crossmodal effects speed signals inputs 
 2	0.02	cortex functional activation regions activity brain imaging fmri areas magnetic parietal results subjects activated resonance neural frontal study left 
 3	0.02	attention attentional spatial response attended selection target dimension selectively shifts attending top factors conflict shift peripheral levels targets locations 
@@ -11590,14 +11609,13 @@ total tokens: 59901
 
 &lt;9050&gt; LL/token: -7.47734
 &lt;9060&gt; LL/token: -7.47941
+&lt;9070&gt; LL/token: -7.47847
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;9070&gt; LL/token: -7.47847
-&lt;9080&gt; LL/token: -7.47766
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;9080&gt; LL/token: -7.47766
 &lt;9090&gt; LL/token: -7.47357
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	motor activation somatosensory cortex fmri stimulation hand primary contralateral sii ipsilateral tms secondary sensory tactile movements body limb si 
+
+0	0.02	motor activation somatosensory cortex fmri stimulation hand primary contralateral sii ipsilateral tms secondary sensory tactile movements body limb si 
 1	0.02	modality visual sensory modalities integration auditory cortices tactile effects cross multimodal touch unimodal selective modal crossmodal anatomically somatosensory selectively 
 2	0.02	cortex functional activation activity brain regions imaging subjects fmri areas magnetic results activated resonance parietal neural frontal study related 
 3	0.02	attention attentional spatial response target selection attended dimension selectively attending shifts levels conflict shift top dimensions targets enhanced visuospatial 
@@ -11649,12 +11667,14 @@ total tokens: 59901
 49	0.02	motor premotor movement movements areas area sma cortex control supplementary finger hand cerebellum action tapping pre dorsal primary task 
 
 &lt;9100&gt; LL/token: -7.47977
-&lt;9110&gt; LL/token: -7.47658
-&lt;9120&gt; LL/token: -7.47915
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;9130&gt; LL/token: -7.47932
-&lt;9140&gt; LL/token: -7.47782
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;9110&gt; LL/token: -7.47658
+&lt;9120&gt; LL/token: -7.47915
+&lt;9130&gt; LL/token: -7.47932
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;9140&gt; LL/token: -7.47782
 
 0	0.02	motor activation somatosensory fmri hand primary contralateral stimulation cortex cortical sii ipsilateral sensory tms secondary movements si body tactile 
 1	0.02	modality visual sensory auditory modalities tactile integration cortices multimodal touch anatomically cross unimodal modal crossmodal effects selectively driving selective 
@@ -11708,16 +11728,15 @@ total tokens: 59901
 49	0.02	motor premotor movement movements areas sma area finger supplementary cortex control task hand cerebellum tapping pre action sequential primary 
 
 &lt;9150&gt; LL/token: -7.48239
+&lt;9160&gt; LL/token: -7.48122
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;9160&gt; LL/token: -7.48122
-&lt;9170&gt; LL/token: -7.47838
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;9170&gt; LL/token: -7.47838
 &lt;9180&gt; LL/token: -7.48212
+&lt;9190&gt; LL/token: -7.48095
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;9190&gt; LL/token: -7.48095
-
-0	0.02	motor activation somatosensory hand fmri stimulation primary cortex contralateral cortical sii sensory ipsilateral movements tms secondary representation body tactile 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	motor activation somatosensory hand fmri stimulation primary cortex contralateral cortical sii sensory ipsilateral movements tms secondary representation body tactile 
 1	0.02	modality visual sensory modalities auditory integration tactile cortices cross multimodal touch unimodal somatosensory effects modal crossmodal selectively anatomically selective 
 2	0.02	cortex functional activation regions brain activity imaging fmri results magnetic subjects parietal activated areas resonance frontal neural left study 
 3	0.02	attention attentional spatial response target attended selection dimension attending levels shifts factors peripheral selectively top conflict locations dimensions shift 
@@ -11770,14 +11789,13 @@ total tokens: 59901
 
 &lt;9200&gt; LL/token: -7.47273
 &lt;9210&gt; LL/token: -7.4766
+&lt;9220&gt; LL/token: -7.47422
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;9220&gt; LL/token: -7.47422
-&lt;9230&gt; LL/token: -7.47819
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;9230&gt; LL/token: -7.47819
 &lt;9240&gt; LL/token: -7.48283
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	activation motor somatosensory cortex hand stimulation fmri contralateral primary sii movements ipsilateral si tms secondary tactile sensory body sensorimotor 
+
+0	0.02	activation motor somatosensory cortex hand stimulation fmri contralateral primary sii movements ipsilateral si tms secondary tactile sensory body sensorimotor 
 1	0.02	modality sensory visual modalities auditory tactile integration cortices multimodal somatosensory touch effects cross unimodal selective anatomically modal crossmodal selectively 
 2	0.02	cortex functional activation regions brain activity imaging fmri parietal results subjects magnetic areas resonance activated frontal neural study left 
 3	0.02	attention attentional spatial response selection attended target dimension attending factors shifts shift selectively conflict dimensions levels peripheral targets top 
@@ -11829,12 +11847,14 @@ total tokens: 59901
 49	0.02	motor premotor movement areas movements area sma supplementary hand finger control tapping task primary performed cortex contralateral cerebellum pre 
 
 &lt;9250&gt; LL/token: -7.47941
-&lt;9260&gt; LL/token: -7.4735
-&lt;9270&gt; LL/token: -7.48038
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;9280&gt; LL/token: -7.4831
-&lt;9290&gt; LL/token: -7.48089
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;9260&gt; LL/token: -7.4735
+&lt;9270&gt; LL/token: -7.48038
+&lt;9280&gt; LL/token: -7.4831
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;9290&gt; LL/token: -7.48089
 
 0	0.02	activation motor somatosensory stimulation hand primary contralateral cortex fmri sensory ipsilateral sii tms representation si movements body limb secondary 
 1	0.02	modality sensory modalities tactile auditory visual integration effects cross cortices multimodal somatosensory touch unimodal anatomically modal crossmodal selectively modulation 
@@ -11888,16 +11908,15 @@ total tokens: 59901
 49	0.02	motor premotor movement area areas movements sma supplementary finger hand task control cerebellum cortex tapping action pre contralateral primary 
 
 &lt;9300&gt; LL/token: -7.47622
+&lt;9310&gt; LL/token: -7.47551
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;9310&gt; LL/token: -7.47551
-&lt;9320&gt; LL/token: -7.47502
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;9320&gt; LL/token: -7.47502
 &lt;9330&gt; LL/token: -7.46831
+&lt;9340&gt; LL/token: -7.47124
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;9340&gt; LL/token: -7.47124
-
-0	0.02	motor activation somatosensory stimulation hand fmri primary cortex contralateral sii movements ipsilateral tms secondary representation body sensory limb sensorimotor 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	motor activation somatosensory stimulation hand fmri primary cortex contralateral sii movements ipsilateral tms secondary representation body sensory limb sensorimotor 
 1	0.02	modality visual sensory modalities auditory tactile integration somatosensory cortices multimodal touch cross unimodal anatomically interactions modal crossmodal effects selective 
 2	0.02	cortex functional activation regions brain activity fmri imaging results parietal magnetic frontal resonance subjects activated areas left neural related 
 3	0.02	attention attentional spatial response attended selection target selectively dimension levels attending factors shifts sensory shift conflict targets top locations 
@@ -11950,14 +11969,13 @@ total tokens: 59901
 
 &lt;9350&gt; LL/token: -7.47349
 &lt;9360&gt; LL/token: -7.47422
+&lt;9370&gt; LL/token: -7.47488
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;9370&gt; LL/token: -7.47488
-&lt;9380&gt; LL/token: -7.46806
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;9380&gt; LL/token: -7.46806
 &lt;9390&gt; LL/token: -7.46976
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	activation motor somatosensory stimulation cortex fmri primary hand contralateral sii sensory ipsilateral tms si movements secondary tactile representation body 
+
+0	0.02	activation motor somatosensory stimulation cortex fmri primary hand contralateral sii sensory ipsilateral tms si movements secondary tactile representation body 
 1	0.02	modality visual sensory auditory modalities cortices integration tactile cross multimodal touch unimodal selective anatomically early modal crossmodal somatosensory speed 
 2	0.02	cortex functional activation brain regions fmri activity imaging results parietal magnetic subjects resonance frontal left activated areas neural study 
 3	0.02	attention attentional spatial response selection attended target stimuli dimension shifts attending shift conflict required selectively targets levels visuospatial factors 
@@ -12009,12 +12027,14 @@ total tokens: 59901
 49	0.02	motor premotor movement areas movements area sma hand supplementary finger task control cortex pre tapping cerebellum action primary contralateral 
 
 &lt;9400&gt; LL/token: -7.4668
-&lt;9410&gt; LL/token: -7.47281
-&lt;9420&gt; LL/token: -7.47203
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;9430&gt; LL/token: -7.46886
-&lt;9440&gt; LL/token: -7.47384
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;9410&gt; LL/token: -7.47281
+&lt;9420&gt; LL/token: -7.47203
+&lt;9430&gt; LL/token: -7.46886
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;9440&gt; LL/token: -7.47384
 
 0	0.02	motor activation somatosensory hand stimulation fmri cortex primary sii contralateral secondary tms ipsilateral tactile si body limb movements representation 
 1	0.02	modality sensory visual auditory modalities integration tactile cortices cross multimodal touch unimodal somatosensory selective found modal crossmodal selectively speed 
@@ -12068,16 +12088,15 @@ total tokens: 59901
 49	0.02	motor premotor movement areas movements area sma supplementary finger task control hand cerebellum performed tapping pre action contralateral primary 
 
 &lt;9450&gt; LL/token: -7.47175
+&lt;9460&gt; LL/token: -7.47775
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;9460&gt; LL/token: -7.47775
-&lt;9470&gt; LL/token: -7.47601
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;9470&gt; LL/token: -7.47601
 &lt;9480&gt; LL/token: -7.47508
+&lt;9490&gt; LL/token: -7.47487
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;9490&gt; LL/token: -7.47487
-
-0	0.02	motor activation stimulation somatosensory cortex hand primary contralateral fmri sii movements secondary tms sensory ipsilateral body tactile si training 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	motor activation stimulation somatosensory cortex hand primary contralateral fmri sii movements secondary tms sensory ipsilateral body tactile si training 
 1	0.02	modality sensory auditory modalities tactile integration cortices somatosensory visual cross multimodal touch unimodal interactions effects modal crossmodal speed selective 
 2	0.02	cortex functional activation regions brain activity fmri imaging results magnetic areas activated resonance parietal neural frontal subjects study left 
 3	0.02	attention attentional spatial target response attended selection dimension levels attending shifts selectively top conflict shift targets factors locations sensory 
@@ -12130,14 +12149,13 @@ total tokens: 59901
 
 &lt;9500&gt; LL/token: -7.46921
 &lt;9510&gt; LL/token: -7.47012
+&lt;9520&gt; LL/token: -7.4682
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;9520&gt; LL/token: -7.4682
-&lt;9530&gt; LL/token: -7.47415
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;9530&gt; LL/token: -7.47415
 &lt;9540&gt; LL/token: -7.46943
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	motor activation somatosensory cortex hand stimulation fmri primary contralateral sii tms ipsilateral si secondary movements body representation limb sensory 
+
+0	0.02	motor activation somatosensory cortex hand stimulation fmri primary contralateral sii tms ipsilateral si secondary movements body representation limb sensory 
 1	0.02	modality sensory visual modalities tactile integration cortices auditory somatosensory cross multimodal touch unimodal selectively modal crossmodal speed modulation interactions 
 2	0.02	cortex functional activation regions brain activity fmri imaging results parietal areas magnetic activated resonance neural left frontal subjects study 
 3	0.02	attention attentional spatial response attended target selection dimension factors attending shifts sensory top conflict shift selectively visuospatial targets locations 
@@ -12189,12 +12207,14 @@ total tokens: 59901
 49	0.02	motor premotor movement area areas movements sma task finger hand cortex supplementary control cerebellum tapping pre contralateral action condition 
 
 &lt;9550&gt; LL/token: -7.47475
-&lt;9560&gt; LL/token: -7.47237
-&lt;9570&gt; LL/token: -7.47368
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;9580&gt; LL/token: -7.47394
-&lt;9590&gt; LL/token: -7.47332
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;9560&gt; LL/token: -7.47237
+&lt;9570&gt; LL/token: -7.47368
+&lt;9580&gt; LL/token: -7.47394
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;9590&gt; LL/token: -7.47332
 
 0	0.02	motor activation somatosensory stimulation cortex hand fmri primary contralateral sii ipsilateral sensory secondary tms si movements tactile representation body 
 1	0.02	visual modality sensory auditory modalities integration tactile cortices effects early multimodal touch unimodal cross selective modal crossmodal interactions somatosensory 
@@ -12248,16 +12268,15 @@ total tokens: 59901
 49	0.02	motor premotor movement areas movements area cortex sma supplementary finger hand cerebellum task pre tapping action control primary contralateral 
 
 &lt;9600&gt; LL/token: -7.47449
+&lt;9610&gt; LL/token: -7.47641
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;9610&gt; LL/token: -7.47641
-&lt;9620&gt; LL/token: -7.47708
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;9620&gt; LL/token: -7.47708
 &lt;9630&gt; LL/token: -7.4724
+&lt;9640&gt; LL/token: -7.4789
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;9640&gt; LL/token: -7.4789
-
-0	0.02	motor activation cortex somatosensory hand stimulation fmri primary contralateral sii ipsilateral tms secondary movements representation si body input tactile 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	motor activation cortex somatosensory hand stimulation fmri primary contralateral sii ipsilateral tms secondary movements representation si body input tactile 
 1	0.02	modality visual sensory modalities tactile cortices integration somatosensory auditory effects cross anatomically multimodal touch unimodal selective modal crossmodal interactions 
 2	0.02	cortex activation functional regions brain activity fmri imaging magnetic results areas frontal parietal resonance activated subjects study neural left 
 3	0.02	attention attentional spatial response target selection sensory top attended dimension factors levels shifts selectively conflict required attending shift reaction 
@@ -12310,14 +12329,13 @@ total tokens: 59901
 
 &lt;9650&gt; LL/token: -7.47654
 &lt;9660&gt; LL/token: -7.46919
+&lt;9670&gt; LL/token: -7.47925
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;9670&gt; LL/token: -7.47925
-&lt;9680&gt; LL/token: -7.47647
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;9680&gt; LL/token: -7.47647
 &lt;9690&gt; LL/token: -7.47168
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	motor somatosensory activation hand primary stimulation cortex sii fmri contralateral tms ipsilateral sensory secondary si tactile limb input body 
+
+0	0.02	motor somatosensory activation hand primary stimulation cortex sii fmri contralateral tms ipsilateral sensory secondary si tactile limb input body 
 1	0.02	modality visual sensory modalities tactile integration auditory cross multimodal touch unimodal cortices effects selective modal crossmodal anatomically inputs influences 
 2	0.02	cortex activation functional regions brain fmri imaging activity magnetic frontal results parietal subjects activated resonance areas neural left study 
 3	0.02	attention attentional spatial target selection attended dimension selectively levels shifts factors top visuospatial conflict shift peripheral sensory reaction demanding 
@@ -12369,12 +12387,14 @@ total tokens: 59901
 49	0.02	motor premotor movement movements area areas sma supplementary finger cortex hand control pre task cerebellum tapping action sensorimotor contralateral 
 
 &lt;9700&gt; LL/token: -7.4753
-&lt;9710&gt; LL/token: -7.47216
-&lt;9720&gt; LL/token: -7.47264
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;9730&gt; LL/token: -7.46885
-&lt;9740&gt; LL/token: -7.47167
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;9710&gt; LL/token: -7.47216
+&lt;9720&gt; LL/token: -7.47264
+&lt;9730&gt; LL/token: -7.46885
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;9740&gt; LL/token: -7.47167
 
 0	0.02	motor activation somatosensory cortex stimulation hand fmri primary contralateral sii ipsilateral sensory tms si movements limb body tactile representation 
 1	0.02	modality visual sensory modalities auditory tactile cortices integration effects cross multimodal touch selective anatomically unimodal somatosensory modal crossmodal interactions 
@@ -12428,16 +12448,15 @@ total tokens: 59901
 49	0.02	motor premotor areas movement movements area cortex task sma supplementary finger hand control cerebellum tapping pre action contralateral primary 
 
 &lt;9750&gt; LL/token: -7.4696
+&lt;9760&gt; LL/token: -7.4737
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;9760&gt; LL/token: -7.4737
-&lt;9770&gt; LL/token: -7.4701
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;9770&gt; LL/token: -7.4701
 &lt;9780&gt; LL/token: -7.46971
+&lt;9790&gt; LL/token: -7.47145
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;9790&gt; LL/token: -7.47145
-
-0	0.02	motor activation somatosensory cortex stimulation hand fmri contralateral primary sii ipsilateral sensory movements tms representation limb si secondary tactile 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	motor activation somatosensory cortex stimulation hand fmri contralateral primary sii ipsilateral sensory movements tms representation limb si secondary tactile 
 1	0.02	modality visual sensory modalities tactile auditory integration cortices anatomically somatosensory cross multimodal touch unimodal selectively selective regions modal crossmodal 
 2	0.02	cortex functional activation brain regions fmri activity imaging results magnetic parietal frontal activated resonance subjects areas left neural study 
 3	0.02	attention attentional spatial attended selection target dimension selectively shifts shift modulation top sensory attending levels conflict types sensitive visuospatial 
@@ -12490,14 +12509,13 @@ total tokens: 59901
 
 &lt;9800&gt; LL/token: -7.48022
 &lt;9810&gt; LL/token: -7.47194
+&lt;9820&gt; LL/token: -7.47482
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;9820&gt; LL/token: -7.47482
-&lt;9830&gt; LL/token: -7.47383
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;9830&gt; LL/token: -7.47383
 &lt;9840&gt; LL/token: -7.47241
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	motor activation somatosensory stimulation fmri hand primary contralateral sii sensory ipsilateral cortex tms secondary movements si tactile limb input 
+
+0	0.02	motor activation somatosensory stimulation fmri hand primary contralateral sii sensory ipsilateral cortex tms secondary movements si tactile limb input 
 1	0.02	modality sensory visual modalities auditory tactile integration cortices cross multimodal touch unimodal somatosensory found anatomically interactions modal effects crossmodal 
 2	0.02	cortex functional activation regions brain fmri imaging activity results parietal magnetic frontal activated resonance subjects areas neural study left 
 3	0.02	attention attentional spatial cortex attended target selection selectively dimension shifts shift modulation attending factors levels conflict top peripheral locations 
@@ -12549,12 +12567,14 @@ total tokens: 59901
 49	0.02	motor premotor areas movement area movements sma supplementary cortex finger hand task control cerebellum pre tapping action preparation contralateral 
 
 &lt;9850&gt; LL/token: -7.47367
-&lt;9860&gt; LL/token: -7.47457
-&lt;9870&gt; LL/token: -7.46953
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;9880&gt; LL/token: -7.46823
-&lt;9890&gt; LL/token: -7.47353
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;9860&gt; LL/token: -7.47457
+&lt;9870&gt; LL/token: -7.46953
+&lt;9880&gt; LL/token: -7.46823
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;9890&gt; LL/token: -7.47353
 
 0	0.02	motor activation somatosensory cortex stimulation hand sii contralateral primary fmri tms ipsilateral secondary sensory limb tactile representation body passive 
 1	0.02	modality visual sensory auditory modalities cortices tactile integration somatosensory cross touch unimodal multimodal effects modal crossmodal anatomically convergence signals 
@@ -12608,16 +12628,15 @@ total tokens: 59901
 49	0.02	motor premotor movement areas movements area sma supplementary finger hand control pre task cerebellum tapping cortex action primary contralateral 
 
 &lt;9900&gt; LL/token: -7.47358
+&lt;9910&gt; LL/token: -7.47016
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;9910&gt; LL/token: -7.47016
-&lt;9920&gt; LL/token: -7.47185
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;9920&gt; LL/token: -7.47185
 &lt;9930&gt; LL/token: -7.47498
+&lt;9940&gt; LL/token: -7.4711
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;9940&gt; LL/token: -7.4711
-
-0	0.02	motor activation somatosensory hand stimulation contralateral sii primary cortex fmri ipsilateral tms sensory representation tactile si limb movements body 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	motor activation somatosensory hand stimulation contralateral sii primary cortex fmri ipsilateral tms sensory representation tactile si limb movements body 
 1	0.02	modality sensory visual modalities tactile integration auditory cortices somatosensory found cross multimodal touch unimodal anatomically modal crossmodal selective selectively 
 2	0.02	cortex functional activation regions brain fmri imaging activity results parietal frontal magnetic activated resonance areas subjects left neural study 
 3	0.02	attention attentional spatial attended target cortex selection selectively dimension levels shifts attending modulation top conflict shift enhanced factors peripheral 
@@ -12670,14 +12689,13 @@ total tokens: 59901
 
 &lt;9950&gt; LL/token: -7.47207
 &lt;9960&gt; LL/token: -7.47009
+&lt;9970&gt; LL/token: -7.47191
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;9970&gt; LL/token: -7.47191
-&lt;9980&gt; LL/token: -7.47261
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;9980&gt; LL/token: -7.47261
 &lt;9990&gt; LL/token: -7.47542
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	motor activation somatosensory stimulation hand cortex primary fmri contralateral sii ipsilateral tms si secondary tactile limb body input representation 
+
+0	0.02	motor activation somatosensory stimulation hand cortex primary fmri contralateral sii ipsilateral tms si secondary tactile limb body input representation 
 1	0.02	modality sensory cortices modalities tactile integration auditory visual cross effects multimodal somatosensory touch unimodal interactions modal crossmodal anatomically selective 
 2	0.02	cortex functional activation regions brain fmri activity imaging results parietal magnetic activated resonance subjects frontal left areas neural study 
 3	0.02	attention attentional spatial attended selection target dimension selectively attending shifts top levels conflict shift factors peripheral modulation locations targets 
@@ -12730,7 +12748,7 @@ total tokens: 59901
 
 &lt;10000&gt; LL/token: -7.47348
 
-Total time: 1 minutes 19 seconds
+Total time: 1 minutes 25 seconds
 </pre></div>
 </div>
 </div>

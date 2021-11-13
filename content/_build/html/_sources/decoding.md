@@ -23,9 +23,16 @@ import os
 import matplotlib.pyplot as plt
 from myst_nb import glue
 from nilearn import plotting
+from repo2data.repo2data import Repo2Data
 
-DATA_DIR = os.path.abspath("../data")
+# Install the data if running locally, or points to cached data if running on neurolibre
+DATA_REQ_FILE = os.path.join("../binder/data_requirement.json")
 FIG_DIR = os.path.abspath("../images")
+
+# Download data
+repo2data = Repo2Data(DATA_REQ_FILE)
+data_path = repo2data.install()
+data_path = os.path.join(data_path[0], "data")
 ```
 
 ```{code-cell} ipython3
@@ -33,12 +40,12 @@ FIG_DIR = os.path.abspath("../images")
 import nimare
 from nimare import meta
 
-dset_file = os.path.join(DATA_DIR, "neurosynth_dataset_first500_with_mkda_ma.pkl.gz")
+dset_file = os.path.join(data_path, "neurosynth_dataset_first500_with_mkda_ma.pkl.gz")
 kern = meta.kernel.MKDAKernel(memory_limit=None)
-target_folder = os.path.join(DATA_DIR, "neurosynth_dataset_maps")
+target_folder = os.path.join(data_path, "neurosynth_dataset_maps")
 if not os.path.isfile(dset_file):
     neurosynth_dset_first500 = nimare.dataset.Dataset.load(
-        os.path.join(DATA_DIR, "neurosynth_dataset_first500.pkl.gz")
+        os.path.join(data_path, "neurosynth_dataset_first500.pkl.gz")
     )
     os.makedirs(target_folder, exist_ok=True)
     neurosynth_dset_first500.update_path(target_folder)
@@ -48,7 +55,7 @@ else:
     neurosynth_dset_first500 = nimare.dataset.Dataset.load(dset_file)
     neurosynth_dset_first500.update_path(target_folder)
 
-neurosynth_dset = nimare.dataset.Dataset.load(os.path.join(DATA_DIR, "neurosynth_dataset.pkl.gz"))
+neurosynth_dset = nimare.dataset.Dataset.load(os.path.join(data_path, "neurosynth_dataset.pkl.gz"))
 
 # Collect features for decoding
 # We use any features that appear in >10% of studies and <90%.
@@ -64,8 +71,8 @@ target_features = target_features[target_features]
 target_features = target_features.index.values
 print(f"{len(target_features)} features selected.", flush=True)
 
-continuous_map = os.path.join(DATA_DIR, "map_to_decode.nii.gz")
-amygdala_roi = os.path.join(DATA_DIR, "amygdala_roi.nii.gz")
+continuous_map = os.path.join(data_path, "map_to_decode.nii.gz")
+amygdala_roi = os.path.join(data_path, "amygdala_roi.nii.gz")
 amygdala_ids = neurosynth_dset_first500.get_studies_by_mask(amygdala_roi)
 ```
 

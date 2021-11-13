@@ -12,12 +12,18 @@ import os
 import matplotlib.pyplot as plt
 from myst_nb import glue
 from nilearn import plotting
+from repo2data.repo2data import Repo2Data
 
 import nimare
 
-# Define where data files will be located
-DATA_DIR = os.path.abspath("../data")
+# Install the data if running locally, or points to cached data if running on neurolibre
+DATA_REQ_FILE = os.path.join("../binder/data_requirement.json")
 FIG_DIR = os.path.abspath("../images")
+
+# Download data
+repo2data = Repo2Data(DATA_REQ_FILE)
+data_path = repo2data.install()
+data_path = os.path.join(data_path[0], "data")
 
 
 # Image-based meta-analysis (IBMA) methods perform a meta-analysis directly on brain images (either whole-brain or partial) rather than on extracted peaks.
@@ -54,7 +60,7 @@ FIG_DIR = os.path.abspath("../images")
 from nimare import dataset, extract
 from nimare.tests.utils import get_test_data_path
 
-dset_dir = extract.download_nidm_pain(data_dir=DATA_DIR, overwrite=False)
+dset_dir = extract.download_nidm_pain(data_dir=data_path, overwrite=False)
 dset_file = os.path.join(get_test_data_path(), "nidm_pain_dset.json")
 img_dset = dataset.Dataset(dset_file)
 
