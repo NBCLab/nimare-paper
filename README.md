@@ -20,8 +20,8 @@ In addition to the Python requirements, the LDA topic model section requires Jav
 
 ### 2. Download data files
 
-The data files necessary to execute the code in this book are located at https://osf.io/t8h9c/.
-When building the book, you will need to have a copy of these files in a `data/nimare-paper/googledrive` folder within the local repository clone.
+The data files necessary to execute the code in this book are located at https://drive.google.com/uc?id=1LgscyPqnka163hu5mdJ1X7UvX3IvXDJ2 in a zip file.
+You can either download these files to a `data/` folder at the same level as `content/`, _or_ you can rely on `repo2data` to download the files automatically during the book build.
 
 ### 3. Build the book
 
@@ -31,7 +31,7 @@ To build:
 jupyter-book build content/
 ```
 
-The book is configured to re-run all executable code if outputs are missing (`execute_notebooks` is set to `"auto"`).
+The book is configured to rely on the pre-generated cache (`execute_notebooks` is set to `"cache"`).
 If you want to build from scratch, then you can either change that setting in `content/_config.yml` or you can run `jupyter-book clean content/` before building.
 
 ## Notes
