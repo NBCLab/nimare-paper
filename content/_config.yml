@@ -36,7 +36,7 @@ html:
 # Launch button settings
 launch_buttons:
   notebook_interface        : classic  # The interface interactive links will activate ["classic", "jupyterlab"]
-  binderhub_url             : https://mybinder.org  # The URL of the BinderHub (e.g., https://mybinder.org)
+  binderhub_url             : https://binder.conp.cloud # The URL of the test Neurolibre BinderHub
   thebe                     : false  # Add a thebe button to pages (requires the repository to run on Binder)
 
 repository:
