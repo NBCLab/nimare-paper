@@ -289,6 +289,7 @@ The model will include 50 topics, in which the spatial distribution for each top
 {py:class}`nimare.annotate.gclda.GCLDAModel` generally takes a very long time to train.
 
 Below, we show how one would train a GCLDA model.
+However, we will load a pretrained model instead of actually training the model.
 ```
 
 ```python
