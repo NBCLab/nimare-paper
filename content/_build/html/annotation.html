@@ -1,12 +1,761 @@
-Labels = 
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Automated Annotation &#8212; NiMARE: Neuroimaging Meta-Analysis Research Environment</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/myfile.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="_static/nimare_favicon.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Meta-Analytic Functional Decoding" href="decoding.html" />
+    <link rel="prev" title="Meta-Analytic Coactivation Modeling" href="macm.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/nimare_overview.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">NiMARE: Neuroimaging Meta-Analysis Research Environment</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="abstract.html">
+   Abstract
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  About NiMARE
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="introduction.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="overview.html">
+   NiMARE Overview
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Meta-Analytic Databases and Resources
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="resources.html">
+   External Meta-Analytic Resources
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Meta-Analyses in NiMARE
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="cbma.html">
+   Coordinate-Based Meta-Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ibma.html">
+   Image-Based Meta-Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="correction.html">
+   Multiple Comparisons Correction
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Other Meta-Analytic Approaches
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="about_derivative_analyses.html">
+   Derivative Analyses
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="subtraction.html">
+   Meta-Analytic Subtraction Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="macm.html">
+   Meta-Analytic Coactivation Modeling
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Automated Annotation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="decoding.html">
+   Meta-Analytic Functional Decoding
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Concluding Thoughts
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="future_directions.html">
+   Future Directions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="summary.html">
+   Summary
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="acknowledgements.html">
+   Acknowledgements
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="bibliography.html">
+   References
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Appendix
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="appendices/brainmap_decoding.html">
+   Appendix I: BrainMap Discrete Decoding
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="appendices/neurosynth_decoding.html">
+   Appendix II: Neurosynth Discrete Decoding
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="_sources/annotation.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/annotation.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/NBCLab/nimare-paper"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/NBCLab/nimare-paper/issues/new?title=Issue%20on%20page%20%2Fannotation.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://binder.conp.cloud/v2/gh/NBCLab/nimare-paper/master?urlpath=tree/content/annotation.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#n-gram-term-extraction">
+   N-gram term extraction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cognitive-atlas-term-extraction-and-hierarchical-expansion">
+   Cognitive Atlas term extraction and hierarchical expansion
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#latent-dirichlet-allocation">
+   Latent Dirichlet allocation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#generalized-correspondence-latent-dirichlet-allocation">
+   Generalized correspondence latent Dirichlet allocation
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="automated-annotation">
+<h1>Automated Annotation<a class="headerlink" href="#automated-annotation" title="Permalink to this headline">¶</a></h1>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># First, import the necessary modules and functions</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
+<span class="kn">from</span> <span class="nn">nilearn</span> <span class="kn">import</span> <span class="n">image</span><span class="p">,</span> <span class="n">plotting</span>
+<span class="kn">from</span> <span class="nn">repo2data.repo2data</span> <span class="kn">import</span> <span class="n">Repo2Data</span>
+
+<span class="kn">import</span> <span class="nn">nimare</span>
+
+<span class="c1"># Install the data if running locally, or points to cached data if running on neurolibre</span>
+<span class="n">DATA_REQ_FILE</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;../binder/data_requirement.json&quot;</span><span class="p">)</span>
+<span class="n">FIG_DIR</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;../images&quot;</span><span class="p">)</span>
+
+<span class="c1"># Download data</span>
+<span class="n">repo2data</span> <span class="o">=</span> <span class="n">Repo2Data</span><span class="p">(</span><span class="n">DATA_REQ_FILE</span><span class="p">)</span>
+<span class="n">data_path</span> <span class="o">=</span> <span class="n">repo2data</span><span class="o">.</span><span class="n">install</span><span class="p">()</span>
+<span class="n">data_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_path</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;data&quot;</span><span class="p">)</span>
+
+<span class="c1"># Now, load the Dataset we will use in this chapter</span>
+<span class="n">neurosynth_dset_first_500</span> <span class="o">=</span> <span class="n">nimare</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">load</span><span class="p">(</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_path</span><span class="p">,</span> <span class="s2">&quot;neurosynth_dataset_first500.pkl.gz&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/datasets/__init__.py:90: FutureWarning: Fetchers from the nilearn.datasets module will be updated in version 0.9 to return python strings instead of bytes and Pandas dataframes instead of Numpy arrays.
+  &quot;Numpy arrays.&quot;, FutureWarning)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---- repo2data starting ----
+/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/repo2data
+Config from file :
+../binder/data_requirement.json
+Destination:
+./../data/nimare-paper
+
+Info : ./../data/nimare-paper already downloaded
+</pre></div>
+</div>
+</div>
+</div>
+<p>As mentioned in the discussion of BrainMap (<a class="reference internal" href="resources.html#content-resources-brainmap"><span class="std std-ref">BrainMap</span></a>), manually annotating studies in a meta-analytic database can be a time-consuming and labor-intensive process.
+To facilitate more efficient (albeit lower-quality) annotation, NiMARE supports a number of automated annotation approaches.
+These include <a class="reference internal" href="#content-annotation-ngram"><span class="std std-ref">N-gram term extraction</span></a>, <a class="reference internal" href="#content-annotation-cogat"><span class="std std-ref">Cognitive Atlas term extraction and hierarchical expansion</span></a>, <a class="reference internal" href="#content-annotation-lda"><span class="std std-ref">Latent Dirichlet allocation</span></a>, and <a class="reference internal" href="#content-annotation-gclda"><span class="std std-ref">Generalized correspondence latent Dirichlet allocation</span></a>.</p>
+<p>NiMARE users may download abstracts from PubMed as long as study identifiers in the <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> correspond to PubMed IDs (as in Neurosynth and NeuroQuery).
+Abstracts are much more easily accessible than full article text, so most annotation methods in NiMARE rely on them.</p>
+<p>Below, we use the function <a class="reference external" href="https://nimare.readthedocs.io/en/0.0.10/generated/nimare.extract.download_abstracts.html#nimare.extract.download_abstracts" title="(in NiMARE v0.0.10+0.ge8814c2.dirty)"><code class="xref py py-func docutils literal notranslate"><span class="pre">nimare.extract.download_abstracts()</span></code></a> to download abstracts for the Neurosynth <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>.
+This will attempt to extract metadata about each study in the <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> from PubMed, and then add the abstract available on Pubmed to the <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>’s <code class="docutils literal notranslate"><span class="pre">texts</span></code> attribute, under a new column names “abstract”.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nimare</span> <span class="kn">import</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">extract</span>
+
+<span class="c1"># In order to run this code on nodes without internet access,</span>
+<span class="c1"># we need this if statement</span>
+<span class="n">dataset_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_path</span><span class="p">,</span> <span class="s2">&quot;neurosynth_dataset_first500_with_abstracts.pkl.gz&quot;</span><span class="p">)</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">dataset_file</span><span class="p">):</span>
+    <span class="n">neurosynth_dset_first_500</span> <span class="o">=</span> <span class="n">extract</span><span class="o">.</span><span class="n">download_abstracts</span><span class="p">(</span>
+        <span class="n">neurosynth_dset_first_500</span><span class="p">,</span>
+        <span class="n">email</span><span class="o">=</span><span class="s2">&quot;example@email.com&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">neurosynth_dset_first_500</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">dataset_file</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">neurosynth_dset_first_500</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">dataset_file</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="n-gram-term-extraction">
+<span id="content-annotation-ngram"></span><h2>N-gram term extraction<a class="headerlink" href="#n-gram-term-extraction" title="Permalink to this headline">¶</a></h2>
+<p><strong>N-gram term extraction</strong> refers to the vectorization of text into contiguous sets of words that can be counted as individual tokens.
+The upper limit on the number of words in these tokens is set by the user.</p>
+<p>NiMARE has the function <a class="reference external" href="https://nimare.readthedocs.io/en/0.0.10/generated/nimare.annotate.text.generate_counts.html#nimare.annotate.text.generate_counts" title="(in NiMARE v0.0.10+0.ge8814c2.dirty)"><code class="xref py py-func docutils literal notranslate"><span class="pre">nimare.annotate.text.generate_counts()</span></code></a> to extract n-grams from text.
+This method produces either term counts or term frequency- inverse document frequency (tf-idf) values for each of the studies in a <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nimare</span> <span class="kn">import</span> <span class="n">annotate</span>
+
+<span class="n">counts_df</span> <span class="o">=</span> <span class="n">annotate</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">generate_counts</span><span class="p">(</span>
+    <span class="n">neurosynth_dset_first_500</span><span class="o">.</span><span class="n">texts</span><span class="p">,</span>
+    <span class="n">text_column</span><span class="o">=</span><span class="s2">&quot;abstract&quot;</span><span class="p">,</span>
+    <span class="n">tfidf</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">min_df</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">max_df</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/sklearn/utils/deprecation.py:87: FutureWarning: Function get_feature_names is deprecated; get_feature_names is deprecated in 1.0 and will be removed in 1.2. Please use get_feature_names_out instead.
+  warnings.warn(msg, category=FutureWarning)
+</pre></div>
+</div>
+</div>
+</div>
+<p>This term count <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> will be used later, to train a GCLDA model.</p>
+</div>
+<div class="section" id="cognitive-atlas-term-extraction-and-hierarchical-expansion">
+<span id="content-annotation-cogat"></span><h2>Cognitive Atlas term extraction and hierarchical expansion<a class="headerlink" href="#cognitive-atlas-term-extraction-and-hierarchical-expansion" title="Permalink to this headline">¶</a></h2>
+<p><strong>Cognitive Atlas term extraction</strong> leverages the structured nature of the Cognitive Atlas in order to extract counts for individual terms and their synonyms in the ontology, as well as to apply hierarchical expansion to these counts based on the relationships specified between terms.
+This method produces both basic term counts and expanded term counts based on the weights applied to different relationship types present in the ontology.</p>
+<p>First, we must use <a class="reference external" href="https://nimare.readthedocs.io/en/0.0.10/generated/nimare.extract.download_cognitive_atlas.html#nimare.extract.download_cognitive_atlas" title="(in NiMARE v0.0.10+0.ge8814c2.dirty)"><code class="xref py py-func docutils literal notranslate"><span class="pre">nimare.extract.download_cognitive_atlas()</span></code></a> to download the current version of the Cognitive Atlas ontology.
+This includes both information about individual terms in the ontology and asserted relationships between those terms.</p>
+<p>NiMARE will automatically attempt to extrapolate likely alternate forms of each term in the ontology, in order to make extraction easier.
+For an example, see <a class="reference internal" href="#tbl-table-cogat-forms"><span class="std std-numref">Fig. 11</span></a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cogatlas</span> <span class="o">=</span> <span class="n">extract</span><span class="o">.</span><span class="n">download_cognitive_atlas</span><span class="p">(</span><span class="n">data_dir</span><span class="o">=</span><span class="n">data_path</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">id_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">cogatlas</span><span class="p">[</span><span class="s2">&quot;ids&quot;</span><span class="p">])</span>
+<span class="n">rel_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">cogatlas</span><span class="p">[</span><span class="s2">&quot;relationships&quot;</span><span class="p">])</span>
+
+<span class="n">cogat_counts_df</span><span class="p">,</span> <span class="n">rep_text_df</span> <span class="o">=</span> <span class="n">annotate</span><span class="o">.</span><span class="n">cogat</span><span class="o">.</span><span class="n">extract_cogat</span><span class="p">(</span>
+    <span class="n">neurosynth_dset_first_500</span><span class="o">.</span><span class="n">texts</span><span class="p">,</span> <span class="n">id_df</span><span class="p">,</span> <span class="n">text_column</span><span class="o">=</span><span class="s2">&quot;abstract&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.extract.utils:Dataset found in ./../data/nimare-paper/data/cognitive_atlas
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">example_forms</span> <span class="o">=</span> <span class="n">id_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">id_df</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;dot motion task&quot;</span><span class="p">][[</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;alias&quot;</span><span class="p">]]</span>
+<span class="n">glue</span><span class="p">(</span><span class="s2">&quot;table_cogat_forms&quot;</span><span class="p">,</span> <span class="n">example_forms</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>name</th>
+      <th>alias</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>803</th>
+      <td>trm_4f244ad7dcde7</td>
+      <td>dot motion task</td>
+      <td>random-dot motion task</td>
+    </tr>
+    <tr>
+      <th>1563</th>
+      <td>trm_4f244ad7dcde7</td>
+      <td>dot motion task</td>
+      <td>dot motion task</td>
+    </tr>
+    <tr>
+      <th>1589</th>
+      <td>trm_4f244ad7dcde7</td>
+      <td>dot motion task</td>
+      <td>dot-motion task</td>
+    </tr>
+    <tr>
+      <th>1595</th>
+      <td>trm_4f244ad7dcde7</td>
+      <td>dot motion task</td>
+      <td>moving-dot task</td>
+    </tr>
+    <tr>
+      <th>2039</th>
+      <td>trm_4f244ad7dcde7</td>
+      <td>dot motion task</td>
+      <td>rdm task</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="figure align-center" id="tbl-table-cogat-forms">
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>name</th>
+      <th>alias</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>803</th>
+      <td>trm_4f244ad7dcde7</td>
+      <td>dot motion task</td>
+      <td>random-dot motion task</td>
+    </tr>
+    <tr>
+      <th>1563</th>
+      <td>trm_4f244ad7dcde7</td>
+      <td>dot motion task</td>
+      <td>dot motion task</td>
+    </tr>
+    <tr>
+      <th>1589</th>
+      <td>trm_4f244ad7dcde7</td>
+      <td>dot motion task</td>
+      <td>dot-motion task</td>
+    </tr>
+    <tr>
+      <th>1595</th>
+      <td>trm_4f244ad7dcde7</td>
+      <td>dot motion task</td>
+      <td>moving-dot task</td>
+    </tr>
+    <tr>
+      <th>2039</th>
+      <td>trm_4f244ad7dcde7</td>
+      <td>dot motion task</td>
+      <td>rdm task</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+<p class="caption"><span class="caption-number">Fig. 11 </span><span class="caption-text">An example of alternate forms characterized by the Cognitive Atlas and extrapolated by NiMARE.
+Certain alternate forms (i.e., synonyms) are specified within the Cognitive Atlas, while others are inferred automatically by NiMARE according to certain rules (e.g., removing parentheses).</span><a class="headerlink" href="#tbl-table-cogat-forms" title="Permalink to this image">¶</a></p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a weighting scheme.</span>
+<span class="c1"># In this scheme, observed terms will also count toward any</span>
+<span class="c1"># hypernyms (isKindOf), holonyms (isPartOf), and parent categories (inCategory)</span>
+<span class="c1"># as well.</span>
+<span class="n">weights</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;isKindOf&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;isPartOf&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;inCategory&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
+<span class="n">expanded_df</span> <span class="o">=</span> <span class="n">annotate</span><span class="o">.</span><span class="n">cogat</span><span class="o">.</span><span class="n">expand_counts</span><span class="p">(</span><span class="n">cogat_counts_df</span><span class="p">,</span> <span class="n">rel_df</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span>
+
+<span class="c1"># Sort by total count and reduce for better visualization</span>
+<span class="n">series</span> <span class="o">=</span> <span class="n">expanded_df</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">series</span> <span class="o">=</span> <span class="n">series</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">series</span> <span class="o">=</span> <span class="n">series</span><span class="p">[</span><span class="n">series</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">columns</span> <span class="o">=</span> <span class="n">series</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Raw counts</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">16</span><span class="p">),</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">pos</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span>
+    <span class="n">cogat_counts_df</span><span class="p">[</span><span class="n">columns</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+    <span class="n">aspect</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+    <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">vmax</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Counts Before Expansion&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Study&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Cognitive Atlas Term&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+
+<span class="c1"># Expanded counts</span>
+<span class="n">pos</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span>
+    <span class="n">expanded_df</span><span class="p">[</span><span class="n">columns</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+    <span class="n">aspect</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+    <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">vmax</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Counts After Expansion&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Study&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Cognitive Atlas Term&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">glue</span><span class="p">(</span><span class="s2">&quot;figure_cogat_expansion&quot;</span><span class="p">,</span> <span class="n">fig</span><span class="p">,</span> <span class="n">display</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/annotation_12_1.png" src="_images/annotation_12_1.png" />
+</div>
+</div>
+<div class="figure align-center" id="figure-cogat-expansion">
+<div class="cell_output docutils container">
+<img alt="_images/annotation_12_0.png" src="_images/annotation_12_0.png" />
+</div>
+<p class="caption"><span class="caption-number">Fig. 12 </span><span class="caption-text">The effect of hierarchical expansion on Cognitive Atlas term counts from abstracts in Neurosynth’s first 500 papers. There are too many terms and studies to show individual labels.</span><a class="headerlink" href="#figure-cogat-expansion" title="Permalink to this image">¶</a></p>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here we delete the recent variables for the sake of reducing memory usage</span>
+<span class="k">del</span> <span class="n">cogatlas</span><span class="p">,</span> <span class="n">id_df</span><span class="p">,</span> <span class="n">rel_df</span><span class="p">,</span> <span class="n">cogat_counts_df</span><span class="p">,</span> <span class="n">rep_text_df</span>
+<span class="k">del</span> <span class="n">weights</span><span class="p">,</span> <span class="n">expanded_df</span><span class="p">,</span> <span class="n">series</span><span class="p">,</span> <span class="n">columns</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="latent-dirichlet-allocation">
+<span id="content-annotation-lda"></span><h2>Latent Dirichlet allocation<a class="headerlink" href="#latent-dirichlet-allocation" title="Permalink to this headline">¶</a></h2>
+<p><strong>Latent Dirichlet allocation</strong> (LDA) <span id="id1">[<a class="reference internal" href="bibliography.html#id28">Blei <em>et al.</em>, 2003</a>]</span> was originally combined with meta-analytic neuroimaging data in <span id="id2">Poldrack <em>et al.</em> [<a class="reference internal" href="bibliography.html#id4">2012</a>]</span>.
+LDA is a generative topic model which, for a text corpus, builds probability distributions across documents and words.
+In LDA, each document is considered a mixture of topics.
+This works under the assumption that each document was constructed by first randomly selecting a topic based on the document’s probability distribution across topics, and then randomly selecting a word from that topic based on the topic’s probability distribution across words.
+While this is not a useful generative model for producing documents, LDA is able to discern cohesive topics of related words.
+<span id="id3">Poldrack <em>et al.</em> [<a class="reference internal" href="bibliography.html#id4">2012</a>]</span> were able to apply LDA to full texts from neuroimaging articles in order to develop cognitive neuroscience-related topics and to run topic-wise meta-analyses.
+This method produces two sets of probability distributions: (1) the probability of a word given topic and (2) the probability of a topic given article.</p>
+<p>NiMARE uses a Python-based interface to the MALLET Java library <span id="id4">[<a class="reference internal" href="bibliography.html#id96">McCallum, 2002</a>]</span> to implement LDA.
+NiMARE will download MALLET automatically, when necessary.</p>
+<p>Here, we train an LDA model (<a class="reference external" href="https://nimare.readthedocs.io/en/0.0.10/generated/nimare.annotate.lda.LDAModel.html#nimare.annotate.lda.LDAModel" title="(in NiMARE v0.0.10+0.ge8814c2.dirty)"><code class="xref py py-class docutils literal notranslate"><span class="pre">nimare.annotate.lda.LDAModel</span></code></a>) on the first 500 studies of the Neurosynth <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>, with 50 topics in the model.</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nimare</span> <span class="kn">import</span> <span class="n">annotate</span>
+
+<span class="n">lda_model</span> <span class="o">=</span> <span class="n">annotate</span><span class="o">.</span><span class="n">lda</span><span class="o">.</span><span class="n">LDAModel</span><span class="p">(</span>
+    <span class="n">neurosynth_dset_first_500</span><span class="o">.</span><span class="n">texts</span><span class="p">,</span>
+    <span class="n">text_column</span><span class="o">=</span><span class="s2">&quot;abstract&quot;</span><span class="p">,</span>
+    <span class="n">n_topics</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+    <span class="n">n_iters</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Fit the model</span>
+<span class="n">lda_model</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.extract.utils:Dataset created in /home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/mallet__temp
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.extract.utils:Dataset created in /home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/mallet_model
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.annotate.lda:Texts folder not found. Creating text files...
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.annotate.lda:Generating topics...
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Labels = 
    /home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/mallet_model/texts
-Coded LDA: 50 topics, 6 topic bits, 111111 topic mask
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Data loaded.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Coded LDA: 50 topics, 6 topic bits, 111111 topic mask
 max tokens: 244
 total tokens: 59901
-<10> LL/token: -8.72054
-<20> LL/token: -8.4684
-<30> LL/token: -8.36595
-<40> LL/token: -8.29643
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;10&gt; LL/token: -8.72054
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;20&gt; LL/token: -8.4684
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;30&gt; LL/token: -8.36595
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;40&gt; LL/token: -8.29643
 
 0	0.02	subjects cortex somatosensory stimulation fmri cortical study primary individual tactile evoked magnetic early blind investigated central mpfc found area 
 1	0.02	priming attention faces stimulation early spatial passive observed vestibular modulated decreases regions multimodal touch swallowing greater simple lexical potential 
@@ -59,11 +808,15 @@ total tokens: 59901
 48	0.02	activated information neural response role mri suggest subjects perception auditory performance gyrus regions important sustained frequencies behavior show transient 
 49	0.02	motor movements areas activation premotor bilateral fmri control cerebellum actions results contralateral sma functional pre magnetic anterior phase inferior 
 
-<50> LL/token: -8.24466
-<60> LL/token: -8.20697
-<70> LL/token: -8.15966
-<80> LL/token: -8.12487
-<90> LL/token: -8.10972
+&lt;50&gt; LL/token: -8.24466
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;60&gt; LL/token: -8.20697
+&lt;70&gt; LL/token: -8.15966
+&lt;80&gt; LL/token: -8.12487
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;90&gt; LL/token: -8.10972
 
 0	0.02	cortex somatosensory stimulation cortical subjects fmri functional early primary activation tactile study individual evoked blind investigated found magnetic area 
 1	0.02	attention spatial regions priming sensory modulated observed stimulus attended passive stimulation vestibular rate duration touch found swallowing decreases early 
@@ -116,13 +869,16 @@ total tokens: 59901
 48	0.02	information performance role neural response activated suggest subjects regions transient mri frequencies behavior visuospatial show suggesting patterns sustained plays 
 49	0.02	motor movements areas activation premotor control sma fmri cerebellum actions bilateral pre contralateral results primary magnetic single ganglia coordination 
 
-<100> LL/token: -8.08919
-<110> LL/token: -8.06538
-<120> LL/token: -8.04734
-<130> LL/token: -8.047
-<140> LL/token: -8.02452
-
-0	0.02	cortex fmri stimulation somatosensory activation subjects cortical functional early study individual primary observed magnetic tactile area blind subject evoked 
+&lt;100&gt; LL/token: -8.08919
+&lt;110&gt; LL/token: -8.06538
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;120&gt; LL/token: -8.04734
+&lt;130&gt; LL/token: -8.047
+&lt;140&gt; LL/token: -8.02452
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	cortex fmri stimulation somatosensory activation subjects cortical functional early study individual primary observed magnetic tactile area blind subject evoked 
 1	0.02	attention regions priming sensory modulated spatial attended passive repetition decreases modality found vestibular duration rate touch swallowing influences driven 
 2	0.02	activity brain left regions inferior imaging subjects functional frontal cortex temporal involved bilateral magnetic medial found area task resonance 
 3	0.02	attention response attentional visual interference anterior selection cortex regions gyrus activations control increased search selectively events induced inhibition contrast 
@@ -173,11 +929,13 @@ total tokens: 59901
 48	0.02	response information role subjects activated frequencies performance control visuospatial suggest transient mri behavior neural functions auditory patterns investigated hz 
 49	0.02	motor movements activation movement areas premotor sma control cerebellum actions contralateral pre fmri sequence bilateral primary sequential ganglia pattern 
 
-<150> LL/token: -8.01612
-<160> LL/token: -7.99928
-<170> LL/token: -7.99287
-<180> LL/token: -7.98215
-<190> LL/token: -7.97106
+&lt;150&gt; LL/token: -8.01612
+&lt;160&gt; LL/token: -7.99928
+&lt;170&gt; LL/token: -7.99287
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;180&gt; LL/token: -7.98215
+&lt;190&gt; LL/token: -7.97106
 
 0	0.02	cortex fmri somatosensory stimulation subjects cortical activation early functional area study tactile primary observed found individual magnetic subject blind 
 1	0.02	attention regions sensory priming spatial modulated attended modality repetition passive vestibular enhanced reductions event extrastriate duration multimodal touch stimulation 
@@ -230,11 +988,15 @@ total tokens: 59901
 48	0.02	activated performance information response subjects role frequencies auditory cortical suggest transient hz perception visuospatial functions behavior patterns control distributed 
 49	0.02	motor movements movement area activation areas premotor sma finger control contralateral pre cerebellum actions fmri results primary bilateral sequence 
 
-<200> LL/token: -7.96207
-<210> LL/token: -7.95543
-<220> LL/token: -7.94974
-<230> LL/token: -7.93207
-<240> LL/token: -7.93446
+&lt;200&gt; LL/token: -7.96207
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;210&gt; LL/token: -7.95543
+&lt;220&gt; LL/token: -7.94974
+&lt;230&gt; LL/token: -7.93207
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;240&gt; LL/token: -7.93446
 
 0	0.02	cortex activation fmri somatosensory stimulation cortical functional subjects study primary early magnetic tactile individual area observed blind investigated subject 
 1	0.02	attention priming regions sensory spatial modality modulated attended found passive repetition selective extrastriate vestibular reductions enhanced stimulus duration touch 
@@ -287,13 +1049,16 @@ total tokens: 59901
 48	0.02	information subjects activated performance role response suggest frequencies auditory cortical transient hz visuospatial functions control behavior neural mri sustained 
 49	0.02	motor movements movement premotor area areas control activation sma finger supplementary contralateral cerebellum pre actions primary tapping fmri bilateral 
 
-<250> LL/token: -7.92866
-<260> LL/token: -7.92816
-<270> LL/token: -7.92433
-<280> LL/token: -7.91451
-<290> LL/token: -7.90918
-
-0	0.02	cortex activation fmri functional cortical somatosensory stimulation primary subjects early found resonance tactile individual study magnetic area observed blind 
+&lt;250&gt; LL/token: -7.92866
+&lt;260&gt; LL/token: -7.92816
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;270&gt; LL/token: -7.92433
+&lt;280&gt; LL/token: -7.91451
+&lt;290&gt; LL/token: -7.90918
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	cortex activation fmri functional cortical somatosensory stimulation primary subjects early found resonance tactile individual study magnetic area observed blind 
 1	0.02	attention spatial priming sensory regions attended repetition found modality passive modulated extrastriate high reductions duration modalities touch stimulation effects 
 2	0.02	regions activity cortex bilateral imaging functional temporal inferior frontal brain resonance magnetic left involved found subjects prefrontal area superior 
 3	0.02	attention response attentional visual interference anterior target cortex selection induced control events inhibition search gyrus significantly dimension increased current 
@@ -344,11 +1109,13 @@ total tokens: 59901
 48	0.02	information activated role response subjects suggest performance cortical neural frequencies transient visuospatial hz comparisons behavior auditory show presented patterns 
 49	0.02	motor movements premotor areas movement activation area control sma finger supplementary contralateral actions hand pre bilateral cerebellum tapping fmri 
 
-<300> LL/token: -7.90057
-<310> LL/token: -7.91289
-<320> LL/token: -7.90066
-<330> LL/token: -7.89594
-<340> LL/token: -7.90229
+&lt;300&gt; LL/token: -7.90057
+&lt;310&gt; LL/token: -7.91289
+&lt;320&gt; LL/token: -7.90066
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;330&gt; LL/token: -7.89594
+&lt;340&gt; LL/token: -7.90229
 
 0	0.02	cortex fmri activation somatosensory stimulation functional primary cortical early study magnetic individual tactile found subjects blind observed stimulus investigated 
 1	0.02	attention priming sensory regions spatial modality passive modulated attended repetition reductions modalities found anatomically modulation event touch swallowing influences 
@@ -401,11 +1168,15 @@ total tokens: 59901
 48	0.02	response information suggest activated role control frequencies subjects performance temporal cortical hypothesis transient hz functions auditory patterns level behavior 
 49	0.02	motor movements movement premotor hand areas area sma finger activation control supplementary contralateral cerebellum pre tapping actions sequence ganglia 
 
-<350> LL/token: -7.89414
-<360> LL/token: -7.88724
-<370> LL/token: -7.88793
-<380> LL/token: -7.88501
-<390> LL/token: -7.87837
+&lt;350&gt; LL/token: -7.89414
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;360&gt; LL/token: -7.88724
+&lt;370&gt; LL/token: -7.88793
+&lt;380&gt; LL/token: -7.88501
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;390&gt; LL/token: -7.87837
 
 0	0.02	cortex fmri somatosensory stimulation activation cortical primary magnetic functional individual resonance subjects early tactile found blind study evoked investigated 
 1	0.02	attention sensory priming regions modality attended passive modulated spatial repetition found modalities anatomically extrastriate reductions multimodal touch unimodal modulation 
@@ -458,13 +1229,16 @@ total tokens: 59901
 48	0.02	response information performance subjects role activated frequencies temporal hypothesis patterns hz cortical neural suggest control suggests visuospatial auditory functions 
 49	0.02	motor movements areas premotor hand movement activation area sma control finger supplementary contralateral actions pre cerebellum tapping ipsilateral primary 
 
-<400> LL/token: -7.87695
-<410> LL/token: -7.87084
-<420> LL/token: -7.87385
-<430> LL/token: -7.86931
-<440> LL/token: -7.85843
-
-0	0.02	activation cortex fmri functional somatosensory stimulation cortical magnetic early primary study individual found resonance stimulus secondary tactile blind subject 
+&lt;400&gt; LL/token: -7.87695
+&lt;410&gt; LL/token: -7.87084
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;420&gt; LL/token: -7.87385
+&lt;430&gt; LL/token: -7.86931
+&lt;440&gt; LL/token: -7.85843
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	activation cortex fmri functional somatosensory stimulation cortical magnetic early primary study individual found resonance stimulus secondary tactile blind subject 
 1	0.02	attention sensory priming regions modality repetition attended modulated modalities spatial passive tactile effects reductions anatomically found multimodal touch unimodal 
 2	0.02	left activity regions temporal inferior frontal imaging magnetic gyrus functional bilateral resonance superior fmri cortex brain found observed medial 
 3	0.02	attention response attentional selection target anterior visual interference cortex network control frontal search required inhibition relative general including dimension 
@@ -515,11 +1289,13 @@ total tokens: 59901
 48	0.02	information activated response role cortical frequencies subjects suggest suggesting hypothesis medial temporal hz behavior control suggests performance comparisons transient 
 49	0.02	motor movements areas premotor movement hand area activation control sma finger supplementary contralateral actions primary pre tapping cerebellum sensory 
 
-<450> LL/token: -7.84998
-<460> LL/token: -7.84946
-<470> LL/token: -7.84592
-<480> LL/token: -7.84635
-<490> LL/token: -7.84402
+&lt;450&gt; LL/token: -7.84998
+&lt;460&gt; LL/token: -7.84946
+&lt;470&gt; LL/token: -7.84592
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;480&gt; LL/token: -7.84635
+&lt;490&gt; LL/token: -7.84402
 
 0	0.02	cortex fmri activation functional stimulation cortical somatosensory early primary individual magnetic tactile found stimulus study resonance secondary subject blind 
 1	0.02	regions attention priming modality sensory spatial attended modalities modulated effects passive posterior found repetition reductions touch anatomically unimodal decreases 
@@ -572,11 +1348,15 @@ total tokens: 59901
 48	0.02	information role activated response subjects suggest performance medial cortical neural hz hypothesis visuospatial temporal transient recruited functions suggests features 
 49	0.02	motor movements premotor movement areas hand area control activation sma finger contralateral supplementary actions cerebellum primary tapping pre sensory 
 
-<500> LL/token: -7.84669
-<510> LL/token: -7.83976
-<520> LL/token: -7.83618
-<530> LL/token: -7.84474
-<540> LL/token: -7.83418
+&lt;500&gt; LL/token: -7.84669
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;510&gt; LL/token: -7.83976
+&lt;520&gt; LL/token: -7.83618
+&lt;530&gt; LL/token: -7.84474
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;540&gt; LL/token: -7.83418
 
 0	0.02	fmri cortex activation functional stimulation magnetic cortical somatosensory early found resonance study primary stimulus subjects imaging area individual secondary 
 1	0.02	attention priming modality sensory regions modalities attended passive specific effects spatial repetition modulated posterior tactile found reductions anatomically respond 
@@ -629,13 +1409,16 @@ total tokens: 59901
 48	0.02	information activated role response suggest performance medial hz subjects suggests visuospatial transient cortical functions level hypothesis show investigated types 
 49	0.02	motor movements areas movement premotor hand area sma finger activation control supplementary contralateral actions cerebellum primary bilateral tapping pre 
 
-<550> LL/token: -7.82647
-<560> LL/token: -7.83529
-<570> LL/token: -7.82741
-<580> LL/token: -7.83207
-<590> LL/token: -7.8259
-
-0	0.02	cortex fmri functional activation stimulation cortical somatosensory magnetic early subjects primary contralateral resonance stimulus study tactile found individual subject 
+&lt;550&gt; LL/token: -7.82647
+&lt;560&gt; LL/token: -7.83529
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;570&gt; LL/token: -7.82741
+&lt;580&gt; LL/token: -7.83207
+&lt;590&gt; LL/token: -7.8259
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	cortex fmri functional activation stimulation cortical somatosensory magnetic early subjects primary contralateral resonance stimulus study tactile found individual subject 
 1	0.02	regions sensory modality priming attention repetition specific passive modalities attended modulated spatial found effects reductions attentional anatomically tactile touch 
 2	0.02	left frontal regions imaging inferior temporal activity cortex gyrus bilateral magnetic functional subjects resonance neural superior brain involved found 
 3	0.02	attention response attentional interference visual selection control cortex anterior target selectively search dimension color inhibition relative network shifts events 
@@ -686,11 +1469,13 @@ total tokens: 59901
 48	0.02	information activated response role performance suggest visuospatial hz cortical neural suggests medial transient behavior recruited hypothesis functions types true 
 49	0.02	motor movements premotor movement areas hand area sma finger activation control supplementary cerebellum actions primary pre tapping ipsilateral sensorimotor 
 
-<600> LL/token: -7.82532
-<610> LL/token: -7.82294
-<620> LL/token: -7.82057
-<630> LL/token: -7.82003
-<640> LL/token: -7.8142
+&lt;600&gt; LL/token: -7.82532
+&lt;610&gt; LL/token: -7.82294
+&lt;620&gt; LL/token: -7.82057
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;630&gt; LL/token: -7.82003
+&lt;640&gt; LL/token: -7.8142
 
 0	0.02	fmri cortex activation functional stimulation somatosensory cortical early study primary magnetic imaging contralateral stimulus found observed individual tactile subject 
 1	0.02	regions modality priming sensory repetition attention spatial modalities passive posterior attended specific modulated effects reductions found tactile anatomically touch 
@@ -743,11 +1528,15 @@ total tokens: 59901
 48	0.02	information response suggest role performance activated hz behavior transient addition recruited cortical medial features visuospatial test true comparisons suggested 
 49	0.02	motor movements premotor areas movement area hand activation sma control finger supplementary primary cerebellum sensorimotor actions tapping sensory results 
 
-<650> LL/token: -7.81149
-<660> LL/token: -7.80902
-<670> LL/token: -7.80816
-<680> LL/token: -7.80113
-<690> LL/token: -7.80491
+&lt;650&gt; LL/token: -7.81149
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;660&gt; LL/token: -7.80902
+&lt;670&gt; LL/token: -7.80816
+&lt;680&gt; LL/token: -7.80113
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;690&gt; LL/token: -7.80491
 
 0	0.02	activation fmri functional cortex cortical stimulation somatosensory magnetic imaging study resonance subjects found primary individual stimulus early tactile ipsilateral 
 1	0.02	regions sensory attention priming modality repetition modalities modulated attended effects found specific reductions tactile anatomically passive unimodal attentional touch 
@@ -800,13 +1589,16 @@ total tokens: 59901
 48	0.02	information role activated suggest response performance behavior suggests subjects cortical transient medial test addition recruited preferentially true basis hypothesis 
 49	0.02	motor movements areas premotor hand movement area sma finger activation supplementary actions control primary contralateral sensorimotor cerebellum tapping sensory 
 
-<700> LL/token: -7.7976
-<710> LL/token: -7.7984
-<720> LL/token: -7.79981
-<730> LL/token: -7.79056
-<740> LL/token: -7.79037
-
-0	0.02	cortex fmri activation functional stimulation cortical somatosensory magnetic imaging found primary subjects early individual resonance stimulus tactile study area 
+&lt;700&gt; LL/token: -7.7976
+&lt;710&gt; LL/token: -7.7984
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;720&gt; LL/token: -7.79981
+&lt;730&gt; LL/token: -7.79056
+&lt;740&gt; LL/token: -7.79037
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	cortex fmri activation functional stimulation cortical somatosensory magnetic imaging found primary subjects early individual resonance stimulus tactile study area 
 1	0.02	regions modality sensory priming attention specific repetition modalities found modulated attended reductions effects anatomically tactile multimodal touch unimodal influences 
 2	0.02	left regions inferior activity temporal frontal functional imaging magnetic resonance brain bilateral cortex subjects gyrus fmri neural superior medial 
 3	0.02	attention response attentional frontal control selection interference anterior target visual inhibition search selectively feature dimension targets general shifts color 
@@ -857,11 +1649,13 @@ total tokens: 59901
 48	0.02	information response activated role suggest performance behavior subjects medial transient recruited visuospatial cortical hypothesis neural suggests true addition comparisons 
 49	0.02	motor movements premotor hand areas movement area sma finger supplementary actions control activation contralateral sensorimotor primary cerebellum pre tapping 
 
-<750> LL/token: -7.7976
-<760> LL/token: -7.79083
-<770> LL/token: -7.78783
-<780> LL/token: -7.78644
-<790> LL/token: -7.79008
+&lt;750&gt; LL/token: -7.7976
+&lt;760&gt; LL/token: -7.79083
+&lt;770&gt; LL/token: -7.78783
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;780&gt; LL/token: -7.78644
+&lt;790&gt; LL/token: -7.79008
 
 0	0.02	cortex functional fmri activation cortical stimulation somatosensory magnetic imaging primary study subjects resonance found observed brain sii ipsilateral tactile 
 1	0.02	regions modality priming attention sensory specific effects repetition modalities attended found reductions tactile anatomically modulated multimodal touch unimodal respond 
@@ -914,11 +1708,15 @@ total tokens: 59901
 48	0.02	information performance suggest response behavior role related activated cortical transient medial neural functions preferentially test suggests visuospatial recruited true 
 49	0.02	motor movements hand premotor areas area movement control sma finger supplementary actions contralateral activation primary sensorimotor activated cerebellum pre 
 
-<800> LL/token: -7.78317
-<810> LL/token: -7.7805
-<820> LL/token: -7.78899
-<830> LL/token: -7.78463
-<840> LL/token: -7.77751
+&lt;800&gt; LL/token: -7.78317
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;810&gt; LL/token: -7.7805
+&lt;820&gt; LL/token: -7.78899
+&lt;830&gt; LL/token: -7.78463
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;840&gt; LL/token: -7.77751
 
 0	0.02	fmri activation cortex functional cortical stimulation somatosensory magnetic resonance subjects found study primary early sii stimulus representation ipsilateral present 
 1	0.02	regions modality attention sensory priming specific modalities repetition effects found reductions tactile attended modulated cortical multimodal touch anatomically unimodal 
@@ -971,13 +1769,16 @@ total tokens: 59901
 48	0.02	information role response suggest activated performance related behavior medial visuospatial transient recruited show suggests addition preferentially measured test true 
 49	0.02	motor movements premotor hand area areas movement sma finger supplementary activation control results activated actions primary sensorimotor contralateral performed 
 
-<850> LL/token: -7.7794
-<860> LL/token: -7.77775
-<870> LL/token: -7.77746
-<880> LL/token: -7.77198
-<890> LL/token: -7.78083
-
-0	0.02	fmri activation cortex cortical somatosensory functional stimulation subjects magnetic resonance contralateral stimulus primary found ipsilateral imaging sii early input 
+&lt;850&gt; LL/token: -7.7794
+&lt;860&gt; LL/token: -7.77775
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;870&gt; LL/token: -7.77746
+&lt;880&gt; LL/token: -7.77198
+&lt;890&gt; LL/token: -7.78083
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0	0.02	fmri activation cortex cortical somatosensory functional stimulation subjects magnetic resonance contralateral stimulus primary found ipsilateral imaging sii early input 
 1	0.02	regions priming modality specific attention sensory repetition modalities found tactile attended effects cortical reductions modulated multimodal touch anatomically decreases 
 2	0.02	left inferior regions gyrus bilateral frontal imaging temporal brain magnetic resonance functional fmri neural superior activity subjects involved cortex 
 3	0.02	attention response attentional frontal selection interference control anterior target inhibition visual search selectively color targets feature shifts peripheral planning 
@@ -1028,11 +1829,13 @@ total tokens: 59901
 48	0.02	information suggest response role behavior performance activated medial transient visuospatial recruited test suggests addition cortical suggested true show typically 
 49	0.02	motor movements areas premotor hand area movement sma finger supplementary control activation actions primary sensorimotor results contralateral action sensory 
 
-<900> LL/token: -7.77682
-<910> LL/token: -7.78077
-<920> LL/token: -7.7777
-<930> LL/token: -7.7722
-<940> LL/token: -7.77478
+&lt;900&gt; LL/token: -7.77682
+&lt;910&gt; LL/token: -7.78077
+&lt;920&gt; LL/token: -7.7777
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;930&gt; LL/token: -7.7722
+&lt;940&gt; LL/token: -7.77478
 
 0	0.02	cortex fmri activation functional stimulation somatosensory subjects cortical magnetic found resonance si primary imaging early sii study brain contralateral 
 1	0.02	sensory regions modality priming specific attention modalities attended cortical tactile effects found repetition reductions anatomically multimodal decreases unimodal touch 
@@ -1085,11 +1888,15 @@ total tokens: 59901
 48	0.02	information role suggest activated response behavior performance cortical show transient medial familiar play test network visuospatial hypothesis preferentially true 
 49	0.02	motor movements area areas hand premotor movement sma finger supplementary activation actions sensorimotor primary control cerebellum contralateral results tapping 
 
-<950> LL/token: -7.7696
-<960> LL/token: -7.77166
-<970> LL/token: -7.77158
-<980> LL/token: -7.77325
-<990> LL/token: -7.77361
+&lt;950&gt; LL/token: -7.7696
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;960&gt; LL/token: -7.77166
+&lt;970&gt; LL/token: -7.77158
+&lt;980&gt; LL/token: -7.77325
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;990&gt; LL/token: -7.77361
 
 0	0.02	activation cortex fmri functional stimulation somatosensory cortical magnetic resonance primary found si subjects stimulus sii present study contralateral blind 
 1	0.02	regions priming modality attention sensory specific modalities attended cortical repetition tactile effects reductions found decreases modulated multimodal touch unimodal 
@@ -1142,6 +1949,948 @@ total tokens: 59901
 48	0.02	information response role activated performance suggest behavior show medial transient visuospatial test recruited plays preferentially familiar distinct true basis 
 49	0.02	motor movements hand areas premotor area movement sma finger supplementary actions control sensorimotor performed primary tapping activation cerebellum action 
 
-<1000> LL/token: -7.76947
+&lt;1000&gt; LL/token: -7.76947
 
 Total time: 10 seconds
+</pre></div>
+</div>
+</div>
+</div>
+<p>The most important products of training the <code class="docutils literal notranslate"><span class="pre">LDAModel</span></code> object are its <code class="docutils literal notranslate"><span class="pre">p_word_g_topic_df_</span></code> and <code class="docutils literal notranslate"><span class="pre">p_topic_g_doc_df_</span></code> attributes.
+The <code class="docutils literal notranslate"><span class="pre">p_word_g_topic_df_</span></code> attribute is a <code class="docutils literal notranslate"><span class="pre">pandas</span></code> <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> in which each row corresponds to a topic and each column corresponds to a term (n-gram) extracted from the <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>’s texts.
+The cells contain weights indicating the probability of selecting the term given that the topic was already selected.
+The <code class="docutils literal notranslate"><span class="pre">p_topic_g_doc_df_</span></code> attribute is also a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>.
+In this one, each row corresponds to a study in the <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> and each column is a topic.
+The cell values indicate the probability of selecting a topic when contructing the given study.
+Practically, this indicates the relative proportion with which the topic describes that study.</p>
+<p>First, we will reorganize the DataFrame a bit to show the top ten terms for each of the first ten topics.</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lda_df</span> <span class="o">=</span> <span class="n">lda_model</span><span class="o">.</span><span class="n">p_word_g_topic_df_</span><span class="o">.</span><span class="n">T</span>
+<span class="n">column_names</span> <span class="o">=</span> <span class="p">{</span><span class="n">c</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Topic </span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">lda_df</span><span class="o">.</span><span class="n">columns</span><span class="p">}</span>
+<span class="n">lda_df</span> <span class="o">=</span> <span class="n">lda_df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">column_names</span><span class="p">)</span>
+<span class="n">temp_df</span> <span class="o">=</span> <span class="n">lda_df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">lda_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">lda_df</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">lda_df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Term&quot;</span>
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">lda_df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+    <span class="n">top_ten_terms</span> <span class="o">=</span> <span class="n">temp_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">()[:</span><span class="mi">10</span><span class="p">]</span>
+    <span class="n">lda_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">top_ten_terms</span>
+
+<span class="n">lda_df</span> <span class="o">=</span> <span class="n">lda_df</span><span class="p">[</span><span class="n">lda_df</span><span class="o">.</span><span class="n">columns</span><span class="p">[:</span><span class="mi">10</span><span class="p">]]</span>
+<span class="n">glue</span><span class="p">(</span><span class="s2">&quot;table_lda&quot;</span><span class="p">,</span> <span class="n">lda_df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>topic</th>
+      <th>Topic 0</th>
+      <th>Topic 1</th>
+      <th>Topic 2</th>
+      <th>Topic 3</th>
+      <th>Topic 4</th>
+      <th>Topic 5</th>
+      <th>Topic 6</th>
+      <th>Topic 7</th>
+      <th>Topic 8</th>
+      <th>Topic 9</th>
+    </tr>
+    <tr>
+      <th>Term</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>activation</td>
+      <td>regions</td>
+      <td>left</td>
+      <td>attention</td>
+      <td>human</td>
+      <td>regions</td>
+      <td>motion</td>
+      <td>subjects</td>
+      <td>level</td>
+      <td>cue</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>cortex</td>
+      <td>priming</td>
+      <td>regions</td>
+      <td>attentional</td>
+      <td>dorsal</td>
+      <td>reward</td>
+      <td>areas</td>
+      <td>compared</td>
+      <td>signal</td>
+      <td>negative</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>fmri</td>
+      <td>modality</td>
+      <td>inferior</td>
+      <td>response</td>
+      <td>ventral</td>
+      <td>imaging</td>
+      <td>visual</td>
+      <td>fmri</td>
+      <td>blood</td>
+      <td>positive</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>functional</td>
+      <td>sensory</td>
+      <td>frontal</td>
+      <td>visual</td>
+      <td>object</td>
+      <td>preparation</td>
+      <td>mt</td>
+      <td>experiment</td>
+      <td>dependent</td>
+      <td>amygdala</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>stimulation</td>
+      <td>attention</td>
+      <td>functional</td>
+      <td>selection</td>
+      <td>visual</td>
+      <td>connectivity</td>
+      <td>processing</td>
+      <td>grip</td>
+      <td>significant</td>
+      <td>presented</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>cortical</td>
+      <td>specific</td>
+      <td>gyrus</td>
+      <td>interference</td>
+      <td>functional</td>
+      <td>resonance</td>
+      <td>stimuli</td>
+      <td>detection</td>
+      <td>bold</td>
+      <td>orienting</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>magnetic</td>
+      <td>attended</td>
+      <td>temporal</td>
+      <td>target</td>
+      <td>occipital</td>
+      <td>magnetic</td>
+      <td>perception</td>
+      <td>conditions</td>
+      <td>condition</td>
+      <td>trials</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>somatosensory</td>
+      <td>modalities</td>
+      <td>magnetic</td>
+      <td>control</td>
+      <td>humans</td>
+      <td>effective</td>
+      <td>biological</td>
+      <td>block</td>
+      <td>hz</td>
+      <td>fmri</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>resonance</td>
+      <td>cortical</td>
+      <td>imaging</td>
+      <td>frontal</td>
+      <td>sulcus</td>
+      <td>sequences</td>
+      <td>area</td>
+      <td>control</td>
+      <td>oxygen</td>
+      <td>events</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>subjects</td>
+      <td>tactile</td>
+      <td>resonance</td>
+      <td>search</td>
+      <td>region</td>
+      <td>goal</td>
+      <td>cortical</td>
+      <td>lesions</td>
+      <td>higher</td>
+      <td>neutral</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="figure align-center" id="tbl-table-lda">
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>topic</th>
+      <th>Topic 0</th>
+      <th>Topic 1</th>
+      <th>Topic 2</th>
+      <th>Topic 3</th>
+      <th>Topic 4</th>
+      <th>Topic 5</th>
+      <th>Topic 6</th>
+      <th>Topic 7</th>
+      <th>Topic 8</th>
+      <th>Topic 9</th>
+    </tr>
+    <tr>
+      <th>Term</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>activation</td>
+      <td>regions</td>
+      <td>left</td>
+      <td>attention</td>
+      <td>human</td>
+      <td>regions</td>
+      <td>motion</td>
+      <td>subjects</td>
+      <td>level</td>
+      <td>cue</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>cortex</td>
+      <td>priming</td>
+      <td>regions</td>
+      <td>attentional</td>
+      <td>dorsal</td>
+      <td>reward</td>
+      <td>areas</td>
+      <td>compared</td>
+      <td>signal</td>
+      <td>negative</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>fmri</td>
+      <td>modality</td>
+      <td>inferior</td>
+      <td>response</td>
+      <td>ventral</td>
+      <td>imaging</td>
+      <td>visual</td>
+      <td>fmri</td>
+      <td>blood</td>
+      <td>positive</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>functional</td>
+      <td>sensory</td>
+      <td>frontal</td>
+      <td>visual</td>
+      <td>object</td>
+      <td>preparation</td>
+      <td>mt</td>
+      <td>experiment</td>
+      <td>dependent</td>
+      <td>amygdala</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>stimulation</td>
+      <td>attention</td>
+      <td>functional</td>
+      <td>selection</td>
+      <td>visual</td>
+      <td>connectivity</td>
+      <td>processing</td>
+      <td>grip</td>
+      <td>significant</td>
+      <td>presented</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>cortical</td>
+      <td>specific</td>
+      <td>gyrus</td>
+      <td>interference</td>
+      <td>functional</td>
+      <td>resonance</td>
+      <td>stimuli</td>
+      <td>detection</td>
+      <td>bold</td>
+      <td>orienting</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>magnetic</td>
+      <td>attended</td>
+      <td>temporal</td>
+      <td>target</td>
+      <td>occipital</td>
+      <td>magnetic</td>
+      <td>perception</td>
+      <td>conditions</td>
+      <td>condition</td>
+      <td>trials</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>somatosensory</td>
+      <td>modalities</td>
+      <td>magnetic</td>
+      <td>control</td>
+      <td>humans</td>
+      <td>effective</td>
+      <td>biological</td>
+      <td>block</td>
+      <td>hz</td>
+      <td>fmri</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>resonance</td>
+      <td>cortical</td>
+      <td>imaging</td>
+      <td>frontal</td>
+      <td>sulcus</td>
+      <td>sequences</td>
+      <td>area</td>
+      <td>control</td>
+      <td>oxygen</td>
+      <td>events</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>subjects</td>
+      <td>tactile</td>
+      <td>resonance</td>
+      <td>search</td>
+      <td>region</td>
+      <td>goal</td>
+      <td>cortical</td>
+      <td>lesions</td>
+      <td>higher</td>
+      <td>neutral</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+<p class="caption"><span class="caption-number">Fig. 13 </span><span class="caption-text">The top ten terms for each of the first ten topics in the trained LDA model.</span><a class="headerlink" href="#tbl-table-lda" title="Permalink to this image">¶</a></p>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here we delete the recent variables for the sake of reducing memory usage</span>
+<span class="k">del</span> <span class="n">lda_model</span><span class="p">,</span> <span class="n">lda_df</span><span class="p">,</span> <span class="n">temp_df</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="generalized-correspondence-latent-dirichlet-allocation">
+<span id="content-annotation-gclda"></span><h2>Generalized correspondence latent Dirichlet allocation<a class="headerlink" href="#generalized-correspondence-latent-dirichlet-allocation" title="Permalink to this headline">¶</a></h2>
+<p><strong>Generalized correspondence latent Dirichlet allocation</strong> (GCLDA) is a recently-developed algorithm that trains topics on both article abstracts and coordinates <span id="id5">[<a class="reference internal" href="bibliography.html#id83">Rubin <em>et al.</em>, 2017</a>]</span>.
+GCLDA assumes that topics within the fMRI literature can also be localized to brain regions, in this case modeled as three-dimensional Gaussian distributions.
+These spatial distributions can also be restricted to pairs of Gaussians that are symmetric across brain hemispheres.
+This method produces two sets of probability distributions: the probability of a word given topic (<code class="docutils literal notranslate"><span class="pre">GCLDAModel.p_word_g_topic_</span></code>) and the probability of a voxel given topic (<code class="docutils literal notranslate"><span class="pre">GCLDAModel.p_voxel_g_topic_</span></code>).</p>
+<p>Here we train a GCLDA model (<a class="reference external" href="https://nimare.readthedocs.io/en/0.0.10/generated/nimare.annotate.gclda.GCLDAModel.html#nimare.annotate.gclda.GCLDAModel" title="(in NiMARE v0.0.10+0.ge8814c2.dirty)"><code class="xref py py-class docutils literal notranslate"><span class="pre">nimare.annotate.gclda.GCLDAModel</span></code></a>) on the first 500 studies of the Neurosynth Dataset.
+The model will include 50 topics, in which the spatial distribution for each topic will be defined as having two Gaussian distributions that are symmetrically localized across the longitudinal fissure.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p><a class="reference external" href="https://nimare.readthedocs.io/en/0.0.10/generated/nimare.annotate.gclda.GCLDAModel.html#nimare.annotate.gclda.GCLDAModel" title="(in NiMARE v0.0.10+0.ge8814c2.dirty)"><code class="xref py py-class docutils literal notranslate"><span class="pre">nimare.annotate.gclda.GCLDAModel</span></code></a> generally takes a very long time to train.</p>
+<p>Below, we show how one would train a GCLDA model.
+However, we will load a pretrained model instead of actually training the model.</p>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">gclda_model</span> <span class="o">=</span> <span class="n">annotate</span><span class="o">.</span><span class="n">gclda</span><span class="o">.</span><span class="n">GCLDAModel</span><span class="p">(</span>
+    <span class="n">counts_df</span><span class="p">,</span>
+    <span class="n">neurosynth_dset_first_500</span><span class="o">.</span><span class="n">coordinates</span><span class="p">,</span>
+    <span class="n">n_regions</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">n_topics</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+    <span class="n">symmetric</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">mask</span><span class="o">=</span><span class="n">neurosynth_dset_first_500</span><span class="o">.</span><span class="n">masker</span><span class="o">.</span><span class="n">mask_img</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">gclda_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">n_iters</span><span class="o">=</span><span class="mi">2500</span><span class="p">,</span> <span class="n">loglikely_freq</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gclda_model</span> <span class="o">=</span> <span class="n">annotate</span><span class="o">.</span><span class="n">gclda</span><span class="o">.</span><span class="n">GCLDAModel</span><span class="o">.</span><span class="n">load</span><span class="p">(</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_path</span><span class="p">,</span> <span class="s2">&quot;gclda_model.pkl.gz&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">GCLDAModel</span></code> retains the relevant probability distributions in the form of <code class="docutils literal notranslate"><span class="pre">numpy</span></code> arrays, rather than <code class="docutils literal notranslate"><span class="pre">pandas</span></code> DataFrames.
+However, for the topic-term weights (<code class="docutils literal notranslate"><span class="pre">p_word_g_topic_</span></code>), the data are more interpretable as a DataFrame, so we will create one.
+We will also reorganize the raw DataFrame to show the top ten terms for each of the first ten topics.</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gclda_arr</span> <span class="o">=</span> <span class="n">gclda_model</span><span class="o">.</span><span class="n">p_word_g_topic_</span>
+<span class="n">gclda_vocab</span> <span class="o">=</span> <span class="n">gclda_model</span><span class="o">.</span><span class="n">vocabulary</span>
+<span class="n">topic_names</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;Topic </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">gclda_arr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])]</span>
+<span class="n">gclda_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">gclda_vocab</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">topic_names</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">gclda_arr</span><span class="p">)</span>
+
+<span class="n">temp_df</span> <span class="o">=</span> <span class="n">gclda_df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">gclda_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">gclda_df</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">gclda_df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Term&quot;</span>
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">temp_df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+    <span class="n">top_ten_terms</span> <span class="o">=</span> <span class="n">temp_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">()[:</span><span class="mi">10</span><span class="p">]</span>
+    <span class="n">gclda_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">top_ten_terms</span>
+
+<span class="n">gclda_df</span> <span class="o">=</span> <span class="n">gclda_df</span><span class="p">[</span><span class="n">gclda_df</span><span class="o">.</span><span class="n">columns</span><span class="p">[:</span><span class="mi">10</span><span class="p">]]</span>
+<span class="n">glue</span><span class="p">(</span><span class="s2">&quot;table_gclda&quot;</span><span class="p">,</span> <span class="n">gclda_df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Topic 000</th>
+      <th>Topic 001</th>
+      <th>Topic 002</th>
+      <th>Topic 003</th>
+      <th>Topic 004</th>
+      <th>Topic 005</th>
+      <th>Topic 006</th>
+      <th>Topic 007</th>
+      <th>Topic 008</th>
+      <th>Topic 009</th>
+    </tr>
+    <tr>
+      <th>Term</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>amygdala</td>
+      <td>visual</td>
+      <td>motion</td>
+      <td>learning</td>
+      <td>visual</td>
+      <td>modality</td>
+      <td>age</td>
+      <td>temporal</td>
+      <td>prefrontal</td>
+      <td>eye</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>faces</td>
+      <td>cortex</td>
+      <td>temporal</td>
+      <td>task</td>
+      <td>network</td>
+      <td>spatial</td>
+      <td>adults</td>
+      <td>tomography</td>
+      <td>prefrontal cortex</td>
+      <td>movements</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>neutral</td>
+      <td>functional</td>
+      <td>mt</td>
+      <td>performance</td>
+      <td>greater</td>
+      <td>sensory</td>
+      <td>matter</td>
+      <td>emission</td>
+      <td>task</td>
+      <td>timing</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>emotional</td>
+      <td>cortical</td>
+      <td>visual</td>
+      <td>sequence</td>
+      <td>occipital</td>
+      <td>gyrus</td>
+      <td>children</td>
+      <td>emission tomography</td>
+      <td>cortex</td>
+      <td>motor</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>functional</td>
+      <td>magnetic resonance</td>
+      <td>sulcus</td>
+      <td>fronto</td>
+      <td>frontal</td>
+      <td>modalities</td>
+      <td>using</td>
+      <td>medial</td>
+      <td>control</td>
+      <td>activations</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>stimuli</td>
+      <td>visual cortex</td>
+      <td>occipital</td>
+      <td>practice</td>
+      <td>evidence</td>
+      <td>known</td>
+      <td>volume</td>
+      <td>positron</td>
+      <td>response</td>
+      <td>movement</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>emotion</td>
+      <td>magnetic</td>
+      <td>dorsal</td>
+      <td>learned</td>
+      <td>human</td>
+      <td>movements</td>
+      <td>mm</td>
+      <td>positron emission</td>
+      <td>dorsolateral prefrontal</td>
+      <td>evidence</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>response</td>
+      <td>stimulation</td>
+      <td>human</td>
+      <td>awareness</td>
+      <td>demonstrated</td>
+      <td>bilaterally</td>
+      <td>young</td>
+      <td>pet</td>
+      <td>dorsolateral</td>
+      <td>cortical</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>functional magnetic</td>
+      <td>resonance</td>
+      <td>sensitive</td>
+      <td>early</td>
+      <td>direction</td>
+      <td>angular</td>
+      <td>years</td>
+      <td>temporal lobe</td>
+      <td>cognitive</td>
+      <td>condition</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>responses</td>
+      <td>spatial</td>
+      <td>perception</td>
+      <td>parietal</td>
+      <td>pattern</td>
+      <td>goal</td>
+      <td>women</td>
+      <td>lobe</td>
+      <td>tasks</td>
+      <td>fields</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="figure align-center" id="tbl-table-gclda">
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Topic 000</th>
+      <th>Topic 001</th>
+      <th>Topic 002</th>
+      <th>Topic 003</th>
+      <th>Topic 004</th>
+      <th>Topic 005</th>
+      <th>Topic 006</th>
+      <th>Topic 007</th>
+      <th>Topic 008</th>
+      <th>Topic 009</th>
+    </tr>
+    <tr>
+      <th>Term</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>amygdala</td>
+      <td>visual</td>
+      <td>motion</td>
+      <td>learning</td>
+      <td>visual</td>
+      <td>modality</td>
+      <td>age</td>
+      <td>temporal</td>
+      <td>prefrontal</td>
+      <td>eye</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>faces</td>
+      <td>cortex</td>
+      <td>temporal</td>
+      <td>task</td>
+      <td>network</td>
+      <td>spatial</td>
+      <td>adults</td>
+      <td>tomography</td>
+      <td>prefrontal cortex</td>
+      <td>movements</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>neutral</td>
+      <td>functional</td>
+      <td>mt</td>
+      <td>performance</td>
+      <td>greater</td>
+      <td>sensory</td>
+      <td>matter</td>
+      <td>emission</td>
+      <td>task</td>
+      <td>timing</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>emotional</td>
+      <td>cortical</td>
+      <td>visual</td>
+      <td>sequence</td>
+      <td>occipital</td>
+      <td>gyrus</td>
+      <td>children</td>
+      <td>emission tomography</td>
+      <td>cortex</td>
+      <td>motor</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>functional</td>
+      <td>magnetic resonance</td>
+      <td>sulcus</td>
+      <td>fronto</td>
+      <td>frontal</td>
+      <td>modalities</td>
+      <td>using</td>
+      <td>medial</td>
+      <td>control</td>
+      <td>activations</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>stimuli</td>
+      <td>visual cortex</td>
+      <td>occipital</td>
+      <td>practice</td>
+      <td>evidence</td>
+      <td>known</td>
+      <td>volume</td>
+      <td>positron</td>
+      <td>response</td>
+      <td>movement</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>emotion</td>
+      <td>magnetic</td>
+      <td>dorsal</td>
+      <td>learned</td>
+      <td>human</td>
+      <td>movements</td>
+      <td>mm</td>
+      <td>positron emission</td>
+      <td>dorsolateral prefrontal</td>
+      <td>evidence</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>response</td>
+      <td>stimulation</td>
+      <td>human</td>
+      <td>awareness</td>
+      <td>demonstrated</td>
+      <td>bilaterally</td>
+      <td>young</td>
+      <td>pet</td>
+      <td>dorsolateral</td>
+      <td>cortical</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>functional magnetic</td>
+      <td>resonance</td>
+      <td>sensitive</td>
+      <td>early</td>
+      <td>direction</td>
+      <td>angular</td>
+      <td>years</td>
+      <td>temporal lobe</td>
+      <td>cognitive</td>
+      <td>condition</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>responses</td>
+      <td>spatial</td>
+      <td>perception</td>
+      <td>parietal</td>
+      <td>pattern</td>
+      <td>goal</td>
+      <td>women</td>
+      <td>lobe</td>
+      <td>tasks</td>
+      <td>fields</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+<p class="caption"><span class="caption-number">Fig. 14 </span><span class="caption-text">The top ten terms for each of the first ten topics in the trained GCLDA model.</span><a class="headerlink" href="#tbl-table-gclda" title="Permalink to this image">¶</a></p>
+</div>
+<p>We also want to see how the topic-voxel weights render on the brain, so we will simply unmask the <code class="docutils literal notranslate"><span class="pre">p_voxel_g_topic_</span></code> array with the <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>’s masker.</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+
+<span class="n">topic_img_4d</span> <span class="o">=</span> <span class="n">neurosynth_dset_first_500</span><span class="o">.</span><span class="n">masker</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">gclda_model</span><span class="o">.</span><span class="n">p_voxel_g_topic_</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+<span class="c1"># Plot first ten topics</span>
+<span class="n">topic_counter</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">i_row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j_col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+        <span class="n">topic_img</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">index_img</span><span class="p">(</span><span class="n">topic_img_4d</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">topic_counter</span><span class="p">)</span>
+        <span class="n">display</span> <span class="o">=</span> <span class="n">plotting</span><span class="o">.</span><span class="n">plot_stat_map</span><span class="p">(</span>
+            <span class="n">topic_img</span><span class="p">,</span>
+            <span class="n">annotate</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;Reds&quot;</span><span class="p">,</span>
+            <span class="n">draw_cross</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">figure</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span>
+            <span class="n">axes</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="n">i_row</span><span class="p">,</span> <span class="n">j_col</span><span class="p">],</span>
+        <span class="p">)</span>
+        <span class="n">axes</span><span class="p">[</span><span class="n">i_row</span><span class="p">,</span> <span class="n">j_col</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Topic </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">topic_counter</span><span class="p">)</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">topic_counter</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="n">colorbar</span> <span class="o">=</span> <span class="n">display</span><span class="o">.</span><span class="n">_cbar</span>
+        <span class="n">colorbar_ticks</span> <span class="o">=</span> <span class="n">colorbar</span><span class="o">.</span><span class="n">get_ticks</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">colorbar_ticks</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">new_ticks</span> <span class="o">=</span> <span class="p">[</span><span class="n">colorbar_ticks</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="n">colorbar_ticks</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">new_ticks</span> <span class="o">=</span> <span class="p">[</span><span class="n">colorbar_ticks</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">colorbar_ticks</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+        <span class="n">colorbar</span><span class="o">.</span><span class="n">set_ticks</span><span class="p">(</span><span class="n">new_ticks</span><span class="p">,</span> <span class="n">update_ticks</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">glue</span><span class="p">(</span><span class="s2">&quot;figure_gclda_topics&quot;</span><span class="p">,</span> <span class="n">fig</span><span class="p">,</span> <span class="n">display</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/annotation_26_1.png" src="_images/annotation_26_1.png" />
+</div>
+</div>
+<div class="figure align-center" id="figure-gclda-topics">
+<div class="cell_output docutils container">
+<img alt="_images/annotation_26_0.png" src="_images/annotation_26_0.png" />
+</div>
+<p class="caption"><span class="caption-number">Fig. 15 </span><span class="caption-text">Topic weight maps for the first ten topics in the GCLDA model.</span><a class="headerlink" href="#figure-gclda-topics" title="Permalink to this image">¶</a></p>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here we delete the recent variables for the sake of reducing memory usage</span>
+<span class="k">del</span> <span class="n">gclda_model</span><span class="p">,</span> <span class="n">temp_df</span><span class="p">,</span> <span class="n">gclda_df</span><span class="p">,</span> <span class="n">counts_df</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="macm.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Meta-Analytic Coactivation Modeling</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="decoding.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Meta-Analytic Functional Decoding</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Taylor Salo, Tal Yarkoni, Thomas E. Nichols, Jean-Baptiste Poline, Murat Bilgel, Katherine L. Bottenhorn, Dorota Jarecka, James D. Kent, Adam Kimbler, Dylan M. Nielson, Kendra M. Oudyk, Julio A. Peraza, Alexandre Pérez, Puck C. Reeders, Julio A. Yanes, and Angela R. Laird<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

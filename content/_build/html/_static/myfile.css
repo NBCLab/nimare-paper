@@ -1,0 +1,15 @@
+p {
+    text-align: justify;
+}
+p.caption {
+    text-align: left;
+}
+p.prevnext-title {
+    text-align: left;
+}
+code.docutils.literal.notranslate {
+    font-family: Menlo, Consolas, "DejaVu Sans Mono", monospace;
+}
+code.xref.py.py-class.docutils.literal.notranslate {
+    font-family: Menlo, Consolas, "DejaVu Sans Mono", monospace;
+}

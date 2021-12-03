@@ -9,7 +9,7 @@ from repo2data.repo2data import Repo2Data
 start = datetime.now()
 
 # Install the data if running locally, or points to cached data if running on neurolibre
-DATA_REQ_FILE = os.path.join("../binder/data_requirement.json")
+DATA_REQ_FILE = os.path.abspath(os.path.join("../binder/data_requirement.json"))
 FIG_DIR = os.path.abspath("../images")
 
 # Download data
@@ -43,4 +43,4 @@ gclda_model.fit(n_iters=2500, loglikely_freq=500)
 gclda_model.save(os.path.join(data_path, "gclda_model.pkl.gz"))
 
 end = datetime.now()
-print(f"Model finished in {end - start}.")
+print(f"Model finished in {end - start}.", flush=True)
