@@ -1,16 +1,8 @@
-
-[92m===============================================================================[0m
-
-Your _build directory has been emptied except for .jupyter_cache
-
-[92m===============================================================================[0m
-
 Running Jupyter-Book v0.11.3
 Source Folder: /home/data/nbc/misc-projects/Salo_NiMARE/content
 Config Path: /home/data/nbc/misc-projects/Salo_NiMARE/content/_config.yml
 Output Path: /home/data/nbc/misc-projects/Salo_NiMARE/content/_build/html
 [01mRunning Sphinx v3.5.4[39;49;00m
-[01mmaking output directory... [39;49;00mdone
 [etoc] Changing master_doc to 'abstract'
 checking for /home/data/nbc/misc-projects/Salo_NiMARE/paper.bib in bibtex cache... not found
 parsing bibtex file /home/data/nbc/misc-projects/Salo_NiMARE/paper.bib... parsed 97 entries
@@ -20,17 +12,21 @@ loading intersphinx inventory from _static/nimare_v0_0_10_objects.inv...
 [01mbuilding [html]: [39;49;00mtargets for 18 source files that are out of date
 [01mupdating environment: [39;49;00m[01mexecuting outdated notebooks... [39;49;00mExecuting: /home/data/nbc/misc-projects/Salo_NiMARE/content/subtraction.md
 Execution Succeeded: /home/data/nbc/misc-projects/Salo_NiMARE/content/subtraction.md
-Executing: /home/data/nbc/misc-projects/Salo_NiMARE/content/cbma.md
-Execution Succeeded: /home/data/nbc/misc-projects/Salo_NiMARE/content/cbma.md
-Executing: /home/data/nbc/misc-projects/Salo_NiMARE/content/correction.md
-Execution Succeeded: /home/data/nbc/misc-projects/Salo_NiMARE/content/correction.md
 Executing: /home/data/nbc/misc-projects/Salo_NiMARE/content/annotation.md
 Data loaded.
 Execution Succeeded: /home/data/nbc/misc-projects/Salo_NiMARE/content/annotation.md
-Executing: /home/data/nbc/misc-projects/Salo_NiMARE/content/ibma.md
-Execution Succeeded: /home/data/nbc/misc-projects/Salo_NiMARE/content/ibma.md
 Executing: /home/data/nbc/misc-projects/Salo_NiMARE/content/decoding.md
 Execution Succeeded: /home/data/nbc/misc-projects/Salo_NiMARE/content/decoding.md
+Executing: /home/data/nbc/misc-projects/Salo_NiMARE/content/cbma.md
+Execution Succeeded: /home/data/nbc/misc-projects/Salo_NiMARE/content/cbma.md
+Executing: /home/data/nbc/misc-projects/Salo_NiMARE/content/resources.md
+Execution Succeeded: /home/data/nbc/misc-projects/Salo_NiMARE/content/resources.md
+Executing: /home/data/nbc/misc-projects/Salo_NiMARE/content/correction.md
+Execution Succeeded: /home/data/nbc/misc-projects/Salo_NiMARE/content/correction.md
+Executing: /home/data/nbc/misc-projects/Salo_NiMARE/content/macm.md
+Execution Succeeded: /home/data/nbc/misc-projects/Salo_NiMARE/content/macm.md
+Executing: /home/data/nbc/misc-projects/Salo_NiMARE/content/ibma.md
+Execution Succeeded: /home/data/nbc/misc-projects/Salo_NiMARE/content/ibma.md
 done
 [new config] 18 added, 0 changed, 0 removed
 [01mreading sources... [39;49;00m[  5%] [35mabout_derivative_analyses[39;49;00m                            [01mreading sources... [39;49;00m[ 11%] [35mabstract[39;49;00m                                             [01mreading sources... [39;49;00m[ 16%] [35macknowledgements[39;49;00m                                     [01mreading sources... [39;49;00m[ 22%] [35mannotation[39;49;00m                                           [01mreading sources... [39;49;00m[ 27%] [35mappendices/brainmap_decoding[39;49;00m                         [01mreading sources... [39;49;00m[ 33%] [35mappendices/neurosynth_decoding[39;49;00m                       [01mreading sources... [39;49;00m[ 38%] [35mbibliography[39;49;00m                                         [01mreading sources... [39;49;00m[ 44%] [35mcbma[39;49;00m                                                 [01mreading sources... [39;49;00m[ 50%] [35mcorrection[39;49;00m                                           [01mreading sources... [39;49;00m[ 55%] [35mdecoding[39;49;00m                                             [01mreading sources... [39;49;00m[ 61%] [35mfuture_directions[39;49;00m                                    [01mreading sources... [39;49;00m[ 66%] [35mibma[39;49;00m                                                 [01mreading sources... [39;49;00m[ 72%] [35mintroduction[39;49;00m                                         [01mreading sources... [39;49;00m[ 77%] [35mmacm[39;49;00m                                                 [01mreading sources... [39;49;00m[ 83%] [35moverview[39;49;00m                                             [01mreading sources... [39;49;00m[ 88%] [35mresources[39;49;00m                                            [01mreading sources... [39;49;00m[ 94%] [35msubtraction[39;49;00m                                          [01mreading sources... [39;49;00m[100%] [35msummary[39;49;00m                                              
@@ -48,16 +44,16 @@ done
 [01mdumping object inventory... [39;49;00mdone
 [01mbuild succeeded.[39;49;00m
 
-The HTML pages are in _build/html.
+The HTML pages are in content/_build/html.
 [etoc] missing index.html written as redirect to 'abstract.html'
 
 [92m===============================================================================[0m
 
 Finished generating HTML for book.
 Your book's HTML pages are here:
-    _build/html/
+    content/_build/html/
 You can look at your book by opening this file in a browser:
-    _build/html/index.html
+    content/_build/html/index.html
 Or paste this line directly into your browser bar:
     file:///home/data/nbc/misc-projects/Salo_NiMARE/content/_build/html/index.html            
 

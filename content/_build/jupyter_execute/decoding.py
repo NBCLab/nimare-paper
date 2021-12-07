@@ -118,8 +118,8 @@ from nimare import decode, meta
 
 corr_decoder = decode.continuous.CorrelationDecoder(
     frequency_threshold=0.001,
-    meta_estimator=meta.MKDAChi2(kernel_transformer=kern, memory_limit=None),
-    target_image="z_desc-specificity",
+    meta_estimator=meta.MKDADensity(kernel_transformer=kern, memory_limit=None),
+    target_image="z",
     features=target_features,
     memory_limit=None,
 )

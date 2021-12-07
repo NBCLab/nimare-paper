@@ -1,0 +1,10 @@
+/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/sklearn/utils/deprecation.py:87: FutureWarning: Function get_feature_names is deprecated; get_feature_names is deprecated in 1.0 and will be removed in 1.2. Please use get_feature_names_out instead.
+  warnings.warn(msg, category=FutureWarning)
+INFO:nimare.annotate.gclda:Constructing/Initializing GCLDA Model
+/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nimare/annotate/gclda.py:180: FutureWarning: In a future version of pandas all arguments of DataFrame.drop except for the argument 'labels' will be keyword-only
+  count_df = count_df.drop("id", 1)
+INFO:nimare.annotate.gclda:Iter 0500 Log-likely: x =  -257597.0, w =  -325084.2, tot =  -582681.2
+INFO:nimare.annotate.gclda:Iter 1000 Log-likely: x =  -257815.5, w =  -325522.3, tot =  -583337.8
+INFO:nimare.annotate.gclda:Iter 1500 Log-likely: x =  -257410.3, w =  -325868.9, tot =  -583279.1
+INFO:nimare.annotate.gclda:Iter 2000 Log-likely: x =  -257552.1, w =  -326313.9, tot =  -583866.1
+INFO:nimare.annotate.gclda:Iter 2500 Log-likely: x =  -257886.4, w =  -326279.9, tot =  -584166.3

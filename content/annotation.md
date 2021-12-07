@@ -225,7 +225,7 @@ lda_model = annotate.lda.LDAModel(
     neurosynth_dset_first_500.texts,
     text_column="abstract",
     n_topics=50,
-    n_iters=10000,
+    n_iters=1000,
 )
 
 # Fit the model
@@ -285,7 +285,14 @@ This method produces two sets of probability distributions: the probability of a
 Here we train a GCLDA model ({py:class}`nimare.annotate.gclda.GCLDAModel`) on the first 500 studies of the Neurosynth Dataset.
 The model will include 50 topics, in which the spatial distribution for each topic will be defined as having two Gaussian distributions that are symmetrically localized across the longitudinal fissure.
 
-```{code-cell} ipython3
+```{important}
+{py:class}`nimare.annotate.gclda.GCLDAModel` generally takes a very long time to train.
+
+Below, we show how one would train a GCLDA model.
+However, we will load a pretrained model instead of actually training the model.
+```
+
+```python
 gclda_model = annotate.gclda.GCLDAModel(
     counts_df,
     neurosynth_dset_first_500.coordinates,
@@ -295,6 +302,12 @@ gclda_model = annotate.gclda.GCLDAModel(
     mask=neurosynth_dset_first_500.masker.mask_img,
 )
 gclda_model.fit(n_iters=2500, loglikely_freq=500)
+```
+
+```{code-cell} ipython3
+gclda_model = annotate.gclda.GCLDAModel.load(
+    os.path.join(data_path, "gclda_model.pkl.gz")
+)
 ```
 
 The `GCLDAModel` retains the relevant probability distributions in the form of `numpy` arrays, rather than `pandas` DataFrames.
