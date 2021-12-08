@@ -348,5 +348,5 @@ However, standard classification methods have also been applied to datasets from
 :tags: [hide-cell]
 
 end = datetime.now()
-print(f"Notebook took {end - start} to build.")
+print(f"{__file__} took {end - start} to build.")
 ```

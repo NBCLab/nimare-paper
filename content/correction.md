@@ -136,5 +136,5 @@ An array of plots of the corrected statistical maps produced by the different mu
 :tags: [hide-cell]
 
 end = datetime.now()
-print(f"Notebook took {end - start} to build.")
+print(f"{__file__} took {end - start} to build.")
 ```

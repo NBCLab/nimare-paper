@@ -108,5 +108,5 @@ However, if the database is replaced with a second sample of interest, the analy
 :tags: [hide-cell]
 
 end = datetime.now()
-print(f"Notebook took {end - start} to build.")
+print(f"{__file__} took {end - start} to build.")
 ```

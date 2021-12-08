@@ -390,5 +390,5 @@ Topic weight maps for the first ten topics in the GCLDA model.
 del gclda_model, temp_df, gclda_df, counts_df
 
 end = datetime.now()
-print(f"Notebook took {end - start} to build.")
+print(f"{__file__} took {end - start} to build.")
 ```

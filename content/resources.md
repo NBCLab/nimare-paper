@@ -208,5 +208,5 @@ NiMARE includes a function, {py:func}`nimare.io.convert_neurovault_to_dataset`, 
 :tags: [hide-cell]
 
 end = datetime.now()
-print(f"Notebook took {end - start} to build.")
+print(f"{__file__} took {end - start} to build.")
 ```

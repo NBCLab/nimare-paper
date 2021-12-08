@@ -433,5 +433,5 @@ We describe these algorithms briefly in [](future_directions.md).
 :tags: [hide-cell]
 
 end = datetime.now()
-print(f"Notebook took {end - start} to build.")
+print(f"{__file__} took {end - start} to build.")
 ```

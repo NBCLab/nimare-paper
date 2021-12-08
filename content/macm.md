@@ -167,5 +167,5 @@ Unthresholded z-statistic maps for (1) the target mask-based MACM and (2) the co
 :tags: [hide-cell]
 
 end = datetime.now()
-print(f"Notebook took {end - start} to build.")
+print(f"{__file__} took {end - start} to build.")
 ```

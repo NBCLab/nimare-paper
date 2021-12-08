@@ -256,5 +256,5 @@ The likelihood-based meta-analyses are run on atlases instead of voxelwise.
 :tags: [hide-cell]
 
 end = datetime.now()
-print(f"Notebook took {end - start} to build.")
+print(f"{__file__} took {end - start} to build.")
 ```
