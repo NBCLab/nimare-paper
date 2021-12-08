@@ -19,6 +19,7 @@ kernelspec:
 :tags: [hide-cell]
 # First, import the necessary modules and functions
 import os
+from datetime import datetime
 
 import matplotlib.pyplot as plt
 from myst_nb import glue
@@ -26,6 +27,8 @@ from nilearn import plotting
 from repo2data.repo2data import Repo2Data
 
 import nimare
+
+start = datetime.now()
 
 # Install the data if running locally, or points to cached data if running on neurolibre
 DATA_REQ_FILE = os.path.join("../binder/data_requirement.json")
@@ -247,4 +250,11 @@ glue("figure_uncorr_ibma", fig, display=False)
 
 An array of plots of the statistical maps produced by the image-based meta-analysis methods.
 The likelihood-based meta-analyses are run on atlases instead of voxelwise.
+```
+
+```{code-cell} ipython3
+:tags: [hide-cell]
+
+end = datetime.now()
+print(f"Notebook took {end - start} to build.")
 ```

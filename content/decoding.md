@@ -19,11 +19,14 @@ kernelspec:
 :tags: [hide-cell]
 # First, import the necessary modules and functions
 import os
+from datetime import datetime
 
 import matplotlib.pyplot as plt
 from myst_nb import glue
 from nilearn import plotting
 from repo2data.repo2data import Repo2Data
+
+start = datetime.now()
 
 # Install the data if running locally, or points to cached data if running on neurolibre
 DATA_REQ_FILE = os.path.join("../binder/data_requirement.json")
@@ -340,3 +343,10 @@ It is important not to place too much emphasis on the results of functional deco
 
 The meta-analytic functional decoding methods in NiMARE provide a very rudimentary approach for open-ended decoding (i.e., decoding across a very large range of mental states) that can be used with resources like NeuroVault.
 However, standard classification methods have also been applied to datasets from NeuroVault (e.g., {cite:t}`Varoquaux2018-lo`), although these methods do not fall under NiMARE's scope.
+
+```{code-cell} ipython3
+:tags: [hide-cell]
+
+end = datetime.now()
+print(f"Notebook took {end - start} to build.")
+```
