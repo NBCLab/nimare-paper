@@ -19,6 +19,7 @@ kernelspec:
 :tags: [hide-cell]
 # First, import the necessary modules and functions
 import os
+from datetime import datetime
 
 import matplotlib.pyplot as plt
 from myst_nb import glue
@@ -26,6 +27,8 @@ from nilearn import image, plotting
 from repo2data.repo2data import Repo2Data
 
 import nimare
+
+start = datetime.now()
 
 # Install the data if running locally, or points to cached data if running on neurolibre
 DATA_REQ_FILE = os.path.join("../binder/data_requirement.json")
@@ -100,3 +103,10 @@ Alternatively, MKDA Chi-squared analysis is inherently a subtraction analysis me
 Generally, one of these groups is a sample of interest, while the other is a meta-analytic database (minus the studies in the sample).
 With this setup, meta-analysts can infer whether there is greater convergence of foci in a voxel as compared to the baseline across the field (as estimated with the meta-analytic database), much like SCALE.
 However, if the database is replaced with a second sample of interest, the analysis ends up comparing convergence between the two groups.
+
+```{code-cell} ipython3
+:tags: [hide-cell]
+
+end = datetime.now()
+print(f"subtraction.md took {end - start} to build.")
+```
