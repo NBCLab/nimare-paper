@@ -136,7 +136,7 @@ corr_decoder = decode.continuous.CorrelationDecoder(
     meta_estimator=meta.MKDADensity(kernel_transformer=kern, memory_limit=None),
     target_image="z",
     features=target_features,
-    memory_limit=None,
+    memory_limit="500mb",
 )
 corr_decoder.fit(neurosynth_dset_first500)
 corr_df = corr_decoder.transform(continuous_map)
