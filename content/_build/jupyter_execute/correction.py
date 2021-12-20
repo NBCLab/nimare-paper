@@ -37,6 +37,11 @@ data_path = os.path.join(data_path[0], "data")
 # This will return an updated `MetaResult` object, with both the statistical maps from the original `MetaResult`, as well as new, corrected maps.
 # 
 # Here we will apply both FWE and FDR correction to results from a MKDADensity meta-analysis, performed back in [](content:cbma:mkdad).
+# 
+# ```{warning}
+# In the following example, we use 5000 iterations for Monte Carlo FWE correction.
+# Normally, one would use at least 10000 iterations, but we reduced this for the sake of speed.
+# ```
 
 # In[2]:
 
@@ -45,7 +50,7 @@ from nimare import meta, correct
 
 mkdad_meta = meta.cbma.mkda.MKDADensity.load(os.path.join(data_path, "MKDADensity.pkl.gz"))
 
-mc_corrector = correct.FWECorrector(method="montecarlo", n_iters=10000, n_cores=4)
+mc_corrector = correct.FWECorrector(method="montecarlo", n_iters=5000, n_cores=4)
 mc_results = mc_corrector.transform(mkdad_meta.results)
 mc_results.save_maps(output_dir=data_path, prefix="MKDADensity_FWE")
 

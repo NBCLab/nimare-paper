@@ -110,24 +110,36 @@ glue("figure_map_to_decode", fig, display=False)
 # ```{important}
 # {py:class}`nimare.decode.continuous.CorrelationDecoder` currently runs _very_ slowly.
 # We strongly recommend running it on a subset of labels within the `Dataset`.
+# It is also quite memory-intensive.
 # 
-# In this example, we will only decode using features appearing in >10% and <90% of the first 500 studies in the `Dataset`.
+# In this example, we have only run the decoder using features appearing in >10% and <90% of the first 500 studies in the `Dataset`.
+# Additionally, we have pre-generated the results and will simply show the code that _would_ generate
+# those results, as the decoder requires too much memory for NeuroLibre's servers.
+# ```
+# 
+# ```python
+# from nimare import decode, meta
+# 
+# corr_decoder = decode.continuous.CorrelationDecoder(
+#     frequency_threshold=0.001,
+#     meta_estimator=meta.MKDADensity(kernel_transformer=kern, memory_limit=None),
+#     target_image="z",
+#     features=target_features,
+#     memory_limit="500mb",
+# )
+# corr_decoder.fit(neurosynth_dset_first500)
+# corr_df = corr_decoder.transform(continuous_map)
 # ```
 
 # In[4]:
 
 
-from nimare import decode, meta
+import pandas as pd
 
-corr_decoder = decode.continuous.CorrelationDecoder(
-    frequency_threshold=0.001,
-    meta_estimator=meta.MKDADensity(kernel_transformer=kern, memory_limit=None),
-    target_image="z",
-    features=target_features,
-    memory_limit=None,
+corr_df = pd.read_table(
+    os.path.join(data_path, "correlation_decoder_results.tsv"),
+    index_col="feature",
 )
-corr_decoder.fit(neurosynth_dset_first500)
-corr_df = corr_decoder.transform(continuous_map)
 
 
 # In[5]:
@@ -145,13 +157,6 @@ glue("table_corr", corr_df)
 # The top ten terms, sorted by absolute correlation coefficient, from the correlation decoding method.
 # ```
 
-# In[6]:
-
-
-# Here we delete the recent variables for the sake of reducing memory usage
-del corr_decoder, corr_df
-
-
 # (content:decoding:discrete)=
 # ## Decoding discrete inputs
 # 
@@ -162,7 +167,7 @@ del corr_decoder, corr_df
 # 
 # Before we dig into the other decoding methods are are available, let's take a look at the ROI we want to decode.
 
-# In[7]:
+# In[6]:
 
 
 fig, ax = plt.subplots(figsize=(10, 6))
@@ -187,8 +192,10 @@ glue("figure_roi_to_decode", fig, display=False)
 # Because the `ROIAssociationDecoder` generates modeled activation maps for all of the experiments in the `Dataset`, we will only fit this decoder to the first 500 studies.
 # ```
 
-# In[8]:
+# In[7]:
 
+
+from nimare import decode
 
 assoc_decoder = decode.discrete.ROIAssociationDecoder(
     amygdala_roi,
@@ -199,7 +206,7 @@ assoc_decoder.fit(neurosynth_dset_first500)
 assoc_df = assoc_decoder.transform()
 
 
-# In[9]:
+# In[8]:
 
 
 assoc_df = assoc_df.reindex(assoc_df["r"].abs().sort_values(ascending=False).index)
@@ -214,7 +221,7 @@ glue("table_assoc", assoc_df)
 # The top ten terms, sorted by absolute correlation coefficient, from the ROI association decoding method.
 # ```
 
-# In[10]:
+# In[9]:
 
 
 # Here we delete the recent variables for the sake of reducing memory usage
@@ -245,7 +252,7 @@ del assoc_decoder, assoc_df
 # This specificity analysis produces a p-value and an effect size measure of the posterior probability of having the label given selection into the sample.
 # A detailed algorithm description is presented in [](appendices/brainmap_decoding).
 
-# In[11]:
+# In[10]:
 
 
 brainmap_decoder = decode.discrete.BrainMapDecoder(
@@ -257,7 +264,7 @@ brainmap_decoder.fit(neurosynth_dset)
 brainmap_df = brainmap_decoder.transform(amygdala_ids)
 
 
-# In[12]:
+# In[11]:
 
 
 brainmap_df = brainmap_df.reindex(
@@ -274,7 +281,7 @@ glue("table_brainmap", brainmap_df)
 # The top ten terms, sorted by reverse-inference posterior probability, from the BrainMap chi-squared decoding method.
 # ```
 
-# In[13]:
+# In[12]:
 
 
 # Here we delete the recent variables for the sake of reducing memory usage
@@ -296,7 +303,7 @@ del brainmap_decoder, brainmap_df
 # For the specificity analysis, the Neurosynth method produces both a p-value and a posterior probability of presence of the label given selection and the prior probability of having the label.
 # A detailed algorithm description is presented in [](appendices/neurosynth_decoding).
 
-# In[14]:
+# In[13]:
 
 
 neurosynth_decoder = decode.discrete.NeurosynthDecoder(
@@ -308,7 +315,7 @@ neurosynth_decoder.fit(neurosynth_dset)
 neurosynth_df = neurosynth_decoder.transform(amygdala_ids)
 
 
-# In[15]:
+# In[14]:
 
 
 neurosynth_df = neurosynth_df.reindex(
@@ -325,7 +332,7 @@ glue("table_neurosynth", neurosynth_df)
 # The top ten terms, sorted by reverse-inference posterior probability, from the Neurosynth chi-squared decoding method.
 # ```
 
-# In[16]:
+# In[15]:
 
 
 # Here we delete the recent variables for the sake of reducing memory usage
@@ -339,7 +346,7 @@ del neurosynth_decoder, neurosynth_df
 # The meta-analytic functional decoding methods in NiMARE provide a very rudimentary approach for open-ended decoding (i.e., decoding across a very large range of mental states) that can be used with resources like NeuroVault.
 # However, standard classification methods have also been applied to datasets from NeuroVault (e.g., {cite:t}`Varoquaux2018-lo`), although these methods do not fall under NiMARE's scope.
 
-# In[17]:
+# In[16]:
 
 
 end = datetime.now()

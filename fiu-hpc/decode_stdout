@@ -1,0 +1,9 @@
+---- repo2data starting ----
+/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/repo2data
+Config from file :
+../binder/data_requirement.json
+Destination:
+./../data/nimare-paper
+
+Info : ./../data/nimare-paper already downloaded
+95 features selected.

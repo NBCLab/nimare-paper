@@ -1,0 +1,192 @@
+INFO:nimare.dataset:Overwriting images column affine-34d2ff913320e14f04a4746cfa875fcd_memory_limit-None_r-10.0_value-1_MKDAKernel
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__activations (0/95): 81/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__anterior (1/95): 156/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__anterior cingulate (2/95): 59/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__attention (3/95): 63/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__auditory (4/95): 61/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__cerebral (5/95): 62/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__cingulate (6/95): 107/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__cognitive (7/95): 82/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__common (8/95): 51/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__condition (9/95): 50/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__conditions (10/95): 65/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__contrast (11/95): 74/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__control (12/95): 117/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__cortical (13/95): 126/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__cortices (14/95): 77/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__demonstrated (15/95): 60/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__did (16/95): 61/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__dorsal (17/95): 63/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__dorsolateral (18/95): 52/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__effect (19/95): 64/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__effects (20/95): 69/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__event (21/95): 107/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__event functional (22/95): 59/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__evidence (23/95): 86/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__frontal (24/95): 174/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__function (25/95): 61/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__functional magnetic (26/95): 266/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__greater (27/95): 64/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__group (28/95): 68/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__gyrus (29/95): 133/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__healthy (30/95): 96/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__hemisphere (31/95): 75/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__higher (32/95): 50/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__human (33/95): 111/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__indicate (34/95): 50/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__inferior (35/95): 145/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__inferior frontal (36/95): 65/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__information (37/95): 107/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__involved (38/95): 140/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__lateral (39/95): 82/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__level (40/95): 68/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__lobe (41/95): 59/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__magnetic (42/95): 288/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__magnetic resonance (43/95): 277/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__mechanisms (44/95): 50/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__medial (45/95): 85/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__memory (46/95): 113/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__middle (47/95): 61/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__motor (48/95): 116/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__network (49/95): 92/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__non (50/95): 63/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__normal (51/95): 72/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__occipital (52/95): 68/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__parietal (53/95): 197/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__parietal cortex (54/95): 70/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__pattern (55/95): 55/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__patterns (56/95): 56/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__performance (57/95): 95/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__posterior (58/95): 159/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__prefrontal (59/95): 176/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__prefrontal cortex (60/95): 120/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__premotor (61/95): 78/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__presented (62/95): 74/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__previous (63/95): 59/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__primary (64/95): 69/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__processes (65/95): 91/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__provide (66/95): 53/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__resonance (67/95): 278/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__response (68/95): 140/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__responses (69/95): 100/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__role (70/95): 80/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__semantic (71/95): 52/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__sensory (72/95): 53/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__signal (73/95): 57/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__single (74/95): 57/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__spatial (75/95): 77/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__stimulation (76/95): 53/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__stimuli (77/95): 127/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__stimulus (78/95): 98/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__studied (79/95): 61/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__suggest (80/95): 138/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__suggests (81/95): 52/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__sulcus (82/95): 74/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__superior (83/95): 119/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__supplementary (84/95): 52/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__task (85/95): 216/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__tasks (86/95): 114/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__temporal (87/95): 178/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__test (88/95): 54/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__time (89/95): 75/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__using (90/95): 204/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__using functional (91/95): 75/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__ventral (92/95): 75/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__visual (93/95): 148/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'
+INFO:nimare.decode.continuous:Decoding terms_abstract_tfidf__volunteers (94/95): 58/500 studies
+INFO:nimare.utils:Shared path detected: '/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth_dataset_maps/'

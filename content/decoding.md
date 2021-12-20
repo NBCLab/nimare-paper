@@ -145,6 +145,8 @@ corr_df = corr_decoder.transform(continuous_map)
 ```
 
 ```{code-cell} ipython3
+import pandas as pd
+
 corr_df = pd.read_table(
     os.path.join(data_path, "correlation_decoder_results.tsv"),
     index_col="feature",
@@ -163,12 +165,6 @@ glue("table_corr", corr_df)
 :align: center
 
 The top ten terms, sorted by absolute correlation coefficient, from the correlation decoding method.
-```
-
-```{code-cell} ipython3
-:tags: [hide-cell]
-# Here we delete the recent variables for the sake of reducing memory usage
-del corr_decoder, corr_df
 ```
 
 +++
@@ -208,6 +204,8 @@ Because the `ROIAssociationDecoder` generates modeled activation maps for all of
 ```
 
 ```{code-cell} ipython3
+from nimare import decode
+
 assoc_decoder = decode.discrete.ROIAssociationDecoder(
     amygdala_roi,
     u=0.05,

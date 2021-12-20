@@ -9,41 +9,33 @@ done
 [01mmyst v0.13.7:[39;49;00m MdParserConfig(renderer='sphinx', commonmark_only=False, dmath_allow_labels=True, dmath_allow_space=True, dmath_allow_digits=True, update_mathjax=True, enable_extensions=['colon_fence', 'dollarmath', 'linkify', 'substitution'], disable_syntax=[], url_schemes=['mailto', 'http', 'https'], heading_anchors=None, html_meta=[], footnote_transition=True, substitutions=[], sub_delimiters=['{', '}'])
 loading intersphinx inventory from _static/nimare_v0_0_10_objects.inv...
 [01mbuilding [mo]: [39;49;00mtargets for 0 po files that are out of date
-[01mbuilding [html]: [39;49;00mtargets for 8 source files that are out of date
-[01mupdating environment: [39;49;00m0 added, 8 changed, 0 removed
-[01mreading sources... [39;49;00m[ 12%] [35mannotation[39;49;00m                                           Executing: annotation in: /home/data/nbc/misc-projects/Salo_NiMARE/content
-Data loaded.
-[01mreading sources... [39;49;00m[ 25%] [35mcbma[39;49;00m                                                 Executing: cbma in: /home/data/nbc/misc-projects/Salo_NiMARE/content
-[01mreading sources... [39;49;00m[ 37%] [35mcorrection[39;49;00m                                           Executing: correction in: /home/data/nbc/misc-projects/Salo_NiMARE/content
-[01mreading sources... [39;49;00m[ 50%] [35mdecoding[39;49;00m                                             Executing: decoding in: /home/data/nbc/misc-projects/Salo_NiMARE/content
-[01mreading sources... [39;49;00m[ 62%] [35mibma[39;49;00m                                                 Executing: ibma in: /home/data/nbc/misc-projects/Salo_NiMARE/content
-[01mreading sources... [39;49;00m[ 75%] [35mmacm[39;49;00m                                                 Executing: macm in: /home/data/nbc/misc-projects/Salo_NiMARE/content
-[01mreading sources... [39;49;00m[ 87%] [35mresources[39;49;00m                                            Executing: resources in: /home/data/nbc/misc-projects/Salo_NiMARE/content
-[01mreading sources... [39;49;00m[100%] [35msubtraction[39;49;00m                                          Executing: subtraction in: /home/data/nbc/misc-projects/Salo_NiMARE/content
+[01mbuilding [html]: [39;49;00mtargets for 1 source files that are out of date
+[01mupdating environment: [39;49;00m0 added, 1 changed, 0 removed
+[01mreading sources... [39;49;00m[100%] [35mdecoding[39;49;00m                                             Executing: decoding in: /home/data/nbc/misc-projects/Salo_NiMARE/content
 
 [01mlooking for now-outdated files... [39;49;00mnone found
 [01mpickling environment... [39;49;00mdone
 [01mchecking consistency... [39;49;00mdone
 [01mpreparing documents... [39;49;00mdone
-[01mwriting output... [39;49;00m[ 11%] [32mabstract[39;49;00m                                              [01mwriting output... [39;49;00m[ 22%] [32mannotation[39;49;00m                                            [01mwriting output... [39;49;00m[ 33%] [32mcbma[39;49;00m                                                  [01mwriting output... [39;49;00m[ 44%] [32mcorrection[39;49;00m                                            [01mwriting output... [39;49;00m[ 55%] [32mdecoding[39;49;00m                                              [01mwriting output... [39;49;00m[ 66%] [32mibma[39;49;00m                                                  [01mwriting output... [39;49;00m[ 77%] [32mmacm[39;49;00m                                                  [01mwriting output... [39;49;00m[ 88%] [32mresources[39;49;00m                                             [01mwriting output... [39;49;00m[100%] [32msubtraction[39;49;00m                                           
+[01mwriting output... [39;49;00m[ 50%] [32mabstract[39;49;00m                                              [01mwriting output... [39;49;00m[100%] [32mdecoding[39;49;00m                                              
 [01mgenerating indices... [39;49;00mgenindex done
 [01mwriting additional pages... [39;49;00msearch done
-[01mcopying images... [39;49;00m[  4%] [33mimages/figure_00.svg[39;49;00m                                  [01mcopying images... [39;49;00m[  8%] [33m_build/jupyter_execute/annotation_12_1.png[39;49;00m            [01mcopying images... [39;49;00m[ 12%] [33m_build/jupyter_execute/annotation_12_0.png[39;49;00m            [01mcopying images... [39;49;00m[ 16%] [33m_build/jupyter_execute/annotation_26_1.png[39;49;00m            [01mcopying images... [39;49;00m[ 20%] [33m_build/jupyter_execute/annotation_26_0.png[39;49;00m            [01mcopying images... [39;49;00m[ 25%] [33mimages/figure_02.svg[39;49;00m                                  [01mcopying images... [39;49;00m[ 29%] [33m_build/jupyter_execute/cbma_6_1.png[39;49;00m                   [01mcopying images... [39;49;00m[ 33%] [33m_build/jupyter_execute/cbma_6_0.png[39;49;00m                   [01mcopying images... [39;49;00m[ 37%] [33m_build/jupyter_execute/cbma_40_1.png[39;49;00m                  [01mcopying images... [39;49;00m[ 41%] [33m_build/jupyter_execute/cbma_40_0.png[39;49;00m                  [01mcopying images... [39;49;00m[ 45%] [33m_build/jupyter_execute/correction_7_1.png[39;49;00m             [01mcopying images... [39;49;00m[ 50%] [33m_build/jupyter_execute/correction_7_0.png[39;49;00m             [01mcopying images... [39;49;00m[ 54%] [33m_build/jupyter_execute/decoding_5_2.png[39;49;00m               [01mcopying images... [39;49;00m[ 58%] [33m_build/jupyter_execute/decoding_5_1.png[39;49;00m               [01mcopying images... [39;49;00m[ 62%] [33m_build/jupyter_execute/decoding_12_1.png[39;49;00m              [01mcopying images... [39;49;00m[ 66%] [33m_build/jupyter_execute/decoding_12_0.png[39;49;00m              [01mcopying images... [39;49;00m[ 70%] [33m_build/jupyter_execute/ibma_14_1.png[39;49;00m                  [01mcopying images... [39;49;00m[ 75%] [33m_build/jupyter_execute/ibma_14_0.png[39;49;00m                  [01mcopying images... [39;49;00m[ 79%] [33m_build/jupyter_execute/macm_4_1.png[39;49;00m                   [01mcopying images... [39;49;00m[ 83%] [33m_build/jupyter_execute/macm_4_0.png[39;49;00m                   [01mcopying images... [39;49;00m[ 87%] [33m_build/jupyter_execute/macm_8_1.png[39;49;00m                   [01mcopying images... [39;49;00m[ 91%] [33m_build/jupyter_execute/macm_8_0.png[39;49;00m                   [01mcopying images... [39;49;00m[ 95%] [33m_build/jupyter_execute/subtraction_4_1.png[39;49;00m            [01mcopying images... [39;49;00m[100%] [33m_build/jupyter_execute/subtraction_4_0.png[39;49;00m            
+[01mcopying images... [39;49;00m[ 20%] [33mimages/figure_00.svg[39;49;00m                                  [01mcopying images... [39;49;00m[ 40%] [33m_build/jupyter_execute/decoding_5_2.png[39;49;00m               [01mcopying images... [39;49;00m[ 60%] [33m_build/jupyter_execute/decoding_5_1.png[39;49;00m               [01mcopying images... [39;49;00m[ 80%] [33m_build/jupyter_execute/decoding_11_1.png[39;49;00m              [01mcopying images... [39;49;00m[100%] [33m_build/jupyter_execute/decoding_11_0.png[39;49;00m              
 [01mcopying static files... [39;49;00mdone
 [01mcopying extra files... [39;49;00mdone
 [01mdumping search index in English (code: en)... [39;49;00mdone
 [01mdumping object inventory... [39;49;00mdone
 [01mbuild succeeded.[39;49;00m
 
-The HTML pages are in content/_build/html.
+The HTML pages are in ../content/_build/html.
 
 [92m===============================================================================[0m
 
 Finished generating HTML for book.
 Your book's HTML pages are here:
-    content/_build/html/
+    ../content/_build/html/
 You can look at your book by opening this file in a browser:
-    content/_build/html/index.html
+    ../content/_build/html/index.html
 Or paste this line directly into your browser bar:
     file:///home/data/nbc/misc-projects/Salo_NiMARE/content/_build/html/index.html            
 
