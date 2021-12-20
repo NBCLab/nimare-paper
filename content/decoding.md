@@ -123,12 +123,14 @@ As such, we will only show the {py:class}`nimare.decode.continuous.CorrelationDe
 ```{important}
 {py:class}`nimare.decode.continuous.CorrelationDecoder` currently runs _very_ slowly.
 We strongly recommend running it on a subset of labels within the `Dataset`.
+It is also quite memory-intensive.
 
-In this example, we will only decode using features appearing in >10% and <90% of the first 500 studies in the `Dataset`.
+In this example, we have only run the decoder using features appearing in >10% and <90% of the first 500 studies in the `Dataset`.
+Additionally, we have pre-generated the results and will simply show the code that _would_ generate
+those results, as the decoder requires too much memory for NeuroLibre's servers.
 ```
 
-```{code-cell} ipython3
-:tags: [hide-output]
+```python
 from nimare import decode, meta
 
 corr_decoder = decode.continuous.CorrelationDecoder(
@@ -140,6 +142,13 @@ corr_decoder = decode.continuous.CorrelationDecoder(
 )
 corr_decoder.fit(neurosynth_dset_first500)
 corr_df = corr_decoder.transform(continuous_map)
+```
+
+```{code-cell} ipython3
+corr_df = pd.read_table(
+    os.path.join(data_path, "correlation_decoder_results.tsv"),
+    index_col="feature",
+)
 ```
 
 ```{code-cell} ipython3
