@@ -21,6 +21,9 @@ export NPROCS=`echo $LSB_HOSTS | wc -w`
 export OMP_NUM_THREADS=2
 export NIMARE_DATA="/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data"
 . $MODULESHOME/../global/profile.modules
+echo "STARTING"
 source /home/data/nbc/misc-projects/Salo_NiMARE/fiu-hpc/activate_environment
 
 python /home/data/nbc/misc-projects/Salo_NiMARE/fiu-hpc/profile_book.py
+
+echo "COMPLETE"

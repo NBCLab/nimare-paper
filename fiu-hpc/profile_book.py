@@ -21,7 +21,7 @@ def run_page(filename):
     client.execute()
 
 
-chapters = sorted(glob("*.ipynb"))
+chapters = sorted(glob("../content/*.ipynb"))
 for chapter in chapters:
     print(os.path.basename(chapter))
     chapter_file = os.path.abspath(chapter)

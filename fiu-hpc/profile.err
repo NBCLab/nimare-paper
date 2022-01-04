@@ -1,0 +1,148 @@
+Traceback (most recent call last):
+  File "/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/urllib3/connection.py", line 175, in _new_conn
+    (self._dns_host, self.port), self.timeout, **extra_kw
+  File "/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/urllib3/util/connection.py", line 96, in create_connection
+    raise err
+  File "/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/urllib3/util/connection.py", line 86, in create_connection
+    sock.connect(sa)
+OSError: [Errno 101] Network is unreachable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/urllib3/connectionpool.py", line 706, in urlopen
+    chunked=chunked,
+  File "/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/urllib3/connectionpool.py", line 382, in _make_request
+    self._validate_conn(conn)
+  File "/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/urllib3/connectionpool.py", line 1010, in _validate_conn
+    conn.connect()
+  File "/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/urllib3/connection.py", line 358, in connect
+    conn = self._new_conn()
+  File "/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/urllib3/connection.py", line 187, in _new_conn
+    self, "Failed to establish a new connection: %s" % e
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPSConnection object at 0x7f5c056f1f50>: Failed to establish a new connection: [Errno 101] Network is unreachable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/requests/adapters.py", line 449, in send
+    timeout=timeout
+  File "/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/urllib3/connectionpool.py", line 756, in urlopen
+    method, url, error=e, _pool=self, _stacktrace=sys.exc_info()[2]
+  File "/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/urllib3/util/retry.py", line 574, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='drive.google.com', port=443): Max retries exceeded with url: /uc?id=1LgscyPqnka163hu5mdJ1X7UvX3IvXDJ2 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f5c056f1f50>: Failed to establish a new connection: [Errno 101] Network is unreachable'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/bin/gdown", line 8, in <module>
+    sys.exit(main())
+  File "/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/gdown/cli.py", line 155, in main
+    resume=args.continue_,
+  File "/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/gdown/download.py", line 149, in download
+    res = sess.get(url, headers=headers, stream=True, verify=verify)
+  File "/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/requests/sessions.py", line 555, in get
+    return self.request('GET', url, **kwargs)
+  File "/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/requests/sessions.py", line 542, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/requests/sessions.py", line 655, in send
+    r = adapter.send(request, **kwargs)
+  File "/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/requests/adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='drive.google.com', port=443): Max retries exceeded with url: /uc?id=1LgscyPqnka163hu5mdJ1X7UvX3IvXDJ2 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f5c056f1f50>: Failed to establish a new connection: [Errno 101] Network is unreachable'))
+Traceback (most recent call last):
+  File "/home/data/nbc/misc-projects/Salo_NiMARE/fiu-hpc/profile_book.py", line 29, in <module>
+    mem_usage = memory_usage((run_page, (chapter_file,)), interval=10, timeout=None)
+  File "/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/memory_profiler.py", line 377, in memory_usage
+    returned = f(*args, **kw)
+  File "/home/data/nbc/misc-projects/Salo_NiMARE/fiu-hpc/profile_book.py", line 21, in run_page
+    client.execute()
+  File "/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nbclient/util.py", line 84, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nbclient/util.py", line 62, in just_run
+    return loop.run_until_complete(coro)
+  File "/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/asyncio/base_events.py", line 587, in run_until_complete
+    return future.result()
+  File "/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nbclient/client.py", line 560, in async_execute
+    cell, index, execution_count=self.code_cells_executed + 1
+  File "/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nbclient/client.py", line 854, in async_execute_cell
+    self._check_raise_for_error(cell, exec_reply)
+  File "/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nbclient/client.py", line 756, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# First, import the necessary modules and functions
+import os
+
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+from myst_nb import glue
+from nilearn import image, plotting
+from repo2data.repo2data import Repo2Data
+
+import nimare
+
+# Install the data if running locally, or points to cached data if running on neurolibre
+DATA_REQ_FILE = os.path.join("../binder/data_requirement.json")
+FIG_DIR = os.path.abspath("../images")
+
+# Download data
+repo2data = Repo2Data(DATA_REQ_FILE)
+data_path = repo2data.install()
+data_path = os.path.join(data_path[0], "data")
+
+# Now, load the Dataset we will use in this chapter
+neurosynth_dset_first_500 = nimare.dataset.Dataset.load(
+    os.path.join(data_path, "neurosynth_dataset_first500.pkl.gz")
+)
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mCalledProcessError[0m                        Traceback (most recent call last)
+[0;32m/tmp/ipykernel_6221/85865466.py[0m in [0;36m<module>[0;34m[0m
+[1;32m     17[0m [0;31m# Download data[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     18[0m [0mrepo2data[0m [0;34m=[0m [0mRepo2Data[0m[0;34m([0m[0mDATA_REQ_FILE[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 19[0;31m [0mdata_path[0m [0;34m=[0m [0mrepo2data[0m[0;34m.[0m[0minstall[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     20[0m [0mdata_path[0m [0;34m=[0m [0mos[0m[0;34m.[0m[0mpath[0m[0;34m.[0m[0mjoin[0m[0;34m([0m[0mdata_path[0m[0;34m[[0m[0;36m0[0m[0;34m][0m[0;34m,[0m [0;34m"data"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     21[0m [0;34m[0m[0m
+
+[0;32m/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/repo2data/repo2data.py[0m in [0;36minstall[0;34m(self)[0m
+[1;32m     73[0m         [0;31m#if not, it is a single assignment[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     74[0m         [0;32melse[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 75[0;31m             [0mret[0m [0;34m+=[0m [0;34m[[0m[0mRepo2DataChild[0m[0;34m([0m[0mself[0m[0;34m.[0m[0m_data_requirement_file[0m[0;34m,[0m [0mself[0m[0;34m.[0m[0m_use_server[0m[0;34m)[0m[0;34m.[0m[0minstall[0m[0;34m([0m[0;34m)[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     76[0m [0;34m[0m[0m
+[1;32m     77[0m         [0;32mreturn[0m [0mret[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/repo2data/repo2data.py[0m in [0;36minstall[0;34m(self)[0m
+[1;32m    260[0m                 [0mos[0m[0;34m.[0m[0mmakedirs[0m[0;34m([0m[0mself[0m[0;34m.[0m[0m_dst_path[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    261[0m             [0;31m# Downloading with the right method, depending on the src type[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 262[0;31m             [0mself[0m[0;34m.[0m[0m_scan_dl_type[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    263[0m             [0;31m# If needed, decompression of the data[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    264[0m             [0mself[0m[0;34m.[0m[0m_archive_decompress[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/repo2data/repo2data.py[0m in [0;36m_scan_dl_type[0;34m(self)[0m
+[1;32m    240[0m         [0;31m# or coming from google drive[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    241[0m         [0;32melif[0m [0mre[0m[0;34m.[0m[0mmatch[0m[0;34m([0m[0;34m".*?(drive\\.google\\.com).*?"[0m[0;34m,[0m [0mself[0m[0;34m.[0m[0m_data_requirement_file[0m[0;34m[[0m[0;34m"src"[0m[0;34m][0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 242[0;31m             [0mself[0m[0;34m.[0m[0m_gdrive_download[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    243[0m         [0;31m#or maybe it is a python script[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    244[0m         [0;32melif[0m [0mre[0m[0;34m.[0m[0mmatch[0m[0;34m([0m[0;34m".*?(import.*?;).*?"[0m[0;34m,[0m [0mself[0m[0;34m.[0m[0m_data_requirement_file[0m[0;34m[[0m[0;34m"src"[0m[0;34m][0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/repo2data/repo2data.py[0m in [0;36m_gdrive_download[0;34m(self)[0m
+[1;32m    164[0m             [0mos[0m[0;34m.[0m[0mchdir[0m[0;34m([0m[0mself[0m[0;34m.[0m[0m_dst_path[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    165[0m             subprocess.check_call(['gdown'
+[0;32m--> 166[0;31m                                    , self._data_requirement_file["src"]])
+[0m[1;32m    167[0m             [0mos[0m[0;34m.[0m[0mchdir[0m[0;34m([0m[0mcwd[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    168[0m         [0;32mexcept[0m [0mFileNotFoundError[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/subprocess.py[0m in [0;36mcheck_call[0;34m(*popenargs, **kwargs)[0m
+[1;32m    361[0m         [0;32mif[0m [0mcmd[0m [0;32mis[0m [0;32mNone[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    362[0m             [0mcmd[0m [0;34m=[0m [0mpopenargs[0m[0;34m[[0m[0;36m0[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 363[0;31m         [0;32mraise[0m [0mCalledProcessError[0m[0;34m([0m[0mretcode[0m[0;34m,[0m [0mcmd[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    364[0m     [0;32mreturn[0m [0;36m0[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    365[0m [0;34m[0m[0m
+
+[0;31mCalledProcessError[0m: Command '['gdown', 'https://drive.google.com/uc?id=1LgscyPqnka163hu5mdJ1X7UvX3IvXDJ2']' returned non-zero exit status 1.
+CalledProcessError: Command '['gdown', 'https://drive.google.com/uc?id=1LgscyPqnka163hu5mdJ1X7UvX3IvXDJ2']' returned non-zero exit status 1.
+
