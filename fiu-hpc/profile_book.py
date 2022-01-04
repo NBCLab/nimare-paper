@@ -21,6 +21,8 @@ def run_page(filename):
     client.execute()
 
 
+os.chdir("/home/data/nbc/misc-projects/Salo_NiMARE/")
+
 chapters = sorted(glob("../content/*.ipynb"))
 for chapter in chapters:
     print(os.path.basename(chapter))
