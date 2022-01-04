@@ -1,12 +1,12 @@
 STARTING
 about_derivative_analyses.ipynb
-Memory usage (in chunks of 10 seconds): [52.921875, 52.9921875, 53.203125, 52.6796875, 51.18359375, 52.1015625, 52.7734375]
-Maximum memory usage: 53.203125 MB
+Memory usage (in chunks of 10 seconds): [52.12890625, 52.1640625, 52.46875, 51.84765625, 50.484375, 51.53515625, 52.0546875]
+Maximum memory usage: 52.46875 MB
 abstract.ipynb
-Memory usage (in chunks of 10 seconds): [53.05078125, 53.08203125, 53.33203125, 52.80859375, 51.37890625, 53.0390625]
-Maximum memory usage: 53.33203125 MB
+Memory usage (in chunks of 10 seconds): [52.34375, 52.375, 52.62890625, 52.10546875, 50.72265625, 51.88671875, 52.328125]
+Maximum memory usage: 52.62890625 MB
 acknowledgements.ipynb
-Memory usage (in chunks of 10 seconds): [53.19140625, 53.2265625, 53.5234375, 53.0, 51.69921875, 53.171875]
-Maximum memory usage: 53.5234375 MB
+Memory usage (in chunks of 10 seconds): [52.5078125, 52.54296875, 52.84375, 52.41015625, 50.9609375, 51.96875, 52.515625]
+Maximum memory usage: 52.84375 MB
 annotation.ipynb
 COMPLETE

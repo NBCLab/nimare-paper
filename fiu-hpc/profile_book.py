@@ -23,7 +23,7 @@ def run_page(filename):
 
 os.chdir("/home/data/nbc/misc-projects/Salo_NiMARE/")
 
-chapters = sorted(glob("../content/*.ipynb"))
+chapters = sorted(glob("/home/data/nbc/misc-projects/Salo_NiMARE/content/*.ipynb"))
 for chapter in chapters:
     print(os.path.basename(chapter))
     chapter_file = os.path.abspath(chapter)
