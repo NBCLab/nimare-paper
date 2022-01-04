@@ -39,3 +39,4 @@ parts:
     chapters:
     - file: appendices/brainmap_decoding
     - file: appendices/neurosynth_decoding
+    - file: build_information
