@@ -27,7 +27,6 @@ from repo2data.repo2data import Repo2Data
 
 # Install the data if running locally, or points to cached data if running on neurolibre
 DATA_REQ_FILE = os.path.join("../binder/data_requirement.json")
-FIG_DIR = os.path.abspath("../images")
 
 # Download data
 repo2data = Repo2Data(DATA_REQ_FILE)
