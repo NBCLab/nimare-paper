@@ -20,9 +20,9 @@ def run_page(filename):
 
 chapters = sorted(glob("../contents/*.md"))
 for chapter in chapters:
+    print(os.path.basename(chapter_file))
     chapter_file = os.path.abspath(chapter)
 
     mem_usage = memory_usage((run_page, chapter_file))
-    print(os.path.basename(chapter_file))
     print(f"Memory usage (in chunks of .1 seconds): {mem_usage}")
     print(f"Maximum memory usage: {max(mem_usage)}")
