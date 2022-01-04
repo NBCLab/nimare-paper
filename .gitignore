@@ -1,7 +1,7 @@
 .vscode/
 
 # Location of notebooks built for memory profiling
-fiu-hpc/notebooks/
+content/*.ipynb
 
 # Location of all data
 data/
