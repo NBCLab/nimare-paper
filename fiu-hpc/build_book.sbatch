@@ -18,7 +18,7 @@
 #SBATCH --account iacc_nbc
 
 #---Partition
-#SBATCH -p IB_16C_96G
+#SBATCH -p investor
 ########################################################
 export NPROCS=`echo $LSB_HOSTS | wc -w`
 export OMP_NUM_THREADS=2
