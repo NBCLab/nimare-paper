@@ -56,11 +56,17 @@ In NiMARE, we use an adapted version of the subtraction analysis method in {py:c
 The NiMARE implementation analyzes all voxels, rather than only those that show a significant effect of A alone or B alone as in the original implementation.
 ```
 
+```{important}
+Running a subtraction analysis with the standard number of iterations (10000) may require more than 4 GB of RAM, which is NeuroLibre's limit.
+We will instead use only 1000 iterations, so that the analysis will run successfully on NeuroLibre's server.
+For publication-quality subtraction analyses, we recommend using the standard 10000 iterations.
+```
+
 ```{code-cell} ipython3
 from nimare import meta
 
 kern = meta.kernel.ALEKernel()
-sub_meta = meta.cbma.ale.ALESubtraction(kernel_transformer=kern, n_iters=10000)
+sub_meta = meta.cbma.ale.ALESubtraction(kernel_transformer=kern, n_iters=1000)
 sub_results = sub_meta.fit(sleuth_dset1, sleuth_dset2)
 ```
 

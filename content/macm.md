@@ -68,6 +68,19 @@ sphere_ids = neurosynth_dset.get_studies_by_coordinate([[24, -2, -20]], r=6)
 dset_sphere = neurosynth_dset.slice(sphere_ids)
 ```
 
+```{important}
+The amygdala dataset includes more than 1300 studies.
+Running a meta-analysis on such a large dataset may require more than 4 GB of RAM, which is NeuroLibre's limit.
+Therefore, we will further reduce the Dataset to its first 500 studies, in order to run the meta-analysis successfully on NeuroLibre's server.
+For publication-quality analyses, we would recommend using the entire Dataset.
+```
+
+```{code-cell} ipython3
+print(dset_amygdala)
+dset_amygdala = dset_amygdala.slice(dset_amygdata.ids[:500])
+print(dset_amygdala)
+```
+
 ```{code-cell} ipython3
 :tags: [hide-cell]
 import numpy as np
