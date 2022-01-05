@@ -1,6 +1,8 @@
 """Execute each chapter in the Jupyter Book and measure memory usage.
 
 I need to run `jupytext *.md --to ipynb` in ../content/ before this.
+I also had to update nbclient to 0.5.9 and install memory_profiler on the NiMARE miniconda
+environment.
 """
 import os
 from glob import glob
