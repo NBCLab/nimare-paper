@@ -223,6 +223,11 @@
    Appendix II: Neurosynth Discrete Decoding
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="build_information.html">
+   Build Information
+  </a>
+ </li>
 </ul>
 
     </div>
@@ -339,7 +344,6 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># First, import the necessary modules and functions</span>
 <span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
 
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
@@ -348,11 +352,8 @@
 
 <span class="kn">import</span> <span class="nn">nimare</span>
 
-<span class="n">start</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
-
 <span class="c1"># Install the data if running locally, or points to cached data if running on neurolibre</span>
 <span class="n">DATA_REQ_FILE</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;../binder/data_requirement.json&quot;</span><span class="p">)</span>
-<span class="n">FIG_DIR</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;../images&quot;</span><span class="p">)</span>
 
 <span class="c1"># Download data</span>
 <span class="n">repo2data</span> <span class="o">=</span> <span class="n">Repo2Data</span><span class="p">(</span><span class="n">DATA_REQ_FILE</span><span class="p">)</span>
@@ -394,12 +395,18 @@ In the original implementation of the algorithm, this procedure is performed sep
 <p>In NiMARE, we use an adapted version of the subtraction analysis method in <a class="reference external" href="https://nimare.readthedocs.io/en/0.0.10/generated/nimare.meta.cbma.ale.ALESubtraction.html#nimare.meta.cbma.ale.ALESubtraction" title="(in NiMARE v0.0.10+0.ge8814c2.dirty)"><code class="xref py py-class docutils literal notranslate"><span class="pre">nimare.meta.cbma.ale.ALESubtraction</span></code></a>.
 The NiMARE implementation analyzes all voxels, rather than only those that show a significant effect of A alone or B alone as in the original implementation.</p>
 </div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Running a subtraction analysis with the standard number of iterations (10000) may require more than 4 GB of RAM, which is NeuroLibre’s limit.
+We will instead use only 1000 iterations, so that the analysis will run successfully on NeuroLibre’s server.
+For publication-quality subtraction analyses, we recommend using the standard 10000 iterations.</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nimare</span> <span class="kn">import</span> <span class="n">meta</span>
 
 <span class="n">kern</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">kernel</span><span class="o">.</span><span class="n">ALEKernel</span><span class="p">()</span>
-<span class="n">sub_meta</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">cbma</span><span class="o">.</span><span class="n">ale</span><span class="o">.</span><span class="n">ALESubtraction</span><span class="p">(</span><span class="n">kernel_transformer</span><span class="o">=</span><span class="n">kern</span><span class="p">,</span> <span class="n">n_iters</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
+<span class="n">sub_meta</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">cbma</span><span class="o">.</span><span class="n">ale</span><span class="o">.</span><span class="n">ALESubtraction</span><span class="p">(</span><span class="n">kernel_transformer</span><span class="o">=</span><span class="n">kern</span><span class="p">,</span> <span class="n">n_iters</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
 <span class="n">sub_results</span> <span class="o">=</span> <span class="n">sub_meta</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">sleuth_dset1</span><span class="p">,</span> <span class="n">sleuth_dset2</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -444,19 +451,6 @@ The NiMARE implementation analyzes all voxels, rather than only those that show 
 Generally, one of these groups is a sample of interest, while the other is a meta-analytic database (minus the studies in the sample).
 With this setup, meta-analysts can infer whether there is greater convergence of foci in a voxel as compared to the baseline across the field (as estimated with the meta-analytic database), much like SCALE.
 However, if the database is replaced with a second sample of interest, the analysis ends up comparing convergence between the two groups.</p>
-<div class="cell tag_hide-cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">end</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;subtraction.md took </span><span class="si">{</span><span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="si">}</span><span class="s2"> to build.&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>subtraction.md took 0:45:12.813117 to build.
-</pre></div>
-</div>
-</div>
-</div>
 </div>
 
     <script type="text/x-thebe-config">

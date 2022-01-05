@@ -43,8 +43,6 @@
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -223,6 +221,11 @@
    Appendix II: Neurosynth Discrete Decoding
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="build_information.html">
+   Build Information
+  </a>
+ </li>
 </ul>
 
     </div>
@@ -339,7 +342,6 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># First, import the necessary modules and functions</span>
 <span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
 
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
@@ -347,11 +349,8 @@
 
 <span class="kn">import</span> <span class="nn">nimare</span>
 
-<span class="n">start</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
-
 <span class="c1"># Install the data if running locally, or points to cached data if running on neurolibre</span>
 <span class="n">DATA_REQ_FILE</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;../binder/data_requirement.json&quot;</span><span class="p">)</span>
-<span class="n">FIG_DIR</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;../images&quot;</span><span class="p">)</span>
 
 <span class="c1"># Download data</span>
 <span class="n">repo2data</span> <span class="o">=</span> <span class="n">Repo2Data</span><span class="p">(</span><span class="n">DATA_REQ_FILE</span><span class="p">)</span>
@@ -402,6 +401,28 @@ For the latter, we use <a class="reference external" href="https://nimare.readth
 </div>
 </div>
 </div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The amygdala dataset includes more than 1300 studies.
+Running a meta-analysis on such a large dataset may require more than 4 GB of RAM, which is NeuroLibre’s limit.
+Therefore, we will further reduce the Dataset to its first 500 studies, in order to run the meta-analysis successfully on NeuroLibre’s server.
+For publication-quality analyses, we would recommend using the entire Dataset.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">dset_amygdala</span><span class="p">)</span>
+<span class="n">dset_amygdala</span> <span class="o">=</span> <span class="n">dset_amygdala</span><span class="o">.</span><span class="n">slice</span><span class="p">(</span><span class="n">dset_amygdala</span><span class="o">.</span><span class="n">ids</span><span class="p">[:</span><span class="mi">500</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">dset_amygdala</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Dataset(1369 experiments, space=&#39;mni152_2mm&#39;)
+Dataset(500 experiments, space=&#39;mni152_2mm&#39;)
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -436,12 +457,12 @@ For the latter, we use <a class="reference external" href="https://nimare.readth
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/macm_4_1.png" src="_images/macm_4_1.png" />
+<img alt="_images/macm_6_1.png" src="_images/macm_6_1.png" />
 </div>
 </div>
 <div class="figure align-center" id="figure-macm-rois">
 <div class="cell_output docutils container">
-<img alt="_images/macm_4_0.png" src="_images/macm_4_0.png" />
+<img alt="_images/macm_6_0.png" src="_images/macm_6_0.png" />
 </div>
 <p class="caption"><span class="caption-number">Fig. 9 </span><span class="caption-text">Region of interest masks for (1) a target mask-based MACM and (2) a coordinate-based MACM.</span><a class="headerlink" href="#figure-macm-rois" title="Permalink to this image">¶</a></p>
 </div>
@@ -500,27 +521,14 @@ For the latter, we use <a class="reference external" href="https://nimare.readth
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/macm_8_1.png" src="_images/macm_8_1.png" />
+<img alt="_images/macm_10_1.png" src="_images/macm_10_1.png" />
 </div>
 </div>
 <div class="figure align-center" id="figure-macm">
 <div class="cell_output docutils container">
-<img alt="_images/macm_8_0.png" src="_images/macm_8_0.png" />
+<img alt="_images/macm_10_0.png" src="_images/macm_10_0.png" />
 </div>
 <p class="caption"><span class="caption-number">Fig. 10 </span><span class="caption-text">Unthresholded z-statistic maps for (1) the target mask-based MACM and (2) the coordinate-based MACM.</span><a class="headerlink" href="#figure-macm" title="Permalink to this image">¶</a></p>
-</div>
-<div class="cell tag_hide-cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">end</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;macm.md took </span><span class="si">{</span><span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="si">}</span><span class="s2"> to build.&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>macm.md took 0:11:49.228726 to build.
-</pre></div>
-</div>
-</div>
 </div>
 </div>
 

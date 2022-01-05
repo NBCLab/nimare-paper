@@ -19,7 +19,6 @@ kernelspec:
 :tags: [hide-cell]
 # First, import the necessary modules and functions
 import os
-from datetime import datetime
 
 import matplotlib.pyplot as plt
 from myst_nb import glue
@@ -27,11 +26,8 @@ from repo2data.repo2data import Repo2Data
 
 import nimare
 
-start = datetime.now()
-
 # Install the data if running locally, or points to cached data if running on neurolibre
 DATA_REQ_FILE = os.path.join("../binder/data_requirement.json")
-FIG_DIR = os.path.abspath("../images")
 
 # Download data
 repo2data = Repo2Data(DATA_REQ_FILE)
@@ -70,6 +66,19 @@ dset_amygdala = neurosynth_dset.slice(amygdala_ids)
 # Create Dataset only containing studies with peaks within the sphere ROI
 sphere_ids = neurosynth_dset.get_studies_by_coordinate([[24, -2, -20]], r=6)
 dset_sphere = neurosynth_dset.slice(sphere_ids)
+```
+
+```{important}
+The amygdala dataset includes more than 1300 studies.
+Running a meta-analysis on such a large dataset may require more than 4 GB of RAM, which is NeuroLibre's limit.
+Therefore, we will further reduce the Dataset to its first 500 studies, in order to run the meta-analysis successfully on NeuroLibre's server.
+For publication-quality analyses, we would recommend using the entire Dataset.
+```
+
+```{code-cell} ipython3
+print(dset_amygdala)
+dset_amygdala = dset_amygdala.slice(dset_amygdala.ids[:500])
+print(dset_amygdala)
 ```
 
 ```{code-cell} ipython3
@@ -161,11 +170,4 @@ glue("figure_macm", fig, display=False)
 :align: center
 
 Unthresholded z-statistic maps for (1) the target mask-based MACM and (2) the coordinate-based MACM.
-```
-
-```{code-cell} ipython3
-:tags: [hide-cell]
-
-end = datetime.now()
-print(f"macm.md took {end - start} to build.")
 ```
