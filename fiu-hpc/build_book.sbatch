@@ -1,6 +1,9 @@
 #!/bin/bash
-#---Number of cores
+#---Number of CPUs
 #SBATCH -c 1
+
+#---Limit to 4GB
+#SBATCH --mem-per-cpu=4000
 
 #---Job's name in SLURM system
 #SBATCH -J nimare-paper
