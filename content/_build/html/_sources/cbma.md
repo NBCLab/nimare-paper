@@ -19,7 +19,6 @@ kernelspec:
 :tags: [hide-cell]
 # First, import the necessary modules and functions
 import os
-from datetime import datetime
 from pprint import pprint
 
 import matplotlib.pyplot as plt
@@ -30,11 +29,8 @@ from repo2data.repo2data import Repo2Data
 
 import nimare
 
-start = datetime.now()
-
 # Install the data if running locally, or points to cached data if running on neurolibre
 DATA_REQ_FILE = os.path.join("../binder/data_requirement.json")
-FIG_DIR = os.path.abspath("../images")
 
 # Download data
 repo2data = Repo2Data(DATA_REQ_FILE)
@@ -428,10 +424,3 @@ Thresholded results from MKDA Density, KDA, ALE, and SCALE meta-analyses.
 
 A number of other coordinate-based meta-analysis algorithms exist which are not yet implemented in NiMARE.
 We describe these algorithms briefly in [](future_directions.md).
-
-```{code-cell} ipython3
-:tags: [hide-cell]
-
-end = datetime.now()
-print(f"cbma.md took {end - start} to build.")
-```

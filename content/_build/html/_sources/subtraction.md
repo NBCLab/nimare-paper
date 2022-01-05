@@ -19,7 +19,6 @@ kernelspec:
 :tags: [hide-cell]
 # First, import the necessary modules and functions
 import os
-from datetime import datetime
 
 import matplotlib.pyplot as plt
 from myst_nb import glue
@@ -28,11 +27,8 @@ from repo2data.repo2data import Repo2Data
 
 import nimare
 
-start = datetime.now()
-
 # Install the data if running locally, or points to cached data if running on neurolibre
 DATA_REQ_FILE = os.path.join("../binder/data_requirement.json")
-FIG_DIR = os.path.abspath("../images")
 
 # Download data
 repo2data = Repo2Data(DATA_REQ_FILE)
@@ -60,11 +56,17 @@ In NiMARE, we use an adapted version of the subtraction analysis method in {py:c
 The NiMARE implementation analyzes all voxels, rather than only those that show a significant effect of A alone or B alone as in the original implementation.
 ```
 
+```{important}
+Running a subtraction analysis with the standard number of iterations (10000) may require more than 4 GB of RAM, which is NeuroLibre's limit.
+We will instead use only 1000 iterations, so that the analysis will run successfully on NeuroLibre's server.
+For publication-quality subtraction analyses, we recommend using the standard 10000 iterations.
+```
+
 ```{code-cell} ipython3
 from nimare import meta
 
 kern = meta.kernel.ALEKernel()
-sub_meta = meta.cbma.ale.ALESubtraction(kernel_transformer=kern, n_iters=10000)
+sub_meta = meta.cbma.ale.ALESubtraction(kernel_transformer=kern, n_iters=1000)
 sub_results = sub_meta.fit(sleuth_dset1, sleuth_dset2)
 ```
 
@@ -103,10 +105,3 @@ Alternatively, MKDA Chi-squared analysis is inherently a subtraction analysis me
 Generally, one of these groups is a sample of interest, while the other is a meta-analytic database (minus the studies in the sample).
 With this setup, meta-analysts can infer whether there is greater convergence of foci in a voxel as compared to the baseline across the field (as estimated with the meta-analytic database), much like SCALE.
 However, if the database is replaced with a second sample of interest, the analysis ends up comparing convergence between the two groups.
-
-```{code-cell} ipython3
-:tags: [hide-cell]
-
-end = datetime.now()
-print(f"subtraction.md took {end - start} to build.")
-```

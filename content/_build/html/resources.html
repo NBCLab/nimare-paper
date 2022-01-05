@@ -223,6 +223,11 @@
    Appendix II: Neurosynth Discrete Decoding
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="build_information.html">
+   Build Information
+  </a>
+ </li>
 </ul>
 
     </div>
@@ -367,18 +372,14 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># First, import the necessary modules and functions</span>
 <span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
 <span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>
 
 <span class="kn">from</span> <span class="nn">repo2data.repo2data</span> <span class="kn">import</span> <span class="n">Repo2Data</span>
 
 <span class="kn">import</span> <span class="nn">nimare</span>
 
-<span class="n">start</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
-
 <span class="c1"># Install the data if running locally, or points to cached data if running on neurolibre</span>
 <span class="n">DATA_REQ_FILE</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;../binder/data_requirement.json&quot;</span><span class="p">)</span>
-<span class="n">FIG_DIR</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;../images&quot;</span><span class="p">)</span>
 
 <span class="c1"># Download data</span>
 <span class="n">repo2data</span> <span class="o">=</span> <span class="n">Repo2Data</span><span class="p">(</span><span class="n">DATA_REQ_FILE</span><span class="p">)</span>
@@ -640,19 +641,6 @@ Downloading data-neuroquery_version-1_vocab-neuroquery6308_vocabulary.txt
 <p><strong>NeuroVault</strong> <span id="id12">[<a class="reference internal" href="bibliography.html#id10">Gorgolewski <em>et al.</em>, 2015</a>]</span> is a public repository of user-uploaded, whole-brain, unthresholded brain maps.
 Users may associate their image collections with publications, and can annotate individual maps with labels from the Cognitive Atlas, which is the ontology of choice for NeuroVault.
 NiMARE includes a function, <a class="reference external" href="https://nimare.readthedocs.io/en/0.0.10/generated/nimare.io.convert_neurovault_to_dataset.html#nimare.io.convert_neurovault_to_dataset" title="(in NiMARE v0.0.10+0.ge8814c2.dirty)"><code class="xref py py-func docutils literal notranslate"><span class="pre">nimare.io.convert_neurovault_to_dataset()</span></code></a>, with which users can search for images in NeuroVault, download those images, and convert them into a <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> object.</p>
-<div class="cell tag_hide-cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">end</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;resources.md took </span><span class="si">{</span><span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="si">}</span><span class="s2"> to build.&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>resources.md took 0:22:56.817754 to build.
-</pre></div>
-</div>
-</div>
-</div>
 </div>
 </div>
 

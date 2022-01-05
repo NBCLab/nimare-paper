@@ -11,16 +11,17 @@ loading intersphinx inventory from _static/nimare_v0_0_10_objects.inv...
 [01mbuilding [mo]: [39;49;00mtargets for 0 po files that are out of date
 [01mbuilding [html]: [39;49;00mtargets for 1 source files that are out of date
 [01mupdating environment: [39;49;00m0 added, 1 changed, 0 removed
-[01mreading sources... [39;49;00m[100%] [35mdecoding[39;49;00m                                             Executing: decoding in: /home/data/nbc/misc-projects/Salo_NiMARE/content
+[01mreading sources... [39;49;00m[100%] [35mmacm[39;49;00m                                                 Executing: macm in: /home/data/nbc/misc-projects/Salo_NiMARE/content
 
+Updating `nb-exec-table`s in: {'build_information'}
 [01mlooking for now-outdated files... [39;49;00mnone found
 [01mpickling environment... [39;49;00mdone
 [01mchecking consistency... [39;49;00mdone
 [01mpreparing documents... [39;49;00mdone
-[01mwriting output... [39;49;00m[ 50%] [32mabstract[39;49;00m                                              [01mwriting output... [39;49;00m[100%] [32mdecoding[39;49;00m                                              
+[01mwriting output... [39;49;00m[ 33%] [32mabstract[39;49;00m                                              [01mwriting output... [39;49;00m[ 66%] [32mbuild_information[39;49;00m                                     [01mwriting output... [39;49;00m[100%] [32mmacm[39;49;00m                                                  
 [01mgenerating indices... [39;49;00mgenindex done
 [01mwriting additional pages... [39;49;00msearch done
-[01mcopying images... [39;49;00m[ 20%] [33mimages/figure_00.svg[39;49;00m                                  [01mcopying images... [39;49;00m[ 40%] [33m_build/jupyter_execute/decoding_5_2.png[39;49;00m               [01mcopying images... [39;49;00m[ 60%] [33m_build/jupyter_execute/decoding_5_1.png[39;49;00m               [01mcopying images... [39;49;00m[ 80%] [33m_build/jupyter_execute/decoding_11_1.png[39;49;00m              [01mcopying images... [39;49;00m[100%] [33m_build/jupyter_execute/decoding_11_0.png[39;49;00m              
+[01mcopying images... [39;49;00m[ 20%] [33mimages/figure_00.svg[39;49;00m                                  [01mcopying images... [39;49;00m[ 40%] [33m_build/jupyter_execute/macm_6_1.png[39;49;00m                   [01mcopying images... [39;49;00m[ 60%] [33m_build/jupyter_execute/macm_6_0.png[39;49;00m                   [01mcopying images... [39;49;00m[ 80%] [33m_build/jupyter_execute/macm_10_1.png[39;49;00m                  [01mcopying images... [39;49;00m[100%] [33m_build/jupyter_execute/macm_10_0.png[39;49;00m                  
 [01mcopying static files... [39;49;00mdone
 [01mcopying extra files... [39;49;00mdone
 [01mdumping search index in English (code: en)... [39;49;00mdone

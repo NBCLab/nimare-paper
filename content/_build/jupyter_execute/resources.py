@@ -8,18 +8,14 @@
 
 # First, import the necessary modules and functions
 import os
-from datetime import datetime
 from pprint import pprint
 
 from repo2data.repo2data import Repo2Data
 
 import nimare
 
-start = datetime.now()
-
 # Install the data if running locally, or points to cached data if running on neurolibre
 DATA_REQ_FILE = os.path.join("../binder/data_requirement.json")
-FIG_DIR = os.path.abspath("../images")
 
 # Download data
 repo2data = Repo2Data(DATA_REQ_FILE)
@@ -186,10 +182,3 @@ if not os.path.isfile(os.path.join(data_path, "neuroquery_dataset.pkl.gz")):
 # **NeuroVault** {cite:p}`Gorgolewski2015-sd` is a public repository of user-uploaded, whole-brain, unthresholded brain maps.
 # Users may associate their image collections with publications, and can annotate individual maps with labels from the Cognitive Atlas, which is the ontology of choice for NeuroVault.
 # NiMARE includes a function, {py:func}`nimare.io.convert_neurovault_to_dataset`, with which users can search for images in NeuroVault, download those images, and convert them into a `Dataset` object.
-
-# In[6]:
-
-
-end = datetime.now()
-print(f"resources.md took {end - start} to build.")
-

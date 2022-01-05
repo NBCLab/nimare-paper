@@ -8,7 +8,6 @@
 
 # First, import the necessary modules and functions
 import os
-from datetime import datetime
 
 import matplotlib.pyplot as plt
 from myst_nb import glue
@@ -16,11 +15,8 @@ from repo2data.repo2data import Repo2Data
 
 import nimare
 
-start = datetime.now()
-
 # Install the data if running locally, or points to cached data if running on neurolibre
 DATA_REQ_FILE = os.path.join("../binder/data_requirement.json")
-FIG_DIR = os.path.abspath("../images")
 
 # Download data
 repo2data = Repo2Data(DATA_REQ_FILE)
@@ -61,7 +57,22 @@ sphere_ids = neurosynth_dset.get_studies_by_coordinate([[24, -2, -20]], r=6)
 dset_sphere = neurosynth_dset.slice(sphere_ids)
 
 
+# ```{important}
+# The amygdala dataset includes more than 1300 studies.
+# Running a meta-analysis on such a large dataset may require more than 4 GB of RAM, which is NeuroLibre's limit.
+# Therefore, we will further reduce the Dataset to its first 500 studies, in order to run the meta-analysis successfully on NeuroLibre's server.
+# For publication-quality analyses, we would recommend using the entire Dataset.
+# ```
+
 # In[3]:
+
+
+print(dset_amygdala)
+dset_amygdala = dset_amygdala.slice(dset_amygdala.ids[:500])
+print(dset_amygdala)
+
+
+# In[4]:
 
 
 import numpy as np
@@ -103,7 +114,7 @@ glue("figure_macm_rois", fig, display=False)
 
 # Once the `Dataset` has been reduced to studies with coordinates within the mask or sphere requested, any of the supported CBMA Estimators can be run.
 
-# In[4]:
+# In[5]:
 
 
 from nimare import meta
@@ -115,7 +126,7 @@ meta_sphere = meta.cbma.ale.ALE(kernel__sample_size=20)
 results_sphere = meta_sphere.fit(dset_sphere)
 
 
-# In[5]:
+# In[6]:
 
 
 meta_results = {
@@ -153,10 +164,3 @@ glue("figure_macm", fig, display=False)
 # 
 # Unthresholded z-statistic maps for (1) the target mask-based MACM and (2) the coordinate-based MACM.
 # ```
-
-# In[6]:
-
-
-end = datetime.now()
-print(f"macm.md took {end - start} to build.")
-

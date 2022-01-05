@@ -19,22 +19,18 @@ kernelspec:
 :tags: [hide-cell]
 # First, import the necessary modules and functions
 import os
-from datetime import datetime
 
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from myst_nb import glue
 from nilearn import image, plotting
-from repo2data.repo2data import Repo2Data
+from repo2data.repo2data import Repo2Data, Repo2DataChild
 
 import nimare
 
-start = datetime.now()
-
 # Install the data if running locally, or points to cached data if running on neurolibre
 DATA_REQ_FILE = os.path.join("../binder/data_requirement.json")
-FIG_DIR = os.path.abspath("../images")
 
 # Download data
 repo2data = Repo2Data(DATA_REQ_FILE)
@@ -388,7 +384,4 @@ Topic weight maps for the first ten topics in the GCLDA model.
 :tags: [hide-cell]
 # Here we delete the recent variables for the sake of reducing memory usage
 del gclda_model, temp_df, gclda_df, counts_df
-
-end = datetime.now()
-print(f"annotation.md took {end - start} to build.")
 ```
