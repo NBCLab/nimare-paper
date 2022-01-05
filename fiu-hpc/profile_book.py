@@ -14,7 +14,7 @@ def run_page(filename):
     nb = nbformat.read(filename, as_version=4)
     client = NotebookClient(
         nb,
-        timeout=600,
+        timeout=None,
         kernel_name="python3",
         resources={"metadata": {"path": "."}},
     )
@@ -28,6 +28,6 @@ for chapter in chapters:
     print(os.path.basename(chapter))
     chapter_file = os.path.abspath(chapter)
 
-    mem_usage = memory_usage((run_page, (chapter_file,)), interval=10, timeout=None)
-    print(f"Memory usage (in chunks of 10 seconds): {mem_usage}")
+    mem_usage = memory_usage((run_page, (chapter_file,)), interval=0.5, timeout=None)
+    print(f"Memory usage (in chunks of 0.5 seconds): {mem_usage}")
     print(f"Maximum memory usage: {max(mem_usage)} MB")

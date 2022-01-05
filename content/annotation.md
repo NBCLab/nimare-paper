@@ -25,7 +25,7 @@ import numpy as np
 import pandas as pd
 from myst_nb import glue
 from nilearn import image, plotting
-from repo2data.repo2data import Repo2Data
+from repo2data.repo2data import Repo2Data, Repo2DataChild
 
 import nimare
 
