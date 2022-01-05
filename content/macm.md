@@ -77,7 +77,7 @@ For publication-quality analyses, we would recommend using the entire Dataset.
 
 ```{code-cell} ipython3
 print(dset_amygdala)
-dset_amygdala = dset_amygdala.slice(dset_amygdata.ids[:500])
+dset_amygdala = dset_amygdala.slice(dset_amygdala.ids[:500])
 print(dset_amygdala)
 ```
 
