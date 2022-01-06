@@ -34,7 +34,6 @@ data_path = os.path.join(data_path[0], "data")
 
 # Set an output directory for any files generated during the book building process
 out_dir = os.path.abspath("../outputs/")
-os.mkdir(out_dir, exist_ok=True)
 
 neurosynth_dset = dataset.Dataset.load(os.path.join(out_dir, "neurosynth_dataset.pkl.gz"))
 ```

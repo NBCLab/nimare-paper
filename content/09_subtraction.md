@@ -28,7 +28,6 @@ from nimare import dataset
 
 # Set an output directory for any files generated during the book building process
 out_dir = os.path.abspath("../outputs/")
-os.mkdir(out_dir, exist_ok=True)
 
 # Now, load the Datasets we will use in this chapter
 sleuth_dset1 = dataset.Dataset.load(os.path.join(out_dir, "sleuth_dset1.pkl.gz"))

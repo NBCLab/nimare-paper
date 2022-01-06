@@ -26,7 +26,6 @@ from nilearn import plotting
 
 # Set an output directory for any files generated during the book building process
 out_dir = os.path.abspath("../outputs/")
-os.mkdir(out_dir, exist_ok=True)
 ```
 
 +++
