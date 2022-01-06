@@ -24,18 +24,19 @@ import matplotlib.pyplot as plt
 from myst_nb import glue
 from repo2data.repo2data import Repo2Data
 
-import nimare
+from nimare import dataset
 
 # Install the data if running locally, or points to cached data if running on neurolibre
 DATA_REQ_FILE = os.path.abspath("../binder/data_requirement.json")
-
-# Download data
 repo2data = Repo2Data(DATA_REQ_FILE)
 data_path = repo2data.install()
 data_path = os.path.join(data_path[0], "data")
 
-# Now, load the Datasets we will use in this chapter
-neurosynth_dset = nimare.dataset.Dataset.load(os.path.join(data_path, "neurosynth_dataset.pkl.gz"))
+# Set an output directory for any files generated during the book building process
+out_dir = os.path.abspath("../outputs/")
+os.mkdir(out_dir, exist_ok=True)
+
+neurosynth_dset = dataset.Dataset.load(os.path.join(out_dir, "neurosynth_dataset.pkl.gz"))
 ```
 
 +++

@@ -23,15 +23,10 @@ import os
 import matplotlib.pyplot as plt
 from myst_nb import glue
 from nilearn import plotting
-from repo2data.repo2data import Repo2Data
 
-# Install the data if running locally, or points to cached data if running on neurolibre
-DATA_REQ_FILE = os.path.abspath("../binder/data_requirement.json")
-
-# Download data
-repo2data = Repo2Data(DATA_REQ_FILE)
-data_path = repo2data.install()
-data_path = os.path.join(data_path[0], "data")
+# Set an output directory for any files generated during the book building process
+out_dir = os.path.abspath("../outputs/")
+os.mkdir(out_dir, exist_ok=True)
 ```
 
 +++
@@ -55,11 +50,11 @@ Normally, one would use at least 10000 iterations, but we reduced this for the s
 ```{code-cell} ipython3
 from nimare import meta, correct
 
-mkdad_meta = meta.cbma.mkda.MKDADensity.load(os.path.join(data_path, "MKDADensity.pkl.gz"))
+mkdad_meta = meta.cbma.mkda.MKDADensity.load(os.path.join(out_dir, "MKDADensity.pkl.gz"))
 
 mc_corrector = correct.FWECorrector(method="montecarlo", n_iters=5000, n_cores=4)
 mc_results = mc_corrector.transform(mkdad_meta.results)
-mc_results.save_maps(output_dir=data_path, prefix="MKDADensity_FWE")
+mc_results.save_maps(output_dir=out_dir, prefix="MKDADensity_FWE")
 
 fdr_corrector = correct.FDRCorrector(method="indep")
 fdr_results = fdr_corrector.transform(mkdad_meta.results)
@@ -72,7 +67,7 @@ Let's take a look at the files created by the `FWECorrector`.
 ```{code-cell} ipython3
 from glob import glob
 
-fwe_maps = sorted(glob(os.path.join(data_path, "MKDADensity_FWE*.nii.gz")))
+fwe_maps = sorted(glob(os.path.join(out_dir, "MKDADensity_FWE*.nii.gz")))
 fwe_maps = [os.path.basename(fwe_map) for fwe_map in fwe_maps]
 print("\n".join(fwe_maps))
 ```

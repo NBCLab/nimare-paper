@@ -27,34 +27,26 @@ from repo2data.repo2data import Repo2Data
 
 # Install the data if running locally, or points to cached data if running on neurolibre
 DATA_REQ_FILE = os.path.abspath("../binder/data_requirement.json")
-
-# Download data
 repo2data = Repo2Data(DATA_REQ_FILE)
 data_path = repo2data.install()
 data_path = os.path.join(data_path[0], "data")
+
+# Set an output directory for any files generated during the book building process
+out_dir = os.path.abspath("../outputs/")
+os.mkdir(out_dir, exist_ok=True)
 ```
 
 ```{code-cell} ipython3
 :tags: [hide-cell]
-import nimare
-from nimare import meta
 
-dset_file = os.path.join(data_path, "neurosynth_dataset_first500_with_mkda_ma.pkl.gz")
-kern = meta.kernel.MKDAKernel(memory_limit=None)
-target_folder = os.path.join(data_path, "neurosynth_dataset_maps")
-if not os.path.isfile(dset_file):
-    neurosynth_dset_first500 = nimare.dataset.Dataset.load(
-        os.path.join(data_path, "neurosynth_dataset_first500.pkl.gz")
-    )
-    os.makedirs(target_folder, exist_ok=True)
-    neurosynth_dset_first500.update_path(target_folder)
-    neurosynth_dset_first500 = kern.transform(neurosynth_dset_first500, return_type="dataset")
-    neurosynth_dset_first500.save(dset_file)
-else:
-    neurosynth_dset_first500 = nimare.dataset.Dataset.load(dset_file)
-    neurosynth_dset_first500.update_path(target_folder)
+from nimare import dataset, meta
 
-neurosynth_dset = nimare.dataset.Dataset.load(os.path.join(data_path, "neurosynth_dataset.pkl.gz"))
+neurosynth_dset = dataset.Dataset.load(os.path.join(out_dir, "neurosynth_dataset.pkl.gz"))
+
+kern = meta.kernel.MKDAKernel(memory_limit="500mb")
+neurosynth_dset_first500 = dataset.Dataset.load(
+    os.path.join(out_dir, "neurosynth_dataset_first500_with_mkda_ma.pkl.gz"),
+)
 
 # Collect features for decoding
 # We use any features that appear in >10% of studies and <90%.
@@ -204,6 +196,7 @@ from nimare import decode
 
 assoc_decoder = decode.discrete.ROIAssociationDecoder(
     amygdala_roi,
+    kernel_transformer=kern,
     u=0.05,
     correction="fdr_bh",
 )

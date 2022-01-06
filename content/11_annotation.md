@@ -27,20 +27,17 @@ from myst_nb import glue
 from nilearn import image, plotting
 from repo2data.repo2data import Repo2Data
 
-import nimare
+from nimare import dataset, extract
 
 # Install the data if running locally, or points to cached data if running on neurolibre
 DATA_REQ_FILE = os.path.abspath("../binder/data_requirement.json")
-
-# Download data
 repo2data = Repo2Data(DATA_REQ_FILE)
 data_path = repo2data.install()
 data_path = os.path.join(data_path[0], "data")
 
-# Now, load the Dataset we will use in this chapter
-neurosynth_dset_first_500 = nimare.dataset.Dataset.load(
-    os.path.join(data_path, "neurosynth_dataset_first500.pkl.gz")
-)
+# Set an output directory for any files generated during the book building process
+out_dir = os.path.abspath("../outputs/")
+os.mkdir(out_dir, exist_ok=True)
 ```
 
 +++
@@ -55,20 +52,34 @@ Abstracts are much more easily accessible than full article text, so most annota
 Below, we use the function {py:func}`nimare.extract.download_abstracts` to download abstracts for the Neurosynth `Dataset`.
 This will attempt to extract metadata about each study in the `Dataset` from PubMed, and then add the abstract available on Pubmed to the `Dataset`'s `texts` attribute, under a new column names "abstract".
 
-```{code-cell} ipython3
-from nimare import dataset, extract
+```important
+{py:func}`~nimare.extract.download_abstracts` only works when there is internet access.
+Since this book will often be built on nodes without internet access, we will share the code
+used to download abstracts, but will actually load and use a pre-generated version of the Dataset.
+```
 
-# In order to run this code on nodes without internet access,
-# we need this if statement
-dataset_file = os.path.join(data_path, "neurosynth_dataset_first500_with_abstracts.pkl.gz")
-if not os.path.isfile(dataset_file):
-    neurosynth_dset_first_500 = extract.download_abstracts(
-        neurosynth_dset_first_500,
-        email="example@email.com",
-    )
-    neurosynth_dset_first_500.save(dataset_file)
-else:
-    neurosynth_dset_first_500 = dataset.Dataset.load(dataset_file)
+```python
+# First, load a Dataset without abstracts
+neurosynth_dset_first_500 = dataset.Dataset.load(
+    os.path.join(out_dir, "neurosynth_dataset_first500.pkl.gz")
+)
+
+# Now, download the abstracts using your email address
+neurosynth_dset_first_500 = extract.download_abstracts(
+    neurosynth_dset_first_500,
+    email="example@email.com",
+)
+
+# Finally, save the Dataset with abstracts to a pkl.gz file
+neurosynth_dset_first_500.save(
+    os.path.join(data_path, "neurosynth_dataset_first500_with_abstracts.pkl.gz"),
+)
+```
+
+```{code-cell} ipython3
+neurosynth_dset_first_500 = dataset.Dataset.load(
+    os.path.join(data_path, "neurosynth_dataset_first500_with_abstracts.pkl.gz"),
+)
 ```
 
 +++
@@ -136,9 +147,8 @@ Certain alternate forms (i.e., synonyms) are specified within the Cognitive Atla
 
 ```{code-cell} ipython3
 # Define a weighting scheme.
-# In this scheme, observed terms will also count toward any
-# hypernyms (isKindOf), holonyms (isPartOf), and parent categories (inCategory)
-# as well.
+# In this scheme, observed terms will also count toward any hypernyms (isKindOf),
+# holonyms (isPartOf), and parent categories (inCategory) as well.
 weights = {"isKindOf": 1, "isPartOf": 1, "inCategory": 1}
 expanded_df = annotate.cogat.expand_counts(cogat_counts_df, rel_df, weights)
 

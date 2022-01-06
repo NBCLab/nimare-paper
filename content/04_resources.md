@@ -23,15 +23,15 @@ from pprint import pprint
 
 from repo2data.repo2data import Repo2Data
 
-import nimare
-
 # Install the data if running locally, or points to cached data if running on neurolibre
 DATA_REQ_FILE = os.path.abspath("../binder/data_requirement.json")
-
-# Download data
 repo2data = Repo2Data(DATA_REQ_FILE)
 data_path = repo2data.install()
 data_path = os.path.join(data_path[0], "data")
+
+# Set an output directory for any files generated during the book building process
+out_dir = os.path.abspath("../outputs/")
+os.mkdir(out_dir, exist_ok=True)
 ```
 
 +++
@@ -67,21 +67,18 @@ Here, we convert two files from a previous publication by NiMARE contributors {c
 ```{code-cell} ipython3
 from nimare import io
 
-sleuth_dset1 = nimare.io.convert_sleuth_to_dataset(
+sleuth_dset1 = io.convert_sleuth_to_dataset(
     os.path.join(data_path, "contrast-CannabisMinusControl_space-talairach_sleuth.txt")
 )
-sleuth_dset2 = nimare.io.convert_sleuth_to_dataset(
+sleuth_dset2 = io.convert_sleuth_to_dataset(
     os.path.join(data_path, "contrast-ControlMinusCannabis_space-talairach_sleuth.txt")
 )
 print(sleuth_dset1)
 print(sleuth_dset2)
 
 # Save the Datasets to files for future use
-if not os.path.isfile(os.path.join(data_path, "sleuth_dset1.pkl.gz")):
-    sleuth_dset1.save(os.path.join(data_path, "sleuth_dset1.pkl.gz"))
-
-if not os.path.isfile(os.path.join(data_path, "sleuth_dset2.pkl.gz")):
-    sleuth_dset2.save(os.path.join(data_path, "sleuth_dset2.pkl.gz"))
+sleuth_dset1.save(os.path.join(out_dir, "sleuth_dset1.pkl.gz"))
+sleuth_dset2.save(os.path.join(out_dir, "sleuth_dset2.pkl.gz"))
 ```
 
 +++
@@ -124,8 +121,7 @@ neurosynth_dset = io.convert_neurosynth_to_dataset(
 print(neurosynth_dset)
 
 # Save the Dataset for later use.
-if not os.path.isfile(os.path.join(data_path, "neurosynth_dataset.pkl.gz")):
-    neurosynth_dset.save(os.path.join(data_path, "neurosynth_dataset.pkl.gz"))
+neurosynth_dset.save(os.path.join(out_dir, "neurosynth_dataset.pkl.gz"))
 ```
 
 ```{note}
@@ -137,8 +133,8 @@ Therefore, for the sake of ensuring that the analyses in this article may be rep
 neurosynth_dset_first_500 = neurosynth_dset.slice(neurosynth_dset.ids[:500])
 print(neurosynth_dset)
 
-if not os.path.isfile(os.path.join(data_path, "neurosynth_dataset_first500.pkl.gz")):
-    neurosynth_dset_first_500.save(os.path.join(data_path, "neurosynth_dataset_first500.pkl.gz"))
+# Save this Dataset for later use.
+neurosynth_dset_first_500.save(os.path.join(out_dir, "neurosynth_dataset_first500.pkl.gz"))
 ```
 
 +++
@@ -188,8 +184,7 @@ neuroquery_dset = io.convert_neurosynth_to_dataset(
 print(neuroquery_dset)
 
 # Save the Dataset for later use.
-if not os.path.isfile(os.path.join(data_path, "neuroquery_dataset.pkl.gz")):
-    neuroquery_dset.save(os.path.join(data_path, "neuroquery_dataset.pkl.gz"))
+neuroquery_dset.save(os.path.join(out_dir, "neuroquery_dataset.pkl.gz"))
 ```
 
 +++

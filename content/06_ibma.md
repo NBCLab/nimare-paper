@@ -25,12 +25,8 @@ from myst_nb import glue
 from nilearn import plotting
 from repo2data.repo2data import Repo2Data
 
-import nimare
-
 # Install the data if running locally, or points to cached data if running on neurolibre
 DATA_REQ_FILE = os.path.abspath("../binder/data_requirement.json")
-
-# Download data
 repo2data = Repo2Data(DATA_REQ_FILE)
 data_path = repo2data.install()
 data_path = os.path.join(data_path[0], "data")
@@ -69,11 +65,10 @@ When sample size information is available, users may incorporate that informatio
 Given the paucity of image-based meta-analytic datasets, we have included the tools to build a Dataset from a NeuroVault collection of 21 pain studies, originally described in {cite:t}`Maumet2016-rr`.
 
 ```{code-cell} ipython3
-from nimare import dataset, extract
-from nimare.tests.utils import get_test_data_path
+from nimare import dataset, extract, utils
 
 dset_dir = extract.download_nidm_pain(data_dir=data_path, overwrite=False)
-dset_file = os.path.join(get_test_data_path(), "nidm_pain_dset.json")
+dset_file = os.path.join(utils.get_resource_path(), "nidm_pain_dset.json")
 img_dset = dataset.Dataset(dset_file)
 
 # Point the Dataset toward the images we've downloaded
@@ -167,8 +162,7 @@ from nilearn import datasets, image, input_data
 atlas = datasets.fetch_atlas_harvard_oxford("cort-maxprob-thr25-2mm")
 
 # nilearn's NiftiLabelsMasker cannot handle NaNs at the moment,
-# and some of the NIDM-Results packs' beta images have NaNs at the edge of the
-# brain.
+# and some of the NIDM-Results packs' beta images have NaNs at the edge of the brain.
 # So, we will create a reduced version of the atlas for this analysis.
 nan_mask = image.math_img("~np.any(np.isnan(img), axis=3)", img=img_dset.images["beta"].tolist())
 nanmasked_atlas = image.math_img("mask * atlas", mask=nan_mask, atlas=atlas["maps"])
@@ -182,7 +176,7 @@ vbl_img = vbl_results.get_map("z", return_type="image")
 del vbl_meta, vbl_results
 
 # Sample Size-Based Likelihood
-ssbl_meta = nimare.meta.ibma.SampleSizeBasedLikelihood(method="reml", mask=masker)
+ssbl_meta = meta.ibma.SampleSizeBasedLikelihood(method="reml", mask=masker)
 ssbl_results = ssbl_meta.fit(img_dset)
 ssbl_img = ssbl_results.get_map("z", return_type="image")
 del ssbl_meta, ssbl_results, masker
