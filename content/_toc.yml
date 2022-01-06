@@ -12,31 +12,32 @@ parts:
 
   - caption: Meta-Analytic Databases and Resources
     chapters:
-    - file: 03_resources
+    - file: 03_download_data
+    - file: 04_resources
 
   - caption: Meta-Analyses in NiMARE
     chapters:
-    - file: 04_cbma
-    - file: 05_ibma
-    - file: 06_correction
+    - file: 05_cbma
+    - file: 06_ibma
+    - file: 07_correction
 
   - caption: Other Meta-Analytic Approaches
     chapters:
-    - file: 07_about_derivative_analyses
-    - file: 08_subtraction
-    - file: 09_macm
-    - file: 10_annotation
-    - file: 11_decoding
+    - file: 08_about_derivative_analyses
+    - file: 09_subtraction
+    - file: 10_macm
+    - file: 11_annotation
+    - file: 12_decoding
 
   - caption: Concluding Thoughts
     chapters:
-    - file: 12_future_directions
-    - file: 13_summary
-    - file: 14_acknowledgements
-    - file: 15_bibliography.md
+    - file: 13_future_directions
+    - file: 14_summary
+    - file: 15_acknowledgements
+    - file: 16_bibliography.md
 
   - caption: Appendix
     chapters:
     - file: appendices/brainmap_decoding
     - file: appendices/neurosynth_decoding
-    - file: 16_build_information
+    - file: 17_build_information

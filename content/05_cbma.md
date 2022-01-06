@@ -222,13 +222,13 @@ We can save the statistical maps to an output directory as gzipped nifti files, 
 Here, we will save all of the statistical maps with the MKDADensity prefix.
 
 ```{code-cell} ipython3
-mkdad_results.save_maps(output_dir=data_path, prefix="MKDADensity")
+mkdad_results.save_maps(output_dir=out_dir, prefix="MKDADensity")
 ```
 
 We will also save the `Estimator` itself, which we will reuse when we get to multiple comparisons correction.
 
 ```{code-cell} ipython3
-mkdad_meta.save(os.path.join(data_path, "MKDADensity.pkl.gz"))
+mkdad_meta.save(os.path.join(out_dir, "MKDADensity.pkl.gz"))
 ```
 
 ```{code-cell} ipython3
