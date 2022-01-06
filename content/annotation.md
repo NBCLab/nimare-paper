@@ -25,7 +25,7 @@ import numpy as np
 import pandas as pd
 from myst_nb import glue
 from nilearn import image, plotting
-from repo2data.repo2data import Repo2Data, Repo2DataChild
+from repo2data.repo2data import Repo2Data
 
 import nimare
 
@@ -211,8 +211,7 @@ While this is not a useful generative model for producing documents, LDA is able
 {cite:t}`Poldrack2012-it` were able to apply LDA to full texts from neuroimaging articles in order to develop cognitive neuroscience-related topics and to run topic-wise meta-analyses.
 This method produces two sets of probability distributions: (1) the probability of a word given topic and (2) the probability of a topic given article.
 
-NiMARE uses a Python-based interface to the MALLET Java library {cite:p}`mccallum2002mallet` to implement LDA.
-NiMARE will download MALLET automatically, when necessary.
+NiMARE's {py:class}`~nimare.annotate.lda.LDAModel` is a light wrapper around scikit-learn's LDA implementation.
 
 Here, we train an LDA model ({py:class}`nimare.annotate.lda.LDAModel`) on the first 500 studies of the Neurosynth `Dataset`, with 50 topics in the model.
 
@@ -304,9 +303,7 @@ gclda_model.fit(n_iters=2500, loglikely_freq=500)
 ```
 
 ```{code-cell} ipython3
-gclda_model = annotate.gclda.GCLDAModel.load(
-    os.path.join(data_path, "gclda_model.pkl.gz")
-)
+gclda_model = annotate.gclda.GCLDAModel.load(os.path.join(data_path, "gclda_model.pkl.gz"))
 ```
 
 The `GCLDAModel` retains the relevant probability distributions in the form of `numpy` arrays, rather than `pandas` DataFrames.

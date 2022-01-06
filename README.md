@@ -18,8 +18,6 @@ You can install them with the following:
 pip install binder/requirements.txt
 ```
 
-In addition to the Python requirements, the LDA topic model section requires Java, in order to use MALLET.
-
 ### 2. Download data files
 
 The data files necessary to execute the code in this book are located at https://drive.google.com/uc?id=1LgscyPqnka163hu5mdJ1X7UvX3IvXDJ2 in a zip file.
