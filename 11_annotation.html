@@ -725,7 +725,7 @@ This method produces two sets of probability distributions: (1) the probability 
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nimare</span> <span class="kn">import</span> <span class="n">annotate</span>
 
-<span class="n">lda_model</span> <span class="o">=</span> <span class="n">annotate</span><span class="o">.</span><span class="n">lda</span><span class="o">.</span><span class="n">LDAModel</span><span class="p">(</span><span class="n">n_topics</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">max_iters</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">text_column</span><span class="o">=</span><span class="s2">&quot;abstract&quot;</span><span class="p">)</span>
+<span class="n">lda_model</span> <span class="o">=</span> <span class="n">annotate</span><span class="o">.</span><span class="n">lda</span><span class="o">.</span><span class="n">LDAModel</span><span class="p">(</span><span class="n">n_topics</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">text_column</span><span class="o">=</span><span class="s2">&quot;abstract&quot;</span><span class="p">)</span>
 
 <span class="c1"># Fit the model</span>
 <span class="n">lda_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">neurosynth_dset_first_500</span><span class="p">)</span>
@@ -733,16 +733,11 @@ This method produces two sets of probability distributions: (1) the probability 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_37894</span><span class="o">/</span><span class="mf">1844572040.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">nimare</span> <span class="kn">import</span> <span class="n">annotate</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> 
-<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">lda_model</span> <span class="o">=</span> <span class="n">annotate</span><span class="o">.</span><span class="n">lda</span><span class="o">.</span><span class="n">LDAModel</span><span class="p">(</span><span class="n">n_topics</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">max_iters</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">text_column</span><span class="o">=</span><span class="s2">&quot;abstract&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> 
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="c1"># Fit the model</span>
-
-<span class="ne">TypeError</span>: __init__() got an unexpected keyword argument &#39;max_iters&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/sklearn/utils/deprecation.py:87: FutureWarning: Function get_feature_names is deprecated; get_feature_names is deprecated in 1.0 and will be removed in 1.2. Please use get_feature_names_out instead.
+  warnings.warn(msg, category=FutureWarning)
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Dataset(500 experiments, space=&#39;mni152_2mm&#39;)
 </pre></div>
 </div>
 </div>
@@ -769,6 +764,20 @@ Practically, this indicates the relative proportion with which the topic describ
 
 <span class="n">lda_df</span> <span class="o">=</span> <span class="n">lda_df</span><span class="p">[</span><span class="n">lda_df</span><span class="o">.</span><span class="n">columns</span><span class="p">[:</span><span class="mi">10</span><span class="p">]]</span>
 <span class="n">glue</span><span class="p">(</span><span class="s2">&quot;table_lda&quot;</span><span class="p">,</span> <span class="n">lda_df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_44277</span><span class="o">/</span><span class="mf">980184283.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">lda_df</span> <span class="o">=</span> <span class="n">lda_model</span><span class="o">.</span><span class="n">p_word_g_topic_df_</span><span class="o">.</span><span class="n">T</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">column_names</span> <span class="o">=</span> <span class="p">{</span><span class="n">c</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Topic </span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">lda_df</span><span class="o">.</span><span class="n">columns</span><span class="p">}</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">lda_df</span> <span class="o">=</span> <span class="n">lda_df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">column_names</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">temp_df</span> <span class="o">=</span> <span class="n">lda_df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">lda_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">lda_df</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+
+<span class="ne">AttributeError</span>: &#39;LDAModel&#39; object has no attribute &#39;p_word_g_topic_df_&#39;
 </pre></div>
 </div>
 </div>
