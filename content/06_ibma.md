@@ -78,7 +78,7 @@ img_dset.update_path(dset_dir)
 ## Transforming images
 
 Researchers may share their statistical maps in many forms, some of which are direct transformations of one another.
-For example, researchers may share test statistic maps with z-statistics or t-statistics, and, as long as we know the degrees of freedom associated with the t-test, we can convert between the two easily. To that end, NiMARE includes a class, {py:class}`nimare.transforms.ImageTransformer`, which will calculate target image types from available ones, as long as the available images are compatible with said transformation.
+For example, researchers may share test statistic maps with z-statistics or t-statistics, and, as long as we know the degrees of freedom associated with the t-test, we can convert between the two easily. To that end, NiMARE includes a class, {py:class}`~nimare.transforms.ImageTransformer`, which will calculate target image types from available ones, as long as the available images are compatible with said transformation.
 
 Here, we use `ImageTransformer` to calculate z-statistic and variance maps for all studies with compatible images.
 This allows us to apply more image-based meta-analysis algorithms to the `Dataset`.
@@ -97,7 +97,7 @@ del img_transformer
 ```
 
 Now that we have filled in as many gaps in the `Dataset` as possible, we can start running meta-analyses.
-We will start with a DerSimonian-Laird meta-analysis ({py:class}`nimare.meta.ibma.DerSimonianLaird`).
+We will start with a DerSimonian-Laird meta-analysis ({py:class}`~nimare.meta.ibma.DerSimonianLaird`).
 
 ```{code-cell} ipython3
 from nimare import meta

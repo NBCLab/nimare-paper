@@ -48,7 +48,7 @@ These include [](content:annotation:ngram), [](content:annotation:cogat), [](con
 NiMARE users may download abstracts from PubMed as long as study identifiers in the `Dataset` correspond to PubMed IDs (as in Neurosynth and NeuroQuery).
 Abstracts are much more easily accessible than full article text, so most annotation methods in NiMARE rely on them.
 
-Below, we use the function {py:func}`nimare.extract.download_abstracts` to download abstracts for the Neurosynth `Dataset`.
+Below, we use the function {py:func}`~nimare.extract.download_abstracts` to download abstracts for the Neurosynth `Dataset`.
 This will attempt to extract metadata about each study in the `Dataset` from PubMed, and then add the abstract available on Pubmed to the `Dataset`'s `texts` attribute, under a new column names "abstract".
 
 ```important
@@ -89,7 +89,7 @@ neurosynth_dset_first_500 = dataset.Dataset.load(
 **N-gram term extraction** refers to the vectorization of text into contiguous sets of words that can be counted as individual tokens.
 The upper limit on the number of words in these tokens is set by the user.
 
-NiMARE has the function {py:func}`nimare.annotate.text.generate_counts` to extract n-grams from text.
+NiMARE has the function {py:func}`~nimare.annotate.text.generate_counts` to extract n-grams from text.
 This method produces either term counts or term frequency- inverse document frequency (tf-idf) values for each of the studies in a `Dataset`.
 
 ```{code-cell} ipython3
@@ -114,7 +114,7 @@ This term count `DataFrame` will be used later, to train a GCLDA model.
 **Cognitive Atlas term extraction** leverages the structured nature of the Cognitive Atlas in order to extract counts for individual terms and their synonyms in the ontology, as well as to apply hierarchical expansion to these counts based on the relationships specified between terms.
 This method produces both basic term counts and expanded term counts based on the weights applied to different relationship types present in the ontology.
 
-First, we must use {py:func}`nimare.extract.download_cognitive_atlas` to download the current version of the Cognitive Atlas ontology.
+First, we must use {py:func}`~nimare.extract.download_cognitive_atlas` to download the current version of the Cognitive Atlas ontology.
 This includes both information about individual terms in the ontology and asserted relationships between those terms.
 
 NiMARE will automatically attempt to extrapolate likely alternate forms of each term in the ontology, in order to make extraction easier.
@@ -222,7 +222,7 @@ This method produces two sets of probability distributions: (1) the probability 
 
 NiMARE's {py:class}`~nimare.annotate.lda.LDAModel` is a light wrapper around scikit-learn's LDA implementation.
 
-Here, we train an LDA model ({py:class}`nimare.annotate.lda.LDAModel`) on the first 500 studies of the Neurosynth `Dataset`, with 50 topics in the model.
+Here, we train an LDA model ({py:class}`~nimare.annotate.lda.LDAModel`) on the first 500 studies of the Neurosynth `Dataset`, with 50 topics in the model.
 
 ```{code-cell} ipython3
 :tags: [hide-output]
@@ -289,11 +289,11 @@ GCLDA assumes that topics within the fMRI literature can also be localized to br
 These spatial distributions can also be restricted to pairs of Gaussians that are symmetric across brain hemispheres.
 This method produces two sets of probability distributions: the probability of a word given topic (`GCLDAModel.p_word_g_topic_`) and the probability of a voxel given topic (`GCLDAModel.p_voxel_g_topic_`).
 
-Here we train a GCLDA model ({py:class}`nimare.annotate.gclda.GCLDAModel`) on the first 500 studies of the Neurosynth Dataset.
+Here we train a GCLDA model ({py:class}`~nimare.annotate.gclda.GCLDAModel`) on the first 500 studies of the Neurosynth Dataset.
 The model will include 50 topics, in which the spatial distribution for each topic will be defined as having two Gaussian distributions that are symmetrically localized across the longitudinal fissure.
 
 ```{important}
-{py:class}`nimare.annotate.gclda.GCLDAModel` generally takes a very long time to train.
+{py:class}`~nimare.annotate.gclda.GCLDAModel` generally takes a very long time to train.
 
 Below, we show how one would train a GCLDA model.
 However, we will load a pretrained model instead of actually training the model.
