@@ -1,2 +1,15 @@
-slurmstepd: error: *** JOB 5380555 ON n055 CANCELLED AT 2022-01-06T17:58:01 ***
-[IPKernelApp] WARNING | Parent appears to have exited, shutting down.
+[31mWARNING: Execution Failed with traceback saved in /home/data/nbc/misc-projects/Salo_NiMARE/content/_build/html/reports/06_ibma.log[39;49;00m
+[31mWARNING: Execution Failed with traceback saved in /home/data/nbc/misc-projects/Salo_NiMARE/content/_build/html/reports/07_correction.log[39;49;00m
+[31mWARNING: Execution Failed with traceback saved in /home/data/nbc/misc-projects/Salo_NiMARE/content/_build/html/reports/11_annotation.log[39;49;00m
+[91m/home/data/nbc/misc-projects/Salo_NiMARE/content/00_abstract.md:9: WARNING: 'myst' reference target not found: cbma[39;49;00m
+[91m/home/data/nbc/misc-projects/Salo_NiMARE/content/00_abstract.md:9: WARNING: 'myst' reference target not found: ibma[39;49;00m
+[91m/home/data/nbc/misc-projects/Salo_NiMARE/content/00_abstract.md:9: WARNING: 'myst' reference target not found: macm[39;49;00m
+[91m/home/data/nbc/misc-projects/Salo_NiMARE/content/00_abstract.md:9: WARNING: 'myst' reference target not found: annotation[39;49;00m
+[91m/home/data/nbc/misc-projects/Salo_NiMARE/content/05_cbma.md:329: WARNING: 'myst' reference target not found: about_derivative_analyses.md[39;49;00m
+[91m/home/data/nbc/misc-projects/Salo_NiMARE/content/05_cbma.md:444: WARNING: 'myst' reference target not found: future_directions.md[39;49;00m
+[91m/home/data/nbc/misc-projects/Salo_NiMARE/content/06_ibma.md.rst:237: WARNING: Couldn't find key `figure_uncorr_ibma` in keys defined across all pages.[39;49;00m
+[91m/home/data/nbc/misc-projects/Salo_NiMARE/content/07_correction.md.rst:123: WARNING: Couldn't find key `figure_corr_cbma` in keys defined across all pages.[39;49;00m
+[91m/home/data/nbc/misc-projects/Salo_NiMARE/content/11_annotation.md.rst:269: WARNING: Couldn't find key `table_lda` in keys defined across all pages.[39;49;00m
+[91m/home/data/nbc/misc-projects/Salo_NiMARE/content/11_annotation.md.rst:341: WARNING: Couldn't find key `table_gclda` in keys defined across all pages.[39;49;00m
+[91m/home/data/nbc/misc-projects/Salo_NiMARE/content/11_annotation.md.rst:382: WARNING: Couldn't find key `figure_gclda_topics` in keys defined across all pages.[39;49;00m
+[91m/home/data/nbc/misc-projects/Salo_NiMARE/content/11_annotation.md:54: WARNING: Pygments lexer name 'important' is not known[39;49;00m

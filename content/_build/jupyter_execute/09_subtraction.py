@@ -17,7 +17,6 @@ from nimare import dataset
 
 # Set an output directory for any files generated during the book building process
 out_dir = os.path.abspath("../outputs/")
-os.mkdir(out_dir, exist_ok=True)
 
 # Now, load the Datasets we will use in this chapter
 sleuth_dset1 = dataset.Dataset.load(os.path.join(out_dir, "sleuth_dset1.pkl.gz"))
@@ -44,7 +43,7 @@ sleuth_dset2 = dataset.Dataset.load(os.path.join(out_dir, "sleuth_dset2.pkl.gz")
 # For publication-quality subtraction analyses, we recommend using the standard 10000 iterations.
 # ```
 
-# In[ ]:
+# In[2]:
 
 
 from nimare import meta
@@ -54,7 +53,7 @@ sub_meta = meta.cbma.ale.ALESubtraction(kernel_transformer=kern, n_iters=1000)
 sub_results = sub_meta.fit(sleuth_dset1, sleuth_dset2)
 
 
-# In[ ]:
+# In[3]:
 
 
 fig, ax = plt.subplots(figsize=(6, 2))

@@ -23,7 +23,6 @@ data_path = os.path.join(data_path[0], "data")
 
 # Set an output directory for any files generated during the book building process
 out_dir = os.path.abspath("../outputs/")
-os.mkdir(out_dir, exist_ok=True)
 
 neurosynth_dset = dataset.Dataset.load(os.path.join(out_dir, "neurosynth_dataset.pkl.gz"))
 
@@ -45,7 +44,7 @@ neurosynth_dset = dataset.Dataset.load(os.path.join(out_dir, "neurosynth_dataset
 # For the former, we use {py:meth}`nimare.dataset.Dataset.get_studies_by_mask`.
 # For the latter, we use {py:meth}`nimare.dataset.Dataset.get_studies_by_coordinate`.
 
-# In[ ]:
+# In[2]:
 
 
 # Create Dataset only containing studies with peaks within the amygdala mask
@@ -65,7 +64,7 @@ dset_sphere = neurosynth_dset.slice(sphere_ids)
 # For publication-quality analyses, we would recommend using the entire Dataset.
 # ```
 
-# In[ ]:
+# In[3]:
 
 
 print(dset_amygdala)
@@ -73,7 +72,7 @@ dset_amygdala = dset_amygdala.slice(dset_amygdala.ids[:500])
 print(dset_amygdala)
 
 
-# In[ ]:
+# In[4]:
 
 
 import numpy as np
@@ -115,7 +114,7 @@ glue("figure_macm_rois", fig, display=False)
 
 # Once the `Dataset` has been reduced to studies with coordinates within the mask or sphere requested, any of the supported CBMA Estimators can be run.
 
-# In[ ]:
+# In[5]:
 
 
 from nimare import meta
@@ -127,7 +126,7 @@ meta_sphere = meta.cbma.ale.ALE(kernel__sample_size=20)
 results_sphere = meta_sphere.fit(dset_sphere)
 
 
-# In[ ]:
+# In[6]:
 
 
 meta_results = {

@@ -25,23 +25,16 @@ import matplotlib.pyplot as plt
 import numpy as np
 from myst_nb import glue
 from nilearn import plotting
-from repo2data.repo2data import Repo2Data
 
-import nimare
-
-# Install the data if running locally, or points to cached data if running on neurolibre
-DATA_REQ_FILE = os.path.abspath("../binder/data_requirement.json")
-repo2data = Repo2Data(DATA_REQ_FILE)
-data_path = repo2data.install()
-data_path = os.path.join(data_path[0], "data")
+from nimare import dataset
 
 # Set an output directory for any files generated during the book building process
 out_dir = os.path.abspath("../outputs/")
 
 # Now, load the Datasets we will use in this chapter
-sleuth_dset1 = nimare.dataset.Dataset.load(os.path.join(out_dir, "sleuth_dset1.pkl.gz"))
-sleuth_dset2 = nimare.dataset.Dataset.load(os.path.join(out_dir, "sleuth_dset2.pkl.gz"))
-neurosynth_dset = nimare.dataset.Dataset.load(os.path.join(out_dir, "neurosynth_dataset.pkl.gz"))
+sleuth_dset1 = dataset.Dataset.load(os.path.join(out_dir, "sleuth_dset1.pkl.gz"))
+sleuth_dset2 = dataset.Dataset.load(os.path.join(out_dir, "sleuth_dset2.pkl.gz"))
+neurosynth_dset = dataset.Dataset.load(os.path.join(out_dir, "neurosynth_dataset.pkl.gz"))
 ```
 
 +++
@@ -147,6 +140,31 @@ del mkda_ma_maps, kda_ma_maps, ale_ma_maps
 :align: center
 
 Modeled activation maps produced by NiMARE's `KernelTransformer` classes.
+```
+
++++
+
+```{code-cell} ipython3
+from nimare import dataset, meta
+
+neurosynth_dset_first500 = dataset.Dataset.load(
+    os.path.join(out_dir, "neurosynth_dataset_first500.pkl.gz")
+)
+
+# Specify where images for this Dataset should be located
+target_folder = os.path.join(out_dir, "neurosynth_dataset_maps")
+os.makedirs(target_folder, exist_ok=True)
+neurosynth_dset_first500.update_path(target_folder)
+
+# Initialize a kernel transformer to use
+kern = meta.kernel.MKDAKernel(memory_limit="500mb")
+
+# Run the kernel transformer with return_type set to "dataset" to return an updated Dataset
+# with the MA maps stored as files within its "images" attribute.
+neurosynth_dset_first500 = kern.transform(neurosynth_dset_first500, return_type="dataset")
+neurosynth_dset_first500.save(
+    os.path.join(out_dir, "neurosynth_dataset_first500_with_mkda_ma.pkl.gz"),
+)
 ```
 
 +++

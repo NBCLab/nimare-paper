@@ -15,7 +15,6 @@ from nilearn import plotting
 
 # Set an output directory for any files generated during the book building process
 out_dir = os.path.abspath("../outputs/")
-os.mkdir(out_dir, exist_ok=True)
 
 
 # In NiMARE, multiple comparisons correction is separated from each CBMA and IBMA `Estimator`, so that any number of relevant correction methods can be applied after the `Estimator` has been fit to the `Dataset`.
@@ -34,7 +33,7 @@ os.mkdir(out_dir, exist_ok=True)
 # Normally, one would use at least 10000 iterations, but we reduced this for the sake of speed.
 # ```
 
-# In[ ]:
+# In[2]:
 
 
 from nimare import meta, correct
@@ -53,7 +52,7 @@ fdr_results = fdr_corrector.transform(mkdad_meta.results)
 # 
 # Let's take a look at the files created by the `FWECorrector`.
 
-# In[ ]:
+# In[3]:
 
 
 from glob import glob
@@ -72,7 +71,7 @@ print("\n".join(fwe_maps))
 # The `level` key simply indicates if the map was corrected at the voxel or cluster level.
 # Finally, the `desc` key reflects any necessary description that goes beyond what is already covered by the other entities.
 
-# In[ ]:
+# In[4]:
 
 
 meta_results = {

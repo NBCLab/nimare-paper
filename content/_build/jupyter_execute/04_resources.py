@@ -20,7 +20,6 @@ data_path = os.path.join(data_path[0], "data")
 
 # Set an output directory for any files generated during the book building process
 out_dir = os.path.abspath("../outputs/")
-os.mkdir(out_dir, exist_ok=True)
 
 
 # Large-scale meta-analytic databases have made systematic meta-analyses of the neuroimaging literature possible.
@@ -49,7 +48,7 @@ os.mkdir(out_dir, exist_ok=True)
 # The function {py:func}`nimare.io.convert_sleuth_to_dataset` can be used to convert text files exported from Sleuth into NiMARE `Dataset`s.
 # Here, we convert two files from a previous publication by NiMARE contributors {cite:p}`yanes2018` into two separate `Dataset`s.
 
-# In[ ]:
+# In[2]:
 
 
 from nimare import io
@@ -82,7 +81,7 @@ sleuth_dset2.save(os.path.join(out_dir, "sleuth_dset2.pkl.gz"))
 # 
 # Here, we download the Neurosynth database from where it is stored (https://github.com/neurosynth/neurosynth-data) and convert it to a NiMARE `Dataset` using {py:func}`nimare.extract.fetch_neurosynth`, for the first step, and {py:func}`nimare.io.convert_neurosynth_to_dataset`, for the second.
 
-# In[ ]:
+# In[3]:
 
 
 from nimare import extract
@@ -116,7 +115,7 @@ neurosynth_dset.save(os.path.join(out_dir, "neurosynth_dataset.pkl.gz"))
 # Therefore, for the sake of ensuring that the analyses in this article may be reproduced by as many people as possible, we will use a reduced version of the Neurosynth `Dataset`, only containing the first 500 studies, for those methods which may not run easily on the full database.
 # ```
 
-# In[ ]:
+# In[4]:
 
 
 neurosynth_dset_first_500 = neurosynth_dset.slice(neurosynth_dset.ids[:500])
@@ -144,7 +143,7 @@ neurosynth_dset_first_500.save(os.path.join(out_dir, "neurosynth_dataset_first50
 # The functions for downloading the NeuroQuery database and converting it to a `Dataset` are {py:func}`nimare.extract.fetch_neuroquery` and {py:func}`nimare.io.convert_neurosynth_to_dataset`, respectively.
 # We are able to use the same function for converting the database to a `Dataset` for NeuroQuery as Neurosynth because both databases store their data in the same structure.
 
-# In[ ]:
+# In[5]:
 
 
 # Download the desired version of NeuroQuery from GitHub.

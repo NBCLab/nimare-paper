@@ -26,7 +26,6 @@ data_path = os.path.join(data_path[0], "data")
 
 # Set an output directory for any files generated during the book building process
 out_dir = os.path.abspath("../outputs/")
-os.mkdir(out_dir, exist_ok=True)
 
 
 # As mentioned in the discussion of BrainMap ([](content:resources:brainmap)), manually annotating studies in a meta-analytic database can be a time-consuming and labor-intensive process.
@@ -63,7 +62,7 @@ os.mkdir(out_dir, exist_ok=True)
 # )
 # ```
 
-# In[ ]:
+# In[2]:
 
 
 neurosynth_dset_first_500 = dataset.Dataset.load(
@@ -80,7 +79,7 @@ neurosynth_dset_first_500 = dataset.Dataset.load(
 # NiMARE has the function {py:func}`nimare.annotate.text.generate_counts` to extract n-grams from text.
 # This method produces either term counts or term frequency- inverse document frequency (tf-idf) values for each of the studies in a `Dataset`.
 
-# In[ ]:
+# In[3]:
 
 
 from nimare import annotate
@@ -108,7 +107,7 @@ counts_df = annotate.text.generate_counts(
 # NiMARE will automatically attempt to extrapolate likely alternate forms of each term in the ontology, in order to make extraction easier.
 # For an example, see {numref}`tbl:table_cogat_forms`.
 
-# In[ ]:
+# In[4]:
 
 
 cogatlas = extract.download_cognitive_atlas(data_dir=data_path, overwrite=False)
@@ -120,7 +119,7 @@ cogat_counts_df, rep_text_df = annotate.cogat.extract_cogat(
 )
 
 
-# In[ ]:
+# In[5]:
 
 
 example_forms = id_df.loc[id_df["name"] == "dot motion task"][["id", "name", "alias"]]
@@ -135,7 +134,7 @@ glue("table_cogat_forms", example_forms)
 # Certain alternate forms (i.e., synonyms) are specified within the Cognitive Atlas, while others are inferred automatically by NiMARE according to certain rules (e.g., removing parentheses).
 # ```
 
-# In[ ]:
+# In[6]:
 
 
 # Define a weighting scheme.
@@ -151,7 +150,7 @@ series = series[series > 0]
 columns = series.index.tolist()
 
 
-# In[ ]:
+# In[7]:
 
 
 # Raw counts
@@ -194,7 +193,7 @@ glue("figure_cogat_expansion", fig, display=False)
 # The effect of hierarchical expansion on Cognitive Atlas term counts from abstracts in Neurosynth's first 500 papers. There are too many terms and studies to show individual labels.
 # ```
 
-# In[ ]:
+# In[8]:
 
 
 # Here we delete the recent variables for the sake of reducing memory usage
@@ -217,7 +216,7 @@ del weights, expanded_df, series, columns
 # 
 # Here, we train an LDA model ({py:class}`nimare.annotate.lda.LDAModel`) on the first 500 studies of the Neurosynth `Dataset`, with 50 topics in the model.
 
-# In[ ]:
+# In[9]:
 
 
 from nimare import annotate

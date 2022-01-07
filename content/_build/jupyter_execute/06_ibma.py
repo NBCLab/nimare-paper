@@ -70,7 +70,7 @@ img_dset.update_path(dset_dir)
 # Here, we use `ImageTransformer` to calculate z-statistic and variance maps for all studies with compatible images.
 # This allows us to apply more image-based meta-analysis algorithms to the `Dataset`.
 
-# In[ ]:
+# In[3]:
 
 
 from nimare import transforms
@@ -79,7 +79,7 @@ img_transformer = transforms.ImageTransformer(target=["z", "varcope"], overwrite
 img_dset = img_transformer.transform(img_dset)
 
 
-# In[ ]:
+# In[4]:
 
 
 # Here we delete the recent variables for the sake of reducing memory usage
@@ -89,7 +89,7 @@ del img_transformer
 # Now that we have filled in as many gaps in the `Dataset` as possible, we can start running meta-analyses.
 # We will start with a DerSimonian-Laird meta-analysis ({py:class}`nimare.meta.ibma.DerSimonianLaird`).
 
-# In[ ]:
+# In[5]:
 
 
 from nimare import meta
