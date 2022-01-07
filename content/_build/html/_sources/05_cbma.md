@@ -330,7 +330,7 @@ del ale_meta, ale_results
 Rather than comparing convergence of foci within the sample to a null distribution derived under the assumption of spatial randomness within the brain, SCALE assesses whether the convergence at each voxel is greater than in the general literature.
 Each voxel in the brain is assigned a null distribution determined based on the base rate of activation for that voxel across an existing coordinate-based meta-analytic database.
 This approach allows for the generation of a statistical map for the sample, but no methods for multiple comparisons correction have yet been developed.
-While this method was developed to support analysis of joint activation or "coactivation" patterns, it is generic and can be applied to any CBMA; see [](about_derivative_analyses.md)
+While this method was developed to support analysis of joint activation or "coactivation" patterns, it is generic and can be applied to any CBMA; see [](08_about_derivative_analyses.md)
 
 ```{code-cell} ipython3
 # Here we use the coordinates from Neurosynth as our measure of coordinate
@@ -442,4 +442,4 @@ Thresholded results from MKDA Density, KDA, ALE, and SCALE meta-analyses.
 +++
 
 A number of other coordinate-based meta-analysis algorithms exist which are not yet implemented in NiMARE.
-We describe these algorithms briefly in [](future_directions.md).
+We describe these algorithms briefly in [](13_future_directions.md).

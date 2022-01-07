@@ -35,7 +35,7 @@ Updating `nb-exec-table`s in: {'17_build_information'}
 [01mcopying extra files... [39;49;00mdone
 [01mdumping search index in English (code: en)... [39;49;00mdone
 [01mdumping object inventory... [39;49;00mdone
-[01mbuild succeeded, 10 warnings.[39;49;00m
+[01mbuild succeeded, 4 warnings.[39;49;00m
 
 The HTML pages are in ../content/_build/html.
 [etoc] missing index.html written as redirect to '00_abstract.html'

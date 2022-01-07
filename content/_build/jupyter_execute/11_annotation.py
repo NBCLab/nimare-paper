@@ -221,7 +221,7 @@ del weights, expanded_df, series, columns
 
 from nimare import annotate
 
-lda_model = annotate.lda.LDAModel(n_topics=50, max_iters=1000, text_column="abstract")
+lda_model = annotate.lda.LDAModel(n_topics=50, max_iter=1000, text_column="abstract")
 
 # Fit the model
 lda_model.fit(neurosynth_dset_first_500)
@@ -237,7 +237,7 @@ lda_model.fit(neurosynth_dset_first_500)
 # 
 # First, we will reorganize the DataFrame a bit to show the top ten terms for each of the first ten topics.
 
-# In[ ]:
+# In[10]:
 
 
 lda_df = lda_model.p_word_g_topic_df_.T

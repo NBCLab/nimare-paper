@@ -1,10 +1,4 @@
 [31mWARNING: Execution Failed with traceback saved in /home/data/nbc/misc-projects/Salo_NiMARE/content/_build/html/reports/11_annotation.log[39;49;00m
-[91m/home/data/nbc/misc-projects/Salo_NiMARE/content/00_abstract.md:9: WARNING: 'myst' reference target not found: cbma[39;49;00m
-[91m/home/data/nbc/misc-projects/Salo_NiMARE/content/00_abstract.md:9: WARNING: 'myst' reference target not found: ibma[39;49;00m
-[91m/home/data/nbc/misc-projects/Salo_NiMARE/content/00_abstract.md:9: WARNING: 'myst' reference target not found: macm[39;49;00m
-[91m/home/data/nbc/misc-projects/Salo_NiMARE/content/00_abstract.md:9: WARNING: 'myst' reference target not found: annotation[39;49;00m
-[91m/home/data/nbc/misc-projects/Salo_NiMARE/content/05_cbma.md:329: WARNING: 'myst' reference target not found: about_derivative_analyses.md[39;49;00m
-[91m/home/data/nbc/misc-projects/Salo_NiMARE/content/05_cbma.md:444: WARNING: 'myst' reference target not found: future_directions.md[39;49;00m
 [91m/home/data/nbc/misc-projects/Salo_NiMARE/content/11_annotation.md.rst:264: WARNING: Couldn't find key `table_lda` in keys defined across all pages.[39;49;00m
 [91m/home/data/nbc/misc-projects/Salo_NiMARE/content/11_annotation.md.rst:336: WARNING: Couldn't find key `table_gclda` in keys defined across all pages.[39;49;00m
 [91m/home/data/nbc/misc-projects/Salo_NiMARE/content/11_annotation.md.rst:377: WARNING: Couldn't find key `figure_gclda_topics` in keys defined across all pages.[39;49;00m

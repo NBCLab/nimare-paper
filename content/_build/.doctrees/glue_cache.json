@@ -1,21 +1,5 @@
 {
   "05_cbma": {
-    "figure_cbma_uncorr": {
-      "output_type": "display_data",
-      "metadata": {
-        "scrapbook": {
-          "name": "figure_cbma_uncorr",
-          "mime_prefix": "application/papermill.record/"
-        },
-        "filenames": {
-          "image/png": "/home/data/nbc/misc-projects/Salo_NiMARE/content/_build/jupyter_execute/05_cbma_41_0.png"
-        }
-      },
-      "data": {
-        "application/papermill.record/text/plain": "<Figure size 864x432 with 26 Axes>",
-        "application/papermill.record/image/png": null
-      }
-    },
     "figure_ma_maps": {
       "output_type": "display_data",
       "metadata": {
@@ -29,6 +13,22 @@
       },
       "data": {
         "application/papermill.record/text/plain": "<Figure size 432x432 with 15 Axes>",
+        "application/papermill.record/image/png": null
+      }
+    },
+    "figure_cbma_uncorr": {
+      "output_type": "display_data",
+      "metadata": {
+        "scrapbook": {
+          "name": "figure_cbma_uncorr",
+          "mime_prefix": "application/papermill.record/"
+        },
+        "filenames": {
+          "image/png": "/home/data/nbc/misc-projects/Salo_NiMARE/content/_build/jupyter_execute/05_cbma_41_0.png"
+        }
+      },
+      "data": {
+        "application/papermill.record/text/plain": "<Figure size 864x432 with 26 Axes>",
         "application/papermill.record/image/png": null
       }
     }
@@ -88,22 +88,6 @@
     }
   },
   "10_macm": {
-    "figure_macm": {
-      "output_type": "display_data",
-      "metadata": {
-        "scrapbook": {
-          "name": "figure_macm",
-          "mime_prefix": "application/papermill.record/"
-        },
-        "filenames": {
-          "image/png": "/home/data/nbc/misc-projects/Salo_NiMARE/content/_build/jupyter_execute/10_macm_10_0.png"
-        }
-      },
-      "data": {
-        "application/papermill.record/text/plain": "<Figure size 432x288 with 10 Axes>",
-        "application/papermill.record/image/png": null
-      }
-    },
     "figure_macm_rois": {
       "output_type": "display_data",
       "metadata": {
@@ -117,6 +101,22 @@
       },
       "data": {
         "application/papermill.record/text/plain": "<Figure size 432x288 with 8 Axes>",
+        "application/papermill.record/image/png": null
+      }
+    },
+    "figure_macm": {
+      "output_type": "display_data",
+      "metadata": {
+        "scrapbook": {
+          "name": "figure_macm",
+          "mime_prefix": "application/papermill.record/"
+        },
+        "filenames": {
+          "image/png": "/home/data/nbc/misc-projects/Salo_NiMARE/content/_build/jupyter_execute/10_macm_10_0.png"
+        }
+      },
+      "data": {
+        "application/papermill.record/text/plain": "<Figure size 432x288 with 10 Axes>",
         "application/papermill.record/image/png": null
       }
     }
@@ -182,6 +182,19 @@
         "application/papermill.record/image/png": null
       }
     },
+    "table_brainmap": {
+      "output_type": "display_data",
+      "metadata": {
+        "scrapbook": {
+          "name": "table_brainmap",
+          "mime_prefix": ""
+        }
+      },
+      "data": {
+        "text/plain": "                                               pForward  zForward  \\\nTerm                                                                \nterms_abstract_tfidf__magnetic             1.000000e+00  0.000000   \nterms_abstract_tfidf__magnetic resonance   1.000000e+00  0.000000   \nterms_abstract_tfidf__resonance            1.000000e+00  0.000000   \nterms_abstract_tfidf__amygdala             6.176744e-07  4.985607   \nterms_abstract_tfidf__functional magnetic  1.000000e+00  0.000000   \nterms_abstract_tfidf__using                1.000000e+00  0.000000   \nterms_abstract_tfidf__response             1.000000e+00  0.000000   \nterms_abstract_tfidf__stimuli              1.000000e+00  0.000000   \nterms_abstract_tfidf__human                1.000000e+00  0.000000   \nterms_abstract_tfidf__neutral              5.556739e-03  2.772852   \n\n                                           likelihoodForward      pReverse  \\\nTerm                                                                         \nterms_abstract_tfidf__magnetic                      1.627342  1.000000e+00   \nterms_abstract_tfidf__magnetic resonance            1.569942  1.000000e+00   \nterms_abstract_tfidf__resonance                     1.560855  1.000000e+00   \nterms_abstract_tfidf__amygdala                      6.407830  2.152100e-18   \nterms_abstract_tfidf__functional magnetic           1.664782  1.000000e+00   \nterms_abstract_tfidf__using                         1.205627  1.000000e+00   \nterms_abstract_tfidf__response                      1.902148  1.000000e+00   \nterms_abstract_tfidf__stimuli                       2.087218  1.000000e+00   \nterms_abstract_tfidf__human                         2.128483  1.000000e+00   \nterms_abstract_tfidf__neutral                       5.502956  2.753866e-06   \n\n                                           zReverse  probReverse  \nTerm                                                              \nterms_abstract_tfidf__magnetic             0.000000     0.011441  \nterms_abstract_tfidf__magnetic resonance   0.000000     0.010827  \nterms_abstract_tfidf__resonance            0.000000     0.010815  \nterms_abstract_tfidf__amygdala             8.749022     0.010609  \nterms_abstract_tfidf__functional magnetic  0.000000     0.010540  \nterms_abstract_tfidf__using                0.000000     0.007210  \nterms_abstract_tfidf__response             0.000000     0.007039  \nterms_abstract_tfidf__stimuli              0.000000     0.006286  \nterms_abstract_tfidf__human                0.000000     0.005356  \nterms_abstract_tfidf__neutral              4.688372     0.005320  ",
+        "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>pForward</th>\n      <th>zForward</th>\n      <th>likelihoodForward</th>\n      <th>pReverse</th>\n      <th>zReverse</th>\n      <th>probReverse</th>\n    </tr>\n    <tr>\n      <th>Term</th>\n      <th></th>\n      <th></th>\n      <th></th>\n      <th></th>\n      <th></th>\n      <th></th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>terms_abstract_tfidf__magnetic</th>\n      <td>1.000000e+00</td>\n      <td>0.000000</td>\n      <td>1.627342</td>\n      <td>1.000000e+00</td>\n      <td>0.000000</td>\n      <td>0.011441</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__magnetic resonance</th>\n      <td>1.000000e+00</td>\n      <td>0.000000</td>\n      <td>1.569942</td>\n      <td>1.000000e+00</td>\n      <td>0.000000</td>\n      <td>0.010827</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__resonance</th>\n      <td>1.000000e+00</td>\n      <td>0.000000</td>\n      <td>1.560855</td>\n      <td>1.000000e+00</td>\n      <td>0.000000</td>\n      <td>0.010815</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__amygdala</th>\n      <td>6.176744e-07</td>\n      <td>4.985607</td>\n      <td>6.407830</td>\n      <td>2.152100e-18</td>\n      <td>8.749022</td>\n      <td>0.010609</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__functional magnetic</th>\n      <td>1.000000e+00</td>\n      <td>0.000000</td>\n      <td>1.664782</td>\n      <td>1.000000e+00</td>\n      <td>0.000000</td>\n      <td>0.010540</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__using</th>\n      <td>1.000000e+00</td>\n      <td>0.000000</td>\n      <td>1.205627</td>\n      <td>1.000000e+00</td>\n      <td>0.000000</td>\n      <td>0.007210</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__response</th>\n      <td>1.000000e+00</td>\n      <td>0.000000</td>\n      <td>1.902148</td>\n      <td>1.000000e+00</td>\n      <td>0.000000</td>\n      <td>0.007039</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__stimuli</th>\n      <td>1.000000e+00</td>\n      <td>0.000000</td>\n      <td>2.087218</td>\n      <td>1.000000e+00</td>\n      <td>0.000000</td>\n      <td>0.006286</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__human</th>\n      <td>1.000000e+00</td>\n      <td>0.000000</td>\n      <td>2.128483</td>\n      <td>1.000000e+00</td>\n      <td>0.000000</td>\n      <td>0.005356</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__neutral</th>\n      <td>5.556739e-03</td>\n      <td>2.772852</td>\n      <td>5.502956</td>\n      <td>2.753866e-06</td>\n      <td>4.688372</td>\n      <td>0.005320</td>\n    </tr>\n  </tbody>\n</table>\n</div>"
+      }
+    },
     "table_corr": {
       "output_type": "display_data",
       "metadata": {
@@ -209,19 +222,6 @@
       "data": {
         "application/papermill.record/text/plain": "<Figure size 720x432 with 5 Axes>",
         "application/papermill.record/image/png": null
-      }
-    },
-    "table_brainmap": {
-      "output_type": "display_data",
-      "metadata": {
-        "scrapbook": {
-          "name": "table_brainmap",
-          "mime_prefix": ""
-        }
-      },
-      "data": {
-        "text/plain": "                                               pForward  zForward  \\\nTerm                                                                \nterms_abstract_tfidf__magnetic             1.000000e+00  0.000000   \nterms_abstract_tfidf__magnetic resonance   1.000000e+00  0.000000   \nterms_abstract_tfidf__resonance            1.000000e+00  0.000000   \nterms_abstract_tfidf__amygdala             6.176744e-07  4.985607   \nterms_abstract_tfidf__functional magnetic  1.000000e+00  0.000000   \nterms_abstract_tfidf__using                1.000000e+00  0.000000   \nterms_abstract_tfidf__response             1.000000e+00  0.000000   \nterms_abstract_tfidf__stimuli              1.000000e+00  0.000000   \nterms_abstract_tfidf__human                1.000000e+00  0.000000   \nterms_abstract_tfidf__neutral              5.556739e-03  2.772852   \n\n                                           likelihoodForward      pReverse  \\\nTerm                                                                         \nterms_abstract_tfidf__magnetic                      1.627342  1.000000e+00   \nterms_abstract_tfidf__magnetic resonance            1.569942  1.000000e+00   \nterms_abstract_tfidf__resonance                     1.560855  1.000000e+00   \nterms_abstract_tfidf__amygdala                      6.407830  2.152100e-18   \nterms_abstract_tfidf__functional magnetic           1.664782  1.000000e+00   \nterms_abstract_tfidf__using                         1.205627  1.000000e+00   \nterms_abstract_tfidf__response                      1.902148  1.000000e+00   \nterms_abstract_tfidf__stimuli                       2.087218  1.000000e+00   \nterms_abstract_tfidf__human                         2.128483  1.000000e+00   \nterms_abstract_tfidf__neutral                       5.502956  2.753866e-06   \n\n                                           zReverse  probReverse  \nTerm                                                              \nterms_abstract_tfidf__magnetic             0.000000     0.011441  \nterms_abstract_tfidf__magnetic resonance   0.000000     0.010827  \nterms_abstract_tfidf__resonance            0.000000     0.010815  \nterms_abstract_tfidf__amygdala             8.749022     0.010609  \nterms_abstract_tfidf__functional magnetic  0.000000     0.010540  \nterms_abstract_tfidf__using                0.000000     0.007210  \nterms_abstract_tfidf__response             0.000000     0.007039  \nterms_abstract_tfidf__stimuli              0.000000     0.006286  \nterms_abstract_tfidf__human                0.000000     0.005356  \nterms_abstract_tfidf__neutral              4.688372     0.005320  ",
-        "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>pForward</th>\n      <th>zForward</th>\n      <th>likelihoodForward</th>\n      <th>pReverse</th>\n      <th>zReverse</th>\n      <th>probReverse</th>\n    </tr>\n    <tr>\n      <th>Term</th>\n      <th></th>\n      <th></th>\n      <th></th>\n      <th></th>\n      <th></th>\n      <th></th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>terms_abstract_tfidf__magnetic</th>\n      <td>1.000000e+00</td>\n      <td>0.000000</td>\n      <td>1.627342</td>\n      <td>1.000000e+00</td>\n      <td>0.000000</td>\n      <td>0.011441</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__magnetic resonance</th>\n      <td>1.000000e+00</td>\n      <td>0.000000</td>\n      <td>1.569942</td>\n      <td>1.000000e+00</td>\n      <td>0.000000</td>\n      <td>0.010827</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__resonance</th>\n      <td>1.000000e+00</td>\n      <td>0.000000</td>\n      <td>1.560855</td>\n      <td>1.000000e+00</td>\n      <td>0.000000</td>\n      <td>0.010815</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__amygdala</th>\n      <td>6.176744e-07</td>\n      <td>4.985607</td>\n      <td>6.407830</td>\n      <td>2.152100e-18</td>\n      <td>8.749022</td>\n      <td>0.010609</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__functional magnetic</th>\n      <td>1.000000e+00</td>\n      <td>0.000000</td>\n      <td>1.664782</td>\n      <td>1.000000e+00</td>\n      <td>0.000000</td>\n      <td>0.010540</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__using</th>\n      <td>1.000000e+00</td>\n      <td>0.000000</td>\n      <td>1.205627</td>\n      <td>1.000000e+00</td>\n      <td>0.000000</td>\n      <td>0.007210</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__response</th>\n      <td>1.000000e+00</td>\n      <td>0.000000</td>\n      <td>1.902148</td>\n      <td>1.000000e+00</td>\n      <td>0.000000</td>\n      <td>0.007039</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__stimuli</th>\n      <td>1.000000e+00</td>\n      <td>0.000000</td>\n      <td>2.087218</td>\n      <td>1.000000e+00</td>\n      <td>0.000000</td>\n      <td>0.006286</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__human</th>\n      <td>1.000000e+00</td>\n      <td>0.000000</td>\n      <td>2.128483</td>\n      <td>1.000000e+00</td>\n      <td>0.000000</td>\n      <td>0.005356</td>\n    </tr>\n    <tr>\n      <th>terms_abstract_tfidf__neutral</th>\n      <td>5.556739e-03</td>\n      <td>2.772852</td>\n      <td>5.502956</td>\n      <td>2.753866e-06</td>\n      <td>4.688372</td>\n      <td>0.005320</td>\n    </tr>\n  </tbody>\n</table>\n</div>"
       }
     },
     "table_assoc": {
