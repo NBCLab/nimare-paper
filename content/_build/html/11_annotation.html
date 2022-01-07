@@ -43,8 +43,6 @@
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -742,17 +740,17 @@ This method produces two sets of probability distributions: (1) the probability 
 </div>
 </div>
 </div>
-<p>The most important products of training the <code class="docutils literal notranslate"><span class="pre">LDAModel</span></code> object are its <code class="docutils literal notranslate"><span class="pre">p_word_g_topic_df_</span></code> and <code class="docutils literal notranslate"><span class="pre">p_topic_g_doc_df_</span></code> attributes.
-The <code class="docutils literal notranslate"><span class="pre">p_word_g_topic_df_</span></code> attribute is a <code class="docutils literal notranslate"><span class="pre">pandas</span></code> <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> in which each row corresponds to a topic and each column corresponds to a term (n-gram) extracted from the <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>’s texts.
-The cells contain weights indicating the probability of selecting the term given that the topic was already selected.
-The <code class="docutils literal notranslate"><span class="pre">p_topic_g_doc_df_</span></code> attribute is also a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>.
-In this one, each row corresponds to a study in the <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> and each column is a topic.
-The cell values indicate the probability of selecting a topic when contructing the given study.
-Practically, this indicates the relative proportion with which the topic describes that study.</p>
-<p>First, we will reorganize the DataFrame a bit to show the top ten terms for each of the first ten topics.</p>
+<p>The most important products of training the <code class="docutils literal notranslate"><span class="pre">LDAModel</span></code> object is its <code class="docutils literal notranslate"><span class="pre">distributions_</span></code> attribute.
+<code class="docutils literal notranslate"><span class="pre">LDAModel.distributions_</span></code> is a dictionary containing arrays and DataFrames created from training the model.
+We are particularly interested in the <code class="docutils literal notranslate"><span class="pre">p_topic_g_word_df</span></code> distribution, which is a <code class="docutils literal notranslate"><span class="pre">pandas</span></code> <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> in which each row corresponds to a topic and each column corresponds to a term (n-gram) extracted from the <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>’s texts.
+The cells contain weights indicating the probability distribution across terms for each topic.</p>
+<p>Additionally, the <code class="docutils literal notranslate"><span class="pre">LDAModel</span></code> updates the <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>’s <code class="xref py py-attr docutils literal notranslate"><span class="pre">annotations</span></code> attribute, by adding columns corresponding to each of the topics in the model.
+Each study in the <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> thus receives a weight for each topic, which can be used to select studies for topic-based meta-analyses or functional decoding.</p>
+<p>Let’s take a look at the results of the model training.
+First, we will reorganize the DataFrame a bit to show the top ten terms for each of the first ten topics.</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lda_df</span> <span class="o">=</span> <span class="n">lda_model</span><span class="o">.</span><span class="n">p_word_g_topic_df_</span><span class="o">.</span><span class="n">T</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lda_df</span> <span class="o">=</span> <span class="n">lda_model</span><span class="o">.</span><span class="n">distributions_</span><span class="p">[</span><span class="s2">&quot;p_topic_g_word_df&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">T</span>
 <span class="n">column_names</span> <span class="o">=</span> <span class="p">{</span><span class="n">c</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Topic </span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">lda_df</span><span class="o">.</span><span class="n">columns</span><span class="p">}</span>
 <span class="n">lda_df</span> <span class="o">=</span> <span class="n">lda_df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">column_names</span><span class="p">)</span>
 <span class="n">temp_df</span> <span class="o">=</span> <span class="n">lda_df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
@@ -768,21 +766,363 @@ Practically, this indicates the relative proportion with which the topic describ
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_44277</span><span class="o">/</span><span class="mf">980184283.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">lda_df</span> <span class="o">=</span> <span class="n">lda_model</span><span class="o">.</span><span class="n">p_word_g_topic_df_</span><span class="o">.</span><span class="n">T</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">column_names</span> <span class="o">=</span> <span class="p">{</span><span class="n">c</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Topic </span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">lda_df</span><span class="o">.</span><span class="n">columns</span><span class="p">}</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">lda_df</span> <span class="o">=</span> <span class="n">lda_df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">column_names</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">temp_df</span> <span class="o">=</span> <span class="n">lda_df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">lda_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">lda_df</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
-<span class="ne">AttributeError</span>: &#39;LDAModel&#39; object has no attribute &#39;p_word_g_topic_df_&#39;
-</pre></div>
-</div>
-</div>
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Topic LDA50__1</th>
+      <th>Topic LDA50__2</th>
+      <th>Topic LDA50__3</th>
+      <th>Topic LDA50__4</th>
+      <th>Topic LDA50__5</th>
+      <th>Topic LDA50__6</th>
+      <th>Topic LDA50__7</th>
+      <th>Topic LDA50__8</th>
+      <th>Topic LDA50__9</th>
+      <th>Topic LDA50__10</th>
+    </tr>
+    <tr>
+      <th>Term</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>language</td>
+      <td>encoding retrieval</td>
+      <td>saccades</td>
+      <td>damage</td>
+      <td>states</td>
+      <td>response</td>
+      <td>signal</td>
+      <td>tones</td>
+      <td>controls</td>
+      <td>operate</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>word</td>
+      <td>operation</td>
+      <td>calculation</td>
+      <td>impairments</td>
+      <td>theory</td>
+      <td>suppression</td>
+      <td>bold</td>
+      <td>listening</td>
+      <td>age</td>
+      <td>executive processes</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>english</td>
+      <td>normal using</td>
+      <td>shifts</td>
+      <td>lobe damage</td>
+      <td>mind</td>
+      <td>category</td>
+      <td>faces</td>
+      <td>passive</td>
+      <td>matter</td>
+      <td>measure executive</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>activations</td>
+      <td>cortex episodic</td>
+      <td>event</td>
+      <td>using modified</td>
+      <td>medial prefrontal</td>
+      <td>condition</td>
+      <td>bold signal</td>
+      <td>hg</td>
+      <td>facial</td>
+      <td>isolation</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>word generation</td>
+      <td>checkerboard</td>
+      <td>numbers</td>
+      <td>spatial processes</td>
+      <td>tasks requiring</td>
+      <td>capacity</td>
+      <td>trials</td>
+      <td>colour</td>
+      <td>volume</td>
+      <td>refers</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>languages</td>
+      <td>non verbal</td>
+      <td>lobules</td>
+      <td>human lesion</td>
+      <td>control processes</td>
+      <td>working memory</td>
+      <td>time</td>
+      <td>active</td>
+      <td>autism</td>
+      <td>performance task</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>bilinguals</td>
+      <td>functional demonstrated</td>
+      <td>number</td>
+      <td>functional hemispheric</td>
+      <td>previous functional</td>
+      <td>cortex</td>
+      <td>task</td>
+      <td>stg</td>
+      <td>expressions</td>
+      <td>memory words</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>mandarin</td>
+      <td>cortices cerebellum</td>
+      <td>exact</td>
+      <td>cerebral hemisphere</td>
+      <td>trials task</td>
+      <td>strategy</td>
+      <td>sec</td>
+      <td>modulated</td>
+      <td>social</td>
+      <td>wm</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>activations prefrontal</td>
+      <td>seven normal</td>
+      <td>inferior</td>
+      <td>dominant role</td>
+      <td>mental states</td>
+      <td>responses</td>
+      <td>famous</td>
+      <td>et</td>
+      <td>mean</td>
+      <td>designed specifically</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>voxels</td>
+      <td>located dorsal</td>
+      <td>angular</td>
+      <td>participate</td>
+      <td>paracingulate</td>
+      <td>superordinate</td>
+      <td>recognition</td>
+      <td>et al</td>
+      <td>grey matter</td>
+      <td>executive</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="figure align-center" id="tbl-table-lda">
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Topic LDA50__1</th>
+      <th>Topic LDA50__2</th>
+      <th>Topic LDA50__3</th>
+      <th>Topic LDA50__4</th>
+      <th>Topic LDA50__5</th>
+      <th>Topic LDA50__6</th>
+      <th>Topic LDA50__7</th>
+      <th>Topic LDA50__8</th>
+      <th>Topic LDA50__9</th>
+      <th>Topic LDA50__10</th>
+    </tr>
+    <tr>
+      <th>Term</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>language</td>
+      <td>encoding retrieval</td>
+      <td>saccades</td>
+      <td>damage</td>
+      <td>states</td>
+      <td>response</td>
+      <td>signal</td>
+      <td>tones</td>
+      <td>controls</td>
+      <td>operate</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>word</td>
+      <td>operation</td>
+      <td>calculation</td>
+      <td>impairments</td>
+      <td>theory</td>
+      <td>suppression</td>
+      <td>bold</td>
+      <td>listening</td>
+      <td>age</td>
+      <td>executive processes</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>english</td>
+      <td>normal using</td>
+      <td>shifts</td>
+      <td>lobe damage</td>
+      <td>mind</td>
+      <td>category</td>
+      <td>faces</td>
+      <td>passive</td>
+      <td>matter</td>
+      <td>measure executive</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>activations</td>
+      <td>cortex episodic</td>
+      <td>event</td>
+      <td>using modified</td>
+      <td>medial prefrontal</td>
+      <td>condition</td>
+      <td>bold signal</td>
+      <td>hg</td>
+      <td>facial</td>
+      <td>isolation</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>word generation</td>
+      <td>checkerboard</td>
+      <td>numbers</td>
+      <td>spatial processes</td>
+      <td>tasks requiring</td>
+      <td>capacity</td>
+      <td>trials</td>
+      <td>colour</td>
+      <td>volume</td>
+      <td>refers</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>languages</td>
+      <td>non verbal</td>
+      <td>lobules</td>
+      <td>human lesion</td>
+      <td>control processes</td>
+      <td>working memory</td>
+      <td>time</td>
+      <td>active</td>
+      <td>autism</td>
+      <td>performance task</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>bilinguals</td>
+      <td>functional demonstrated</td>
+      <td>number</td>
+      <td>functional hemispheric</td>
+      <td>previous functional</td>
+      <td>cortex</td>
+      <td>task</td>
+      <td>stg</td>
+      <td>expressions</td>
+      <td>memory words</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>mandarin</td>
+      <td>cortices cerebellum</td>
+      <td>exact</td>
+      <td>cerebral hemisphere</td>
+      <td>trials task</td>
+      <td>strategy</td>
+      <td>sec</td>
+      <td>modulated</td>
+      <td>social</td>
+      <td>wm</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>activations prefrontal</td>
+      <td>seven normal</td>
+      <td>inferior</td>
+      <td>dominant role</td>
+      <td>mental states</td>
+      <td>responses</td>
+      <td>famous</td>
+      <td>et</td>
+      <td>mean</td>
+      <td>designed specifically</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>voxels</td>
+      <td>located dorsal</td>
+      <td>angular</td>
+      <td>participate</td>
+      <td>paracingulate</td>
+      <td>superordinate</td>
+      <td>recognition</td>
+      <td>et al</td>
+      <td>grey matter</td>
+      <td>executive</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 <p class="caption"><span class="caption-number">Fig. 13 </span><span class="caption-text">The top ten terms for each of the first ten topics in the trained LDA model.</span><a class="headerlink" href="#tbl-table-lda" title="Permalink to this image">¶</a></p>
 </div>
 <div class="cell tag_hide-cell docutils container">
@@ -848,8 +1188,364 @@ We will also reorganize the raw DataFrame to show the top ten terms for each of 
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Topic 000</th>
+      <th>Topic 001</th>
+      <th>Topic 002</th>
+      <th>Topic 003</th>
+      <th>Topic 004</th>
+      <th>Topic 005</th>
+      <th>Topic 006</th>
+      <th>Topic 007</th>
+      <th>Topic 008</th>
+      <th>Topic 009</th>
+    </tr>
+    <tr>
+      <th>Term</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>amygdala</td>
+      <td>visual</td>
+      <td>motion</td>
+      <td>learning</td>
+      <td>visual</td>
+      <td>modality</td>
+      <td>age</td>
+      <td>temporal</td>
+      <td>prefrontal</td>
+      <td>eye</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>faces</td>
+      <td>cortex</td>
+      <td>temporal</td>
+      <td>task</td>
+      <td>network</td>
+      <td>spatial</td>
+      <td>adults</td>
+      <td>tomography</td>
+      <td>prefrontal cortex</td>
+      <td>movements</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>neutral</td>
+      <td>functional</td>
+      <td>mt</td>
+      <td>performance</td>
+      <td>greater</td>
+      <td>sensory</td>
+      <td>matter</td>
+      <td>emission</td>
+      <td>task</td>
+      <td>timing</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>emotional</td>
+      <td>cortical</td>
+      <td>visual</td>
+      <td>sequence</td>
+      <td>occipital</td>
+      <td>gyrus</td>
+      <td>children</td>
+      <td>emission tomography</td>
+      <td>cortex</td>
+      <td>motor</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>functional</td>
+      <td>magnetic resonance</td>
+      <td>sulcus</td>
+      <td>fronto</td>
+      <td>frontal</td>
+      <td>modalities</td>
+      <td>using</td>
+      <td>medial</td>
+      <td>control</td>
+      <td>activations</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>stimuli</td>
+      <td>visual cortex</td>
+      <td>occipital</td>
+      <td>practice</td>
+      <td>evidence</td>
+      <td>known</td>
+      <td>volume</td>
+      <td>positron</td>
+      <td>response</td>
+      <td>movement</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>emotion</td>
+      <td>magnetic</td>
+      <td>dorsal</td>
+      <td>learned</td>
+      <td>human</td>
+      <td>movements</td>
+      <td>mm</td>
+      <td>positron emission</td>
+      <td>dorsolateral prefrontal</td>
+      <td>evidence</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>response</td>
+      <td>stimulation</td>
+      <td>human</td>
+      <td>awareness</td>
+      <td>demonstrated</td>
+      <td>bilaterally</td>
+      <td>young</td>
+      <td>pet</td>
+      <td>dorsolateral</td>
+      <td>cortical</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>functional magnetic</td>
+      <td>resonance</td>
+      <td>sensitive</td>
+      <td>early</td>
+      <td>direction</td>
+      <td>angular</td>
+      <td>years</td>
+      <td>temporal lobe</td>
+      <td>cognitive</td>
+      <td>condition</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>responses</td>
+      <td>spatial</td>
+      <td>perception</td>
+      <td>parietal</td>
+      <td>pattern</td>
+      <td>goal</td>
+      <td>women</td>
+      <td>lobe</td>
+      <td>tasks</td>
+      <td>fields</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="figure align-center" id="tbl-table-gclda">
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Topic 000</th>
+      <th>Topic 001</th>
+      <th>Topic 002</th>
+      <th>Topic 003</th>
+      <th>Topic 004</th>
+      <th>Topic 005</th>
+      <th>Topic 006</th>
+      <th>Topic 007</th>
+      <th>Topic 008</th>
+      <th>Topic 009</th>
+    </tr>
+    <tr>
+      <th>Term</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>amygdala</td>
+      <td>visual</td>
+      <td>motion</td>
+      <td>learning</td>
+      <td>visual</td>
+      <td>modality</td>
+      <td>age</td>
+      <td>temporal</td>
+      <td>prefrontal</td>
+      <td>eye</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>faces</td>
+      <td>cortex</td>
+      <td>temporal</td>
+      <td>task</td>
+      <td>network</td>
+      <td>spatial</td>
+      <td>adults</td>
+      <td>tomography</td>
+      <td>prefrontal cortex</td>
+      <td>movements</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>neutral</td>
+      <td>functional</td>
+      <td>mt</td>
+      <td>performance</td>
+      <td>greater</td>
+      <td>sensory</td>
+      <td>matter</td>
+      <td>emission</td>
+      <td>task</td>
+      <td>timing</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>emotional</td>
+      <td>cortical</td>
+      <td>visual</td>
+      <td>sequence</td>
+      <td>occipital</td>
+      <td>gyrus</td>
+      <td>children</td>
+      <td>emission tomography</td>
+      <td>cortex</td>
+      <td>motor</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>functional</td>
+      <td>magnetic resonance</td>
+      <td>sulcus</td>
+      <td>fronto</td>
+      <td>frontal</td>
+      <td>modalities</td>
+      <td>using</td>
+      <td>medial</td>
+      <td>control</td>
+      <td>activations</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>stimuli</td>
+      <td>visual cortex</td>
+      <td>occipital</td>
+      <td>practice</td>
+      <td>evidence</td>
+      <td>known</td>
+      <td>volume</td>
+      <td>positron</td>
+      <td>response</td>
+      <td>movement</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>emotion</td>
+      <td>magnetic</td>
+      <td>dorsal</td>
+      <td>learned</td>
+      <td>human</td>
+      <td>movements</td>
+      <td>mm</td>
+      <td>positron emission</td>
+      <td>dorsolateral prefrontal</td>
+      <td>evidence</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>response</td>
+      <td>stimulation</td>
+      <td>human</td>
+      <td>awareness</td>
+      <td>demonstrated</td>
+      <td>bilaterally</td>
+      <td>young</td>
+      <td>pet</td>
+      <td>dorsolateral</td>
+      <td>cortical</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>functional magnetic</td>
+      <td>resonance</td>
+      <td>sensitive</td>
+      <td>early</td>
+      <td>direction</td>
+      <td>angular</td>
+      <td>years</td>
+      <td>temporal lobe</td>
+      <td>cognitive</td>
+      <td>condition</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>responses</td>
+      <td>spatial</td>
+      <td>perception</td>
+      <td>parietal</td>
+      <td>pattern</td>
+      <td>goal</td>
+      <td>women</td>
+      <td>lobe</td>
+      <td>tasks</td>
+      <td>fields</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 <p class="caption"><span class="caption-number">Fig. 14 </span><span class="caption-text">The top ten terms for each of the first ten topics in the trained GCLDA model.</span><a class="headerlink" href="#tbl-table-gclda" title="Permalink to this image">¶</a></p>
 </div>
 <p>We also want to see how the topic-voxel weights render on the brain, so we will simply unmask the <code class="docutils literal notranslate"><span class="pre">p_voxel_g_topic_</span></code> array with the <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>’s masker.</p>
@@ -886,8 +1582,14 @@ We will also reorganize the raw DataFrame to show the top ten terms for each of 
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/11_annotation_26_1.png" src="_images/11_annotation_26_1.png" />
+</div>
 </div>
 <div class="figure align-center" id="figure-gclda-topics">
+<div class="cell_output docutils container">
+<img alt="_images/11_annotation_26_0.png" src="_images/11_annotation_26_0.png" />
+</div>
 <p class="caption"><span class="caption-number">Fig. 15 </span><span class="caption-text">Topic weight maps for the first ten topics in the GCLDA model.</span><a class="headerlink" href="#figure-gclda-topics" title="Permalink to this image">¶</a></p>
 </div>
 <div class="cell tag_hide-cell docutils container">
