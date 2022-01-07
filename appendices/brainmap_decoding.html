@@ -1,0 +1,501 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Appendix I: BrainMap Discrete Decoding &#8212; NiMARE: Neuroimaging Meta-Analysis Research Environment</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/myfile.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/nimare_favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Appendix II: Neurosynth Discrete Decoding" href="neurosynth_decoding.html" />
+    <link rel="prev" title="References" href="../16_bibliography.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/nimare_overview.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">NiMARE: Neuroimaging Meta-Analysis Research Environment</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00_abstract.html">
+   Abstract
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  About NiMARE
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01_introduction.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02_overview.html">
+   NiMARE Overview
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Meta-Analytic Databases and Resources
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../03_download_data.html">
+   Download the Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04_resources.html">
+   External Meta-Analytic Resources
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Meta-Analyses in NiMARE
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../05_cbma.html">
+   Coordinate-Based Meta-Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06_ibma.html">
+   Image-Based Meta-Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../07_correction.html">
+   Multiple Comparisons Correction
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Other Meta-Analytic Approaches
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../08_about_derivative_analyses.html">
+   Derivative Analyses
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../09_subtraction.html">
+   Meta-Analytic Subtraction Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../10_macm.html">
+   Meta-Analytic Coactivation Modeling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../11_annotation.html">
+   Automated Annotation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../12_decoding.html">
+   Meta-Analytic Functional Decoding
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Concluding Thoughts
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../13_future_directions.html">
+   Future Directions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../14_summary.html">
+   Summary
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../15_acknowledgements.html">
+   Acknowledgements
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../16_bibliography.html">
+   References
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Appendix
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Appendix I: BrainMap Discrete Decoding
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="neurosynth_decoding.html">
+   Appendix II: Neurosynth Discrete Decoding
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../17_build_information.html">
+   Build Information
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/appendices/brainmap_decoding.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/NBCLab/nimare-paper"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/NBCLab/nimare-paper/issues/new?title=Issue%20on%20page%20%2Fappendices/brainmap_decoding.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="appendix-i-brainmap-discrete-decoding">
+<h1>Appendix I: BrainMap Discrete Decoding<a class="headerlink" href="#appendix-i-brainmap-discrete-decoding" title="Permalink to this headline">¶</a></h1>
+<p>The BrainMap discrete decoding method compares the distributions of studies with each label within the sample against those in a larger database while accounting for the number of foci from each study.
+Broadly speaking, this method assumes that the selection criterion is associated with one peak per study, which means that it is likely only appropriate for selection criteria based around foci, such as regions of interest.
+One common analysis, meta-analytic clustering, involves dividing studies within a database into meta-analytic groupings based on the spatial similarity of their modeled activation maps (i.e., study-wise pseudo-statistical maps produced by convolving coordinates with a kernel).
+The resulting sets of studies are often functionally decoded in order to build a functional profile associated with each meta-analytic grouping.
+While these groupings are defined as subsets of the database, they are not selected based on the location of an individual peak, and so weighting based on the number of foci would be inappropriate.</p>
+<p>This decoding method produces four outputs for each label.
+First, the distribution of studies in the sample with the label are compared to the distributions of other labels within the sample.
+This consistency analysis produces both a measure of statistical significance (i.e., a p-value) and a measure of effect size (i.e., the likelihood of being selected given the presence of the label).
+Next, the studies in the sample are compared to the studies in the rest of the database.
+This specificity analysis produces a p-value and an effect size measure of the posterior probability of having the label given selection into the sample.
+A detailed algorithm description is presented below.</p>
+<p>The BrainMap method for discrete functional decoding performs both forward and reverse inference using an annotated coordinate-based database and a target sample of studies within that database.
+Unlike the Neurosynth approach, the BrainMap approach incorporates information about the number of foci associated with each study in the database.</p>
+<ol class="simple">
+<li><p>Select studies in the database according to some criterion (e.g.,
+having at least one peak in an ROI).</p></li>
+<li><p>For each label, studies in the database can now be divided into four
+groups.</p>
+<ul class="simple">
+<li><p>Label-positive and selected –&gt; <span class="math notranslate nohighlight">\(S_{s+l+}\)</span></p></li>
+<li><p>Label-negative and selected –&gt; <span class="math notranslate nohighlight">\(S_{s+l-}\)</span></p></li>
+<li><p>Label-positive and unselected –&gt; <span class="math notranslate nohighlight">\(S_{s-l+}\)</span></p></li>
+<li><p>Label-negative and unselected –&gt; <span class="math notranslate nohighlight">\(S_{s-l-}\)</span></p></li>
+</ul>
+</li>
+<li><p>Additionally, the number of foci associated with each of these
+groups is extracted.</p>
+<ul class="simple">
+<li><p>Number of foci from studies with label, <span class="math notranslate nohighlight">\(F_{l+}\)</span></p></li>
+<li><p>Number of foci from studies without label, <span class="math notranslate nohighlight">\(F_{l-}\)</span></p></li>
+<li><p>Total number of foci in the database, <span class="math notranslate nohighlight">\(F_{db} = F_{l+} + F_{l-}\)</span></p></li>
+</ul>
+</li>
+<li><p>Compute the number of times any label is used in the database,
+<span class="math notranslate nohighlight">\(L_{db}\)</span> (e.g., if every experiment in the database uses two labels,
+then this number is <span class="math notranslate nohighlight">\(2S_{db}\)</span>, where <span class="math notranslate nohighlight">\(S_{db}\)</span> is the total number of
+experiments in the database).</p></li>
+<li><p>Compute the probability of being selected, <span class="math notranslate nohighlight">\(P(s^{+})\)</span>.</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(P(s^{+}) = S_{s+} / F_{db}\)</span>, where
+<span class="math notranslate nohighlight">\(S_{s+} = S_{s+l+} + S_{s+l-}\)</span></p></li>
+</ul>
+</li>
+<li><p>For each label, compute the probability of having the label,
+<span class="math notranslate nohighlight">\(P(l^{+})\)</span>.</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(P(l^{+}) = S_{l+} / L_{db}\)</span>, where
+<span class="math notranslate nohighlight">\(S_{l+} = S_{s+l+} + S_{s-l+}\)</span></p></li>
+</ul>
+</li>
+<li><p>For each label, compute the probability of being selected given
+presence of the label, <span class="math notranslate nohighlight">\(P(s^{+}|l^{+})\)</span>.</p>
+<ul class="simple">
+<li><p>Can be re-interpreted as the probability of activating the ROI
+given a mental state.</p></li>
+<li><p><span class="math notranslate nohighlight">\(P(s^{+}|l^{+}) = S_{s+l+} / F_{l+}\)</span></p></li>
+</ul>
+</li>
+<li><p>Convert <span class="math notranslate nohighlight">\(P(s^{+}|l^{+})\)</span> into the forward inference likelihood,
+<span class="math notranslate nohighlight">\(\mathcal{L}\)</span>.</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mathcal{L} = P(s^{+}|l^{+}) / P(s^{+})\)</span></p></li>
+</ul>
+</li>
+<li><p>Compute the probability of the label given selection,
+<span class="math notranslate nohighlight">\(P(l^{+}|s^{+})\)</span>.</p>
+<ul class="simple">
+<li><p>Can be re-interpreted as probability of a mental state given
+activation of the ROI.</p></li>
+<li><p><span class="math notranslate nohighlight">\(P(l^{+}|s^{+}) = \frac{P(s^{+}|l^{+})P(l^{+})}{P(s^{+})}\)</span></p></li>
+<li><p>This is the reverse inference posterior probability.</p></li>
+</ul>
+</li>
+<li><p>Perform a binomial test to determine if the rate at which studies
+are selected from the set of studies with the label is significantly
+different from the base probability of studies being selected across
+the whole database.</p>
+<ul class="simple">
+<li><p>The number of successes is <span class="math notranslate nohighlight">\(\mathcal{K} = S_{s+l+}\)</span>, the number
+of trials is
+<span class="math notranslate nohighlight">\(n = F_{l+}\)</span>, and the hypothesized probability of success is
+<span class="math notranslate nohighlight">\(p = P(s^{+})\)</span></p></li>
+<li><p>If <span class="math notranslate nohighlight">\(S_{s+l+} &lt; 5\)</span>, override the p-value from this test with 1,
+essentially ignoring
+this label in the analysis.</p></li>
+<li><p>Convert p-value to unsigned z-value.</p></li>
+</ul>
+</li>
+<li><p>Perform a two-way chi-square test to determine if presence of the
+label and selection are independent.</p>
+<ul class="simple">
+<li><p>If <span class="math notranslate nohighlight">\(S_{s+l+} &lt; 5\)</span>, override the p-value from this test with 1,
+essentially ignoring this label in the analysis.</p></li>
+<li><p>Convert p-value to unsigned z-value.</p></li>
+</ul>
+</li>
+</ol>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./appendices"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="../16_bibliography.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">References</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="neurosynth_decoding.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Appendix II: Neurosynth Discrete Decoding</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Taylor Salo, Tal Yarkoni, Thomas E. Nichols, Jean-Baptiste Poline, Murat Bilgel, Katherine L. Bottenhorn, Dorota Jarecka, James D. Kent, Adam Kimbler, Dylan M. Nielson, Kendra M. Oudyk, Julio A. Peraza, Alexandre Pérez, Puck C. Reeders, Julio A. Yanes, and Angela R. Laird<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
