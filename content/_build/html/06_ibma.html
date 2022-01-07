@@ -447,7 +447,7 @@ When sample size information is available, users may incorporate that informatio
 <div class="section" id="transforming-images">
 <h2>Transforming images<a class="headerlink" href="#transforming-images" title="Permalink to this headline">¶</a></h2>
 <p>Researchers may share their statistical maps in many forms, some of which are direct transformations of one another.
-For example, researchers may share test statistic maps with z-statistics or t-statistics, and, as long as we know the degrees of freedom associated with the t-test, we can convert between the two easily. To that end, NiMARE includes a class, <a class="reference external" href="https://nimare.readthedocs.io/en/0.0.10/generated/nimare.transforms.ImageTransformer.html#nimare.transforms.ImageTransformer" title="(in NiMARE v0.0.10+0.ge8814c2.dirty)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ImageTransformer</span></code></a>, which will calculate target image types from available ones, as long as the available images are compatible with said transformation.</p>
+For example, researchers may share test statistic maps with z-statistics or t-statistics, and, as long as we know the degrees of freedom associated with the t-test, we can convert between the two easily. To that end, NiMARE includes a class, <a class="reference external" href="https://nimare.readthedocs.io/en/0.0.11/generated/nimare.transforms.ImageTransformer.html#nimare.transforms.ImageTransformer" title="(in NiMARE v0.0.11+0.g7e094f2.dirty)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ImageTransformer</span></code></a>, which will calculate target image types from available ones, as long as the available images are compatible with said transformation.</p>
 <p>Here, we use <code class="docutils literal notranslate"><span class="pre">ImageTransformer</span></code> to calculate z-statistic and variance maps for all studies with compatible images.
 This allows us to apply more image-based meta-analysis algorithms to the <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>.</p>
 <div class="cell docutils container">
@@ -514,7 +514,7 @@ This allows us to apply more image-based meta-analysis algorithms to the <code c
 </div>
 </div>
 <p>Now that we have filled in as many gaps in the <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> as possible, we can start running meta-analyses.
-We will start with a DerSimonian-Laird meta-analysis (<a class="reference external" href="https://nimare.readthedocs.io/en/0.0.10/generated/nimare.meta.ibma.DerSimonianLaird.html#nimare.meta.ibma.DerSimonianLaird" title="(in NiMARE v0.0.10+0.ge8814c2.dirty)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DerSimonianLaird</span></code></a>).</p>
+We will start with a DerSimonian-Laird meta-analysis (<a class="reference external" href="https://nimare.readthedocs.io/en/0.0.11/generated/nimare.meta.ibma.DerSimonianLaird.html#nimare.meta.ibma.DerSimonianLaird" title="(in NiMARE v0.0.11+0.g7e094f2.dirty)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DerSimonianLaird</span></code></a>).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nimare</span> <span class="kn">import</span> <span class="n">meta</span>
