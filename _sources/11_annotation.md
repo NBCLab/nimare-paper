@@ -234,20 +234,21 @@ lda_model = annotate.lda.LDAModel(n_topics=50, max_iter=1000, text_column="abstr
 lda_model.fit(neurosynth_dset_first_500)
 ```
 
-The most important products of training the `LDAModel` object are its `p_word_g_topic_df_` and `p_topic_g_doc_df_` attributes.
-The `p_word_g_topic_df_` attribute is a `pandas` `DataFrame` in which each row corresponds to a topic and each column corresponds to a term (n-gram) extracted from the `Dataset`'s texts.
-The cells contain weights indicating the probability of selecting the term given that the topic was already selected.
-The `p_topic_g_doc_df_` attribute is also a `DataFrame`.
-In this one, each row corresponds to a study in the `Dataset` and each column is a topic.
-The cell values indicate the probability of selecting a topic when contructing the given study.
-Practically, this indicates the relative proportion with which the topic describes that study.
+The most important products of training the `LDAModel` object is its `distributions_` attribute.
+`LDAModel.distributions_` is a dictionary containing arrays and DataFrames created from training the model.
+We are particularly interested in the `p_topic_g_word_df` distribution, which is a `pandas` `DataFrame` in which each row corresponds to a topic and each column corresponds to a term (n-gram) extracted from the `Dataset`'s texts.
+The cells contain weights indicating the probability distribution across terms for each topic.
 
+Additionally, the `LDAModel` updates the `Dataset`'s {py:attr}`~nimare.dataset.Dataset.annotations` attribute, by adding columns corresponding to each of the topics in the model.
+Each study in the `Dataset` thus receives a weight for each topic, which can be used to select studies for topic-based meta-analyses or functional decoding.
+
+Let's take a look at the results of the model training.
 First, we will reorganize the DataFrame a bit to show the top ten terms for each of the first ten topics.
 
 ```{code-cell} ipython3
 :tags: [hide-output]
 
-lda_df = lda_model.p_word_g_topic_df_.T
+lda_df = lda_model.distributions_["p_topic_g_word_df"].T
 column_names = {c: f"Topic {c}" for c in lda_df.columns}
 lda_df = lda_df.rename(columns=column_names)
 temp_df = lda_df.copy()
