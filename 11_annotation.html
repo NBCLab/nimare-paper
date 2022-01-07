@@ -43,6 +43,8 @@
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -418,11 +420,11 @@ To facilitate more efficient (albeit lower-quality) annotation, NiMARE supports 
 These include <a class="reference internal" href="#content-annotation-ngram"><span class="std std-ref">N-gram term extraction</span></a>, <a class="reference internal" href="#content-annotation-cogat"><span class="std std-ref">Cognitive Atlas term extraction and hierarchical expansion</span></a>, <a class="reference internal" href="#content-annotation-lda"><span class="std std-ref">Latent Dirichlet allocation</span></a>, and <a class="reference internal" href="#content-annotation-gclda"><span class="std std-ref">Generalized correspondence latent Dirichlet allocation</span></a>.</p>
 <p>NiMARE users may download abstracts from PubMed as long as study identifiers in the <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> correspond to PubMed IDs (as in Neurosynth and NeuroQuery).
 Abstracts are much more easily accessible than full article text, so most annotation methods in NiMARE rely on them.</p>
-<p>Below, we use the function <a class="reference external" href="https://nimare.readthedocs.io/en/0.0.10/generated/nimare.extract.download_abstracts.html#nimare.extract.download_abstracts" title="(in NiMARE v0.0.10+0.ge8814c2.dirty)"><code class="xref py py-func docutils literal notranslate"><span class="pre">download_abstracts()</span></code></a> to download abstracts for the Neurosynth <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>.
+<p>Below, we use the function <a class="reference external" href="https://nimare.readthedocs.io/en/0.0.11/generated/nimare.extract.download_abstracts.html#nimare.extract.download_abstracts" title="(in NiMARE v0.0.11+0.g7e094f2.dirty)"><code class="xref py py-func docutils literal notranslate"><span class="pre">download_abstracts()</span></code></a> to download abstracts for the Neurosynth <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>.
 This will attempt to extract metadata about each study in the <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> from PubMed, and then add the abstract available on Pubmed to the <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>’s <code class="docutils literal notranslate"><span class="pre">texts</span></code> attribute, under a new column names “abstract”.</p>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p><a class="reference external" href="https://nimare.readthedocs.io/en/0.0.10/generated/nimare.extract.download_abstracts.html#nimare.extract.download_abstracts" title="(in NiMARE v0.0.10+0.ge8814c2.dirty)"><code class="xref py py-func docutils literal notranslate"><span class="pre">download_abstracts()</span></code></a> only works when there is internet access.
+<p><a class="reference external" href="https://nimare.readthedocs.io/en/0.0.11/generated/nimare.extract.download_abstracts.html#nimare.extract.download_abstracts" title="(in NiMARE v0.0.11+0.g7e094f2.dirty)"><code class="xref py py-func docutils literal notranslate"><span class="pre">download_abstracts()</span></code></a> only works when there is internet access.
 Since this book will often be built on nodes without internet access, we will share the code
 used to download abstracts, but will actually load and use a pre-generated version of the Dataset.</p>
 </div>
@@ -456,7 +458,7 @@ used to download abstracts, but will actually load and use a pre-generated versi
 <span id="content-annotation-ngram"></span><h2>N-gram term extraction<a class="headerlink" href="#n-gram-term-extraction" title="Permalink to this headline">¶</a></h2>
 <p><strong>N-gram term extraction</strong> refers to the vectorization of text into contiguous sets of words that can be counted as individual tokens.
 The upper limit on the number of words in these tokens is set by the user.</p>
-<p>NiMARE has the function <a class="reference external" href="https://nimare.readthedocs.io/en/0.0.10/generated/nimare.annotate.text.generate_counts.html#nimare.annotate.text.generate_counts" title="(in NiMARE v0.0.10+0.ge8814c2.dirty)"><code class="xref py py-func docutils literal notranslate"><span class="pre">generate_counts()</span></code></a> to extract n-grams from text.
+<p>NiMARE has the function <a class="reference external" href="https://nimare.readthedocs.io/en/0.0.11/generated/nimare.annotate.text.generate_counts.html#nimare.annotate.text.generate_counts" title="(in NiMARE v0.0.11+0.g7e094f2.dirty)"><code class="xref py py-func docutils literal notranslate"><span class="pre">generate_counts()</span></code></a> to extract n-grams from text.
 This method produces either term counts or term frequency- inverse document frequency (tf-idf) values for each of the studies in a <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -485,7 +487,7 @@ This method produces either term counts or term frequency- inverse document freq
 <span id="content-annotation-cogat"></span><h2>Cognitive Atlas term extraction and hierarchical expansion<a class="headerlink" href="#cognitive-atlas-term-extraction-and-hierarchical-expansion" title="Permalink to this headline">¶</a></h2>
 <p><strong>Cognitive Atlas term extraction</strong> leverages the structured nature of the Cognitive Atlas in order to extract counts for individual terms and their synonyms in the ontology, as well as to apply hierarchical expansion to these counts based on the relationships specified between terms.
 This method produces both basic term counts and expanded term counts based on the weights applied to different relationship types present in the ontology.</p>
-<p>First, we must use <a class="reference external" href="https://nimare.readthedocs.io/en/0.0.10/generated/nimare.extract.download_cognitive_atlas.html#nimare.extract.download_cognitive_atlas" title="(in NiMARE v0.0.10+0.ge8814c2.dirty)"><code class="xref py py-func docutils literal notranslate"><span class="pre">download_cognitive_atlas()</span></code></a> to download the current version of the Cognitive Atlas ontology.
+<p>First, we must use <a class="reference external" href="https://nimare.readthedocs.io/en/0.0.11/generated/nimare.extract.download_cognitive_atlas.html#nimare.extract.download_cognitive_atlas" title="(in NiMARE v0.0.11+0.g7e094f2.dirty)"><code class="xref py py-func docutils literal notranslate"><span class="pre">download_cognitive_atlas()</span></code></a> to download the current version of the Cognitive Atlas ontology.
 This includes both information about individual terms in the ontology and asserted relationships between those terms.</p>
 <p>NiMARE will automatically attempt to extrapolate likely alternate forms of each term in the ontology, in order to make extraction easier.
 For an example, see <a class="reference internal" href="#tbl-table-cogat-forms"><span class="std std-numref">Fig. 11</span></a>.</p>
@@ -717,8 +719,8 @@ This works under the assumption that each document was constructed by first rand
 While this is not a useful generative model for producing documents, LDA is able to discern cohesive topics of related words.
 <span id="id3">Poldrack <em>et al.</em> [<a class="reference internal" href="16_bibliography.html#id4">2012</a>]</span> were able to apply LDA to full texts from neuroimaging articles in order to develop cognitive neuroscience-related topics and to run topic-wise meta-analyses.
 This method produces two sets of probability distributions: (1) the probability of a word given topic and (2) the probability of a topic given article.</p>
-<p>NiMARE’s <a class="reference external" href="https://nimare.readthedocs.io/en/0.0.10/generated/nimare.annotate.lda.LDAModel.html#nimare.annotate.lda.LDAModel" title="(in NiMARE v0.0.10+0.ge8814c2.dirty)"><code class="xref py py-class docutils literal notranslate"><span class="pre">LDAModel</span></code></a> is a light wrapper around scikit-learn’s LDA implementation.</p>
-<p>Here, we train an LDA model (<a class="reference external" href="https://nimare.readthedocs.io/en/0.0.10/generated/nimare.annotate.lda.LDAModel.html#nimare.annotate.lda.LDAModel" title="(in NiMARE v0.0.10+0.ge8814c2.dirty)"><code class="xref py py-class docutils literal notranslate"><span class="pre">LDAModel</span></code></a>) on the first 500 studies of the Neurosynth <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>, with 50 topics in the model.</p>
+<p>NiMARE’s <a class="reference external" href="https://nimare.readthedocs.io/en/0.0.11/generated/nimare.annotate.lda.LDAModel.html#nimare.annotate.lda.LDAModel" title="(in NiMARE v0.0.11+0.g7e094f2.dirty)"><code class="xref py py-class docutils literal notranslate"><span class="pre">LDAModel</span></code></a> is a light wrapper around scikit-learn’s LDA implementation.</p>
+<p>Here, we train an LDA model (<a class="reference external" href="https://nimare.readthedocs.io/en/0.0.11/generated/nimare.annotate.lda.LDAModel.html#nimare.annotate.lda.LDAModel" title="(in NiMARE v0.0.11+0.g7e094f2.dirty)"><code class="xref py py-class docutils literal notranslate"><span class="pre">LDAModel</span></code></a>) on the first 500 studies of the Neurosynth <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>, with 50 topics in the model.</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nimare</span> <span class="kn">import</span> <span class="n">annotate</span>
@@ -812,133 +814,133 @@ First, we will reorganize the DataFrame a bit to show the top ten terms for each
   <tbody>
     <tr>
       <th>0</th>
+      <td>memory</td>
       <td>language</td>
-      <td>encoding retrieval</td>
-      <td>saccades</td>
-      <td>damage</td>
-      <td>states</td>
-      <td>response</td>
-      <td>signal</td>
-      <td>tones</td>
-      <td>controls</td>
-      <td>operate</td>
+      <td>target</td>
+      <td>knowledge</td>
+      <td>difficulty</td>
+      <td>theory</td>
+      <td>emotional</td>
+      <td>semantic</td>
+      <td>si</td>
+      <td>transient</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>word</td>
-      <td>operation</td>
-      <td>calculation</td>
-      <td>impairments</td>
-      <td>theory</td>
-      <td>suppression</td>
-      <td>bold</td>
-      <td>listening</td>
-      <td>age</td>
-      <td>executive processes</td>
+      <td>cortex</td>
+      <td>gyri</td>
+      <td>dipole</td>
+      <td>semantic memory</td>
+      <td>objects</td>
+      <td>listened</td>
+      <td>disorder</td>
+      <td>repetition</td>
+      <td>mt</td>
+      <td>task</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>english</td>
-      <td>normal using</td>
-      <td>shifts</td>
-      <td>lobe damage</td>
-      <td>mind</td>
-      <td>category</td>
-      <td>faces</td>
-      <td>passive</td>
-      <td>matter</td>
-      <td>measure executive</td>
+      <td>prefrontal</td>
+      <td>temporal</td>
+      <td>search</td>
+      <td>alternative</td>
+      <td>natural</td>
+      <td>previous</td>
+      <td>expressions</td>
+      <td>word</td>
+      <td>stimulation</td>
+      <td>function</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>activations</td>
-      <td>cortex episodic</td>
-      <td>event</td>
-      <td>using modified</td>
-      <td>medial prefrontal</td>
-      <td>condition</td>
-      <td>bold signal</td>
-      <td>hg</td>
-      <td>facial</td>
-      <td>isolation</td>
+      <td>retrieval</td>
+      <td>lateralization</td>
+      <td>mm</td>
+      <td>living</td>
+      <td>arithmetic</td>
+      <td>dyslexia</td>
+      <td>attention</td>
+      <td>task</td>
+      <td>tms</td>
+      <td>signals</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>word generation</td>
-      <td>checkerboard</td>
-      <td>numbers</td>
-      <td>spatial processes</td>
-      <td>tasks requiring</td>
-      <td>capacity</td>
-      <td>trials</td>
-      <td>colour</td>
-      <td>volume</td>
-      <td>refers</td>
+      <td>functional</td>
+      <td>angular</td>
+      <td>detection</td>
+      <td>modality</td>
+      <td>task difficulty</td>
+      <td>familiar</td>
+      <td>autistic</td>
+      <td>inferior</td>
+      <td>effect</td>
+      <td>inhibitory</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>languages</td>
-      <td>non verbal</td>
-      <td>lobules</td>
-      <td>human lesion</td>
-      <td>control processes</td>
-      <td>working memory</td>
-      <td>time</td>
-      <td>active</td>
-      <td>autism</td>
-      <td>performance task</td>
+      <td>encoding</td>
+      <td>temporal gyri</td>
+      <td>visual</td>
+      <td>model</td>
+      <td>shift</td>
+      <td>implicating</td>
+      <td>facial expressions</td>
+      <td>priming</td>
+      <td>attention</td>
+      <td>wcst</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>bilinguals</td>
-      <td>functional demonstrated</td>
-      <td>number</td>
-      <td>functional hemispheric</td>
-      <td>previous functional</td>
+      <td>temporal</td>
+      <td>posterior</td>
+      <td>timing</td>
+      <td>organized</td>
+      <td>tasks</td>
+      <td>real</td>
+      <td>controls</td>
+      <td>words</td>
+      <td>direction</td>
       <td>cortex</td>
-      <td>task</td>
-      <td>stg</td>
-      <td>expressions</td>
-      <td>memory words</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>mandarin</td>
-      <td>cortices cerebellum</td>
-      <td>exact</td>
-      <td>cerebral hemisphere</td>
-      <td>trials task</td>
-      <td>strategy</td>
-      <td>sec</td>
-      <td>modulated</td>
-      <td>social</td>
-      <td>wm</td>
+      <td>task</td>
+      <td>lateralized</td>
+      <td>feature</td>
+      <td>functionally</td>
+      <td>degree</td>
+      <td>mind</td>
+      <td>autistic disorder</td>
+      <td>frontal</td>
+      <td>input</td>
+      <td>paradigms</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>activations prefrontal</td>
-      <td>seven normal</td>
-      <td>inferior</td>
-      <td>dominant role</td>
-      <td>mental states</td>
-      <td>responses</td>
-      <td>famous</td>
-      <td>et</td>
-      <td>mean</td>
-      <td>designed specifically</td>
+      <td>recognition</td>
+      <td>linguistic</td>
+      <td>information</td>
+      <td>impairments</td>
+      <td>object</td>
+      <td>subtraction</td>
+      <td>social</td>
+      <td>temporal</td>
+      <td>somatosensory</td>
+      <td>set</td>
     </tr>
     <tr>
       <th>9</th>
-      <td>voxels</td>
-      <td>located dorsal</td>
-      <td>angular</td>
-      <td>participate</td>
-      <td>paracingulate</td>
-      <td>superordinate</td>
-      <td>recognition</td>
-      <td>et al</td>
-      <td>grey matter</td>
-      <td>executive</td>
+      <td>words</td>
+      <td>obtained</td>
+      <td>fixation</td>
+      <td>visual knowledge</td>
+      <td>natural objects</td>
+      <td>primarily</td>
+      <td>facial</td>
+      <td>tasks</td>
+      <td>contralateral</td>
+      <td>cognitive set</td>
     </tr>
   </tbody>
 </table>
@@ -992,133 +994,133 @@ First, we will reorganize the DataFrame a bit to show the top ten terms for each
   <tbody>
     <tr>
       <th>0</th>
+      <td>memory</td>
       <td>language</td>
-      <td>encoding retrieval</td>
-      <td>saccades</td>
-      <td>damage</td>
-      <td>states</td>
-      <td>response</td>
-      <td>signal</td>
-      <td>tones</td>
-      <td>controls</td>
-      <td>operate</td>
+      <td>target</td>
+      <td>knowledge</td>
+      <td>difficulty</td>
+      <td>theory</td>
+      <td>emotional</td>
+      <td>semantic</td>
+      <td>si</td>
+      <td>transient</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>word</td>
-      <td>operation</td>
-      <td>calculation</td>
-      <td>impairments</td>
-      <td>theory</td>
-      <td>suppression</td>
-      <td>bold</td>
-      <td>listening</td>
-      <td>age</td>
-      <td>executive processes</td>
+      <td>cortex</td>
+      <td>gyri</td>
+      <td>dipole</td>
+      <td>semantic memory</td>
+      <td>objects</td>
+      <td>listened</td>
+      <td>disorder</td>
+      <td>repetition</td>
+      <td>mt</td>
+      <td>task</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>english</td>
-      <td>normal using</td>
-      <td>shifts</td>
-      <td>lobe damage</td>
-      <td>mind</td>
-      <td>category</td>
-      <td>faces</td>
-      <td>passive</td>
-      <td>matter</td>
-      <td>measure executive</td>
+      <td>prefrontal</td>
+      <td>temporal</td>
+      <td>search</td>
+      <td>alternative</td>
+      <td>natural</td>
+      <td>previous</td>
+      <td>expressions</td>
+      <td>word</td>
+      <td>stimulation</td>
+      <td>function</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>activations</td>
-      <td>cortex episodic</td>
-      <td>event</td>
-      <td>using modified</td>
-      <td>medial prefrontal</td>
-      <td>condition</td>
-      <td>bold signal</td>
-      <td>hg</td>
-      <td>facial</td>
-      <td>isolation</td>
+      <td>retrieval</td>
+      <td>lateralization</td>
+      <td>mm</td>
+      <td>living</td>
+      <td>arithmetic</td>
+      <td>dyslexia</td>
+      <td>attention</td>
+      <td>task</td>
+      <td>tms</td>
+      <td>signals</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>word generation</td>
-      <td>checkerboard</td>
-      <td>numbers</td>
-      <td>spatial processes</td>
-      <td>tasks requiring</td>
-      <td>capacity</td>
-      <td>trials</td>
-      <td>colour</td>
-      <td>volume</td>
-      <td>refers</td>
+      <td>functional</td>
+      <td>angular</td>
+      <td>detection</td>
+      <td>modality</td>
+      <td>task difficulty</td>
+      <td>familiar</td>
+      <td>autistic</td>
+      <td>inferior</td>
+      <td>effect</td>
+      <td>inhibitory</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>languages</td>
-      <td>non verbal</td>
-      <td>lobules</td>
-      <td>human lesion</td>
-      <td>control processes</td>
-      <td>working memory</td>
-      <td>time</td>
-      <td>active</td>
-      <td>autism</td>
-      <td>performance task</td>
+      <td>encoding</td>
+      <td>temporal gyri</td>
+      <td>visual</td>
+      <td>model</td>
+      <td>shift</td>
+      <td>implicating</td>
+      <td>facial expressions</td>
+      <td>priming</td>
+      <td>attention</td>
+      <td>wcst</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>bilinguals</td>
-      <td>functional demonstrated</td>
-      <td>number</td>
-      <td>functional hemispheric</td>
-      <td>previous functional</td>
+      <td>temporal</td>
+      <td>posterior</td>
+      <td>timing</td>
+      <td>organized</td>
+      <td>tasks</td>
+      <td>real</td>
+      <td>controls</td>
+      <td>words</td>
+      <td>direction</td>
       <td>cortex</td>
-      <td>task</td>
-      <td>stg</td>
-      <td>expressions</td>
-      <td>memory words</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>mandarin</td>
-      <td>cortices cerebellum</td>
-      <td>exact</td>
-      <td>cerebral hemisphere</td>
-      <td>trials task</td>
-      <td>strategy</td>
-      <td>sec</td>
-      <td>modulated</td>
-      <td>social</td>
-      <td>wm</td>
+      <td>task</td>
+      <td>lateralized</td>
+      <td>feature</td>
+      <td>functionally</td>
+      <td>degree</td>
+      <td>mind</td>
+      <td>autistic disorder</td>
+      <td>frontal</td>
+      <td>input</td>
+      <td>paradigms</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>activations prefrontal</td>
-      <td>seven normal</td>
-      <td>inferior</td>
-      <td>dominant role</td>
-      <td>mental states</td>
-      <td>responses</td>
-      <td>famous</td>
-      <td>et</td>
-      <td>mean</td>
-      <td>designed specifically</td>
+      <td>recognition</td>
+      <td>linguistic</td>
+      <td>information</td>
+      <td>impairments</td>
+      <td>object</td>
+      <td>subtraction</td>
+      <td>social</td>
+      <td>temporal</td>
+      <td>somatosensory</td>
+      <td>set</td>
     </tr>
     <tr>
       <th>9</th>
-      <td>voxels</td>
-      <td>located dorsal</td>
-      <td>angular</td>
-      <td>participate</td>
-      <td>paracingulate</td>
-      <td>superordinate</td>
-      <td>recognition</td>
-      <td>et al</td>
-      <td>grey matter</td>
-      <td>executive</td>
+      <td>words</td>
+      <td>obtained</td>
+      <td>fixation</td>
+      <td>visual knowledge</td>
+      <td>natural objects</td>
+      <td>primarily</td>
+      <td>facial</td>
+      <td>tasks</td>
+      <td>contralateral</td>
+      <td>cognitive set</td>
     </tr>
   </tbody>
 </table>
@@ -1140,11 +1142,11 @@ First, we will reorganize the DataFrame a bit to show the top ten terms for each
 GCLDA assumes that topics within the fMRI literature can also be localized to brain regions, in this case modeled as three-dimensional Gaussian distributions.
 These spatial distributions can also be restricted to pairs of Gaussians that are symmetric across brain hemispheres.
 This method produces two sets of probability distributions: the probability of a word given topic (<code class="docutils literal notranslate"><span class="pre">GCLDAModel.p_word_g_topic_</span></code>) and the probability of a voxel given topic (<code class="docutils literal notranslate"><span class="pre">GCLDAModel.p_voxel_g_topic_</span></code>).</p>
-<p>Here we train a GCLDA model (<a class="reference external" href="https://nimare.readthedocs.io/en/0.0.10/generated/nimare.annotate.gclda.GCLDAModel.html#nimare.annotate.gclda.GCLDAModel" title="(in NiMARE v0.0.10+0.ge8814c2.dirty)"><code class="xref py py-class docutils literal notranslate"><span class="pre">GCLDAModel</span></code></a>) on the first 500 studies of the Neurosynth Dataset.
+<p>Here we train a GCLDA model (<a class="reference external" href="https://nimare.readthedocs.io/en/0.0.11/generated/nimare.annotate.gclda.GCLDAModel.html#nimare.annotate.gclda.GCLDAModel" title="(in NiMARE v0.0.11+0.g7e094f2.dirty)"><code class="xref py py-class docutils literal notranslate"><span class="pre">GCLDAModel</span></code></a>) on the first 500 studies of the Neurosynth Dataset.
 The model will include 50 topics, in which the spatial distribution for each topic will be defined as having two Gaussian distributions that are symmetrically localized across the longitudinal fissure.</p>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p><a class="reference external" href="https://nimare.readthedocs.io/en/0.0.10/generated/nimare.annotate.gclda.GCLDAModel.html#nimare.annotate.gclda.GCLDAModel" title="(in NiMARE v0.0.10+0.ge8814c2.dirty)"><code class="xref py py-class docutils literal notranslate"><span class="pre">GCLDAModel</span></code></a> generally takes a very long time to train.</p>
+<p><a class="reference external" href="https://nimare.readthedocs.io/en/0.0.11/generated/nimare.annotate.gclda.GCLDAModel.html#nimare.annotate.gclda.GCLDAModel" title="(in NiMARE v0.0.11+0.g7e094f2.dirty)"><code class="xref py py-class docutils literal notranslate"><span class="pre">GCLDAModel</span></code></a> generally takes a very long time to train.</p>
 <p>Below, we show how one would train a GCLDA model.
 However, we will load a pretrained model instead of actually training the model.</p>
 </div>
