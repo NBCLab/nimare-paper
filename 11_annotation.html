@@ -420,12 +420,13 @@ To facilitate more efficient (albeit lower-quality) annotation, NiMARE supports 
 These include <a class="reference internal" href="#content-annotation-ngram"><span class="std std-ref">N-gram term extraction</span></a>, <a class="reference internal" href="#content-annotation-cogat"><span class="std std-ref">Cognitive Atlas term extraction and hierarchical expansion</span></a>, <a class="reference internal" href="#content-annotation-lda"><span class="std std-ref">Latent Dirichlet allocation</span></a>, and <a class="reference internal" href="#content-annotation-gclda"><span class="std std-ref">Generalized correspondence latent Dirichlet allocation</span></a>.</p>
 <p>NiMARE users may download abstracts from PubMed as long as study identifiers in the <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> correspond to PubMed IDs (as in Neurosynth and NeuroQuery).
 Abstracts are much more easily accessible than full article text, so most annotation methods in NiMARE rely on them.</p>
-<p>Below, we use the function <a class="reference external" href="https://nimare.readthedocs.io/en/0.0.10/generated/nimare.extract.download_abstracts.html#nimare.extract.download_abstracts" title="(in NiMARE v0.0.10+0.ge8814c2.dirty)"><code class="xref py py-func docutils literal notranslate"><span class="pre">nimare.extract.download_abstracts()</span></code></a> to download abstracts for the Neurosynth <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>.
+<p>Below, we use the function <a class="reference external" href="https://nimare.readthedocs.io/en/0.0.10/generated/nimare.extract.download_abstracts.html#nimare.extract.download_abstracts" title="(in NiMARE v0.0.10+0.ge8814c2.dirty)"><code class="xref py py-func docutils literal notranslate"><span class="pre">download_abstracts()</span></code></a> to download abstracts for the Neurosynth <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>.
 This will attempt to extract metadata about each study in the <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> from PubMed, and then add the abstract available on Pubmed to the <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>’s <code class="docutils literal notranslate"><span class="pre">texts</span></code> attribute, under a new column names “abstract”.</p>
-<div class="highlight-important notranslate"><div class="highlight"><pre><span></span>{py:func}`~nimare.extract.download_abstracts` only works when there is internet access.
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p><a class="reference external" href="https://nimare.readthedocs.io/en/0.0.10/generated/nimare.extract.download_abstracts.html#nimare.extract.download_abstracts" title="(in NiMARE v0.0.10+0.ge8814c2.dirty)"><code class="xref py py-func docutils literal notranslate"><span class="pre">download_abstracts()</span></code></a> only works when there is internet access.
 Since this book will often be built on nodes without internet access, we will share the code
-used to download abstracts, but will actually load and use a pre-generated version of the Dataset.
-</pre></div>
+used to download abstracts, but will actually load and use a pre-generated version of the Dataset.</p>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># First, load a Dataset without abstracts</span>
 <span class="n">neurosynth_dset_first_500</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">load</span><span class="p">(</span>
@@ -457,7 +458,7 @@ used to download abstracts, but will actually load and use a pre-generated versi
 <span id="content-annotation-ngram"></span><h2>N-gram term extraction<a class="headerlink" href="#n-gram-term-extraction" title="Permalink to this headline">¶</a></h2>
 <p><strong>N-gram term extraction</strong> refers to the vectorization of text into contiguous sets of words that can be counted as individual tokens.
 The upper limit on the number of words in these tokens is set by the user.</p>
-<p>NiMARE has the function <a class="reference external" href="https://nimare.readthedocs.io/en/0.0.10/generated/nimare.annotate.text.generate_counts.html#nimare.annotate.text.generate_counts" title="(in NiMARE v0.0.10+0.ge8814c2.dirty)"><code class="xref py py-func docutils literal notranslate"><span class="pre">nimare.annotate.text.generate_counts()</span></code></a> to extract n-grams from text.
+<p>NiMARE has the function <a class="reference external" href="https://nimare.readthedocs.io/en/0.0.10/generated/nimare.annotate.text.generate_counts.html#nimare.annotate.text.generate_counts" title="(in NiMARE v0.0.10+0.ge8814c2.dirty)"><code class="xref py py-func docutils literal notranslate"><span class="pre">generate_counts()</span></code></a> to extract n-grams from text.
 This method produces either term counts or term frequency- inverse document frequency (tf-idf) values for each of the studies in a <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -486,7 +487,7 @@ This method produces either term counts or term frequency- inverse document freq
 <span id="content-annotation-cogat"></span><h2>Cognitive Atlas term extraction and hierarchical expansion<a class="headerlink" href="#cognitive-atlas-term-extraction-and-hierarchical-expansion" title="Permalink to this headline">¶</a></h2>
 <p><strong>Cognitive Atlas term extraction</strong> leverages the structured nature of the Cognitive Atlas in order to extract counts for individual terms and their synonyms in the ontology, as well as to apply hierarchical expansion to these counts based on the relationships specified between terms.
 This method produces both basic term counts and expanded term counts based on the weights applied to different relationship types present in the ontology.</p>
-<p>First, we must use <a class="reference external" href="https://nimare.readthedocs.io/en/0.0.10/generated/nimare.extract.download_cognitive_atlas.html#nimare.extract.download_cognitive_atlas" title="(in NiMARE v0.0.10+0.ge8814c2.dirty)"><code class="xref py py-func docutils literal notranslate"><span class="pre">nimare.extract.download_cognitive_atlas()</span></code></a> to download the current version of the Cognitive Atlas ontology.
+<p>First, we must use <a class="reference external" href="https://nimare.readthedocs.io/en/0.0.10/generated/nimare.extract.download_cognitive_atlas.html#nimare.extract.download_cognitive_atlas" title="(in NiMARE v0.0.10+0.ge8814c2.dirty)"><code class="xref py py-func docutils literal notranslate"><span class="pre">download_cognitive_atlas()</span></code></a> to download the current version of the Cognitive Atlas ontology.
 This includes both information about individual terms in the ontology and asserted relationships between those terms.</p>
 <p>NiMARE will automatically attempt to extrapolate likely alternate forms of each term in the ontology, in order to make extraction easier.
 For an example, see <a class="reference internal" href="#tbl-table-cogat-forms"><span class="std std-numref">Fig. 11</span></a>.</p>
@@ -719,34 +720,29 @@ While this is not a useful generative model for producing documents, LDA is able
 <span id="id3">Poldrack <em>et al.</em> [<a class="reference internal" href="16_bibliography.html#id4">2012</a>]</span> were able to apply LDA to full texts from neuroimaging articles in order to develop cognitive neuroscience-related topics and to run topic-wise meta-analyses.
 This method produces two sets of probability distributions: (1) the probability of a word given topic and (2) the probability of a topic given article.</p>
 <p>NiMARE’s <a class="reference external" href="https://nimare.readthedocs.io/en/0.0.10/generated/nimare.annotate.lda.LDAModel.html#nimare.annotate.lda.LDAModel" title="(in NiMARE v0.0.10+0.ge8814c2.dirty)"><code class="xref py py-class docutils literal notranslate"><span class="pre">LDAModel</span></code></a> is a light wrapper around scikit-learn’s LDA implementation.</p>
-<p>Here, we train an LDA model (<a class="reference external" href="https://nimare.readthedocs.io/en/0.0.10/generated/nimare.annotate.lda.LDAModel.html#nimare.annotate.lda.LDAModel" title="(in NiMARE v0.0.10+0.ge8814c2.dirty)"><code class="xref py py-class docutils literal notranslate"><span class="pre">nimare.annotate.lda.LDAModel</span></code></a>) on the first 500 studies of the Neurosynth <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>, with 50 topics in the model.</p>
+<p>Here, we train an LDA model (<a class="reference external" href="https://nimare.readthedocs.io/en/0.0.10/generated/nimare.annotate.lda.LDAModel.html#nimare.annotate.lda.LDAModel" title="(in NiMARE v0.0.10+0.ge8814c2.dirty)"><code class="xref py py-class docutils literal notranslate"><span class="pre">LDAModel</span></code></a>) on the first 500 studies of the Neurosynth <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>, with 50 topics in the model.</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nimare</span> <span class="kn">import</span> <span class="n">annotate</span>
 
-<span class="n">lda_model</span> <span class="o">=</span> <span class="n">annotate</span><span class="o">.</span><span class="n">lda</span><span class="o">.</span><span class="n">LDAModel</span><span class="p">(</span>
-    <span class="n">neurosynth_dset_first_500</span><span class="o">.</span><span class="n">texts</span><span class="p">,</span>
-    <span class="n">text_column</span><span class="o">=</span><span class="s2">&quot;abstract&quot;</span><span class="p">,</span>
-    <span class="n">n_topics</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
-    <span class="n">n_iters</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
-<span class="p">)</span>
+<span class="n">lda_model</span> <span class="o">=</span> <span class="n">annotate</span><span class="o">.</span><span class="n">lda</span><span class="o">.</span><span class="n">LDAModel</span><span class="p">(</span><span class="n">n_topics</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">max_iters</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">text_column</span><span class="o">=</span><span class="s2">&quot;abstract&quot;</span><span class="p">)</span>
 
 <span class="c1"># Fit the model</span>
-<span class="n">lda_model</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="n">lda_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">neurosynth_dset_first_500</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_30045</span><span class="o">/</span><span class="mf">3182736899.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="n">text_column</span><span class="o">=</span><span class="s2">&quot;abstract&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span>     <span class="n">n_topics</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
-<span class="ne">----&gt; </span><span class="mi">7</span>     <span class="n">n_iters</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span> 
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_37894</span><span class="o">/</span><span class="mf">1844572040.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">nimare</span> <span class="kn">import</span> <span class="n">annotate</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> 
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">lda_model</span> <span class="o">=</span> <span class="n">annotate</span><span class="o">.</span><span class="n">lda</span><span class="o">.</span><span class="n">LDAModel</span><span class="p">(</span><span class="n">n_topics</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">max_iters</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">text_column</span><span class="o">=</span><span class="s2">&quot;abstract&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> 
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="c1"># Fit the model</span>
 
-<span class="ne">TypeError</span>: __init__() got multiple values for argument &#39;n_topics&#39;
+<span class="ne">TypeError</span>: __init__() got an unexpected keyword argument &#39;max_iters&#39;
 </pre></div>
 </div>
 </div>
@@ -795,11 +791,11 @@ Practically, this indicates the relative proportion with which the topic describ
 GCLDA assumes that topics within the fMRI literature can also be localized to brain regions, in this case modeled as three-dimensional Gaussian distributions.
 These spatial distributions can also be restricted to pairs of Gaussians that are symmetric across brain hemispheres.
 This method produces two sets of probability distributions: the probability of a word given topic (<code class="docutils literal notranslate"><span class="pre">GCLDAModel.p_word_g_topic_</span></code>) and the probability of a voxel given topic (<code class="docutils literal notranslate"><span class="pre">GCLDAModel.p_voxel_g_topic_</span></code>).</p>
-<p>Here we train a GCLDA model (<a class="reference external" href="https://nimare.readthedocs.io/en/0.0.10/generated/nimare.annotate.gclda.GCLDAModel.html#nimare.annotate.gclda.GCLDAModel" title="(in NiMARE v0.0.10+0.ge8814c2.dirty)"><code class="xref py py-class docutils literal notranslate"><span class="pre">nimare.annotate.gclda.GCLDAModel</span></code></a>) on the first 500 studies of the Neurosynth Dataset.
+<p>Here we train a GCLDA model (<a class="reference external" href="https://nimare.readthedocs.io/en/0.0.10/generated/nimare.annotate.gclda.GCLDAModel.html#nimare.annotate.gclda.GCLDAModel" title="(in NiMARE v0.0.10+0.ge8814c2.dirty)"><code class="xref py py-class docutils literal notranslate"><span class="pre">GCLDAModel</span></code></a>) on the first 500 studies of the Neurosynth Dataset.
 The model will include 50 topics, in which the spatial distribution for each topic will be defined as having two Gaussian distributions that are symmetrically localized across the longitudinal fissure.</p>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p><a class="reference external" href="https://nimare.readthedocs.io/en/0.0.10/generated/nimare.annotate.gclda.GCLDAModel.html#nimare.annotate.gclda.GCLDAModel" title="(in NiMARE v0.0.10+0.ge8814c2.dirty)"><code class="xref py py-class docutils literal notranslate"><span class="pre">nimare.annotate.gclda.GCLDAModel</span></code></a> generally takes a very long time to train.</p>
+<p><a class="reference external" href="https://nimare.readthedocs.io/en/0.0.10/generated/nimare.annotate.gclda.GCLDAModel.html#nimare.annotate.gclda.GCLDAModel" title="(in NiMARE v0.0.10+0.ge8814c2.dirty)"><code class="xref py py-class docutils literal notranslate"><span class="pre">GCLDAModel</span></code></a> generally takes a very long time to train.</p>
 <p>Below, we show how one would train a GCLDA model.
 However, we will load a pretrained model instead of actually training the model.</p>
 </div>
