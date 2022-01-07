@@ -54,5 +54,5 @@ sphinx:
     bibtex_default_style: unsrt
     intersphinx_mapping:
       nimare:
-        - "https://nimare.readthedocs.io/en/0.0.10/"
-        - "_static/nimare_v0_0_10_objects.inv"
+        - "https://nimare.readthedocs.io/en/0.0.11/"
+        - "_static/nimare_v0_0_11_objects.inv"
