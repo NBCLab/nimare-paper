@@ -41,8 +41,8 @@ neurosynth_dset = dataset.Dataset.load(os.path.join(out_dir, "neurosynth_dataset
 # Within NiMARE, MACMs can be performed by selecting studies in a Dataset based on the presence of activation within a target mask or coordinate-centered sphere.
 # 
 # In this section, we will perform two MACMs- one with a target mask and one with a coordinate-centered sphere.
-# For the former, we use {py:meth}`nimare.dataset.Dataset.get_studies_by_mask`.
-# For the latter, we use {py:meth}`nimare.dataset.Dataset.get_studies_by_coordinate`.
+# For the former, we use {py:meth}`~nimare.dataset.Dataset.get_studies_by_mask`.
+# For the latter, we use {py:meth}`~nimare.dataset.Dataset.get_studies_by_coordinate`.
 
 # In[2]:
 

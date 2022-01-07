@@ -44,8 +44,8 @@ neurosynth_dset = dataset.Dataset.load(os.path.join(out_dir, "neurosynth_dataset
 # 
 # ## CBMA kernels
 # 
-# CBMA kernels are available as {py:class}`nimare.meta.kernel.KernelTransformer`s in the {py:mod}`nimare.meta.kernel` module.
-# There are three standard kernels that are currently available: {py:class}`nimare.meta.kernel.MKDAKernel`, {py:class}`nimare.meta.kernel.KDAKernel`, and {py:class}`nimare.meta.kernel.ALEKernel`.
+# CBMA kernels are available as {py:class}`~nimare.meta.kernel.KernelTransformer`s in the {py:mod}`nimare.meta.kernel` module.
+# There are three standard kernels that are currently available: {py:class}`~nimare.meta.kernel.MKDAKernel`, {py:class}`~nimare.meta.kernel.KDAKernel`, and {py:class}`~nimare.meta.kernel.ALEKernel`.
 # Each class may be configured with certain parameters when a new object is initialized.
 # For example, `MKDAKernel` accepts an `r` parameter, which determines the radius of the spheres that will be created around each peak coordinate.
 # `ALEKernel` automatically uses the sample size associated with each experiment in the `Dataset` to determine the appropriate full-width-at-half-maximum of its Gaussian distribution, as described in {cite:t}`EICKHOFF20122349`; however, users may provide a constant `sample_size` or `fwhm` parameter when sample size information is not available within the `Dataset` metadata.
@@ -164,7 +164,7 @@ neurosynth_dset_first500.save(
 # This averaging is generally weighted by studies’ sample sizes, although other covariates may be included, such as weights based on the type of inference (random or fixed effects) employed in the study’s analysis.
 # An arbitrary threshold is generally employed to zero-out voxels with very low values, and then a Monte Carlo procedure is used to assess statistical significance, either at the voxel or cluster level.
 # 
-# In NiMARE, the MKDA meta-analyses can be performed with the {py:class}`nimare.meta.cbma.mkda.MKDADensity` class.
+# In NiMARE, the MKDA meta-analyses can be performed with the {py:class}`~nimare.meta.cbma.mkda.MKDADensity` class.
 # This class, like most other CBMA classes in NiMARE, accepts a `null_method` parameter, which determines how voxel-wise (uncorrected) statistical significance is calculated.
 # 
 # ```{admonition} On CBMA "null methods"
@@ -198,7 +198,7 @@ mkdad_results = mkdad_meta.fit(sleuth_dset1)
 # (content:cbma:metaresult)=
 # ### The `MetaResult` class
 # 
-# Fitting an `Estimator` to a `Dataset` produces a {py:class}`nimare.results.MetaResult` object.
+# Fitting an `Estimator` to a `Dataset` produces a {py:class}`~nimare.results.MetaResult` object.
 # The `MetaResult` class is a light container holding the different statistical maps produced by the `Estimator`.
 
 # In[8]:

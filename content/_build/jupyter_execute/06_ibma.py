@@ -65,7 +65,7 @@ img_dset.update_path(dset_dir)
 # ## Transforming images
 # 
 # Researchers may share their statistical maps in many forms, some of which are direct transformations of one another.
-# For example, researchers may share test statistic maps with z-statistics or t-statistics, and, as long as we know the degrees of freedom associated with the t-test, we can convert between the two easily. To that end, NiMARE includes a class, {py:class}`nimare.transforms.ImageTransformer`, which will calculate target image types from available ones, as long as the available images are compatible with said transformation.
+# For example, researchers may share test statistic maps with z-statistics or t-statistics, and, as long as we know the degrees of freedom associated with the t-test, we can convert between the two easily. To that end, NiMARE includes a class, {py:class}`~nimare.transforms.ImageTransformer`, which will calculate target image types from available ones, as long as the available images are compatible with said transformation.
 # 
 # Here, we use `ImageTransformer` to calculate z-statistic and variance maps for all studies with compatible images.
 # This allows us to apply more image-based meta-analysis algorithms to the `Dataset`.
@@ -87,21 +87,21 @@ del img_transformer
 
 
 # Now that we have filled in as many gaps in the `Dataset` as possible, we can start running meta-analyses.
-# We will start with a DerSimonian-Laird meta-analysis ({py:class}`nimare.meta.ibma.DerSimonianLaird`).
+# We will start with a DerSimonian-Laird meta-analysis ({py:class}`~nimare.meta.ibma.DerSimonianLaird`).
 
 # In[5]:
 
 
 from nimare import meta
 
-dsl_meta = meta.ibma.DerSimonianLaird()
+dsl_meta = meta.ibma.DerSimonianLaird(resample=True)
 dsl_results = dsl_meta.fit(img_dset)
 
 # Retain the z-statistic map for later use
 dsl_img = dsl_results.get_map("z", return_type="image")
 
 
-# In[ ]:
+# In[6]:
 
 
 # Here we delete the recent variables for the sake of reducing memory usage
@@ -110,41 +110,41 @@ del dsl_meta, dsl_results
 
 # Now we will apply other available IBMA `Estimator`s to the same `Dataset`, and save their results to files for comparison.
 
-# In[ ]:
+# In[7]:
 
 
 # Stouffer's
-stouffers_meta = meta.ibma.Stouffers(use_sample_size=False)
+stouffers_meta = meta.ibma.Stouffers(use_sample_size=False, resample=True)
 stouffers_results = stouffers_meta.fit(img_dset)
 stouffers_img = stouffers_results.get_map("z", return_type="image")
 del stouffers_meta, stouffers_results
 
 # Stouffer's with weighting based on sample size
-wstouffers_meta = meta.ibma.Stouffers(use_sample_size=True)
+wstouffers_meta = meta.ibma.Stouffers(use_sample_size=True, resample=True)
 wstouffers_results = wstouffers_meta.fit(img_dset)
 wstouffers_img = wstouffers_results.get_map("z", return_type="image")
 del wstouffers_meta, wstouffers_results
 
 # Fisher's
-fishers_meta = meta.ibma.Fishers()
+fishers_meta = meta.ibma.Fishers(resample=True)
 fishers_results = fishers_meta.fit(img_dset)
 fishers_img = fishers_results.get_map("z", return_type="image")
 del fishers_meta, fishers_results
 
 # Permuted Ordinary Least Squares
-ols_meta = meta.ibma.PermutedOLS()
+ols_meta = meta.ibma.PermutedOLS(resample=True)
 ols_results = ols_meta.fit(img_dset)
 ols_img = ols_results.get_map("z", return_type="image")
 del ols_meta, ols_results
 
 # Weighted Least Squares
-wls_meta = meta.ibma.WeightedLeastSquares()
+wls_meta = meta.ibma.WeightedLeastSquares(resample=True)
 wls_results = wls_meta.fit(img_dset)
 wls_img = wls_results.get_map("z", return_type="image")
 del wls_meta, wls_results
 
 # Hedges'
-hedges_meta = meta.ibma.Hedges()
+hedges_meta = meta.ibma.Hedges(resample=True)
 hedges_results = hedges_meta.fit(img_dset)
 hedges_img = hedges_results.get_map("z", return_type="image")
 del hedges_meta, hedges_results
@@ -163,13 +163,13 @@ masker = input_data.NiftiLabelsMasker(nanmasked_atlas)
 del atlas, nan_mask, nanmasked_atlas
 
 # Variance-Based Likelihood
-vbl_meta = meta.ibma.VarianceBasedLikelihood(method="reml", mask=masker)
+vbl_meta = meta.ibma.VarianceBasedLikelihood(method="reml", mask=masker, resample=True)
 vbl_results = vbl_meta.fit(img_dset)
 vbl_img = vbl_results.get_map("z", return_type="image")
 del vbl_meta, vbl_results
 
 # Sample Size-Based Likelihood
-ssbl_meta = meta.ibma.SampleSizeBasedLikelihood(method="reml", mask=masker)
+ssbl_meta = meta.ibma.SampleSizeBasedLikelihood(method="reml", mask=masker, resample=True)
 ssbl_results = ssbl_meta.fit(img_dset)
 ssbl_img = ssbl_results.get_map("z", return_type="image")
 del ssbl_meta, ssbl_results, masker
@@ -179,7 +179,7 @@ del ssbl_meta, ssbl_results, masker
 # 
 # Here we load the z-statistic map from each of the IBMA Estimators we've used throughout this chapter and plot them all side by side.
 
-# In[ ]:
+# In[8]:
 
 
 meta_results = {

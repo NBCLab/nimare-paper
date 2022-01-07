@@ -447,7 +447,7 @@ When sample size information is available, users may incorporate that informatio
 <div class="section" id="transforming-images">
 <h2>Transforming images<a class="headerlink" href="#transforming-images" title="Permalink to this headline">¶</a></h2>
 <p>Researchers may share their statistical maps in many forms, some of which are direct transformations of one another.
-For example, researchers may share test statistic maps with z-statistics or t-statistics, and, as long as we know the degrees of freedom associated with the t-test, we can convert between the two easily. To that end, NiMARE includes a class, <a class="reference external" href="https://nimare.readthedocs.io/en/0.0.10/generated/nimare.transforms.ImageTransformer.html#nimare.transforms.ImageTransformer" title="(in NiMARE v0.0.10+0.ge8814c2.dirty)"><code class="xref py py-class docutils literal notranslate"><span class="pre">nimare.transforms.ImageTransformer</span></code></a>, which will calculate target image types from available ones, as long as the available images are compatible with said transformation.</p>
+For example, researchers may share test statistic maps with z-statistics or t-statistics, and, as long as we know the degrees of freedom associated with the t-test, we can convert between the two easily. To that end, NiMARE includes a class, <a class="reference external" href="https://nimare.readthedocs.io/en/0.0.10/generated/nimare.transforms.ImageTransformer.html#nimare.transforms.ImageTransformer" title="(in NiMARE v0.0.10+0.ge8814c2.dirty)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ImageTransformer</span></code></a>, which will calculate target image types from available ones, as long as the available images are compatible with said transformation.</p>
 <p>Here, we use <code class="docutils literal notranslate"><span class="pre">ImageTransformer</span></code> to calculate z-statistic and variance maps for all studies with compatible images.
 This allows us to apply more image-based meta-analysis algorithms to the <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>.</p>
 <div class="cell docutils container">
@@ -514,12 +514,12 @@ This allows us to apply more image-based meta-analysis algorithms to the <code c
 </div>
 </div>
 <p>Now that we have filled in as many gaps in the <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> as possible, we can start running meta-analyses.
-We will start with a DerSimonian-Laird meta-analysis (<a class="reference external" href="https://nimare.readthedocs.io/en/0.0.10/generated/nimare.meta.ibma.DerSimonianLaird.html#nimare.meta.ibma.DerSimonianLaird" title="(in NiMARE v0.0.10+0.ge8814c2.dirty)"><code class="xref py py-class docutils literal notranslate"><span class="pre">nimare.meta.ibma.DerSimonianLaird</span></code></a>).</p>
+We will start with a DerSimonian-Laird meta-analysis (<a class="reference external" href="https://nimare.readthedocs.io/en/0.0.10/generated/nimare.meta.ibma.DerSimonianLaird.html#nimare.meta.ibma.DerSimonianLaird" title="(in NiMARE v0.0.10+0.ge8814c2.dirty)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DerSimonianLaird</span></code></a>).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nimare</span> <span class="kn">import</span> <span class="n">meta</span>
 
-<span class="n">dsl_meta</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">ibma</span><span class="o">.</span><span class="n">DerSimonianLaird</span><span class="p">()</span>
+<span class="n">dsl_meta</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">ibma</span><span class="o">.</span><span class="n">DerSimonianLaird</span><span class="p">(</span><span class="n">resample</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">dsl_results</span> <span class="o">=</span> <span class="n">dsl_meta</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">img_dset</span><span class="p">)</span>
 
 <span class="c1"># Retain the z-statistic map for later use</span>
@@ -528,58 +528,47 @@ We will start with a DerSimonian-Laird meta-analysis (<a class="reference extern
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_27787</span><span class="o">/</span><span class="mf">3076875382.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> 
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">dsl_meta</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">ibma</span><span class="o">.</span><span class="n">DerSimonianLaird</span><span class="p">()</span>
-<span class="ne">----&gt; </span><span class="mi">4</span> <span class="n">dsl_results</span> <span class="o">=</span> <span class="n">dsl_meta</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">img_dset</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> 
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="c1"># Retain the z-statistic map for later use</span>
-
-<span class="nn">/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nimare/base.py</span> in <span class="ni">fit</span><span class="nt">(self, dataset, drop_invalid)</span>
-<span class="g g-Whitespace">    </span><span class="mi">311</span>         <span class="s2">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">312</span><span class="s2">         self._validate_input(dataset, drop_invalid=drop_invalid)</span>
-<span class="ne">--&gt; </span><span class="mi">313</span><span class="s2">         self._preprocess_input(dataset)</span>
-<span class="g g-Whitespace">    </span><span class="mi">314</span><span class="s2">         maps = self._fit(dataset)</span>
-<span class="g g-Whitespace">    </span><span class="mi">315</span><span class="s2"> </span>
-
-<span class="nn">/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nimare/base.py</span> in <span class="ni">_preprocess_input</span><span class="nt">(self, dataset)</span>
-<span class="g g-Whitespace">    </span><span class="mi">377</span><span class="s2">                 if not self.resample:</span>
-<span class="g g-Whitespace">    </span><span class="mi">378</span><span class="s2">                     check_imgs = {img: nb.load(img) for img in self.inputs_[name]}</span>
-<span class="ne">--&gt; </span><span class="mi">379</span><span class="s2">                     _check_same_fov(**check_imgs, reference_masker=mask_img, raise_error=True)</span>
-<span class="g g-Whitespace">    </span><span class="mi">380</span><span class="s2">                     imgs = list(check_imgs.values())</span>
-<span class="g g-Whitespace">    </span><span class="mi">381</span><span class="s2">                 else:</span>
-
-<span class="nn">/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/_utils/niimg_conversions.py</span> in <span class="ni">_check_same_fov</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">65</span><span class="s2">         raise ValueError(&#39;Following field of view errors were detected:</span><span class="se">\n</span><span class="s2">&#39; +</span>
-<span class="g g-Whitespace">     </span><span class="mi">66</span><span class="s2">                          &#39;</span><span class="se">\n</span><span class="s2">&#39;.join([&#39;- </span><span class="si">%s</span><span class="s2"> and </span><span class="si">%s</span><span class="s2"> do not have the same </span><span class="si">%s</span><span class="s2">&#39; </span><span class="si">% e</span><span class="s2"></span>
-<span class="ne">---&gt; </span><span class="mi">67</span><span class="s2">                                     for e in errors]))</span>
-<span class="g g-Whitespace">     </span><span class="mi">68</span><span class="s2">     return (len(errors) == 0)</span>
-<span class="g g-Whitespace">     </span><span class="mi">69</span><span class="s2"> </span>
-
-<span class="ne">ValueError</span>: Following field of view errors were detected:
-<span class="s2">- /home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/nidm_21pain/pain_01.nidm/Contrast.nii.gz and reference_masker do not have the same affine</span>
-<span class="s2">- /home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/nidm_21pain/pain_02.nidm/Contrast.nii.gz and reference_masker do not have the same affine</span>
-<span class="s2">- /home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/nidm_21pain/pain_03.nidm/Contrast.nii.gz and reference_masker do not have the same affine</span>
-<span class="s2">- /home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/nidm_21pain/pain_04.nidm/Contrast.nii.gz and reference_masker do not have the same affine</span>
-<span class="s2">- /home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/nidm_21pain/pain_05.nidm/Contrast.nii.gz and reference_masker do not have the same affine</span>
-<span class="s2">- /home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/nidm_21pain/pain_06.nidm/Contrast.nii.gz and reference_masker do not have the same affine</span>
-<span class="s2">- /home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/nidm_21pain/pain_07.nidm/Contrast.nii.gz and reference_masker do not have the same affine</span>
-<span class="s2">- /home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/nidm_21pain/pain_08.nidm/Contrast.nii.gz and reference_masker do not have the same affine</span>
-<span class="s2">- /home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/nidm_21pain/pain_09.nidm/Contrast.nii.gz and reference_masker do not have the same affine</span>
-<span class="s2">- /home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/nidm_21pain/pain_10.nidm/Contrast.nii.gz and reference_masker do not have the same affine</span>
-<span class="s2">- /home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/nidm_21pain/pain_11.nidm/Contrast_T001.nii.gz and reference_masker do not have the same affine</span>
-<span class="s2">- /home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/nidm_21pain/pain_12.nidm/Contrast_T001.nii.gz and reference_masker do not have the same affine</span>
-<span class="s2">- /home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/nidm_21pain/pain_13.nidm/Contrast_T001.nii.gz and reference_masker do not have the same affine</span>
-<span class="s2">- /home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/nidm_21pain/pain_14.nidm/Contrast_T001.nii.gz and reference_masker do not have the same affine</span>
-<span class="s2">- /home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/nidm_21pain/pain_15.nidm/Contrast_T001.nii.gz and reference_masker do not have the same affine</span>
-<span class="s2">- /home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/nidm_21pain/pain_16.nidm/Contrast_T001.nii.gz and reference_masker do not have the same affine</span>
-<span class="s2">- /home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/nidm_21pain/pain_17.nidm/Contrast_T001.nii.gz and reference_masker do not have the same affine</span>
-<span class="s2">- /home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/nidm_21pain/pain_18.nidm/Contrast_T001.nii.gz and reference_masker do not have the same affine</span>
-<span class="s2">- /home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/nidm_21pain/pain_19.nidm/Contrast_T001.nii.gz and reference_masker do not have the same affine</span>
-<span class="s2">- /home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/nidm_21pain/pain_20.nidm/Contrast_T001.nii.gz and reference_masker do not have the same affine</span>
-<span class="s2">- /home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/nidm_21pain/pain_21.nidm/Contrast_T001.nii.gz and reference_masker do not have the same affine</span>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/image/resampling.py:598: RuntimeWarning: NaNs or infinite values are present in the data passed to resample. This is a bad thing as they make resampling ill-defined and much slower.
+  fill_value=fill_value)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/image/resampling.py:598: RuntimeWarning: NaNs or infinite values are present in the data passed to resample. This is a bad thing as they make resampling ill-defined and much slower.
+  fill_value=fill_value)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/image/resampling.py:598: RuntimeWarning: NaNs or infinite values are present in the data passed to resample. This is a bad thing as they make resampling ill-defined and much slower.
+  fill_value=fill_value)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/image/resampling.py:598: RuntimeWarning: NaNs or infinite values are present in the data passed to resample. This is a bad thing as they make resampling ill-defined and much slower.
+  fill_value=fill_value)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/image/resampling.py:598: RuntimeWarning: NaNs or infinite values are present in the data passed to resample. This is a bad thing as they make resampling ill-defined and much slower.
+  fill_value=fill_value)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/image/resampling.py:598: RuntimeWarning: NaNs or infinite values are present in the data passed to resample. This is a bad thing as they make resampling ill-defined and much slower.
+  fill_value=fill_value)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/image/resampling.py:598: RuntimeWarning: NaNs or infinite values are present in the data passed to resample. This is a bad thing as they make resampling ill-defined and much slower.
+  fill_value=fill_value)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/image/resampling.py:598: RuntimeWarning: NaNs or infinite values are present in the data passed to resample. This is a bad thing as they make resampling ill-defined and much slower.
+  fill_value=fill_value)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/image/resampling.py:598: RuntimeWarning: NaNs or infinite values are present in the data passed to resample. This is a bad thing as they make resampling ill-defined and much slower.
+  fill_value=fill_value)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/image/resampling.py:598: RuntimeWarning: NaNs or infinite values are present in the data passed to resample. This is a bad thing as they make resampling ill-defined and much slower.
+  fill_value=fill_value)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:nimare.base:Masking out 39113 additional voxels. The updated masker is available in the Estimator.masker attribute.
 </pre></div>
 </div>
 </div>
@@ -596,37 +585,37 @@ We will start with a DerSimonian-Laird meta-analysis (<a class="reference extern
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Stouffer&#39;s</span>
-<span class="n">stouffers_meta</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">ibma</span><span class="o">.</span><span class="n">Stouffers</span><span class="p">(</span><span class="n">use_sample_size</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">stouffers_meta</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">ibma</span><span class="o">.</span><span class="n">Stouffers</span><span class="p">(</span><span class="n">use_sample_size</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">resample</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">stouffers_results</span> <span class="o">=</span> <span class="n">stouffers_meta</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">img_dset</span><span class="p">)</span>
 <span class="n">stouffers_img</span> <span class="o">=</span> <span class="n">stouffers_results</span><span class="o">.</span><span class="n">get_map</span><span class="p">(</span><span class="s2">&quot;z&quot;</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s2">&quot;image&quot;</span><span class="p">)</span>
 <span class="k">del</span> <span class="n">stouffers_meta</span><span class="p">,</span> <span class="n">stouffers_results</span>
 
 <span class="c1"># Stouffer&#39;s with weighting based on sample size</span>
-<span class="n">wstouffers_meta</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">ibma</span><span class="o">.</span><span class="n">Stouffers</span><span class="p">(</span><span class="n">use_sample_size</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">wstouffers_meta</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">ibma</span><span class="o">.</span><span class="n">Stouffers</span><span class="p">(</span><span class="n">use_sample_size</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">resample</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">wstouffers_results</span> <span class="o">=</span> <span class="n">wstouffers_meta</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">img_dset</span><span class="p">)</span>
 <span class="n">wstouffers_img</span> <span class="o">=</span> <span class="n">wstouffers_results</span><span class="o">.</span><span class="n">get_map</span><span class="p">(</span><span class="s2">&quot;z&quot;</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s2">&quot;image&quot;</span><span class="p">)</span>
 <span class="k">del</span> <span class="n">wstouffers_meta</span><span class="p">,</span> <span class="n">wstouffers_results</span>
 
 <span class="c1"># Fisher&#39;s</span>
-<span class="n">fishers_meta</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">ibma</span><span class="o">.</span><span class="n">Fishers</span><span class="p">()</span>
+<span class="n">fishers_meta</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">ibma</span><span class="o">.</span><span class="n">Fishers</span><span class="p">(</span><span class="n">resample</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">fishers_results</span> <span class="o">=</span> <span class="n">fishers_meta</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">img_dset</span><span class="p">)</span>
 <span class="n">fishers_img</span> <span class="o">=</span> <span class="n">fishers_results</span><span class="o">.</span><span class="n">get_map</span><span class="p">(</span><span class="s2">&quot;z&quot;</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s2">&quot;image&quot;</span><span class="p">)</span>
 <span class="k">del</span> <span class="n">fishers_meta</span><span class="p">,</span> <span class="n">fishers_results</span>
 
 <span class="c1"># Permuted Ordinary Least Squares</span>
-<span class="n">ols_meta</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">ibma</span><span class="o">.</span><span class="n">PermutedOLS</span><span class="p">()</span>
+<span class="n">ols_meta</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">ibma</span><span class="o">.</span><span class="n">PermutedOLS</span><span class="p">(</span><span class="n">resample</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">ols_results</span> <span class="o">=</span> <span class="n">ols_meta</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">img_dset</span><span class="p">)</span>
 <span class="n">ols_img</span> <span class="o">=</span> <span class="n">ols_results</span><span class="o">.</span><span class="n">get_map</span><span class="p">(</span><span class="s2">&quot;z&quot;</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s2">&quot;image&quot;</span><span class="p">)</span>
 <span class="k">del</span> <span class="n">ols_meta</span><span class="p">,</span> <span class="n">ols_results</span>
 
 <span class="c1"># Weighted Least Squares</span>
-<span class="n">wls_meta</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">ibma</span><span class="o">.</span><span class="n">WeightedLeastSquares</span><span class="p">()</span>
+<span class="n">wls_meta</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">ibma</span><span class="o">.</span><span class="n">WeightedLeastSquares</span><span class="p">(</span><span class="n">resample</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">wls_results</span> <span class="o">=</span> <span class="n">wls_meta</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">img_dset</span><span class="p">)</span>
 <span class="n">wls_img</span> <span class="o">=</span> <span class="n">wls_results</span><span class="o">.</span><span class="n">get_map</span><span class="p">(</span><span class="s2">&quot;z&quot;</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s2">&quot;image&quot;</span><span class="p">)</span>
 <span class="k">del</span> <span class="n">wls_meta</span><span class="p">,</span> <span class="n">wls_results</span>
 
 <span class="c1"># Hedges&#39;</span>
-<span class="n">hedges_meta</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">ibma</span><span class="o">.</span><span class="n">Hedges</span><span class="p">()</span>
+<span class="n">hedges_meta</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">ibma</span><span class="o">.</span><span class="n">Hedges</span><span class="p">(</span><span class="n">resample</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">hedges_results</span> <span class="o">=</span> <span class="n">hedges_meta</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">img_dset</span><span class="p">)</span>
 <span class="n">hedges_img</span> <span class="o">=</span> <span class="n">hedges_results</span><span class="o">.</span><span class="n">get_map</span><span class="p">(</span><span class="s2">&quot;z&quot;</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s2">&quot;image&quot;</span><span class="p">)</span>
 <span class="k">del</span> <span class="n">hedges_meta</span><span class="p">,</span> <span class="n">hedges_results</span>
@@ -645,16 +634,127 @@ We will start with a DerSimonian-Laird meta-analysis (<a class="reference extern
 <span class="k">del</span> <span class="n">atlas</span><span class="p">,</span> <span class="n">nan_mask</span><span class="p">,</span> <span class="n">nanmasked_atlas</span>
 
 <span class="c1"># Variance-Based Likelihood</span>
-<span class="n">vbl_meta</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">ibma</span><span class="o">.</span><span class="n">VarianceBasedLikelihood</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">&quot;reml&quot;</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">masker</span><span class="p">)</span>
+<span class="n">vbl_meta</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">ibma</span><span class="o">.</span><span class="n">VarianceBasedLikelihood</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">&quot;reml&quot;</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">masker</span><span class="p">,</span> <span class="n">resample</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">vbl_results</span> <span class="o">=</span> <span class="n">vbl_meta</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">img_dset</span><span class="p">)</span>
 <span class="n">vbl_img</span> <span class="o">=</span> <span class="n">vbl_results</span><span class="o">.</span><span class="n">get_map</span><span class="p">(</span><span class="s2">&quot;z&quot;</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s2">&quot;image&quot;</span><span class="p">)</span>
 <span class="k">del</span> <span class="n">vbl_meta</span><span class="p">,</span> <span class="n">vbl_results</span>
 
 <span class="c1"># Sample Size-Based Likelihood</span>
-<span class="n">ssbl_meta</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">ibma</span><span class="o">.</span><span class="n">SampleSizeBasedLikelihood</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">&quot;reml&quot;</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">masker</span><span class="p">)</span>
+<span class="n">ssbl_meta</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">ibma</span><span class="o">.</span><span class="n">SampleSizeBasedLikelihood</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">&quot;reml&quot;</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">masker</span><span class="p">,</span> <span class="n">resample</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">ssbl_results</span> <span class="o">=</span> <span class="n">ssbl_meta</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">img_dset</span><span class="p">)</span>
 <span class="n">ssbl_img</span> <span class="o">=</span> <span class="n">ssbl_results</span><span class="o">.</span><span class="n">get_map</span><span class="p">(</span><span class="s2">&quot;z&quot;</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s2">&quot;image&quot;</span><span class="p">)</span>
 <span class="k">del</span> <span class="n">ssbl_meta</span><span class="p">,</span> <span class="n">ssbl_results</span><span class="p">,</span> <span class="n">masker</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:nimare.base:Masking out 39113 additional voxels. The updated masker is available in the Estimator.masker attribute.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:nimare.base:Masking out 39113 additional voxels. The updated masker is available in the Estimator.masker attribute.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:nimare.base:Masking out 39113 additional voxels. The updated masker is available in the Estimator.masker attribute.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:nimare.base:Masking out 39113 additional voxels. The updated masker is available in the Estimator.masker attribute.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/image/resampling.py:598: RuntimeWarning: NaNs or infinite values are present in the data passed to resample. This is a bad thing as they make resampling ill-defined and much slower.
+  fill_value=fill_value)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/image/resampling.py:598: RuntimeWarning: NaNs or infinite values are present in the data passed to resample. This is a bad thing as they make resampling ill-defined and much slower.
+  fill_value=fill_value)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/image/resampling.py:598: RuntimeWarning: NaNs or infinite values are present in the data passed to resample. This is a bad thing as they make resampling ill-defined and much slower.
+  fill_value=fill_value)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/image/resampling.py:598: RuntimeWarning: NaNs or infinite values are present in the data passed to resample. This is a bad thing as they make resampling ill-defined and much slower.
+  fill_value=fill_value)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/image/resampling.py:598: RuntimeWarning: NaNs or infinite values are present in the data passed to resample. This is a bad thing as they make resampling ill-defined and much slower.
+  fill_value=fill_value)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/image/resampling.py:598: RuntimeWarning: NaNs or infinite values are present in the data passed to resample. This is a bad thing as they make resampling ill-defined and much slower.
+  fill_value=fill_value)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/image/resampling.py:598: RuntimeWarning: NaNs or infinite values are present in the data passed to resample. This is a bad thing as they make resampling ill-defined and much slower.
+  fill_value=fill_value)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/image/resampling.py:598: RuntimeWarning: NaNs or infinite values are present in the data passed to resample. This is a bad thing as they make resampling ill-defined and much slower.
+  fill_value=fill_value)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/image/resampling.py:598: RuntimeWarning: NaNs or infinite values are present in the data passed to resample. This is a bad thing as they make resampling ill-defined and much slower.
+  fill_value=fill_value)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/image/resampling.py:598: RuntimeWarning: NaNs or infinite values are present in the data passed to resample. This is a bad thing as they make resampling ill-defined and much slower.
+  fill_value=fill_value)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:nimare.base:Masking out 39113 additional voxels. The updated masker is available in the Estimator.masker attribute.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/image/resampling.py:598: RuntimeWarning: NaNs or infinite values are present in the data passed to resample. This is a bad thing as they make resampling ill-defined and much slower.
+  fill_value=fill_value)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/image/resampling.py:598: RuntimeWarning: NaNs or infinite values are present in the data passed to resample. This is a bad thing as they make resampling ill-defined and much slower.
+  fill_value=fill_value)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/image/resampling.py:598: RuntimeWarning: NaNs or infinite values are present in the data passed to resample. This is a bad thing as they make resampling ill-defined and much slower.
+  fill_value=fill_value)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/image/resampling.py:598: RuntimeWarning: NaNs or infinite values are present in the data passed to resample. This is a bad thing as they make resampling ill-defined and much slower.
+  fill_value=fill_value)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/image/resampling.py:598: RuntimeWarning: NaNs or infinite values are present in the data passed to resample. This is a bad thing as they make resampling ill-defined and much slower.
+  fill_value=fill_value)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/image/resampling.py:598: RuntimeWarning: NaNs or infinite values are present in the data passed to resample. This is a bad thing as they make resampling ill-defined and much slower.
+  fill_value=fill_value)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/image/resampling.py:598: RuntimeWarning: NaNs or infinite values are present in the data passed to resample. This is a bad thing as they make resampling ill-defined and much slower.
+  fill_value=fill_value)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/image/resampling.py:598: RuntimeWarning: NaNs or infinite values are present in the data passed to resample. This is a bad thing as they make resampling ill-defined and much slower.
+  fill_value=fill_value)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/image/resampling.py:598: RuntimeWarning: NaNs or infinite values are present in the data passed to resample. This is a bad thing as they make resampling ill-defined and much slower.
+  fill_value=fill_value)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/image/resampling.py:598: RuntimeWarning: NaNs or infinite values are present in the data passed to resample. This is a bad thing as they make resampling ill-defined and much slower.
+  fill_value=fill_value)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:nimare.base:Masking out 39113 additional voxels. The updated masker is available in the Estimator.masker attribute.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/_utils/niimg.py:62: UserWarning: Non-finite values detected. These values will be replaced with zeros.
+  &quot;Non-finite values detected. &quot;
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:nimare.meta.ibma:A &lt;class &#39;nilearn.input_data.nifti_labels_masker.NiftiLabelsMasker&#39;&gt; mask has been detected. Masks which average across voxels will likely produce biased results when used with this Estimator.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/pymare/estimators/estimators.py:28: UserWarning: Input contains 48 parallel datasets (in 2nd dim of y and v). The selected estimator will loop over datasets naively, and this may be slow for large numbers of datasets. Consider using the DL, HE, or WLS estimators, which handle parallel datasets more efficiently.
+  .format(n_iter))
 </pre></div>
 </div>
 </div>
@@ -710,8 +810,14 @@ We will start with a DerSimonian-Laird meta-analysis (<a class="reference extern
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/06_ibma_14_1.png" src="_images/06_ibma_14_1.png" />
+</div>
 </div>
 <div class="figure align-center" id="figure-uncorr-ibma">
+<div class="cell_output docutils container">
+<img alt="_images/06_ibma_14_0.png" src="_images/06_ibma_14_0.png" />
+</div>
 <p class="caption"><span class="caption-number">Fig. 6 </span><span class="caption-text">An array of plots of the statistical maps produced by the image-based meta-analysis methods.
 The likelihood-based meta-analyses are run on atlases instead of voxelwise.</span><a class="headerlink" href="#figure-uncorr-ibma" title="Permalink to this image">¶</a></p>
 </div>

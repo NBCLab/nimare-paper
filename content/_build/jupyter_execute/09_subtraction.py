@@ -33,7 +33,7 @@ sleuth_dset2 = dataset.Dataset.load(os.path.join(out_dir, "sleuth_dset2.pkl.gz")
 # In the original implementation of the algorithm, this procedure is performed separately for a group A > B contrast and a group B > A contrast, where each contrast is limited to voxels that were significant in the first group's original meta-analysis.
 # 
 # ```{important}
-# In NiMARE, we use an adapted version of the subtraction analysis method in {py:class}`nimare.meta.cbma.ale.ALESubtraction`.
+# In NiMARE, we use an adapted version of the subtraction analysis method in {py:class}`~nimare.meta.cbma.ale.ALESubtraction`.
 # The NiMARE implementation analyzes all voxels, rather than only those that show a significant effect of A alone or B alone as in the original implementation.
 # ```
 # 

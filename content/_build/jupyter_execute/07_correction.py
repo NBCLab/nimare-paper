@@ -76,7 +76,7 @@ print("\n".join(fwe_maps))
 
 meta_results = {
     "Cluster-level Monte Carlo": mc_results.get_map(
-        "z_level-cluster_corr-FWE_method-montecarlo",
+        "z_desc-size_level-cluster_corr-FWE_method-montecarlo",
         return_type="image",
     ),
     "Independent FDR": fdr_results.get_map(

@@ -45,7 +45,7 @@ out_dir = os.path.abspath("../outputs/")
 # Sleuth can export these study collections as text files with coordinates.
 # NiMARE provides a function to import data from Sleuth text files into the NiMARE Dataset format.
 # 
-# The function {py:func}`nimare.io.convert_sleuth_to_dataset` can be used to convert text files exported from Sleuth into NiMARE `Dataset`s.
+# The function {py:func}`~nimare.io.convert_sleuth_to_dataset` can be used to convert text files exported from Sleuth into NiMARE `Dataset`s.
 # Here, we convert two files from a previous publication by NiMARE contributors {cite:p}`yanes2018` into two separate `Dataset`s.
 
 # In[2]:
@@ -79,7 +79,7 @@ sleuth_dset2.save(os.path.join(out_dir, "sleuth_dset2.pkl.gz"))
 # Nevertheless, while individual meta-analyses should not be published from Neurosynth, many derivative analyses have been performed and published (e.g., {cite:p}`Chang2013-si,De_la_Vega2016-wg,De_la_Vega2018-jc,Poldrack2012-it`).
 # As evidence of its utility, Neurosynth has been used to define _a priori_ regions of interest (e.g., {cite:p}`Josipovic2014-hx,Zeidman2012-fj,Wager2013-ab`) or perform meta-analytic functional decoding (e.g., {cite:p}`Chen2018-of,Pantelis2015-bq,Tambini2017-iu`) in many first-order (rather than meta-analytic) fMRI studies.
 # 
-# Here, we download the Neurosynth database from where it is stored (https://github.com/neurosynth/neurosynth-data) and convert it to a NiMARE `Dataset` using {py:func}`nimare.extract.fetch_neurosynth`, for the first step, and {py:func}`nimare.io.convert_neurosynth_to_dataset`, for the second.
+# Here, we download the Neurosynth database from where it is stored (https://github.com/neurosynth/neurosynth-data) and convert it to a NiMARE `Dataset` using {py:func}`~nimare.extract.fetch_neurosynth`, for the first step, and {py:func}`~nimare.io.convert_neurosynth_to_dataset`, for the second.
 
 # In[3]:
 
@@ -140,7 +140,7 @@ neurosynth_dset_first_500.save(os.path.join(out_dir, "neurosynth_dataset_first50
 # In addition to this predictive meta-analytic tool, NeuroQuery also provides a new database of coordinates, text annotations, and metadata via an automated extraction approach that improves on Neurosynth's original methods.
 # 
 # While NiMARE does not currently include an interface to NeuroQuery's predictive meta-analytic method, there are functions for downloading the NeuroQuery database and converting it to NiMARE format, much like Neurosynth.
-# The functions for downloading the NeuroQuery database and converting it to a `Dataset` are {py:func}`nimare.extract.fetch_neuroquery` and {py:func}`nimare.io.convert_neurosynth_to_dataset`, respectively.
+# The functions for downloading the NeuroQuery database and converting it to a `Dataset` are {py:func}`~nimare.extract.fetch_neuroquery` and {py:func}`~nimare.io.convert_neurosynth_to_dataset`, respectively.
 # We are able to use the same function for converting the database to a `Dataset` for NeuroQuery as Neurosynth because both databases store their data in the same structure.
 
 # In[5]:
@@ -175,4 +175,4 @@ neuroquery_dset.save(os.path.join(out_dir, "neuroquery_dataset.pkl.gz"))
 # 
 # **NeuroVault** {cite:p}`Gorgolewski2015-sd` is a public repository of user-uploaded, whole-brain, unthresholded brain maps.
 # Users may associate their image collections with publications, and can annotate individual maps with labels from the Cognitive Atlas, which is the ontology of choice for NeuroVault.
-# NiMARE includes a function, {py:func}`nimare.io.convert_neurovault_to_dataset`, with which users can search for images in NeuroVault, download those images, and convert them into a `Dataset` object.
+# NiMARE includes a function, {py:func}`~nimare.io.convert_neurovault_to_dataset`, with which users can search for images in NeuroVault, download those images, and convert them into a `Dataset` object.
