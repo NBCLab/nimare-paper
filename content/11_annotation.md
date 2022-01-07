@@ -51,7 +51,7 @@ Abstracts are much more easily accessible than full article text, so most annota
 Below, we use the function {py:func}`~nimare.extract.download_abstracts` to download abstracts for the Neurosynth `Dataset`.
 This will attempt to extract metadata about each study in the `Dataset` from PubMed, and then add the abstract available on Pubmed to the `Dataset`'s `texts` attribute, under a new column names "abstract".
 
-```important
+```{important}
 {py:func}`~nimare.extract.download_abstracts` only works when there is internet access.
 Since this book will often be built on nodes without internet access, we will share the code
 used to download abstracts, but will actually load and use a pre-generated version of the Dataset.
@@ -228,15 +228,10 @@ Here, we train an LDA model ({py:class}`~nimare.annotate.lda.LDAModel`) on the f
 :tags: [hide-output]
 from nimare import annotate
 
-lda_model = annotate.lda.LDAModel(
-    neurosynth_dset_first_500.texts,
-    text_column="abstract",
-    n_topics=50,
-    n_iters=1000,
-)
+lda_model = annotate.lda.LDAModel(n_topics=50, max_iters=1000, text_column="abstract")
 
 # Fit the model
-lda_model.fit()
+lda_model.fit(neurosynth_dset_first_500)
 ```
 
 The most important products of training the `LDAModel` object are its `p_word_g_topic_df_` and `p_topic_g_doc_df_` attributes.
