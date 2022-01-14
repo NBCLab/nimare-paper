@@ -12,9 +12,17 @@ import os
 import matplotlib.pyplot as plt
 from myst_nb import glue
 from nilearn import plotting
+from repo2data.repo2data import Repo2Data
+
+# Install the data if running locally, or points to cached data if running on neurolibre
+DATA_REQ_FILE = os.path.abspath("../binder/data_requirement.json")
+repo2data = Repo2Data(DATA_REQ_FILE)
+data_path = repo2data.install()
+data_path = os.path.join(data_path[0], "data")
 
 # Set an output directory for any files generated during the book building process
 out_dir = os.path.abspath("../outputs/")
+os.makedirs(out_dir, exist_ok=True)
 
 
 # In NiMARE, multiple comparisons correction is separated from each CBMA and IBMA `Estimator`, so that any number of relevant correction methods can be applied after the `Estimator` has been fit to the `Dataset`.
@@ -38,7 +46,7 @@ out_dir = os.path.abspath("../outputs/")
 
 from nimare import meta, correct
 
-mkdad_meta = meta.cbma.mkda.MKDADensity.load(os.path.join(out_dir, "MKDADensity.pkl.gz"))
+mkdad_meta = meta.cbma.mkda.MKDADensity.load(os.path.join(data_path, "MKDADensity.pkl.gz"))
 
 mc_corrector = correct.FWECorrector(method="montecarlo", n_iters=5000, n_cores=4)
 mc_results = mc_corrector.transform(mkdad_meta.results)

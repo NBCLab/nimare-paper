@@ -21,10 +21,7 @@ repo2data = Repo2Data(DATA_REQ_FILE)
 data_path = repo2data.install()
 data_path = os.path.join(data_path[0], "data")
 
-# Set an output directory for any files generated during the book building process
-out_dir = os.path.abspath("../outputs/")
-
-neurosynth_dset = dataset.Dataset.load(os.path.join(out_dir, "neurosynth_dataset.pkl.gz"))
+neurosynth_dset = dataset.Dataset.load(os.path.join(data_path, "neurosynth_dataset.pkl.gz"))
 
 
 # Meta-analytic coactivation modeling (MACM) {cite:p}`Laird2009-gc,Robinson2010-iv,Eickhoff2010-vx`, also known as meta-analytic connectivity modeling, uses meta-analytic data to measure co-occurrence of activations between brain regions providing evidence of functional connectivity of brain regions across tasks.

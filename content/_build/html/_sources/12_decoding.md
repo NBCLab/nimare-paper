@@ -30,9 +30,6 @@ DATA_REQ_FILE = os.path.abspath("../binder/data_requirement.json")
 repo2data = Repo2Data(DATA_REQ_FILE)
 data_path = repo2data.install()
 data_path = os.path.join(data_path[0], "data")
-
-# Set an output directory for any files generated during the book building process
-out_dir = os.path.abspath("../outputs/")
 ```
 
 ```{code-cell} ipython3
@@ -40,11 +37,11 @@ out_dir = os.path.abspath("../outputs/")
 
 from nimare import dataset, meta
 
-neurosynth_dset = dataset.Dataset.load(os.path.join(out_dir, "neurosynth_dataset.pkl.gz"))
+neurosynth_dset = dataset.Dataset.load(os.path.join(data_path, "neurosynth_dataset.pkl.gz"))
 
 kern = meta.kernel.MKDAKernel(memory_limit="500mb")
 neurosynth_dset_first500 = dataset.Dataset.load(
-    os.path.join(out_dir, "neurosynth_dataset_first500_with_mkda_ma.pkl.gz"),
+    os.path.join(data_path, "neurosynth_dataset_first500_with_mkda_ma.pkl.gz"),
 )
 
 # Collect features for decoding

@@ -24,9 +24,6 @@ repo2data = Repo2Data(DATA_REQ_FILE)
 data_path = repo2data.install()
 data_path = os.path.join(data_path[0], "data")
 
-# Set an output directory for any files generated during the book building process
-out_dir = os.path.abspath("../outputs/")
-
 
 # As mentioned in the discussion of BrainMap ([](content:resources:brainmap)), manually annotating studies in a meta-analytic database can be a time-consuming and labor-intensive process.
 # To facilitate more efficient (albeit lower-quality) annotation, NiMARE supports a number of automated annotation approaches.
@@ -47,7 +44,7 @@ out_dir = os.path.abspath("../outputs/")
 # ```python
 # # First, load a Dataset without abstracts
 # neurosynth_dset_first_500 = dataset.Dataset.load(
-#     os.path.join(out_dir, "neurosynth_dataset_first500.pkl.gz")
+#     os.path.join(data_path, "neurosynth_dataset_first500.pkl.gz")
 # )
 # 
 # # Now, download the abstracts using your email address

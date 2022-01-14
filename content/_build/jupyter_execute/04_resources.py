@@ -20,6 +20,7 @@ data_path = os.path.join(data_path[0], "data")
 
 # Set an output directory for any files generated during the book building process
 out_dir = os.path.abspath("../outputs/")
+os.makedirs(out_dir, exist_ok=True)
 
 
 # Large-scale meta-analytic databases have made systematic meta-analyses of the neuroimaging literature possible.
@@ -79,7 +80,7 @@ sleuth_dset2.save(os.path.join(out_dir, "sleuth_dset2.pkl.gz"))
 # Nevertheless, while individual meta-analyses should not be published from Neurosynth, many derivative analyses have been performed and published (e.g., {cite:p}`Chang2013-si,De_la_Vega2016-wg,De_la_Vega2018-jc,Poldrack2012-it`).
 # As evidence of its utility, Neurosynth has been used to define _a priori_ regions of interest (e.g., {cite:p}`Josipovic2014-hx,Zeidman2012-fj,Wager2013-ab`) or perform meta-analytic functional decoding (e.g., {cite:p}`Chen2018-of,Pantelis2015-bq,Tambini2017-iu`) in many first-order (rather than meta-analytic) fMRI studies.
 # 
-# Here, we download the Neurosynth database from where it is stored (https://github.com/neurosynth/neurosynth-data) and convert it to a NiMARE `Dataset` using {py:func}`~nimare.extract.fetch_neurosynth`, for the first step, and {py:func}`~nimare.io.convert_neurosynth_to_dataset`, for the second.
+# Here, we show code that would download the Neurosynth database from where it is stored (https://github.com/neurosynth/neurosynth-data) and convert it to a NiMARE `Dataset` using {py:func}`~nimare.extract.fetch_neurosynth`, for the first step, and {py:func}`~nimare.io.convert_neurosynth_to_dataset`, for the second.
 
 # In[3]:
 
@@ -97,17 +98,35 @@ files = extract.fetch_neurosynth(
 pprint(files)
 neurosynth_db = files[0]
 
-# Convert the files to a Dataset.
-# This may take a while (~10 minutes)
-neurosynth_dset = io.convert_neurosynth_to_dataset(
-    coordinates_file=neurosynth_db["coordinates"],
-    metadata_file=neurosynth_db["metadata"],
-    annotations_files=neurosynth_db["features"],
-)
-print(neurosynth_dset)
 
-# Save the Dataset for later use.
-neurosynth_dset.save(os.path.join(out_dir, "neurosynth_dataset.pkl.gz"))
+# ```{note}
+# Converting the large Neurosynth and NeuroQuery datasets to NiMARE {py:class}`~nimare.dataset.Dataset` objects can be a very memory-intensive process.
+# For the sake of this book, we show how to perform the conversions below, but actually load and use pre-converted `Dataset`s.
+# ```
+# 
+# ```python
+# # Convert the files to a Dataset.
+# # This may take a while (~10 minutes)
+# neurosynth_dset = io.convert_neurosynth_to_dataset(
+#     coordinates_file=neurosynth_db["coordinates"],
+#     metadata_file=neurosynth_db["metadata"],
+#     annotations_files=neurosynth_db["features"],
+# )
+# print(neurosynth_dset)
+# 
+# # Save the Dataset for later use.
+# neurosynth_dset.save(os.path.join(out_dir, "neurosynth_dataset.pkl.gz"))
+# ```
+# 
+# Here, we load a pre-generated version of the Neurosynth `Dataset`.
+
+# In[4]:
+
+
+from nimare import dataset
+
+neurosynth_dset = dataset.Dataset.load(os.path.join(data_path, "neurosynth_dataset.pkl.gz"))
+print(neurosynth_dset)
 
 
 # ```{note}
@@ -115,7 +134,7 @@ neurosynth_dset.save(os.path.join(out_dir, "neurosynth_dataset.pkl.gz"))
 # Therefore, for the sake of ensuring that the analyses in this article may be reproduced by as many people as possible, we will use a reduced version of the Neurosynth `Dataset`, only containing the first 500 studies, for those methods which may not run easily on the full database.
 # ```
 
-# In[4]:
+# In[5]:
 
 
 neurosynth_dset_first_500 = neurosynth_dset.slice(neurosynth_dset.ids[:500])
@@ -143,7 +162,7 @@ neurosynth_dset_first_500.save(os.path.join(out_dir, "neurosynth_dataset_first50
 # The functions for downloading the NeuroQuery database and converting it to a `Dataset` are {py:func}`~nimare.extract.fetch_neuroquery` and {py:func}`~nimare.io.convert_neurosynth_to_dataset`, respectively.
 # We are able to use the same function for converting the database to a `Dataset` for NeuroQuery as Neurosynth because both databases store their data in the same structure.
 
-# In[5]:
+# In[6]:
 
 
 # Download the desired version of NeuroQuery from GitHub.
@@ -158,17 +177,28 @@ files = extract.fetch_neuroquery(
 pprint(files)
 neuroquery_db = files[0]
 
-# Convert the files to a Dataset.
-# This may take a while (~10 minutes)
-neuroquery_dset = io.convert_neurosynth_to_dataset(
-    coordinates_file=neuroquery_db["coordinates"],
-    metadata_file=neuroquery_db["metadata"],
-    annotations_files=neuroquery_db["features"],
-)
-print(neuroquery_dset)
 
-# Save the Dataset for later use.
-neuroquery_dset.save(os.path.join(out_dir, "neuroquery_dataset.pkl.gz"))
+# ```python
+# # Convert the files to a Dataset.
+# # This may take a while (~10 minutes)
+# neuroquery_dset = io.convert_neurosynth_to_dataset(
+#     coordinates_file=neuroquery_db["coordinates"],
+#     metadata_file=neuroquery_db["metadata"],
+#     annotations_files=neuroquery_db["features"],
+# )
+# print(neuroquery_dset)
+# 
+# # Save the Dataset for later use.
+# neuroquery_dset.save(os.path.join(out_dir, "neuroquery_dataset.pkl.gz"))
+# ```
+# 
+# Here, we load a pre-generated version of the NeuroQuery `Dataset`.
+
+# In[7]:
+
+
+neuroquery_dset = dataset.Dataset.load(os.path.join(data_path, "neuroquery_dataset.pkl.gz"))
+print(neuroquery_dset)
 
 
 # ## NeuroVault

@@ -362,10 +362,7 @@
 <span class="n">data_path</span> <span class="o">=</span> <span class="n">repo2data</span><span class="o">.</span><span class="n">install</span><span class="p">()</span>
 <span class="n">data_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_path</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;data&quot;</span><span class="p">)</span>
 
-<span class="c1"># Set an output directory for any files generated during the book building process</span>
-<span class="n">out_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;../outputs/&quot;</span><span class="p">)</span>
-
-<span class="n">neurosynth_dset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">out_dir</span><span class="p">,</span> <span class="s2">&quot;neurosynth_dataset.pkl.gz&quot;</span><span class="p">))</span>
+<span class="n">neurosynth_dset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_path</span><span class="p">,</span> <span class="s2">&quot;neurosynth_dataset.pkl.gz&quot;</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -404,11 +401,6 @@ For the latter, we use <a class="reference external" href="https://nimare.readth
 <span class="c1"># Create Dataset only containing studies with peaks within the sphere ROI</span>
 <span class="n">sphere_ids</span> <span class="o">=</span> <span class="n">neurosynth_dset</span><span class="o">.</span><span class="n">get_studies_by_coordinate</span><span class="p">([[</span><span class="mi">24</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">20</span><span class="p">]],</span> <span class="n">r</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
 <span class="n">dset_sphere</span> <span class="o">=</span> <span class="n">neurosynth_dset</span><span class="o">.</span><span class="n">slice</span><span class="p">(</span><span class="n">sphere_ids</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:nimare.dataset:Mask affine does not match Dataset affine. Assuming same space.
 </pre></div>
 </div>
 </div>

@@ -14,16 +14,24 @@ import matplotlib.pyplot as plt
 import numpy as np
 from myst_nb import glue
 from nilearn import plotting
+from repo2data.repo2data import Repo2Data
 
 from nimare import dataset
 
+# Install the data if running locally, or points to cached data if running on neurolibre
+DATA_REQ_FILE = os.path.abspath("../binder/data_requirement.json")
+repo2data = Repo2Data(DATA_REQ_FILE)
+data_path = repo2data.install()
+data_path = os.path.join(data_path[0], "data")
+
 # Set an output directory for any files generated during the book building process
 out_dir = os.path.abspath("../outputs/")
+os.makedirs(out_dir, exist_ok=True)
 
 # Now, load the Datasets we will use in this chapter
-sleuth_dset1 = dataset.Dataset.load(os.path.join(out_dir, "sleuth_dset1.pkl.gz"))
-sleuth_dset2 = dataset.Dataset.load(os.path.join(out_dir, "sleuth_dset2.pkl.gz"))
-neurosynth_dset = dataset.Dataset.load(os.path.join(out_dir, "neurosynth_dataset.pkl.gz"))
+sleuth_dset1 = dataset.Dataset.load(os.path.join(data_path, "sleuth_dset1.pkl.gz"))
+sleuth_dset2 = dataset.Dataset.load(os.path.join(data_path, "sleuth_dset2.pkl.gz"))
+neurosynth_dset = dataset.Dataset.load(os.path.join(data_path, "neurosynth_dataset.pkl.gz"))
 
 
 # Coordinate-based meta-analysis (CBMA) is currently the most popular method for neuroimaging meta-analysis, given that the majority of fMRI papers currently report their findings as peaks of statistically significant clusters in standard space and do not release unthresholded statistical maps.
@@ -136,7 +144,7 @@ del mkda_ma_maps, kda_ma_maps, ale_ma_maps
 from nimare import dataset, meta
 
 neurosynth_dset_first500 = dataset.Dataset.load(
-    os.path.join(out_dir, "neurosynth_dataset_first500.pkl.gz")
+    os.path.join(data_path, "neurosynth_dataset_first500.pkl.gz")
 )
 
 # Specify where images for this Dataset should be located
