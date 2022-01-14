@@ -392,9 +392,6 @@
 <span class="n">repo2data</span> <span class="o">=</span> <span class="n">Repo2Data</span><span class="p">(</span><span class="n">DATA_REQ_FILE</span><span class="p">)</span>
 <span class="n">data_path</span> <span class="o">=</span> <span class="n">repo2data</span><span class="o">.</span><span class="n">install</span><span class="p">()</span>
 <span class="n">data_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_path</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;data&quot;</span><span class="p">)</span>
-
-<span class="c1"># Set an output directory for any files generated during the book building process</span>
-<span class="n">out_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;../outputs/&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -430,7 +427,7 @@ used to download abstracts, but will actually load and use a pre-generated versi
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># First, load a Dataset without abstracts</span>
 <span class="n">neurosynth_dset_first_500</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">load</span><span class="p">(</span>
-    <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">out_dir</span><span class="p">,</span> <span class="s2">&quot;neurosynth_dataset_first500.pkl.gz&quot;</span><span class="p">)</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_path</span><span class="p">,</span> <span class="s2">&quot;neurosynth_dataset_first500.pkl.gz&quot;</span><span class="p">)</span>
 <span class="p">)</span>
 
 <span class="c1"># Now, download the abstracts using your email address</span>
@@ -814,133 +811,133 @@ First, we will reorganize the DataFrame a bit to show the top ten terms for each
   <tbody>
     <tr>
       <th>0</th>
-      <td>memory</td>
-      <td>language</td>
-      <td>target</td>
-      <td>knowledge</td>
-      <td>difficulty</td>
-      <td>theory</td>
-      <td>emotional</td>
-      <td>semantic</td>
-      <td>si</td>
-      <td>transient</td>
+      <td>cortex</td>
+      <td>attention</td>
+      <td>thirst</td>
+      <td>dimensional</td>
+      <td>frontal</td>
+      <td>demonstrated</td>
+      <td>controls</td>
+      <td>dipole</td>
+      <td>rehearsal</td>
+      <td>conditioning</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>cortex</td>
-      <td>gyri</td>
-      <td>dipole</td>
-      <td>semantic memory</td>
-      <td>objects</td>
-      <td>listened</td>
-      <td>disorder</td>
-      <td>repetition</td>
-      <td>mt</td>
-      <td>task</td>
+      <td>antipsychotic</td>
+      <td>intraparietal</td>
+      <td>anterior</td>
+      <td>fluency</td>
+      <td>lobe</td>
+      <td>dorsal pfc</td>
+      <td>group</td>
+      <td>grip</td>
+      <td>representation verbal</td>
+      <td>cs</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>prefrontal</td>
-      <td>temporal</td>
-      <td>search</td>
-      <td>alternative</td>
-      <td>natural</td>
-      <td>previous</td>
-      <td>expressions</td>
-      <td>word</td>
-      <td>stimulation</td>
-      <td>function</td>
+      <td>frontal</td>
+      <td>sulcus</td>
+      <td>parietal</td>
+      <td>verbal fluency</td>
+      <td>women</td>
+      <td>auditory</td>
+      <td>normal</td>
+      <td>set</td>
+      <td>verbal short</td>
+      <td>responses</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>retrieval</td>
-      <td>lateralization</td>
-      <td>mm</td>
-      <td>living</td>
-      <td>arithmetic</td>
-      <td>dyslexia</td>
-      <td>attention</td>
-      <td>task</td>
-      <td>tms</td>
-      <td>signals</td>
+      <td>functional</td>
+      <td>spatial</td>
+      <td>cingulate</td>
+      <td>decision task</td>
+      <td>men</td>
+      <td>pfc</td>
+      <td>social</td>
+      <td>precision</td>
+      <td>organisation</td>
+      <td>delay</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>functional</td>
-      <td>angular</td>
-      <td>detection</td>
-      <td>modality</td>
-      <td>task difficulty</td>
-      <td>familiar</td>
-      <td>autistic</td>
-      <td>inferior</td>
-      <td>effect</td>
-      <td>inhibitory</td>
+      <td>typical</td>
+      <td>intraparietal sulcus</td>
+      <td>cortex</td>
+      <td>semantic decision</td>
+      <td>frontal lobe</td>
+      <td>model</td>
+      <td>lesions</td>
+      <td>shifting</td>
+      <td>dorsolateral premotor</td>
+      <td>anterior</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>encoding</td>
-      <td>temporal gyri</td>
-      <td>visual</td>
-      <td>model</td>
-      <td>shift</td>
-      <td>implicating</td>
-      <td>facial expressions</td>
-      <td>priming</td>
-      <td>attention</td>
-      <td>wcst</td>
+      <td>antipsychotics</td>
+      <td>cortex</td>
+      <td>cerebral</td>
+      <td>power</td>
+      <td>schizophrenia</td>
+      <td>cortices</td>
+      <td>facial</td>
+      <td>cortex</td>
+      <td>information posterior</td>
+      <td>supports</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>temporal</td>
-      <td>posterior</td>
-      <td>timing</td>
-      <td>organized</td>
-      <td>tasks</td>
-      <td>real</td>
-      <td>controls</td>
-      <td>words</td>
-      <td>direction</td>
+      <td>posterior parietal</td>
+      <td>attentional</td>
+      <td>frontal</td>
+      <td>echoplanar images</td>
+      <td>volumes</td>
       <td>cortex</td>
+      <td>expressions</td>
+      <td>force</td>
+      <td>subtraction</td>
+      <td>trace</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>task</td>
-      <td>lateralized</td>
-      <td>feature</td>
-      <td>functionally</td>
-      <td>degree</td>
-      <td>mind</td>
-      <td>autistic disorder</td>
-      <td>frontal</td>
-      <td>input</td>
-      <td>paradigms</td>
+      <td>working memory</td>
+      <td>sensory</td>
+      <td>genesis</td>
+      <td>presented cue</td>
+      <td>executive</td>
+      <td>primary auditory</td>
+      <td>autism</td>
+      <td>mm</td>
+      <td>images obtained</td>
+      <td>magnetic resonance</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>recognition</td>
-      <td>linguistic</td>
-      <td>information</td>
-      <td>impairments</td>
-      <td>object</td>
-      <td>subtraction</td>
-      <td>social</td>
-      <td>temporal</td>
-      <td>somatosensory</td>
-      <td>set</td>
+      <td>prefrontal</td>
+      <td>premotor</td>
+      <td>group</td>
+      <td>group mean</td>
+      <td>correlated</td>
+      <td>dorsal</td>
+      <td>syndrome</td>
+      <td>set shifting</td>
+      <td>assumptions</td>
+      <td>role</td>
     </tr>
     <tr>
       <th>9</th>
-      <td>words</td>
-      <td>obtained</td>
-      <td>fixation</td>
-      <td>visual knowledge</td>
-      <td>natural objects</td>
-      <td>primarily</td>
-      <td>facial</td>
-      <td>tasks</td>
-      <td>contralateral</td>
-      <td>cognitive set</td>
+      <td>parietal</td>
+      <td>visual</td>
+      <td>network</td>
+      <td>task group</td>
+      <td>language</td>
+      <td>condition</td>
+      <td>age</td>
+      <td>forces</td>
+      <td>supramarginal gyri</td>
+      <td>hippocampus</td>
     </tr>
   </tbody>
 </table>
@@ -994,133 +991,133 @@ First, we will reorganize the DataFrame a bit to show the top ten terms for each
   <tbody>
     <tr>
       <th>0</th>
-      <td>memory</td>
-      <td>language</td>
-      <td>target</td>
-      <td>knowledge</td>
-      <td>difficulty</td>
-      <td>theory</td>
-      <td>emotional</td>
-      <td>semantic</td>
-      <td>si</td>
-      <td>transient</td>
+      <td>cortex</td>
+      <td>attention</td>
+      <td>thirst</td>
+      <td>dimensional</td>
+      <td>frontal</td>
+      <td>demonstrated</td>
+      <td>controls</td>
+      <td>dipole</td>
+      <td>rehearsal</td>
+      <td>conditioning</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>cortex</td>
-      <td>gyri</td>
-      <td>dipole</td>
-      <td>semantic memory</td>
-      <td>objects</td>
-      <td>listened</td>
-      <td>disorder</td>
-      <td>repetition</td>
-      <td>mt</td>
-      <td>task</td>
+      <td>antipsychotic</td>
+      <td>intraparietal</td>
+      <td>anterior</td>
+      <td>fluency</td>
+      <td>lobe</td>
+      <td>dorsal pfc</td>
+      <td>group</td>
+      <td>grip</td>
+      <td>representation verbal</td>
+      <td>cs</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>prefrontal</td>
-      <td>temporal</td>
-      <td>search</td>
-      <td>alternative</td>
-      <td>natural</td>
-      <td>previous</td>
-      <td>expressions</td>
-      <td>word</td>
-      <td>stimulation</td>
-      <td>function</td>
+      <td>frontal</td>
+      <td>sulcus</td>
+      <td>parietal</td>
+      <td>verbal fluency</td>
+      <td>women</td>
+      <td>auditory</td>
+      <td>normal</td>
+      <td>set</td>
+      <td>verbal short</td>
+      <td>responses</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>retrieval</td>
-      <td>lateralization</td>
-      <td>mm</td>
-      <td>living</td>
-      <td>arithmetic</td>
-      <td>dyslexia</td>
-      <td>attention</td>
-      <td>task</td>
-      <td>tms</td>
-      <td>signals</td>
+      <td>functional</td>
+      <td>spatial</td>
+      <td>cingulate</td>
+      <td>decision task</td>
+      <td>men</td>
+      <td>pfc</td>
+      <td>social</td>
+      <td>precision</td>
+      <td>organisation</td>
+      <td>delay</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>functional</td>
-      <td>angular</td>
-      <td>detection</td>
-      <td>modality</td>
-      <td>task difficulty</td>
-      <td>familiar</td>
-      <td>autistic</td>
-      <td>inferior</td>
-      <td>effect</td>
-      <td>inhibitory</td>
+      <td>typical</td>
+      <td>intraparietal sulcus</td>
+      <td>cortex</td>
+      <td>semantic decision</td>
+      <td>frontal lobe</td>
+      <td>model</td>
+      <td>lesions</td>
+      <td>shifting</td>
+      <td>dorsolateral premotor</td>
+      <td>anterior</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>encoding</td>
-      <td>temporal gyri</td>
-      <td>visual</td>
-      <td>model</td>
-      <td>shift</td>
-      <td>implicating</td>
-      <td>facial expressions</td>
-      <td>priming</td>
-      <td>attention</td>
-      <td>wcst</td>
+      <td>antipsychotics</td>
+      <td>cortex</td>
+      <td>cerebral</td>
+      <td>power</td>
+      <td>schizophrenia</td>
+      <td>cortices</td>
+      <td>facial</td>
+      <td>cortex</td>
+      <td>information posterior</td>
+      <td>supports</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>temporal</td>
-      <td>posterior</td>
-      <td>timing</td>
-      <td>organized</td>
-      <td>tasks</td>
-      <td>real</td>
-      <td>controls</td>
-      <td>words</td>
-      <td>direction</td>
+      <td>posterior parietal</td>
+      <td>attentional</td>
+      <td>frontal</td>
+      <td>echoplanar images</td>
+      <td>volumes</td>
       <td>cortex</td>
+      <td>expressions</td>
+      <td>force</td>
+      <td>subtraction</td>
+      <td>trace</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>task</td>
-      <td>lateralized</td>
-      <td>feature</td>
-      <td>functionally</td>
-      <td>degree</td>
-      <td>mind</td>
-      <td>autistic disorder</td>
-      <td>frontal</td>
-      <td>input</td>
-      <td>paradigms</td>
+      <td>working memory</td>
+      <td>sensory</td>
+      <td>genesis</td>
+      <td>presented cue</td>
+      <td>executive</td>
+      <td>primary auditory</td>
+      <td>autism</td>
+      <td>mm</td>
+      <td>images obtained</td>
+      <td>magnetic resonance</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>recognition</td>
-      <td>linguistic</td>
-      <td>information</td>
-      <td>impairments</td>
-      <td>object</td>
-      <td>subtraction</td>
-      <td>social</td>
-      <td>temporal</td>
-      <td>somatosensory</td>
-      <td>set</td>
+      <td>prefrontal</td>
+      <td>premotor</td>
+      <td>group</td>
+      <td>group mean</td>
+      <td>correlated</td>
+      <td>dorsal</td>
+      <td>syndrome</td>
+      <td>set shifting</td>
+      <td>assumptions</td>
+      <td>role</td>
     </tr>
     <tr>
       <th>9</th>
-      <td>words</td>
-      <td>obtained</td>
-      <td>fixation</td>
-      <td>visual knowledge</td>
-      <td>natural objects</td>
-      <td>primarily</td>
-      <td>facial</td>
-      <td>tasks</td>
-      <td>contralateral</td>
-      <td>cognitive set</td>
+      <td>parietal</td>
+      <td>visual</td>
+      <td>network</td>
+      <td>task group</td>
+      <td>language</td>
+      <td>condition</td>
+      <td>age</td>
+      <td>forces</td>
+      <td>supramarginal gyri</td>
+      <td>hippocampus</td>
     </tr>
   </tbody>
 </table>
