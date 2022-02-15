@@ -165,7 +165,8 @@ atlas = datasets.fetch_atlas_harvard_oxford("cort-maxprob-thr25-2mm")
 # and some of the NIDM-Results packs' beta images have NaNs at the edge of the brain.
 # So, we will create a reduced version of the atlas for this analysis.
 nan_mask = image.math_img("~np.any(np.isnan(img), axis=3)", img=img_dset.images["beta"].tolist())
-nanmasked_atlas = image.math_img("mask * atlas", mask=nan_mask, atlas=atlas["maps"])
+atlas = image.resample_to_img(atlas["maps"], nan_mask)
+nanmasked_atlas = image.math_img("mask * atlas", mask=nan_mask, atlas=atlas)
 masker = input_data.NiftiLabelsMasker(nanmasked_atlas)
 del atlas, nan_mask, nanmasked_atlas
 
