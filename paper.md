@@ -90,7 +90,7 @@ By consolidating meta-analytic methods under a common library and syntax, NiMARE
 In this paper, we describe NiMARE's architecture and the methods implemented in the library.
 Additionally, we provide example code and results for each of the available tools in the library.
 
-![A graphical representation of tools and methods implemented in NiMARE.\label{top_level_fig}](https://github.com/NBCLab/nimare-paper/tree/master/content/images/figure_00.svg)
+![A graphical representation of tools and methods implemented in NiMARE.\label{top_level_fig}](https://raw.githubusercontent.com/NBCLab/nimare-paper/42d81ecda7353eea51348af773996c7240f10da7/content/images/figure_00.svg)
 
 # Acknowledgements
 
