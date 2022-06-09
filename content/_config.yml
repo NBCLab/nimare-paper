@@ -47,7 +47,7 @@ repository:
 #######################################################################################
 # Additional configuration info
 bibtex_bibfiles:
-  - ../paper.bib
+  - references.bib
 sphinx:
   config:
     bibtex_reference_style: author_year
