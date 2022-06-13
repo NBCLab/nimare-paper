@@ -1,7 +1,7 @@
 # nimare-paper
 The NiMARE software paper, as a Jupyter Book.
 
-To view the built book, see https://nbclab.github.io/nimare-paper/
+To view the built book, see https://doi.org/10.55458/neurolibre.00007.
 
 [![status](http://neurolibre.herokuapp.com/papers/28dfe9bf9747b20c7f70221badb19baf/status.svg)](http://neurolibre.herokuapp.com/papers/28dfe9bf9747b20c7f70221badb19baf)
 
