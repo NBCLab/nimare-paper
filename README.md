@@ -15,7 +15,7 @@ The necessary requirements and associated versions are available in `binder/requ
 You can install them with the following:
 
 ```
-pip install binder/requirements.txt
+pip install -r binder/requirements.txt
 ```
 
 ### 2. Download data files
