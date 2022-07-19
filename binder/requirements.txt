@@ -6,3 +6,4 @@ myst_nb==0.12.3
 nimare[duecredit]==0.0.12rc1
 pytest==6.2.5
 repo2data==2.4.4
+pandas==1.4.3
