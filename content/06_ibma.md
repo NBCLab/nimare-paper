@@ -84,7 +84,17 @@ Here, we use `ImageTransformer` to calculate z-statistic and variance maps for a
 This allows us to apply more image-based meta-analysis algorithms to the `Dataset`.
 
 ```{code-cell} ipython3
+import warnings
+
 from nimare import transforms
+
+# The images used in this example have NaNs in any voxels outside the brain.
+# Generally, we recommend having zeros in masked-out areas,
+# but the data are what they are in this case.
+# Nilearn will raise warnings when users resample images with NaNs.
+# This will not cause any problems for this example, so we will simply filter
+# those warnings out.
+warnings.filterwarnings(action="ignore", category=RuntimeWarning, module="nilearn")
 
 img_transformer = transforms.ImageTransformer(target=["z", "varcope"], overwrite=False)
 img_dset = img_transformer.transform(img_dset)
