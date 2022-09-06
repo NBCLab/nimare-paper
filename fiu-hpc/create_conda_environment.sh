@@ -5,3 +5,5 @@ source activate /home/data/nbc/misc-projects/Salo_NiMARE/conda_env/
 conda install pip
 /home/data/nbc/misc-projects/Salo_NiMARE/conda_env/bin/pip install pip -U
 /home/data/nbc/misc-projects/Salo_NiMARE/conda_env/bin/pip install -r /home/data/nbc/misc-projects/Salo_NiMARE/binder/requirements.txt
+# specifically for PDF generation
+/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/bin/pip install pyppeteer
