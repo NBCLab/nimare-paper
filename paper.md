@@ -22,38 +22,41 @@ authors:
   - name: Katherine L. Bottenhorn
     affiliation: 6
     orcid: 0000-0002-7796-8795
-  - name: Dorota Jarecka
+  - name: Simon B. Eickhoff
     affiliation: 7
+    orcid: 0000-0001-6363-2759
+  - name: Dorota Jarecka
+    affiliation: 8
     orcid: 0000-0001-8282-2988
   - name: James D. Kent
-    affiliation: 8
+    affiliation: 9
     orcid: 0000-0002-4892-2659
   - name: Adam Kimbler
-    affiliation: 1
+    affiliation: 14
     orcid: 0000-0001-5885-9596
   - name: Dylan M. Nielson
-    affiliation: 9
+    affiliation: 10
     orcid: 0000-0003-4613-6643
   - name: Kendra M. Oudyk
-    affiliation: 10
+    affiliation: 11
     orcid: 0000-0003-4087-5402
   - name: Julio A. Peraza
-    affiliation: 12
+    affiliation: 13
     orcid: 0000-0003-3816-5903
   - name: Alexandre Pérez
-    affiliation: 10
+    affiliation: 11
     orcid: 0000-0003-0556-0763
   - name: Puck C. Reeders
-    affiliation: 1
+    affiliation: 14
     orcid: 0000-0002-6401-3017
   - name: Julio A. Yanes
-    affiliation: 11
+    affiliation: 12
     orcid: 0000-0002-6620-4351
   - name: Angela R. Laird
-    affiliation: 12
+    affiliation: 13
     orcid: 0000-0003-3379-8744
 affiliations:
-- name: Department of Psychology, Florida International University
+- name: Department of Psychiatry, University of Pennsylvania
   index: 1
 - name: Twitter
   index: 2
@@ -65,18 +68,22 @@ affiliations:
   index: 5
 - name: University of Southern California
   index: 6
-- name: Massachusetts Institute of Technology
+- name: Institute of Neuroscience and Medicine, Brain & Behaviour (INM-7), Research Centre Jülich
   index: 7
-- name: University of Texas, Austin
+- name: Massachusetts Institute of Technology
   index: 8
-- name: National Institute of Mental Health
+- name: University of Texas, Austin
   index: 9
-- name: Montreal Neurological Institute, McGill University
+- name: National Institute of Mental Health
   index: 10
-- name: Auburn University
+- name: Montreal Neurological Institute, McGill University
   index: 11
-- name: Department of Physics, Florida International University
+- name: National Center for Complementary and Integrative Health, National Institutes of Health
   index: 12
+- name: Department of Physics, Florida International University
+  index: 13
+- name: Department of Psychology, Florida International University
+  index: 14
 
 date: 05 October 2021
 bibliography: paper.bib
