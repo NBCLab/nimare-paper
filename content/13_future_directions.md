@@ -45,4 +45,7 @@ Meta-analytic databases may also be used in conjunction with existing ontologies
 For example, {cite:t}`Yeo2016-vu` used the Author-Topic model to identify connections between Paradigm Classes (i.e., tasks) and Behavioral Domains (i.e., mental states) from the BrainMap Taxonomy using the BrainMap database.
 Other examples include using meta-analytic clustering, combined with functional decoding, to identify groups of terms/labels that co-occur in neuroimaging data, in order to determine if the divisions currently employed in existing ontologies accurately reflect how mental states are separated in the mind (e.g., {cite:p}`Laird2015-sr,Riedel2018-je,Bottenhorn2019-bm`).
 
-<!-- TODO: Determine appropriate citation style. -->
+## Surface-based meta-analysis
+
+Currently, NiMARE only supports volumetric meta-analysis.
+However, we eventually plan to support surface-based meta-analyses, which may require new coordinate-based meta-analysis algorithms, as the current methods do not generalize to surfaces.
