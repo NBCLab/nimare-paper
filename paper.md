@@ -32,7 +32,7 @@ authors:
     affiliation: 9
     orcid: 0000-0002-4892-2659
   - name: Adam Kimbler
-    affiliation: 14
+    affiliation: 1
     orcid: 0000-0001-5885-9596
   - name: Dylan M. Nielson
     affiliation: 10
@@ -41,22 +41,22 @@ authors:
     affiliation: 11
     orcid: 0000-0003-4087-5402
   - name: Julio A. Peraza
-    affiliation: 13
+    affiliation: 12
     orcid: 0000-0003-3816-5903
   - name: Alexandre Pérez
     affiliation: 11
     orcid: 0000-0003-0556-0763
   - name: Puck C. Reeders
-    affiliation: 14
+    affiliation: 1
     orcid: 0000-0002-6401-3017
   - name: Julio A. Yanes
-    affiliation: 12
+    affiliation: 13
     orcid: 0000-0002-6620-4351
   - name: Angela R. Laird
-    affiliation: 13
+    affiliation: 12
     orcid: 0000-0003-3379-8744
 affiliations:
-- name: Department of Psychiatry, University of Pennsylvania
+- name: Department of Psychology, Florida International University
   index: 1
 - name: Twitter
   index: 2
@@ -78,12 +78,10 @@ affiliations:
   index: 10
 - name: Montreal Neurological Institute, McGill University
   index: 11
-- name: National Center for Complementary and Integrative Health, National Institutes of Health
-  index: 12
 - name: Department of Physics, Florida International University
+  index: 12
+- name: National Center for Complementary and Integrative Health, National Institutes of Health
   index: 13
-- name: Department of Psychology, Florida International University
-  index: 14
 
 date: 05 October 2021
 bibliography: paper.bib

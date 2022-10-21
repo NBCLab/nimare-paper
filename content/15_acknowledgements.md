@@ -8,7 +8,7 @@ We would also like to thank Fa Meilong for peer reviewing this manuscript for Ap
 
 ## Funding
 
-This work was partially funded by the National Institutes of Health (NIH) NIH-NIBIB P41 EB019936 (ReproNim), NIH-NIMH R01 MH083320 (CANDIShare), and NIH RF1 MH120021 (NIDM), the National Institute Of Mental Health under Award Number R01MH096906 (Neurosynth), as well as the Canada First Research Excellence Fund, awarded to McGill University for the Healthy Brains for Healthy Lives initiative and the Brain Canada Foundation with support from Health Canada.
+Primary funding for this project was provided by NSF 1631325 and NIH R01-DA041353. Contributions from co- authors were provided with support from NIH R01MH096906 (Neurosynth), NIH P41-EB019936 (ReproNim), NIH R01-MH083320 (CANDIShare), NIH RF1-MH120021 (NIDM), as well as the Canada First Research Ex- cellence Fund, awarded to McGill University for the Healthy Brains for Healthy Lives initiative and the Brain Canada Foundation with support from Health Canada.
 
 ## Code and Data Availability
 

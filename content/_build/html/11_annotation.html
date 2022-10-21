@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Automated Annotation &#8212; NiMARE: Neuroimaging Meta-Analysis Research Environment</title>
     
-  <link href="_static/css/theme.css" rel="stylesheet" />
-  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
 
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -42,9 +42,9 @@
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -58,7 +58,10 @@
     <link rel="next" title="Meta-Analytic Functional Decoding" href="12_decoding.html" />
     <link rel="prev" title="Meta-Analytic Coactivation Modeling" href="10_macm.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -282,7 +285,7 @@
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -333,7 +336,7 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
@@ -368,7 +371,45 @@
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Automated Annotation</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#n-gram-term-extraction">
+   N-gram term extraction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cognitive-atlas-term-extraction-and-hierarchical-expansion">
+   Cognitive Atlas term extraction and hierarchical expansion
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#latent-dirichlet-allocation">
+   Latent Dirichlet allocation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#generalized-correspondence-latent-dirichlet-allocation">
+   Generalized correspondence latent Dirichlet allocation
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
               <div>
                 
   <div class="section" id="automated-annotation">
@@ -396,14 +437,10 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/datasets/__init__.py:90: FutureWarning: Fetchers from the nilearn.datasets module will be updated in version 0.9 to return python strings instead of bytes and Pandas dataframes instead of Numpy arrays.
-  &quot;Numpy arrays.&quot;, FutureWarning)
-</pre></div>
-</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---- repo2data starting ----
-/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/repo2data
+/Users/taylor/Documents/nbc/nimare-paper/conda_env/lib/python3.8/site-packages/repo2data
 Config from file :
-/home/data/nbc/misc-projects/Salo_NiMARE/binder/data_requirement.json
+/Users/taylor/Documents/nbc/nimare-paper/binder/data_requirement.json
 Destination:
 ./../data/nimare-paper
 
@@ -472,7 +509,7 @@ This method produces either term counts or term frequency- inverse document freq
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/sklearn/utils/deprecation.py:87: FutureWarning: Function get_feature_names is deprecated; get_feature_names is deprecated in 1.0 and will be removed in 1.2. Please use get_feature_names_out instead.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/taylor/Documents/nbc/nimare-paper/conda_env/lib/python3.8/site-packages/sklearn/utils/deprecation.py:87: FutureWarning: Function get_feature_names is deprecated; get_feature_names is deprecated in 1.0 and will be removed in 1.2. Please use get_feature_names_out instead.
   warnings.warn(msg, category=FutureWarning)
 </pre></div>
 </div>
@@ -650,6 +687,32 @@ Certain alternate forms (i.e., synonyms) are specified within the Cognitive Atla
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/taylor/Documents/nbc/nimare-paper/conda_env/lib/python3.8/site-packages/nimare/annotate/cogat.py:196: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  counts_df[col] = 0
+/Users/taylor/Documents/nbc/nimare-paper/conda_env/lib/python3.8/site-packages/nimare/annotate/cogat.py:196: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  counts_df[col] = 0
+/Users/taylor/Documents/nbc/nimare-paper/conda_env/lib/python3.8/site-packages/nimare/annotate/cogat.py:196: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  counts_df[col] = 0
+/Users/taylor/Documents/nbc/nimare-paper/conda_env/lib/python3.8/site-packages/nimare/annotate/cogat.py:196: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  counts_df[col] = 0
+/Users/taylor/Documents/nbc/nimare-paper/conda_env/lib/python3.8/site-packages/nimare/annotate/cogat.py:196: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  counts_df[col] = 0
+/Users/taylor/Documents/nbc/nimare-paper/conda_env/lib/python3.8/site-packages/nimare/annotate/cogat.py:196: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  counts_df[col] = 0
+/Users/taylor/Documents/nbc/nimare-paper/conda_env/lib/python3.8/site-packages/nimare/annotate/cogat.py:196: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  counts_df[col] = 0
+/Users/taylor/Documents/nbc/nimare-paper/conda_env/lib/python3.8/site-packages/nimare/annotate/cogat.py:196: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  counts_df[col] = 0
+/Users/taylor/Documents/nbc/nimare-paper/conda_env/lib/python3.8/site-packages/nimare/annotate/cogat.py:196: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  counts_df[col] = 0
+/Users/taylor/Documents/nbc/nimare-paper/conda_env/lib/python3.8/site-packages/nimare/annotate/cogat.py:196: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  counts_df[col] = 0
+/Users/taylor/Documents/nbc/nimare-paper/conda_env/lib/python3.8/site-packages/nimare/annotate/cogat.py:196: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  counts_df[col] = 0
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
@@ -709,7 +772,7 @@ Certain alternate forms (i.e., synonyms) are specified within the Cognitive Atla
 </div>
 <div class="section" id="latent-dirichlet-allocation">
 <span id="content-annotation-lda"></span><h2>Latent Dirichlet allocation<a class="headerlink" href="#latent-dirichlet-allocation" title="Permalink to this headline">¶</a></h2>
-<p><strong>Latent Dirichlet allocation</strong> (LDA) <span id="id1">[<a class="reference internal" href="16_bibliography.html#id28">Blei <em>et al.</em>, 2003</a>]</span> was originally combined with meta-analytic neuroimaging data in <span id="id2">Poldrack <em>et al.</em> [<a class="reference internal" href="16_bibliography.html#id4">2012</a>]</span>.
+<p><strong>Latent Dirichlet allocation</strong> (LDA) <span id="id1">[<a class="reference internal" href="16_bibliography.html#id24">Blei <em>et al.</em>, 2003</a>]</span> was originally combined with meta-analytic neuroimaging data in <span id="id2">Poldrack <em>et al.</em> [<a class="reference internal" href="16_bibliography.html#id4">2012</a>]</span>.
 LDA is a generative topic model which, for a text corpus, builds probability distributions across documents and words.
 In LDA, each document is considered a mixture of topics.
 This works under the assumption that each document was constructed by first randomly selecting a topic based on the document’s probability distribution across topics, and then randomly selecting a word from that topic based on the topic’s probability distribution across words.
@@ -730,7 +793,7 @@ This method produces two sets of probability distributions: (1) the probability 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/sklearn/utils/deprecation.py:87: FutureWarning: Function get_feature_names is deprecated; get_feature_names is deprecated in 1.0 and will be removed in 1.2. Please use get_feature_names_out instead.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/taylor/Documents/nbc/nimare-paper/conda_env/lib/python3.8/site-packages/sklearn/utils/deprecation.py:87: FutureWarning: Function get_feature_names is deprecated; get_feature_names is deprecated in 1.0 and will be removed in 1.2. Please use get_feature_names_out instead.
   warnings.warn(msg, category=FutureWarning)
 </pre></div>
 </div>
@@ -811,133 +874,133 @@ First, we will reorganize the DataFrame a bit to show the top ten terms for each
   <tbody>
     <tr>
       <th>0</th>
-      <td>cortex</td>
-      <td>attention</td>
-      <td>thirst</td>
-      <td>dimensional</td>
-      <td>frontal</td>
-      <td>demonstrated</td>
-      <td>controls</td>
-      <td>dipole</td>
-      <td>rehearsal</td>
-      <td>conditioning</td>
+      <td>sustained</td>
+      <td>memory</td>
+      <td>cerebral</td>
+      <td>visual</td>
+      <td>cs</td>
+      <td>prefrontal</td>
+      <td>stroop</td>
+      <td>language</td>
+      <td>achieved</td>
+      <td>memory</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>antipsychotic</td>
-      <td>intraparietal</td>
-      <td>anterior</td>
-      <td>fluency</td>
-      <td>lobe</td>
-      <td>dorsal pfc</td>
-      <td>group</td>
-      <td>grip</td>
-      <td>representation verbal</td>
-      <td>cs</td>
+      <td>delays</td>
+      <td>task</td>
+      <td>tomography</td>
+      <td>stimuli</td>
+      <td>conditioning</td>
+      <td>prefrontal cortex</td>
+      <td>counting</td>
+      <td>hemisphere</td>
+      <td>atlas</td>
+      <td>mtle</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>frontal</td>
-      <td>sulcus</td>
-      <td>parietal</td>
-      <td>verbal fluency</td>
-      <td>women</td>
-      <td>auditory</td>
-      <td>normal</td>
-      <td>set</td>
-      <td>verbal short</td>
+      <td>preceded</td>
+      <td>cortex</td>
+      <td>emission</td>
+      <td>stimulus</td>
       <td>responses</td>
+      <td>task</td>
+      <td>cingulate</td>
+      <td>frontal</td>
+      <td>parametric maps</td>
+      <td>volunteers</td>
     </tr>
     <tr>
       <th>3</th>
+      <td>exclusively</td>
       <td>functional</td>
-      <td>spatial</td>
-      <td>cingulate</td>
-      <td>decision task</td>
-      <td>men</td>
-      <td>pfc</td>
-      <td>social</td>
-      <td>precision</td>
-      <td>organisation</td>
-      <td>delay</td>
+      <td>emission tomography</td>
+      <td>field</td>
+      <td>cerebellar</td>
+      <td>cortex</td>
+      <td>motor</td>
+      <td>semantic</td>
+      <td>stimulus applied</td>
+      <td>healthy</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>typical</td>
-      <td>intraparietal sulcus</td>
-      <td>cortex</td>
-      <td>semantic decision</td>
-      <td>frontal lobe</td>
-      <td>model</td>
-      <td>lesions</td>
-      <td>shifting</td>
-      <td>dorsolateral premotor</td>
-      <td>anterior</td>
+      <td>shapes</td>
+      <td>prefrontal</td>
+      <td>positron emission</td>
+      <td>contralateral</td>
+      <td>stimulus</td>
+      <td>response</td>
+      <td>attentional</td>
+      <td>hemispheric</td>
+      <td>individual group</td>
+      <td>verbal memory</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>antipsychotics</td>
-      <td>cortex</td>
-      <td>cerebral</td>
-      <td>power</td>
-      <td>schizophrenia</td>
-      <td>cortices</td>
-      <td>facial</td>
-      <td>cortex</td>
-      <td>information posterior</td>
-      <td>supports</td>
+      <td>trigger</td>
+      <td>retrieval</td>
+      <td>positron</td>
+      <td>stimulation</td>
+      <td>time</td>
+      <td>dorsolateral</td>
+      <td>attention</td>
+      <td>syntactic</td>
+      <td>maxima</td>
+      <td>healthy volunteers</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>posterior parietal</td>
-      <td>attentional</td>
-      <td>frontal</td>
-      <td>echoplanar images</td>
-      <td>volumes</td>
-      <td>cortex</td>
-      <td>expressions</td>
-      <td>force</td>
-      <td>subtraction</td>
-      <td>trace</td>
+      <td>able</td>
+      <td>temporal</td>
+      <td>flow</td>
+      <td>hemisphere</td>
+      <td>response</td>
+      <td>dorsolateral prefrontal</td>
+      <td>functional</td>
+      <td>verbal</td>
+      <td>assay</td>
+      <td>verbal</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>working memory</td>
-      <td>sensory</td>
-      <td>genesis</td>
-      <td>presented cue</td>
-      <td>executive</td>
-      <td>primary auditory</td>
-      <td>autism</td>
-      <td>mm</td>
-      <td>images obtained</td>
-      <td>magnetic resonance</td>
+      <td>temporal resolution</td>
+      <td>encoding</td>
+      <td>baseline</td>
+      <td>presented</td>
+      <td>hemodynamic</td>
+      <td>control</td>
+      <td>response selection</td>
+      <td>lateralization</td>
+      <td>normalized</td>
+      <td>memory tasks</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>prefrontal</td>
-      <td>premotor</td>
-      <td>group</td>
-      <td>group mean</td>
-      <td>correlated</td>
-      <td>dorsal</td>
-      <td>syndrome</td>
-      <td>set shifting</td>
-      <td>assumptions</td>
-      <td>role</td>
+      <td>transformations</td>
+      <td>working</td>
+      <td>blood</td>
+      <td>hemifield</td>
+      <td>aversive</td>
+      <td>set</td>
+      <td>color</td>
+      <td>lobe</td>
+      <td>probing</td>
+      <td>exhibited</td>
     </tr>
     <tr>
       <th>9</th>
-      <td>parietal</td>
-      <td>visual</td>
-      <td>network</td>
-      <td>task group</td>
-      <td>language</td>
-      <td>condition</td>
-      <td>age</td>
-      <td>forces</td>
-      <td>supramarginal gyri</td>
-      <td>hippocampus</td>
+      <td>instructed</td>
+      <td>working memory</td>
+      <td>blood flow</td>
+      <td>visual cortex</td>
+      <td>eyeblink</td>
+      <td>cognitive</td>
+      <td>magnetic resonance</td>
+      <td>fluency</td>
+      <td>vivo</td>
+      <td>hippocampal</td>
     </tr>
   </tbody>
 </table>
@@ -991,133 +1054,133 @@ First, we will reorganize the DataFrame a bit to show the top ten terms for each
   <tbody>
     <tr>
       <th>0</th>
-      <td>cortex</td>
-      <td>attention</td>
-      <td>thirst</td>
-      <td>dimensional</td>
-      <td>frontal</td>
-      <td>demonstrated</td>
-      <td>controls</td>
-      <td>dipole</td>
-      <td>rehearsal</td>
-      <td>conditioning</td>
+      <td>sustained</td>
+      <td>memory</td>
+      <td>cerebral</td>
+      <td>visual</td>
+      <td>cs</td>
+      <td>prefrontal</td>
+      <td>stroop</td>
+      <td>language</td>
+      <td>achieved</td>
+      <td>memory</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>antipsychotic</td>
-      <td>intraparietal</td>
-      <td>anterior</td>
-      <td>fluency</td>
-      <td>lobe</td>
-      <td>dorsal pfc</td>
-      <td>group</td>
-      <td>grip</td>
-      <td>representation verbal</td>
-      <td>cs</td>
+      <td>delays</td>
+      <td>task</td>
+      <td>tomography</td>
+      <td>stimuli</td>
+      <td>conditioning</td>
+      <td>prefrontal cortex</td>
+      <td>counting</td>
+      <td>hemisphere</td>
+      <td>atlas</td>
+      <td>mtle</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>frontal</td>
-      <td>sulcus</td>
-      <td>parietal</td>
-      <td>verbal fluency</td>
-      <td>women</td>
-      <td>auditory</td>
-      <td>normal</td>
-      <td>set</td>
-      <td>verbal short</td>
+      <td>preceded</td>
+      <td>cortex</td>
+      <td>emission</td>
+      <td>stimulus</td>
       <td>responses</td>
+      <td>task</td>
+      <td>cingulate</td>
+      <td>frontal</td>
+      <td>parametric maps</td>
+      <td>volunteers</td>
     </tr>
     <tr>
       <th>3</th>
+      <td>exclusively</td>
       <td>functional</td>
-      <td>spatial</td>
-      <td>cingulate</td>
-      <td>decision task</td>
-      <td>men</td>
-      <td>pfc</td>
-      <td>social</td>
-      <td>precision</td>
-      <td>organisation</td>
-      <td>delay</td>
+      <td>emission tomography</td>
+      <td>field</td>
+      <td>cerebellar</td>
+      <td>cortex</td>
+      <td>motor</td>
+      <td>semantic</td>
+      <td>stimulus applied</td>
+      <td>healthy</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>typical</td>
-      <td>intraparietal sulcus</td>
-      <td>cortex</td>
-      <td>semantic decision</td>
-      <td>frontal lobe</td>
-      <td>model</td>
-      <td>lesions</td>
-      <td>shifting</td>
-      <td>dorsolateral premotor</td>
-      <td>anterior</td>
+      <td>shapes</td>
+      <td>prefrontal</td>
+      <td>positron emission</td>
+      <td>contralateral</td>
+      <td>stimulus</td>
+      <td>response</td>
+      <td>attentional</td>
+      <td>hemispheric</td>
+      <td>individual group</td>
+      <td>verbal memory</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>antipsychotics</td>
-      <td>cortex</td>
-      <td>cerebral</td>
-      <td>power</td>
-      <td>schizophrenia</td>
-      <td>cortices</td>
-      <td>facial</td>
-      <td>cortex</td>
-      <td>information posterior</td>
-      <td>supports</td>
+      <td>trigger</td>
+      <td>retrieval</td>
+      <td>positron</td>
+      <td>stimulation</td>
+      <td>time</td>
+      <td>dorsolateral</td>
+      <td>attention</td>
+      <td>syntactic</td>
+      <td>maxima</td>
+      <td>healthy volunteers</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>posterior parietal</td>
-      <td>attentional</td>
-      <td>frontal</td>
-      <td>echoplanar images</td>
-      <td>volumes</td>
-      <td>cortex</td>
-      <td>expressions</td>
-      <td>force</td>
-      <td>subtraction</td>
-      <td>trace</td>
+      <td>able</td>
+      <td>temporal</td>
+      <td>flow</td>
+      <td>hemisphere</td>
+      <td>response</td>
+      <td>dorsolateral prefrontal</td>
+      <td>functional</td>
+      <td>verbal</td>
+      <td>assay</td>
+      <td>verbal</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>working memory</td>
-      <td>sensory</td>
-      <td>genesis</td>
-      <td>presented cue</td>
-      <td>executive</td>
-      <td>primary auditory</td>
-      <td>autism</td>
-      <td>mm</td>
-      <td>images obtained</td>
-      <td>magnetic resonance</td>
+      <td>temporal resolution</td>
+      <td>encoding</td>
+      <td>baseline</td>
+      <td>presented</td>
+      <td>hemodynamic</td>
+      <td>control</td>
+      <td>response selection</td>
+      <td>lateralization</td>
+      <td>normalized</td>
+      <td>memory tasks</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>prefrontal</td>
-      <td>premotor</td>
-      <td>group</td>
-      <td>group mean</td>
-      <td>correlated</td>
-      <td>dorsal</td>
-      <td>syndrome</td>
-      <td>set shifting</td>
-      <td>assumptions</td>
-      <td>role</td>
+      <td>transformations</td>
+      <td>working</td>
+      <td>blood</td>
+      <td>hemifield</td>
+      <td>aversive</td>
+      <td>set</td>
+      <td>color</td>
+      <td>lobe</td>
+      <td>probing</td>
+      <td>exhibited</td>
     </tr>
     <tr>
       <th>9</th>
-      <td>parietal</td>
-      <td>visual</td>
-      <td>network</td>
-      <td>task group</td>
-      <td>language</td>
-      <td>condition</td>
-      <td>age</td>
-      <td>forces</td>
-      <td>supramarginal gyri</td>
-      <td>hippocampus</td>
+      <td>instructed</td>
+      <td>working memory</td>
+      <td>blood flow</td>
+      <td>visual cortex</td>
+      <td>eyeblink</td>
+      <td>cognitive</td>
+      <td>magnetic resonance</td>
+      <td>fluency</td>
+      <td>vivo</td>
+      <td>hippocampal</td>
     </tr>
   </tbody>
 </table>
@@ -1135,7 +1198,7 @@ First, we will reorganize the DataFrame a bit to show the top ten terms for each
 </div>
 <div class="section" id="generalized-correspondence-latent-dirichlet-allocation">
 <span id="content-annotation-gclda"></span><h2>Generalized correspondence latent Dirichlet allocation<a class="headerlink" href="#generalized-correspondence-latent-dirichlet-allocation" title="Permalink to this headline">¶</a></h2>
-<p><strong>Generalized correspondence latent Dirichlet allocation</strong> (GCLDA) is a recently-developed algorithm that trains topics on both article abstracts and coordinates <span id="id4">[<a class="reference internal" href="16_bibliography.html#id83">Rubin <em>et al.</em>, 2017</a>]</span>.
+<p><strong>Generalized correspondence latent Dirichlet allocation</strong> (GCLDA) is a recently-developed algorithm that trains topics on both article abstracts and coordinates <span id="id4">[<a class="reference internal" href="16_bibliography.html#id75">Rubin <em>et al.</em>, 2017</a>]</span>.
 GCLDA assumes that topics within the fMRI literature can also be localized to brain regions, in this case modeled as three-dimensional Gaussian distributions.
 These spatial distributions can also be restricted to pairs of Gaussians that are symmetric across brain hemispheres.
 This method produces two sets of probability distributions: the probability of a word given topic (<code class="docutils literal notranslate"><span class="pre">GCLDAModel.p_word_g_topic_</span></code>) and the probability of a voxel given topic (<code class="docutils literal notranslate"><span class="pre">GCLDAModel.p_voxel_g_topic_</span></code>).</p>
@@ -1582,12 +1645,16 @@ We will also reorganize the raw DataFrame to show the top ten terms for each of 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/11_annotation_26_1.png" src="_images/11_annotation_26_1.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/taylor/Documents/nbc/nimare-paper/conda_env/lib/python3.8/site-packages/nilearn/plotting/img_plotting.py:300: FutureWarning: Default resolution of the MNI template will change from 2mm to 1mm in version 0.10.0
+  anat_img = load_mni152_template()
+</pre></div>
+</div>
+<img alt="_images/11_annotation_26_2.png" src="_images/11_annotation_26_2.png" />
 </div>
 </div>
 <div class="figure align-center" id="figure-gclda-topics">
 <div class="cell_output docutils container">
-<img alt="_images/11_annotation_26_0.png" src="_images/11_annotation_26_0.png" />
+<img alt="_images/11_annotation_26_1.png" src="_images/11_annotation_26_1.png" />
 </div>
 <p class="caption"><span class="caption-number">Fig. 15 </span><span class="caption-text">Topic weight maps for the first ten topics in the GCLDA model.</span><a class="headerlink" href="#figure-gclda-topics" title="Permalink to this image">¶</a></p>
 </div>
@@ -1624,54 +1691,42 @@ We will also reorganize the raw DataFrame to show the top ten terms for each of 
 
               </div>
               
-        
             
-
-
-
-<div class='prev-next-bottom'>
-    
-    <div id="prev">
-        <a class="left-prev" href="10_macm.html" title="previous page">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Meta-Analytic Coactivation Modeling</p>
-            </div>
-        </a>
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="10_macm.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Meta-Analytic Coactivation Modeling</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="12_decoding.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Meta-Analytic Functional Decoding</p>
     </div>
-     <div id="next">
-        <a class="right-next" href="12_decoding.html" title="next page">
-            <div class="prevnext-info">
-                <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Meta-Analytic Functional Decoding</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
-
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
-        
+            
         </div>
     </div>
     <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By Taylor Salo, Tal Yarkoni, Thomas E. Nichols, Jean-Baptiste Poline, Murat Bilgel, Katherine L. Bottenhorn, Dorota Jarecka, James D. Kent, Adam Kimbler, Dylan M. Nielson, Kendra M. Oudyk, Julio A. Peraza, Alexandre Pérez, Puck C. Reeders, Julio A. Yanes, and Angela R. Laird<br/>
-        
-            &copy; Copyright 2021.<br/>
-      </p>
-    </div>
-  </footer>
+  <p>
+    
+      By Taylor Salo, Tal Yarkoni, Thomas E. Nichols, Jean-Baptiste Poline, Murat Bilgel, Katherine L. Bottenhorn, Simon B. Eickhoff, Dorota Jarecka, James D. Kent, Adam Kimbler, Dylan M. Nielson, Kendra M. Oudyk, Julio A. Peraza, Alexandre Pérez, Puck C. Reeders, Julio A. Yanes, and Angela R. Laird<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
 </main>
 
 
       </div>
     </div>
   
-  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-  
   </body>
 </html>

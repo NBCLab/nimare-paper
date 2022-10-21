@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Meta-Analytic Coactivation Modeling &#8212; NiMARE: Neuroimaging Meta-Analysis Research Environment</title>
     
-  <link href="_static/css/theme.css" rel="stylesheet" />
-  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
 
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -42,9 +42,9 @@
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -58,7 +58,10 @@
     <link rel="next" title="Automated Annotation" href="11_annotation.html" />
     <link rel="prev" title="Meta-Analytic Subtraction Analysis" href="09_subtraction.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -282,7 +285,7 @@
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -333,14 +336,24 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
         </div>
     </div>
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Meta-Analytic Coactivation Modeling</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                    </div>
+                </div>
+            </div>
+            
               <div>
                 
   <div class="section" id="meta-analytic-coactivation-modeling">
@@ -368,9 +381,9 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---- repo2data starting ----
-/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/repo2data
+/Users/taylor/Documents/nbc/nimare-paper/conda_env/lib/python3.8/site-packages/repo2data
 Config from file :
-/home/data/nbc/misc-projects/Salo_NiMARE/binder/data_requirement.json
+/Users/taylor/Documents/nbc/nimare-paper/binder/data_requirement.json
 Destination:
 ./../data/nimare-paper
 
@@ -379,15 +392,16 @@ Info : ./../data/nimare-paper already downloaded
 </div>
 </div>
 </div>
-<p>Meta-analytic coactivation modeling (MACM) <span id="id1">[<a class="reference internal" href="16_bibliography.html#id76">Laird <em>et al.</em>, 2009</a>, <a class="reference internal" href="16_bibliography.html#id60">Robinson <em>et al.</em>, 2010</a>, <a class="reference internal" href="16_bibliography.html#id86">Eickhoff <em>et al.</em>, 2010</a>]</span>, also known as meta-analytic connectivity modeling, uses meta-analytic data to measure co-occurrence of activations between brain regions providing evidence of functional connectivity of brain regions across tasks.
+<p>Meta-analytic coactivation modeling (MACM) <span id="id1">[<a class="reference internal" href="16_bibliography.html#id69">Laird <em>et al.</em>, 2009</a>, <a class="reference internal" href="16_bibliography.html#id54">Robinson <em>et al.</em>, 2010</a>, <a class="reference internal" href="16_bibliography.html#id78">Eickhoff <em>et al.</em>, 2010</a>]</span>, also known as meta-analytic connectivity modeling, uses meta-analytic data to measure co-occurrence of activations between brain regions providing evidence of functional connectivity of brain regions across tasks.
 In coordinate-based MACM, whole-brain studies within the database are selected based on whether or not they report at least one peak in a region of interest specified for the analysis.
 These studies are then subjected to a meta-analysis, often comparing the selected studies to those remaining in the database.
 In this way, the significance of each voxel in the analysis corresponds to whether there is greater convergence of foci at the voxel among studies which also report foci in the region of interest than those which do not.</p>
 <!-- TODO: Determine appropriate citation style here. -->
-<p>MACM results have historically been accorded a similar interpretation to task-related functional connectivity (e.g., <span id="id2">[<a class="reference internal" href="16_bibliography.html#id17">Hok <em>et al.</em>, 2015</a>, <a class="reference internal" href="16_bibliography.html#id14">Kellermann <em>et al.</em>, 2013</a>]</span>), although this approach is quite removed from functional connectivity analyses of task fMRI data (e.g., beta-series correlations, psychophysiological interactions, or even seed-to-voxel functional connectivity analyses on task data).
-Nevertheless, MACM analyses do show high correspondence with resting-state functional connectivity <span id="id3">[<a class="reference internal" href="16_bibliography.html#id88">Reid <em>et al.</em>, 2017</a>]</span>.
-MACM has been used to characterize the task-based functional coactivation of the cerebellum <span id="id4">[<a class="reference internal" href="16_bibliography.html#id90">Riedel <em>et al.</em>, 2015</a>]</span>, lateral prefrontal cortex <span id="id5">[<a class="reference internal" href="16_bibliography.html#id27">Reid <em>et al.</em>, 2016</a>]</span>, fusiform gyrus <span id="id6">[<a class="reference internal" href="16_bibliography.html#id56">Caspers <em>et al.</em>, 2014</a>]</span>, and several other brain regions.</p>
-<p>Within NiMARE, MACMs can be performed by selecting studies in a Dataset based on the presence of activation within a target mask or coordinate-centered sphere.</p>
+<p>MACM results have historically been accorded a similar interpretation to task-related functional connectivity (e.g., <span id="id2">[<a class="reference internal" href="16_bibliography.html#id15">Hok <em>et al.</em>, 2015</a>, <a class="reference internal" href="16_bibliography.html#id13">Kellermann <em>et al.</em>, 2013</a>]</span>), although this approach is quite removed from functional connectivity analyses of task fMRI data (e.g., beta-series correlations, psychophysiological interactions, or even seed-to-voxel functional connectivity analyses on task data).
+Nevertheless, MACM analyses do show high correspondence with resting-state functional connectivity <span id="id3">[<a class="reference internal" href="16_bibliography.html#id80">Reid <em>et al.</em>, 2017</a>]</span>.
+MACM has been used to characterize the task-based functional coactivation of the cerebellum <span id="id4">[<a class="reference internal" href="16_bibliography.html#id82">Riedel <em>et al.</em>, 2015</a>]</span>, lateral prefrontal cortex <span id="id5">[<a class="reference internal" href="16_bibliography.html#id23">Reid <em>et al.</em>, 2016</a>]</span>, fusiform gyrus <span id="id6">[<a class="reference internal" href="16_bibliography.html#id50">Caspers <em>et al.</em>, 2014</a>]</span>, and several other brain regions.</p>
+<p>Within NiMARE, MACMs can be performed by selecting studies in a Dataset based on the presence of activation within a target mask or coordinate-centered sphere.
+While some algorithms, such as SCALE, may have been designed with MACMs in mind, in practice MACMs may be performed with any valid Estimator.</p>
 <p>In this section, we will perform two MACMs- one with a target mask and one with a coordinate-centered sphere.
 For the former, we use <a class="reference external" href="https://nimare.readthedocs.io/en/0.0.11/generated/nimare.dataset.Dataset.html#nimare.dataset.Dataset.get_studies_by_mask" title="(in NiMARE v0.0.11+0.g7e094f2.dirty)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_studies_by_mask()</span></code></a>.
 For the latter, we use <a class="reference external" href="https://nimare.readthedocs.io/en/0.0.11/generated/nimare.dataset.Dataset.html#nimare.dataset.Dataset.get_studies_by_coordinate" title="(in NiMARE v0.0.11+0.g7e094f2.dirty)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_studies_by_coordinate()</span></code></a>.</p>
@@ -461,12 +475,16 @@ Dataset(500 experiments, space=&#39;mni152_2mm&#39;)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/10_macm_6_1.png" src="_images/10_macm_6_1.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/taylor/Documents/nbc/nimare-paper/conda_env/lib/python3.8/site-packages/nilearn/plotting/img_plotting.py:300: FutureWarning: Default resolution of the MNI template will change from 2mm to 1mm in version 0.10.0
+  anat_img = load_mni152_template()
+</pre></div>
+</div>
+<img alt="_images/10_macm_6_2.png" src="_images/10_macm_6_2.png" />
 </div>
 </div>
 <div class="figure align-center" id="figure-macm-rois">
 <div class="cell_output docutils container">
-<img alt="_images/10_macm_6_0.png" src="_images/10_macm_6_0.png" />
+<img alt="_images/10_macm_6_1.png" src="_images/10_macm_6_1.png" />
 </div>
 <p class="caption"><span class="caption-number">Fig. 9 </span><span class="caption-text">Region of interest masks for (1) a target mask-based MACM and (2) a coordinate-based MACM.</span><a class="headerlink" href="#figure-macm-rois" title="Permalink to this image">¶</a></p>
 </div>
@@ -558,54 +576,42 @@ Dataset(500 experiments, space=&#39;mni152_2mm&#39;)
 
               </div>
               
-        
             
-
-
-
-<div class='prev-next-bottom'>
-    
-    <div id="prev">
-        <a class="left-prev" href="09_subtraction.html" title="previous page">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Meta-Analytic Subtraction Analysis</p>
-            </div>
-        </a>
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="09_subtraction.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Meta-Analytic Subtraction Analysis</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="11_annotation.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Automated Annotation</p>
     </div>
-     <div id="next">
-        <a class="right-next" href="11_annotation.html" title="next page">
-            <div class="prevnext-info">
-                <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Automated Annotation</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
-
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
-        
+            
         </div>
     </div>
     <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By Taylor Salo, Tal Yarkoni, Thomas E. Nichols, Jean-Baptiste Poline, Murat Bilgel, Katherine L. Bottenhorn, Dorota Jarecka, James D. Kent, Adam Kimbler, Dylan M. Nielson, Kendra M. Oudyk, Julio A. Peraza, Alexandre Pérez, Puck C. Reeders, Julio A. Yanes, and Angela R. Laird<br/>
-        
-            &copy; Copyright 2021.<br/>
-      </p>
-    </div>
-  </footer>
+  <p>
+    
+      By Taylor Salo, Tal Yarkoni, Thomas E. Nichols, Jean-Baptiste Poline, Murat Bilgel, Katherine L. Bottenhorn, Simon B. Eickhoff, Dorota Jarecka, James D. Kent, Adam Kimbler, Dylan M. Nielson, Kendra M. Oudyk, Julio A. Peraza, Alexandre Pérez, Puck C. Reeders, Julio A. Yanes, and Angela R. Laird<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
 </main>
 
 
       </div>
     </div>
   
-  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-  
   </body>
 </html>

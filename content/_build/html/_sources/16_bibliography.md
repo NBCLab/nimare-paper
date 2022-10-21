@@ -1,4 +1,4 @@
 # References
 
-```{bibliography} ../paper.bib
+```{bibliography} references.bib
 ```

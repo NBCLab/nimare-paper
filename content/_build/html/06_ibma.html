@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Image-Based Meta-Analysis &#8212; NiMARE: Neuroimaging Meta-Analysis Research Environment</title>
     
-  <link href="_static/css/theme.css" rel="stylesheet" />
-  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
 
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -42,9 +42,9 @@
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
@@ -60,7 +60,10 @@
     <link rel="next" title="Multiple Comparisons Correction" href="07_correction.html" />
     <link rel="prev" title="Coordinate-Based Meta-Analysis" href="05_cbma.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -284,7 +287,7 @@
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -335,7 +338,7 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
@@ -360,7 +363,35 @@
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Image-Based Meta-Analysis</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#transforming-images">
+   Transforming images
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#comparing-algorithms">
+   Comparing algorithms
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
               <div>
                 
   <div class="section" id="image-based-meta-analysis">
@@ -385,17 +416,13 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---- repo2data starting ----
-/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/repo2data
+/Users/taylor/Documents/nbc/nimare-paper/conda_env/lib/python3.8/site-packages/repo2data
 Config from file :
-/home/data/nbc/misc-projects/Salo_NiMARE/binder/data_requirement.json
+/Users/taylor/Documents/nbc/nimare-paper/binder/data_requirement.json
 Destination:
 ./../data/nimare-paper
 
 Info : ./../data/nimare-paper already downloaded
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/datasets/__init__.py:90: FutureWarning: Fetchers from the nilearn.datasets module will be updated in version 0.9 to return python strings instead of bytes and Pandas dataframes instead of Numpy arrays.
-  &quot;Numpy arrays.&quot;, FutureWarning)
 </pre></div>
 </div>
 </div>
@@ -404,7 +431,7 @@ Info : ./../data/nimare-paper already downloaded
 On paper, IBMA is superior to CBMA in virtually all respects, as the availability of analysis-level parameter and variance estimates at all analyzed voxels allows researchers to use the full complement of standard meta-analysis techniques, instead of having to resort to kernel-based or other methods that require additional spatial assumptions.
 In principle, given a set of maps that contains no missing values (i.e., where there are <em>k</em> valid pairs of parameter and variance estimates at each voxel), one can simply conduct a voxel-wise version of any standard meta-analysis or meta-regression method commonly used in other biomedical or social science fields.</p>
 <p>In practice, the utility of IBMA methods has historically been quite limited, as unthresholded statistical maps have been unavailable for the vast majority of neuroimaging studies.
-However, the introduction and rapid adoption of NeuroVault <span id="id1">[<a class="reference internal" href="16_bibliography.html#id10">Gorgolewski <em>et al.</em>, 2015</a>]</span>, a database for unthresholded statistical images, has made image-based meta-analysis increasingly viable.
+However, the introduction and rapid adoption of NeuroVault <span id="id1">[<a class="reference internal" href="16_bibliography.html#id9">Gorgolewski <em>et al.</em>, 2015</a>]</span>, a database for unthresholded statistical images, has made image-based meta-analysis increasingly viable.
 Although coverage of the literature remains limited, and IBMAs of maps drawn from the NeuroVault database are likely to omit at least some (and in some cases most) relevant studies due to limited metadata,  we believe the time is ripe for researchers to start including both CBMAs and IBMAs in published meta-analyses, with the aspirational goal of eventually transitioning exclusively to the latter.
 To this end, NiMARE supports a range of different IBMA methods, including a number of estimators of the gold standard mixed-effects meta-regression model, as well as several alternative estimators suitable for use when some of the traditional inputs are unavailable.</p>
 <div class="admonition note">
@@ -413,15 +440,15 @@ To this end, NiMARE supports a range of different IBMA methods, including a numb
 </div>
 <p>In the optimal situation, meta-analysts have access to both contrast (i.e., parameter estimate) maps and their associated standard error maps for a number of studies.
 With these data, researchers can fit the traditional random-effects meta-regression model using one of several methods that vary in the way they estimate the between-study variance (<span class="math notranslate nohighlight">\(\tau^{2}\)</span>).
-Currently supported estimators include the <strong>DerSimonian-Laird</strong> method <span id="id2">[<a class="reference internal" href="16_bibliography.html#id82">DerSimonian and Laird, 1986</a>]</span>, the <strong>Hedges</strong> method <span id="id3">[<a class="reference internal" href="16_bibliography.html#id89">Hedges <em>et al.</em>, 1985</a>]</span>, and <strong>maximum-likelihood</strong> (ML) and <strong>restricted maximum-likelihood</strong> (REML) approaches.
+Currently supported estimators include the <strong>DerSimonian-Laird</strong> method <span id="id2">[<a class="reference internal" href="16_bibliography.html#id74">DerSimonian and Laird, 1986</a>]</span>, the <strong>Hedges</strong> method <span id="id3">[<a class="reference internal" href="16_bibliography.html#id81">Hedges <em>et al.</em>, 1985</a>]</span>, and <strong>maximum-likelihood</strong> (ML) and <strong>restricted maximum-likelihood</strong> (REML) approaches.
 NiMARE can also perform fixed-effects meta-regression via weighted least-squares, though there are few IBMA scenarios where a fixed-effects analysis would be indicated.
 It is worth noting that the non-likelihood-based estimators (i.e., DerSimonian-Laird and Hedges) have a closed-form solution, and are implemented in an extremely efficient way in NiMARE (i.e., computation is performed on all voxels in parallel).
 However, these estimators also produce more biased estimates under typical conditions (e.g., when sample sizes are very small), implying a tradeoff from the user’s perspective.</p>
-<p>Alternatively, when users only have access to contrast maps and associated sample sizes, they can use the supported <strong>Sample Size-Based Likelihood</strong> estimator, which assumes that within-study variance is constant across studies, and uses maximum-likelihood or restricted maximum-likelihood to estimate between-study variance, as described in <span id="id4">Sangnawakij <em>et al.</em> [<a class="reference internal" href="16_bibliography.html#id49">2019</a>]</span>.
-When users have access only to contrast maps, they can use the <strong>Permuted OLS</strong> estimator, which uses ordinary least squares and employs a max-type permutation scheme for family-wise error correction <span id="id5">[<a class="reference internal" href="16_bibliography.html#id64">Freedman and Lane, 1983</a>, <a class="reference internal" href="16_bibliography.html#id35">Anderson and Robinson, 2001</a>]</span> that has been validated on neuroimaging data <span id="id6">[<a class="reference internal" href="16_bibliography.html#id48">Winkler <em>et al.</em>, 2014</a>]</span> and relies on the nilearn library.</p>
-<p>Finally, when users only have access to z-score maps, they can use either the <strong>Fisher’s</strong> <span id="id7">[<a class="reference internal" href="16_bibliography.html#id9">Fisher, 1925</a>]</span> or the <strong>Stouffer’s</strong> <span id="id8">[<a class="reference internal" href="16_bibliography.html#id13">Riley <em>et al.</em>, 1949</a>]</span> estimators.
-When sample size information is available, users may incorporate that information into the Stouffer’s method, via the method described in <span id="id9">Zaykin [<a class="reference internal" href="16_bibliography.html#id75">2011</a>]</span>.</p>
-<p>Given the paucity of image-based meta-analytic datasets, we have included the tools to build a Dataset from a NeuroVault collection of 21 pain studies, originally described in <span id="id10">Maumet and Nichols [<a class="reference internal" href="16_bibliography.html#id23">2016</a>]</span>.</p>
+<p>Alternatively, when users only have access to contrast maps and associated sample sizes, they can use the supported <strong>Sample Size-Based Likelihood</strong> estimator, which assumes that within-study variance is constant across studies, and uses maximum-likelihood or restricted maximum-likelihood to estimate between-study variance, as described in <span id="id4">Sangnawakij <em>et al.</em> [<a class="reference internal" href="16_bibliography.html#id43">2019</a>]</span>.
+When users have access only to contrast maps, they can use the <strong>Permuted OLS</strong> estimator, which uses ordinary least squares and employs a max-type permutation scheme for family-wise error correction <span id="id5">[<a class="reference internal" href="16_bibliography.html#id58">Freedman and Lane, 1983</a>, <a class="reference internal" href="16_bibliography.html#id31">Anderson and Robinson, 2001</a>]</span> that has been validated on neuroimaging data <span id="id6">[<a class="reference internal" href="16_bibliography.html#id42">Winkler <em>et al.</em>, 2014</a>]</span> and relies on the nilearn library.</p>
+<p>Finally, when users only have access to z-score maps, they can use either the <strong>Fisher’s</strong> <span id="id7">[<a class="reference internal" href="16_bibliography.html#id8">Fisher, 1925</a>]</span> or the <strong>Stouffer’s</strong> <span id="id8">[<a class="reference internal" href="16_bibliography.html#id12">Riley <em>et al.</em>, 1949</a>]</span> estimators.
+When sample size information is available, users may incorporate that information into the Stouffer’s method, via the method described in <span id="id9">Zaykin [<a class="reference internal" href="16_bibliography.html#id68">2011</a>]</span>.</p>
+<p>Given the paucity of image-based meta-analytic datasets, we have included the tools to build a Dataset from a NeuroVault collection of 21 pain studies, originally described in <span id="id10">Maumet and Nichols [<a class="reference internal" href="16_bibliography.html#id19">2016</a>]</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nimare</span> <span class="kn">import</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">extract</span><span class="p">,</span> <span class="n">utils</span>
@@ -439,7 +466,7 @@ When sample size information is available, users may incorporate that informatio
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.extract.utils:Dataset found in ./../data/nimare-paper/data/nidm_21pain
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/nidm_21pain/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/Users/taylor/Documents/nbc/nimare-paper/data/nimare-paper/data/nidm_21pain/&#39;
 </pre></div>
 </div>
 </div>
@@ -452,7 +479,17 @@ For example, researchers may share test statistic maps with z-statistics or t-st
 This allows us to apply more image-based meta-analysis algorithms to the <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nimare</span> <span class="kn">import</span> <span class="n">transforms</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
+
+<span class="kn">from</span> <span class="nn">nimare</span> <span class="kn">import</span> <span class="n">transforms</span>
+
+<span class="c1"># The images used in this example have NaNs in any voxels outside the brain.</span>
+<span class="c1"># Generally, we recommend having zeros in masked-out areas,</span>
+<span class="c1"># but the data are what they are in this case.</span>
+<span class="c1"># Nilearn will raise warnings when users resample images with NaNs.</span>
+<span class="c1"># This will not cause any problems for this example, so we will simply filter</span>
+<span class="c1"># those warnings out.</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">RuntimeWarning</span><span class="p">,</span> <span class="n">module</span><span class="o">=</span><span class="s2">&quot;nilearn&quot;</span><span class="p">)</span>
 
 <span class="n">img_transformer</span> <span class="o">=</span> <span class="n">transforms</span><span class="o">.</span><span class="n">ImageTransformer</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;z&quot;</span><span class="p">,</span> <span class="s2">&quot;varcope&quot;</span><span class="p">],</span> <span class="n">overwrite</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">img_dset</span> <span class="o">=</span> <span class="n">img_transformer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">img_dset</span><span class="p">)</span>
@@ -460,47 +497,7 @@ This allows us to apply more image-based meta-analysis algorithms to the <code c
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/image/resampling.py:598: RuntimeWarning: NaNs or infinite values are present in the data passed to resample. This is a bad thing as they make resampling ill-defined and much slower.
-  fill_value=fill_value)
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/image/resampling.py:598: RuntimeWarning: NaNs or infinite values are present in the data passed to resample. This is a bad thing as they make resampling ill-defined and much slower.
-  fill_value=fill_value)
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/image/resampling.py:598: RuntimeWarning: NaNs or infinite values are present in the data passed to resample. This is a bad thing as they make resampling ill-defined and much slower.
-  fill_value=fill_value)
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/image/resampling.py:598: RuntimeWarning: NaNs or infinite values are present in the data passed to resample. This is a bad thing as they make resampling ill-defined and much slower.
-  fill_value=fill_value)
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/image/resampling.py:598: RuntimeWarning: NaNs or infinite values are present in the data passed to resample. This is a bad thing as they make resampling ill-defined and much slower.
-  fill_value=fill_value)
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/image/resampling.py:598: RuntimeWarning: NaNs or infinite values are present in the data passed to resample. This is a bad thing as they make resampling ill-defined and much slower.
-  fill_value=fill_value)
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/image/resampling.py:598: RuntimeWarning: NaNs or infinite values are present in the data passed to resample. This is a bad thing as they make resampling ill-defined and much slower.
-  fill_value=fill_value)
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/image/resampling.py:598: RuntimeWarning: NaNs or infinite values are present in the data passed to resample. This is a bad thing as they make resampling ill-defined and much slower.
-  fill_value=fill_value)
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/image/resampling.py:598: RuntimeWarning: NaNs or infinite values are present in the data passed to resample. This is a bad thing as they make resampling ill-defined and much slower.
-  fill_value=fill_value)
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/image/resampling.py:598: RuntimeWarning: NaNs or infinite values are present in the data passed to resample. This is a bad thing as they make resampling ill-defined and much slower.
-  fill_value=fill_value)
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/nidm_21pain/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/Users/taylor/Documents/nbc/nimare-paper/data/nimare-paper/data/nidm_21pain/&#39;
 </pre></div>
 </div>
 </div>
@@ -528,46 +525,6 @@ We will start with a DerSimonian-Laird meta-analysis (<a class="reference extern
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/image/resampling.py:598: RuntimeWarning: NaNs or infinite values are present in the data passed to resample. This is a bad thing as they make resampling ill-defined and much slower.
-  fill_value=fill_value)
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/image/resampling.py:598: RuntimeWarning: NaNs or infinite values are present in the data passed to resample. This is a bad thing as they make resampling ill-defined and much slower.
-  fill_value=fill_value)
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/image/resampling.py:598: RuntimeWarning: NaNs or infinite values are present in the data passed to resample. This is a bad thing as they make resampling ill-defined and much slower.
-  fill_value=fill_value)
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/image/resampling.py:598: RuntimeWarning: NaNs or infinite values are present in the data passed to resample. This is a bad thing as they make resampling ill-defined and much slower.
-  fill_value=fill_value)
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/image/resampling.py:598: RuntimeWarning: NaNs or infinite values are present in the data passed to resample. This is a bad thing as they make resampling ill-defined and much slower.
-  fill_value=fill_value)
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/image/resampling.py:598: RuntimeWarning: NaNs or infinite values are present in the data passed to resample. This is a bad thing as they make resampling ill-defined and much slower.
-  fill_value=fill_value)
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/image/resampling.py:598: RuntimeWarning: NaNs or infinite values are present in the data passed to resample. This is a bad thing as they make resampling ill-defined and much slower.
-  fill_value=fill_value)
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/image/resampling.py:598: RuntimeWarning: NaNs or infinite values are present in the data passed to resample. This is a bad thing as they make resampling ill-defined and much slower.
-  fill_value=fill_value)
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/image/resampling.py:598: RuntimeWarning: NaNs or infinite values are present in the data passed to resample. This is a bad thing as they make resampling ill-defined and much slower.
-  fill_value=fill_value)
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/image/resampling.py:598: RuntimeWarning: NaNs or infinite values are present in the data passed to resample. This is a bad thing as they make resampling ill-defined and much slower.
-  fill_value=fill_value)
-</pre></div>
-</div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:nimare.base:Masking out 39113 additional voxels. The updated masker is available in the Estimator.masker attribute.
 </pre></div>
 </div>
@@ -629,7 +586,8 @@ We will start with a DerSimonian-Laird meta-analysis (<a class="reference extern
 <span class="c1"># and some of the NIDM-Results packs&#39; beta images have NaNs at the edge of the brain.</span>
 <span class="c1"># So, we will create a reduced version of the atlas for this analysis.</span>
 <span class="n">nan_mask</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">math_img</span><span class="p">(</span><span class="s2">&quot;~np.any(np.isnan(img), axis=3)&quot;</span><span class="p">,</span> <span class="n">img</span><span class="o">=</span><span class="n">img_dset</span><span class="o">.</span><span class="n">images</span><span class="p">[</span><span class="s2">&quot;beta&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
-<span class="n">nanmasked_atlas</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">math_img</span><span class="p">(</span><span class="s2">&quot;mask * atlas&quot;</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">nan_mask</span><span class="p">,</span> <span class="n">atlas</span><span class="o">=</span><span class="n">atlas</span><span class="p">[</span><span class="s2">&quot;maps&quot;</span><span class="p">])</span>
+<span class="n">atlas</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">resample_to_img</span><span class="p">(</span><span class="n">atlas</span><span class="p">[</span><span class="s2">&quot;maps&quot;</span><span class="p">],</span> <span class="n">nan_mask</span><span class="p">)</span>
+<span class="n">nanmasked_atlas</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">math_img</span><span class="p">(</span><span class="s2">&quot;mask * atlas&quot;</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">nan_mask</span><span class="p">,</span> <span class="n">atlas</span><span class="o">=</span><span class="n">atlas</span><span class="p">)</span>
 <span class="n">masker</span> <span class="o">=</span> <span class="n">input_data</span><span class="o">.</span><span class="n">NiftiLabelsMasker</span><span class="p">(</span><span class="n">nanmasked_atlas</span><span class="p">)</span>
 <span class="k">del</span> <span class="n">atlas</span><span class="p">,</span> <span class="n">nan_mask</span><span class="p">,</span> <span class="n">nanmasked_atlas</span>
 
@@ -660,101 +618,29 @@ We will start with a DerSimonian-Laird meta-analysis (<a class="reference extern
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:nimare.base:Masking out 39113 additional voxels. The updated masker is available in the Estimator.masker attribute.
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/image/resampling.py:598: RuntimeWarning: NaNs or infinite values are present in the data passed to resample. This is a bad thing as they make resampling ill-defined and much slower.
-  fill_value=fill_value)
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/image/resampling.py:598: RuntimeWarning: NaNs or infinite values are present in the data passed to resample. This is a bad thing as they make resampling ill-defined and much slower.
-  fill_value=fill_value)
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/image/resampling.py:598: RuntimeWarning: NaNs or infinite values are present in the data passed to resample. This is a bad thing as they make resampling ill-defined and much slower.
-  fill_value=fill_value)
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/image/resampling.py:598: RuntimeWarning: NaNs or infinite values are present in the data passed to resample. This is a bad thing as they make resampling ill-defined and much slower.
-  fill_value=fill_value)
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/image/resampling.py:598: RuntimeWarning: NaNs or infinite values are present in the data passed to resample. This is a bad thing as they make resampling ill-defined and much slower.
-  fill_value=fill_value)
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/image/resampling.py:598: RuntimeWarning: NaNs or infinite values are present in the data passed to resample. This is a bad thing as they make resampling ill-defined and much slower.
-  fill_value=fill_value)
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/image/resampling.py:598: RuntimeWarning: NaNs or infinite values are present in the data passed to resample. This is a bad thing as they make resampling ill-defined and much slower.
-  fill_value=fill_value)
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/image/resampling.py:598: RuntimeWarning: NaNs or infinite values are present in the data passed to resample. This is a bad thing as they make resampling ill-defined and much slower.
-  fill_value=fill_value)
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/image/resampling.py:598: RuntimeWarning: NaNs or infinite values are present in the data passed to resample. This is a bad thing as they make resampling ill-defined and much slower.
-  fill_value=fill_value)
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/image/resampling.py:598: RuntimeWarning: NaNs or infinite values are present in the data passed to resample. This is a bad thing as they make resampling ill-defined and much slower.
-  fill_value=fill_value)
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:nimare.base:Masking out 39113 additional voxels. The updated masker is available in the Estimator.masker attribute.
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:nimare.base:Masking out 39113 additional voxels. The updated masker is available in the Estimator.masker attribute.
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/image/resampling.py:598: RuntimeWarning: NaNs or infinite values are present in the data passed to resample. This is a bad thing as they make resampling ill-defined and much slower.
-  fill_value=fill_value)
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/taylor/Documents/nbc/nimare-paper/conda_env/lib/python3.8/site-packages/nilearn/_utils/niimg.py:63: UserWarning: Non-finite values detected. These values will be replaced with zeros.
+  warn(
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/image/resampling.py:598: RuntimeWarning: NaNs or infinite values are present in the data passed to resample. This is a bad thing as they make resampling ill-defined and much slower.
-  fill_value=fill_value)
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:nimare.meta.ibma:A &lt;class &#39;nilearn.maskers.nifti_labels_masker.NiftiLabelsMasker&#39;&gt; mask has been detected. Masks which average across voxels will likely produce biased results when used with this Estimator.
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/image/resampling.py:598: RuntimeWarning: NaNs or infinite values are present in the data passed to resample. This is a bad thing as they make resampling ill-defined and much slower.
-  fill_value=fill_value)
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/taylor/Documents/nbc/nimare-paper/conda_env/lib/python3.8/site-packages/pymare/estimators/estimators.py:24: UserWarning: Input contains 48 parallel datasets (in 2nd dim of y and v). The selected estimator will loop over datasets naively, and this may be slow for large numbers of datasets. Consider using the DL, HE, or WLS estimators, which handle parallel datasets more efficiently.
+  warn(
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/image/resampling.py:598: RuntimeWarning: NaNs or infinite values are present in the data passed to resample. This is a bad thing as they make resampling ill-defined and much slower.
-  fill_value=fill_value)
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/taylor/Documents/nbc/nimare-paper/conda_env/lib/python3.8/site-packages/nilearn/_utils/niimg.py:63: UserWarning: Non-finite values detected. These values will be replaced with zeros.
+  warn(
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/image/resampling.py:598: RuntimeWarning: NaNs or infinite values are present in the data passed to resample. This is a bad thing as they make resampling ill-defined and much slower.
-  fill_value=fill_value)
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/image/resampling.py:598: RuntimeWarning: NaNs or infinite values are present in the data passed to resample. This is a bad thing as they make resampling ill-defined and much slower.
-  fill_value=fill_value)
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/image/resampling.py:598: RuntimeWarning: NaNs or infinite values are present in the data passed to resample. This is a bad thing as they make resampling ill-defined and much slower.
-  fill_value=fill_value)
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/image/resampling.py:598: RuntimeWarning: NaNs or infinite values are present in the data passed to resample. This is a bad thing as they make resampling ill-defined and much slower.
-  fill_value=fill_value)
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/image/resampling.py:598: RuntimeWarning: NaNs or infinite values are present in the data passed to resample. This is a bad thing as they make resampling ill-defined and much slower.
-  fill_value=fill_value)
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/image/resampling.py:598: RuntimeWarning: NaNs or infinite values are present in the data passed to resample. This is a bad thing as they make resampling ill-defined and much slower.
-  fill_value=fill_value)
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:nimare.base:Masking out 39113 additional voxels. The updated masker is available in the Estimator.masker attribute.
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/_utils/niimg.py:62: UserWarning: Non-finite values detected. These values will be replaced with zeros.
-  &quot;Non-finite values detected. &quot;
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:nimare.meta.ibma:A &lt;class &#39;nilearn.input_data.nifti_labels_masker.NiftiLabelsMasker&#39;&gt; mask has been detected. Masks which average across voxels will likely produce biased results when used with this Estimator.
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/pymare/estimators/estimators.py:28: UserWarning: Input contains 48 parallel datasets (in 2nd dim of y and v). The selected estimator will loop over datasets naively, and this may be slow for large numbers of datasets. Consider using the DL, HE, or WLS estimators, which handle parallel datasets more efficiently.
-  .format(n_iter))
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/taylor/Documents/nbc/nimare-paper/conda_env/lib/python3.8/site-packages/pymare/estimators/estimators.py:24: UserWarning: Input contains 48 parallel datasets (in 2nd dim of y and v). The selected estimator will loop over datasets naively, and this may be slow for large numbers of datasets. Consider using the DL, HE, or WLS estimators, which handle parallel datasets more efficiently.
+  warn(
 </pre></div>
 </div>
 </div>
@@ -811,12 +697,20 @@ We will start with a DerSimonian-Laird meta-analysis (<a class="reference extern
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/06_ibma_14_1.png" src="_images/06_ibma_14_1.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/taylor/Documents/nbc/nimare-paper/conda_env/lib/python3.8/site-packages/nilearn/plotting/img_plotting.py:300: FutureWarning: Default resolution of the MNI template will change from 2mm to 1mm in version 0.10.0
+  anat_img = load_mni152_template()
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/taylor/Documents/nbc/nimare-paper/conda_env/lib/python3.8/site-packages/nilearn/_utils/niimg.py:63: UserWarning: Non-finite values detected. These values will be replaced with zeros.
+  warn(
+</pre></div>
+</div>
+<img alt="_images/06_ibma_14_3.png" src="_images/06_ibma_14_3.png" />
 </div>
 </div>
 <div class="figure align-center" id="figure-uncorr-ibma">
 <div class="cell_output docutils container">
-<img alt="_images/06_ibma_14_0.png" src="_images/06_ibma_14_0.png" />
+<img alt="_images/06_ibma_14_2.png" src="_images/06_ibma_14_2.png" />
 </div>
 <p class="caption"><span class="caption-number">Fig. 6 </span><span class="caption-text">An array of plots of the statistical maps produced by the image-based meta-analysis methods.
 The likelihood-based meta-analyses are run on atlases instead of voxelwise.</span><a class="headerlink" href="#figure-uncorr-ibma" title="Permalink to this image">¶</a></p>
@@ -846,54 +740,42 @@ The likelihood-based meta-analyses are run on atlases instead of voxelwise.</spa
 
               </div>
               
-        
             
-
-
-
-<div class='prev-next-bottom'>
-    
-    <div id="prev">
-        <a class="left-prev" href="05_cbma.html" title="previous page">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Coordinate-Based Meta-Analysis</p>
-            </div>
-        </a>
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="05_cbma.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Coordinate-Based Meta-Analysis</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="07_correction.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Multiple Comparisons Correction</p>
     </div>
-     <div id="next">
-        <a class="right-next" href="07_correction.html" title="next page">
-            <div class="prevnext-info">
-                <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Multiple Comparisons Correction</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
-
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
-        
+            
         </div>
     </div>
     <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By Taylor Salo, Tal Yarkoni, Thomas E. Nichols, Jean-Baptiste Poline, Murat Bilgel, Katherine L. Bottenhorn, Dorota Jarecka, James D. Kent, Adam Kimbler, Dylan M. Nielson, Kendra M. Oudyk, Julio A. Peraza, Alexandre Pérez, Puck C. Reeders, Julio A. Yanes, and Angela R. Laird<br/>
-        
-            &copy; Copyright 2021.<br/>
-      </p>
-    </div>
-  </footer>
+  <p>
+    
+      By Taylor Salo, Tal Yarkoni, Thomas E. Nichols, Jean-Baptiste Poline, Murat Bilgel, Katherine L. Bottenhorn, Simon B. Eickhoff, Dorota Jarecka, James D. Kent, Adam Kimbler, Dylan M. Nielson, Kendra M. Oudyk, Julio A. Peraza, Alexandre Pérez, Puck C. Reeders, Julio A. Yanes, and Angela R. Laird<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
 </main>
 
 
       </div>
     </div>
   
-  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-  
   </body>
 </html>

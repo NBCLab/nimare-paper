@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>External Meta-Analytic Resources &#8212; NiMARE: Neuroimaging Meta-Analysis Research Environment</title>
     
-  <link href="_static/css/theme.css" rel="stylesheet" />
-  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
 
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -42,9 +42,9 @@
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -58,7 +58,10 @@
     <link rel="next" title="Coordinate-Based Meta-Analysis" href="05_cbma.html" />
     <link rel="prev" title="Download the Data" href="03_download_data.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -282,7 +285,7 @@
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -333,7 +336,7 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
@@ -368,7 +371,45 @@
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>External Meta-Analytic Resources</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#brainmap">
+   BrainMap
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#neurosynth">
+   Neurosynth
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#neuroquery">
+   NeuroQuery
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#neurovault">
+   NeuroVault
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
               <div>
                 
   <div class="section" id="external-meta-analytic-resources">
@@ -395,9 +436,9 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---- repo2data starting ----
-/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/repo2data
+/Users/taylor/Documents/nbc/nimare-paper/conda_env/lib/python3.8/site-packages/repo2data
 Config from file :
-/home/data/nbc/misc-projects/Salo_NiMARE/binder/data_requirement.json
+/Users/taylor/Documents/nbc/nimare-paper/binder/data_requirement.json
 Destination:
 ./../data/nimare-paper
 
@@ -410,11 +451,11 @@ Info : ./../data/nimare-paper already downloaded
 These databases combine results from neuroimaging studies, whether represented as coordinates of peak activations or unthresholded statistical images, with important study metadata, such as information about the samples acquired, stimuli used, analyses performed, and mental constructs putatively manipulated.
 The two most popular coordinate-based meta-analytic databases are <a class="reference external" href="http://www.brainmap.org">BrainMap</a> and <a class="reference external" href="http://neurosynth.org">Neurosynth</a>, while the most popular image-based database is <a class="reference external" href="https://neurovault.org">NeuroVault</a>.</p>
 <p>The studies archived in these databases may be either manually or automatically annotated—often with reference to a formal ontology or controlled vocabulary.
-Ontologies for cognitive neuroscience define what mental states or processes are postulated to be manipulated or measured in experiments, and may also include details of said experiments (e.g.,the cognitive tasks employed), relationships between concepts (e.g., verbal working memory is a kind of working memory), and various other metadata that can be standardized and represented in a machine-readable form <span id="id1">[<a class="reference internal" href="16_bibliography.html#id63">Poldrack and Yarkoni, 2016</a>, <a class="reference internal" href="16_bibliography.html#id81">Poldrack, 2010</a>, <a class="reference internal" href="16_bibliography.html#id58">Turner and Laird, 2012</a>]</span>.
+Ontologies for cognitive neuroscience define what mental states or processes are postulated to be manipulated or measured in experiments, and may also include details of said experiments (e.g.,the cognitive tasks employed), relationships between concepts (e.g., verbal working memory is a kind of working memory), and various other metadata that can be standardized and represented in a machine-readable form <span id="id1">[<a class="reference internal" href="16_bibliography.html#id57">Poldrack and Yarkoni, 2016</a>, <a class="reference internal" href="16_bibliography.html#id73">Poldrack, 2010</a>, <a class="reference internal" href="16_bibliography.html#id52">Turner and Laird, 2012</a>]</span>.
 Some of these ontologies are very well-defined, such as expert-generated taxonomies designed specifically to describe only certain aspects of experiments and the relationships between elements within the taxonomy, while others are more loosely defined, in some cases simply building a vocabulary based on which terms are commonly used in cognitive neuroscience articles.</p>
 <div class="section" id="brainmap">
 <span id="content-resources-brainmap"></span><h2>BrainMap<a class="headerlink" href="#brainmap" title="Permalink to this headline">¶</a></h2>
-<p><strong>BrainMap</strong> <span id="id2">[<a class="reference internal" href="16_bibliography.html#id51">Fox <em>et al.</em>, 2005</a>, <a class="reference internal" href="16_bibliography.html#id50">Fox and Lancaster, 2002</a>, <a class="reference internal" href="16_bibliography.html#id33">Laird <em>et al.</em>, 2005</a>]</span> relies on expert annotators to label individual comparisons within studies according to its internally developed ontology, the BrainMap Taxonomy <span id="id3">[<a class="reference internal" href="16_bibliography.html#id51">Fox <em>et al.</em>, 2005</a>]</span>.
+<p><strong>BrainMap</strong> <span id="id2">[<a class="reference internal" href="16_bibliography.html#id45">Fox <em>et al.</em>, 2005</a>, <a class="reference internal" href="16_bibliography.html#id44">Fox and Lancaster, 2002</a>, <a class="reference internal" href="16_bibliography.html#id29">Laird <em>et al.</em>, 2005</a>]</span> relies on expert annotators to label individual comparisons within studies according to its internally developed ontology, the BrainMap Taxonomy <span id="id3">[<a class="reference internal" href="16_bibliography.html#id45">Fox <em>et al.</em>, 2005</a>]</span>.
 While this approach is likely to be less noisy than an automated annotation method using article text or imaging results to predict content, it is also subject to a number of limitations.
 First, there are simply not enough annotators to keep up with the ever-expanding literature.
 Second, any development of the underlying ontology has the potential to leave the database outdated.
@@ -425,7 +466,7 @@ While outside contributors can add and annotate studies to the database, the mai
 Sleuth can export these study collections as text files with coordinates.
 NiMARE provides a function to import data from Sleuth text files into the NiMARE Dataset format.</p>
 <p>The function <a class="reference external" href="https://nimare.readthedocs.io/en/0.0.11/generated/nimare.io.convert_sleuth_to_dataset.html#nimare.io.convert_sleuth_to_dataset" title="(in NiMARE v0.0.11+0.g7e094f2.dirty)"><code class="xref py py-func docutils literal notranslate"><span class="pre">convert_sleuth_to_dataset()</span></code></a> can be used to convert text files exported from Sleuth into NiMARE <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>s.
-Here, we convert two files from a previous publication by NiMARE contributors <span id="id4">[<a class="reference internal" href="16_bibliography.html#id96">Yanes <em>et al.</em>, 2018</a>]</span> into two separate <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>s.</p>
+Here, we convert two files from a previous publication by NiMARE contributors <span id="id4">[<a class="reference internal" href="16_bibliography.html#id87">Yanes <em>et al.</em>, 2018</a>]</span> into two separate <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>s.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nimare</span> <span class="kn">import</span> <span class="n">io</span>
@@ -455,15 +496,15 @@ Dataset(41 experiments, space=&#39;ale_2mm&#39;)
 </div>
 <div class="section" id="neurosynth">
 <h2>Neurosynth<a class="headerlink" href="#neurosynth" title="Permalink to this headline">¶</a></h2>
-<p><strong>Neurosynth</strong> <span id="id5">[<a class="reference internal" href="16_bibliography.html#id26">Yarkoni <em>et al.</em>, 2011</a>]</span> uses a combination of web scraping and text mining to automatically harvest neuroimaging studies from the literature and to annotate them based on term frequency within article abstracts.
+<p><strong>Neurosynth</strong> <span id="id5">[<a class="reference internal" href="16_bibliography.html#id22">Yarkoni <em>et al.</em>, 2011</a>]</span> uses a combination of web scraping and text mining to automatically harvest neuroimaging studies from the literature and to annotate them based on term frequency within article abstracts.
 As a consequence of its relatively crude automated approach, Neurosynth has its own set of limitations.
 First, Neurosynth is unable to delineate individual comparisons within studies, and consequently uses the entire paper as its unit of measurement, unlike BrainMap.
 This risks conflating directly contrasted comparisons (e.g., A&gt;B and B&gt;A), as well as comparisons which have no relation to one another.
 Second, coordinate extraction and annotation are noisy.
 Third, annotations automatically performed by Neurosynth are also subject to error, although the reasons behind this are more nuanced and will be discussed later in this paper.
 Given Neurosynth’s limitations, we recommend that it be used for casual, exploratory meta-analyses rather than for publication-quality analyses.
-Nevertheless, while individual meta-analyses should not be published from Neurosynth, many derivative analyses have been performed and published (e.g., <span id="id6">[<a class="reference internal" href="16_bibliography.html#id85">Chang <em>et al.</em>, 2013</a>, <a class="reference internal" href="16_bibliography.html#id43">de la Vega <em>et al.</em>, 2016</a>, <a class="reference internal" href="16_bibliography.html#id39">de la Vega <em>et al.</em>, 2018</a>, <a class="reference internal" href="16_bibliography.html#id4">Poldrack <em>et al.</em>, 2012</a>]</span>).
-As evidence of its utility, Neurosynth has been used to define <em>a priori</em> regions of interest (e.g., <span id="id7">[<a class="reference internal" href="16_bibliography.html#id70">Josipovic, 2014</a>, <a class="reference internal" href="16_bibliography.html#id25">Zeidman <em>et al.</em>, 2012</a>, <a class="reference internal" href="16_bibliography.html#id12">Wager <em>et al.</em>, 2013</a>]</span>) or perform meta-analytic functional decoding (e.g., <span id="id8">[<a class="reference internal" href="16_bibliography.html#id19">Chen <em>et al.</em>, 2018</a>, <a class="reference internal" href="16_bibliography.html#id69">Pantelis <em>et al.</em>, 2015</a>, <a class="reference internal" href="16_bibliography.html#id52">Tambini <em>et al.</em>, 2017</a>]</span>) in many first-order (rather than meta-analytic) fMRI studies.</p>
+Nevertheless, while individual meta-analyses should not be published from Neurosynth, many derivative analyses have been performed and published (e.g., <span id="id6">[<a class="reference internal" href="16_bibliography.html#id77">Chang <em>et al.</em>, 2013</a>, <a class="reference internal" href="16_bibliography.html#id39">de la Vega <em>et al.</em>, 2016</a>, <a class="reference internal" href="16_bibliography.html#id35">de la Vega <em>et al.</em>, 2018</a>, <a class="reference internal" href="16_bibliography.html#id4">Poldrack <em>et al.</em>, 2012</a>]</span>).
+As evidence of its utility, Neurosynth has been used to define <em>a priori</em> regions of interest (e.g., <span id="id7">[<a class="reference internal" href="16_bibliography.html#id64">Josipovic, 2014</a>, <a class="reference internal" href="16_bibliography.html#id21">Zeidman <em>et al.</em>, 2012</a>, <a class="reference internal" href="16_bibliography.html#id11">Wager <em>et al.</em>, 2013</a>]</span>) or perform meta-analytic functional decoding (e.g., <span id="id8">[<a class="reference internal" href="16_bibliography.html#id17">Chen <em>et al.</em>, 2018</a>, <a class="reference internal" href="16_bibliography.html#id63">Pantelis <em>et al.</em>, 2015</a>, <a class="reference internal" href="16_bibliography.html#id46">Tambini <em>et al.</em>, 2017</a>]</span>) in many first-order (rather than meta-analytic) fMRI studies.</p>
 <p>Here, we show code that would download the Neurosynth database from where it is stored (<a class="reference external" href="https://github.com/neurosynth/neurosynth-data">https://github.com/neurosynth/neurosynth-data</a>) and convert it to a NiMARE <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> using <a class="reference external" href="https://nimare.readthedocs.io/en/0.0.11/generated/nimare.extract.fetch_neurosynth.html#nimare.extract.fetch_neurosynth" title="(in NiMARE v0.0.11+0.g7e094f2.dirty)"><code class="xref py py-func docutils literal notranslate"><span class="pre">fetch_neurosynth()</span></code></a>, for the first step, and <a class="reference external" href="https://nimare.readthedocs.io/en/0.0.11/generated/nimare.io.convert_neurosynth_to_dataset.html#nimare.io.convert_neurosynth_to_dataset" title="(in NiMARE v0.0.11+0.g7e094f2.dirty)"><code class="xref py py-func docutils literal notranslate"><span class="pre">convert_neurosynth_to_dataset()</span></code></a>, for the second.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -505,10 +546,10 @@ Downloading data-neurosynth_version-7_vocab-terms_vocabulary.txt
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File exists and overwrite is False. Skipping.
-[{&#39;coordinates&#39;: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth/data-neurosynth_version-7_coordinates.tsv.gz&#39;,
-  &#39;features&#39;: [{&#39;features&#39;: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth/data-neurosynth_version-7_vocab-terms_source-abstract_type-tfidf_features.npz&#39;,
-                &#39;vocabulary&#39;: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth/data-neurosynth_version-7_vocab-terms_vocabulary.txt&#39;}],
-  &#39;metadata&#39;: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neurosynth/data-neurosynth_version-7_metadata.tsv.gz&#39;}]
+[{&#39;coordinates&#39;: &#39;/Users/taylor/Documents/nbc/nimare-paper/data/nimare-paper/data/neurosynth/data-neurosynth_version-7_coordinates.tsv.gz&#39;,
+  &#39;features&#39;: [{&#39;features&#39;: &#39;/Users/taylor/Documents/nbc/nimare-paper/data/nimare-paper/data/neurosynth/data-neurosynth_version-7_vocab-terms_source-abstract_type-tfidf_features.npz&#39;,
+                &#39;vocabulary&#39;: &#39;/Users/taylor/Documents/nbc/nimare-paper/data/nimare-paper/data/neurosynth/data-neurosynth_version-7_vocab-terms_vocabulary.txt&#39;}],
+  &#39;metadata&#39;: &#39;/Users/taylor/Documents/nbc/nimare-paper/data/nimare-paper/data/neurosynth/data-neurosynth_version-7_metadata.tsv.gz&#39;}]
 </pre></div>
 </div>
 </div>
@@ -571,11 +612,11 @@ Therefore, for the sake of ensuring that the analyses in this article may be rep
 <p>In addition to a large corpus of coordinates, Neurosynth provides term frequencies derived from article abstracts that can be used as annotations.</p>
 <p>One additional benefit to Neurosynth is that it has made available the coordinates for a large number of studies for which the study abstracts are also readily available.
 This has made the Neurosynth database a common resource upon which to build other automated ontologies.
-Data-driven ontologies which have been developed using the Neurosynth database include the generalized correspondence latent Dirichlet allocation (GCLDA) <span id="id9">[<a class="reference internal" href="16_bibliography.html#id83">Rubin <em>et al.</em>, 2017</a>]</span> topic model and Deep Boltzmann machines <span id="id10">[<a class="reference internal" href="16_bibliography.html#id77">Monti <em>et al.</em>, 2016</a>]</span>.</p>
+Data-driven ontologies which have been developed using the Neurosynth database include the generalized correspondence latent Dirichlet allocation (GCLDA) <span id="id9">[<a class="reference internal" href="16_bibliography.html#id75">Rubin <em>et al.</em>, 2017</a>]</span> topic model and Deep Boltzmann machines <span id="id10">[<a class="reference internal" href="16_bibliography.html#id70">Monti <em>et al.</em>, 2016</a>]</span>.</p>
 </div>
 <div class="section" id="neuroquery">
 <h2>NeuroQuery<a class="headerlink" href="#neuroquery" title="Permalink to this headline">¶</a></h2>
-<p>A related resource is <strong>NeuroQuery</strong> <span id="id11">[<a class="reference internal" href="16_bibliography.html#id38">Dockès <em>et al.</em>, 2020</a>]</span>.
+<p>A related resource is <strong>NeuroQuery</strong> <span id="id11">[<a class="reference internal" href="16_bibliography.html#id34">Dockès <em>et al.</em>, 2020</a>]</span>.
 NeuroQuery is an online service for large-scale predictive meta-analysis.
 Unlike Neurosynth, which performs statistical inference and produces statistical maps, NeuroQuery is a supervised learning model and produces a prediction of the brain areas most likely to contain activations.
 These maps predict locations where studies investigating a given area (determined by the text prompt) are likely to produce activations, but they cannot be used in the same manner as statistical maps from a standard coordinate-based meta-analysis.
@@ -622,10 +663,10 @@ Downloading data-neuroquery_version-1_vocab-neuroquery6308_vocabulary.txt
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File exists and overwrite is False. Skipping.
-[{&#39;coordinates&#39;: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neuroquery/data-neuroquery_version-1_coordinates.tsv.gz&#39;,
-  &#39;features&#39;: [{&#39;features&#39;: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neuroquery/data-neuroquery_version-1_vocab-neuroquery6308_source-combined_type-tfidf_features.npz&#39;,
-                &#39;vocabulary&#39;: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neuroquery/data-neuroquery_version-1_vocab-neuroquery6308_vocabulary.txt&#39;}],
-  &#39;metadata&#39;: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/data/nimare-paper/data/neuroquery/data-neuroquery_version-1_metadata.tsv.gz&#39;}]
+[{&#39;coordinates&#39;: &#39;/Users/taylor/Documents/nbc/nimare-paper/data/nimare-paper/data/neuroquery/data-neuroquery_version-1_coordinates.tsv.gz&#39;,
+  &#39;features&#39;: [{&#39;features&#39;: &#39;/Users/taylor/Documents/nbc/nimare-paper/data/nimare-paper/data/neuroquery/data-neuroquery_version-1_vocab-neuroquery6308_source-combined_type-tfidf_features.npz&#39;,
+                &#39;vocabulary&#39;: &#39;/Users/taylor/Documents/nbc/nimare-paper/data/nimare-paper/data/neuroquery/data-neuroquery_version-1_vocab-neuroquery6308_vocabulary.txt&#39;}],
+  &#39;metadata&#39;: &#39;/Users/taylor/Documents/nbc/nimare-paper/data/nimare-paper/data/neuroquery/data-neuroquery_version-1_metadata.tsv.gz&#39;}]
 </pre></div>
 </div>
 </div>
@@ -660,7 +701,7 @@ Downloading data-neuroquery_version-1_vocab-neuroquery6308_vocabulary.txt
 </div>
 <div class="section" id="neurovault">
 <h2>NeuroVault<a class="headerlink" href="#neurovault" title="Permalink to this headline">¶</a></h2>
-<p><strong>NeuroVault</strong> <span id="id12">[<a class="reference internal" href="16_bibliography.html#id10">Gorgolewski <em>et al.</em>, 2015</a>]</span> is a public repository of user-uploaded, whole-brain, unthresholded brain maps.
+<p><strong>NeuroVault</strong> <span id="id12">[<a class="reference internal" href="16_bibliography.html#id9">Gorgolewski <em>et al.</em>, 2015</a>]</span> is a public repository of user-uploaded, whole-brain, unthresholded brain maps.
 Users may associate their image collections with publications, and can annotate individual maps with labels from the Cognitive Atlas, which is the ontology of choice for NeuroVault.
 NiMARE includes a function, <a class="reference external" href="https://nimare.readthedocs.io/en/0.0.11/generated/nimare.io.convert_neurovault_to_dataset.html#nimare.io.convert_neurovault_to_dataset" title="(in NiMARE v0.0.11+0.g7e094f2.dirty)"><code class="xref py py-func docutils literal notranslate"><span class="pre">convert_neurovault_to_dataset()</span></code></a>, with which users can search for images in NeuroVault, download those images, and convert them into a <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> object.</p>
 </div>
@@ -688,54 +729,42 @@ NiMARE includes a function, <a class="reference external" href="https://nimare.r
 
               </div>
               
-        
             
-
-
-
-<div class='prev-next-bottom'>
-    
-    <div id="prev">
-        <a class="left-prev" href="03_download_data.html" title="previous page">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Download the Data</p>
-            </div>
-        </a>
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="03_download_data.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Download the Data</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="05_cbma.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Coordinate-Based Meta-Analysis</p>
     </div>
-     <div id="next">
-        <a class="right-next" href="05_cbma.html" title="next page">
-            <div class="prevnext-info">
-                <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Coordinate-Based Meta-Analysis</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
-
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
-        
+            
         </div>
     </div>
     <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By Taylor Salo, Tal Yarkoni, Thomas E. Nichols, Jean-Baptiste Poline, Murat Bilgel, Katherine L. Bottenhorn, Dorota Jarecka, James D. Kent, Adam Kimbler, Dylan M. Nielson, Kendra M. Oudyk, Julio A. Peraza, Alexandre Pérez, Puck C. Reeders, Julio A. Yanes, and Angela R. Laird<br/>
-        
-            &copy; Copyright 2021.<br/>
-      </p>
-    </div>
-  </footer>
+  <p>
+    
+      By Taylor Salo, Tal Yarkoni, Thomas E. Nichols, Jean-Baptiste Poline, Murat Bilgel, Katherine L. Bottenhorn, Simon B. Eickhoff, Dorota Jarecka, James D. Kent, Adam Kimbler, Dylan M. Nielson, Kendra M. Oudyk, Julio A. Peraza, Alexandre Pérez, Puck C. Reeders, Julio A. Yanes, and Angela R. Laird<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
 </main>
 
 
       </div>
     </div>
   
-  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-  
   </body>
 </html>
