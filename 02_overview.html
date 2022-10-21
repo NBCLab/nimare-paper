@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>NiMARE Overview &#8212; NiMARE: Neuroimaging Meta-Analysis Research Environment</title>
     
-  <link href="_static/css/theme.css" rel="stylesheet" />
-  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
 
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -42,9 +42,9 @@
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -58,7 +58,10 @@
     <link rel="next" title="Download the Data" href="03_download_data.html" />
     <link rel="prev" title="Introduction" href="01_introduction.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -279,7 +282,7 @@
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -313,7 +316,7 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
@@ -343,7 +346,40 @@
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>NiMARE Overview</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#application-programming-interface">
+   Application Programming Interface
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#package-organization">
+   Package Organization
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dependencies">
+   Dependencies
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
               <div>
                 
   <div class="section" id="nimare-overview">
@@ -362,7 +398,7 @@ These modules are summarized in <a class="reference internal" href="#overview-ap
 <div class="section" id="application-programming-interface">
 <span id="overview-api"></span><h2>Application Programming Interface<a class="headerlink" href="#application-programming-interface" title="Permalink to this headline">¶</a></h2>
 <p>One of the principal goals of NiMARE is to implement a range of methods with a set of shared interfaces, to enable users to employ the most appropriate algorithm for a given question without introducing a steep learning curve.
-This approach is modeled on the widely-used <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> package <span id="id1">[<a class="reference internal" href="16_bibliography.html#id92">Pedregosa <em>et al.</em>, 2011</a>, <a class="reference internal" href="16_bibliography.html#id93">Buitinck <em>et al.</em>, 2013</a>]</span>, which implements a large number of machine learning algorithms - all with simple, consistent interfaces.
+This approach is modeled on the widely-used <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> package <span id="id1">[<a class="reference internal" href="16_bibliography.html#id83">Pedregosa <em>et al.</em>, 2011</a>, <a class="reference internal" href="16_bibliography.html#id84">Buitinck <em>et al.</em>, 2013</a>]</span>, which implements a large number of machine learning algorithms - all with simple, consistent interfaces.
 Regardless of the algorithm employed, data should be in the same format and the same class methods should be called to fit and/or generate predictions from the model.</p>
 <p>To this end, we have adopted an object-oriented approach to NiMARE’s core API that organizes tools based on the type of inputs and outputs they operate over.
 The key data structure is the <a class="reference external" href="https://nimare.readthedocs.io/en/0.0.11/generated/nimare.dataset.Dataset.html#nimare.dataset.Dataset" title="(in NiMARE v0.0.11+0.g7e094f2.dirty)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a> class, which stores a range of neuroimaging data amenable to various forms of meta-analysis.
@@ -447,8 +483,8 @@ These modules are summarized in <a class="reference internal" href="#table-modul
 <div class="section" id="dependencies">
 <h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h2>
 <p>NiMARE depends on the standard SciPy stack, as well as a small number of widely-used packages.
-Dependencies from the SciPy stack include <code class="docutils literal notranslate"><span class="pre">scipy</span></code> <span id="id2">[<a class="reference internal" href="16_bibliography.html#id68">Virtanen <em>et al.</em>, 2020</a>]</span>, <code class="docutils literal notranslate"><span class="pre">numpy</span></code> <span id="id3">[<a class="reference internal" href="16_bibliography.html#id53">Walt <em>et al.</em>, 2011</a>, <a class="reference internal" href="16_bibliography.html#id11">Harris <em>et al.</em>, 2020</a>]</span>, <code class="docutils literal notranslate"><span class="pre">pandas</span></code> <span id="id4">[<a class="reference internal" href="16_bibliography.html#id62">McKinney, 2010</a>]</span>, and <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> <span id="id5">[<a class="reference internal" href="16_bibliography.html#id92">Pedregosa <em>et al.</em>, 2011</a>, <a class="reference internal" href="16_bibliography.html#id93">Buitinck <em>et al.</em>, 2013</a>]</span>.
-Additional requirements include <code class="docutils literal notranslate"><span class="pre">fuzzywuzzy</span></code>, <code class="docutils literal notranslate"><span class="pre">nibabel</span></code> <span id="id6">[<a class="reference internal" href="16_bibliography.html#id94">Brett <em>et al.</em>, 2020</a>]</span>, <code class="docutils literal notranslate"><span class="pre">nilearn</span></code> <span id="id7">[<a class="reference internal" href="16_bibliography.html#id5">Abraham <em>et al.</em>, 2014</a>]</span>, <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code> <span id="id8">[<a class="reference internal" href="16_bibliography.html#id47">Seabold and Perktold, 2010</a>]</span>, and <code class="docutils literal notranslate"><span class="pre">tqdm</span></code> <span id="id9">[<a class="reference internal" href="16_bibliography.html#id95">da Costa-Luis <em>et al.</em>, 2020</a>]</span>.</p>
+Dependencies from the SciPy stack include <code class="docutils literal notranslate"><span class="pre">scipy</span></code> <span id="id2">[<a class="reference internal" href="16_bibliography.html#id62">Virtanen <em>et al.</em>, 2020</a>]</span>, <code class="docutils literal notranslate"><span class="pre">numpy</span></code> <span id="id3">[<a class="reference internal" href="16_bibliography.html#id47">Walt <em>et al.</em>, 2011</a>, <a class="reference internal" href="16_bibliography.html#id10">Harris <em>et al.</em>, 2020</a>]</span>, <code class="docutils literal notranslate"><span class="pre">pandas</span></code> <span id="id4">[<a class="reference internal" href="16_bibliography.html#id56">McKinney, 2010</a>]</span>, and <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> <span id="id5">[<a class="reference internal" href="16_bibliography.html#id83">Pedregosa <em>et al.</em>, 2011</a>, <a class="reference internal" href="16_bibliography.html#id84">Buitinck <em>et al.</em>, 2013</a>]</span>.
+Additional requirements include <code class="docutils literal notranslate"><span class="pre">fuzzywuzzy</span></code>, <code class="docutils literal notranslate"><span class="pre">nibabel</span></code> <span id="id6">[<a class="reference internal" href="16_bibliography.html#id85">Brett <em>et al.</em>, 2020</a>]</span>, <code class="docutils literal notranslate"><span class="pre">nilearn</span></code> <span id="id7">[<a class="reference internal" href="16_bibliography.html#id5">Abraham <em>et al.</em>, 2014</a>]</span>, <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code> <span id="id8">[<a class="reference internal" href="16_bibliography.html#id41">Seabold and Perktold, 2010</a>]</span>, and <code class="docutils literal notranslate"><span class="pre">tqdm</span></code> <span id="id9">[<a class="reference internal" href="16_bibliography.html#id86">da Costa-Luis <em>et al.</em>, 2020</a>]</span>.</p>
 </div>
 </div>
 
@@ -474,54 +510,42 @@ Additional requirements include <code class="docutils literal notranslate"><span
 
               </div>
               
-        
             
-
-
-
-<div class='prev-next-bottom'>
-    
-    <div id="prev">
-        <a class="left-prev" href="01_introduction.html" title="previous page">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Introduction</p>
-            </div>
-        </a>
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="01_introduction.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Introduction</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="03_download_data.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Download the Data</p>
     </div>
-     <div id="next">
-        <a class="right-next" href="03_download_data.html" title="next page">
-            <div class="prevnext-info">
-                <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Download the Data</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
-
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
-        
+            
         </div>
     </div>
     <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By Taylor Salo, Tal Yarkoni, Thomas E. Nichols, Jean-Baptiste Poline, Murat Bilgel, Katherine L. Bottenhorn, Dorota Jarecka, James D. Kent, Adam Kimbler, Dylan M. Nielson, Kendra M. Oudyk, Julio A. Peraza, Alexandre Pérez, Puck C. Reeders, Julio A. Yanes, and Angela R. Laird<br/>
-        
-            &copy; Copyright 2021.<br/>
-      </p>
-    </div>
-  </footer>
+  <p>
+    
+      By Taylor Salo, Tal Yarkoni, Thomas E. Nichols, Jean-Baptiste Poline, Murat Bilgel, Katherine L. Bottenhorn, Simon B. Eickhoff, Dorota Jarecka, James D. Kent, Adam Kimbler, Dylan M. Nielson, Kendra M. Oudyk, Julio A. Peraza, Alexandre Pérez, Puck C. Reeders, Julio A. Yanes, and Angela R. Laird<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
 </main>
 
 
       </div>
     </div>
   
-  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-  
   </body>
 </html>

@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Meta-Analytic Functional Decoding &#8212; NiMARE: Neuroimaging Meta-Analysis Research Environment</title>
     
-  <link href="_static/css/theme.css" rel="stylesheet" />
-  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
 
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -42,9 +42,9 @@
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -58,7 +58,10 @@
     <link rel="next" title="Future Directions" href="13_future_directions.html" />
     <link rel="prev" title="Automated Annotation" href="11_annotation.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -282,7 +285,7 @@
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -333,7 +336,7 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
@@ -370,7 +373,47 @@
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Meta-Analytic Functional Decoding</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#decoding-continuous-inputs">
+   Decoding continuous inputs
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#decoding-discrete-inputs">
+   Decoding discrete inputs
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#brainmap-method">
+     BrainMap method
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#neurosynth-method">
+     Neurosynth method
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
               <div>
                 
   <div class="section" id="meta-analytic-functional-decoding">
@@ -395,17 +438,13 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---- repo2data starting ----
-/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/repo2data
+/Users/taylor/Documents/nbc/nimare-paper/conda_env/lib/python3.8/site-packages/repo2data
 Config from file :
-/home/data/nbc/misc-projects/Salo_NiMARE/binder/data_requirement.json
+/Users/taylor/Documents/nbc/nimare-paper/binder/data_requirement.json
 Destination:
 ./../data/nimare-paper
 
 Info : ./../data/nimare-paper already downloaded
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/datasets/__init__.py:90: FutureWarning: Fetchers from the nilearn.datasets module will be updated in version 0.9 to return python strings instead of bytes and Pandas dataframes instead of Numpy arrays.
-  &quot;Numpy arrays.&quot;, FutureWarning)
 </pre></div>
 </div>
 </div>
@@ -447,11 +486,11 @@ Info : ./../data/nimare-paper already downloaded
 </div>
 </div>
 </div>
-<p>Functional decoding performed with meta-analytic data, refers to methods which attempt to predict mental states from neuroimaging data using a large-scale meta-analytic database <span id="id1">[<a class="reference internal" href="16_bibliography.html#id80">Smith <em>et al.</em>, 2009</a>]</span>.
-Such analyses may also be referred to as “informal reverse inference” <span id="id2">[<a class="reference internal" href="16_bibliography.html#id37">Poldrack, 2011</a>]</span>, “functional characterization analysis” <span id="id3">[<a class="reference internal" href="16_bibliography.html#id54">Bzdok <em>et al.</em>, 2013</a>, <a class="reference internal" href="16_bibliography.html#id41">Cieslik <em>et al.</em>, 2013</a>, <a class="reference internal" href="16_bibliography.html#id20">Rottschy <em>et al.</em>, 2013</a>]</span>, “open-ended decoding” <span id="id4">[<a class="reference internal" href="16_bibliography.html#id83">Rubin <em>et al.</em>, 2017</a>]</span>, or simply “functional decoding” <span id="id5">[<a class="reference internal" href="16_bibliography.html#id18">Amft <em>et al.</em>, 2015</a>, <a class="reference internal" href="16_bibliography.html#id72">Bzdok <em>et al.</em>, 2013</a>, <a class="reference internal" href="16_bibliography.html#id71">Nickl-Jockschat <em>et al.</em>, 2015</a>]</span>.
-While the terminology is far from standardized, we will refer to this method as <strong>meta-analytic functional decoding</strong> in order to distinguish it from alternative methods like multivariate decoding and model-based decoding <span id="id6">[<a class="reference internal" href="16_bibliography.html#id37">Poldrack, 2011</a>]</span>.
+<p>Functional decoding performed with meta-analytic data, refers to methods which attempt to predict mental states from neuroimaging data using a large-scale meta-analytic database <span id="id1">[<a class="reference internal" href="16_bibliography.html#id72">Smith <em>et al.</em>, 2009</a>]</span>.
+Such analyses may also be referred to as “informal reverse inference” <span id="id2">[<a class="reference internal" href="16_bibliography.html#id33">Poldrack, 2011</a>]</span>, “functional characterization analysis” <span id="id3">[<a class="reference internal" href="16_bibliography.html#id48">Bzdok <em>et al.</em>, 2013</a>, <a class="reference internal" href="16_bibliography.html#id37">Cieslik <em>et al.</em>, 2013</a>, <a class="reference internal" href="16_bibliography.html#id18">Rottschy <em>et al.</em>, 2013</a>]</span>, “open-ended decoding” <span id="id4">[<a class="reference internal" href="16_bibliography.html#id75">Rubin <em>et al.</em>, 2017</a>]</span>, or simply “functional decoding” <span id="id5">[<a class="reference internal" href="16_bibliography.html#id16">Amft <em>et al.</em>, 2015</a>, <a class="reference internal" href="16_bibliography.html#id66">Bzdok <em>et al.</em>, 2013</a>, <a class="reference internal" href="16_bibliography.html#id65">Nickl-Jockschat <em>et al.</em>, 2015</a>]</span>.
+While the terminology is far from standardized, we will refer to this method as <strong>meta-analytic functional decoding</strong> in order to distinguish it from alternative methods like multivariate decoding and model-based decoding <span id="id6">[<a class="reference internal" href="16_bibliography.html#id33">Poldrack, 2011</a>]</span>.
 Meta-analytic functional decoding is often used in conjunction with MACM, meta-analytic clustering, meta-analytic parcellation, and meta-ICA, in order to characterize resulting brain regions, clusters, or components.
-Meta-analytic functional decoding models have also been extended for the purpose of <strong>meta-analytic functional encoding</strong>, wherein text is used to generate statistical images <span id="id7">[<a class="reference internal" href="16_bibliography.html#id83">Rubin <em>et al.</em>, 2017</a>, <a class="reference internal" href="16_bibliography.html#id3">Dockès <em>et al.</em>, 2018</a>, <a class="reference internal" href="16_bibliography.html#id24">Nunes, 2018</a>]</span>.</p>
+Meta-analytic functional decoding models have also been extended for the purpose of <strong>meta-analytic functional encoding</strong>, wherein text is used to generate statistical images <span id="id7">[<a class="reference internal" href="16_bibliography.html#id75">Rubin <em>et al.</em>, 2017</a>, <a class="reference internal" href="16_bibliography.html#id3">Dockès <em>et al.</em>, 2018</a>, <a class="reference internal" href="16_bibliography.html#id20">Nunes, 2018</a>]</span>.</p>
 <p>Four common approaches are correlation-based decoding, dot-product decoding, weight-sum decoding, and chi-square decoding.
 We will first discuss continuous decoding methods (i.e., correlation and dot-product), followed by discrete decoding methods (weight-sum and chi-square).</p>
 <div class="section" id="decoding-continuous-inputs">
@@ -470,16 +509,20 @@ However, such results should be interpreted with great caution.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/_utils/niimg.py:62: UserWarning: Non-finite values detected. These values will be replaced with zeros.
-  &quot;Non-finite values detected. &quot;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/taylor/Documents/nbc/nimare-paper/conda_env/lib/python3.8/site-packages/nilearn/plotting/img_plotting.py:300: FutureWarning: Default resolution of the MNI template will change from 2mm to 1mm in version 0.10.0
+  anat_img = load_mni152_template()
 </pre></div>
 </div>
-<img alt="_images/12_decoding_5_2.png" src="_images/12_decoding_5_2.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/taylor/Documents/nbc/nimare-paper/conda_env/lib/python3.8/site-packages/nilearn/_utils/niimg.py:63: UserWarning: Non-finite values detected. These values will be replaced with zeros.
+  warn(
+</pre></div>
+</div>
+<img alt="_images/12_decoding_5_3.png" src="_images/12_decoding_5_3.png" />
 </div>
 </div>
 <div class="figure align-center" id="figure-map-to-decode">
 <div class="cell_output docutils container">
-<img alt="_images/12_decoding_5_1.png" src="_images/12_decoding_5_1.png" />
+<img alt="_images/12_decoding_5_2.png" src="_images/12_decoding_5_2.png" />
 </div>
 <p class="caption"><span class="caption-number">Fig. 16 </span><span class="caption-text">The unthresholded statistical map that will be used for continuous decoding.</span><a class="headerlink" href="#figure-map-to-decode" title="Permalink to this image">¶</a></p>
 </div>
@@ -1517,7 +1560,7 @@ A detailed algorithm description is presented in <a class="reference internal" h
 This is a very poor interpretation, given that any database of neuroimaging results will be skewed more toward the interests of the field than the distribution of mental states or processes experienced by humans, which is why decoding must be interpreted with extreme caution.
 It is important not to place too much emphasis on the results of functional decoding analyses, although they are very useful in that they can provide a quantitative estimate behind the kinds of interpretations generally included in discussion sections that are normally only backed by informal literature searches or prior knowledge.</p>
 <p>The meta-analytic functional decoding methods in NiMARE provide a very rudimentary approach for open-ended decoding (i.e., decoding across a very large range of mental states) that can be used with resources like NeuroVault.
-However, standard classification methods have also been applied to datasets from NeuroVault (e.g., <span id="id8">Varoquaux <em>et al.</em> [<a class="reference internal" href="16_bibliography.html#id55">2018</a>]</span>), although these methods do not fall under NiMARE’s scope.</p>
+However, standard classification methods have also been applied to datasets from NeuroVault (e.g., <span id="id8">Varoquaux <em>et al.</em> [<a class="reference internal" href="16_bibliography.html#id49">2018</a>]</span>), although these methods do not fall under NiMARE’s scope.</p>
 </div>
 </div>
 </div>
@@ -1544,54 +1587,42 @@ However, standard classification methods have also been applied to datasets from
 
               </div>
               
-        
             
-
-
-
-<div class='prev-next-bottom'>
-    
-    <div id="prev">
-        <a class="left-prev" href="11_annotation.html" title="previous page">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Automated Annotation</p>
-            </div>
-        </a>
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="11_annotation.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Automated Annotation</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="13_future_directions.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Future Directions</p>
     </div>
-     <div id="next">
-        <a class="right-next" href="13_future_directions.html" title="next page">
-            <div class="prevnext-info">
-                <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Future Directions</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
-
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
-        
+            
         </div>
     </div>
     <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By Taylor Salo, Tal Yarkoni, Thomas E. Nichols, Jean-Baptiste Poline, Murat Bilgel, Katherine L. Bottenhorn, Dorota Jarecka, James D. Kent, Adam Kimbler, Dylan M. Nielson, Kendra M. Oudyk, Julio A. Peraza, Alexandre Pérez, Puck C. Reeders, Julio A. Yanes, and Angela R. Laird<br/>
-        
-            &copy; Copyright 2021.<br/>
-      </p>
-    </div>
-  </footer>
+  <p>
+    
+      By Taylor Salo, Tal Yarkoni, Thomas E. Nichols, Jean-Baptiste Poline, Murat Bilgel, Katherine L. Bottenhorn, Simon B. Eickhoff, Dorota Jarecka, James D. Kent, Adam Kimbler, Dylan M. Nielson, Kendra M. Oudyk, Julio A. Peraza, Alexandre Pérez, Puck C. Reeders, Julio A. Yanes, and Angela R. Laird<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
 </main>
 
 
       </div>
     </div>
   
-  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-  
   </body>
 </html>

@@ -346,7 +346,8 @@ While this method was developed to support analysis of joint activation or "coac
 # However, one assumption of SCALE is that the Dataset being analyzed comes
 # from the same source as the database you use for calculating base-rates.
 xyz = neurosynth_dset.coordinates[["x", "y", "z"]].values
-scale_meta = ale.SCALE(n_iters=2500, xyz=xyz, memory_limit=None)
+# Typically, you would have >=2500 iterations, but we're using 500 here.
+scale_meta = ale.SCALE(n_iters=500, xyz=xyz, memory_limit="100mb", n_cores=1)
 scale_results = scale_meta.fit(sleuth_dset1)
 
 # Retain the z-statistic map for later use

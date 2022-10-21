@@ -84,7 +84,17 @@ Here, we use `ImageTransformer` to calculate z-statistic and variance maps for a
 This allows us to apply more image-based meta-analysis algorithms to the `Dataset`.
 
 ```{code-cell} ipython3
+import warnings
+
 from nimare import transforms
+
+# The images used in this example have NaNs in any voxels outside the brain.
+# Generally, we recommend having zeros in masked-out areas,
+# but the data are what they are in this case.
+# Nilearn will raise warnings when users resample images with NaNs.
+# This will not cause any problems for this example, so we will simply filter
+# those warnings out.
+warnings.filterwarnings(action="ignore", category=RuntimeWarning, module="nilearn")
 
 img_transformer = transforms.ImageTransformer(target=["z", "varcope"], overwrite=False)
 img_dset = img_transformer.transform(img_dset)
@@ -165,7 +175,8 @@ atlas = datasets.fetch_atlas_harvard_oxford("cort-maxprob-thr25-2mm")
 # and some of the NIDM-Results packs' beta images have NaNs at the edge of the brain.
 # So, we will create a reduced version of the atlas for this analysis.
 nan_mask = image.math_img("~np.any(np.isnan(img), axis=3)", img=img_dset.images["beta"].tolist())
-nanmasked_atlas = image.math_img("mask * atlas", mask=nan_mask, atlas=atlas["maps"])
+atlas = image.resample_to_img(atlas["maps"], nan_mask)
+nanmasked_atlas = image.math_img("mask * atlas", mask=nan_mask, atlas=atlas)
 masker = input_data.NiftiLabelsMasker(nanmasked_atlas)
 del atlas, nan_mask, nanmasked_atlas
 

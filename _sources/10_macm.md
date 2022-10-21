@@ -49,6 +49,7 @@ Nevertheless, MACM analyses do show high correspondence with resting-state funct
 MACM has been used to characterize the task-based functional coactivation of the cerebellum {cite:p}`Riedel2015-tx`, lateral prefrontal cortex {cite:p}`Reid2016-ba`, fusiform gyrus {cite:p}`Caspers2014-ja`, and several other brain regions.
 
 Within NiMARE, MACMs can be performed by selecting studies in a Dataset based on the presence of activation within a target mask or coordinate-centered sphere.
+While some algorithms, such as SCALE, may have been designed with MACMs in mind, in practice MACMs may be performed with any valid Estimator.
 
 In this section, we will perform two MACMs- one with a target mask and one with a coordinate-centered sphere.
 For the former, we use {py:meth}`~nimare.dataset.Dataset.get_studies_by_mask`.

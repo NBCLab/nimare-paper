@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Coordinate-Based Meta-Analysis &#8212; NiMARE: Neuroimaging Meta-Analysis Research Environment</title>
     
-  <link href="_static/css/theme.css" rel="stylesheet" />
-  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
 
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -42,9 +42,9 @@
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -58,7 +58,10 @@
     <link rel="next" title="Image-Based Meta-Analysis" href="06_ibma.html" />
     <link rel="prev" title="External Meta-Analytic Resources" href="04_resources.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -282,7 +285,7 @@
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -333,7 +336,7 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
@@ -396,7 +399,73 @@
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Coordinate-Based Meta-Analysis</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cbma-kernels">
+   CBMA kernels
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#multilevel-kernel-density-analysis">
+   Multilevel kernel density analysis
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-metaresult-class">
+     The
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       MetaResult
+      </span>
+     </code>
+     class
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#kernel-density-analysis">
+   Kernel density analysis
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#activation-likelihood-estimation">
+   Activation likelihood estimation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#specific-coactivation-likelihood-estimation">
+   Specific coactivation likelihood estimation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#mkda-chi-squared-analysis">
+   MKDA Chi-Squared Analysis
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#comparing-algorithms">
+   Comparing algorithms
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
               <div>
                 
   <div class="section" id="coordinate-based-meta-analysis">
@@ -433,14 +502,10 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nilearn/datasets/__init__.py:90: FutureWarning: Fetchers from the nilearn.datasets module will be updated in version 0.9 to return python strings instead of bytes and Pandas dataframes instead of Numpy arrays.
-  &quot;Numpy arrays.&quot;, FutureWarning)
-</pre></div>
-</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---- repo2data starting ----
-/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/repo2data
+/Users/taylor/Documents/nbc/nimare-paper/conda_env/lib/python3.8/site-packages/repo2data
 Config from file :
-/home/data/nbc/misc-projects/Salo_NiMARE/binder/data_requirement.json
+/Users/taylor/Documents/nbc/nimare-paper/binder/data_requirement.json
 Destination:
 ./../data/nimare-paper
 
@@ -452,9 +517,9 @@ Info : ./../data/nimare-paper already downloaded
 <p>Coordinate-based meta-analysis (CBMA) is currently the most popular method for neuroimaging meta-analysis, given that the majority of fMRI papers currently report their findings as peaks of statistically significant clusters in standard space and do not release unthresholded statistical maps.
 These peaks indicate where significant results were found in the brain, and thus do not reflect an effect size estimate for each hypothesis test (i.e., each voxel) as one would expect for a typical meta-analysis.
 As such, standard methods for effect size-based meta-analysis cannot be applied.
-Over the past two decades, a number of algorithms have been developed to determine whether peaks converge across experiments in order to identify locations of consistent or specific activation associated with a given hypothesis <span id="id1">[<a class="reference internal" href="16_bibliography.html#id79">Samartsidis <em>et al.</em>, 2017</a>, <a class="reference internal" href="16_bibliography.html#id61">Müller <em>et al.</em>, 2018</a>]</span>.</p>
+Over the past two decades, a number of algorithms have been developed to determine whether peaks converge across experiments in order to identify locations of consistent or specific activation associated with a given hypothesis <span id="id1">[<a class="reference internal" href="16_bibliography.html#id71">Samartsidis <em>et al.</em>, 2017</a>, <a class="reference internal" href="16_bibliography.html#id55">Müller <em>et al.</em>, 2018</a>]</span>.</p>
 <p>Kernel-based methods evaluate convergence of coordinates across studies by first convolving foci with a spatial kernel to produce study-specific modeled activation maps, then combining those modeled activation maps into a sample-wise map, which is compared to a null distribution to evaluate voxel-wise statistical significance.
-Additionally, for each of the following approaches, except for SCALE, voxel- or cluster-level multiple comparisons correction may be performed using Monte Carlo simulations or false discovery rate (FDR) <span id="id2">[<a class="reference internal" href="16_bibliography.html#id44">Laird <em>et al.</em>, 2005</a>]</span> correction. Basic multiple-comparisons correction methods (e.g., Bonferroni correction) are also supported.</p>
+Additionally, for each of the following approaches, except for SCALE, voxel- or cluster-level multiple comparisons correction may be performed using Monte Carlo simulations or false discovery rate (FDR) <span id="id2">[<a class="reference internal" href="16_bibliography.html#id40">Laird <em>et al.</em>, 2005</a>]</span> correction. Basic multiple-comparisons correction methods (e.g., Bonferroni correction) are also supported.</p>
 <div class="figure align-center" id="meta-workflow-fig">
 <a class="reference internal image-reference" href="_images/figure_02.svg"><img alt="_images/figure_02.svg" src="_images/figure_02.svg" width="300px" /></a>
 <p class="caption"><span class="caption-number">Fig. 3 </span><span class="caption-text">A flowchart of the typical workflow for coordinate-based meta-analyses in NiMARE.</span><a class="headerlink" href="#meta-workflow-fig" title="Permalink to this image">¶</a></p>
@@ -465,7 +530,7 @@ Additionally, for each of the following approaches, except for SCALE, voxel- or 
 There are three standard kernels that are currently available: <a class="reference external" href="https://nimare.readthedocs.io/en/0.0.11/generated/nimare.meta.kernel.MKDAKernel.html#nimare.meta.kernel.MKDAKernel" title="(in NiMARE v0.0.11+0.g7e094f2.dirty)"><code class="xref py py-class docutils literal notranslate"><span class="pre">MKDAKernel</span></code></a>, <a class="reference external" href="https://nimare.readthedocs.io/en/0.0.11/generated/nimare.meta.kernel.KDAKernel.html#nimare.meta.kernel.KDAKernel" title="(in NiMARE v0.0.11+0.g7e094f2.dirty)"><code class="xref py py-class docutils literal notranslate"><span class="pre">KDAKernel</span></code></a>, and <a class="reference external" href="https://nimare.readthedocs.io/en/0.0.11/generated/nimare.meta.kernel.ALEKernel.html#nimare.meta.kernel.ALEKernel" title="(in NiMARE v0.0.11+0.g7e094f2.dirty)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ALEKernel</span></code></a>.
 Each class may be configured with certain parameters when a new object is initialized.
 For example, <code class="docutils literal notranslate"><span class="pre">MKDAKernel</span></code> accepts an <code class="docutils literal notranslate"><span class="pre">r</span></code> parameter, which determines the radius of the spheres that will be created around each peak coordinate.
-<code class="docutils literal notranslate"><span class="pre">ALEKernel</span></code> automatically uses the sample size associated with each experiment in the <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> to determine the appropriate full-width-at-half-maximum of its Gaussian distribution, as described in <span id="id3">Eickhoff <em>et al.</em> [<a class="reference internal" href="16_bibliography.html#id97">2012</a>]</span>; however, users may provide a constant <code class="docutils literal notranslate"><span class="pre">sample_size</span></code> or <code class="docutils literal notranslate"><span class="pre">fwhm</span></code> parameter when sample size information is not available within the <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> metadata.</p>
+<code class="docutils literal notranslate"><span class="pre">ALEKernel</span></code> automatically uses the sample size associated with each experiment in the <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> to determine the appropriate full-width-at-half-maximum of its Gaussian distribution, as described in <span id="id3">Eickhoff <em>et al.</em> [<a class="reference internal" href="16_bibliography.html#id88">2012</a>]</span>; however, users may provide a constant <code class="docutils literal notranslate"><span class="pre">sample_size</span></code> or <code class="docutils literal notranslate"><span class="pre">fwhm</span></code> parameter when sample size information is not available within the <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> metadata.</p>
 <p>Here we show how these three kernels can be applied to the same <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -477,6 +542,16 @@ For example, <code class="docutils literal notranslate"><span class="pre">MKDAKe
 <span class="n">kda_ma_maps</span> <span class="o">=</span> <span class="n">kda_kernel</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">sleuth_dset1</span><span class="p">)</span>
 <span class="n">ale_kernel</span> <span class="o">=</span> <span class="n">kernel</span><span class="o">.</span><span class="n">ALEKernel</span><span class="p">(</span><span class="n">sample_size</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 <span class="n">ale_ma_maps</span> <span class="o">=</span> <span class="n">ale_kernel</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">sleuth_dset1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/taylor/Documents/nbc/nimare-paper/conda_env/lib/python3.8/site-packages/nimare/meta/kernel.py:229: FutureWarning: Image data has type int64, which may cause incompatibilities with other tools. This will error in NiBabel 5.0. This warning can be silenced by passing the dtype argument to Nifti1Image().
+  img = nib.Nifti1Image(kernel_data, mask.affine)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/taylor/Documents/nbc/nimare-paper/conda_env/lib/python3.8/site-packages/nimare/meta/kernel.py:229: FutureWarning: Image data has type int64, which may cause incompatibilities with other tools. This will error in NiBabel 5.0. This warning can be silenced by passing the dtype argument to Nifti1Image().
+  img = nib.Nifti1Image(kernel_data, mask.affine)
 </pre></div>
 </div>
 </div>
@@ -534,7 +609,11 @@ For example, <code class="docutils literal notranslate"><span class="pre">MKDAKe
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/05_cbma_6_1.png" src="_images/05_cbma_6_1.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/taylor/Documents/nbc/nimare-paper/conda_env/lib/python3.8/site-packages/nilearn/plotting/img_plotting.py:300: FutureWarning: Default resolution of the MNI template will change from 2mm to 1mm in version 0.10.0
+  anat_img = load_mni152_template()
+</pre></div>
+</div>
+<img alt="_images/05_cbma_6_2.png" src="_images/05_cbma_6_2.png" />
 </div>
 </div>
 <div class="cell tag_hide-cell docutils container">
@@ -547,7 +626,7 @@ For example, <code class="docutils literal notranslate"><span class="pre">MKDAKe
 </div>
 <div class="figure align-center" id="figure-ma-maps">
 <div class="cell_output docutils container">
-<img alt="_images/05_cbma_6_0.png" src="_images/05_cbma_6_0.png" />
+<img alt="_images/05_cbma_6_1.png" src="_images/05_cbma_6_1.png" />
 </div>
 <p class="caption"><span class="caption-number">Fig. 4 </span><span class="caption-text">Modeled activation maps produced by NiMARE’s <code class="docutils literal notranslate"><span class="pre">KernelTransformer</span></code> classes.</span><a class="headerlink" href="#figure-ma-maps" title="Permalink to this image">¶</a></p>
 </div>
@@ -577,7 +656,13 @@ For example, <code class="docutils literal notranslate"><span class="pre">MKDAKe
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/home/data/nbc/misc-projects/Salo_NiMARE/outputs/neurosynth_dataset_maps/&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/taylor/Documents/nbc/nimare-paper/conda_env/lib/python3.8/site-packages/nimare/meta/kernel.py:232: FutureWarning: Image data has type int64, which may cause incompatibilities with other tools. This will error in NiBabel 5.0. This warning can be silenced by passing the dtype argument to Nifti1Image().
+  img = nib.Nifti1Image(kernel_data, mask.affine)
+/Users/taylor/Documents/nbc/nimare-paper/conda_env/lib/python3.8/site-packages/nimare/meta/kernel.py:232: FutureWarning: Image data has type int64, which may cause incompatibilities with other tools. This will error in NiBabel 5.0. This warning can be silenced by passing the dtype argument to Nifti1Image().
+  img = nib.Nifti1Image(kernel_data, mask.affine)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:nimare.utils:Shared path detected: &#39;/Users/taylor/Documents/nbc/nimare-paper/outputs/neurosynth_dataset_maps/&#39;
 </pre></div>
 </div>
 </div>
@@ -585,7 +670,7 @@ For example, <code class="docutils literal notranslate"><span class="pre">MKDAKe
 </div>
 <div class="section" id="multilevel-kernel-density-analysis">
 <span id="content-cbma-mkdad"></span><h2>Multilevel kernel density analysis<a class="headerlink" href="#multilevel-kernel-density-analysis" title="Permalink to this headline">¶</a></h2>
-<p><strong>Multilevel kernel density analysis</strong> (MKDA) <span id="id4">[<a class="reference internal" href="16_bibliography.html#id57">Wager <em>et al.</em>, 2007</a>]</span> is a kernel-based method that convolves each peak from each study with a binary sphere of a set radius.
+<p><strong>Multilevel kernel density analysis</strong> (MKDA) <span id="id4">[<a class="reference internal" href="16_bibliography.html#id51">Wager <em>et al.</em>, 2007</a>]</span> is a kernel-based method that convolves each peak from each study with a binary sphere of a set radius.
 These peak-specific binary maps are then combined into study-specific maps by taking the maximum value for each voxel.
 Study-specific maps are then averaged across the meta-analytic sample.
 This averaging is generally weighted by studies’ sample sizes, although other covariates may be included, such as weights based on the type of inference (random or fixed effects) employed in the study’s analysis.
@@ -629,7 +714,7 @@ The <code class="docutils literal notranslate"><span class="pre">MetaResult</spa
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;nimare.results.MetaResult object at 0x7f886f845890&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;nimare.results.MetaResult object at 0x7f872d764430&gt;
 </pre></div>
 </div>
 </div>
@@ -642,7 +727,7 @@ The <code class="docutils literal notranslate"><span class="pre">MetaResult</spa
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;nimare.results.MetaResult object at 0x7f886f845890&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;nimare.results.MetaResult object at 0x7f872d764430&gt;
 </pre></div>
 </div>
 </div>
@@ -786,7 +871,7 @@ Here, we will save all of the statistical maps with the MKDADensity prefix.</p>
 </div>
 <div class="section" id="kernel-density-analysis">
 <h2>Kernel density analysis<a class="headerlink" href="#kernel-density-analysis" title="Permalink to this headline">¶</a></h2>
-<p><strong>Kernel density analysis</strong> (KDA) <span id="id5">[<a class="reference internal" href="16_bibliography.html#id59">Wager <em>et al.</em>, 2003</a>, <a class="reference internal" href="16_bibliography.html#id16">Wager <em>et al.</em>, 2004</a>]</span> is a precursor algorithm that has been replaced in the field by MKDA.
+<p><strong>Kernel density analysis</strong> (KDA) <span id="id5">[<a class="reference internal" href="16_bibliography.html#id53">Wager <em>et al.</em>, 2003</a>, <a class="reference internal" href="16_bibliography.html#id14">Wager <em>et al.</em>, 2004</a>]</span> is a precursor algorithm that has been replaced in the field by MKDA.
 For the sake of completeness, NiMARE also includes a KDA estimator that implements the older KDA algorithm for comparison purposes.
 The interface is virtually identical, but since there are few if any legitimate uses of KDA (which models studies as fixed rather than random effects), we do not discuss the algorithm further here.</p>
 <div class="cell docutils container">
@@ -816,7 +901,7 @@ The interface is virtually identical, but since there are few if any legitimate 
 </div>
 <div class="section" id="activation-likelihood-estimation">
 <h2>Activation likelihood estimation<a class="headerlink" href="#activation-likelihood-estimation" title="Permalink to this headline">¶</a></h2>
-<p><strong>Activation likelihood estimation</strong> (ALE) <span id="id6">[<a class="reference internal" href="16_bibliography.html#id65">Eickhoff <em>et al.</em>, 2012</a>, <a class="reference internal" href="16_bibliography.html#id40">Turkeltaub <em>et al.</em>, 2012</a>, <a class="reference internal" href="16_bibliography.html#id7">Turkeltaub <em>et al.</em>, 2002</a>]</span> assesses convergence of peaks across studies by first generating a modeled activation map for each study, in which each of the experiment’s peaks is convolved with a 3D Gaussian distribution determined by the experiment’s sample size, and then by combining these modeled activation maps across studies into an ALE map, which is compared to an empirical null distribution to assess voxel-wise statistical significance.</p>
+<p><strong>Activation likelihood estimation</strong> (ALE) <span id="id6">[<a class="reference internal" href="16_bibliography.html#id59">Eickhoff <em>et al.</em>, 2012</a>, <a class="reference internal" href="16_bibliography.html#id36">Turkeltaub <em>et al.</em>, 2012</a>, <a class="reference internal" href="16_bibliography.html#id7">Turkeltaub <em>et al.</em>, 2002</a>]</span> assesses convergence of peaks across studies by first generating a modeled activation map for each study, in which each of the experiment’s peaks is convolved with a 3D Gaussian distribution determined by the experiment’s sample size, and then by combining these modeled activation maps across studies into an ALE map, which is compared to an empirical null distribution to assess voxel-wise statistical significance.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nimare.meta.cbma</span> <span class="kn">import</span> <span class="n">ale</span>
@@ -841,7 +926,7 @@ The interface is virtually identical, but since there are few if any legitimate 
 </div>
 <div class="section" id="specific-coactivation-likelihood-estimation">
 <h2>Specific coactivation likelihood estimation<a class="headerlink" href="#specific-coactivation-likelihood-estimation" title="Permalink to this headline">¶</a></h2>
-<p><strong>Specific coactivation likelihood estimation</strong> (SCALE) <span id="id7">[<a class="reference internal" href="16_bibliography.html#id84">Langner <em>et al.</em>, 2014</a>]</span> is an extension of the ALE algorithm developed for meta-analytic coactivation modeling (MACM) analyses.
+<p><strong>Specific coactivation likelihood estimation</strong> (SCALE) <span id="id7">[<a class="reference internal" href="16_bibliography.html#id76">Langner <em>et al.</em>, 2014</a>]</span> is an extension of the ALE algorithm developed for meta-analytic coactivation modeling (MACM) analyses.
 Rather than comparing convergence of foci within the sample to a null distribution derived under the assumption of spatial randomness within the brain, SCALE assesses whether the convergence at each voxel is greater than in the general literature.
 Each voxel in the brain is assigned a null distribution determined based on the base rate of activation for that voxel across an existing coordinate-based meta-analytic database.
 This approach allows for the generation of a statistical map for the sample, but no methods for multiple comparisons correction have yet been developed.
@@ -853,7 +938,8 @@ While this method was developed to support analysis of joint activation or “co
 <span class="c1"># However, one assumption of SCALE is that the Dataset being analyzed comes</span>
 <span class="c1"># from the same source as the database you use for calculating base-rates.</span>
 <span class="n">xyz</span> <span class="o">=</span> <span class="n">neurosynth_dset</span><span class="o">.</span><span class="n">coordinates</span><span class="p">[[</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;z&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span>
-<span class="n">scale_meta</span> <span class="o">=</span> <span class="n">ale</span><span class="o">.</span><span class="n">SCALE</span><span class="p">(</span><span class="n">n_iters</span><span class="o">=</span><span class="mi">2500</span><span class="p">,</span> <span class="n">xyz</span><span class="o">=</span><span class="n">xyz</span><span class="p">,</span> <span class="n">memory_limit</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="c1"># Typically, you would have &gt;=2500 iterations, but we&#39;re using 500 here.</span>
+<span class="n">scale_meta</span> <span class="o">=</span> <span class="n">ale</span><span class="o">.</span><span class="n">SCALE</span><span class="p">(</span><span class="n">n_iters</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">xyz</span><span class="o">=</span><span class="n">xyz</span><span class="p">,</span> <span class="n">memory_limit</span><span class="o">=</span><span class="s2">&quot;100mb&quot;</span><span class="p">,</span> <span class="n">n_cores</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">scale_results</span> <span class="o">=</span> <span class="n">scale_meta</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">sleuth_dset1</span><span class="p">)</span>
 
 <span class="c1"># Retain the z-statistic map for later use</span>
@@ -863,7 +949,9 @@ While this method was developed to support analysis of joint activation or “co
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "03c33526ea674c91b5491ac1b1b1e636"}
+{"version_major": 2, "version_minor": 0, "model_id": "94550ec2c9c64e00a0225ff88eb5c335"}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"version_major": 2, "version_minor": 0, "model_id": "0ec5289cda7846ff88b38e67aecfd833"}
 </script></div>
 </div>
 <div class="cell tag_hide-cell docutils container">
@@ -877,7 +965,7 @@ While this method was developed to support analysis of joint activation or “co
 </div>
 <div class="section" id="mkda-chi-squared-analysis">
 <h2>MKDA Chi-Squared Analysis<a class="headerlink" href="#mkda-chi-squared-analysis" title="Permalink to this headline">¶</a></h2>
-<p>An alternative to the density-based approaches (i.e., MKDA, KDA, ALE, and SCALE) is the <strong>MKDA Chi-squared</strong> extension <span id="id8">[<a class="reference internal" href="16_bibliography.html#id57">Wager <em>et al.</em>, 2007</a>]</span>.
+<p>An alternative to the density-based approaches (i.e., MKDA, KDA, ALE, and SCALE) is the <strong>MKDA Chi-squared</strong> extension <span id="id8">[<a class="reference internal" href="16_bibliography.html#id51">Wager <em>et al.</em>, 2007</a>]</span>.
 Though still a kernel-based method in which foci are convolved with a binary sphere and combined within studies, this approach uses voxel-wise chi-squared tests to assess both consistency (i.e., higher convergence of foci within the meta-analytic sample than expected by chance) and specificity (i.e., higher convergence of foci within the meta-analytic sample than detected in an unrelated dataset) of activation.
 Such an analysis also requires access to a reference meta-analytic sample or database of studies.
 For example, to perform a chi-squared analysis of working memory studies, the researcher will also need a comprehensive set of studies which did not manipulate working memory—ideally one that is matched with the working memory study set on all relevant attributes <em>except</em> the involvement of working memory.</p>
@@ -892,9 +980,9 @@ For example, to perform a chi-squared analysis of working memory studies, the re
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nimare/meta/cbma/mkda.py:259: RuntimeWarning: invalid value encountered in true_divide
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/taylor/Documents/nbc/nimare-paper/conda_env/lib/python3.8/site-packages/nimare/meta/cbma/mkda.py:276: RuntimeWarning: invalid value encountered in divide
   pFgA = pAgF * pF / pA
-/home/data/nbc/misc-projects/Salo_NiMARE/conda_env/lib/python3.7/site-packages/nimare/meta/cbma/mkda.py:263: RuntimeWarning: invalid value encountered in true_divide
+/Users/taylor/Documents/nbc/nimare-paper/conda_env/lib/python3.8/site-packages/nimare/meta/cbma/mkda.py:280: RuntimeWarning: invalid value encountered in divide
   pFgA_prior = pAgF * self.prior / pAgF_prior
 </pre></div>
 </div>
@@ -981,7 +1069,7 @@ We describe these algorithms briefly in <a class="reference internal" href="13_f
 
 
 <script type="application/vnd.jupyter.widget-state+json">
-{"state": {"a58022ebb5764f32910e6dfd61e200cd": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "46d39774d1fe4fcd9c8a4fdc38360ad3": {"model_name": "ProgressStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ProgressStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "bar_color": null, "description_width": ""}}, "7178015ff6a14257a4fcf5bc71a8a7ec": {"model_name": "FloatProgressModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatProgressModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ProgressView", "bar_style": "success", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_a58022ebb5764f32910e6dfd61e200cd", "max": 2500.0, "min": 0.0, "orientation": "horizontal", "style": "IPY_MODEL_46d39774d1fe4fcd9c8a4fdc38360ad3", "value": 2500.0}}, "a56be54f4030426682ad9fd3e3190025": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "8e4278c8bd214f0f8ab28860a3560735": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "95c85811885d42c3bf8ab3a70ed7732e": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_a56be54f4030426682ad9fd3e3190025", "placeholder": "\u200b", "style": "IPY_MODEL_8e4278c8bd214f0f8ab28860a3560735", "value": "100%"}}, "e0a0c6546f9140c58f08c4cbdf41283a": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "b1cafbd7dba7444f838475851a3cd2de": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "f5a03d6ad7834d89be5baa2721e0134b": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_e0a0c6546f9140c58f08c4cbdf41283a", "placeholder": "\u200b", "style": "IPY_MODEL_b1cafbd7dba7444f838475851a3cd2de", "value": " 2500/2500 [16:57&lt;00:00,  5.75it/s]"}}, "5c409c3dbc1740208be510b67af4a2f5": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "03c33526ea674c91b5491ac1b1b1e636": {"model_name": "HBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_95c85811885d42c3bf8ab3a70ed7732e", "IPY_MODEL_7178015ff6a14257a4fcf5bc71a8a7ec", "IPY_MODEL_f5a03d6ad7834d89be5baa2721e0134b"], "layout": "IPY_MODEL_5c409c3dbc1740208be510b67af4a2f5"}}}, "version_major": 2, "version_minor": 0}
+{"state": {"ae1df2866c8c4e30bc3dba76bf035637": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "15a3707653ec4135aade408055700ea6": {"model_name": "ProgressStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ProgressStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "bar_color": null, "description_width": ""}}, "6b8916234bee487eab3c7afade4e03c5": {"model_name": "FloatProgressModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatProgressModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ProgressView", "bar_style": "success", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_ae1df2866c8c4e30bc3dba76bf035637", "max": 500.0, "min": 0.0, "orientation": "horizontal", "style": "IPY_MODEL_15a3707653ec4135aade408055700ea6", "value": 500.0}}, "befceba7131546cdb1c3f1e2db975847": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "fd75d74d29fb433cbdc62dc793be81ac": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "4dd5bbfb1a8141da9c354985bd54dbcf": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_befceba7131546cdb1c3f1e2db975847", "placeholder": "\u200b", "style": "IPY_MODEL_fd75d74d29fb433cbdc62dc793be81ac", "value": "100%"}}, "575c333c83584bf38311fc090e22544e": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "3a1d175f1ab345619805b844163b1b04": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "c149bbe21c3b446aab3dfb840905bdee": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_575c333c83584bf38311fc090e22544e", "placeholder": "\u200b", "style": "IPY_MODEL_3a1d175f1ab345619805b844163b1b04", "value": " 500/500 [02:49&lt;00:00,  2.95it/s]"}}, "47037ce4048042b4b4834500a0fa4581": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "94550ec2c9c64e00a0225ff88eb5c335": {"model_name": "HBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_4dd5bbfb1a8141da9c354985bd54dbcf", "IPY_MODEL_6b8916234bee487eab3c7afade4e03c5", "IPY_MODEL_c149bbe21c3b446aab3dfb840905bdee"], "layout": "IPY_MODEL_47037ce4048042b4b4834500a0fa4581"}}, "cf073998df804497a743cda5ad9bded3": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "29ee0bf3174a41d482d81a9d2c48b58b": {"model_name": "ProgressStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ProgressStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "bar_color": null, "description_width": ""}}, "3d54b4ca1ed64be6924148e84167c569": {"model_name": "FloatProgressModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatProgressModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ProgressView", "bar_style": "success", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_cf073998df804497a743cda5ad9bded3", "max": 228483.0, "min": 0.0, "orientation": "horizontal", "style": "IPY_MODEL_29ee0bf3174a41d482d81a9d2c48b58b", "value": 228483.0}}, "abe028c0fd5a40d18a31f4735d9ac3e5": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "5cb611a149b74e2fbcb0bf75cddcfb80": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "1e7a5237fbc94f7ba1d508c1c372d808": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_abe028c0fd5a40d18a31f4735d9ac3e5", "placeholder": "\u200b", "style": "IPY_MODEL_5cb611a149b74e2fbcb0bf75cddcfb80", "value": "100%"}}, "89fd69fd23b14f458031a6b520b1d9f2": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "81aa0aa69d7d4f1a8f131c1ab7e7d16d": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "dc3bd9096d914923b77c9a5c1f2f945e": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_89fd69fd23b14f458031a6b520b1d9f2", "placeholder": "\u200b", "style": "IPY_MODEL_81aa0aa69d7d4f1a8f131c1ab7e7d16d", "value": " 228483/228483 [02:04&lt;00:00, 3082.51it/s]"}}, "1525341cff03467b8658ba3a14eb7413": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "0ec5289cda7846ff88b38e67aecfd833": {"model_name": "HBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_1e7a5237fbc94f7ba1d508c1c372d808", "IPY_MODEL_3d54b4ca1ed64be6924148e84167c569", "IPY_MODEL_dc3bd9096d914923b77c9a5c1f2f945e"], "layout": "IPY_MODEL_1525341cff03467b8658ba3a14eb7413"}}}, "version_major": 2, "version_minor": 0}
 </script>
 
 
@@ -1007,54 +1095,42 @@ We describe these algorithms briefly in <a class="reference internal" href="13_f
 
               </div>
               
-        
             
-
-
-
-<div class='prev-next-bottom'>
-    
-    <div id="prev">
-        <a class="left-prev" href="04_resources.html" title="previous page">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">External Meta-Analytic Resources</p>
-            </div>
-        </a>
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="04_resources.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">External Meta-Analytic Resources</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="06_ibma.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Image-Based Meta-Analysis</p>
     </div>
-     <div id="next">
-        <a class="right-next" href="06_ibma.html" title="next page">
-            <div class="prevnext-info">
-                <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Image-Based Meta-Analysis</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
-
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
-        
+            
         </div>
     </div>
     <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By Taylor Salo, Tal Yarkoni, Thomas E. Nichols, Jean-Baptiste Poline, Murat Bilgel, Katherine L. Bottenhorn, Dorota Jarecka, James D. Kent, Adam Kimbler, Dylan M. Nielson, Kendra M. Oudyk, Julio A. Peraza, Alexandre Pérez, Puck C. Reeders, Julio A. Yanes, and Angela R. Laird<br/>
-        
-            &copy; Copyright 2021.<br/>
-      </p>
-    </div>
-  </footer>
+  <p>
+    
+      By Taylor Salo, Tal Yarkoni, Thomas E. Nichols, Jean-Baptiste Poline, Murat Bilgel, Katherine L. Bottenhorn, Simon B. Eickhoff, Dorota Jarecka, James D. Kent, Adam Kimbler, Dylan M. Nielson, Kendra M. Oudyk, Julio A. Peraza, Alexandre Pérez, Puck C. Reeders, Julio A. Yanes, and Angela R. Laird<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
 </main>
 
 
       </div>
     </div>
   
-  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-  
   </body>
 </html>
